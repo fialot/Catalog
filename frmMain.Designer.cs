@@ -77,7 +77,12 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabContacts = new System.Windows.Forms.TabPage();
+            this.btnTest = new System.Windows.Forms.Button();
             this.olvContacts = new BrightIdeasSoftware.FastObjectListView();
+            this.conName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.conSurname = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.conPhone = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.conEmail = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabBorrowing = new System.Windows.Forms.TabPage();
             this.tabRezervation = new System.Windows.Forms.TabPage();
             this.tabBooks = new System.Windows.Forms.TabPage();
@@ -85,6 +90,7 @@
             this.tabAudio = new System.Windows.Forms.TabPage();
             this.tabVideo = new System.Windows.Forms.TabPage();
             this.tabFoto = new System.Windows.Forms.TabPage();
+            this.imgBarList = new System.Windows.Forms.ImageList(this.components);
             this.toolStripEditItem = new System.Windows.Forms.ToolStrip();
             this.btnNewItem = new System.Windows.Forms.ToolStripButton();
             this.btnEditItem = new System.Windows.Forms.ToolStripButton();
@@ -137,7 +143,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton34 = new System.Windows.Forms.ToolStripButton();
             this.cbFastFilterCol = new System.Windows.Forms.ToolStripComboBox();
-            this.imgBarList = new System.Windows.Forms.ImageList(this.components);
+            this.conAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -517,6 +523,7 @@
             // 
             // tabContacts
             // 
+            this.tabContacts.Controls.Add(this.btnTest);
             this.tabContacts.Controls.Add(this.olvContacts);
             this.tabContacts.ImageIndex = 0;
             this.tabContacts.Location = new System.Drawing.Point(4, 31);
@@ -527,12 +534,34 @@
             this.tabContacts.Text = "Kontakty";
             this.tabContacts.UseVisualStyleBackColor = true;
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(402, 27);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(152, 23);
+            this.btnTest.TabIndex = 1;
+            this.btnTest.Text = "Import Google Contacts";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // olvContacts
             // 
+            this.olvContacts.AllColumns.Add(this.conName);
+            this.olvContacts.AllColumns.Add(this.conSurname);
+            this.olvContacts.AllColumns.Add(this.conPhone);
+            this.olvContacts.AllColumns.Add(this.conEmail);
+            this.olvContacts.AllColumns.Add(this.conAddress);
             this.olvContacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.olvContacts.CellEditUseWholeCell = false;
+            this.olvContacts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.conName,
+            this.conSurname,
+            this.conPhone,
+            this.conEmail,
+            this.conAddress});
+            this.olvContacts.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvContacts.Location = new System.Drawing.Point(8, 70);
             this.olvContacts.Name = "olvContacts";
             this.olvContacts.ShowGroups = false;
@@ -542,12 +571,36 @@
             this.olvContacts.View = System.Windows.Forms.View.Details;
             this.olvContacts.VirtualMode = true;
             // 
+            // conName
+            // 
+            this.conName.AspectName = "Name";
+            this.conName.Text = "Name";
+            this.conName.Width = 118;
+            // 
+            // conSurname
+            // 
+            this.conSurname.AspectName = "Surname";
+            this.conSurname.Text = "Surname";
+            this.conSurname.Width = 132;
+            // 
+            // conPhone
+            // 
+            this.conPhone.AspectName = "Phone";
+            this.conPhone.Text = "Phone";
+            this.conPhone.Width = 118;
+            // 
+            // conEmail
+            // 
+            this.conEmail.AspectName = "Email";
+            this.conEmail.Text = "Email";
+            this.conEmail.Width = 117;
+            // 
             // tabBorrowing
             // 
             this.tabBorrowing.Location = new System.Drawing.Point(4, 31);
             this.tabBorrowing.Name = "tabBorrowing";
             this.tabBorrowing.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBorrowing.Size = new System.Drawing.Size(1083, 553);
+            this.tabBorrowing.Size = new System.Drawing.Size(1083, 549);
             this.tabBorrowing.TabIndex = 1;
             this.tabBorrowing.Text = "Výpůjčky";
             this.tabBorrowing.UseVisualStyleBackColor = true;
@@ -556,7 +609,7 @@
             // 
             this.tabRezervation.Location = new System.Drawing.Point(4, 31);
             this.tabRezervation.Name = "tabRezervation";
-            this.tabRezervation.Size = new System.Drawing.Size(1083, 553);
+            this.tabRezervation.Size = new System.Drawing.Size(1083, 549);
             this.tabRezervation.TabIndex = 2;
             this.tabRezervation.Text = "Rezervace";
             this.tabRezervation.UseVisualStyleBackColor = true;
@@ -566,7 +619,7 @@
             this.tabBooks.ImageIndex = 1;
             this.tabBooks.Location = new System.Drawing.Point(4, 31);
             this.tabBooks.Name = "tabBooks";
-            this.tabBooks.Size = new System.Drawing.Size(1083, 553);
+            this.tabBooks.Size = new System.Drawing.Size(1083, 549);
             this.tabBooks.TabIndex = 3;
             this.tabBooks.Text = "Knihy";
             this.tabBooks.UseVisualStyleBackColor = true;
@@ -575,7 +628,7 @@
             // 
             this.tabGames.Location = new System.Drawing.Point(4, 31);
             this.tabGames.Name = "tabGames";
-            this.tabGames.Size = new System.Drawing.Size(1083, 553);
+            this.tabGames.Size = new System.Drawing.Size(1083, 549);
             this.tabGames.TabIndex = 4;
             this.tabGames.Text = "Hry";
             this.tabGames.UseVisualStyleBackColor = true;
@@ -584,7 +637,7 @@
             // 
             this.tabAudio.Location = new System.Drawing.Point(4, 31);
             this.tabAudio.Name = "tabAudio";
-            this.tabAudio.Size = new System.Drawing.Size(1083, 553);
+            this.tabAudio.Size = new System.Drawing.Size(1083, 549);
             this.tabAudio.TabIndex = 5;
             this.tabAudio.Text = "Audio";
             this.tabAudio.UseVisualStyleBackColor = true;
@@ -593,7 +646,7 @@
             // 
             this.tabVideo.Location = new System.Drawing.Point(4, 31);
             this.tabVideo.Name = "tabVideo";
-            this.tabVideo.Size = new System.Drawing.Size(1083, 553);
+            this.tabVideo.Size = new System.Drawing.Size(1083, 549);
             this.tabVideo.TabIndex = 6;
             this.tabVideo.Text = "Video";
             this.tabVideo.UseVisualStyleBackColor = true;
@@ -602,10 +655,17 @@
             // 
             this.tabFoto.Location = new System.Drawing.Point(4, 31);
             this.tabFoto.Name = "tabFoto";
-            this.tabFoto.Size = new System.Drawing.Size(1083, 553);
+            this.tabFoto.Size = new System.Drawing.Size(1083, 549);
             this.tabFoto.TabIndex = 7;
             this.tabFoto.Text = "Foto Album";
             this.tabFoto.UseVisualStyleBackColor = true;
+            // 
+            // imgBarList
+            // 
+            this.imgBarList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgBarList.ImageStream")));
+            this.imgBarList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgBarList.Images.SetKeyName(0, "User1.ico");
+            this.imgBarList.Images.SetKeyName(1, "Book3.ico");
             // 
             // toolStripEditItem
             // 
@@ -1147,12 +1207,10 @@
             this.cbFastFilterCol.Name = "cbFastFilterCol";
             this.cbFastFilterCol.Size = new System.Drawing.Size(121, 25);
             // 
-            // imgBarList
+            // conAddress
             // 
-            this.imgBarList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgBarList.ImageStream")));
-            this.imgBarList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgBarList.Images.SetKeyName(0, "User1.ico");
-            this.imgBarList.Images.SetKeyName(1, "Book3.ico");
+            this.conAddress.Text = "Address";
+            this.conAddress.Width = 408;
             // 
             // frmMain
             // 
@@ -1165,6 +1223,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.Text = "Katalog";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -1296,6 +1355,12 @@
         private System.Windows.Forms.ToolStripComboBox cbFastFilterCol;
         private BrightIdeasSoftware.FastObjectListView olvContacts;
         private System.Windows.Forms.ImageList imgBarList;
+        private BrightIdeasSoftware.OLVColumn conName;
+        private System.Windows.Forms.Button btnTest;
+        private BrightIdeasSoftware.OLVColumn conSurname;
+        private BrightIdeasSoftware.OLVColumn conPhone;
+        private BrightIdeasSoftware.OLVColumn conEmail;
+        private BrightIdeasSoftware.OLVColumn conAddress;
     }
 }
 

@@ -54,5 +54,8 @@ namespace Katalog
         public string Note1 { get; set; }
         public string Note2 { get; set; }
         public string MainCharacter { get; set; }
+        public Nullable<System.Guid> BorrowedPerson { get; set; }
+        public Nullable<System.DateTime> BorrowedFrom { get; set; }
+        public Nullable<System.DateTime> BorrowedTo { get; set; }
     }
 }

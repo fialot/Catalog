@@ -371,6 +371,7 @@
             this.btnOk.TabIndex = 54;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
@@ -381,6 +382,7 @@
             this.btnCancel.TabIndex = 55;
             this.btnCancel.Text = "Storno";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnTag6
             // 
@@ -636,6 +638,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEditContacts";
             this.Text = "Kontakty";
+            this.Load += new System.EventHandler(this.frmEditContacts_Load);
             this.gbAddress.ResumeLayout(false);
             this.gbAddress.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).EndInit();
