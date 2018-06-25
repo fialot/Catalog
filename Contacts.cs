@@ -18,7 +18,6 @@ namespace Katalog
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Nick { get; set; }
-        public string Mobile { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Street { get; set; }
@@ -38,19 +37,9 @@ namespace Katalog
         public byte[] Avatar { get; set; }
         public string Company { get; set; }
         public string Position { get; set; }
-        public string CMobile { get; set; }
-        public string CPhone { get; set; }
-        public string CMail { get; set; }
-        public string CWWW { get; set; }
-        public string CStreet { get; set; }
-        public string CCity { get; set; }
-        public string CRegion { get; set; }
-        public string CCountry { get; set; }
-        public string CPostCode { get; set; }
-        public string CICO { get; set; }
-        public string CDIC { get; set; }
         public string sex { get; set; }
         public string code { get; set; }
         public Nullable<System.DateTime> update { get; set; }
+        public string GoogleID { get; set; }
     }
 }

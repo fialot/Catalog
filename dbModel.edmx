@@ -71,15 +71,14 @@
           <Property Name="Name" Type="nchar" MaxLength="100" />
           <Property Name="Surname" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="Nick" Type="nchar" MaxLength="50" />
-          <Property Name="Mobile" Type="nchar" MaxLength="50" />
-          <Property Name="Phone" Type="nchar" MaxLength="50" />
-          <Property Name="Email" Type="nchar" MaxLength="50" />
+          <Property Name="Phone" Type="nchar" MaxLength="100" />
+          <Property Name="Email" Type="nchar" MaxLength="100" />
           <Property Name="Street" Type="nchar" MaxLength="50" />
           <Property Name="City" Type="nchar" MaxLength="50" />
           <Property Name="Region" Type="nchar" MaxLength="50" />
           <Property Name="Country" Type="nchar" MaxLength="50" />
           <Property Name="PostCode" Type="nchar" MaxLength="20" />
-          <Property Name="WWW" Type="nchar" MaxLength="100" />
+          <Property Name="WWW" Type="nchar" MaxLength="200" />
           <Property Name="IM" Type="nchar" MaxLength="100" />
           <Property Name="Note" Type="nchar" MaxLength="500" />
           <Property Name="Birth" Type="date" />
@@ -91,20 +90,10 @@
           <Property Name="Avatar" Type="image" />
           <Property Name="Company" Type="nchar" MaxLength="50" />
           <Property Name="Position" Type="nchar" MaxLength="50" />
-          <Property Name="CMobile" Type="nchar" MaxLength="50" />
-          <Property Name="CPhone" Type="nchar" MaxLength="50" />
-          <Property Name="CMail" Type="nchar" MaxLength="50" />
-          <Property Name="CWWW" Type="nchar" MaxLength="100" />
-          <Property Name="CStreet" Type="nchar" MaxLength="50" />
-          <Property Name="CCity" Type="nchar" MaxLength="50" />
-          <Property Name="CRegion" Type="nchar" MaxLength="50" />
-          <Property Name="CCountry" Type="nchar" MaxLength="50" />
-          <Property Name="CPostCode" Type="nchar" MaxLength="20" />
-          <Property Name="CICO" Type="nchar" MaxLength="50" />
-          <Property Name="CDIC" Type="nchar" MaxLength="50" />
           <Property Name="sex" Type="char" MaxLength="10" />
           <Property Name="code" Type="nchar" MaxLength="20" />
           <Property Name="update" Type="datetime" />
+          <Property Name="GoogleID" Type="nchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Foto">
           <Key>
@@ -298,15 +287,14 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="Nick" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="Street" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Region" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="WWW" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="WWW" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="IM" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <Property Name="Birth" Type="DateTime" Precision="0" />
@@ -318,20 +306,10 @@
           <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Company" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CMobile" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CPhone" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CMail" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CWWW" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="CStreet" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CCity" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CRegion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CCountry" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CPostCode" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="CICO" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="CDIC" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="sex" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="code" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="update" Type="DateTime" Precision="3" />
+          <Property Name="GoogleID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -458,20 +436,10 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="databaseModel.Contacts">
               <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="GoogleID" ColumnName="GoogleID" />
                 <ScalarProperty Name="update" ColumnName="update" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="sex" ColumnName="sex" />
-                <ScalarProperty Name="CDIC" ColumnName="CDIC" />
-                <ScalarProperty Name="CICO" ColumnName="CICO" />
-                <ScalarProperty Name="CPostCode" ColumnName="CPostCode" />
-                <ScalarProperty Name="CCountry" ColumnName="CCountry" />
-                <ScalarProperty Name="CRegion" ColumnName="CRegion" />
-                <ScalarProperty Name="CCity" ColumnName="CCity" />
-                <ScalarProperty Name="CStreet" ColumnName="CStreet" />
-                <ScalarProperty Name="CWWW" ColumnName="CWWW" />
-                <ScalarProperty Name="CMail" ColumnName="CMail" />
-                <ScalarProperty Name="CPhone" ColumnName="CPhone" />
-                <ScalarProperty Name="CMobile" ColumnName="CMobile" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
@@ -491,7 +459,6 @@
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Nick" ColumnName="Nick" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

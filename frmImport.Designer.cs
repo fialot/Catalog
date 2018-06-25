@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnImport = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(23, 21);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(152, 23);
+            this.btnImport.TabIndex = 0;
+            this.btnImport.Text = "Import Google Contacts";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // frmImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnImport);
             this.Name = "frmImport";
             this.Text = "frmImport";
             this.Load += new System.EventHandler(this.frmImport_Load);
@@ -43,5 +55,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnImport;
     }
 }
