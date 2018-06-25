@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace Katalog
 {
-    public partial class Form1 : Form
+    public partial class frmEditContacts : Form
     {
-        public Form1()
+        public frmEditContacts()
         {
             InitializeComponent();
         }
+
+       
     }
 }
