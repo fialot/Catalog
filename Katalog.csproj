@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>if_Card_file_56261.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -160,6 +163,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="functions\Dialogs.cs" />
     <Compile Include="Foto.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -188,6 +192,12 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="GoogleContacts.cs" />
+    <Compile Include="languages\lang.cs" />
+    <Compile Include="languages\lang.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.cs.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Video.cs">
@@ -202,8 +212,15 @@
     <EmbeddedResource Include="frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.cs.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="languages\lang.cs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.cs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -299,6 +316,7 @@
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.cs</LastGenOutput>
     </Content>
+    <Content Include="if_Card_file_56261.ico" />
     <None Include="Resources\Circle_Blue.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -13,9 +13,17 @@ namespace Katalog
 {
     public partial class frmEditContacts : Form
     {
+        Guid ID = Guid.Empty;
+
         public frmEditContacts()
         {
             InitializeComponent();
+        }
+
+        public DialogResult ShowDialog(Guid ID)
+        {
+            this.ID = ID;
+            return base.ShowDialog();
         }
 
         public byte[] ImageToByteArray(System.Drawing.Image imageIn)
@@ -32,15 +40,8 @@ namespace Katalog
             
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void FillContact(ref Contacts contact)
         {
-            databaseEntities db = new databaseEntities();
-
-            Contacts contact = new Contacts();
-
-            // ----- ID -----
-            contact.Id = Guid.NewGuid();
-
             // ----- Avatar -----
             contact.Avatar = ImageToByteArray(imgAvatar.Image);
 
@@ -83,11 +84,27 @@ namespace Katalog
             contact.Childs = "";
             contact.Parrents = "";
             contact.GoogleID = "";
+        }
 
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
 
+            Contacts contact;
 
+            // ----- ID -----
+            if (ID != Guid.Empty)
+            {
+                contact = db.Contacts.Find(ID);
+            } else
+            {
+                contact = new Contacts();
+                contact.Id = Guid.NewGuid();
+            }
 
-            db.Contacts.Add(contact);
+            FillContact(ref contact);
+
+            if (ID == Guid.Empty) db.Contacts.Add(contact);
             db.SaveChanges();
 
             this.DialogResult = DialogResult.OK;
@@ -95,7 +112,54 @@ namespace Katalog
 
         private void frmEditContacts_Load(object sender, EventArgs e)
         {
+            if (ID != Guid.Empty)
+            {
+                databaseEntities db = new databaseEntities();
 
+                Contacts contact = db.Contacts.Find(ID);
+
+                // ----- Avatar -----
+                //contact.Avatar = ImageToByteArray(imgAvatar.Image);
+
+                // ----- Name -----
+                txtName.Text = contact.Name.Trim();
+                txtSurname.Text = contact.Surname.Trim();
+                txtNick.Text = contact.Nick.Trim();
+
+                // ----- Contacts -----
+                //for (int i = 0; i < )
+                cbPhone.Text = contact.Phone.Trim();
+
+                cbEmail.Text = contact.Email.Trim();
+                cbWWW.Text = contact.WWW.Trim();
+                txtIM.Text = contact.IM.Trim();
+
+
+                // ----- Address -----
+                txtStreet.Text = contact.Street.Trim();
+                txtCity.Text = contact.City.Trim();
+                txtRegion.Text = contact.Region.Trim();
+                txtState.Text = contact.Country.Trim();
+                txtPostCode.Text = contact.PostCode.Trim();
+
+                txtNote.Text = contact.Note.Trim();
+                dateBirth.Value = contact.Birth ?? DateTime.Now;
+                txtTag.Text = contact.Tags.Trim();
+                //contact.FastTags = 0;
+                cbSex.Text = contact.sex.Trim();
+
+                txtCode.Text = contact.code.Trim();
+
+                txtCompany.Text = contact.Company.Trim();
+                txtPosition.Text = contact.Position.Trim();
+
+
+                // ----- Unused now -----
+                /*contact.Partner = "";
+                contact.Childs = "";
+                contact.Parrents = "";
+                contact.GoogleID = "";*/
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
