@@ -163,6 +163,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frmEditBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditBooks.Designer.cs">
+      <DependentUpon>frmEditBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="functions\Conv.cs" />
     <Compile Include="functions\Dialogs.cs" />
     <Compile Include="Foto.cs">
@@ -207,6 +213,12 @@
     </Compile>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditBooks.cs.resx">
+      <DependentUpon>frmEditBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditBooks.resx">
+      <DependentUpon>frmEditBooks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditContacts.cs.resx">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
