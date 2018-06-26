@@ -50,6 +50,10 @@ namespace Katalog
             contact.Surname = txtSurname.Text;
             contact.Nick = txtNick.Text;
 
+            if (cbSex.SelectedIndex == 1) contact.sex = "M";
+            else if (cbSex.SelectedIndex == 2) contact.sex = "F" ;
+            else contact.sex = "";
+
             // ----- Contacts -----
             //for (int i = 0; i < )
             contact.Phone = cbPhone.Text;
@@ -70,7 +74,6 @@ namespace Katalog
             contact.Birth = dateBirth.Value;
             contact.Tags = txtTag.Text;
             //contact.FastTags = 0;
-            contact.sex = cbSex.Text;
 
             contact.code = txtCode.Text;
             contact.update = DateTime.Now;
@@ -112,6 +115,12 @@ namespace Katalog
 
         private void frmEditContacts_Load(object sender, EventArgs e)
         {
+            cbSex.Items.Clear();
+            cbSex.Items.Add("");
+            cbSex.Items.Add(Lng.Get("Male"));
+            cbSex.Items.Add(Lng.Get("Female"));
+            cbSex.SelectedIndex = 0;
+
             if (ID != Guid.Empty)
             {
                 databaseEntities db = new databaseEntities();
@@ -125,6 +134,9 @@ namespace Katalog
                 txtName.Text = contact.Name.Trim();
                 txtSurname.Text = contact.Surname.Trim();
                 txtNick.Text = contact.Nick.Trim();
+                if (contact.sex.Trim() == "M") cbSex.SelectedIndex = 1;
+                else if (contact.sex.Trim() == "F") cbSex.SelectedIndex = 2;
+                else cbSex.SelectedIndex = 0;
 
                 // ----- Contacts -----
                 //for (int i = 0; i < )
@@ -146,7 +158,7 @@ namespace Katalog
                 dateBirth.Value = contact.Birth ?? DateTime.Now;
                 txtTag.Text = contact.Tags.Trim();
                 //contact.FastTags = 0;
-                cbSex.Text = contact.sex.Trim();
+                
 
                 txtCode.Text = contact.code.Trim();
 

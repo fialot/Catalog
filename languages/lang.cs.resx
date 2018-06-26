@@ -126,6 +126,12 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="Female" xml:space="preserve">
+    <value>Žena</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Muž</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Jméno</value>
   </data>

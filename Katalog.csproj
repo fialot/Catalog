@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>if_Card_file_56261.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Catalog.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -163,6 +163,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="functions\Conv.cs" />
     <Compile Include="functions\Dialogs.cs" />
     <Compile Include="Foto.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
@@ -191,6 +192,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="functions\Files.cs" />
     <Compile Include="GoogleContacts.cs" />
     <Compile Include="languages\lang.cs" />
     <Compile Include="languages\lang.cs.Designer.cs">
@@ -205,6 +207,9 @@
     </Compile>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditContacts.cs.resx">
+      <DependentUpon>frmEditContacts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditContacts.resx">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
@@ -316,7 +321,7 @@
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.cs</LastGenOutput>
     </Content>
-    <Content Include="if_Card_file_56261.ico" />
+    <Content Include="Resources\Catalog.ico" />
     <None Include="Resources\Circle_Blue.ico" />
   </ItemGroup>
   <ItemGroup>

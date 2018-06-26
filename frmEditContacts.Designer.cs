@@ -92,69 +92,43 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(155, 28);
+            resources.ApplyResources(this.txtName, "txtName");
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(142, 20);
-            this.txtName.TabIndex = 1;
             // 
             // lblName
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(152, 12);
+            resources.ApplyResources(this.lblName, "lblName");
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(38, 13);
-            this.lblName.TabIndex = 0;
-            this.lblName.Text = "Jméno";
             // 
             // lblSurname
             // 
-            this.lblSurname.AutoSize = true;
-            this.lblSurname.Location = new System.Drawing.Point(300, 12);
+            resources.ApplyResources(this.lblSurname, "lblSurname");
             this.lblSurname.Name = "lblSurname";
-            this.lblSurname.Size = new System.Drawing.Size(48, 13);
-            this.lblSurname.TabIndex = 2;
-            this.lblSurname.Text = "Příjmení";
             // 
             // txtSurname
             // 
-            this.txtSurname.Location = new System.Drawing.Point(303, 28);
+            resources.ApplyResources(this.txtSurname, "txtSurname");
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(142, 20);
-            this.txtSurname.TabIndex = 3;
             // 
             // lblNick
             // 
-            this.lblNick.AutoSize = true;
-            this.lblNick.Location = new System.Drawing.Point(152, 51);
+            resources.ApplyResources(this.lblNick, "lblNick");
             this.lblNick.Name = "lblNick";
-            this.lblNick.Size = new System.Drawing.Size(57, 13);
-            this.lblNick.TabIndex = 6;
-            this.lblNick.Text = "Přezdívka";
             // 
             // txtNick
             // 
-            this.txtNick.Location = new System.Drawing.Point(155, 67);
+            resources.ApplyResources(this.txtNick, "txtNick");
             this.txtNick.Name = "txtNick";
-            this.txtNick.Size = new System.Drawing.Size(142, 20);
-            this.txtNick.TabIndex = 7;
             // 
             // lblPhone
             // 
-            this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(152, 90);
+            resources.ApplyResources(this.lblPhone, "lblPhone");
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(43, 13);
-            this.lblPhone.TabIndex = 10;
-            this.lblPhone.Text = "Telefon";
             // 
             // lblEmail
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(152, 129);
+            resources.ApplyResources(this.lblEmail, "lblEmail");
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(35, 13);
-            this.lblEmail.TabIndex = 15;
-            this.lblEmail.Text = "E-mail";
             // 
             // gbAddress
             // 
@@ -168,426 +142,286 @@
             this.gbAddress.Controls.Add(this.txtCity);
             this.gbAddress.Controls.Add(this.lblStreet);
             this.gbAddress.Controls.Add(this.txtStreet);
-            this.gbAddress.Location = new System.Drawing.Point(543, 129);
+            resources.ApplyResources(this.gbAddress, "gbAddress");
             this.gbAddress.Name = "gbAddress";
-            this.gbAddress.Size = new System.Drawing.Size(277, 225);
-            this.gbAddress.TabIndex = 41;
             this.gbAddress.TabStop = false;
-            this.gbAddress.Text = "Adresa";
             // 
             // lblPostCode
             // 
-            this.lblPostCode.AutoSize = true;
-            this.lblPostCode.Location = new System.Drawing.Point(6, 172);
+            resources.ApplyResources(this.lblPostCode, "lblPostCode");
             this.lblPostCode.Name = "lblPostCode";
-            this.lblPostCode.Size = new System.Drawing.Size(28, 13);
-            this.lblPostCode.TabIndex = 50;
-            this.lblPostCode.Text = "PSČ";
             // 
             // txtPostCode
             // 
-            this.txtPostCode.Location = new System.Drawing.Point(9, 188);
+            resources.ApplyResources(this.txtPostCode, "txtPostCode");
             this.txtPostCode.Name = "txtPostCode";
-            this.txtPostCode.Size = new System.Drawing.Size(142, 20);
-            this.txtPostCode.TabIndex = 51;
             // 
             // lblState
             // 
-            this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(6, 133);
+            resources.ApplyResources(this.lblState, "lblState");
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(26, 13);
-            this.lblState.TabIndex = 48;
-            this.lblState.Text = "Stát";
             // 
             // txtState
             // 
-            this.txtState.Location = new System.Drawing.Point(9, 149);
+            resources.ApplyResources(this.txtState, "txtState");
             this.txtState.Name = "txtState";
-            this.txtState.Size = new System.Drawing.Size(262, 20);
-            this.txtState.TabIndex = 49;
             // 
             // lblRegion
             // 
-            this.lblRegion.AutoSize = true;
-            this.lblRegion.Location = new System.Drawing.Point(6, 94);
+            resources.ApplyResources(this.lblRegion, "lblRegion");
             this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(25, 13);
-            this.lblRegion.TabIndex = 46;
-            this.lblRegion.Text = "Kraj";
             // 
             // txtRegion
             // 
-            this.txtRegion.Location = new System.Drawing.Point(9, 110);
+            resources.ApplyResources(this.txtRegion, "txtRegion");
             this.txtRegion.Name = "txtRegion";
-            this.txtRegion.Size = new System.Drawing.Size(262, 20);
-            this.txtRegion.TabIndex = 47;
             // 
             // lblCity
             // 
-            this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(6, 55);
+            resources.ApplyResources(this.lblCity, "lblCity");
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(36, 13);
-            this.lblCity.TabIndex = 44;
-            this.lblCity.Text = "Město";
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(9, 71);
+            resources.ApplyResources(this.txtCity, "txtCity");
             this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(262, 20);
-            this.txtCity.TabIndex = 45;
             // 
             // lblStreet
             // 
-            this.lblStreet.AutoSize = true;
-            this.lblStreet.Location = new System.Drawing.Point(6, 16);
+            resources.ApplyResources(this.lblStreet, "lblStreet");
             this.lblStreet.Name = "lblStreet";
-            this.lblStreet.Size = new System.Drawing.Size(31, 13);
-            this.lblStreet.TabIndex = 42;
-            this.lblStreet.Text = "Ulice";
             // 
             // txtStreet
             // 
-            this.txtStreet.Location = new System.Drawing.Point(9, 32);
+            resources.ApplyResources(this.txtStreet, "txtStreet");
             this.txtStreet.Name = "txtStreet";
-            this.txtStreet.Size = new System.Drawing.Size(262, 20);
-            this.txtStreet.TabIndex = 43;
             // 
             // lblSex
             // 
-            this.lblSex.AutoSize = true;
-            this.lblSex.Location = new System.Drawing.Point(451, 12);
+            resources.ApplyResources(this.lblSex, "lblSex");
             this.lblSex.Name = "lblSex";
-            this.lblSex.Size = new System.Drawing.Size(44, 13);
-            this.lblSex.TabIndex = 4;
-            this.lblSex.Text = "Pohlaví";
             // 
             // cbSex
             // 
+            this.cbSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSex.FormattingEnabled = true;
-            this.cbSex.Location = new System.Drawing.Point(454, 27);
+            resources.ApplyResources(this.cbSex, "cbSex");
             this.cbSex.Name = "cbSex";
-            this.cbSex.Size = new System.Drawing.Size(83, 21);
-            this.cbSex.TabIndex = 5;
             // 
             // lblWWW
             // 
-            this.lblWWW.AutoSize = true;
-            this.lblWWW.Location = new System.Drawing.Point(9, 184);
+            resources.ApplyResources(this.lblWWW, "lblWWW");
             this.lblWWW.Name = "lblWWW";
-            this.lblWWW.Size = new System.Drawing.Size(40, 13);
-            this.lblWWW.TabIndex = 20;
-            this.lblWWW.Text = "WWW";
             // 
             // lblIM
             // 
-            this.lblIM.AutoSize = true;
-            this.lblIM.Location = new System.Drawing.Point(9, 223);
+            resources.ApplyResources(this.lblIM, "lblIM");
             this.lblIM.Name = "lblIM";
-            this.lblIM.Size = new System.Drawing.Size(19, 13);
-            this.lblIM.TabIndex = 25;
-            this.lblIM.Text = "IM";
             // 
             // txtIM
             // 
-            this.txtIM.Location = new System.Drawing.Point(12, 239);
+            resources.ApplyResources(this.txtIM, "txtIM");
             this.txtIM.Name = "txtIM";
-            this.txtIM.Size = new System.Drawing.Size(433, 20);
-            this.txtIM.TabIndex = 26;
             // 
             // dateBirth
             // 
-            this.dateBirth.Location = new System.Drawing.Point(303, 67);
+            resources.ApplyResources(this.dateBirth, "dateBirth");
             this.dateBirth.Name = "dateBirth";
-            this.dateBirth.Size = new System.Drawing.Size(142, 20);
-            this.dateBirth.TabIndex = 9;
             // 
             // lblBirth
             // 
-            this.lblBirth.AutoSize = true;
-            this.lblBirth.Location = new System.Drawing.Point(300, 51);
+            resources.ApplyResources(this.lblBirth, "lblBirth");
             this.lblBirth.Name = "lblBirth";
-            this.lblBirth.Size = new System.Drawing.Size(83, 13);
-            this.lblBirth.TabIndex = 8;
-            this.lblBirth.Text = "Datum narození";
             // 
             // lblNote
             // 
-            this.lblNote.AutoSize = true;
-            this.lblNote.Location = new System.Drawing.Point(9, 301);
+            resources.ApplyResources(this.lblNote, "lblNote");
             this.lblNote.Name = "lblNote";
-            this.lblNote.Size = new System.Drawing.Size(57, 13);
-            this.lblNote.TabIndex = 31;
-            this.lblNote.Text = "Poznámka";
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(12, 317);
-            this.txtNote.Multiline = true;
+            resources.ApplyResources(this.txtNote, "txtNote");
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(433, 76);
-            this.txtNote.TabIndex = 32;
             // 
             // lblTag
             // 
-            this.lblTag.AutoSize = true;
-            this.lblTag.Location = new System.Drawing.Point(540, 67);
+            resources.ApplyResources(this.lblTag, "lblTag");
             this.lblTag.Name = "lblTag";
-            this.lblTag.Size = new System.Drawing.Size(35, 13);
-            this.lblTag.TabIndex = 39;
-            this.lblTag.Text = "Štítky";
             // 
             // txtTag
             // 
-            this.txtTag.Location = new System.Drawing.Point(543, 83);
+            resources.ApplyResources(this.txtTag, "txtTag");
             this.txtTag.Name = "txtTag";
-            this.txtTag.Size = new System.Drawing.Size(277, 20);
-            this.txtTag.TabIndex = 40;
             // 
             // lblCode
             // 
-            this.lblCode.AutoSize = true;
-            this.lblCode.Location = new System.Drawing.Point(549, 357);
+            resources.ApplyResources(this.lblCode, "lblCode");
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(26, 13);
-            this.lblCode.TabIndex = 52;
-            this.lblCode.Text = "Kód";
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(552, 373);
+            resources.ApplyResources(this.txtCode, "txtCode");
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(262, 20);
-            this.txtCode.TabIndex = 53;
             // 
             // btnOk
             // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(664, 417);
+            resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 54;
-            this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(745, 417);
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 55;
-            this.btnCancel.Text = "Storno";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnTag6
             // 
             this.btnTag6.Image = global::Katalog.Properties.Resources.Circle_Blue;
-            this.btnTag6.Location = new System.Drawing.Point(781, 15);
+            resources.ApplyResources(this.btnTag6, "btnTag6");
             this.btnTag6.Name = "btnTag6";
-            this.btnTag6.Size = new System.Drawing.Size(42, 42);
-            this.btnTag6.TabIndex = 38;
             this.btnTag6.UseVisualStyleBackColor = true;
             // 
             // btnTag5
             // 
             this.btnTag5.Image = global::Katalog.Properties.Resources.circ_grey;
-            this.btnTag5.Location = new System.Drawing.Point(735, 16);
+            resources.ApplyResources(this.btnTag5, "btnTag5");
             this.btnTag5.Name = "btnTag5";
-            this.btnTag5.Size = new System.Drawing.Size(42, 42);
-            this.btnTag5.TabIndex = 37;
             this.btnTag5.UseVisualStyleBackColor = true;
             // 
             // btnTag4
             // 
             this.btnTag4.Image = global::Katalog.Properties.Resources.circ_yellow;
-            this.btnTag4.Location = new System.Drawing.Point(687, 16);
+            resources.ApplyResources(this.btnTag4, "btnTag4");
             this.btnTag4.Name = "btnTag4";
-            this.btnTag4.Size = new System.Drawing.Size(42, 42);
-            this.btnTag4.TabIndex = 36;
             this.btnTag4.UseVisualStyleBackColor = true;
             // 
             // btnTag3
             // 
             this.btnTag3.Image = global::Katalog.Properties.Resources.circ_orange;
-            this.btnTag3.Location = new System.Drawing.Point(639, 16);
+            resources.ApplyResources(this.btnTag3, "btnTag3");
             this.btnTag3.Name = "btnTag3";
-            this.btnTag3.Size = new System.Drawing.Size(42, 42);
-            this.btnTag3.TabIndex = 35;
             this.btnTag3.UseVisualStyleBackColor = true;
             // 
             // btnTag2
             // 
-            this.btnTag2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            resources.ApplyResources(this.btnTag2, "btnTag2");
             this.btnTag2.Image = global::Katalog.Properties.Resources.circ_red;
-            this.btnTag2.Location = new System.Drawing.Point(591, 16);
             this.btnTag2.Name = "btnTag2";
-            this.btnTag2.Size = new System.Drawing.Size(42, 42);
-            this.btnTag2.TabIndex = 34;
             this.btnTag2.UseVisualStyleBackColor = true;
             // 
             // btnTag1
             // 
-            this.btnTag1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            resources.ApplyResources(this.btnTag1, "btnTag1");
             this.btnTag1.Image = global::Katalog.Properties.Resources.circ_green;
-            this.btnTag1.Location = new System.Drawing.Point(543, 16);
             this.btnTag1.Name = "btnTag1";
-            this.btnTag1.Size = new System.Drawing.Size(42, 42);
-            this.btnTag1.TabIndex = 33;
             this.btnTag1.UseVisualStyleBackColor = true;
             // 
             // imgAvatar
             // 
             this.imgAvatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgAvatar.Location = new System.Drawing.Point(12, 12);
+            resources.ApplyResources(this.imgAvatar, "imgAvatar");
             this.imgAvatar.Name = "imgAvatar";
-            this.imgAvatar.Size = new System.Drawing.Size(123, 165);
-            this.imgAvatar.TabIndex = 1;
             this.imgAvatar.TabStop = false;
             // 
             // cbPhoneTag
             // 
             this.cbPhoneTag.FormattingEnabled = true;
-            this.cbPhoneTag.Location = new System.Drawing.Point(303, 106);
+            resources.ApplyResources(this.cbPhoneTag, "cbPhoneTag");
             this.cbPhoneTag.Name = "cbPhoneTag";
-            this.cbPhoneTag.Size = new System.Drawing.Size(142, 21);
-            this.cbPhoneTag.TabIndex = 12;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(451, 104);
+            resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(489, 104);
+            resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "-";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(489, 143);
+            resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 23);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "-";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(451, 143);
+            resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(32, 23);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "+";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // cbEmailTag
             // 
             this.cbEmailTag.FormattingEnabled = true;
-            this.cbEmailTag.Location = new System.Drawing.Point(303, 145);
+            resources.ApplyResources(this.cbEmailTag, "cbEmailTag");
             this.cbEmailTag.Name = "cbEmailTag";
-            this.cbEmailTag.Size = new System.Drawing.Size(142, 21);
-            this.cbEmailTag.TabIndex = 17;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(489, 198);
+            resources.ApplyResources(this.button5, "button5");
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(32, 23);
-            this.button5.TabIndex = 24;
-            this.button5.Text = "-";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(451, 198);
+            resources.ApplyResources(this.button6, "button6");
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(32, 23);
-            this.button6.TabIndex = 23;
-            this.button6.Text = "+";
             this.button6.UseVisualStyleBackColor = true;
             // 
             // cbWWWTag
             // 
             this.cbWWWTag.FormattingEnabled = true;
-            this.cbWWWTag.Location = new System.Drawing.Point(303, 200);
+            resources.ApplyResources(this.cbWWWTag, "cbWWWTag");
             this.cbWWWTag.Name = "cbWWWTag";
-            this.cbWWWTag.Size = new System.Drawing.Size(142, 21);
-            this.cbWWWTag.TabIndex = 22;
             // 
             // lblCompany
             // 
-            this.lblCompany.AutoSize = true;
-            this.lblCompany.Location = new System.Drawing.Point(9, 262);
+            resources.ApplyResources(this.lblCompany, "lblCompany");
             this.lblCompany.Name = "lblCompany";
-            this.lblCompany.Size = new System.Drawing.Size(60, 13);
-            this.lblCompany.TabIndex = 27;
-            this.lblCompany.Text = "Společnost";
             // 
             // txtCompany
             // 
-            this.txtCompany.Location = new System.Drawing.Point(12, 278);
+            resources.ApplyResources(this.txtCompany, "txtCompany");
             this.txtCompany.Name = "txtCompany";
-            this.txtCompany.Size = new System.Drawing.Size(213, 20);
-            this.txtCompany.TabIndex = 28;
             // 
             // lblPosition
             // 
-            this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(228, 262);
+            resources.ApplyResources(this.lblPosition, "lblPosition");
             this.lblPosition.Name = "lblPosition";
-            this.lblPosition.Size = new System.Drawing.Size(39, 13);
-            this.lblPosition.TabIndex = 29;
-            this.lblPosition.Text = "Pozice";
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(231, 278);
+            resources.ApplyResources(this.txtPosition, "txtPosition");
             this.txtPosition.Name = "txtPosition";
-            this.txtPosition.Size = new System.Drawing.Size(214, 20);
-            this.txtPosition.TabIndex = 30;
             // 
             // cbPhone
             // 
             this.cbPhone.FormattingEnabled = true;
-            this.cbPhone.Location = new System.Drawing.Point(155, 106);
+            resources.ApplyResources(this.cbPhone, "cbPhone");
             this.cbPhone.Name = "cbPhone";
-            this.cbPhone.Size = new System.Drawing.Size(142, 21);
-            this.cbPhone.TabIndex = 11;
             // 
             // cbEmail
             // 
             this.cbEmail.FormattingEnabled = true;
-            this.cbEmail.Location = new System.Drawing.Point(155, 145);
+            resources.ApplyResources(this.cbEmail, "cbEmail");
             this.cbEmail.Name = "cbEmail";
-            this.cbEmail.Size = new System.Drawing.Size(142, 21);
-            this.cbEmail.TabIndex = 16;
             // 
             // cbWWW
             // 
             this.cbWWW.FormattingEnabled = true;
-            this.cbWWW.Location = new System.Drawing.Point(12, 200);
+            resources.ApplyResources(this.cbWWW, "cbWWW");
             this.cbWWW.Name = "cbWWW";
-            this.cbWWW.Size = new System.Drawing.Size(285, 21);
-            this.cbWWW.TabIndex = 21;
             // 
             // frmEditContacts
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(832, 452);
             this.Controls.Add(this.cbWWW);
             this.Controls.Add(this.cbEmail);
             this.Controls.Add(this.cbPhone);
@@ -635,9 +469,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.imgAvatar);
             this.Controls.Add(this.txtName);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEditContacts";
-            this.Text = "Kontakty";
             this.Load += new System.EventHandler(this.frmEditContacts_Load);
             this.gbAddress.ResumeLayout(false);
             this.gbAddress.PerformLayout();

@@ -15,6 +15,27 @@ namespace Katalog
         /// Get Language String
         /// </summary>
         /// <param name="ID">ID of string</param>
+        /// <returns></returns>
+        public static string Get(string ID)
+        {
+            string res;
+            try
+            {
+                res = (string)resources.GetObject(ID);
+                if (res == null) return ID;
+            }
+            catch
+            {
+                return ID;
+            }
+            return res;
+
+        }
+
+        /// <summary>
+        /// Get Language String
+        /// </summary>
+        /// <param name="ID">ID of string</param>
         /// <param name="def">Default value</param>
         /// <returns></returns>
         public static string Get(string ID, string def)
