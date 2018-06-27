@@ -122,70 +122,151 @@
     <value>38, 13</value>
   </data>
   <data name="lblName.Text" xml:space="preserve">
-    <value>Jméno</value>
+    <value>Název</value>
   </data>
-  <data name="lblSurname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
+  <data name="lblAuthor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
   </data>
-  <data name="lblSurname.Text" xml:space="preserve">
-    <value>Příjmení</value>
+  <data name="lblAuthor.Text" xml:space="preserve">
+    <value>Jméno autora</value>
   </data>
-  <data name="lblNick.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
+  <data name="lblTranslator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
   </data>
-  <data name="lblNick.Text" xml:space="preserve">
-    <value>Přezdívka</value>
+  <data name="lblTranslator.Text" xml:space="preserve">
+    <value>Překladatel</value>
   </data>
-  <data name="lblPhone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
+  <data name="lblIllustrator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
   </data>
-  <data name="lblPhone.Text" xml:space="preserve">
-    <value>Telefon</value>
+  <data name="lblIllustrator.Text" xml:space="preserve">
+    <value>Ilustrátor</value>
   </data>
-  <data name="gbAddress.Text" xml:space="preserve">
-    <value>Adresa</value>
+  <data name="gbOriginal.Text" xml:space="preserve">
+    <value>Originál</value>
   </data>
-  <data name="lblPostCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 13</value>
+  <data name="lblOrigName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
   </data>
-  <data name="lblPostCode.Text" xml:space="preserve">
-    <value>PSČ</value>
+  <data name="lblOrigName.Text" xml:space="preserve">
+    <value>Název originálu</value>
   </data>
-  <data name="lblState.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 13</value>
+  <data name="lblOrigLang.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 13</value>
   </data>
-  <data name="lblState.Text" xml:space="preserve">
-    <value>Stát</value>
+  <data name="lblOrigLang.Text" xml:space="preserve">
+    <value>Jazyk originálu</value>
   </data>
-  <data name="lblRegion.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblOrigYear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="lblOrigYear.Text" xml:space="preserve">
+    <value>Rok originálu</value>
+  </data>
+  <data name="lblType.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 13</value>
   </data>
-  <data name="lblRegion.Text" xml:space="preserve">
-    <value>Kraj</value>
+  <data name="lblType.Text" xml:space="preserve">
+    <value>Typ</value>
   </data>
-  <data name="lblCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 13</value>
-  </data>
-  <data name="lblCity.Text" xml:space="preserve">
-    <value>Město</value>
-  </data>
-  <data name="lblStreet.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblSeries.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 13</value>
   </data>
-  <data name="lblStreet.Text" xml:space="preserve">
-    <value>Ulice</value>
+  <data name="lblSeries.Text" xml:space="preserve">
+    <value>Série</value>
   </data>
-  <data name="lblSex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
+  <data name="lblAcqDate.Text" xml:space="preserve">
+    <value>Datum pořízení</value>
   </data>
-  <data name="lblSex.Text" xml:space="preserve">
-    <value>Pohlaví</value>
+  <data name="lblContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
   </data>
-  <data name="lblBirth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 13</value>
+  <data name="lblContent.Text" xml:space="preserve">
+    <value>Obsah</value>
   </data>
-  <data name="lblBirth.Text" xml:space="preserve">
-    <value>Datum narození</value>
+  <data name="lblGenre.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="lblGenre.Text" xml:space="preserve">
+    <value>Žánr</value>
+  </data>
+  <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
+  </data>
+  <data name="lblInvNum.Text" xml:space="preserve">
+    <value>Inventární číslo</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Storno</value>
+  </data>
+  <data name="lblHero.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="lblHero.Text" xml:space="preserve">
+    <value>Hlavní hrdina</value>
+  </data>
+  <data name="lblSNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="lblSNumber.Text" xml:space="preserve">
+    <value>Číslo</value>
+  </data>
+  <data name="lblYear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 13</value>
+  </data>
+  <data name="lblYear.Text" xml:space="preserve">
+    <value>Rok</value>
+  </data>
+  <data name="lblEdition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="lblEdition.Text" xml:space="preserve">
+    <value>Edice</value>
+  </data>
+  <data name="lblLanguage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="lblLanguage.Text" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="lblPublusher.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="lblPublusher.Text" xml:space="preserve">
+    <value>Vydavatel</value>
+  </data>
+  <data name="lblSubGenre.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 13</value>
+  </data>
+  <data name="lblSubGenre.Text" xml:space="preserve">
+    <value>Podžánr</value>
+  </data>
+  <data name="lblSpecimen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="lblSpecimen.Text" xml:space="preserve">
+    <value>Exemplář</value>
+  </data>
+  <data name="gbRating.Text" xml:space="preserve">
+    <value>Hodnocení</value>
+  </data>
+  <data name="chbReaded.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="chbReaded.Text" xml:space="preserve">
+    <value>Přečteno</value>
+  </data>
+  <data name="lblMyRating.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 13</value>
+  </data>
+  <data name="lblMyRating.Text" xml:space="preserve">
+    <value>Vlastní</value>
+  </data>
+  <data name="lblRating.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="lblRating.Text" xml:space="preserve">
+    <value>Hodnocení</value>
   </data>
   <data name="lblNote.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 13</value>
@@ -193,32 +274,47 @@
   <data name="lblNote.Text" xml:space="preserve">
     <value>Poznámka</value>
   </data>
-  <data name="lblTag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
+  <data name="lblPrice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
   </data>
-  <data name="lblTag.Text" xml:space="preserve">
-    <value>Skupiny</value>
+  <data name="lblPrice.Text" xml:space="preserve">
+    <value>Cena</value>
   </data>
-  <data name="lblCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 13</value>
+  <data name="lblPages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
   </data>
-  <data name="lblCode.Text" xml:space="preserve">
-    <value>Kód</value>
+  <data name="lblPages.Text" xml:space="preserve">
+    <value>Stran</value>
   </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Storno</value>
+  <data name="lblLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
   </data>
-  <data name="lblCompany.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
+  <data name="lblLocation.Text" xml:space="preserve">
+    <value>Umístění</value>
   </data>
-  <data name="lblCompany.Text" xml:space="preserve">
-    <value>Společnost</value>
+  <data name="gbSpecimen.Text" xml:space="preserve">
+    <value>Exemplář</value>
   </data>
-  <data name="lblPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 13</value>
+  <data name="gbInclusion.Text" xml:space="preserve">
+    <value>Zařazení</value>
   </data>
-  <data name="lblPosition.Text" xml:space="preserve">
-    <value>Pozice</value>
+  <data name="lblKeywords.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 13</value>
+  </data>
+  <data name="lblKeywords.Text" xml:space="preserve">
+    <value>Klíčová slova</value>
+  </data>
+  <data name="lblBookbinding.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="lblBookbinding.Text" xml:space="preserve">
+    <value>Vazba</value>
+  </data>
+  <data name="lblAuthorSurname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="lblAuthorSurname.Text" xml:space="preserve">
+    <value>Příjmení autora</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

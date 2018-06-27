@@ -30,5 +30,6 @@ namespace Katalog
         public virtual DbSet<Video> Video { get; set; }
         public virtual DbSet<Contacts> Contacts { get; set; }
         public virtual DbSet<Books> Books { get; set; }
+        public virtual DbSet<Borrowing> Borrowing { get; set; }
     }
 }

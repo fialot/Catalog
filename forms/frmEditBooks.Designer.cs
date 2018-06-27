@@ -36,6 +36,12 @@
             this.lblTranslator = new System.Windows.Forms.Label();
             this.lblIllustrator = new System.Windows.Forms.Label();
             this.gbOriginal = new System.Windows.Forms.GroupBox();
+            this.lblOrigName = new System.Windows.Forms.Label();
+            this.txtOrigName = new System.Windows.Forms.TextBox();
+            this.txtOrigLang = new System.Windows.Forms.TextBox();
+            this.lblOrigLang = new System.Windows.Forms.Label();
+            this.lblOrigYear = new System.Windows.Forms.Label();
+            this.txtOrigYear = new System.Windows.Forms.TextBox();
             this.lblType = new System.Windows.Forms.Label();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.lblSeries = new System.Windows.Forms.Label();
@@ -69,25 +75,19 @@
             this.lblYear = new System.Windows.Forms.Label();
             this.txtEdition = new System.Windows.Forms.TextBox();
             this.lblEdition = new System.Windows.Forms.Label();
-            this.txtOrigYear = new System.Windows.Forms.TextBox();
-            this.lblOrigYear = new System.Windows.Forms.Label();
-            this.txtOrigLang = new System.Windows.Forms.TextBox();
-            this.lblOrigLang = new System.Windows.Forms.Label();
             this.txtLanguage = new System.Windows.Forms.TextBox();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.txtPublisher = new System.Windows.Forms.TextBox();
             this.lblPublusher = new System.Windows.Forms.Label();
-            this.txtCount = new System.Windows.Forms.TextBox();
             this.lblSubGenre = new System.Windows.Forms.Label();
             this.txtSubGenre = new System.Windows.Forms.TextBox();
-            this.lblCount = new System.Windows.Forms.Label();
-            this.lblOrigName = new System.Windows.Forms.Label();
-            this.txtOrigName = new System.Windows.Forms.TextBox();
+            this.lblSpecimen = new System.Windows.Forms.Label();
             this.gbRating = new System.Windows.Forms.GroupBox();
-            this.lblRating = new System.Windows.Forms.Label();
-            this.txtRating = new System.Windows.Forms.TextBox();
+            this.chbReaded = new System.Windows.Forms.CheckBox();
             this.lblMyRating = new System.Windows.Forms.Label();
             this.txtMyRating = new System.Windows.Forms.TextBox();
+            this.lblRating = new System.Windows.Forms.Label();
+            this.txtRating = new System.Windows.Forms.TextBox();
             this.lblNote = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.lblURL = new System.Windows.Forms.Label();
@@ -96,11 +96,26 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtPages = new System.Windows.Forms.TextBox();
             this.lblPages = new System.Windows.Forms.Label();
-            this.lblPlace = new System.Windows.Forms.Label();
-            this.txtPlace = new System.Windows.Forms.TextBox();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.txtLocation = new System.Windows.Forms.TextBox();
+            this.gbSpecimen = new System.Windows.Forms.GroupBox();
+            this.btnPlace = new System.Windows.Forms.Button();
+            this.btnDelSpecimen = new System.Windows.Forms.Button();
+            this.btnAddSpecimen = new System.Windows.Forms.Button();
+            this.cbSpecimen = new System.Windows.Forms.ComboBox();
+            this.gbInclusion = new System.Windows.Forms.GroupBox();
+            this.txtKeywords = new System.Windows.Forms.TextBox();
+            this.lblKeywords = new System.Windows.Forms.Label();
+            this.lblBookbinding = new System.Windows.Forms.Label();
+            this.cbBookbinding = new System.Windows.Forms.ComboBox();
+            this.lblAuthorSurname = new System.Windows.Forms.Label();
+            this.txtAuthorSurname = new System.Windows.Forms.TextBox();
+            this.lblCount = new System.Windows.Forms.Label();
             this.gbOriginal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCover)).BeginInit();
             this.gbRating.SuspendLayout();
+            this.gbSpecimen.SuspendLayout();
+            this.gbInclusion.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtName
@@ -144,6 +159,36 @@
             resources.ApplyResources(this.gbOriginal, "gbOriginal");
             this.gbOriginal.Name = "gbOriginal";
             this.gbOriginal.TabStop = false;
+            // 
+            // lblOrigName
+            // 
+            resources.ApplyResources(this.lblOrigName, "lblOrigName");
+            this.lblOrigName.Name = "lblOrigName";
+            // 
+            // txtOrigName
+            // 
+            resources.ApplyResources(this.txtOrigName, "txtOrigName");
+            this.txtOrigName.Name = "txtOrigName";
+            // 
+            // txtOrigLang
+            // 
+            resources.ApplyResources(this.txtOrigLang, "txtOrigLang");
+            this.txtOrigLang.Name = "txtOrigLang";
+            // 
+            // lblOrigLang
+            // 
+            resources.ApplyResources(this.lblOrigLang, "lblOrigLang");
+            this.lblOrigLang.Name = "lblOrigLang";
+            // 
+            // lblOrigYear
+            // 
+            resources.ApplyResources(this.lblOrigYear, "lblOrigYear");
+            this.lblOrigYear.Name = "lblOrigYear";
+            // 
+            // txtOrigYear
+            // 
+            resources.ApplyResources(this.txtOrigYear, "txtOrigYear");
+            this.txtOrigYear.Name = "txtOrigYear";
             // 
             // lblType
             // 
@@ -330,26 +375,6 @@
             resources.ApplyResources(this.lblEdition, "lblEdition");
             this.lblEdition.Name = "lblEdition";
             // 
-            // txtOrigYear
-            // 
-            resources.ApplyResources(this.txtOrigYear, "txtOrigYear");
-            this.txtOrigYear.Name = "txtOrigYear";
-            // 
-            // lblOrigYear
-            // 
-            resources.ApplyResources(this.lblOrigYear, "lblOrigYear");
-            this.lblOrigYear.Name = "lblOrigYear";
-            // 
-            // txtOrigLang
-            // 
-            resources.ApplyResources(this.txtOrigLang, "txtOrigLang");
-            this.txtOrigLang.Name = "txtOrigLang";
-            // 
-            // lblOrigLang
-            // 
-            resources.ApplyResources(this.lblOrigLang, "lblOrigLang");
-            this.lblOrigLang.Name = "lblOrigLang";
-            // 
             // txtLanguage
             // 
             resources.ApplyResources(this.txtLanguage, "txtLanguage");
@@ -370,11 +395,6 @@
             resources.ApplyResources(this.lblPublusher, "lblPublusher");
             this.lblPublusher.Name = "lblPublusher";
             // 
-            // txtCount
-            // 
-            resources.ApplyResources(this.txtCount, "txtCount");
-            this.txtCount.Name = "txtCount";
-            // 
             // lblSubGenre
             // 
             resources.ApplyResources(this.lblSubGenre, "lblSubGenre");
@@ -385,23 +405,14 @@
             resources.ApplyResources(this.txtSubGenre, "txtSubGenre");
             this.txtSubGenre.Name = "txtSubGenre";
             // 
-            // lblCount
+            // lblSpecimen
             // 
-            resources.ApplyResources(this.lblCount, "lblCount");
-            this.lblCount.Name = "lblCount";
-            // 
-            // lblOrigName
-            // 
-            resources.ApplyResources(this.lblOrigName, "lblOrigName");
-            this.lblOrigName.Name = "lblOrigName";
-            // 
-            // txtOrigName
-            // 
-            resources.ApplyResources(this.txtOrigName, "txtOrigName");
-            this.txtOrigName.Name = "txtOrigName";
+            resources.ApplyResources(this.lblSpecimen, "lblSpecimen");
+            this.lblSpecimen.Name = "lblSpecimen";
             // 
             // gbRating
             // 
+            this.gbRating.Controls.Add(this.chbReaded);
             this.gbRating.Controls.Add(this.lblMyRating);
             this.gbRating.Controls.Add(this.txtMyRating);
             this.gbRating.Controls.Add(this.lblRating);
@@ -410,15 +421,11 @@
             this.gbRating.Name = "gbRating";
             this.gbRating.TabStop = false;
             // 
-            // lblRating
+            // chbReaded
             // 
-            resources.ApplyResources(this.lblRating, "lblRating");
-            this.lblRating.Name = "lblRating";
-            // 
-            // txtRating
-            // 
-            resources.ApplyResources(this.txtRating, "txtRating");
-            this.txtRating.Name = "txtRating";
+            resources.ApplyResources(this.chbReaded, "chbReaded");
+            this.chbReaded.Name = "chbReaded";
+            this.chbReaded.UseVisualStyleBackColor = true;
             // 
             // lblMyRating
             // 
@@ -429,6 +436,16 @@
             // 
             resources.ApplyResources(this.txtMyRating, "txtMyRating");
             this.txtMyRating.Name = "txtMyRating";
+            // 
+            // lblRating
+            // 
+            resources.ApplyResources(this.lblRating, "lblRating");
+            this.lblRating.Name = "lblRating";
+            // 
+            // txtRating
+            // 
+            resources.ApplyResources(this.txtRating, "txtRating");
+            this.txtRating.Name = "txtRating";
             // 
             // lblNote
             // 
@@ -470,35 +487,130 @@
             resources.ApplyResources(this.lblPages, "lblPages");
             this.lblPages.Name = "lblPages";
             // 
-            // lblPlace
+            // lblLocation
             // 
-            resources.ApplyResources(this.lblPlace, "lblPlace");
-            this.lblPlace.Name = "lblPlace";
+            resources.ApplyResources(this.lblLocation, "lblLocation");
+            this.lblLocation.Name = "lblLocation";
             // 
-            // txtPlace
+            // txtLocation
             // 
-            resources.ApplyResources(this.txtPlace, "txtPlace");
-            this.txtPlace.Name = "txtPlace";
+            resources.ApplyResources(this.txtLocation, "txtLocation");
+            this.txtLocation.Name = "txtLocation";
+            // 
+            // gbSpecimen
+            // 
+            this.gbSpecimen.Controls.Add(this.lblCount);
+            this.gbSpecimen.Controls.Add(this.btnPlace);
+            this.gbSpecimen.Controls.Add(this.btnDelSpecimen);
+            this.gbSpecimen.Controls.Add(this.btnAddSpecimen);
+            this.gbSpecimen.Controls.Add(this.cbSpecimen);
+            this.gbSpecimen.Controls.Add(this.lblSpecimen);
+            this.gbSpecimen.Controls.Add(this.lblPrice);
+            this.gbSpecimen.Controls.Add(this.lblLocation);
+            this.gbSpecimen.Controls.Add(this.txtPrice);
+            this.gbSpecimen.Controls.Add(this.txtInvNum);
+            this.gbSpecimen.Controls.Add(this.txtLocation);
+            this.gbSpecimen.Controls.Add(this.lblInvNum);
+            this.gbSpecimen.Controls.Add(this.dtAcqDate);
+            this.gbSpecimen.Controls.Add(this.lblAcqDate);
+            resources.ApplyResources(this.gbSpecimen, "gbSpecimen");
+            this.gbSpecimen.Name = "gbSpecimen";
+            this.gbSpecimen.TabStop = false;
+            // 
+            // btnPlace
+            // 
+            resources.ApplyResources(this.btnPlace, "btnPlace");
+            this.btnPlace.Name = "btnPlace";
+            this.btnPlace.UseVisualStyleBackColor = true;
+            // 
+            // btnDelSpecimen
+            // 
+            resources.ApplyResources(this.btnDelSpecimen, "btnDelSpecimen");
+            this.btnDelSpecimen.Name = "btnDelSpecimen";
+            this.btnDelSpecimen.UseVisualStyleBackColor = true;
+            // 
+            // btnAddSpecimen
+            // 
+            resources.ApplyResources(this.btnAddSpecimen, "btnAddSpecimen");
+            this.btnAddSpecimen.Name = "btnAddSpecimen";
+            this.btnAddSpecimen.UseVisualStyleBackColor = true;
+            // 
+            // cbSpecimen
+            // 
+            this.cbSpecimen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSpecimen.FormattingEnabled = true;
+            resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
+            this.cbSpecimen.Name = "cbSpecimen";
+            // 
+            // gbInclusion
+            // 
+            this.gbInclusion.Controls.Add(this.txtKeywords);
+            this.gbInclusion.Controls.Add(this.lblKeywords);
+            this.gbInclusion.Controls.Add(this.lblGenre);
+            this.gbInclusion.Controls.Add(this.txtSeries);
+            this.gbInclusion.Controls.Add(this.lblSeries);
+            this.gbInclusion.Controls.Add(this.txtGenre);
+            this.gbInclusion.Controls.Add(this.lblSNumber);
+            this.gbInclusion.Controls.Add(this.txtSNumber);
+            this.gbInclusion.Controls.Add(this.txtSubGenre);
+            this.gbInclusion.Controls.Add(this.lblSubGenre);
+            resources.ApplyResources(this.gbInclusion, "gbInclusion");
+            this.gbInclusion.Name = "gbInclusion";
+            this.gbInclusion.TabStop = false;
+            // 
+            // txtKeywords
+            // 
+            resources.ApplyResources(this.txtKeywords, "txtKeywords");
+            this.txtKeywords.Name = "txtKeywords";
+            // 
+            // lblKeywords
+            // 
+            resources.ApplyResources(this.lblKeywords, "lblKeywords");
+            this.lblKeywords.Name = "lblKeywords";
+            // 
+            // lblBookbinding
+            // 
+            resources.ApplyResources(this.lblBookbinding, "lblBookbinding");
+            this.lblBookbinding.Name = "lblBookbinding";
+            // 
+            // cbBookbinding
+            // 
+            this.cbBookbinding.FormattingEnabled = true;
+            resources.ApplyResources(this.cbBookbinding, "cbBookbinding");
+            this.cbBookbinding.Name = "cbBookbinding";
+            // 
+            // lblAuthorSurname
+            // 
+            resources.ApplyResources(this.lblAuthorSurname, "lblAuthorSurname");
+            this.lblAuthorSurname.Name = "lblAuthorSurname";
+            // 
+            // txtAuthorSurname
+            // 
+            resources.ApplyResources(this.txtAuthorSurname, "txtAuthorSurname");
+            this.txtAuthorSurname.Name = "txtAuthorSurname";
+            // 
+            // lblCount
+            // 
+            resources.ApplyResources(this.lblCount, "lblCount");
+            this.lblCount.Name = "lblCount";
             // 
             // frmEditBooks
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblPlace);
-            this.Controls.Add(this.txtPlace);
+            this.Controls.Add(this.lblAuthorSurname);
+            this.Controls.Add(this.txtAuthorSurname);
+            this.Controls.Add(this.cbBookbinding);
+            this.Controls.Add(this.lblBookbinding);
+            this.Controls.Add(this.gbInclusion);
+            this.Controls.Add(this.gbSpecimen);
             this.Controls.Add(this.txtPages);
             this.Controls.Add(this.lblPages);
-            this.Controls.Add(this.lblPrice);
-            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.txtURL);
             this.Controls.Add(this.lblNote);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.gbRating);
-            this.Controls.Add(this.lblCount);
-            this.Controls.Add(this.lblSubGenre);
-            this.Controls.Add(this.txtSubGenre);
-            this.Controls.Add(this.txtCount);
             this.Controls.Add(this.txtPublisher);
             this.Controls.Add(this.lblPublusher);
             this.Controls.Add(this.txtLanguage);
@@ -507,8 +619,6 @@
             this.Controls.Add(this.lblEdition);
             this.Controls.Add(this.txtYear);
             this.Controls.Add(this.lblYear);
-            this.Controls.Add(this.txtSNumber);
-            this.Controls.Add(this.lblSNumber);
             this.Controls.Add(this.txtIllustrator);
             this.Controls.Add(this.txtTranslator);
             this.Controls.Add(this.txtISBN);
@@ -517,10 +627,6 @@
             this.Controls.Add(this.txtHero);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.lblInvNum);
-            this.Controls.Add(this.txtInvNum);
-            this.Controls.Add(this.lblGenre);
-            this.Controls.Add(this.txtGenre);
             this.Controls.Add(this.btnTag6);
             this.Controls.Add(this.btnTag5);
             this.Controls.Add(this.btnTag4);
@@ -529,10 +635,6 @@
             this.Controls.Add(this.btnTag1);
             this.Controls.Add(this.lblContent);
             this.Controls.Add(this.txtContent);
-            this.Controls.Add(this.lblAcqDate);
-            this.Controls.Add(this.dtAcqDate);
-            this.Controls.Add(this.lblSeries);
-            this.Controls.Add(this.txtSeries);
             this.Controls.Add(this.cbType);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.gbOriginal);
@@ -544,12 +646,16 @@
             this.Controls.Add(this.imgCover);
             this.Controls.Add(this.txtName);
             this.Name = "frmEditBooks";
-            this.Load += new System.EventHandler(this.frmEditContacts_Load);
+            this.Load += new System.EventHandler(this.frmEditBooks_Load);
             this.gbOriginal.ResumeLayout(false);
             this.gbOriginal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCover)).EndInit();
             this.gbRating.ResumeLayout(false);
             this.gbRating.PerformLayout();
+            this.gbSpecimen.ResumeLayout(false);
+            this.gbSpecimen.PerformLayout();
+            this.gbInclusion.ResumeLayout(false);
+            this.gbInclusion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,12 +711,11 @@
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.TextBox txtPublisher;
         private System.Windows.Forms.Label lblPublusher;
-        private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.Label lblOrigName;
         private System.Windows.Forms.TextBox txtOrigName;
         private System.Windows.Forms.Label lblSubGenre;
         private System.Windows.Forms.TextBox txtSubGenre;
-        private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Label lblSpecimen;
         private System.Windows.Forms.GroupBox gbRating;
         private System.Windows.Forms.Label lblMyRating;
         private System.Windows.Forms.TextBox txtMyRating;
@@ -624,7 +729,21 @@
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtPages;
         private System.Windows.Forms.Label lblPages;
-        private System.Windows.Forms.Label lblPlace;
-        private System.Windows.Forms.TextBox txtPlace;
+        private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.TextBox txtLocation;
+        private System.Windows.Forms.GroupBox gbSpecimen;
+        private System.Windows.Forms.ComboBox cbSpecimen;
+        private System.Windows.Forms.GroupBox gbInclusion;
+        private System.Windows.Forms.Button btnDelSpecimen;
+        private System.Windows.Forms.Button btnAddSpecimen;
+        private System.Windows.Forms.TextBox txtKeywords;
+        private System.Windows.Forms.Label lblKeywords;
+        private System.Windows.Forms.Label lblBookbinding;
+        private System.Windows.Forms.ComboBox cbBookbinding;
+        private System.Windows.Forms.CheckBox chbReaded;
+        private System.Windows.Forms.Button btnPlace;
+        private System.Windows.Forms.Label lblAuthorSurname;
+        private System.Windows.Forms.TextBox txtAuthorSurname;
+        private System.Windows.Forms.Label lblCount;
     }
 }

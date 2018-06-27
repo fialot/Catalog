@@ -155,8 +155,7 @@ namespace myFunctions
                     return false;
                 }
                 return def;
-            }
-                
+            } 
         }
 
         /// <summary>
@@ -175,6 +174,20 @@ namespace myFunctions
         }
 
         /// <summary>
+        /// Convert String to Short with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Short number</returns>
+        public static short? ToShortNull(string text)
+        {
+            short value;
+            if (short.TryParse(text, out value))
+                return value;
+            else
+                return null;
+        }
+
+        /// <summary>
         /// Convert String to Unsigned Short with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
@@ -188,6 +201,21 @@ namespace myFunctions
             else
                 return def;
         }
+        
+        /// <summary>
+        /// Convert String to Unsigned Short with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Short number</returns>
+        public static ushort? ToUShortNull(string text)
+        {
+            ushort value;
+            if (ushort.TryParse(text, out value))
+                return value;
+            else
+                return null;
+        }
+
 
         /// <summary>
         /// Convert String to Integer with default value on convert Error
@@ -205,6 +233,20 @@ namespace myFunctions
         }
 
         /// <summary>
+        /// Convert String to Integer with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Integer number</returns>
+        public static int? ToIntNull(string text)
+        {
+            int value;
+            if (int.TryParse(text, out value))
+                return value;
+            else
+                return null;
+        }
+
+        /// <summary>
         /// Convert String to Unsigned Integer with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
@@ -218,7 +260,21 @@ namespace myFunctions
             else
                 return def;
         }
-
+        
+        /// <summary>
+        /// Convert String to Unsigned Integer with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Integer number</returns>
+        public static uint? ToUIntNull(string text)
+        {
+            uint value;
+            if (uint.TryParse(text, out value))
+                return value;
+            else
+                return null;
+        }
+        
         /// <summary>
         /// Convert String to Int32 with default value on convert Error
         /// </summary>
@@ -297,6 +353,20 @@ namespace myFunctions
         /// Convert String to Double with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
+        /// <returns>Double number</returns>
+        public static double? ToDoubleNull(string text)
+        {
+            double value;
+            if (double.TryParse(text, out value))
+                return value;
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// Convert String to Double with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
         /// <param name="def">Default value</param>
         /// <returns>Double number</returns>
         public static double ToDoubleDef(string text, double def, NumberFormatInfo format)
@@ -320,6 +390,7 @@ namespace myFunctions
         }
 
         #endregion
+
         /// <summary>
         /// Return bool value like "0" or "1"
         /// </summary>

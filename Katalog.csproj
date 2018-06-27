@@ -145,6 +145,9 @@
     <Compile Include="Books.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Borrowing.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contacts.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -163,39 +166,51 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="frmEditBooks.cs">
+    <Compile Include="forms\frmEditBooks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditBooks.Designer.cs">
+    <Compile Include="forms\frmEditBooks.Designer.cs">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEditBorrowing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEditBorrowing.Designer.cs">
+      <DependentUpon>frmEditBorrowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEditItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEditItem.Designer.cs">
+      <DependentUpon>frmEditItem.cs</DependentUpon>
     </Compile>
     <Compile Include="functions\Conv.cs" />
     <Compile Include="functions\Dialogs.cs" />
     <Compile Include="Foto.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="frmAbout.cs">
+    <Compile Include="forms\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAbout.Designer.cs">
+    <Compile Include="forms\frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEditContacts.cs">
+    <Compile Include="forms\frmEditContacts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditContacts.Designer.cs">
+    <Compile Include="forms\frmEditContacts.Designer.cs">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmImport.cs">
+    <Compile Include="forms\frmImport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmImport.Designer.cs">
+    <Compile Include="forms\frmImport.Designer.cs">
       <DependentUpon>frmImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="functions\Files.cs" />
@@ -211,28 +226,40 @@
     <Compile Include="Video.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmAbout.resx">
+    <EmbeddedResource Include="forms\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditBooks.cs.resx">
+    <EmbeddedResource Include="forms\frmEditBooks.cs.resx">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditBooks.resx">
+    <EmbeddedResource Include="forms\frmEditBooks.resx">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditContacts.cs.resx">
+    <EmbeddedResource Include="forms\frmEditBorrowing.cs.resx">
+      <DependentUpon>frmEditBorrowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditBorrowing.resx">
+      <DependentUpon>frmEditBorrowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditContacts.cs.resx">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditContacts.resx">
+    <EmbeddedResource Include="forms\frmEditContacts.resx">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmImport.resx">
+    <EmbeddedResource Include="forms\frmEditItem.cs.resx">
+      <DependentUpon>frmEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditItem.resx">
+      <DependentUpon>frmEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.cs.resx">
+    <EmbeddedResource Include="forms\frmMain.cs.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="languages\lang.cs.resx">

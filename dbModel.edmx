@@ -24,47 +24,61 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="OrigName" Type="nchar" MaxLength="100" />
-          <Property Name="ISBN" Type="nchar" MaxLength="30" />
-          <Property Name="InventoryNumber" Type="nchar" MaxLength="20" />
-          <Property Name="Count" Type="bigint" />
-          <Property Name="Rating" Type="smallint" />
-          <Property Name="Author" Type="nchar" MaxLength="50" />
-          <Property Name="Translator" Type="nchar" MaxLength="50" />
+          <Property Name="AuthorName" Type="nchar" MaxLength="25" />
+          <Property Name="AuthorSurname" Type="nchar" MaxLength="25" />
           <Property Name="Illustrator" Type="nchar" MaxLength="50" />
+          <Property Name="Translator" Type="nchar" MaxLength="50" />
+          <Property Name="Language" Type="nchar" MaxLength="20" />
+          <Property Name="ISBN" Type="nchar" MaxLength="30" />
+          <Property Name="Publisher" Type="nchar" MaxLength="20" />
+          <Property Name="Edition" Type="nchar" MaxLength="20" />
+          <Property Name="Year" Type="smallint" />
+          <Property Name="Pages" Type="smallint" />
+          <Property Name="MainCharacter" Type="nchar" MaxLength="200" />
+          <Property Name="URL" Type="nchar" MaxLength="50" />
+          <Property Name="Note" Type="nchar" MaxLength="100" />
+          <Property Name="Content" Type="nchar" MaxLength="1000" />
+          <Property Name="OrigName" Type="nchar" MaxLength="100" />
+          <Property Name="OrigLanguage" Type="nchar" MaxLength="20" />
+          <Property Name="OrigYear" Type="smallint" />
           <Property Name="Genre" Type="nchar" MaxLength="50" />
           <Property Name="SubGenre" Type="nchar" MaxLength="50" />
-          <Property Name="Edition" Type="nchar" MaxLength="20" />
-          <Property Name="Type" Type="nchar" MaxLength="20" />
           <Property Name="Series" Type="nchar" MaxLength="50" />
           <Property Name="SeriesNum" Type="bigint" />
-          <Property Name="Bookbinding" Type="nchar" MaxLength="20" />
-          <Property Name="Year" Type="smallint" />
-          <Property Name="OrigYear" Type="smallint" />
-          <Property Name="Publication" Type="smallint" />
-          <Property Name="Language" Type="nchar" MaxLength="20" />
-          <Property Name="OrigLanguage" Type="nchar" MaxLength="20" />
-          <Property Name="Note" Type="nchar" MaxLength="100" />
-          <Property Name="Publisher" Type="nchar" MaxLength="20" />
-          <Property Name="URL" Type="nchar" MaxLength="50" />
-          <Property Name="Content" Type="nchar" MaxLength="1000" />
-          <Property Name="Cover" Type="image" />
+          <Property Name="Keywords" Type="nchar" MaxLength="100" />
+          <Property Name="Rating" Type="smallint" />
+          <Property Name="MyRating" Type="smallint" />
+          <Property Name="Readed" Type="bit" />
+          <Property Name="Count" Type="bigint" />
+          <Property Name="InventoryNumber" Type="nchar" MaxLength="100" />
+          <Property Name="Location" Type="nchar" MaxLength="200" />
           <Property Name="AcquisitionDate" Type="date" />
           <Property Name="Price" Type="float" />
-          <Property Name="Pages" Type="nchar" MaxLength="10" />
-          <Property Name="Read" Type="bit" />
-          <Property Name="Location" Type="nchar" MaxLength="50" />
-          <Property Name="Tags" Type="nchar" MaxLength="100" />
+          <Property Name="Type" Type="nchar" MaxLength="20" />
+          <Property Name="Bookbinding" Type="nchar" MaxLength="20" />
+          <Property Name="Cover" Type="image" />
           <Property Name="FastTags" Type="bigint" />
-          <Property Name="EbookPath" Type="nchar" MaxLength="200" />
-          <Property Name="EbookType" Type="nchar" MaxLength="10" />
           <Property Name="update" Type="datetime" />
+          <Property Name="EbookPath" Type="nchar" MaxLength="200" />
+          <Property Name="EbookType" Type="nchar" MaxLength="50" />
+          <Property Name="Publication" Type="smallint" />
           <Property Name="Note1" Type="nchar" MaxLength="100" />
           <Property Name="Note2" Type="nchar" MaxLength="100" />
-          <Property Name="MainCharacter" Type="nchar" MaxLength="200" />
           <Property Name="BorrowedPerson" Type="uniqueidentifier" />
           <Property Name="BorrowedFrom" Type="datetime" />
           <Property Name="BorrowedTo" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Borrowing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="10" />
+          <Property Name="item" Type="uniqueidentifier" />
+          <Property Name="person" Type="uniqueidentifier" />
+          <Property Name="from" Type="date" />
+          <Property Name="to" Type="date" />
+          <Property Name="returned" Type="bit" />
         </EntityType>
         <EntityType Name="Contacts">
           <Key>
@@ -155,6 +169,7 @@
         <EntityContainer Name="databaseModelStoreContainer">
           <EntitySet Name="Audio" EntityType="Self.Audio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrowing" EntityType="Self.Borrowing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Foto" EntityType="Self.Foto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
@@ -169,6 +184,7 @@
           <EntitySet Name="Video" EntityType="databaseModel.Video" />
           <EntitySet Name="Contacts" EntityType="databaseModel.Contacts" />
           <EntitySet Name="Books" EntityType="databaseModel.Books" />
+          <EntitySet Name="Borrowing" EntityType="databaseModel.Borrowing" />
         </EntityContainer>
         <EntityType Name="Audio">
           <Key>
@@ -275,47 +291,61 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OrigName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="ISBN" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="InventoryNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Count" Type="Int64" />
-          <Property Name="Rating" Type="Int16" />
-          <Property Name="Author" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Translator" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="AuthorName" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="AuthorSurname" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
           <Property Name="Illustrator" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Translator" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Language" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="ISBN" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Publisher" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Edition" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Year" Type="Int16" />
+          <Property Name="Pages" Type="Int16" />
+          <Property Name="MainCharacter" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Name="OrigName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="OrigLanguage" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="OrigYear" Type="Int16" />
           <Property Name="Genre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="SubGenre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Edition" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Series" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="SeriesNum" Type="Int64" />
-          <Property Name="Bookbinding" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Year" Type="Int16" />
-          <Property Name="OrigYear" Type="Int16" />
-          <Property Name="Publication" Type="Int16" />
-          <Property Name="Language" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="OrigLanguage" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="Publisher" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="URL" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
-          <Property Name="Cover" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Keywords" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Rating" Type="Int16" />
+          <Property Name="MyRating" Type="Int16" />
+          <Property Name="Readed" Type="Boolean" />
+          <Property Name="Count" Type="Int64" />
+          <Property Name="InventoryNumber" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="AcquisitionDate" Type="DateTime" Precision="0" />
           <Property Name="Price" Type="Double" />
-          <Property Name="Pages" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Read" Type="Boolean" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Tags" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Bookbinding" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Cover" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="FastTags" Type="Int64" />
-          <Property Name="EbookPath" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-          <Property Name="EbookType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="update" Type="DateTime" Precision="3" />
+          <Property Name="EbookPath" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="EbookType" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Publication" Type="Int16" />
           <Property Name="Note1" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="Note2" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="MainCharacter" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="BorrowedPerson" Type="Guid" />
           <Property Name="BorrowedFrom" Type="DateTime" Precision="3" />
           <Property Name="BorrowedTo" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Borrowing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="item" Type="Guid" />
+          <Property Name="person" Type="Guid" />
+          <Property Name="from" Type="DateTime" Precision="0" />
+          <Property Name="to" Type="DateTime" Precision="0" />
+          <Property Name="returned" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -432,45 +462,60 @@
                 <ScalarProperty Name="BorrowedTo" ColumnName="BorrowedTo" />
                 <ScalarProperty Name="BorrowedFrom" ColumnName="BorrowedFrom" />
                 <ScalarProperty Name="BorrowedPerson" ColumnName="BorrowedPerson" />
-                <ScalarProperty Name="MainCharacter" ColumnName="MainCharacter" />
                 <ScalarProperty Name="Note2" ColumnName="Note2" />
                 <ScalarProperty Name="Note1" ColumnName="Note1" />
-                <ScalarProperty Name="update" ColumnName="update" />
+                <ScalarProperty Name="Publication" ColumnName="Publication" />
                 <ScalarProperty Name="EbookType" ColumnName="EbookType" />
                 <ScalarProperty Name="EbookPath" ColumnName="EbookPath" />
+                <ScalarProperty Name="update" ColumnName="update" />
                 <ScalarProperty Name="FastTags" ColumnName="FastTags" />
-                <ScalarProperty Name="Tags" ColumnName="Tags" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Read" ColumnName="Read" />
-                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="Cover" ColumnName="Cover" />
+                <ScalarProperty Name="Bookbinding" ColumnName="Bookbinding" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="AcquisitionDate" ColumnName="AcquisitionDate" />
-                <ScalarProperty Name="Cover" ColumnName="Cover" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="OrigLanguage" ColumnName="OrigLanguage" />
-                <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="Publication" ColumnName="Publication" />
-                <ScalarProperty Name="OrigYear" ColumnName="OrigYear" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Bookbinding" ColumnName="Bookbinding" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="InventoryNumber" ColumnName="InventoryNumber" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Readed" ColumnName="Readed" />
+                <ScalarProperty Name="MyRating" ColumnName="MyRating" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
                 <ScalarProperty Name="SeriesNum" ColumnName="SeriesNum" />
                 <ScalarProperty Name="Series" ColumnName="Series" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Edition" ColumnName="Edition" />
                 <ScalarProperty Name="SubGenre" ColumnName="SubGenre" />
                 <ScalarProperty Name="Genre" ColumnName="Genre" />
-                <ScalarProperty Name="Illustrator" ColumnName="Illustrator" />
-                <ScalarProperty Name="Translator" ColumnName="Translator" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="InventoryNumber" ColumnName="InventoryNumber" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="OrigYear" ColumnName="OrigYear" />
+                <ScalarProperty Name="OrigLanguage" ColumnName="OrigLanguage" />
                 <ScalarProperty Name="OrigName" ColumnName="OrigName" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="MainCharacter" ColumnName="MainCharacter" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Translator" ColumnName="Translator" />
+                <ScalarProperty Name="Illustrator" ColumnName="Illustrator" />
+                <ScalarProperty Name="AuthorSurname" ColumnName="AuthorSurname" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowing">
+            <EntityTypeMapping TypeName="databaseModel.Borrowing">
+              <MappingFragment StoreEntitySet="Borrowing">
+                <ScalarProperty Name="returned" ColumnName="returned" />
+                <ScalarProperty Name="to" ColumnName="to" />
+                <ScalarProperty Name="from" ColumnName="from" />
+                <ScalarProperty Name="person" ColumnName="person" />
+                <ScalarProperty Name="item" ColumnName="item" />
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

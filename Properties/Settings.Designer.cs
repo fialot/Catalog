@@ -33,5 +33,17 @@ namespace Katalog.Properties {
                 return ((string)(this["localDBSC"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int DefaultBorrInterval {
+            get {
+                return ((int)(this["DefaultBorrInterval"]));
+            }
+            set {
+                this["DefaultBorrInterval"] = value;
+            }
+        }
     }
 }

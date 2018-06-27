@@ -123,22 +123,112 @@
   <data name="All" xml:space="preserve">
     <value>Vše</value>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>Kniha</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>Opravdu smazat záznam</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Dokument</value>
+  </data>
+  <data name="EBook" xml:space="preserve">
+    <value>E-kniha</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="Female" xml:space="preserve">
     <value>Žena</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Žánr</value>
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>Tvrdá</value>
+  </data>
+  <data name="InvNum" xml:space="preserve">
+    <value>Inv. č.</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Věc</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Klíč. slova</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Umístění</value>
+  </data>
+  <data name="Magazine" xml:space="preserve">
+    <value>Časopis</value>
+  </data>
   <data name="Male" xml:space="preserve">
     <value>Muž</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Mapa</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Jméno</value>
   </data>
+  <data name="Newspaper" xml:space="preserve">
+    <value>Noviny</value>
+  </data>
+  <data name="NoSelItem" xml:space="preserve">
+    <value>Nebyl vybrán předmět!</value>
+  </data>
+  <data name="NoSelPerson" xml:space="preserve">
+    <value>Nebyla vybrána osoba!</value>
+  </data>
+  <data name="Notebook" xml:space="preserve">
+    <value>Sešit</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Osoba</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Telefon</value>
   </data>
+  <data name="Returned" xml:space="preserve">
+    <value>Vráceno</value>
+  </data>
+  <data name="Ring" xml:space="preserve">
+    <value>Kroužková</value>
+  </data>
+  <data name="Series" xml:space="preserve">
+    <value>Série</value>
+  </data>
+  <data name="Soft" xml:space="preserve">
+    <value>Měkká</value>
+  </data>
+  <data name="Subgenre" xml:space="preserve">
+    <value>Podžánr</value>
+  </data>
   <data name="Surname" xml:space="preserve">
     <value>Příjmení</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Varování</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Rok</value>
   </data>
 </root>
