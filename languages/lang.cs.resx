@@ -129,6 +129,15 @@
   <data name="Book" xml:space="preserve">
     <value>Kniha</value>
   </data>
+  <data name="Borrowed" xml:space="preserve">
+    <value>Zapůjčeno</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="Counts" xml:space="preserve">
+    <value>Počet</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Smazat</value>
   </data>
@@ -144,6 +153,15 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="ErrLoadImg" xml:space="preserve">
+    <value>Obrázek se nepodařilo načíst</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Chyba</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Vyřazeno</value>
+  </data>
   <data name="Female" xml:space="preserve">
     <value>Žena</value>
   </data>
@@ -156,11 +174,14 @@
   <data name="Hard" xml:space="preserve">
     <value>Tvrdá</value>
   </data>
+  <data name="Images" xml:space="preserve">
+    <value>Obrázky</value>
+  </data>
   <data name="InvNum" xml:space="preserve">
     <value>Inv. č.</value>
   </data>
   <data name="Item" xml:space="preserve">
-    <value>Věc</value>
+    <value>Předmět</value>
   </data>
   <data name="ItemName" xml:space="preserve">
     <value>Název</value>
@@ -213,6 +234,9 @@
   <data name="Soft" xml:space="preserve">
     <value>Měkká</value>
   </data>
+  <data name="Subcategory" xml:space="preserve">
+    <value>Podkategorie</value>
+  </data>
   <data name="Subgenre" xml:space="preserve">
     <value>Podžánr</value>
   </data>
@@ -224,6 +248,9 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Typ</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Neznámý</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Varování</value>

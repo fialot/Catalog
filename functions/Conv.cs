@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
+using System.IO;
+using System.Drawing;
 
 namespace myFunctions
 {
@@ -156,6 +158,30 @@ namespace myFunctions
                 }
                 return def;
             } 
+        }
+
+        /// <summary>
+        /// Convert String to Bool with null
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Short number</returns>
+        public static bool? ToBoolNull(string text)
+        {
+            bool value;
+            if (bool.TryParse(text, out value))
+                return value;
+            else
+            {
+                if (text == "1")
+                {
+                    return true;
+                }
+                else if (text == "0")
+                {
+                    return false;
+                }
+                return null;
+            }
         }
 
         /// <summary>
@@ -718,6 +744,47 @@ namespace myFunctions
             }
             return ID;
         }
+
+
+        public static byte[] ImageToByteArray(Image imageIn)
+        {
+            try
+            {
+                if (imageIn != null)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        imageIn.Save(ms, imageIn.RawFormat);
+                        return ms.ToArray();
+                    }
+                }
+                else return new byte[0];
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static Image ByteArrayToImage(byte[] arr)
+        {
+            try
+            {
+                if (arr != null)
+                {
+                    using (var ms = new MemoryStream(arr))
+                    {
+                        return Image.FromStream(ms);
+                    }
+                }
+                else return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
 
         #region Swap
 

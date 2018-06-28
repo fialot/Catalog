@@ -37,7 +37,20 @@ namespace Katalog
             databaseEntities db = new databaseEntities();
 
             List<Contacts> con = db.Contacts.ToList();
-            
+
+            conFastTags.Renderer = new ImageRenderer();
+            conFastTags.AspectGetter = delegate (object x) {
+                List<int> ret = new List<int>();
+                FastFlags flag = (FastFlags)((Contacts)x).FastTags;
+                if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
+                if (flag.HasFlag(FastFlags.FLAG2)) ret.Add(1);
+                if (flag.HasFlag(FastFlags.FLAG3)) ret.Add(2);
+                if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
+                if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
+                if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
+
+                return ret;
+            };
             conName.AspectGetter = delegate (object x) {
                 return ((Contacts)x).Name.Trim();
             };
@@ -112,15 +125,22 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            List<Borrowing> borr = db.Borrowing.ToList();
+            List<Borrowing> borr;
+
+            if (chbShowReturned.Checked)
+                borr = db.Borrowing.ToList();
+            else
+                borr = db.Borrowing.Where(p => !(p.returned ?? false)).ToList();
 
             brType.AspectGetter = delegate (object x) {
                 switch (((Borrowing)x).type.Trim())
                 {
                     case "book":
                         return Lng.Get("Book");
+                    case "item":
+                        return Lng.Get("Item");
                 }
-                return "Unknown";
+                return Lng.Get("Unknown");
             };
             brName.AspectGetter = delegate (object x) {
                 return GetBorrItemName(((Borrowing)x).type.Trim(), ((Borrowing)x).item ?? Guid.Empty);
@@ -141,8 +161,11 @@ namespace Katalog
                 DateTime t = ((Borrowing)x).to ?? DateTime.Now;
                 return t.ToShortDateString();
             };
+            brReturned.Renderer = new ImageRenderer();
             brReturned.AspectGetter = delegate (object x) {
-                return ((Borrowing)x).returned.ToString();
+                if (((Borrowing)x).returned ?? false)
+                    return 6;
+                else return 7;
             };
 
             olvBorrowing.SetObjects(borr);
@@ -173,6 +196,115 @@ namespace Katalog
             }
         }
 
+        /// <summary>
+        /// Show returned Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chbShowReturned_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateBorrOLV();
+        }
+
+        #endregion
+
+        #region Items
+
+        /// <summary>
+        /// Update Items ObjectListView
+        /// </summary>
+        void UpdateItemsOLV()
+        {
+            databaseEntities db = new databaseEntities();
+
+            List<Items> itm;
+            if (chbShowExcluded.Checked)
+                itm = db.Items.ToList();
+            else
+                itm = db.Items.Where(p => !(p.Excluded ?? false)).ToList();
+
+            itFastTags.Renderer = new ImageRenderer();
+            itFastTags.AspectGetter = delegate (object x) {
+                List<int> ret = new List<int>();
+                FastFlags flag = (FastFlags)((Items)x).FastTags;
+                if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
+                if (flag.HasFlag(FastFlags.FLAG2)) ret.Add(1);
+                if (flag.HasFlag(FastFlags.FLAG3)) ret.Add(2);
+                if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
+                if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
+                if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
+
+                return ret;
+            };
+            itName.AspectGetter = delegate (object x) {
+                return ((Items)x).Name.Trim();
+            };
+            itCategory.AspectGetter = delegate (object x) {
+                return ((Items)x).Category.Trim();
+            };
+            itSubcategory.AspectGetter = delegate (object x) {
+                return ((Items)x).Subcategory.Trim();
+            };
+            itInvNum.AspectGetter = delegate (object x) {
+                return ((Items)x).InvNumber.Trim();
+            };
+            itLocation.AspectGetter = delegate (object x) {
+                return ((Items)x).Location.Trim();
+            };
+            itKeywords.AspectGetter = delegate (object x) {
+                return ((Items)x).Keywords.Trim();
+            };
+            itCounts.AspectGetter = delegate (object x) {
+                return ((Items)x).Count.ToString();
+            };
+            itBorrowed.AspectGetter = delegate (object x) {
+                return "0";
+            };
+            itExcluded.Renderer = new ImageRenderer();
+            itExcluded.AspectGetter = delegate (object x) {
+                if (((Items)x).Excluded ?? false)
+                    return 7;
+                else return 6;
+            };
+
+            olvItem.SetObjects(itm);
+        }
+
+        /// <summary>
+        /// OLV Items selected index change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void olvItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnableEditItems();
+        }
+
+        /// <summary>
+        /// Edit Item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void olvItem_DoubleClick(object sender, EventArgs e)
+        {
+            if (olvItem.SelectedIndex >= 0)
+            {
+                frmEditItem form = new frmEditItem();
+                form.ShowDialog(((Items)olvItem.SelectedObject).Id);
+                UpdateItemsOLV();
+            }
+        }
+
+        /// <summary>
+        /// Show Excluded items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chbShowExcluded_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateItemsOLV();
+        }
+
         #endregion
 
         #region Books
@@ -186,34 +318,58 @@ namespace Katalog
 
             List<Books> book = db.Books.ToList();
 
+            bkFastTags.Renderer = new ImageRenderer();
+            bkFastTags.AspectGetter = delegate (object x) {
+                List<int> ret = new List<int>();
+                if (((Books)x).FastTags == null) return ret;
+
+                FastFlags flag = (FastFlags)((Books)x).FastTags;
+                if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
+                if (flag.HasFlag(FastFlags.FLAG2)) ret.Add(1);
+                if (flag.HasFlag(FastFlags.FLAG3)) ret.Add(2);
+                if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
+                if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
+                if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
+
+                return ret;
+            };
             bkName.AspectGetter = delegate (object x) {
+                if (((Books)x).Name == null) return "";
                 return ((Books)x).Name.Trim();
             };
             bkAuthor.AspectGetter = delegate (object x) {
+                if (((Books)x).AuthorSurname == null) return "";
                 return ((Books)x).AuthorSurname.Trim() + ", " + ((Books)x).AuthorName.Trim();
             };
             bkType.AspectGetter = delegate (object x) {
+                if (((Books)x).Type == null) return "";
                 return ((Books)x).Type.Trim();
             };
             bkYear.AspectGetter = delegate (object x) {
                 return ((Books)x).Year.ToString();
             };
             bkGenre.AspectGetter = delegate (object x) {
+                if (((Books)x).Genre == null) return "";
                 return ((Books)x).Genre.Trim();
             };
             bkSubgenre.AspectGetter = delegate (object x) {
+                if (((Books)x).SubGenre == null) return "";
                 return ((Books)x).SubGenre.Trim();
             };
             bkInvNum.AspectGetter = delegate (object x) {
+                if (((Books)x).InventoryNumber == null) return "";
                 return ((Books)x).InventoryNumber.Trim();
             };
             bkLocation.AspectGetter = delegate (object x) {
+                if (((Books)x).Location == null) return "";
                 return ((Books)x).Location.Trim();
             };
             bkKeywords.AspectGetter = delegate (object x) {
+                if (((Books)x).Keywords == null) return "";
                 return ((Books)x).Keywords.Trim();
             };
             bkSeries.AspectGetter = delegate (object x) {
+                if (((Books)x).Series == null) return "";
                 return ((Books)x).Series.Trim() + " " + ((Books)x).SeriesNum.ToString();
             };
             
@@ -258,6 +414,10 @@ namespace Katalog
 
             if (tabCatalog.SelectedTab == tabContacts)
                 index = olvContacts.SelectedIndex;
+            else if (tabCatalog.SelectedTab == tabBorrowing)
+                index = olvBorrowing.SelectedIndex;
+            else if (tabCatalog.SelectedTab == tabItems)
+                index = olvItem.SelectedIndex;
             else if (tabCatalog.SelectedTab == tabBooks)
                 index = olvBooks.SelectedIndex;
 
@@ -296,6 +456,12 @@ namespace Katalog
                 form.ShowDialog();
                 UpdateBorrOLV();
             }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                frmEditItem form = new frmEditItem();
+                form.ShowDialog();
+                UpdateItemsOLV();
+            }
             else if (tabCatalog.SelectedTab == tabBooks)
             {
                 frmEditBooks form = new frmEditBooks();
@@ -330,6 +496,15 @@ namespace Katalog
                     UpdateBorrOLV();
                 }
             }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                if (olvItem.SelectedIndex >= 0)
+                {
+                    frmEditItem form = new frmEditItem();
+                    form.ShowDialog(((Items)olvItem.SelectedObject).Id);
+                    UpdateItemsOLV();
+                }
+            }
             else if (tabCatalog.SelectedTab == tabBooks)
             {
                 if (olvBooks.SelectedIndex >= 0)
@@ -362,7 +537,6 @@ namespace Katalog
                         db.SaveChanges();
                         UpdateConOLV();
                     }
-
                 }
             }
             else if (tabCatalog.SelectedTab == tabBorrowing)
@@ -371,28 +545,41 @@ namespace Katalog
                 {
                     Borrowing borr = db.Borrowing.Find(((Borrowing)olvBorrowing.SelectedObject).Id);
 
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetBorrItemName(borr.type.Trim(), borr.Id) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetBorrItemName(borr.type.Trim(), borr.item ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
                         db.Borrowing.Remove(borr);
                         db.SaveChanges();
                         UpdateBorrOLV();
                     }
-
                 }
             }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                if (olvItem.SelectedIndex >= 0)
+                {
+                    Items itm = db.Items.Find(((Items)olvItem.SelectedObject).Id);
+
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + itm.Name.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    {
+                        db.Items.Remove(itm);
+                        db.SaveChanges();
+                        UpdateItemsOLV();
+                    }
+                }
+            }
+
             else if (tabCatalog.SelectedTab == tabBooks)
             {
                 if (olvBooks.SelectedIndex >= 0)
                 {
                     Books book = db.Books.Find(((Books)olvBooks.SelectedObject).Id);
 
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + book.Name + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + book.Name.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
                         db.Books.Remove(book);
                         db.SaveChanges();
                         UpdateBooksOLV();
                     }
-
                 }
             }
         }
@@ -446,6 +633,29 @@ namespace Katalog
                 cbFastFilterCol.Items.Add(Lng.Get("Type"));
                 cbFastFilterCol.Items.Add(Lng.Get("ItemName"));
                 cbFastFilterCol.Items.Add(Lng.Get("Person"));
+                cbFastFilterCol.SelectedIndex = 0;
+            }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                cbFilterCol.Items.Add(Lng.Get("All"));
+                cbFilterCol.Items.Add(Lng.Get("ItemName", "Name"));
+                cbFilterCol.Items.Add(Lng.Get("Category"));
+                cbFilterCol.Items.Add(Lng.Get("Subcategory"));
+                cbFilterCol.Items.Add(Lng.Get("InvNum", "Inv. Num."));
+                cbFilterCol.Items.Add(Lng.Get("Location"));
+                cbFilterCol.Items.Add(Lng.Get("Keywords"));
+                cbFilterCol.Items.Add(Lng.Get("Counts"));
+                cbFilterCol.Items.Add(Lng.Get("Borrowed"));
+                cbFilterCol.Items.Add(Lng.Get("Excluded"));
+                cbFilterCol.SelectedIndex = 0;
+
+                cbFastFilterCol.Items.Add(Lng.Get("All"));
+                cbFastFilterCol.Items.Add(Lng.Get("ItemName", "Name"));
+                cbFastFilterCol.Items.Add(Lng.Get("Category"));
+                cbFastFilterCol.Items.Add(Lng.Get("Subcategory"));
+                cbFastFilterCol.Items.Add(Lng.Get("InvNum", "Inv. Num."));
+                cbFastFilterCol.Items.Add(Lng.Get("Location"));
+                cbFastFilterCol.Items.Add(Lng.Get("Excluded"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
             else if (tabCatalog.SelectedTab == tabBooks)
@@ -586,6 +796,11 @@ namespace Katalog
                 olvBorrowing.UseFiltering = true;
                 olvBorrowing.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, StandardFilter });
             }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                olvItem.UseFiltering = true;
+                olvItem.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, StandardFilter });
+            }
             else if (tabCatalog.SelectedTab == tabBooks)
             {
                 olvBooks.UseFiltering = true;
@@ -637,6 +852,30 @@ namespace Katalog
                     FastFilter.Columns = new OLVColumn[] { brName };
                 else if (cbFastFilterCol.SelectedIndex == 3)
                     FastFilter.Columns = new OLVColumn[] { brPerson };
+            }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                if (FastFilterList.Count == 0)
+                    FastFilter = TextMatchFilter.Contains(olvItem, "");
+                else
+                {
+                    string[] filterArray = FastFilterList.ToArray();
+                    FastFilter = TextMatchFilter.Prefix(olvItem, filterArray);
+                }
+                if (cbFastFilterCol.SelectedIndex == 0)
+                    FastFilter.Columns = new OLVColumn[] { itName, itCategory, itSubcategory, itInvNum, itLocation, itExcluded };
+                else if (cbFastFilterCol.SelectedIndex == 1)
+                    FastFilter.Columns = new OLVColumn[] { itName };
+                else if (cbFastFilterCol.SelectedIndex == 2)
+                    FastFilter.Columns = new OLVColumn[] { itCategory };
+                else if (cbFastFilterCol.SelectedIndex == 3)
+                    FastFilter.Columns = new OLVColumn[] { itSubcategory };
+                else if (cbFastFilterCol.SelectedIndex == 4)
+                    FastFilter.Columns = new OLVColumn[] { itInvNum };
+                else if (cbFastFilterCol.SelectedIndex == 5)
+                    FastFilter.Columns = new OLVColumn[] { itLocation };
+                else if (cbFastFilterCol.SelectedIndex == 6)
+                    FastFilter.Columns = new OLVColumn[] { itExcluded };
             }
             else if (tabCatalog.SelectedTab == tabBooks)
             {
@@ -708,6 +947,31 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 6)
                     StandardFilter.Columns = new OLVColumn[] { brReturned };
             }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                StandardFilter = TextMatchFilter.Contains(olvItem, txtFilter.Text);
+
+                if (cbFilterCol.SelectedIndex == 0)
+                    StandardFilter.Columns = new OLVColumn[] { itName, itCategory, itSubcategory, itInvNum, itLocation, itKeywords, itCounts, itBorrowed, itExcluded };
+                else if (cbFilterCol.SelectedIndex == 1)
+                    StandardFilter.Columns = new OLVColumn[] { itName };
+                else if (cbFilterCol.SelectedIndex == 2)
+                    StandardFilter.Columns = new OLVColumn[] { itCategory };
+                else if (cbFilterCol.SelectedIndex == 3)
+                    StandardFilter.Columns = new OLVColumn[] { itSubcategory };
+                else if (cbFilterCol.SelectedIndex == 4)
+                    StandardFilter.Columns = new OLVColumn[] { itInvNum };
+                else if (cbFilterCol.SelectedIndex == 5)
+                    StandardFilter.Columns = new OLVColumn[] { itLocation };
+                else if (cbFilterCol.SelectedIndex == 6)
+                    StandardFilter.Columns = new OLVColumn[] { itKeywords };
+                else if (cbFilterCol.SelectedIndex == 7)
+                    StandardFilter.Columns = new OLVColumn[] { itCounts };
+                else if (cbFilterCol.SelectedIndex == 8)
+                    StandardFilter.Columns = new OLVColumn[] { itBorrowed };
+                else if (cbFilterCol.SelectedIndex == 9)
+                    StandardFilter.Columns = new OLVColumn[] { itExcluded };
+            }
             else if (tabCatalog.SelectedTab == tabBooks)
             {
                 StandardFilter = TextMatchFilter.Contains(olvBooks, txtFilter.Text);
@@ -735,6 +999,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 10)
                     StandardFilter.Columns = new OLVColumn[] { bkSeries };
             }
+            
         }
 
         /// <summary>
@@ -783,7 +1048,7 @@ namespace Katalog
 
         #region Export
         
-        private void ExportCSV(string path, List<Contacts> con)
+        private void ExportConCSV(string path, List<Contacts> con)
         {
             string lines;
 
@@ -799,8 +1064,50 @@ namespace Katalog
             Files.SaveFile(path, lines);
         }
 
-        
+        private void ExportBorCSV(string path, List<Borrowing> bor)
+        {
+            string lines;
 
+            lines = "itemType;ItemID;personID;from;to;returned;GUID" + Environment.NewLine;
+
+            foreach (var item in bor)
+            {
+                lines += item.type.Trim() + ";" + item.item.ToString() + ";" + item.person.ToString() + ";" + item.from.ToString() + ";" + item.to.ToString() + ";";
+                lines += item.returned.ToString() + ";" + item.Id.ToString() + Environment.NewLine;
+            }
+
+            Files.SaveFile(path, lines);
+        }
+
+        private void ExportItmCSV(string path, List<Items> itm)
+        {
+            string lines;
+
+            lines = "name;category;subcategory;keywords;note;acqdate;price;excluded;invnum;location;fasttags;GUID" + Environment.NewLine;
+
+            foreach (var item in itm)
+            {
+                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
+                lines += item.AcqDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString()  + ";" + item.InvNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+            }
+
+            Files.SaveFile(path, lines);
+        }
+        
+        private void ExportBooksCSV(string path, List<Books> book)
+        {
+            string lines;
+
+            lines = "name;authorName;authorSurname;fasttags;GUID" + Environment.NewLine;
+
+            foreach (var item in book)
+            {
+                lines += item.Name.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+            }
+
+            Files.SaveFile(path, lines);
+        }
+        
         private void mnuExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
@@ -815,7 +1122,37 @@ namespace Katalog
                     {
                         con.Add((Contacts)item);
                     }
-                    ExportCSV(dialog.FileName, con);
+                    ExportConCSV(dialog.FileName, con);
+                }
+                else if (tabCatalog.SelectedTab == tabBorrowing)
+                {
+                    List<Borrowing> itm = new List<Borrowing>();
+
+                    foreach (var item in olvBorrowing.FilteredObjects)
+                    {
+                        itm.Add((Borrowing)item);
+                    }
+                    ExportBorCSV(dialog.FileName, itm);
+                }
+                else if (tabCatalog.SelectedTab == tabItems)
+                {
+                    List<Items> itm = new List<Items>();
+
+                    foreach (var item in olvItem.FilteredObjects)
+                    {
+                        itm.Add((Items)item);
+                    }
+                    ExportItmCSV(dialog.FileName, itm);
+                }
+                else if (tabCatalog.SelectedTab == tabBooks)
+                {
+                    List<Books> itm = new List<Books>();
+
+                    foreach (var item in olvBooks.FilteredObjects)
+                    {
+                        itm.Add((Books)item);
+                    }
+                    ExportBooksCSV(dialog.FileName, itm);
                 }
             }
         }
@@ -859,6 +1196,76 @@ namespace Katalog
 
             return con;
         }
+
+        private List<Borrowing> ImportBorCSV(string path)
+        {
+            List<Borrowing> con = new List<Borrowing>();
+            string text = Files.LoadFile(path);
+            CSVfile file = Files.ParseCSV(text);
+
+            foreach (var item in file.data)
+            {
+                Borrowing itm = new Borrowing();
+                itm.type = item[0];
+                itm.item = Conv.ToGuid(item[1]);
+                itm.person = Conv.ToGuid(item[2]);
+                itm.from = Conv.ToDateTimeNull(item[3]);
+                itm.to = Conv.ToDateTimeNull(item[4]);
+                itm.returned = Conv.ToBoolNull(item[5]);
+                itm.Id = Conv.ToGuid(item[6]);
+                con.Add(itm);
+            }
+
+            return con;
+        }
+
+        private List<Items> ImportItmCSV(string path)
+        {
+            List<Items> con = new List<Items>();
+            string text = Files.LoadFile(path);
+            CSVfile file = Files.ParseCSV(text);
+
+            foreach (var item in file.data)
+            {
+                Items itm = new Items();
+                itm.Name = item[0];
+                itm.Category = item[1];
+                itm.Subcategory = item[2];
+                itm.Keywords = item[3];
+                itm.Note = item[4].Replace("\n", Environment.NewLine);
+                itm.AcqDate = Conv.ToDateTimeNull(item[5]);
+                itm.Price = Conv.ToDoubleNull(item[6]);
+                itm.Excluded = Conv.ToBoolNull(item[7]);
+                itm.InvNumber = item[8].Replace(",", ";");
+                itm.Location = item[9].Replace(",", ";");
+                itm.FastTags = Conv.ToShortDef(item[10], 0);
+                itm.Id = Conv.ToGuid(item[11]);
+                con.Add(itm);
+            }
+
+            return con;
+        }
+
+        private List<Books> ImportBookCSV(string path)
+        {
+            List<Books> con = new List<Books>();
+            string text = Files.LoadFile(path);
+            CSVfile file = Files.ParseCSV(text);
+
+            foreach (var item in file.data)
+            {
+                Books itm = new Books();
+                itm.Name = item[0];
+                itm.AuthorName = item[1];
+                itm.AuthorSurname = item[2];
+                itm.FastTags = Conv.ToShortNull(item[3]);
+                itm.Id = Conv.ToGuid(item[4]);
+                con.Add(itm);
+            }
+
+            return con;
+        }
+
 
         private void FillContact(ref Contacts contact, Contacts newItem)
         {
@@ -907,6 +1314,51 @@ namespace Katalog
             contact.GoogleID = "";*/
         }
 
+        private void FillBorrowing(ref Borrowing itm, Borrowing newItem)
+        {
+            itm.type = newItem.type;
+            itm.item = newItem.item;
+            itm.person = newItem.person;
+            itm.from = newItem.from;
+            itm.to = newItem.to;
+            itm.returned = newItem.returned;
+        }
+
+        private void FillItem(ref Items itm, Items newItem)
+        {
+            // ----- Avatar -----
+            itm.Image = newItem.Image;
+
+            itm.Name = newItem.Name;
+            itm.Category = newItem.Category;
+            itm.Subcategory = newItem.Subcategory;
+            itm.Subcategory2 = newItem.Subcategory2;
+
+            itm.Keywords = newItem.Keywords;
+            itm.Note = newItem.Note;
+
+            itm.AcqDate = newItem.AcqDate;
+            itm.Price = newItem.Price;
+
+            itm.Excluded = newItem.Excluded;
+            itm.InvNumber = newItem.InvNumber;
+            itm.Location = newItem.Location;
+            itm.FastTags = newItem.FastTags;
+        }
+        
+        private void FillBook(ref Books itm, Books newItem)
+        {
+            // ----- Avatar -----
+            itm.Name = newItem.Name;
+
+            itm.AuthorName = newItem.AuthorName;
+            itm.AuthorSurname = newItem.AuthorSurname;
+
+            itm.FastTags = newItem.FastTags;
+
+        }
+
+
         private void mnuImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -944,6 +1396,93 @@ namespace Katalog
                     db.SaveChanges();
                     UpdateConOLV();
                 }
+                else if (tabCatalog.SelectedTab == tabBorrowing)
+                {
+                    List<Borrowing> con = ImportBorCSV(dialog.FileName);
+                    foreach (var item in con)
+                    {
+
+
+                        Borrowing itm;
+                        // ----- ID -----
+                        if (item.Id != Guid.Empty)
+                        {
+                            itm = db.Borrowing.Find(item.Id);
+                            if (itm != null)
+                                FillBorrowing(ref itm, item);
+                            else
+                            {
+                                db.Borrowing.Add(item);
+                            }
+
+                        }
+                        else
+                        {
+                            item.Id = Guid.NewGuid();
+                            db.Borrowing.Add(item);
+                        }
+                    }
+                    db.SaveChanges();
+                    UpdateBorrOLV();
+                }
+                else if (tabCatalog.SelectedTab == tabItems)
+                {
+                    List<Items> con = ImportItmCSV(dialog.FileName);
+                    foreach (var item in con)
+                    {
+
+
+                        Items itm;
+                        // ----- ID -----
+                        if (item.Id != Guid.Empty)
+                        {
+                            itm = db.Items.Find(item.Id);
+                            if (itm != null)
+                                FillItem(ref itm, item);
+                            else
+                            {
+                                db.Items.Add(item);
+                            }
+
+                        }
+                        else
+                        {
+                            item.Id = Guid.NewGuid();
+                            db.Items.Add(item);
+                        }
+                    }
+                    db.SaveChanges();
+                    UpdateItemsOLV();
+                }
+                else if (tabCatalog.SelectedTab == tabBooks)
+                {
+                    List<Books> con = ImportBookCSV(dialog.FileName);
+                    foreach (var item in con)
+                    {
+
+
+                        Books itm;
+                        // ----- ID -----
+                        if (item.Id != Guid.Empty)
+                        {
+                            itm = db.Books.Find(item.Id);
+                            if (itm != null)
+                                FillBook(ref itm, item);
+                            else
+                            {
+                                db.Books.Add(item);
+                            }
+
+                        }
+                        else
+                        {
+                            item.Id = Guid.NewGuid();
+                            db.Books.Add(item);
+                        }
+                    }
+                    db.SaveChanges();
+                    UpdateBooksOLV();
+                }
             }
 
 
@@ -964,6 +1503,7 @@ namespace Katalog
         {
             UpdateConOLV();
             UpdateBorrOLV();
+            UpdateItemsOLV();
             UpdateBooksOLV();
             EnableEditItems();
             UpdateFilterComboBox();

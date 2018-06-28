@@ -129,6 +129,26 @@
           <Property Name="FastTags" Type="bigint" />
           <Property Name="update" Type="datetime" />
         </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+          <Property Name="Category" Type="nchar" MaxLength="20" />
+          <Property Name="Subcategory" Type="nchar" MaxLength="20" />
+          <Property Name="Subcategory2" Type="nchar" MaxLength="20" />
+          <Property Name="Keywords" Type="nchar" MaxLength="30" />
+          <Property Name="Note" Type="nchar" MaxLength="200" />
+          <Property Name="Count" Type="smallint" />
+          <Property Name="AcqDate" Type="date" />
+          <Property Name="Price" Type="float" />
+          <Property Name="InvNumber" Type="nchar" MaxLength="100" />
+          <Property Name="Location" Type="nchar" MaxLength="200" />
+          <Property Name="FastTags" Type="smallint" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Excluded" Type="bit" />
+        </EntityType>
         <EntityType Name="Video">
           <Key>
             <PropertyRef Name="Id" />
@@ -172,6 +192,7 @@
           <EntitySet Name="Borrowing" EntityType="Self.Borrowing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Foto" EntityType="Self.Foto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -185,6 +206,7 @@
           <EntitySet Name="Contacts" EntityType="databaseModel.Contacts" />
           <EntitySet Name="Books" EntityType="databaseModel.Books" />
           <EntitySet Name="Borrowing" EntityType="databaseModel.Borrowing" />
+          <EntitySet Name="Items" EntityType="databaseModel.Items" />
         </EntityContainer>
         <EntityType Name="Audio">
           <Key>
@@ -346,6 +368,26 @@
           <Property Name="from" Type="DateTime" Precision="0" />
           <Property Name="to" Type="DateTime" Precision="0" />
           <Property Name="returned" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Subcategory" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Subcategory2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Count" Type="Int16" />
+          <Property Name="AcqDate" Type="DateTime" Precision="0" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="InvNumber" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="FastTags" Type="Int16" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Excluded" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -516,6 +558,27 @@
                 <ScalarProperty Name="person" ColumnName="person" />
                 <ScalarProperty Name="item" ColumnName="item" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="databaseModel.Items">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Excluded" ColumnName="Excluded" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="FastTags" ColumnName="FastTags" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="InvNumber" ColumnName="InvNumber" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="AcqDate" ColumnName="AcqDate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Subcategory2" ColumnName="Subcategory2" />
+                <ScalarProperty Name="Subcategory" ColumnName="Subcategory" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

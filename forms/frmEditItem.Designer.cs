@@ -1,4 +1,4 @@
-﻿namespace Katalog.forms
+﻿namespace Katalog
 {
     partial class frmEditItem
     {
@@ -53,16 +53,17 @@
             this.btnAddSpecimen = new System.Windows.Forms.Button();
             this.cbSpecimen = new System.Windows.Forms.ComboBox();
             this.lblSpecimen = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
-            this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtInvNum = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.lblInvNum = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.dtAcqDate = new System.Windows.Forms.DateTimePicker();
             this.lblAcqDate = new System.Windows.Forms.Label();
             this.txtSubCategory = new System.Windows.Forms.TextBox();
             this.lblSubCategory = new System.Windows.Forms.Label();
+            this.chbExcluded = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbSpecimen.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +71,7 @@
             // btnCancel
             // 
             resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -78,13 +80,15 @@
             resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.Name = "btnOk";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // imgImg
             // 
-            resources.ApplyResources(this.imgImg, "imgImg");
             this.imgImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.imgImg, "imgImg");
             this.imgImg.Name = "imgImg";
             this.imgImg.TabStop = false;
+            this.imgImg.Click += new System.EventHandler(this.imgImg_Click);
             // 
             // lblName
             // 
@@ -99,9 +103,11 @@
             // btnTag6
             // 
             resources.ApplyResources(this.btnTag6, "btnTag6");
+            this.btnTag6.BackColor = System.Drawing.SystemColors.Control;
             this.btnTag6.Image = global::Katalog.Properties.Resources.Circle_Blue;
             this.btnTag6.Name = "btnTag6";
-            this.btnTag6.UseVisualStyleBackColor = true;
+            this.btnTag6.UseVisualStyleBackColor = false;
+            this.btnTag6.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag5
             // 
@@ -109,6 +115,7 @@
             this.btnTag5.Image = global::Katalog.Properties.Resources.circ_grey;
             this.btnTag5.Name = "btnTag5";
             this.btnTag5.UseVisualStyleBackColor = true;
+            this.btnTag5.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag4
             // 
@@ -116,6 +123,7 @@
             this.btnTag4.Image = global::Katalog.Properties.Resources.circ_yellow;
             this.btnTag4.Name = "btnTag4";
             this.btnTag4.UseVisualStyleBackColor = true;
+            this.btnTag4.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag3
             // 
@@ -123,20 +131,25 @@
             this.btnTag3.Image = global::Katalog.Properties.Resources.circ_orange;
             this.btnTag3.Name = "btnTag3";
             this.btnTag3.UseVisualStyleBackColor = true;
+            this.btnTag3.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag2
             // 
             resources.ApplyResources(this.btnTag2, "btnTag2");
+            this.btnTag2.BackColor = System.Drawing.SystemColors.Control;
             this.btnTag2.Image = global::Katalog.Properties.Resources.circ_red;
             this.btnTag2.Name = "btnTag2";
-            this.btnTag2.UseVisualStyleBackColor = true;
+            this.btnTag2.UseVisualStyleBackColor = false;
+            this.btnTag2.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag1
             // 
             resources.ApplyResources(this.btnTag1, "btnTag1");
+            this.btnTag1.BackColor = System.Drawing.SystemColors.Control;
             this.btnTag1.Image = global::Katalog.Properties.Resources.circ_green;
             this.btnTag1.Name = "btnTag1";
-            this.btnTag1.UseVisualStyleBackColor = true;
+            this.btnTag1.UseVisualStyleBackColor = false;
+            this.btnTag1.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // txtKeywords
             // 
@@ -170,21 +183,17 @@
             // 
             // gbSpecimen
             // 
-            resources.ApplyResources(this.gbSpecimen, "gbSpecimen");
             this.gbSpecimen.Controls.Add(this.lblCount);
             this.gbSpecimen.Controls.Add(this.btnPlace);
             this.gbSpecimen.Controls.Add(this.btnDelSpecimen);
             this.gbSpecimen.Controls.Add(this.btnAddSpecimen);
             this.gbSpecimen.Controls.Add(this.cbSpecimen);
             this.gbSpecimen.Controls.Add(this.lblSpecimen);
-            this.gbSpecimen.Controls.Add(this.lblPrice);
             this.gbSpecimen.Controls.Add(this.lblLocation);
-            this.gbSpecimen.Controls.Add(this.txtPrice);
             this.gbSpecimen.Controls.Add(this.txtInvNum);
             this.gbSpecimen.Controls.Add(this.txtLocation);
             this.gbSpecimen.Controls.Add(this.lblInvNum);
-            this.gbSpecimen.Controls.Add(this.dtAcqDate);
-            this.gbSpecimen.Controls.Add(this.lblAcqDate);
+            resources.ApplyResources(this.gbSpecimen, "gbSpecimen");
             this.gbSpecimen.Name = "gbSpecimen";
             this.gbSpecimen.TabStop = false;
             // 
@@ -204,39 +213,32 @@
             resources.ApplyResources(this.btnDelSpecimen, "btnDelSpecimen");
             this.btnDelSpecimen.Name = "btnDelSpecimen";
             this.btnDelSpecimen.UseVisualStyleBackColor = true;
+            this.btnDelSpecimen.Click += new System.EventHandler(this.btnDelSpecimen_Click);
             // 
             // btnAddSpecimen
             // 
             resources.ApplyResources(this.btnAddSpecimen, "btnAddSpecimen");
             this.btnAddSpecimen.Name = "btnAddSpecimen";
             this.btnAddSpecimen.UseVisualStyleBackColor = true;
+            this.btnAddSpecimen.Click += new System.EventHandler(this.btnAddSpecimen_Click);
             // 
             // cbSpecimen
             // 
-            resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
             this.cbSpecimen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSpecimen.FormattingEnabled = true;
+            resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
             this.cbSpecimen.Name = "cbSpecimen";
+            this.cbSpecimen.SelectedIndexChanged += new System.EventHandler(this.cbSpecimen_SelectedIndexChanged);
             // 
             // lblSpecimen
             // 
             resources.ApplyResources(this.lblSpecimen, "lblSpecimen");
             this.lblSpecimen.Name = "lblSpecimen";
             // 
-            // lblPrice
-            // 
-            resources.ApplyResources(this.lblPrice, "lblPrice");
-            this.lblPrice.Name = "lblPrice";
-            // 
             // lblLocation
             // 
             resources.ApplyResources(this.lblLocation, "lblLocation");
             this.lblLocation.Name = "lblLocation";
-            // 
-            // txtPrice
-            // 
-            resources.ApplyResources(this.txtPrice, "txtPrice");
-            this.txtPrice.Name = "txtPrice";
             // 
             // txtInvNum
             // 
@@ -252,6 +254,16 @@
             // 
             resources.ApplyResources(this.lblInvNum, "lblInvNum");
             this.lblInvNum.Name = "lblInvNum";
+            // 
+            // lblPrice
+            // 
+            resources.ApplyResources(this.lblPrice, "lblPrice");
+            this.lblPrice.Name = "lblPrice";
+            // 
+            // txtPrice
+            // 
+            resources.ApplyResources(this.txtPrice, "txtPrice");
+            this.txtPrice.Name = "txtPrice";
             // 
             // dtAcqDate
             // 
@@ -273,21 +285,32 @@
             resources.ApplyResources(this.lblSubCategory, "lblSubCategory");
             this.lblSubCategory.Name = "lblSubCategory";
             // 
+            // chbExcluded
+            // 
+            resources.ApplyResources(this.chbExcluded, "chbExcluded");
+            this.chbExcluded.Name = "chbExcluded";
+            this.chbExcluded.UseVisualStyleBackColor = true;
+            // 
             // frmEditItem
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chbExcluded);
             this.Controls.Add(this.txtSubCategory);
             this.Controls.Add(this.lblSubCategory);
             this.Controls.Add(this.gbSpecimen);
             this.Controls.Add(this.txtCategory);
             this.Controls.Add(this.lblCategory);
+            this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblNote);
             this.Controls.Add(this.txtNote);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.lblKeywords);
             this.Controls.Add(this.btnTag6);
+            this.Controls.Add(this.dtAcqDate);
             this.Controls.Add(this.btnTag5);
+            this.Controls.Add(this.lblAcqDate);
             this.Controls.Add(this.btnTag4);
             this.Controls.Add(this.btnTag3);
             this.Controls.Add(this.btnTag2);
@@ -300,6 +323,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frmEditItem";
+            this.Load += new System.EventHandler(this.frmEditItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).EndInit();
             this.gbSpecimen.ResumeLayout(false);
             this.gbSpecimen.PerformLayout();
@@ -344,5 +368,6 @@
         private System.Windows.Forms.Label lblAcqDate;
         private System.Windows.Forms.TextBox txtSubCategory;
         private System.Windows.Forms.Label lblSubCategory;
+        private System.Windows.Forms.CheckBox chbExcluded;
     }
 }

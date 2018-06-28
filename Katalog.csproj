@@ -166,6 +166,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="global.cs" />
     <Compile Include="forms\frmEditBooks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +216,9 @@
     </Compile>
     <Compile Include="functions\Files.cs" />
     <Compile Include="GoogleContacts.cs" />
+    <Compile Include="Items.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="languages\lang.cs" />
     <Compile Include="languages\lang.cs.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -99,6 +99,7 @@
             this.lblLocation = new System.Windows.Forms.Label();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.gbSpecimen = new System.Windows.Forms.GroupBox();
+            this.lblCount = new System.Windows.Forms.Label();
             this.btnPlace = new System.Windows.Forms.Button();
             this.btnDelSpecimen = new System.Windows.Forms.Button();
             this.btnAddSpecimen = new System.Windows.Forms.Button();
@@ -110,7 +111,6 @@
             this.cbBookbinding = new System.Windows.Forms.ComboBox();
             this.lblAuthorSurname = new System.Windows.Forms.Label();
             this.txtAuthorSurname = new System.Windows.Forms.TextBox();
-            this.lblCount = new System.Windows.Forms.Label();
             this.gbOriginal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCover)).BeginInit();
             this.gbRating.SuspendLayout();
@@ -262,37 +262,41 @@
             // btnCancel
             // 
             resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnTag6
             // 
-            this.btnTag6.Image = global::Katalog.Properties.Resources.Circle_Blue;
             resources.ApplyResources(this.btnTag6, "btnTag6");
+            this.btnTag6.Image = global::Katalog.Properties.Resources.Circle_Blue;
             this.btnTag6.Name = "btnTag6";
             this.btnTag6.UseVisualStyleBackColor = true;
+            this.btnTag6.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag5
             // 
-            this.btnTag5.Image = global::Katalog.Properties.Resources.circ_grey;
             resources.ApplyResources(this.btnTag5, "btnTag5");
+            this.btnTag5.Image = global::Katalog.Properties.Resources.circ_grey;
             this.btnTag5.Name = "btnTag5";
             this.btnTag5.UseVisualStyleBackColor = true;
+            this.btnTag5.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag4
             // 
-            this.btnTag4.Image = global::Katalog.Properties.Resources.circ_yellow;
             resources.ApplyResources(this.btnTag4, "btnTag4");
+            this.btnTag4.Image = global::Katalog.Properties.Resources.circ_yellow;
             this.btnTag4.Name = "btnTag4";
             this.btnTag4.UseVisualStyleBackColor = true;
+            this.btnTag4.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag3
             // 
-            this.btnTag3.Image = global::Katalog.Properties.Resources.circ_orange;
             resources.ApplyResources(this.btnTag3, "btnTag3");
+            this.btnTag3.Image = global::Katalog.Properties.Resources.circ_orange;
             this.btnTag3.Name = "btnTag3";
             this.btnTag3.UseVisualStyleBackColor = true;
+            this.btnTag3.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag2
             // 
@@ -300,6 +304,7 @@
             this.btnTag2.Image = global::Katalog.Properties.Resources.circ_red;
             this.btnTag2.Name = "btnTag2";
             this.btnTag2.UseVisualStyleBackColor = true;
+            this.btnTag2.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // btnTag1
             // 
@@ -307,6 +312,7 @@
             this.btnTag1.Image = global::Katalog.Properties.Resources.circ_green;
             this.btnTag1.Name = "btnTag1";
             this.btnTag1.UseVisualStyleBackColor = true;
+            this.btnTag1.Click += new System.EventHandler(this.btnTag1_Click);
             // 
             // imgCover
             // 
@@ -314,6 +320,7 @@
             resources.ApplyResources(this.imgCover, "imgCover");
             this.imgCover.Name = "imgCover";
             this.imgCover.TabStop = false;
+            this.imgCover.Click += new System.EventHandler(this.imgCover_Click);
             // 
             // lblHero
             // 
@@ -517,6 +524,11 @@
             this.gbSpecimen.Name = "gbSpecimen";
             this.gbSpecimen.TabStop = false;
             // 
+            // lblCount
+            // 
+            resources.ApplyResources(this.lblCount, "lblCount");
+            this.lblCount.Name = "lblCount";
+            // 
             // btnPlace
             // 
             resources.ApplyResources(this.btnPlace, "btnPlace");
@@ -589,11 +601,6 @@
             resources.ApplyResources(this.txtAuthorSurname, "txtAuthorSurname");
             this.txtAuthorSurname.Name = "txtAuthorSurname";
             // 
-            // lblCount
-            // 
-            resources.ApplyResources(this.lblCount, "lblCount");
-            this.lblCount.Name = "lblCount";
-            // 
             // frmEditBooks
             // 
             resources.ApplyResources(this, "$this");
@@ -645,6 +652,8 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.imgCover);
             this.Controls.Add(this.txtName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "frmEditBooks";
             this.Load += new System.EventHandler(this.frmEditBooks_Load);
             this.gbOriginal.ResumeLayout(false);
