@@ -47,6 +47,18 @@ namespace Katalog
         }
 
         /// <summary>
+        /// ShowDialog - create new Contact, return ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public DialogResult ShowDialog(out Guid ID)
+        {
+            DialogResult res = base.ShowDialog();
+            ID = this.ID;
+            return res;
+        }
+
+        /// <summary>
         /// Form Load
         /// </summary>
         /// <param name="sender"></param>
@@ -211,6 +223,7 @@ namespace Katalog
             if (ID == Guid.Empty) db.Contacts.Add(contact);
             db.SaveChanges();
 
+            ID = contact.Id;
             this.DialogResult = DialogResult.OK;
         }
 

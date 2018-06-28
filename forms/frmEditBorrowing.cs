@@ -20,6 +20,7 @@ namespace Katalog
 
     public partial class frmEditBorrowing : Form
     {
+        databaseEntities db = new databaseEntities();
         Guid ID = Guid.Empty;
         Guid ItemGuid = Guid.Empty;
         Guid PersonGuid = Guid.Empty;
@@ -71,9 +72,9 @@ namespace Katalog
         private void FillBorr(ref Borrowing borr)
         {
             if (cbItemType.SelectedIndex == 0)
-                borr.type = "book";
-            else if (cbItemType.SelectedIndex == 1)
                 borr.type = "item";
+            else if (cbItemType.SelectedIndex == 1)
+                borr.type = "book";
 
             borr.item = ItemGuid;
             borr.person = PersonGuid;
@@ -84,13 +85,46 @@ namespace Katalog
 
         }
 
+        private void SetItemsContext()
+        {
+            txtItem.AutoCompleteCustomSource.Clear();
+
+            if (cbItemType.SelectedIndex == 0)
+            {
+                List<Items> itm = db.Items.ToList();
+                itemList.Clear();
+                for (int i = 0; i < itm.Count; i++)
+                {
+                    ItemVals vals = new ItemVals();
+                    vals.ID = itm[i].Id;
+                    vals.Name = itm[i].Name;
+                    itemList.Add(vals);
+                    txtItem.AutoCompleteCustomSource.Add(vals.Name.Trim() + " #" + i.ToString());
+                }
+            }
+            else if (cbItemType.SelectedIndex == 1)
+            {
+                List<Books> books = db.Books.ToList();
+                itemList.Clear();
+                for (int i = 0; i < books.Count; i++)
+                {
+                    ItemVals vals = new ItemVals();
+                    vals.ID = books[i].Id;
+                    vals.Name = books[i].Name;
+                    itemList.Add(vals);
+                    txtItem.AutoCompleteCustomSource.Add(vals.Name.Trim() + " #" + i.ToString());
+                }
+            }
+            
+        }
+
         private void frmEditBorrowing_Load(object sender, EventArgs e)
         {
-            databaseEntities db = new databaseEntities();
+            
 
             cbItemType.Items.Clear();
-            cbItemType.Items.Add(Lng.Get("Book"));
             cbItemType.Items.Add(Lng.Get("Item"));
+            cbItemType.Items.Add(Lng.Get("Book"));
             cbItemType.SelectedIndex = 0;
 
             contList = db.Contacts.ToList();
@@ -100,17 +134,8 @@ namespace Katalog
                 txtPerson.AutoCompleteCustomSource.Add(contList[i].Surname.Trim() + " " + contList[i].Name.Trim() + " #" + i.ToString());
             }
 
-            List<Books> books = db.Books.ToList();
-            itemList.Clear();
-            for (int i = 0; i < books.Count; i++)
-            {
-                ItemVals vals = new ItemVals();
-                vals.ID = books[i].Id;
-                vals.Name = books[i].Name;
-                itemList.Add(vals);
-                txtItem.AutoCompleteCustomSource.Add(vals.Name.Trim() + " #" + i.ToString());
-            }
-                
+
+            SetItemsContext();
 
             dtFrom.Value = DateTime.Now;
             dtTo.Value = DateTime.Now.AddDays(Properties.Settings.Default.DefaultBorrInterval);
@@ -123,35 +148,40 @@ namespace Katalog
 
                 switch (borr.type.Trim())
                 {
-                    case "book":
+                    case "item":
                         cbItemType.SelectedIndex = 0;
                         break;
-                    case "item":
+                    case "book":
                         cbItemType.SelectedIndex = 1;
                         break;
                 }
 
                 if (cbItemType.SelectedIndex == 0)
                 {
-                    Books book = db.Books.Find(borr.item);
-                    ItemGuid = borr.item ?? Guid.Empty;
-                    if (book != null)
-                        txtItem.Text = book.Name.Trim();
+                    Items itm = db.Items.Find(borr.item);
+                    if (itm != null)
+                        txtItem.Text = itm.Name.Trim();
                 }
                 else if (cbItemType.SelectedIndex == 1)
                 {
+                    Books book = db.Books.Find(borr.item);
                     
+                    if (book != null)
+                        txtItem.Text = book.Name.Trim();
                 }
 
-                PersonGuid = borr.person ?? Guid.Empty;
+                
 
                 Contacts person = db.Contacts.Find(borr.person);
                 if (person != null)
-                    txtPerson.Text = person.Name + " " + person.Surname;
+                    txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
 
                 dtFrom.Value = borr.from ?? DateTime.Now;
                 dtTo.Value = borr.to ?? DateTime.Now;
                 chbReturned.Checked = borr.returned ?? false;
+
+                ItemGuid = borr.item ?? Guid.Empty;
+                PersonGuid = borr.person ?? Guid.Empty;
             }
         }
 
@@ -224,6 +254,29 @@ namespace Katalog
         private void txtItem_TextChanged(object sender, EventArgs e)
         {
             ItemGuid = Guid.Empty;
+        }
+
+        private void cbItemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetItemsContext();
+            txtItem.Text = "";
+            txtItem.Focus();
+        }
+
+        private void btnAddPerson_Click(object sender, EventArgs e)
+        {
+            Guid ID;
+            frmEditContacts form = new frmEditContacts();
+            form.ShowDialog(out ID);
+
+            Contacts person = db.Contacts.Find(ID);
+            if (person != null)
+            {
+                txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
+                PersonGuid = ID;
+            }
+                
+            
         }
     }
 }

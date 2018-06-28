@@ -110,6 +110,10 @@ namespace Katalog
 
             switch (type)
             {
+                case "item":
+                    Items itm = db.Items.Find(id);
+                    if (itm != null) return itm.Name.Trim();
+                    break;
                 case "book":
                     Books book = db.Books.Find(id);
                     if (book != null) return book.Name.Trim();
@@ -135,10 +139,10 @@ namespace Katalog
             brType.AspectGetter = delegate (object x) {
                 switch (((Borrowing)x).type.Trim())
                 {
-                    case "book":
-                        return Lng.Get("Book");
                     case "item":
                         return Lng.Get("Item");
+                    case "book":
+                        return Lng.Get("Book");
                 }
                 return Lng.Get("Unknown");
             };
@@ -455,6 +459,7 @@ namespace Katalog
                 frmEditBorrowing form = new frmEditBorrowing();
                 form.ShowDialog();
                 UpdateBorrOLV();
+                UpdateConOLV();
             }
             else if (tabCatalog.SelectedTab == tabItems)
             {

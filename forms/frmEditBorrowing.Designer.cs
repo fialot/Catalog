@@ -89,6 +89,7 @@
             this.cbItemType.FormattingEnabled = true;
             resources.ApplyResources(this.cbItemType, "cbItemType");
             this.cbItemType.Name = "cbItemType";
+            this.cbItemType.SelectedIndexChanged += new System.EventHandler(this.cbItemType_SelectedIndexChanged);
             // 
             // lblPerson
             // 
@@ -110,6 +111,7 @@
             resources.ApplyResources(this.btnAddPerson, "btnAddPerson");
             this.btnAddPerson.Name = "btnAddPerson";
             this.btnAddPerson.UseVisualStyleBackColor = true;
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
             // 
             // chbReturned
             // 
@@ -119,6 +121,7 @@
             // 
             // mnuGetPerson
             // 
+            this.mnuGetPerson.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuGetPerson.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.jménoToolStripMenuItem});
             this.mnuGetPerson.Name = "mnuGetPerson";
