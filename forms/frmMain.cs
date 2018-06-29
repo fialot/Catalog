@@ -14,7 +14,7 @@ namespace Katalog
 {
     public partial class frmMain : Form
     {
-
+        databaseEntities db = new databaseEntities();
 
         #region Constructor
 
@@ -134,10 +134,17 @@ namespace Katalog
             if (chbShowReturned.Checked)
                 borr = db.Borrowing.ToList();
             else
-                borr = db.Borrowing.Where(p => !(p.returned ?? false)).ToList();
+                borr = db.Borrowing.Where(p => !(p.Returned ?? false)).ToList();
 
+            
+            brPerson.AspectGetter = delegate (object x) {
+                Contacts contact = db.Contacts.Find(((Borrowing)x).PersonID);
+                if (contact != null)
+                    return contact.Name.Trim() + " " + contact.Surname.Trim();
+                else return "";
+            };
             brType.AspectGetter = delegate (object x) {
-                switch (((Borrowing)x).type.Trim())
+                switch (((Borrowing)x).ItemType.Trim())
                 {
                     case "item":
                         return Lng.Get("Item");
@@ -147,27 +154,27 @@ namespace Katalog
                 return Lng.Get("Unknown");
             };
             brName.AspectGetter = delegate (object x) {
-                return GetBorrItemName(((Borrowing)x).type.Trim(), ((Borrowing)x).item ?? Guid.Empty);
+                return GetBorrItemName(((Borrowing)x).ItemType.Trim(), ((Borrowing)x).ItemID ?? Guid.Empty);
             };
-            brPerson.AspectGetter = delegate (object x) {
-                Contacts contact = db.Contacts.Find(((Borrowing)x).person);
-                if (contact != null)
-                    return contact.Name.Trim() + " " + contact.Surname.Trim();
-                else return "";
+            brItemNum.AspectGetter = delegate (object x) {
+                return ((Borrowing)x).ItemNum;
+            };
+            brItemInvNum.AspectGetter = delegate (object x) {
+                return ((Borrowing)x).ItemInvNum.Trim();
             };
             brFrom.AspectGetter = delegate (object x) {
-                if (((Borrowing)x).from == null) return "";
-                DateTime t = ((Borrowing)x).from ?? DateTime.Now;
+                if (((Borrowing)x).From == null) return "";
+                DateTime t = ((Borrowing)x).From ?? DateTime.Now;
                 return t.ToShortDateString();
             };
             brTo.AspectGetter = delegate (object x) {
-                if (((Borrowing)x).to == null) return "";
-                DateTime t = ((Borrowing)x).to ?? DateTime.Now;
+                if (((Borrowing)x).To == null) return "";
+                DateTime t = ((Borrowing)x).To ?? DateTime.Now;
                 return t.ToShortDateString();
             };
             brReturned.Renderer = new ImageRenderer();
             brReturned.AspectGetter = delegate (object x) {
-                if (((Borrowing)x).returned ?? false)
+                if (((Borrowing)x).Returned ?? false)
                     return 6;
                 else return 7;
             };
@@ -195,7 +202,7 @@ namespace Katalog
             if (olvBorrowing.SelectedIndex >= 0)
             {
                 frmEditBorrowing form = new frmEditBorrowing();
-                form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).Id);
+                form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).ID);
                 UpdateBorrOLV();
             }
         }
@@ -261,8 +268,10 @@ namespace Katalog
             itCounts.AspectGetter = delegate (object x) {
                 return ((Items)x).Count.ToString();
             };
-            itBorrowed.AspectGetter = delegate (object x) {
-                return "0";
+            itAvailable.AspectGetter = delegate (object x) {
+                /*var borr = db.Borrowing.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
+                int count = ((Items)x).Count ?? 1 - borr.Count;*/
+                return ((Items)x).Available ?? (((Items)x).Count ?? 1);
             };
             itExcluded.Renderer = new ImageRenderer();
             itExcluded.AspectGetter = delegate (object x) {
@@ -297,6 +306,20 @@ namespace Katalog
                 form.ShowDialog(((Items)olvItem.SelectedObject).Id);
                 UpdateItemsOLV();
             }
+        }
+
+        /// <summary>
+        /// Color Row
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void olvItem_FormatRow(object sender, FormatRowEventArgs e)
+        {
+            Items itm = (Items)e.Model;
+            if (itm.Available == 0)
+                e.Item.ForeColor = Color.Red;
+            else
+                e.Item.ForeColor = Color.Black;
         }
 
         /// <summary>
@@ -460,6 +483,8 @@ namespace Katalog
                 form.ShowDialog();
                 UpdateBorrOLV();
                 UpdateConOLV();
+                UpdateItemsOLV();
+                UpdateBooksOLV();
             }
             else if (tabCatalog.SelectedTab == tabItems)
             {
@@ -497,7 +522,7 @@ namespace Katalog
                 if (olvBorrowing.SelectedIndex >= 0)
                 {
                     frmEditBorrowing form = new frmEditBorrowing();
-                    form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).Id);
+                    form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).ID);
                     UpdateBorrOLV();
                 }
             }
@@ -548,9 +573,9 @@ namespace Katalog
             {
                 if (olvBorrowing.SelectedIndex >= 0)
                 {
-                    Borrowing borr = db.Borrowing.Find(((Borrowing)olvBorrowing.SelectedObject).Id);
+                    Borrowing borr = db.Borrowing.Find(((Borrowing)olvBorrowing.SelectedObject).ID);
 
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetBorrItemName(borr.type.Trim(), borr.item ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetBorrItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
                         db.Borrowing.Remove(borr);
                         db.SaveChanges();
@@ -957,7 +982,7 @@ namespace Katalog
                 StandardFilter = TextMatchFilter.Contains(olvItem, txtFilter.Text);
 
                 if (cbFilterCol.SelectedIndex == 0)
-                    StandardFilter.Columns = new OLVColumn[] { itName, itCategory, itSubcategory, itInvNum, itLocation, itKeywords, itCounts, itBorrowed, itExcluded };
+                    StandardFilter.Columns = new OLVColumn[] { itName, itCategory, itSubcategory, itInvNum, itLocation, itKeywords, itCounts, itAvailable, itExcluded };
                 else if (cbFilterCol.SelectedIndex == 1)
                     StandardFilter.Columns = new OLVColumn[] { itName };
                 else if (cbFilterCol.SelectedIndex == 2)
@@ -973,7 +998,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 7)
                     StandardFilter.Columns = new OLVColumn[] { itCounts };
                 else if (cbFilterCol.SelectedIndex == 8)
-                    StandardFilter.Columns = new OLVColumn[] { itBorrowed };
+                    StandardFilter.Columns = new OLVColumn[] { itAvailable };
                 else if (cbFilterCol.SelectedIndex == 9)
                     StandardFilter.Columns = new OLVColumn[] { itExcluded };
             }
@@ -1077,8 +1102,8 @@ namespace Katalog
 
             foreach (var item in bor)
             {
-                lines += item.type.Trim() + ";" + item.item.ToString() + ";" + item.person.ToString() + ";" + item.from.ToString() + ";" + item.to.ToString() + ";";
-                lines += item.returned.ToString() + ";" + item.Id.ToString() + Environment.NewLine;
+                lines += item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";";
+                lines += item.Returned.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1088,12 +1113,12 @@ namespace Katalog
         {
             string lines;
 
-            lines = "name;category;subcategory;keywords;note;acqdate;price;excluded;invnum;location;fasttags;GUID" + Environment.NewLine;
+            lines = "name;category;subcategory;keywords;note;acqdate;price;excluded;count;invnum;location;fasttags;GUID" + Environment.NewLine;
 
             foreach (var item in itm)
             {
                 lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
-                lines += item.AcqDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString()  + ";" + item.InvNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+                lines += item.AcqDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" + item.InvNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1211,13 +1236,13 @@ namespace Katalog
             foreach (var item in file.data)
             {
                 Borrowing itm = new Borrowing();
-                itm.type = item[0];
-                itm.item = Conv.ToGuid(item[1]);
-                itm.person = Conv.ToGuid(item[2]);
-                itm.from = Conv.ToDateTimeNull(item[3]);
-                itm.to = Conv.ToDateTimeNull(item[4]);
-                itm.returned = Conv.ToBoolNull(item[5]);
-                itm.Id = Conv.ToGuid(item[6]);
+                itm.ItemType = item[0];
+                itm.ItemID = Conv.ToGuid(item[1]);
+                itm.PersonID = Conv.ToGuid(item[2]);
+                itm.From = Conv.ToDateTimeNull(item[3]);
+                itm.To = Conv.ToDateTimeNull(item[4]);
+                itm.Returned = Conv.ToBoolNull(item[5]);
+                itm.ID = Conv.ToGuid(item[6]);
                 con.Add(itm);
             }
 
@@ -1241,10 +1266,11 @@ namespace Katalog
                 itm.AcqDate = Conv.ToDateTimeNull(item[5]);
                 itm.Price = Conv.ToDoubleNull(item[6]);
                 itm.Excluded = Conv.ToBoolNull(item[7]);
-                itm.InvNumber = item[8].Replace(",", ";");
-                itm.Location = item[9].Replace(",", ";");
-                itm.FastTags = Conv.ToShortDef(item[10], 0);
-                itm.Id = Conv.ToGuid(item[11]);
+                itm.Count = Conv.ToShortNull(item[8]);
+                itm.InvNumber = item[9].Replace(",", ";");
+                itm.Location = item[10].Replace(",", ";");
+                itm.FastTags = Conv.ToShortDef(item[11], 0);
+                itm.Id = Conv.ToGuid(item[12]);
                 con.Add(itm);
             }
 
@@ -1321,12 +1347,13 @@ namespace Katalog
 
         private void FillBorrowing(ref Borrowing itm, Borrowing newItem)
         {
-            itm.type = newItem.type;
-            itm.item = newItem.item;
-            itm.person = newItem.person;
-            itm.from = newItem.from;
-            itm.to = newItem.to;
-            itm.returned = newItem.returned;
+            itm.ItemType = newItem.ItemType;
+            itm.ItemID = newItem.ItemID;
+            itm.ItemNum = newItem.ItemNum;
+            itm.PersonID = newItem.PersonID;
+            itm.From = newItem.From;
+            itm.To = newItem.To;
+            itm.Returned = newItem.Returned;
         }
 
         private void FillItem(ref Items itm, Items newItem)
@@ -1410,9 +1437,9 @@ namespace Katalog
 
                         Borrowing itm;
                         // ----- ID -----
-                        if (item.Id != Guid.Empty)
+                        if (item.ID != Guid.Empty)
                         {
-                            itm = db.Borrowing.Find(item.Id);
+                            itm = db.Borrowing.Find(item.ID);
                             if (itm != null)
                                 FillBorrowing(ref itm, item);
                             else
@@ -1423,7 +1450,7 @@ namespace Katalog
                         }
                         else
                         {
-                            item.Id = Guid.NewGuid();
+                            item.ID = Guid.NewGuid();
                             db.Borrowing.Add(item);
                         }
                     }
@@ -1501,8 +1528,31 @@ namespace Katalog
             formAbout.ShowDialog();
         }
 
-        
-        
+
+        private int GetMaxNum(List<string> list)
+        {
+            int num = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                string[] separate = list[i].Trim().Split(new string[] { ";" }, StringSplitOptions.None);
+                for (int j = 0; j < separate.Length; j++)
+                {
+                    int value = Conv.ToNumber(separate[j]);
+                    if (num < value) num = value;
+                }
+            }
+            return num;
+        }
+
+        private void CheckMaxInvNums()
+        {
+            var list = db.Contacts.Select(u => u.code).ToList();
+            MaxInvNumbers.Contact = GetMaxNum(list);
+            list = db.Items.Select(u => u.InvNumber).ToList();
+            MaxInvNumbers.Item = GetMaxNum(list);
+            list = db.Books.Select(u => u.InventoryNumber).ToList();
+            MaxInvNumbers.Book = GetMaxNum(list);
+        }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -1512,6 +1562,7 @@ namespace Katalog
             UpdateBooksOLV();
             EnableEditItems();
             UpdateFilterComboBox();
+            CheckMaxInvNums();
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -1522,6 +1573,17 @@ namespace Katalog
         private void tabCatalog_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateFilterComboBox();
+        }
+
+        private void mnuOptions_Click(object sender, EventArgs e)
+        {
+            frmSettings form = new frmSettings();
+            form.ShowDialog();
+        }
+
+        private void olvContacts_FormatRow(object sender, FormatRowEventArgs e)
+        {
+
         }
 
     }

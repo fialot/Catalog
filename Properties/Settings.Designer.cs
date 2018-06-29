@@ -45,5 +45,161 @@ namespace Katalog.Properties {
                 this["DefaultBorrInterval"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public long ContactStart {
+            get {
+                return ((long)(this["ContactStart"]));
+            }
+            set {
+                this["ContactStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ContactPrefix {
+            get {
+                return ((string)(this["ContactPrefix"]));
+            }
+            set {
+                this["ContactPrefix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ContactSuffix {
+            get {
+                return ((string)(this["ContactSuffix"]));
+            }
+            set {
+                this["ContactSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public long ItemStart {
+            get {
+                return ((long)(this["ItemStart"]));
+            }
+            set {
+                this["ItemStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("I")]
+        public string ItemPrefix {
+            get {
+                return ((string)(this["ItemPrefix"]));
+            }
+            set {
+                this["ItemPrefix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ItemSuffix {
+            get {
+                return ((string)(this["ItemSuffix"]));
+            }
+            set {
+                this["ItemSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int ContactMinCharLen {
+            get {
+                return ((int)(this["ContactMinCharLen"]));
+            }
+            set {
+                this["ContactMinCharLen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int ItemMinCharLen {
+            get {
+                return ((int)(this["ItemMinCharLen"]));
+            }
+            set {
+                this["ItemMinCharLen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IncSpecimenInv {
+            get {
+                return ((bool)(this["IncSpecimenInv"]));
+            }
+            set {
+                this["IncSpecimenInv"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public long BookStart {
+            get {
+                return ((long)(this["BookStart"]));
+            }
+            set {
+                this["BookStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("B")]
+        public string BookPrefix {
+            get {
+                return ((string)(this["BookPrefix"]));
+            }
+            set {
+                this["BookPrefix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BookSuffix {
+            get {
+                return ((string)(this["BookSuffix"]));
+            }
+            set {
+                this["BookSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int BookMinCharLen {
+            get {
+                return ((int)(this["BookMinCharLen"]));
+            }
+            set {
+                this["BookMinCharLen"] = value;
+            }
+        }
     }
 }

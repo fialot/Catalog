@@ -14,12 +14,14 @@ namespace Katalog
     
     public partial class Borrowing
     {
-        public System.Guid Id { get; set; }
-        public string type { get; set; }
-        public Nullable<System.Guid> item { get; set; }
-        public Nullable<System.Guid> person { get; set; }
-        public Nullable<System.DateTime> from { get; set; }
-        public Nullable<System.DateTime> to { get; set; }
-        public Nullable<bool> returned { get; set; }
+        public System.Guid ID { get; set; }
+        public string ItemType { get; set; }
+        public Nullable<System.Guid> ItemID { get; set; }
+        public Nullable<short> ItemNum { get; set; }
+        public string ItemInvNum { get; set; }
+        public Nullable<System.Guid> PersonID { get; set; }
+        public Nullable<System.DateTime> From { get; set; }
+        public Nullable<System.DateTime> To { get; set; }
+        public Nullable<bool> Returned { get; set; }
     }
 }

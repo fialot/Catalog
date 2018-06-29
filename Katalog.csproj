@@ -166,6 +166,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="global.cs" />
     <Compile Include="forms\frmEditBooks.cs">
       <SubType>Form</SubType>
@@ -173,9 +179,7 @@
     <Compile Include="forms\frmEditBooks.Designer.cs">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditBorrowing.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\frmEditBorrowing.cs" />
     <Compile Include="forms\frmEditBorrowing.Designer.cs">
       <DependentUpon>frmEditBorrowing.cs</DependentUpon>
     </Compile>
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="languages\lang.cs.resx">
       <Generator>ResXFileCodeGenerator</Generator>

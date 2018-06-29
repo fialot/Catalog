@@ -18,6 +18,8 @@ namespace Katalog
 
         #region Variables
 
+
+
         Color SelectColor = Color.SkyBlue;                  // FastTags Select color
 
         databaseEntities db = new databaseEntities();       // Database
@@ -28,6 +30,8 @@ namespace Katalog
         List<string> InvNumbers = new List<string>();       // Items Inventory numbers
         List<string> Locations = new List<string>();        // Items Locations 
         int SelSpecimen = 0;
+
+        long TempMaxInvNum = MaxInvNumbers.Item;             // Max Inv. Number
 
         #endregion
 
@@ -60,6 +64,13 @@ namespace Katalog
         /// <param name="e"></param>
         private void frmEditItem_Load(object sender, EventArgs e)
         {
+            // ----- Prepare autocomplete -----
+            txtCondition.AutoCompleteCustomSource.Add(Lng.Get("New"));
+            txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Preserved"));
+            txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Damaged"));
+            txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Destroyed"));
+            txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Unfunctional"));
+
             // ----- Add Specimen -----
             cbSpecimen.Items.Clear();
             cbSpecimen.Items.Add("1");
@@ -69,6 +80,10 @@ namespace Katalog
 
             // ----- Set Acquisition date -----
             dtAcqDate.Value = DateTime.Now;
+
+            // ----- New Inv Number -----
+            TempMaxInvNum++;
+            txtInvNum.Text = Properties.Settings.Default.ItemPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.ItemMinCharLen.ToString()) + Properties.Settings.Default.ItemSuffix;
 
             // ----- If Edit -> fill form -----
             if (ID != Guid.Empty)
@@ -88,6 +103,7 @@ namespace Katalog
                 txtPrice.Text = itm.Price.ToString();               // Price
                 dtAcqDate.Value = itm.AcqDate ?? DateTime.Now;      // Acqusition date
                 chbExcluded.Checked = itm.Excluded ?? false;        // Excluded
+                txtCondition.Text = itm.Condition;
 
                 // ----- Fill Specimen -----
                 ItemCount = itm.Count ?? 1;                         // Get counts
@@ -133,6 +149,29 @@ namespace Katalog
 
         #region Form Close
 
+        private bool IsDuplicate(out string InvNum)
+        {
+            InvNum = "";
+            var list = db.Items.Where(x => x.Id != ID).Select(x => x.InvNumber).ToList();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                string[] separate = list[i].Trim().Split(new string[] { ";" }, StringSplitOptions.None);
+                for (int j = 0; j < separate.Length; j++)
+                {
+                    for (int k = 0; k < ItemCount; k++)
+                    {
+                        if (separate[j] == InvNumbers[k])
+                        {
+                            InvNum = InvNumbers[k];
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// Fill Item values
         /// </summary>
@@ -153,6 +192,7 @@ namespace Katalog
             itm.Price = Conv.ToDoubleNull(txtPrice.Text);   // Price
             itm.AcqDate = dtAcqDate.Value;                  // Acqusition date
             itm.Excluded = chbExcluded.Checked;             // Excluded
+            itm.Condition = txtCondition.Text;              // Condition
 
             // ----- Fill Specimen -----
             itm.Count = (short)ItemCount;                   // Get counts
@@ -164,6 +204,9 @@ namespace Katalog
                 invNums += InvNumbers[i];
                 if (locs != "") locs += ";";
                 locs += Locations[i];
+
+                int maxNum = Conv.ToNumber(InvNumbers[i]);
+                if (maxNum > MaxInvNumbers.Item) MaxInvNumbers.Item = maxNum;
             }
             itm.InvNumber = invNums;
             itm.Location = locs;
@@ -195,8 +238,15 @@ namespace Katalog
             InvNumbers.Insert(SelSpecimen, txtInvNum.Text);
             Locations.Insert(SelSpecimen, txtLocation.Text);
 
+            // ----- Check Duplicate InvNum -----
+            string DulpicateInvNUm = "";
+            if (IsDuplicate(out DulpicateInvNUm))
+            {
+                if (Dialogs.ShowQuest(String.Format(Lng.Get("DuplicateInvNum", "The inventory number {0} is already in use. Do you really write to database?"), DulpicateInvNUm), Lng.Get("Warning")) != DialogResult.Yes) return;
+            }
+
             // ----- ID -----
-            if (ID != Guid.Empty)
+                if (ID != Guid.Empty)
             {
                 itm = db.Items.Find(ID);
             }
@@ -206,11 +256,14 @@ namespace Katalog
                 itm.Id = Guid.NewGuid();
             }
 
+            // ----- Fill Item values -----
             FillItem(ref itm);
 
+            // ----- Update database -----
             if (ID == Guid.Empty) db.Items.Add(itm);
             db.SaveChanges();
 
+            // ----- Exit -----
             this.DialogResult = DialogResult.OK;
         }
 
@@ -221,12 +274,21 @@ namespace Katalog
         private void btnAddSpecimen_Click(object sender, EventArgs e)
         {
             ItemCount++;
-            InvNumbers.Add(txtInvNum.Text);
+            string InvNum = txtInvNum.Text;
+            // ----- Increment Inv Num -----
+            if (Properties.Settings.Default.IncSpecimenInv)
+            {
+                TempMaxInvNum++;
+                InvNum = Properties.Settings.Default.ItemPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.ItemMinCharLen.ToString()) + Properties.Settings.Default.ItemSuffix;
+            }
+            InvNumbers.Add(InvNum);
             Locations.Add(txtLocation.Text);
             cbSpecimen.Items.Add((cbSpecimen.Items.Count + 1).ToString());
             cbSpecimen.SelectedIndex = cbSpecimen.Items.Count - 1;
             btnDelSpecimen.Enabled = true;
             lblCount.Text = "/ " + ItemCount.ToString();        // Counts
+
+            
         }
 
         private void btnDelSpecimen_Click(object sender, EventArgs e)

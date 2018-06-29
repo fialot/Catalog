@@ -138,14 +138,23 @@
   <data name="Counts" xml:space="preserve">
     <value>Počet</value>
   </data>
+  <data name="Damaged" xml:space="preserve">
+    <value>Poškozený</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Smazat</value>
   </data>
   <data name="DeleteItem" xml:space="preserve">
     <value>Opravdu smazat záznam</value>
   </data>
+  <data name="Destroyed" xml:space="preserve">
+    <value>Zničený</value>
+  </data>
   <data name="Document" xml:space="preserve">
     <value>Dokument</value>
+  </data>
+  <data name="DuplicateInvNum" xml:space="preserve">
+    <value>Inventární číslo {0} je již použito. Opravdu ho zapsat do databáze?</value>
   </data>
   <data name="EBook" xml:space="preserve">
     <value>E-kniha</value>
@@ -177,6 +186,9 @@
   <data name="Images" xml:space="preserve">
     <value>Obrázky</value>
   </data>
+  <data name="InventoryNumber" xml:space="preserve">
+    <value>Inventární číslo</value>
+  </data>
   <data name="InvNum" xml:space="preserve">
     <value>Inv. č.</value>
   </data>
@@ -204,11 +216,17 @@
   <data name="Name" xml:space="preserve">
     <value>Jméno</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>Nový</value>
+  </data>
   <data name="Newspaper" xml:space="preserve">
     <value>Noviny</value>
   </data>
   <data name="NoSelItem" xml:space="preserve">
     <value>Nebyl vybrán předmět!</value>
+  </data>
+  <data name="NoSelItemNum" xml:space="preserve">
+    <value>Nebylo vybráno číslo předmětu!</value>
   </data>
   <data name="NoSelPerson" xml:space="preserve">
     <value>Nebyla vybrána osoba!</value>
@@ -219,8 +237,14 @@
   <data name="Person" xml:space="preserve">
     <value>Osoba</value>
   </data>
+  <data name="PersonNum" xml:space="preserve">
+    <value>Kód osoby</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Telefon</value>
+  </data>
+  <data name="Preserved" xml:space="preserve">
+    <value>Zachovalý</value>
   </data>
   <data name="Returned" xml:space="preserve">
     <value>Vráceno</value>
@@ -248,6 +272,9 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Typ</value>
+  </data>
+  <data name="Unfunctional" xml:space="preserve">
+    <value>Nefunkční</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Neznámý</value>

@@ -26,8 +26,10 @@ namespace Katalog
         public Nullable<double> Price { get; set; }
         public string InvNumber { get; set; }
         public string Location { get; set; }
+        public string Condition { get; set; }
         public Nullable<short> FastTags { get; set; }
         public byte[] Image { get; set; }
         public Nullable<bool> Excluded { get; set; }
+        public Nullable<short> Available { get; set; }
     }
 }

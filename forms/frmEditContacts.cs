@@ -115,6 +115,8 @@ namespace Katalog
                 txtCompany.Text = contact.Company.Trim();
                 txtPosition.Text = contact.Position.Trim();
 
+                chbActive.Checked = contact.Active ?? true;
+
                 // ----- Fast tags -----
                 FastFlags flag = (FastFlags)(contact.FastTags ?? 0);
                 if (flag.HasFlag(FastFlags.FLAG1)) btnTag1.BackColor = Color.SkyBlue;
@@ -180,6 +182,8 @@ namespace Katalog
 
             contact.Company = txtCompany.Text;
             contact.Position = txtPosition.Text;
+
+            contact.Active = chbActive.Checked;
 
             // ----- Fast tags -----
             short fastTag = 0;

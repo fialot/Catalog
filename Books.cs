@@ -59,5 +59,7 @@ namespace Katalog
         public Nullable<System.Guid> BorrowedPerson { get; set; }
         public Nullable<System.DateTime> BorrowedFrom { get; set; }
         public Nullable<System.DateTime> BorrowedTo { get; set; }
+        public Nullable<bool> Excluded { get; set; }
+        public Nullable<short> Available { get; set; }
     }
 }

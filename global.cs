@@ -17,8 +17,17 @@ namespace Katalog
         FLAG6 = 0x00000020,
     }
 
+
+
+    static class MaxInvNumbers
+    {
+        public static long Contact = Properties.Settings.Default.ContactStart - 1;
+        public static long Item = Properties.Settings.Default.ItemStart - 1;
+        public static long Book = 0;
+    }
+
     static class global
     {
-
+       
     }
 }

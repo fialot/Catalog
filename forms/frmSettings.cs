@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+using myFunctions;
+
+namespace Katalog
+{
+    public partial class frmSettings : Form
+    {
+        public frmSettings()
+        {
+            InitializeComponent();
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ContactStart = Conv.ToLongDef(txtConStart.Text, 1);
+            Properties.Settings.Default.ContactMinCharLen = Conv.ToIntDef(txtConMinCharLen.Text, 1);
+            Properties.Settings.Default.ContactPrefix = txtConPrefix.Text;
+            Properties.Settings.Default.ContactSuffix = txtConSuffix.Text;
+
+            Properties.Settings.Default.ItemStart = Conv.ToLongDef(txtItemStart.Text,1);
+            Properties.Settings.Default.ItemMinCharLen = Conv.ToIntDef(txtItemMinCharLen.Text, 1);
+            Properties.Settings.Default.ItemPrefix = txtItemPrefix.Text;
+            Properties.Settings.Default.ItemSuffix = txtItemSuffix.Text;
+
+            Properties.Settings.Default.BookStart = Conv.ToLongDef(txtBookStart.Text, 1);
+            Properties.Settings.Default.BookMinCharLen = Conv.ToIntDef(txtBookMinCharLen.Text, 1);
+            Properties.Settings.Default.BookPrefix = txtBookPrefix.Text;
+            Properties.Settings.Default.BookSuffix = txtBookSuffix.Text;
+
+            Properties.Settings.Default.IncSpecimenInv = chbIncSpecimen.Checked;
+
+            Properties.Settings.Default.Save();
+
+            if (MaxInvNumbers.Contact < Properties.Settings.Default.ContactStart) MaxInvNumbers.Item = Properties.Settings.Default.ContactStart - 1;
+            if (MaxInvNumbers.Item < Properties.Settings.Default.ItemStart) MaxInvNumbers.Item = Properties.Settings.Default.ItemStart - 1;
+
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void frmSettings_Load(object sender, EventArgs e)
+        {
+            txtConStart.Text = Properties.Settings.Default.ContactStart.ToString();
+            txtConMinCharLen.Text = Properties.Settings.Default.ContactMinCharLen.ToString();
+            txtConPrefix.Text = Properties.Settings.Default.ContactPrefix;
+            txtConSuffix.Text = Properties.Settings.Default.ContactSuffix;
+
+            txtItemStart.Text = Properties.Settings.Default.ItemStart.ToString();
+            txtItemMinCharLen.Text = Properties.Settings.Default.ItemMinCharLen.ToString();
+            txtItemPrefix.Text = Properties.Settings.Default.ItemPrefix;
+            txtItemSuffix.Text = Properties.Settings.Default.ItemSuffix;
+
+            txtBookStart.Text = Properties.Settings.Default.BookStart.ToString();
+            txtBookMinCharLen.Text = Properties.Settings.Default.BookMinCharLen.ToString();
+            txtBookPrefix.Text = Properties.Settings.Default.BookPrefix;
+            txtBookSuffix.Text = Properties.Settings.Default.BookSuffix;
+
+            chbIncSpecimen.Checked = Properties.Settings.Default.IncSpecimenInv;
+        }
+    }
+}

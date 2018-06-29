@@ -41,5 +41,6 @@ namespace Katalog
         public string code { get; set; }
         public Nullable<System.DateTime> update { get; set; }
         public string GoogleID { get; set; }
+        public Nullable<bool> Active { get; set; }
     }
 }

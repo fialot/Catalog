@@ -64,6 +64,8 @@
             this.txtSubCategory = new System.Windows.Forms.TextBox();
             this.lblSubCategory = new System.Windows.Forms.Label();
             this.chbExcluded = new System.Windows.Forms.CheckBox();
+            this.lblCondition = new System.Windows.Forms.Label();
+            this.txtCondition = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbSpecimen.SuspendLayout();
             this.SuspendLayout();
@@ -291,10 +293,24 @@
             this.chbExcluded.Name = "chbExcluded";
             this.chbExcluded.UseVisualStyleBackColor = true;
             // 
+            // lblCondition
+            // 
+            resources.ApplyResources(this.lblCondition, "lblCondition");
+            this.lblCondition.Name = "lblCondition";
+            // 
+            // txtCondition
+            // 
+            this.txtCondition.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCondition.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtCondition, "txtCondition");
+            this.txtCondition.Name = "txtCondition";
+            // 
             // frmEditItem
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCondition);
+            this.Controls.Add(this.txtCondition);
             this.Controls.Add(this.chbExcluded);
             this.Controls.Add(this.txtSubCategory);
             this.Controls.Add(this.lblSubCategory);
@@ -369,5 +385,7 @@
         private System.Windows.Forms.TextBox txtSubCategory;
         private System.Windows.Forms.Label lblSubCategory;
         private System.Windows.Forms.CheckBox chbExcluded;
+        private System.Windows.Forms.Label lblCondition;
+        private System.Windows.Forms.TextBox txtCondition;
     }
 }
