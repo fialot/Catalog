@@ -12,20 +12,6 @@ using myFunctions;
 
 namespace Katalog
 {
-    public class CInfo
-    {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string PersonalNum { get; set; }
-    }
-
-    public class IInfo
-    {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-        public string InvNum { get; set; }
-    }
 
     public partial class frmEditBorrowing : Form
     {
@@ -104,18 +90,17 @@ namespace Katalog
 
             if (cbItemType.SelectedIndex == 0)
             {
-                itemList = db.Items.Where(x => !(x.Excluded ?? false) && x.Available > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InvNumber.Trim() }).ToList();
+                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InvNumber.Trim() }).ToList();
             }
             else if (cbItemType.SelectedIndex == 1)
             {
-                itemList = db.Books.Where(x => !(x.Excluded ?? false) && x.Available > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
             }
 
             for (int i = 0; i < itemList.Count; i++)
             {
                 txtItem.AutoCompleteCustomSource.Add(itemList[i].Name + " #" + i.ToString());
             }
-
         }
 
         private void SetContactsContext()
@@ -213,8 +198,8 @@ namespace Katalog
             {
                 borr = db.Borrowing.Where(p => (p.ItemID == ItemGuid) && p.ItemType.Contains("book") && !(p.Returned ?? false)).Select(c => c.ItemNum).ToList();
                 Books itm = db.Books.Find(ItemGuid);
-                //itm.Available = (short)(itm.Count - borr.Count);
-                //db.SaveChanges();
+                itm.Available = (short)(itm.Count ?? 1 - borr.Count);
+                db.SaveChanges();
             }
 
         }
@@ -287,31 +272,37 @@ namespace Katalog
         {
             if (ItemGuid != Guid.Empty)
             {
-
+                List<IInfo> itm = new List<IInfo>();
                 // ----- Fill Inventory number -----
                 if (cbItemType.SelectedIndex == 0)
                 {
-                    Items itm = db.Items.Find(ItemGuid);
-
-                    // ----- Change GUID -----
-                    if (LastItemGuid != ItemGuid)
-                    {
-                        List<int> nums = GetItemNums(itm);
-                        cbItemNum.Items.Clear();
-                        for (int i = 0; i < nums.Count; i++)
-                            cbItemNum.Items.Add(nums[i].ToString());
-                        cbItemNum.SelectedIndex = 0;
-                    }
-                    string[] invNumbers = itm.InvNumber.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
-                    int invNumIdx = Conv.ToShortDef(cbItemNum.Text, 0);
-                    ItemInvNum = invNumbers[invNumIdx - 1];
-                    lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": " + ItemInvNum;
-
+                    itm = db.Items.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = (x.InvNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
                 }
                 else if (cbItemType.SelectedIndex == 1)
                 {
-                    Books book = db.Books.Find(ItemGuid);
-                    lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": " + book.InventoryNumber.Trim();
+                    itm = db.Books.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = (int)(x.Count ?? 1) }).ToList();
+                }
+
+                if (itm.Count == 1)
+                {
+                    // ----- Change GUID -----
+                    if (LastItemGuid != ItemGuid)
+                    {
+                        List<int> nums = GetItemNums(itm[0]);
+                        cbItemNum.Items.Clear();
+                        for (int i = 0; i < nums.Count; i++)
+                            cbItemNum.Items.Add(nums[i].ToString());
+                        if (cbItemNum.Items.Count > 0)
+                            cbItemNum.SelectedIndex = 0;
+                    }
+                    string[] invNumbers = itm[0].InvNum.Split(new string[] { ";" }, StringSplitOptions.None);
+                    int invNumIdx = Conv.ToShortDef(cbItemNum.Text, 0);
+                    if (invNumIdx > 0)
+                    {
+                        ItemInvNum = invNumbers[invNumIdx - 1];
+                        lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": " + ItemInvNum;
+                    }
+                    else lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": -";
                 }
             }
             else
@@ -322,15 +313,21 @@ namespace Katalog
             }
         }
 
-        private List<int> GetItemNums(Items itm)
+        private List<int> GetItemNums(IInfo itm)
         {
             List<int> res = new List<int>();
 
-            int Count = itm.Count ?? 1;
+            var borr = db.Borrowing.Where(x => (x.ID != ID) && (x.ItemID == ItemGuid) && !(x.Returned ?? false)).Select(x => x.ItemNum ?? 1).ToList();
 
-            for (int i = 0; i < Count; i++)
+            int Count = itm.Count;
+
+            for (int i = 1; i <= Count; i++)
             {
-                res.Add(i + 1);
+                bool find = false;
+                for (int j = 0; j < borr.Count; j++)
+                    if (borr[j] == i) find = true;
+                if (!find)
+                    res.Add(i);
             }
             return res;
         }
@@ -372,5 +369,21 @@ namespace Katalog
             LastItemGuid = ItemGuid;
             FillInventoryNumber();
         }
+    }
+	
+	    public class CInfo
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string PersonalNum { get; set; }
+    }
+
+    public class IInfo
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string InvNum { get; set; }
+        public int Count { get; set; }
     }
 }

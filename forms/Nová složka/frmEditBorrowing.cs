@@ -12,20 +12,6 @@ using myFunctions;
 
 namespace Katalog
 {
-    public class CInfo
-    {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string PersonalNum { get; set; }
-    }
-
-    public class IInfo
-    {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-        public string InvNum { get; set; }
-    }
 
     public partial class frmEditBorrowing : Form
     {
@@ -372,5 +358,20 @@ namespace Katalog
             LastItemGuid = ItemGuid;
             FillInventoryNumber();
         }
+    }
+	
+	    public class CInfo
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string PersonalNum { get; set; }
+    }
+
+    public class IInfo
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string InvNum { get; set; }
     }
 }

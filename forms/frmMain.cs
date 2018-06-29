@@ -204,6 +204,9 @@ namespace Katalog
                 frmEditBorrowing form = new frmEditBorrowing();
                 form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).ID);
                 UpdateBorrOLV();
+                UpdateConOLV();
+                UpdateItemsOLV();
+                UpdateBooksOLV();
             }
         }
 
@@ -1534,12 +1537,16 @@ namespace Katalog
             int num = 0;
             for (int i = 0; i < list.Count; i++)
             {
-                string[] separate = list[i].Trim().Split(new string[] { ";" }, StringSplitOptions.None);
-                for (int j = 0; j < separate.Length; j++)
+                if (list[i] != null)
                 {
-                    int value = Conv.ToNumber(separate[j]);
-                    if (num < value) num = value;
+                    string[] separate = list[i].Trim().Split(new string[] { ";" }, StringSplitOptions.None);
+                    for (int j = 0; j < separate.Length; j++)
+                    {
+                        int value = Conv.ToNumber(separate[j]);
+                        if (num < value) num = value;
+                    }
                 }
+                
             }
             return num;
         }

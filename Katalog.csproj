@@ -166,6 +166,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmEditBorrowing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEditBorrowing.Designer.cs">
+      <DependentUpon>frmEditBorrowing.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,10 +184,6 @@
     </Compile>
     <Compile Include="forms\frmEditBooks.Designer.cs">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmEditBorrowing.cs" />
-    <Compile Include="forms\frmEditBorrowing.Designer.cs">
-      <DependentUpon>frmEditBorrowing.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmEditItem.cs">
       <SubType>Form</SubType>
