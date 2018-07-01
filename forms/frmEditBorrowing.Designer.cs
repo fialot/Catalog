@@ -39,7 +39,6 @@
             this.cbItemType = new System.Windows.Forms.ComboBox();
             this.lblFrom = new System.Windows.Forms.Label();
             this.lblTo = new System.Windows.Forms.Label();
-            this.chbReturned = new System.Windows.Forms.CheckBox();
             this.mnuGetPerson = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.jménoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtItem = new System.Windows.Forms.TextBox();
@@ -53,6 +52,7 @@
             this.btnAddPerson = new System.Windows.Forms.Button();
             this.lblPerson = new System.Windows.Forms.Label();
             this.gbTerm = new System.Windows.Forms.GroupBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.mnuGetPerson.SuspendLayout();
             this.gbItem.SuspendLayout();
             this.gbPerson.SuspendLayout();
@@ -110,12 +110,6 @@
             // 
             resources.ApplyResources(this.lblTo, "lblTo");
             this.lblTo.Name = "lblTo";
-            // 
-            // chbReturned
-            // 
-            resources.ApplyResources(this.chbReturned, "chbReturned");
-            this.chbReturned.Name = "chbReturned";
-            this.chbReturned.UseVisualStyleBackColor = true;
             // 
             // mnuGetPerson
             // 
@@ -197,6 +191,7 @@
             resources.ApplyResources(this.btnAddPerson, "btnAddPerson");
             this.btnAddPerson.Name = "btnAddPerson";
             this.btnAddPerson.UseVisualStyleBackColor = true;
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
             // 
             // lblPerson
             // 
@@ -213,14 +208,21 @@
             this.gbTerm.Name = "gbTerm";
             this.gbTerm.TabStop = false;
             // 
+            // cbStatus
+            // 
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatus.FormattingEnabled = true;
+            resources.ApplyResources(this.cbStatus, "cbStatus");
+            this.cbStatus.Name = "cbStatus";
+            // 
             // frmEditBorrowing
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.gbTerm);
             this.Controls.Add(this.gbPerson);
             this.Controls.Add(this.gbItem);
-            this.Controls.Add(this.chbReturned);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -235,7 +237,6 @@
             this.gbTerm.ResumeLayout(false);
             this.gbTerm.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -250,7 +251,6 @@
         private System.Windows.Forms.ComboBox cbItemType;
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Label lblTo;
-        private System.Windows.Forms.CheckBox chbReturned;
         private System.Windows.Forms.ContextMenuStrip mnuGetPerson;
         private System.Windows.Forms.ToolStripMenuItem jménoToolStripMenuItem;
         private System.Windows.Forms.TextBox txtItem;
@@ -264,5 +264,6 @@
         private System.Windows.Forms.Button btnAddPerson;
         private System.Windows.Forms.Label lblPerson;
         private System.Windows.Forms.GroupBox gbTerm;
+        private System.Windows.Forms.ComboBox cbStatus;
     }
 }

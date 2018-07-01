@@ -66,6 +66,7 @@
             this.chbExcluded = new System.Windows.Forms.CheckBox();
             this.lblCondition = new System.Windows.Forms.Label();
             this.txtCondition = new System.Windows.Forms.TextBox();
+            this.lblUpdated = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbSpecimen.SuspendLayout();
             this.SuspendLayout();
@@ -175,6 +176,8 @@
             // 
             // txtCategory
             // 
+            this.txtCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             resources.ApplyResources(this.txtCategory, "txtCategory");
             this.txtCategory.Name = "txtCategory";
             // 
@@ -209,6 +212,7 @@
             resources.ApplyResources(this.btnPlace, "btnPlace");
             this.btnPlace.Name = "btnPlace";
             this.btnPlace.UseVisualStyleBackColor = true;
+            this.btnPlace.Click += new System.EventHandler(this.btnPlace_Click);
             // 
             // btnDelSpecimen
             // 
@@ -249,6 +253,8 @@
             // 
             // txtLocation
             // 
+            this.txtLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             resources.ApplyResources(this.txtLocation, "txtLocation");
             this.txtLocation.Name = "txtLocation";
             // 
@@ -279,6 +285,8 @@
             // 
             // txtSubCategory
             // 
+            this.txtSubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtSubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             resources.ApplyResources(this.txtSubCategory, "txtSubCategory");
             this.txtSubCategory.Name = "txtSubCategory";
             // 
@@ -305,10 +313,16 @@
             resources.ApplyResources(this.txtCondition, "txtCondition");
             this.txtCondition.Name = "txtCondition";
             // 
+            // lblUpdated
+            // 
+            resources.ApplyResources(this.lblUpdated, "lblUpdated");
+            this.lblUpdated.Name = "lblUpdated";
+            // 
             // frmEditItem
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblUpdated);
             this.Controls.Add(this.lblCondition);
             this.Controls.Add(this.txtCondition);
             this.Controls.Add(this.chbExcluded);
@@ -387,5 +401,6 @@
         private System.Windows.Forms.CheckBox chbExcluded;
         private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.TextBox txtCondition;
+        private System.Windows.Forms.Label lblUpdated;
     }
 }

@@ -32,6 +32,7 @@ namespace Katalog
         int SelSpecimen = 0;
 
         long TempMaxInvNum = MaxInvNumbers.Item;             // Max Inv. Number
+        bool IsUsed = false;
 
         #endregion
 
@@ -45,6 +46,26 @@ namespace Katalog
         #endregion
 
         #region Form Load
+
+        List<string> DeleteDuplicates(List<string> list)
+        {
+            List<string> res = new List<string>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                bool find = false;
+                for (int j = 0; j < res.Count; j++)
+                {
+                    if (list[i] == res[j])
+                    {
+                        find = true;
+                        break;
+                    }
+                }
+                if (!find && list[i] != "")
+                    res.Add(list[i]);
+            }
+            return res;
+        }
 
         /// <summary>
         /// ShowDialog with ID (Edit)
@@ -64,12 +85,41 @@ namespace Katalog
         /// <param name="e"></param>
         private void frmEditItem_Load(object sender, EventArgs e)
         {
+
+            var categoryList = db.Items.Select(x => x.Category.Trim()).ToList();
+            var subcategoryList = db.Items.Select(x => x.Subcategory.Trim()).ToList();
+            var locationList = db.Items.Select(x => x.Location.Trim()).ToList();
+
+            for (int i = locationList.Count - 1; i >= 0; i--)
+            {
+                string[] temp = locationList[i].Split(new string[] { ";" }, StringSplitOptions.None);
+                if (temp.Length > 1)
+                {
+                    locationList.RemoveAt(i);
+                    foreach ( var item in temp)
+                    {
+                        locationList.Insert(i, item);
+                    }
+                }
+            }
+
+            categoryList = DeleteDuplicates(categoryList);
+            subcategoryList = DeleteDuplicates(subcategoryList);
+            locationList = DeleteDuplicates(locationList);
+
             // ----- Prepare autocomplete -----
             txtCondition.AutoCompleteCustomSource.Add(Lng.Get("New"));
             txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Preserved"));
             txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Damaged"));
             txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Destroyed"));
             txtCondition.AutoCompleteCustomSource.Add(Lng.Get("Unfunctional"));
+
+            foreach (var item in categoryList)
+                txtCategory.AutoCompleteCustomSource.Add(item);
+            foreach (var item in subcategoryList)
+                txtSubCategory.AutoCompleteCustomSource.Add(item);
+            foreach (var item in locationList)
+                txtLocation.AutoCompleteCustomSource.Add(item);
 
             // ----- Add Specimen -----
             cbSpecimen.Items.Clear();
@@ -103,16 +153,19 @@ namespace Katalog
                 txtPrice.Text = itm.Price.ToString();               // Price
                 dtAcqDate.Value = itm.AcqDate ?? DateTime.Now;      // Acqusition date
                 chbExcluded.Checked = itm.Excluded ?? false;        // Excluded
-                txtCondition.Text = itm.Condition;
+                txtCondition.Text = itm.Condition.Trim();
 
                 // ----- Fill Specimen -----
                 ItemCount = itm.Count ?? 1;                         // Get counts
+                if (ItemCount > 1) btnDelSpecimen.Enabled = true;
+                if ((itm.Available ?? ItemCount) < ItemCount)
+                    IsUsed = true;
 
                 cbSpecimen.Items.Clear();
                 InvNumbers.Clear();
                 Locations.Clear();
 
-                string[] invNums = itm.InvNumber.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
+                string[] invNums = itm.InventoryNumber.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
                 string[] locs = itm.Location.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
 
                 for (int i = 0; i < ItemCount; i++)                 // Fill specimen
@@ -136,12 +189,14 @@ namespace Katalog
 
                 // ----- Fast tags -----
                 FastFlags flag = (FastFlags)(itm.FastTags ?? 0);
-                if (flag.HasFlag(FastFlags.FLAG1)) btnTag1.BackColor = Color.SkyBlue;
-                if (flag.HasFlag(FastFlags.FLAG2)) btnTag2.BackColor = Color.SkyBlue;
-                if (flag.HasFlag(FastFlags.FLAG3)) btnTag3.BackColor = Color.SkyBlue;
-                if (flag.HasFlag(FastFlags.FLAG4)) btnTag4.BackColor = Color.SkyBlue;
-                if (flag.HasFlag(FastFlags.FLAG5)) btnTag5.BackColor = Color.SkyBlue;
-                if (flag.HasFlag(FastFlags.FLAG6)) btnTag6.BackColor = Color.SkyBlue;
+                if (flag.HasFlag(FastFlags.FLAG1)) btnTag1.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG2)) btnTag2.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG3)) btnTag3.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG4)) btnTag4.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG5)) btnTag5.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG6)) btnTag6.BackColor = SelectColor;
+
+                lblUpdated.Text = Lng.Get("LastUpdate", "Last update") + ": " + (itm.Updated ?? DateTime.Now).ToShortDateString();
             }
         }
 
@@ -149,10 +204,15 @@ namespace Katalog
 
         #region Form Close
 
+        /// <summary>
+        /// Check Duplicate Inventory number
+        /// </summary>
+        /// <param name="InvNum">Ger duplicate Inventory number</param>
+        /// <returns>Returns true if duplicate exist</returns>
         private bool IsDuplicate(out string InvNum)
         {
             InvNum = "";
-            var list = db.Items.Where(x => x.Id != ID).Select(x => x.InvNumber).ToList();
+            var list = db.Items.Where(x => x.Id != ID).Select(x => x.InventoryNumber).ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -208,7 +268,7 @@ namespace Katalog
                 int maxNum = Conv.ToNumber(InvNumbers[i]);
                 if (maxNum > MaxInvNumbers.Item) MaxInvNumbers.Item = maxNum;
             }
-            itm.InvNumber = invNums;
+            itm.InventoryNumber = invNums;
             itm.Location = locs;
 
 
@@ -221,6 +281,9 @@ namespace Katalog
             if (btnTag5.BackColor == SelectColor) fastTag |= 0x10;
             if (btnTag6.BackColor == SelectColor) fastTag |= 0x20;
             itm.FastTags = fastTag;
+
+            // ----- Last Update -----
+            itm.Updated = DateTime.Now;
         }
 
         /// <summary>
@@ -273,6 +336,13 @@ namespace Katalog
 
         private void btnAddSpecimen_Click(object sender, EventArgs e)
         {
+            if (ID != Guid.Empty)
+                if (IsUsed)
+                {
+                    Dialogs.ShowWar(Lng.Get("ItmIsUsed","Speciman count cannot change, because item is used (borrowed/reserved)."), Lng.Get("Warning"));
+                    return;
+                }
+
             ItemCount++;
             string InvNum = txtInvNum.Text;
             // ----- Increment Inv Num -----
@@ -287,12 +357,17 @@ namespace Katalog
             cbSpecimen.SelectedIndex = cbSpecimen.Items.Count - 1;
             btnDelSpecimen.Enabled = true;
             lblCount.Text = "/ " + ItemCount.ToString();        // Counts
-
-            
         }
 
         private void btnDelSpecimen_Click(object sender, EventArgs e)
         {
+            if (ID != Guid.Empty)
+                if (IsUsed)
+                {
+                    Dialogs.ShowWar(Lng.Get("ItmIsUsed", "Speciman count cannot change, because item is used (borrowed/reserved)."), Lng.Get("Warning"));
+                    return;
+                }
+
             if (ItemCount > 1)
             {
                 int sel = cbSpecimen.SelectedIndex;
@@ -380,5 +455,15 @@ namespace Katalog
         }
 
         #endregion
+
+        private void btnPlace_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = Lng.Get("AllFiles", "All files") + "|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtLocation.Text = dialog.FileName;
+            }
+        }
     }
 }

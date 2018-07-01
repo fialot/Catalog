@@ -285,4 +285,16 @@
   <data name="Year" xml:space="preserve">
     <value>Rok</value>
   </data>
+  <data name="AllFiles" xml:space="preserve">
+    <value>Všechny soubory</value>
+  </data>
+  <data name="ItmIsUsed" xml:space="preserve">
+    <value>Počet exemplářů nejde měnit, protože položka je používaná (výpůjčky/rezervace).</value>
+  </data>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Poslední aktualizace</value>
+  </data>
+  <data name="Reserved" xml:space="preserve">
+    <value>Rezervováno</value>
+  </data>
 </root>

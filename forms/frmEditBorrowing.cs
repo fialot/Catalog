@@ -79,8 +79,8 @@ namespace Katalog
             borr.PersonID = PersonGuid;
 
             borr.From = dtFrom.Value;
-            borr.To = dtFrom.Value;
-            borr.Returned = chbReturned.Checked;
+            borr.To = dtTo.Value;
+            borr.Status = (short)cbStatus.SelectedIndex;
 
         }
 
@@ -90,7 +90,7 @@ namespace Katalog
 
             if (cbItemType.SelectedIndex == 0)
             {
-                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InvNumber.Trim() }).ToList();
+                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
             }
             else if (cbItemType.SelectedIndex == 1)
             {
@@ -115,6 +115,12 @@ namespace Katalog
 
         private void frmEditBorrowing_Load(object sender, EventArgs e)
         {
+            cbStatus.Items.Clear();
+            cbStatus.Items.Add(Lng.Get("Reserved"));
+            cbStatus.Items.Add(Lng.Get("Borrowed"));
+            cbStatus.Items.Add(Lng.Get("Returned"));
+            cbStatus.SelectedIndex = 1;
+
             cbItemType.Items.Clear();
             cbItemType.Items.Add(Lng.Get("Item"));
             cbItemType.Items.Add(Lng.Get("Book"));
@@ -175,7 +181,7 @@ namespace Katalog
 
                 dtFrom.Value = borr.From ?? DateTime.Now;
                 dtTo.Value = borr.To ?? DateTime.Now;
-                chbReturned.Checked = borr.Returned ?? false;
+                cbStatus.SelectedIndex = borr.Status ?? 1;
 
                 ItemGuid = borr.ItemID ?? Guid.Empty;
                 LastItemGuid = ItemGuid;
@@ -189,16 +195,16 @@ namespace Katalog
 
             if (cbItemType.SelectedIndex == 0)
             {
-                borr = db.Borrowing.Where(p => (p.ItemID == ItemGuid) && p.ItemType.Contains("item") && !(p.Returned ?? false)).Select(c => c.ItemNum).ToList();
+                borr = db.Borrowing.Where(p => (p.ItemID == ItemGuid) && p.ItemType.Contains("item") && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
                 Items itm = db.Items.Find(ItemGuid);
-                itm.Available = (short)(itm.Count -borr.Count);
+                itm.Available = (short)((itm.Count ?? 1) -borr.Count);
                 db.SaveChanges();
             }
             else if (cbItemType.SelectedIndex == 1)
             {
-                borr = db.Borrowing.Where(p => (p.ItemID == ItemGuid) && p.ItemType.Contains("book") && !(p.Returned ?? false)).Select(c => c.ItemNum).ToList();
+                borr = db.Borrowing.Where(p => (p.ItemID == ItemGuid) && p.ItemType.Contains("book") && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
                 Books itm = db.Books.Find(ItemGuid);
-                itm.Available = (short)(itm.Count ?? 1 - borr.Count);
+                itm.Available = (short)((itm.Count ?? 1) - borr.Count);
                 db.SaveChanges();
             }
 
@@ -276,7 +282,7 @@ namespace Katalog
                 // ----- Fill Inventory number -----
                 if (cbItemType.SelectedIndex == 0)
                 {
-                    itm = db.Items.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = (x.InvNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
+                    itm = db.Items.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
                 }
                 else if (cbItemType.SelectedIndex == 1)
                 {
@@ -317,7 +323,7 @@ namespace Katalog
         {
             List<int> res = new List<int>();
 
-            var borr = db.Borrowing.Where(x => (x.ID != ID) && (x.ItemID == ItemGuid) && !(x.Returned ?? false)).Select(x => x.ItemNum ?? 1).ToList();
+            var borr = db.Borrowing.Where(x => (x.ID != ID) && (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
 
             int Count = itm.Count;
 
@@ -369,9 +375,10 @@ namespace Katalog
             LastItemGuid = ItemGuid;
             FillInventoryNumber();
         }
+        
     }
-	
-	    public class CInfo
+
+    public class CInfo
     {
         public Guid ID { get; set; }
         public string Name { get; set; }

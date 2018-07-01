@@ -201,6 +201,7 @@
             this.cbType.FormattingEnabled = true;
             resources.ApplyResources(this.cbType, "cbType");
             this.cbType.Name = "cbType";
+            this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
             // lblSeries
             // 
@@ -540,12 +541,14 @@
             resources.ApplyResources(this.btnDelSpecimen, "btnDelSpecimen");
             this.btnDelSpecimen.Name = "btnDelSpecimen";
             this.btnDelSpecimen.UseVisualStyleBackColor = true;
+            this.btnDelSpecimen.Click += new System.EventHandler(this.btnDelSpecimen_Click);
             // 
             // btnAddSpecimen
             // 
             resources.ApplyResources(this.btnAddSpecimen, "btnAddSpecimen");
             this.btnAddSpecimen.Name = "btnAddSpecimen";
             this.btnAddSpecimen.UseVisualStyleBackColor = true;
+            this.btnAddSpecimen.Click += new System.EventHandler(this.btnAddSpecimen_Click);
             // 
             // cbSpecimen
             // 
@@ -553,6 +556,7 @@
             this.cbSpecimen.FormattingEnabled = true;
             resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
             this.cbSpecimen.Name = "cbSpecimen";
+            this.cbSpecimen.SelectedIndexChanged += new System.EventHandler(this.cbSpecimen_SelectedIndexChanged);
             // 
             // gbInclusion
             // 
@@ -587,6 +591,8 @@
             // 
             // cbBookbinding
             // 
+            this.cbBookbinding.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbBookbinding.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbBookbinding.FormattingEnabled = true;
             resources.ApplyResources(this.cbBookbinding, "cbBookbinding");
             this.cbBookbinding.Name = "cbBookbinding";

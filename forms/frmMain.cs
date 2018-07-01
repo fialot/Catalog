@@ -134,7 +134,7 @@ namespace Katalog
             if (chbShowReturned.Checked)
                 borr = db.Borrowing.ToList();
             else
-                borr = db.Borrowing.Where(p => !(p.Returned ?? false)).ToList();
+                borr = db.Borrowing.Where(p => (p.Status ?? 1) != 2).ToList();
 
             
             brPerson.AspectGetter = delegate (object x) {
@@ -172,11 +172,22 @@ namespace Katalog
                 DateTime t = ((Borrowing)x).To ?? DateTime.Now;
                 return t.ToShortDateString();
             };
-            brReturned.Renderer = new ImageRenderer();
-            brReturned.AspectGetter = delegate (object x) {
-                if (((Borrowing)x).Returned ?? false)
+            //brStatus.Renderer = new ImageRenderer();
+            brStatus.ImageGetter = delegate (object x) {
+                int status = ((Borrowing)x).Status ?? 1;
+                if (status == 2)        // Returned
                     return 6;
-                else return 7;
+                else if (status == 0)   // Reserved
+                    return 7;
+                else return 7;          // Borrowed
+            };
+            brStatus.AspectGetter = delegate (object x) {
+                int status = ((Borrowing)x).Status ?? 1;
+                if (status == 2)        // Returned
+                    return Lng.Get("Returned");
+                else if (status == 0)   // Reserved
+                    return Lng.Get("Reserved");
+                else return Lng.Get("Borrowed"); // Borrowed
             };
 
             olvBorrowing.SetObjects(borr);
@@ -260,7 +271,7 @@ namespace Katalog
                 return ((Items)x).Subcategory.Trim();
             };
             itInvNum.AspectGetter = delegate (object x) {
-                return ((Items)x).InvNumber.Trim();
+                return ((Items)x).InventoryNumber.Trim();
             };
             itLocation.AspectGetter = delegate (object x) {
                 return ((Items)x).Location.Trim();
@@ -370,6 +381,14 @@ namespace Katalog
             bkAuthor.AspectGetter = delegate (object x) {
                 if (((Books)x).AuthorSurname == null) return "";
                 return ((Books)x).AuthorSurname.Trim() + ", " + ((Books)x).AuthorName.Trim();
+            };
+            bkCount.AspectGetter = delegate (object x) {
+                return ((Books)x).Count.ToString();
+            };
+            bkAvailable.AspectGetter = delegate (object x) {
+                /*var borr = db.Borrowing.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
+                int count = ((Items)x).Count ?? 1 - borr.Count;*/
+                return ((Books)x).Available ?? (((Books)x).Count ?? 1);
             };
             bkType.AspectGetter = delegate (object x) {
                 if (((Books)x).Type == null) return "";
@@ -659,7 +678,7 @@ namespace Katalog
                 cbFilterCol.Items.Add(Lng.Get("Person"));
                 cbFilterCol.Items.Add(Lng.Get("From"));
                 cbFilterCol.Items.Add(Lng.Get("To"));
-                cbFilterCol.Items.Add(Lng.Get("Returned"));
+                cbFilterCol.Items.Add(Lng.Get("Status"));
                 cbFilterCol.SelectedIndex = 0;
 
                 cbFastFilterCol.Items.Add(Lng.Get("All"));
@@ -966,7 +985,7 @@ namespace Katalog
                 StandardFilter = TextMatchFilter.Contains(olvBorrowing, txtFilter.Text);
 
                 if (cbFilterCol.SelectedIndex == 0)
-                    StandardFilter.Columns = new OLVColumn[] { brType, brName, brPerson, brFrom, brTo, brReturned };
+                    StandardFilter.Columns = new OLVColumn[] { brType, brName, brPerson, brFrom, brTo, brStatus };
                 else if (cbFilterCol.SelectedIndex == 1)
                     StandardFilter.Columns = new OLVColumn[] { brType };
                 else if (cbFilterCol.SelectedIndex == 2)
@@ -978,7 +997,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 5)
                     StandardFilter.Columns = new OLVColumn[] { brTo };
                 else if (cbFilterCol.SelectedIndex == 6)
-                    StandardFilter.Columns = new OLVColumn[] { brReturned };
+                    StandardFilter.Columns = new OLVColumn[] { brStatus };
             }
             else if (tabCatalog.SelectedTab == tabItems)
             {
@@ -1101,12 +1120,12 @@ namespace Katalog
         {
             string lines;
 
-            lines = "itemType;ItemID;personID;from;to;returned;GUID" + Environment.NewLine;
+            lines = "itemType;ItemID;personID;from;to;status;GUID" + Environment.NewLine;
 
             foreach (var item in bor)
             {
                 lines += item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";";
-                lines += item.Returned.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
+                lines += item.Status.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1121,7 +1140,7 @@ namespace Katalog
             foreach (var item in itm)
             {
                 lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
-                lines += item.AcqDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" + item.InvNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+                lines += item.AcqDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" + item.InventoryNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1244,7 +1263,7 @@ namespace Katalog
                 itm.PersonID = Conv.ToGuid(item[2]);
                 itm.From = Conv.ToDateTimeNull(item[3]);
                 itm.To = Conv.ToDateTimeNull(item[4]);
-                itm.Returned = Conv.ToBoolNull(item[5]);
+                itm.Status = Conv.ToShortNull(item[5]);
                 itm.ID = Conv.ToGuid(item[6]);
                 con.Add(itm);
             }
@@ -1270,7 +1289,7 @@ namespace Katalog
                 itm.Price = Conv.ToDoubleNull(item[6]);
                 itm.Excluded = Conv.ToBoolNull(item[7]);
                 itm.Count = Conv.ToShortNull(item[8]);
-                itm.InvNumber = item[9].Replace(",", ";");
+                itm.InventoryNumber = item[9].Replace(",", ";");
                 itm.Location = item[10].Replace(",", ";");
                 itm.FastTags = Conv.ToShortDef(item[11], 0);
                 itm.Id = Conv.ToGuid(item[12]);
@@ -1356,7 +1375,7 @@ namespace Katalog
             itm.PersonID = newItem.PersonID;
             itm.From = newItem.From;
             itm.To = newItem.To;
-            itm.Returned = newItem.Returned;
+            itm.Status = newItem.Status;
         }
 
         private void FillItem(ref Items itm, Items newItem)
@@ -1376,7 +1395,7 @@ namespace Katalog
             itm.Price = newItem.Price;
 
             itm.Excluded = newItem.Excluded;
-            itm.InvNumber = newItem.InvNumber;
+            itm.InventoryNumber = newItem.InventoryNumber;
             itm.Location = newItem.Location;
             itm.FastTags = newItem.FastTags;
         }
@@ -1555,7 +1574,7 @@ namespace Katalog
         {
             var list = db.Contacts.Select(u => u.code).ToList();
             MaxInvNumbers.Contact = GetMaxNum(list);
-            list = db.Items.Select(u => u.InvNumber).ToList();
+            list = db.Items.Select(u => u.InventoryNumber).ToList();
             MaxInvNumbers.Item = GetMaxNum(list);
             list = db.Books.Select(u => u.InventoryNumber).ToList();
             MaxInvNumbers.Book = GetMaxNum(list);

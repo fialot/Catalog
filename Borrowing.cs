@@ -22,6 +22,7 @@ namespace Katalog
         public Nullable<System.Guid> PersonID { get; set; }
         public Nullable<System.DateTime> From { get; set; }
         public Nullable<System.DateTime> To { get; set; }
-        public Nullable<bool> Returned { get; set; }
+        public Nullable<short> Status { get; set; }
+        public Nullable<System.DateTime> Updated { get; set; }
     }
 }
