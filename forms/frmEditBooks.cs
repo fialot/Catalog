@@ -9,7 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Zoom.Net.YazSharp;
 using myFunctions;
+using System.Xml;
+using System.Xml.Linq;
+using System.Net;
 
 namespace Katalog
 {
@@ -29,6 +33,8 @@ namespace Katalog
 
         long TempMaxInvNum = MaxInvNumbers.Book;             // Max Inv. Number
         bool IsUsed = false;
+
+        const int MaximumNumberOfResults = 20;
 
         #endregion
 
@@ -137,7 +143,7 @@ namespace Katalog
                 imgCover.Image = Conv.ByteArrayToImage(book.Cover);
 
                 // ----- Book -----
-                txtName.Text = book.Name.Trim();
+                txtName.Text = book.Title.Trim();
                 cbType.Text = book.Type.Trim();
                 txtAuthor.Text = book.AuthorName.Trim();
                 txtAuthorSurname.Text = book.AuthorSurname.Trim();
@@ -263,7 +269,7 @@ namespace Katalog
             if (bytes != null) book.Cover = bytes;
 
             // ----- Book -----
-            book.Name = txtName.Text;
+            book.Title = txtName.Text;
             book.Type = cbType.Text;
             book.AuthorName = txtAuthor.Text;
             book.AuthorSurname = txtAuthorSurname.Text;
@@ -501,6 +507,401 @@ namespace Katalog
         private void cbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetBookbinding();
+        }
+
+        private void brnGetDataISBN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var connection = new Connection("aleph.nkp.cz", 9991)
+                {
+                    DatabaseName = "SKC-UTF", //"CNB-UTF",// "SKC-UTF", //"NKC-UTF",
+                    Syntax = Zoom.Net.RecordSyntax.XML
+                };
+                connection.Connect();
+
+                // Declare the query either in PQF or CQL according to whether the Z39.50 implementation at the endpoint support it.
+                // The following query is in PQF format
+                //var query = "@attr 1=4 krakatit";
+                var query = "";
+                if (txtISBN.Text != "")
+                    query = "@attr 1=7 \"" + txtISBN.Text + "\"";
+                else if (txtName.Text != "" && txtAuthorSurname.Text == "")
+                    query = "@attr 1=4 @attr 3=3 \"" + global.RemoveDiacritics(txtName.Text) + "\" ";
+                else if (txtName.Text == "" && global.RemoveDiacritics(txtAuthorSurname.Text) != "")
+                    query = "@attr 1=1003 @attr 3=3 \"" + global.RemoveDiacritics(txtAuthorSurname.Text) + "\"";
+                else if (txtName.Text != "" && txtAuthorSurname.Text != "")
+                    query = "@and @attr 1=4 @attr 3=3 \"" + global.RemoveDiacritics(txtName.Text) + "\" @attr 1=1003 @attr 3=3 \"" + global.RemoveDiacritics(txtAuthorSurname.Text) + "\"";
+                else
+                {
+                    Dialogs.ShowWar(Lng.Get("NoFindBookData", "No data (ISBN / Title) to booking search!"), Lng.Get("Warning"));
+                    return;
+                }
+                var q = new PrefixQuery(query);
+
+                // Get the search results in binary format
+                // Note that each result is in XML format
+                var results = connection.Search(q);
+
+                if (results.Count > 0)
+                {
+                    var result = results[0];
+                    string text = Encoding.UTF8.GetString(result.Content);
+                    List<bookItem> list = XmlToBook(text);
+                    Files.SaveFile("res.xml", text);
+
+                    if (list.Count > 0)
+                    {
+                        bookItem itm = list[0];
+
+                        // ----- Get Cober from "Obalkyknih.cz" -----
+                        string urlAddress = "https://obalkyknih.cz/view?isbn=" + itm.ISBN.Replace("-", "");
+
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                        if (response.StatusCode == HttpStatusCode.OK)
+                        {
+                            Stream receiveStream = response.GetResponseStream();
+                            StreamReader readStream = null;
+
+                            if (response.CharacterSet == null)
+                            {
+                                readStream = new StreamReader(receiveStream);
+                            }
+                            else
+                            {
+                                readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                            }
+
+                            string data = readStream.ReadToEnd();
+
+                            int pos = data.IndexOf("table class=\"detail\"");
+                            if (pos >= 0)
+                            {
+                                int posStart = data.IndexOf("<a href=", pos);
+                                if (posStart >= 0)
+                                {
+                                    posStart += 9;
+                                    int posStop = data.IndexOf("\"", posStart);
+                                    if (posStop >= 0)
+                                    {
+                                        string strImg = data.Substring(posStart, posStop - posStart);
+                                        using (WebClient client = new WebClient())
+                                        {
+                                            string path = Path.GetTempFileName();
+                                            client.DownloadFile(strImg, path);
+                                            itm.coverPath = path;
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            // ----- Anotation -----
+                            pos = data.IndexOf("<h3>Anotace</h3>");
+                            if (pos >= 0)
+                            {
+                                int posStart = data.IndexOf("<p>", pos);
+                                if (posStart >= 0)
+                                {
+                                    posStart += 3;
+                                    int posStop = data.IndexOf("</p>", posStart);
+                                    if (posStop >= 0)
+                                    {
+                                        itm.Content = data.Substring(posStart, posStop - posStart).Trim();
+                                    }
+                                }
+                            }
+                            response.Close();
+                            readStream.Close();
+
+                            
+                        }
+
+                        // ----- Get from databazeknih -----
+                        urlAddress = "https://www.databazeknih.cz/search?q=" + itm.ISBN.Replace("-", "");
+
+                        request = (HttpWebRequest)WebRequest.Create(urlAddress);
+                        response = (HttpWebResponse)request.GetResponse();
+                        itm.URL = response.ResponseUri.ToString();
+                        request = (HttpWebRequest)WebRequest.Create(response.ResponseUri + "?show=binfo");
+                        response = (HttpWebResponse)request.GetResponse();
+
+                        if (response.StatusCode == HttpStatusCode.OK)
+                        {
+                            Stream receiveStream = response.GetResponseStream();
+                            StreamReader readStream = null;
+
+                            if (response.CharacterSet == null)
+                            {
+                                readStream = new StreamReader(receiveStream);
+                            }
+                            else
+                            {
+                                readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                            }
+
+                            string data = readStream.ReadToEnd();
+
+                            int pos = data.IndexOf("'bpoints'");
+                            if (pos >= 0)
+                            {
+                                int posStart = data.IndexOf(">", pos);
+                                if (posStart >= 0)
+                                {
+                                    posStart += 1;
+                                    int posStop = data.IndexOf("<", posStart);
+                                    if (posStop >= 0)
+                                    {
+                                        itm.Rating = data.Substring(posStart, posStop - posStart - 1);
+                                    }
+                                }
+                            }
+
+                            pos = data.IndexOf("href='zanry");
+                            while (pos >= 0)
+                            {
+                                int posStart = data.IndexOf(">", pos);
+                                if (posStart >= 0)
+                                {
+                                    posStart += 1;
+                                    int posStop = data.IndexOf("<", posStart);
+                                    if (posStop >= 0)
+                                    {
+                                        if (itm.Genres != "") itm.Genres += ", ";
+                                        itm.Genres += data.Substring(posStart, posStop - posStart);
+                                        pos = data.IndexOf("href='zanry", posStop);
+                                    }
+                                }
+                                else pos = -1;
+                            }
+
+                            pos = data.IndexOf("href='prekladatele");
+                            if (pos >= 0)
+                            {
+                                int posStart = data.IndexOf(">", pos);
+                                if (posStart >= 0)
+                                {
+                                    posStart += 1;
+                                    int posStop = data.IndexOf("<", posStart);
+                                    if (posStop >= 0)
+                                    {
+                                        itm.Translator = data.Substring(posStart, posStop - posStart);
+                                    }
+                                }
+                            }
+
+                            pos = data.IndexOf("href='serie");
+                            if (pos >= 0)
+                            {
+                                int posStart = data.IndexOf(">", pos);
+                                if (posStart >= 0)
+                                {
+                                    posStart += 1;
+                                    int posStop = data.IndexOf("<", posStart);
+                                    if (posStop >= 0)
+                                    {
+                                        itm.Series = data.Substring(posStart, posStop - posStart);
+
+                                        pos = data.IndexOf("class='info'", posStop);
+                                        if (pos >= 0)
+                                        {
+                                            posStart = data.IndexOf(">", pos);
+                                            if (posStart >= 0)
+                                            {
+                                                posStart += 1;
+                                                posStop = data.IndexOf("<", posStart);
+                                                if (posStop >= 0)
+                                                {
+                                                    itm.SeriesNum = Conv.ToNumber( data.Substring(posStart, posStop - posStart)).ToString();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            pos = data.IndexOf("Originální název:");
+                            if (pos >= 0)
+                            {
+                                int posStart = data.IndexOf("<h4>", pos);
+                                if (posStart >= 0)
+                                {
+                                    posStart += 4;
+                                    int posStop = data.IndexOf("</h4>", posStart);
+                                    if (posStop >= 0)
+                                    {
+                                        itm.OrigTitle = data.Substring(posStart, posStop - posStart);
+                                        posStart = itm.OrigTitle.IndexOf("(");
+                                        if (posStart >= 0)
+                                        {
+                                            posStart += 1;
+                                            posStop = itm.OrigTitle.IndexOf(")", posStart);
+                                            if (posStop >= 0)
+                                            {
+                                                itm.OrigYear = itm.OrigTitle.Substring(posStart, posStop - posStart);
+                                                itm.OrigTitle = itm.OrigTitle.Substring(0, posStart - 1).Trim();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            response.Close();
+                            readStream.Close();
+                        }
+
+                        FillByBookItems(itm);
+                    }
+                }
+                else
+                {
+                    Dialogs.ShowWar(Lng.Get("BookNotFound", "Book not found!"), Lng.Get("Warning"));
+                }
+            } catch (Exception Err)
+            {
+                Dialogs.ShowErr(Lng.Get("ServerError", "Cannot connet to server!") + " (" + Err.Message + ")", Lng.Get("Warning"));
+            }
+
+        }
+
+        private void FillByBookItems(bookItem itm)
+        {
+            txtName.Text = itm.Title;
+            txtAuthor.Text = itm.AuthorName;
+            txtAuthorSurname.Text = itm.AuthorSurname;
+            txtISBN.Text = itm.ISBN;
+            txtLanguage.Text = itm.language;
+            txtPublisher.Text = itm.Publisher;
+            txtYear.Text = itm.Year;
+            txtPages.Text = itm.Pages;
+            txtContent.Text = itm.Content;
+            txtKeywords.Text = itm.Keywords;
+            txtEdition.Text = itm.Publication;
+            if (itm.coverPath != null || itm.coverPath != "")
+                imgCover.Load(itm.coverPath);
+            txtRating.Text = itm.Rating;
+            txtTranslator.Text = itm.Translator;
+            txtGenre.Text = itm.Genres;
+            txtSeries.Text = itm.Series;
+            txtSNumber.Text = itm.SeriesNum;
+            txtOrigName.Text = itm.OrigTitle;
+            txtOrigYear.Text = itm.OrigYear;
+            txtURL.Text = itm.URL;
+        }
+
+        struct bookItem
+        {
+            public string language;
+            public string ISBN;
+            public string AuthorName;
+            public string AuthorSurname;
+            public string Title;
+            public string Publication;
+            public string Publisher;
+            public string Year;
+            public string Pages;
+            public string Content;
+            public string Keywords;
+            public string coverPath;
+            public string Rating;
+            public string Genres;
+            public string Translator;
+            public string Series;
+            public string SeriesNum;
+            public string OrigTitle;
+            public string OrigYear;
+            public string URL;
+        }
+
+        List<bookItem> XmlToBook(string text)
+        {
+            List<bookItem> list = new List<bookItem>();
+            
+
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(text);
+            XmlNode node = xml.DocumentElement.SelectSingleNode("dc-record");
+            while (node != null)
+            {
+                bookItem item = new bookItem();
+                item.Genres = "";
+                XmlNode childNode;
+
+                // ----- Language -----
+                childNode = node.SelectSingleNode("language");
+                if (childNode != null)
+                {
+                    if (childNode.InnerText == "eng") item.language = Lng.Get("English");
+                    else if (childNode.InnerText == "cze") item.language = Lng.Get("Czech");
+                    else item.language = childNode.InnerText;
+                }
+                // ----- ISBN -----
+                childNode = node.SelectSingleNode("identifier");
+                if (childNode != null) item.ISBN = childNode.InnerText.Replace(";", "").Replace(":", "").Trim();
+                // ----- Author -----
+                childNode = node.SelectSingleNode("contributor");
+                if (childNode != null)
+                {
+                    string[] split = childNode.InnerText.Split(new string[] { "," }, StringSplitOptions.None);
+                    if (split.Length >= 1)
+                        item.AuthorSurname = split[0].Trim();
+                    if (split.Length >= 2)
+                        item.AuthorName = split[1].Trim();
+                }
+                // ----- Title -----
+                childNode = node.SelectSingleNode("title");
+                if (childNode != null)
+                {
+                    item.Title = childNode.InnerText;
+                    if (item.Title[item.Title.Length - 1] == '/') item.Title = item.Title.Substring(0, item.Title.Length - 1).Trim();
+                }
+                // ----- Publication -----
+                childNode = node.SelectSingleNode("description");
+                if (childNode != null)
+                {
+                    item.Publication = childNode.InnerText.Replace("vyd.", "").Trim();
+                    if (item.Publication.ToLower().Contains("první")) item.Publication = "1.";
+                    if (item.Publication.ToLower().Contains("druhé")) item.Publication = "2.";
+                    if (item.Publication.ToLower().Contains("třetí")) item.Publication = "3.";
+                    if (item.Publication.ToLower().Contains("čtvrté")) item.Publication = "4.";
+                    if (item.Publication.ToLower().Contains("páté")) item.Publication = "5.";
+                }
+                // ----- Publisher -----
+                childNode = node.SelectSingleNode("publisher");
+                if (childNode != null)
+                {
+                    item.Publisher = childNode.InnerText;
+                    if (item.Publisher[item.Publisher.Length - 1] == ',') item.Publisher = item.Publisher.Substring(0, item.Publisher.Length - 1).Trim();
+                }
+                // ----- Year -----
+                childNode = node.SelectSingleNode("date");
+                if (childNode != null) item.Year = Conv.ToNumber(childNode.InnerText).ToString();
+                // ----- Pages -----
+                childNode = node.SelectSingleNode("format");
+                if (childNode != null) item.Pages = Conv.ToNumber(childNode.InnerText).ToString();
+                // ----- Content -----
+                childNode = childNode.NextSibling;
+                //childNode = node.SelectSingleNode("description");
+                if (childNode != null) item.Content = childNode.InnerText;
+                // ----- Keywords -----
+                childNode = node.SelectSingleNode("subject");
+                if (childNode != null)
+                {
+                    item.Keywords = childNode.InnerText;
+                    // ----- Keywords 2 -----
+                    childNode = childNode.NextSibling;
+                    if (item.Keywords != null && childNode != null) item.Keywords += ", " + childNode.InnerText;
+                }
+                
+                list.Add(item);
+
+                node = node.NextSibling;
+            }
+            
+
+            return list;
         }
     }
 }

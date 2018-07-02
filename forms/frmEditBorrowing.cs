@@ -94,7 +94,7 @@ namespace Katalog
             }
             else if (cbItemType.SelectedIndex == 1)
             {
-                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
             }
 
             for (int i = 0; i < itemList.Count; i++)
@@ -162,7 +162,7 @@ namespace Katalog
                     
                     if (book != null)
                     {
-                        txtItem.Text = book.Name.Trim();
+                        txtItem.Text = book.Title.Trim();
                     }
                 }
 
@@ -286,7 +286,7 @@ namespace Katalog
                 }
                 else if (cbItemType.SelectedIndex == 1)
                 {
-                    itm = db.Books.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = (int)(x.Count ?? 1) }).ToList();
+                    itm = db.Books.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = (int)(x.Count ?? 1) }).ToList();
                 }
 
                 if (itm.Count == 1)

@@ -86,6 +86,16 @@
             this.tabVideo = new System.Windows.Forms.TabPage();
             this.tabFoto = new System.Windows.Forms.TabPage();
             this.imgBarList = new System.Windows.Forms.ImageList(this.components);
+            this.toolStripFilter = new System.Windows.Forms.ToolStrip();
+            this.lblFilter = new System.Windows.Forms.ToolStripLabel();
+            this.txtFilter = new System.Windows.Forms.ToolStripTextBox();
+            this.cbFilterCol = new System.Windows.Forms.ToolStripComboBox();
+            this.btnFilterPin1 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin2 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin3 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin4 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin5 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripFastFilter = new System.Windows.Forms.ToolStrip();
             this.btnFilterA = new System.Windows.Forms.ToolStripButton();
             this.btnFilterB = new System.Windows.Forms.ToolStripButton();
@@ -124,16 +134,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFilter09 = new System.Windows.Forms.ToolStripButton();
             this.cbFastFilterCol = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripFilter = new System.Windows.Forms.ToolStrip();
-            this.lblFilter = new System.Windows.Forms.ToolStripLabel();
-            this.txtFilter = new System.Windows.Forms.ToolStripTextBox();
-            this.cbFilterCol = new System.Windows.Forms.ToolStripComboBox();
-            this.btnFilterPin1 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin2 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin3 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin4 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin5 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripEditItem = new System.Windows.Forms.ToolStrip();
             this.btnNewItem = new System.Windows.Forms.ToolStripButton();
             this.btnEditItem = new System.Windows.Forms.ToolStripButton();
@@ -183,6 +183,7 @@
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.button1 = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -195,8 +196,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvItem)).BeginInit();
             this.tabBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvBooks)).BeginInit();
-            this.toolStripFastFilter.SuspendLayout();
             this.toolStripFilter.SuspendLayout();
+            this.toolStripFastFilter.SuspendLayout();
             this.toolStripEditItem.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -213,9 +214,9 @@
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripFilter);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripFastFilter);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripEditItem);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripFastFilter);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripFilter);
             // 
             // tabCatalog
             // 
@@ -235,6 +236,7 @@
             // 
             // tabContacts
             // 
+            this.tabContacts.Controls.Add(this.button1);
             this.tabContacts.Controls.Add(this.btnTest);
             this.tabContacts.Controls.Add(this.olvContacts);
             resources.ApplyResources(this.tabContacts, "tabContacts");
@@ -643,6 +645,88 @@
             this.imgBarList.Images.SetKeyName(6, "Song");
             this.imgBarList.Images.SetKeyName(7, "Video");
             // 
+            // toolStripFilter
+            // 
+            resources.ApplyResources(this.toolStripFilter, "toolStripFilter");
+            this.toolStripFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblFilter,
+            this.txtFilter,
+            this.cbFilterCol,
+            this.btnFilterPin1,
+            this.btnFilterPin2,
+            this.btnFilterPin3,
+            this.btnFilterPin4,
+            this.btnFilterPin5,
+            this.btnFilterPin6});
+            this.toolStripFilter.Name = "toolStripFilter";
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.Name = "lblFilter";
+            resources.ApplyResources(this.lblFilter, "lblFilter");
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Name = "txtFilter";
+            resources.ApplyResources(this.txtFilter, "txtFilter");
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            // 
+            // cbFilterCol
+            // 
+            this.cbFilterCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilterCol.Name = "cbFilterCol";
+            resources.ApplyResources(this.cbFilterCol, "cbFilterCol");
+            this.cbFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFilterCol_SelectedIndexChanged);
+            // 
+            // btnFilterPin1
+            // 
+            this.btnFilterPin1.CheckOnClick = true;
+            this.btnFilterPin1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin1.Image = global::Katalog.Properties.Resources.circ_green;
+            resources.ApplyResources(this.btnFilterPin1, "btnFilterPin1");
+            this.btnFilterPin1.Name = "btnFilterPin1";
+            // 
+            // btnFilterPin2
+            // 
+            this.btnFilterPin2.CheckOnClick = true;
+            this.btnFilterPin2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin2.Image = global::Katalog.Properties.Resources.circ_red;
+            resources.ApplyResources(this.btnFilterPin2, "btnFilterPin2");
+            this.btnFilterPin2.Name = "btnFilterPin2";
+            // 
+            // btnFilterPin3
+            // 
+            this.btnFilterPin3.CheckOnClick = true;
+            this.btnFilterPin3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin3.Image = global::Katalog.Properties.Resources.circ_orange;
+            resources.ApplyResources(this.btnFilterPin3, "btnFilterPin3");
+            this.btnFilterPin3.Name = "btnFilterPin3";
+            // 
+            // btnFilterPin4
+            // 
+            this.btnFilterPin4.CheckOnClick = true;
+            this.btnFilterPin4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin4.Image = global::Katalog.Properties.Resources.circ_yellow;
+            resources.ApplyResources(this.btnFilterPin4, "btnFilterPin4");
+            this.btnFilterPin4.Name = "btnFilterPin4";
+            // 
+            // btnFilterPin5
+            // 
+            this.btnFilterPin5.CheckOnClick = true;
+            this.btnFilterPin5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin5.Image = global::Katalog.Properties.Resources.circ_grey;
+            resources.ApplyResources(this.btnFilterPin5, "btnFilterPin5");
+            this.btnFilterPin5.Name = "btnFilterPin5";
+            // 
+            // btnFilterPin6
+            // 
+            this.btnFilterPin6.CheckOnClick = true;
+            this.btnFilterPin6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin6.Image = global::Katalog.Properties.Resources.Circle_Blue;
+            resources.ApplyResources(this.btnFilterPin6, "btnFilterPin6");
+            this.btnFilterPin6.Name = "btnFilterPin6";
+            // 
             // toolStripFastFilter
             // 
             resources.ApplyResources(this.toolStripFastFilter, "toolStripFastFilter");
@@ -979,88 +1063,6 @@
             resources.ApplyResources(this.cbFastFilterCol, "cbFastFilterCol");
             this.cbFastFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFastFilterCol_SelectedIndexChanged);
             // 
-            // toolStripFilter
-            // 
-            resources.ApplyResources(this.toolStripFilter, "toolStripFilter");
-            this.toolStripFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblFilter,
-            this.txtFilter,
-            this.cbFilterCol,
-            this.btnFilterPin1,
-            this.btnFilterPin2,
-            this.btnFilterPin3,
-            this.btnFilterPin4,
-            this.btnFilterPin5,
-            this.btnFilterPin6});
-            this.toolStripFilter.Name = "toolStripFilter";
-            // 
-            // lblFilter
-            // 
-            this.lblFilter.Name = "lblFilter";
-            resources.ApplyResources(this.lblFilter, "lblFilter");
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Name = "txtFilter";
-            resources.ApplyResources(this.txtFilter, "txtFilter");
-            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
-            // 
-            // cbFilterCol
-            // 
-            this.cbFilterCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilterCol.Name = "cbFilterCol";
-            resources.ApplyResources(this.cbFilterCol, "cbFilterCol");
-            this.cbFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFilterCol_SelectedIndexChanged);
-            // 
-            // btnFilterPin1
-            // 
-            this.btnFilterPin1.CheckOnClick = true;
-            this.btnFilterPin1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin1.Image = global::Katalog.Properties.Resources.circ_green;
-            resources.ApplyResources(this.btnFilterPin1, "btnFilterPin1");
-            this.btnFilterPin1.Name = "btnFilterPin1";
-            // 
-            // btnFilterPin2
-            // 
-            this.btnFilterPin2.CheckOnClick = true;
-            this.btnFilterPin2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin2.Image = global::Katalog.Properties.Resources.circ_red;
-            resources.ApplyResources(this.btnFilterPin2, "btnFilterPin2");
-            this.btnFilterPin2.Name = "btnFilterPin2";
-            // 
-            // btnFilterPin3
-            // 
-            this.btnFilterPin3.CheckOnClick = true;
-            this.btnFilterPin3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin3.Image = global::Katalog.Properties.Resources.circ_orange;
-            resources.ApplyResources(this.btnFilterPin3, "btnFilterPin3");
-            this.btnFilterPin3.Name = "btnFilterPin3";
-            // 
-            // btnFilterPin4
-            // 
-            this.btnFilterPin4.CheckOnClick = true;
-            this.btnFilterPin4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin4.Image = global::Katalog.Properties.Resources.circ_yellow;
-            resources.ApplyResources(this.btnFilterPin4, "btnFilterPin4");
-            this.btnFilterPin4.Name = "btnFilterPin4";
-            // 
-            // btnFilterPin5
-            // 
-            this.btnFilterPin5.CheckOnClick = true;
-            this.btnFilterPin5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin5.Image = global::Katalog.Properties.Resources.circ_grey;
-            resources.ApplyResources(this.btnFilterPin5, "btnFilterPin5");
-            this.btnFilterPin5.Name = "btnFilterPin5";
-            // 
-            // btnFilterPin6
-            // 
-            this.btnFilterPin6.CheckOnClick = true;
-            this.btnFilterPin6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin6.Image = global::Katalog.Properties.Resources.Circle_Blue;
-            resources.ApplyResources(this.btnFilterPin6, "btnFilterPin6");
-            this.btnFilterPin6.Name = "btnFilterPin6";
-            // 
             // toolStripEditItem
             // 
             resources.ApplyResources(this.toolStripEditItem, "toolStripEditItem");
@@ -1387,6 +1389,13 @@
             resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -1413,10 +1422,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvItem)).EndInit();
             this.tabBooks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.olvBooks)).EndInit();
-            this.toolStripFastFilter.ResumeLayout(false);
-            this.toolStripFastFilter.PerformLayout();
             this.toolStripFilter.ResumeLayout(false);
             this.toolStripFilter.PerformLayout();
+            this.toolStripFastFilter.ResumeLayout(false);
+            this.toolStripFastFilter.PerformLayout();
             this.toolStripEditItem.ResumeLayout(false);
             this.toolStripEditItem.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -1581,6 +1590,7 @@
         private System.Windows.Forms.TabPage tabAudio;
         private System.Windows.Forms.TabPage tabVideo;
         private System.Windows.Forms.TabPage tabFoto;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -15,7 +15,7 @@ namespace Katalog
     public partial class Books
     {
         public System.Guid Id { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string AuthorName { get; set; }
         public string AuthorSurname { get; set; }
         public string Illustrator { get; set; }

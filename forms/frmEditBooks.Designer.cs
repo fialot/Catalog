@@ -111,6 +111,7 @@
             this.cbBookbinding = new System.Windows.Forms.ComboBox();
             this.lblAuthorSurname = new System.Windows.Forms.Label();
             this.txtAuthorSurname = new System.Windows.Forms.TextBox();
+            this.brnGetDataISBN = new System.Windows.Forms.Button();
             this.gbOriginal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCover)).BeginInit();
             this.gbRating.SuspendLayout();
@@ -150,13 +151,13 @@
             // 
             // gbOriginal
             // 
+            resources.ApplyResources(this.gbOriginal, "gbOriginal");
             this.gbOriginal.Controls.Add(this.lblOrigName);
             this.gbOriginal.Controls.Add(this.txtOrigName);
             this.gbOriginal.Controls.Add(this.txtOrigLang);
             this.gbOriginal.Controls.Add(this.lblOrigLang);
             this.gbOriginal.Controls.Add(this.lblOrigYear);
             this.gbOriginal.Controls.Add(this.txtOrigYear);
-            resources.ApplyResources(this.gbOriginal, "gbOriginal");
             this.gbOriginal.Name = "gbOriginal";
             this.gbOriginal.TabStop = false;
             // 
@@ -197,9 +198,9 @@
             // 
             // cbType
             // 
+            resources.ApplyResources(this.cbType, "cbType");
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
-            resources.ApplyResources(this.cbType, "cbType");
             this.cbType.Name = "cbType";
             this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
@@ -317,8 +318,8 @@
             // 
             // imgCover
             // 
-            this.imgCover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.imgCover, "imgCover");
+            this.imgCover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgCover.Name = "imgCover";
             this.imgCover.TabStop = false;
             this.imgCover.Click += new System.EventHandler(this.imgCover_Click);
@@ -420,12 +421,12 @@
             // 
             // gbRating
             // 
+            resources.ApplyResources(this.gbRating, "gbRating");
             this.gbRating.Controls.Add(this.chbReaded);
             this.gbRating.Controls.Add(this.lblMyRating);
             this.gbRating.Controls.Add(this.txtMyRating);
             this.gbRating.Controls.Add(this.lblRating);
             this.gbRating.Controls.Add(this.txtRating);
-            resources.ApplyResources(this.gbRating, "gbRating");
             this.gbRating.Name = "gbRating";
             this.gbRating.TabStop = false;
             // 
@@ -507,6 +508,7 @@
             // 
             // gbSpecimen
             // 
+            resources.ApplyResources(this.gbSpecimen, "gbSpecimen");
             this.gbSpecimen.Controls.Add(this.lblCount);
             this.gbSpecimen.Controls.Add(this.btnPlace);
             this.gbSpecimen.Controls.Add(this.btnDelSpecimen);
@@ -521,7 +523,6 @@
             this.gbSpecimen.Controls.Add(this.lblInvNum);
             this.gbSpecimen.Controls.Add(this.dtAcqDate);
             this.gbSpecimen.Controls.Add(this.lblAcqDate);
-            resources.ApplyResources(this.gbSpecimen, "gbSpecimen");
             this.gbSpecimen.Name = "gbSpecimen";
             this.gbSpecimen.TabStop = false;
             // 
@@ -552,14 +553,15 @@
             // 
             // cbSpecimen
             // 
+            resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
             this.cbSpecimen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSpecimen.FormattingEnabled = true;
-            resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
             this.cbSpecimen.Name = "cbSpecimen";
             this.cbSpecimen.SelectedIndexChanged += new System.EventHandler(this.cbSpecimen_SelectedIndexChanged);
             // 
             // gbInclusion
             // 
+            resources.ApplyResources(this.gbInclusion, "gbInclusion");
             this.gbInclusion.Controls.Add(this.txtKeywords);
             this.gbInclusion.Controls.Add(this.lblKeywords);
             this.gbInclusion.Controls.Add(this.lblGenre);
@@ -570,7 +572,6 @@
             this.gbInclusion.Controls.Add(this.txtSNumber);
             this.gbInclusion.Controls.Add(this.txtSubGenre);
             this.gbInclusion.Controls.Add(this.lblSubGenre);
-            resources.ApplyResources(this.gbInclusion, "gbInclusion");
             this.gbInclusion.Name = "gbInclusion";
             this.gbInclusion.TabStop = false;
             // 
@@ -591,10 +592,10 @@
             // 
             // cbBookbinding
             // 
+            resources.ApplyResources(this.cbBookbinding, "cbBookbinding");
             this.cbBookbinding.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbBookbinding.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbBookbinding.FormattingEnabled = true;
-            resources.ApplyResources(this.cbBookbinding, "cbBookbinding");
             this.cbBookbinding.Name = "cbBookbinding";
             // 
             // lblAuthorSurname
@@ -607,10 +608,18 @@
             resources.ApplyResources(this.txtAuthorSurname, "txtAuthorSurname");
             this.txtAuthorSurname.Name = "txtAuthorSurname";
             // 
+            // brnGetDataISBN
+            // 
+            resources.ApplyResources(this.brnGetDataISBN, "brnGetDataISBN");
+            this.brnGetDataISBN.Name = "brnGetDataISBN";
+            this.brnGetDataISBN.UseVisualStyleBackColor = true;
+            this.brnGetDataISBN.Click += new System.EventHandler(this.brnGetDataISBN_Click);
+            // 
             // frmEditBooks
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.brnGetDataISBN);
             this.Controls.Add(this.lblAuthorSurname);
             this.Controls.Add(this.txtAuthorSurname);
             this.Controls.Add(this.cbBookbinding);
@@ -760,5 +769,6 @@
         private System.Windows.Forms.Label lblAuthorSurname;
         private System.Windows.Forms.TextBox txtAuthorSurname;
         private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Button brnGetDataISBN;
     }
 }

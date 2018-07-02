@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Xsl;
 using BrightIdeasSoftware;
 using myFunctions;
+
+
 
 namespace Katalog
 {
@@ -116,7 +123,7 @@ namespace Katalog
                     break;
                 case "book":
                     Books book = db.Books.Find(id);
-                    if (book != null) return book.Name.Trim();
+                    if (book != null) return book.Title.Trim();
                     break;
             }
             return "";
@@ -375,8 +382,8 @@ namespace Katalog
                 return ret;
             };
             bkName.AspectGetter = delegate (object x) {
-                if (((Books)x).Name == null) return "";
-                return ((Books)x).Name.Trim();
+                if (((Books)x).Title == null) return "";
+                return ((Books)x).Title.Trim();
             };
             bkAuthor.AspectGetter = delegate (object x) {
                 if (((Books)x).AuthorSurname == null) return "";
@@ -626,7 +633,7 @@ namespace Katalog
                 {
                     Books book = db.Books.Find(((Books)olvBooks.SelectedObject).Id);
 
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + book.Name.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + book.Title.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
                         db.Books.Remove(book);
                         db.SaveChanges();
@@ -1154,7 +1161,7 @@ namespace Katalog
 
             foreach (var item in book)
             {
-                lines += item.Name.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+                lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1308,7 +1315,7 @@ namespace Katalog
             foreach (var item in file.data)
             {
                 Books itm = new Books();
-                itm.Name = item[0];
+                itm.Title = item[0];
                 itm.AuthorName = item[1];
                 itm.AuthorSurname = item[2];
                 itm.FastTags = Conv.ToShortNull(item[3]);
@@ -1403,7 +1410,7 @@ namespace Katalog
         private void FillBook(ref Books itm, Books newItem)
         {
             // ----- Avatar -----
-            itm.Name = newItem.Name;
+            itm.Title = newItem.Title;
 
             itm.AuthorName = newItem.AuthorName;
             itm.AuthorSurname = newItem.AuthorSurname;
@@ -1612,5 +1619,14 @@ namespace Katalog
 
         }
 
+        public const int MaximumNumberOfResults = 100;
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+
+
+        }
     }
 }

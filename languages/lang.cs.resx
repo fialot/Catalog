@@ -297,4 +297,19 @@
   <data name="Reserved" xml:space="preserve">
     <value>Rezervováno</value>
   </data>
+  <data name="BookNotFound" xml:space="preserve">
+    <value>Kniha nebyla v databázi nalezena!</value>
+  </data>
+  <data name="Czech" xml:space="preserve">
+    <value>Česky</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Anglicky</value>
+  </data>
+  <data name="NoFindBookData" xml:space="preserve">
+    <value>Nejsou zadána žádná data, podle kterých by šla kniha vyhledat!</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Nelze se připojit na server!</value>
+  </data>
 </root>

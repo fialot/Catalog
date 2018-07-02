@@ -137,6 +137,14 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Zoom.Net, Version=1.0.2400.21838, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>imports\Zoom.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Zoom.Net.YazSharp, Version=1.0.2400.21838, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>imports\Zoom.Net.YazSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio.cs">
@@ -373,6 +381,13 @@
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.cs</LastGenOutput>
     </Content>
+    <Content Include="imports\iconv.dll" />
+    <Content Include="imports\libxml2.dll" />
+    <Content Include="imports\libxslt.dll" />
+    <Content Include="imports\yaz.dll" />
+    <Content Include="imports\zlib1.dll" />
+    <Content Include="imports\Zoom.Net.dll" />
+    <Content Include="imports\Zoom.Net.YazSharp.dll" />
     <Content Include="Resources\Catalog.ico" />
     <None Include="Resources\Circle_Blue.ico" />
   </ItemGroup>
