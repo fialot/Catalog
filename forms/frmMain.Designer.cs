@@ -33,6 +33,7 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tabCatalog = new System.Windows.Forms.TabControl();
             this.tabContacts = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.olvContacts = new BrightIdeasSoftware.FastObjectListView();
             this.conFastTags = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -43,6 +44,8 @@
             this.conAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imgOLV = new System.Windows.Forms.ImageList(this.components);
             this.tabBorrowing = new System.Windows.Forms.TabPage();
+            this.cbBorrShow = new System.Windows.Forms.ComboBox();
+            this.lblBorrShow = new System.Windows.Forms.Label();
             this.chbShowReturned = new System.Windows.Forms.CheckBox();
             this.olvBorrowing = new BrightIdeasSoftware.FastObjectListView();
             this.brPerson = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -86,16 +89,10 @@
             this.tabVideo = new System.Windows.Forms.TabPage();
             this.tabFoto = new System.Windows.Forms.TabPage();
             this.imgBarList = new System.Windows.Forms.ImageList(this.components);
-            this.toolStripFilter = new System.Windows.Forms.ToolStrip();
-            this.lblFilter = new System.Windows.Forms.ToolStripLabel();
-            this.txtFilter = new System.Windows.Forms.ToolStripTextBox();
-            this.cbFilterCol = new System.Windows.Forms.ToolStripComboBox();
-            this.btnFilterPin1 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin2 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin3 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin4 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin5 = new System.Windows.Forms.ToolStripButton();
-            this.btnFilterPin6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEditItem = new System.Windows.Forms.ToolStrip();
+            this.btnNewItem = new System.Windows.Forms.ToolStripButton();
+            this.btnEditItem = new System.Windows.Forms.ToolStripButton();
+            this.btnDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripFastFilter = new System.Windows.Forms.ToolStrip();
             this.btnFilterA = new System.Windows.Forms.ToolStripButton();
             this.btnFilterB = new System.Windows.Forms.ToolStripButton();
@@ -134,10 +131,16 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFilter09 = new System.Windows.Forms.ToolStripButton();
             this.cbFastFilterCol = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripEditItem = new System.Windows.Forms.ToolStrip();
-            this.btnNewItem = new System.Windows.Forms.ToolStripButton();
-            this.btnEditItem = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripFilter = new System.Windows.Forms.ToolStrip();
+            this.lblFilter = new System.Windows.Forms.ToolStripLabel();
+            this.txtFilter = new System.Windows.Forms.ToolStripTextBox();
+            this.cbFilterCol = new System.Windows.Forms.ToolStripComboBox();
+            this.btnFilterPin1 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin2 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin3 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin4 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin5 = new System.Windows.Forms.ToolStripButton();
+            this.btnFilterPin6 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNewDB = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,7 +186,6 @@
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.button1 = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -196,9 +198,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvItem)).BeginInit();
             this.tabBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvBooks)).BeginInit();
-            this.toolStripFilter.SuspendLayout();
-            this.toolStripFastFilter.SuspendLayout();
             this.toolStripEditItem.SuspendLayout();
+            this.toolStripFastFilter.SuspendLayout();
+            this.toolStripFilter.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -243,6 +245,13 @@
             this.tabContacts.Name = "tabContacts";
             this.tabContacts.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnTest
             // 
             resources.ApplyResources(this.btnTest, "btnTest");
@@ -278,7 +287,7 @@
             this.olvContacts.VirtualMode = true;
             this.olvContacts.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvContacts_FormatRow);
             this.olvContacts.SelectedIndexChanged += new System.EventHandler(this.olvContacts_SelectedIndexChanged);
-            this.olvContacts.DoubleClick += new System.EventHandler(this.olvContacts_DoubleClick);
+            this.olvContacts.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // conFastTags
             // 
@@ -320,14 +329,31 @@
             this.imgOLV.Images.SetKeyName(5, "Blue");
             this.imgOLV.Images.SetKeyName(6, "Yes");
             this.imgOLV.Images.SetKeyName(7, "No");
+            this.imgOLV.Images.SetKeyName(8, "Stop");
+            this.imgOLV.Images.SetKeyName(9, "Reserved");
             // 
             // tabBorrowing
             // 
+            this.tabBorrowing.Controls.Add(this.cbBorrShow);
+            this.tabBorrowing.Controls.Add(this.lblBorrShow);
             this.tabBorrowing.Controls.Add(this.chbShowReturned);
             this.tabBorrowing.Controls.Add(this.olvBorrowing);
             resources.ApplyResources(this.tabBorrowing, "tabBorrowing");
             this.tabBorrowing.Name = "tabBorrowing";
             this.tabBorrowing.UseVisualStyleBackColor = true;
+            // 
+            // cbBorrShow
+            // 
+            this.cbBorrShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBorrShow.FormattingEnabled = true;
+            resources.ApplyResources(this.cbBorrShow, "cbBorrShow");
+            this.cbBorrShow.Name = "cbBorrShow";
+            this.cbBorrShow.SelectedIndexChanged += new System.EventHandler(this.cbBorrShow_SelectedIndexChanged);
+            // 
+            // lblBorrShow
+            // 
+            resources.ApplyResources(this.lblBorrShow, "lblBorrShow");
+            this.lblBorrShow.Name = "lblBorrShow";
             // 
             // chbShowReturned
             // 
@@ -366,8 +392,9 @@
             this.olvBorrowing.UseCompatibleStateImageBehavior = false;
             this.olvBorrowing.View = System.Windows.Forms.View.Details;
             this.olvBorrowing.VirtualMode = true;
+            this.olvBorrowing.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvBorrowing_FormatRow);
             this.olvBorrowing.SelectedIndexChanged += new System.EventHandler(this.olvBorrowing_SelectedIndexChanged);
-            this.olvBorrowing.DoubleClick += new System.EventHandler(this.olvBorrowing_DoubleClick);
+            this.olvBorrowing.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // brPerson
             // 
@@ -456,7 +483,7 @@
             this.olvItem.VirtualMode = true;
             this.olvItem.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvItem_FormatRow);
             this.olvItem.SelectedIndexChanged += new System.EventHandler(this.olvItem_SelectedIndexChanged);
-            this.olvItem.DoubleClick += new System.EventHandler(this.olvItem_DoubleClick);
+            this.olvItem.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // itFastTags
             // 
@@ -549,8 +576,9 @@
             this.olvBooks.UseCompatibleStateImageBehavior = false;
             this.olvBooks.View = System.Windows.Forms.View.Details;
             this.olvBooks.VirtualMode = true;
+            this.olvBooks.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvBooks_FormatRow);
             this.olvBooks.SelectedIndexChanged += new System.EventHandler(this.olvBooks_SelectedIndexChanged);
-            this.olvBooks.DoubleClick += new System.EventHandler(this.olvBooks_DoubleClick);
+            this.olvBooks.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // bkFastTags
             // 
@@ -645,87 +673,39 @@
             this.imgBarList.Images.SetKeyName(6, "Song");
             this.imgBarList.Images.SetKeyName(7, "Video");
             // 
-            // toolStripFilter
+            // toolStripEditItem
             // 
-            resources.ApplyResources(this.toolStripFilter, "toolStripFilter");
-            this.toolStripFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblFilter,
-            this.txtFilter,
-            this.cbFilterCol,
-            this.btnFilterPin1,
-            this.btnFilterPin2,
-            this.btnFilterPin3,
-            this.btnFilterPin4,
-            this.btnFilterPin5,
-            this.btnFilterPin6});
-            this.toolStripFilter.Name = "toolStripFilter";
+            resources.ApplyResources(this.toolStripEditItem, "toolStripEditItem");
+            this.toolStripEditItem.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripEditItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNewItem,
+            this.btnEditItem,
+            this.btnDeleteItem});
+            this.toolStripEditItem.Name = "toolStripEditItem";
             // 
-            // lblFilter
+            // btnNewItem
             // 
-            this.lblFilter.Name = "lblFilter";
-            resources.ApplyResources(this.lblFilter, "lblFilter");
+            this.btnNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNewItem.Image = global::Katalog.Properties.Resources.newItem;
+            resources.ApplyResources(this.btnNewItem, "btnNewItem");
+            this.btnNewItem.Name = "btnNewItem";
+            this.btnNewItem.Click += new System.EventHandler(this.btnNewItem_Click);
             // 
-            // txtFilter
+            // btnEditItem
             // 
-            this.txtFilter.Name = "txtFilter";
-            resources.ApplyResources(this.txtFilter, "txtFilter");
-            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            this.btnEditItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditItem.Image = global::Katalog.Properties.Resources.edit;
+            resources.ApplyResources(this.btnEditItem, "btnEditItem");
+            this.btnEditItem.Name = "btnEditItem";
+            this.btnEditItem.Click += new System.EventHandler(this.btnEditItem_Click);
             // 
-            // cbFilterCol
+            // btnDeleteItem
             // 
-            this.cbFilterCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilterCol.Name = "cbFilterCol";
-            resources.ApplyResources(this.cbFilterCol, "cbFilterCol");
-            this.cbFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFilterCol_SelectedIndexChanged);
-            // 
-            // btnFilterPin1
-            // 
-            this.btnFilterPin1.CheckOnClick = true;
-            this.btnFilterPin1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin1.Image = global::Katalog.Properties.Resources.circ_green;
-            resources.ApplyResources(this.btnFilterPin1, "btnFilterPin1");
-            this.btnFilterPin1.Name = "btnFilterPin1";
-            // 
-            // btnFilterPin2
-            // 
-            this.btnFilterPin2.CheckOnClick = true;
-            this.btnFilterPin2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin2.Image = global::Katalog.Properties.Resources.circ_red;
-            resources.ApplyResources(this.btnFilterPin2, "btnFilterPin2");
-            this.btnFilterPin2.Name = "btnFilterPin2";
-            // 
-            // btnFilterPin3
-            // 
-            this.btnFilterPin3.CheckOnClick = true;
-            this.btnFilterPin3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin3.Image = global::Katalog.Properties.Resources.circ_orange;
-            resources.ApplyResources(this.btnFilterPin3, "btnFilterPin3");
-            this.btnFilterPin3.Name = "btnFilterPin3";
-            // 
-            // btnFilterPin4
-            // 
-            this.btnFilterPin4.CheckOnClick = true;
-            this.btnFilterPin4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin4.Image = global::Katalog.Properties.Resources.circ_yellow;
-            resources.ApplyResources(this.btnFilterPin4, "btnFilterPin4");
-            this.btnFilterPin4.Name = "btnFilterPin4";
-            // 
-            // btnFilterPin5
-            // 
-            this.btnFilterPin5.CheckOnClick = true;
-            this.btnFilterPin5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin5.Image = global::Katalog.Properties.Resources.circ_grey;
-            resources.ApplyResources(this.btnFilterPin5, "btnFilterPin5");
-            this.btnFilterPin5.Name = "btnFilterPin5";
-            // 
-            // btnFilterPin6
-            // 
-            this.btnFilterPin6.CheckOnClick = true;
-            this.btnFilterPin6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFilterPin6.Image = global::Katalog.Properties.Resources.Circle_Blue;
-            resources.ApplyResources(this.btnFilterPin6, "btnFilterPin6");
-            this.btnFilterPin6.Name = "btnFilterPin6";
+            this.btnDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDeleteItem.Image = global::Katalog.Properties.Resources.delete;
+            resources.ApplyResources(this.btnDeleteItem, "btnDeleteItem");
+            this.btnDeleteItem.Name = "btnDeleteItem";
+            this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
             // toolStripFastFilter
             // 
@@ -1063,39 +1043,87 @@
             resources.ApplyResources(this.cbFastFilterCol, "cbFastFilterCol");
             this.cbFastFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFastFilterCol_SelectedIndexChanged);
             // 
-            // toolStripEditItem
+            // toolStripFilter
             // 
-            resources.ApplyResources(this.toolStripEditItem, "toolStripEditItem");
-            this.toolStripEditItem.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripEditItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnNewItem,
-            this.btnEditItem,
-            this.btnDeleteItem});
-            this.toolStripEditItem.Name = "toolStripEditItem";
+            resources.ApplyResources(this.toolStripFilter, "toolStripFilter");
+            this.toolStripFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblFilter,
+            this.txtFilter,
+            this.cbFilterCol,
+            this.btnFilterPin1,
+            this.btnFilterPin2,
+            this.btnFilterPin3,
+            this.btnFilterPin4,
+            this.btnFilterPin5,
+            this.btnFilterPin6});
+            this.toolStripFilter.Name = "toolStripFilter";
             // 
-            // btnNewItem
+            // lblFilter
             // 
-            this.btnNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNewItem.Image = global::Katalog.Properties.Resources.newItem;
-            resources.ApplyResources(this.btnNewItem, "btnNewItem");
-            this.btnNewItem.Name = "btnNewItem";
-            this.btnNewItem.Click += new System.EventHandler(this.btnNewItem_Click);
+            this.lblFilter.Name = "lblFilter";
+            resources.ApplyResources(this.lblFilter, "lblFilter");
             // 
-            // btnEditItem
+            // txtFilter
             // 
-            this.btnEditItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditItem.Image = global::Katalog.Properties.Resources.edit;
-            resources.ApplyResources(this.btnEditItem, "btnEditItem");
-            this.btnEditItem.Name = "btnEditItem";
-            this.btnEditItem.Click += new System.EventHandler(this.btnEditItem_Click);
+            this.txtFilter.Name = "txtFilter";
+            resources.ApplyResources(this.txtFilter, "txtFilter");
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
-            // btnDeleteItem
+            // cbFilterCol
             // 
-            this.btnDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnDeleteItem.Image = global::Katalog.Properties.Resources.delete;
-            resources.ApplyResources(this.btnDeleteItem, "btnDeleteItem");
-            this.btnDeleteItem.Name = "btnDeleteItem";
-            this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
+            this.cbFilterCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilterCol.Name = "cbFilterCol";
+            resources.ApplyResources(this.cbFilterCol, "cbFilterCol");
+            this.cbFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFilterCol_SelectedIndexChanged);
+            // 
+            // btnFilterPin1
+            // 
+            this.btnFilterPin1.CheckOnClick = true;
+            this.btnFilterPin1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin1.Image = global::Katalog.Properties.Resources.circ_green;
+            resources.ApplyResources(this.btnFilterPin1, "btnFilterPin1");
+            this.btnFilterPin1.Name = "btnFilterPin1";
+            // 
+            // btnFilterPin2
+            // 
+            this.btnFilterPin2.CheckOnClick = true;
+            this.btnFilterPin2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin2.Image = global::Katalog.Properties.Resources.circ_red;
+            resources.ApplyResources(this.btnFilterPin2, "btnFilterPin2");
+            this.btnFilterPin2.Name = "btnFilterPin2";
+            // 
+            // btnFilterPin3
+            // 
+            this.btnFilterPin3.CheckOnClick = true;
+            this.btnFilterPin3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin3.Image = global::Katalog.Properties.Resources.circ_orange;
+            resources.ApplyResources(this.btnFilterPin3, "btnFilterPin3");
+            this.btnFilterPin3.Name = "btnFilterPin3";
+            // 
+            // btnFilterPin4
+            // 
+            this.btnFilterPin4.CheckOnClick = true;
+            this.btnFilterPin4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin4.Image = global::Katalog.Properties.Resources.circ_yellow;
+            resources.ApplyResources(this.btnFilterPin4, "btnFilterPin4");
+            this.btnFilterPin4.Name = "btnFilterPin4";
+            // 
+            // btnFilterPin5
+            // 
+            this.btnFilterPin5.CheckOnClick = true;
+            this.btnFilterPin5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin5.Image = global::Katalog.Properties.Resources.circ_grey;
+            resources.ApplyResources(this.btnFilterPin5, "btnFilterPin5");
+            this.btnFilterPin5.Name = "btnFilterPin5";
+            // 
+            // btnFilterPin6
+            // 
+            this.btnFilterPin6.CheckOnClick = true;
+            this.btnFilterPin6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFilterPin6.Image = global::Katalog.Properties.Resources.Circle_Blue;
+            resources.ApplyResources(this.btnFilterPin6, "btnFilterPin6");
+            this.btnFilterPin6.Name = "btnFilterPin6";
             // 
             // menuStrip1
             // 
@@ -1389,13 +1417,6 @@
             resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -1422,12 +1443,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvItem)).EndInit();
             this.tabBooks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.olvBooks)).EndInit();
-            this.toolStripFilter.ResumeLayout(false);
-            this.toolStripFilter.PerformLayout();
-            this.toolStripFastFilter.ResumeLayout(false);
-            this.toolStripFastFilter.PerformLayout();
             this.toolStripEditItem.ResumeLayout(false);
             this.toolStripEditItem.PerformLayout();
+            this.toolStripFastFilter.ResumeLayout(false);
+            this.toolStripFastFilter.PerformLayout();
+            this.toolStripFilter.ResumeLayout(false);
+            this.toolStripFilter.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1591,6 +1612,8 @@
         private System.Windows.Forms.TabPage tabVideo;
         private System.Windows.Forms.TabPage tabFoto;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cbBorrShow;
+        private System.Windows.Forms.Label lblBorrShow;
     }
 }
 

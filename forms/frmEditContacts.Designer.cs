@@ -87,6 +87,7 @@
             this.cbEmail = new System.Windows.Forms.ComboBox();
             this.cbWWW = new System.Windows.Forms.ComboBox();
             this.chbActive = new System.Windows.Forms.CheckBox();
+            this.btnSaveNew = new System.Windows.Forms.Button();
             this.gbAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).BeginInit();
             this.SuspendLayout();
@@ -434,10 +435,18 @@
             this.chbActive.Name = "chbActive";
             this.chbActive.UseVisualStyleBackColor = true;
             // 
+            // btnSaveNew
+            // 
+            resources.ApplyResources(this.btnSaveNew, "btnSaveNew");
+            this.btnSaveNew.Name = "btnSaveNew";
+            this.btnSaveNew.UseVisualStyleBackColor = true;
+            this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
+            // 
             // frmEditContacts
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.chbActive);
             this.Controls.Add(this.cbWWW);
             this.Controls.Add(this.cbEmail);
@@ -558,5 +567,6 @@
         private System.Windows.Forms.ComboBox cbEmail;
         private System.Windows.Forms.ComboBox cbWWW;
         private System.Windows.Forms.CheckBox chbActive;
+        private System.Windows.Forms.Button btnSaveNew;
     }
 }

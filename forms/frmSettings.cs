@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,8 @@ namespace Katalog
 
             Properties.Settings.Default.IncSpecimenInv = chbIncSpecimen.Checked;
 
+            Properties.Settings.Default.scanCOM = cbScanCOM.Text;
+
             Properties.Settings.Default.Save();
 
             if (MaxInvNumbers.Contact < Properties.Settings.Default.ContactStart) MaxInvNumbers.Item = Properties.Settings.Default.ContactStart - 1;
@@ -48,6 +51,8 @@ namespace Katalog
 
         private void frmSettings_Load(object sender, EventArgs e)
         {
+            RefreshCOMPorts();
+
             txtConStart.Text = Properties.Settings.Default.ContactStart.ToString();
             txtConMinCharLen.Text = Properties.Settings.Default.ContactMinCharLen.ToString();
             txtConPrefix.Text = Properties.Settings.Default.ContactPrefix;
@@ -64,6 +69,26 @@ namespace Katalog
             txtBookSuffix.Text = Properties.Settings.Default.BookSuffix;
 
             chbIncSpecimen.Checked = Properties.Settings.Default.IncSpecimenInv;
+
+            cbScanCOM.Text = Properties.Settings.Default.scanCOM;
+        }
+
+        private void btnScanRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshCOMPorts();
+        }
+
+        void RefreshCOMPorts()
+        {
+            string COM = cbScanCOM.Text;
+            cbScanCOM.Items.Clear();
+            string[] ports = SerialPort.GetPortNames();
+            for (int i = 0; i < ports.Length; i++)
+            {
+                cbScanCOM.Items.Add(ports[i]);
+            }
+
+            cbScanCOM.Text = COM;
         }
     }
 }

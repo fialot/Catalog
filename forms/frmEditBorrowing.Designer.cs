@@ -45,6 +45,12 @@
             this.cbItemNum = new System.Windows.Forms.ComboBox();
             this.lblItemNum = new System.Windows.Forms.Label();
             this.gbItem = new System.Windows.Forms.GroupBox();
+            this.btnDelItem = new System.Windows.Forms.Button();
+            this.btnAddItem = new System.Windows.Forms.Button();
+            this.olvItem = new BrightIdeasSoftware.FastObjectListView();
+            this.itName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.itNumber = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.itInvNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.lblInvNum = new System.Windows.Forms.Label();
             this.gbPerson = new System.Windows.Forms.GroupBox();
             this.lblPersonNum = new System.Windows.Forms.Label();
@@ -53,8 +59,10 @@
             this.lblPerson = new System.Windows.Forms.Label();
             this.gbTerm = new System.Windows.Forms.GroupBox();
             this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.TimeOut = new System.Windows.Forms.Timer(this.components);
             this.mnuGetPerson.SuspendLayout();
             this.gbItem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvItem)).BeginInit();
             this.gbPerson.SuspendLayout();
             this.gbTerm.SuspendLayout();
             this.SuspendLayout();
@@ -62,9 +70,9 @@
             // btnCancel
             // 
             resources.ApplyResources(this.btnCancel, "btnCancel");
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
@@ -147,6 +155,9 @@
             // 
             // gbItem
             // 
+            this.gbItem.Controls.Add(this.btnDelItem);
+            this.gbItem.Controls.Add(this.btnAddItem);
+            this.gbItem.Controls.Add(this.olvItem);
             this.gbItem.Controls.Add(this.lblInvNum);
             this.gbItem.Controls.Add(this.lblItemType);
             this.gbItem.Controls.Add(this.lblItemNum);
@@ -157,6 +168,53 @@
             resources.ApplyResources(this.gbItem, "gbItem");
             this.gbItem.Name = "gbItem";
             this.gbItem.TabStop = false;
+            // 
+            // btnDelItem
+            // 
+            resources.ApplyResources(this.btnDelItem, "btnDelItem");
+            this.btnDelItem.Name = "btnDelItem";
+            this.btnDelItem.UseVisualStyleBackColor = true;
+            this.btnDelItem.Click += new System.EventHandler(this.btnDelItem_Click);
+            // 
+            // btnAddItem
+            // 
+            resources.ApplyResources(this.btnAddItem, "btnAddItem");
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.UseVisualStyleBackColor = true;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
+            // 
+            // olvItem
+            // 
+            this.olvItem.AllColumns.Add(this.itName);
+            this.olvItem.AllColumns.Add(this.itNumber);
+            this.olvItem.AllColumns.Add(this.itInvNum);
+            resources.ApplyResources(this.olvItem, "olvItem");
+            this.olvItem.CellEditUseWholeCell = false;
+            this.olvItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.itName,
+            this.itNumber,
+            this.itInvNum});
+            this.olvItem.Cursor = System.Windows.Forms.Cursors.Default;
+            this.olvItem.FullRowSelect = true;
+            this.olvItem.GridLines = true;
+            this.olvItem.Name = "olvItem";
+            this.olvItem.ShowGroups = false;
+            this.olvItem.UseCompatibleStateImageBehavior = false;
+            this.olvItem.View = System.Windows.Forms.View.Details;
+            this.olvItem.VirtualMode = true;
+            // 
+            // itName
+            // 
+            this.itName.AspectName = "";
+            resources.ApplyResources(this.itName, "itName");
+            // 
+            // itNumber
+            // 
+            resources.ApplyResources(this.itNumber, "itNumber");
+            // 
+            // itInvNum
+            // 
+            resources.ApplyResources(this.itInvNum, "itInvNum");
             // 
             // lblInvNum
             // 
@@ -215,6 +273,11 @@
             resources.ApplyResources(this.cbStatus, "cbStatus");
             this.cbStatus.Name = "cbStatus";
             // 
+            // TimeOut
+            // 
+            this.TimeOut.Interval = 200;
+            this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
+            // 
             // frmEditBorrowing
             // 
             resources.ApplyResources(this, "$this");
@@ -228,10 +291,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frmEditBorrowing";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditBorrowing_FormClosing);
             this.Load += new System.EventHandler(this.frmEditBorrowing_Load);
             this.mnuGetPerson.ResumeLayout(false);
             this.gbItem.ResumeLayout(false);
             this.gbItem.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvItem)).EndInit();
             this.gbPerson.ResumeLayout(false);
             this.gbPerson.PerformLayout();
             this.gbTerm.ResumeLayout(false);
@@ -265,5 +330,12 @@
         private System.Windows.Forms.Label lblPerson;
         private System.Windows.Forms.GroupBox gbTerm;
         private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.Button btnAddItem;
+        private BrightIdeasSoftware.FastObjectListView olvItem;
+        private BrightIdeasSoftware.OLVColumn itName;
+        private BrightIdeasSoftware.OLVColumn itInvNum;
+        private BrightIdeasSoftware.OLVColumn itNumber;
+        private System.Windows.Forms.Button btnDelItem;
+        private System.Windows.Forms.Timer TimeOut;
     }
 }

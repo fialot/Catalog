@@ -32,6 +32,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.gbContacts = new System.Windows.Forms.GroupBox();
+            this.lblConMinCharLen = new System.Windows.Forms.Label();
+            this.txtConMinCharLen = new System.Windows.Forms.TextBox();
             this.lblConSuffix = new System.Windows.Forms.Label();
             this.lblConPrefix = new System.Windows.Forms.Label();
             this.txtConSuffix = new System.Windows.Forms.TextBox();
@@ -40,19 +42,6 @@
             this.txtConStart = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabInvNums = new System.Windows.Forms.TabPage();
-            this.gbItems = new System.Windows.Forms.GroupBox();
-            this.lblItemSuffix = new System.Windows.Forms.Label();
-            this.lblItemPrefix = new System.Windows.Forms.Label();
-            this.txtItemSuffix = new System.Windows.Forms.TextBox();
-            this.txtItemPrefix = new System.Windows.Forms.TextBox();
-            this.lblItemStart = new System.Windows.Forms.Label();
-            this.txtItemStart = new System.Windows.Forms.TextBox();
-            this.tabOther = new System.Windows.Forms.TabPage();
-            this.txtConMinCharLen = new System.Windows.Forms.TextBox();
-            this.lblConMinCharLen = new System.Windows.Forms.Label();
-            this.lblItemMinCharLen = new System.Windows.Forms.Label();
-            this.txtItemMinCharLen = new System.Windows.Forms.TextBox();
-            this.chbIncSpecimen = new System.Windows.Forms.CheckBox();
             this.gbBooks = new System.Windows.Forms.GroupBox();
             this.lblBookMinCharLen = new System.Windows.Forms.Label();
             this.txtBookMinCharLen = new System.Windows.Forms.TextBox();
@@ -62,11 +51,28 @@
             this.txtBookPrefix = new System.Windows.Forms.TextBox();
             this.lblBookStart = new System.Windows.Forms.Label();
             this.txtBookStart = new System.Windows.Forms.TextBox();
+            this.chbIncSpecimen = new System.Windows.Forms.CheckBox();
+            this.gbItems = new System.Windows.Forms.GroupBox();
+            this.lblItemMinCharLen = new System.Windows.Forms.Label();
+            this.txtItemMinCharLen = new System.Windows.Forms.TextBox();
+            this.lblItemSuffix = new System.Windows.Forms.Label();
+            this.lblItemPrefix = new System.Windows.Forms.Label();
+            this.txtItemSuffix = new System.Windows.Forms.TextBox();
+            this.txtItemPrefix = new System.Windows.Forms.TextBox();
+            this.lblItemStart = new System.Windows.Forms.Label();
+            this.txtItemStart = new System.Windows.Forms.TextBox();
+            this.tabOther = new System.Windows.Forms.TabPage();
+            this.cbScanCOM = new System.Windows.Forms.ComboBox();
+            this.lblScanCOM = new System.Windows.Forms.Label();
+            this.gbScanner = new System.Windows.Forms.GroupBox();
+            this.btnScanRefresh = new System.Windows.Forms.Button();
             this.gbContacts.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabInvNums.SuspendLayout();
-            this.gbItems.SuspendLayout();
             this.gbBooks.SuspendLayout();
+            this.gbItems.SuspendLayout();
+            this.tabOther.SuspendLayout();
+            this.gbScanner.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -109,6 +115,22 @@
             this.gbContacts.TabIndex = 44;
             this.gbContacts.TabStop = false;
             this.gbContacts.Text = "Contacts";
+            // 
+            // lblConMinCharLen
+            // 
+            this.lblConMinCharLen.AutoSize = true;
+            this.lblConMinCharLen.Location = new System.Drawing.Point(226, 16);
+            this.lblConMinCharLen.Name = "lblConMinCharLen";
+            this.lblConMinCharLen.Size = new System.Drawing.Size(86, 13);
+            this.lblConMinCharLen.TabIndex = 51;
+            this.lblConMinCharLen.Text = "Min. char. length";
+            // 
+            // txtConMinCharLen
+            // 
+            this.txtConMinCharLen.Location = new System.Drawing.Point(229, 32);
+            this.txtConMinCharLen.Name = "txtConMinCharLen";
+            this.txtConMinCharLen.Size = new System.Drawing.Size(73, 20);
+            this.txtConMinCharLen.TabIndex = 50;
             // 
             // lblConSuffix
             // 
@@ -181,123 +203,6 @@
             this.tabInvNums.TabIndex = 0;
             this.tabInvNums.Text = "Inventory numbers";
             this.tabInvNums.UseVisualStyleBackColor = true;
-            // 
-            // gbItems
-            // 
-            this.gbItems.Controls.Add(this.lblItemMinCharLen);
-            this.gbItems.Controls.Add(this.txtItemMinCharLen);
-            this.gbItems.Controls.Add(this.lblItemSuffix);
-            this.gbItems.Controls.Add(this.lblItemPrefix);
-            this.gbItems.Controls.Add(this.txtItemSuffix);
-            this.gbItems.Controls.Add(this.txtItemPrefix);
-            this.gbItems.Controls.Add(this.lblItemStart);
-            this.gbItems.Controls.Add(this.txtItemStart);
-            this.gbItems.Location = new System.Drawing.Point(6, 88);
-            this.gbItems.Name = "gbItems";
-            this.gbItems.Size = new System.Drawing.Size(548, 76);
-            this.gbItems.TabIndex = 50;
-            this.gbItems.TabStop = false;
-            this.gbItems.Text = "Items";
-            // 
-            // lblItemSuffix
-            // 
-            this.lblItemSuffix.AutoSize = true;
-            this.lblItemSuffix.Location = new System.Drawing.Point(407, 16);
-            this.lblItemSuffix.Name = "lblItemSuffix";
-            this.lblItemSuffix.Size = new System.Drawing.Size(33, 13);
-            this.lblItemSuffix.TabIndex = 49;
-            this.lblItemSuffix.Text = "Suffix";
-            // 
-            // lblItemPrefix
-            // 
-            this.lblItemPrefix.AutoSize = true;
-            this.lblItemPrefix.Location = new System.Drawing.Point(328, 16);
-            this.lblItemPrefix.Name = "lblItemPrefix";
-            this.lblItemPrefix.Size = new System.Drawing.Size(33, 13);
-            this.lblItemPrefix.TabIndex = 47;
-            this.lblItemPrefix.Text = "Prefix";
-            // 
-            // txtItemSuffix
-            // 
-            this.txtItemSuffix.Location = new System.Drawing.Point(410, 32);
-            this.txtItemSuffix.Name = "txtItemSuffix";
-            this.txtItemSuffix.Size = new System.Drawing.Size(73, 20);
-            this.txtItemSuffix.TabIndex = 48;
-            // 
-            // txtItemPrefix
-            // 
-            this.txtItemPrefix.Location = new System.Drawing.Point(331, 32);
-            this.txtItemPrefix.Name = "txtItemPrefix";
-            this.txtItemPrefix.Size = new System.Drawing.Size(73, 20);
-            this.txtItemPrefix.TabIndex = 47;
-            // 
-            // lblItemStart
-            // 
-            this.lblItemStart.AutoSize = true;
-            this.lblItemStart.Location = new System.Drawing.Point(6, 16);
-            this.lblItemStart.Name = "lblItemStart";
-            this.lblItemStart.Size = new System.Drawing.Size(132, 13);
-            this.lblItemStart.TabIndex = 46;
-            this.lblItemStart.Text = "Start inventory numbers by";
-            // 
-            // txtItemStart
-            // 
-            this.txtItemStart.Location = new System.Drawing.Point(9, 32);
-            this.txtItemStart.Name = "txtItemStart";
-            this.txtItemStart.Size = new System.Drawing.Size(214, 20);
-            this.txtItemStart.TabIndex = 45;
-            // 
-            // tabOther
-            // 
-            this.tabOther.Location = new System.Drawing.Point(4, 22);
-            this.tabOther.Name = "tabOther";
-            this.tabOther.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOther.Size = new System.Drawing.Size(560, 382);
-            this.tabOther.TabIndex = 1;
-            this.tabOther.Text = "Other";
-            this.tabOther.UseVisualStyleBackColor = true;
-            // 
-            // txtConMinCharLen
-            // 
-            this.txtConMinCharLen.Location = new System.Drawing.Point(229, 32);
-            this.txtConMinCharLen.Name = "txtConMinCharLen";
-            this.txtConMinCharLen.Size = new System.Drawing.Size(73, 20);
-            this.txtConMinCharLen.TabIndex = 50;
-            // 
-            // lblConMinCharLen
-            // 
-            this.lblConMinCharLen.AutoSize = true;
-            this.lblConMinCharLen.Location = new System.Drawing.Point(226, 16);
-            this.lblConMinCharLen.Name = "lblConMinCharLen";
-            this.lblConMinCharLen.Size = new System.Drawing.Size(86, 13);
-            this.lblConMinCharLen.TabIndex = 51;
-            this.lblConMinCharLen.Text = "Min. char. length";
-            // 
-            // lblItemMinCharLen
-            // 
-            this.lblItemMinCharLen.AutoSize = true;
-            this.lblItemMinCharLen.Location = new System.Drawing.Point(226, 16);
-            this.lblItemMinCharLen.Name = "lblItemMinCharLen";
-            this.lblItemMinCharLen.Size = new System.Drawing.Size(86, 13);
-            this.lblItemMinCharLen.TabIndex = 53;
-            this.lblItemMinCharLen.Text = "Min. char. length";
-            // 
-            // txtItemMinCharLen
-            // 
-            this.txtItemMinCharLen.Location = new System.Drawing.Point(229, 32);
-            this.txtItemMinCharLen.Name = "txtItemMinCharLen";
-            this.txtItemMinCharLen.Size = new System.Drawing.Size(73, 20);
-            this.txtItemMinCharLen.TabIndex = 52;
-            // 
-            // chbIncSpecimen
-            // 
-            this.chbIncSpecimen.AutoSize = true;
-            this.chbIncSpecimen.Location = new System.Drawing.Point(15, 252);
-            this.chbIncSpecimen.Name = "chbIncSpecimen";
-            this.chbIncSpecimen.Size = new System.Drawing.Size(144, 17);
-            this.chbIncSpecimen.TabIndex = 51;
-            this.chbIncSpecimen.Text = "Increment new specimen";
-            this.chbIncSpecimen.UseVisualStyleBackColor = true;
             // 
             // gbBooks
             // 
@@ -380,6 +285,147 @@
             this.txtBookStart.Size = new System.Drawing.Size(214, 20);
             this.txtBookStart.TabIndex = 45;
             // 
+            // chbIncSpecimen
+            // 
+            this.chbIncSpecimen.AutoSize = true;
+            this.chbIncSpecimen.Location = new System.Drawing.Point(15, 252);
+            this.chbIncSpecimen.Name = "chbIncSpecimen";
+            this.chbIncSpecimen.Size = new System.Drawing.Size(144, 17);
+            this.chbIncSpecimen.TabIndex = 51;
+            this.chbIncSpecimen.Text = "Increment new specimen";
+            this.chbIncSpecimen.UseVisualStyleBackColor = true;
+            // 
+            // gbItems
+            // 
+            this.gbItems.Controls.Add(this.lblItemMinCharLen);
+            this.gbItems.Controls.Add(this.txtItemMinCharLen);
+            this.gbItems.Controls.Add(this.lblItemSuffix);
+            this.gbItems.Controls.Add(this.lblItemPrefix);
+            this.gbItems.Controls.Add(this.txtItemSuffix);
+            this.gbItems.Controls.Add(this.txtItemPrefix);
+            this.gbItems.Controls.Add(this.lblItemStart);
+            this.gbItems.Controls.Add(this.txtItemStart);
+            this.gbItems.Location = new System.Drawing.Point(6, 88);
+            this.gbItems.Name = "gbItems";
+            this.gbItems.Size = new System.Drawing.Size(548, 76);
+            this.gbItems.TabIndex = 50;
+            this.gbItems.TabStop = false;
+            this.gbItems.Text = "Items";
+            // 
+            // lblItemMinCharLen
+            // 
+            this.lblItemMinCharLen.AutoSize = true;
+            this.lblItemMinCharLen.Location = new System.Drawing.Point(226, 16);
+            this.lblItemMinCharLen.Name = "lblItemMinCharLen";
+            this.lblItemMinCharLen.Size = new System.Drawing.Size(86, 13);
+            this.lblItemMinCharLen.TabIndex = 53;
+            this.lblItemMinCharLen.Text = "Min. char. length";
+            // 
+            // txtItemMinCharLen
+            // 
+            this.txtItemMinCharLen.Location = new System.Drawing.Point(229, 32);
+            this.txtItemMinCharLen.Name = "txtItemMinCharLen";
+            this.txtItemMinCharLen.Size = new System.Drawing.Size(73, 20);
+            this.txtItemMinCharLen.TabIndex = 52;
+            // 
+            // lblItemSuffix
+            // 
+            this.lblItemSuffix.AutoSize = true;
+            this.lblItemSuffix.Location = new System.Drawing.Point(407, 16);
+            this.lblItemSuffix.Name = "lblItemSuffix";
+            this.lblItemSuffix.Size = new System.Drawing.Size(33, 13);
+            this.lblItemSuffix.TabIndex = 49;
+            this.lblItemSuffix.Text = "Suffix";
+            // 
+            // lblItemPrefix
+            // 
+            this.lblItemPrefix.AutoSize = true;
+            this.lblItemPrefix.Location = new System.Drawing.Point(328, 16);
+            this.lblItemPrefix.Name = "lblItemPrefix";
+            this.lblItemPrefix.Size = new System.Drawing.Size(33, 13);
+            this.lblItemPrefix.TabIndex = 47;
+            this.lblItemPrefix.Text = "Prefix";
+            // 
+            // txtItemSuffix
+            // 
+            this.txtItemSuffix.Location = new System.Drawing.Point(410, 32);
+            this.txtItemSuffix.Name = "txtItemSuffix";
+            this.txtItemSuffix.Size = new System.Drawing.Size(73, 20);
+            this.txtItemSuffix.TabIndex = 48;
+            // 
+            // txtItemPrefix
+            // 
+            this.txtItemPrefix.Location = new System.Drawing.Point(331, 32);
+            this.txtItemPrefix.Name = "txtItemPrefix";
+            this.txtItemPrefix.Size = new System.Drawing.Size(73, 20);
+            this.txtItemPrefix.TabIndex = 47;
+            // 
+            // lblItemStart
+            // 
+            this.lblItemStart.AutoSize = true;
+            this.lblItemStart.Location = new System.Drawing.Point(6, 16);
+            this.lblItemStart.Name = "lblItemStart";
+            this.lblItemStart.Size = new System.Drawing.Size(132, 13);
+            this.lblItemStart.TabIndex = 46;
+            this.lblItemStart.Text = "Start inventory numbers by";
+            // 
+            // txtItemStart
+            // 
+            this.txtItemStart.Location = new System.Drawing.Point(9, 32);
+            this.txtItemStart.Name = "txtItemStart";
+            this.txtItemStart.Size = new System.Drawing.Size(214, 20);
+            this.txtItemStart.TabIndex = 45;
+            // 
+            // tabOther
+            // 
+            this.tabOther.Controls.Add(this.gbScanner);
+            this.tabOther.Location = new System.Drawing.Point(4, 22);
+            this.tabOther.Name = "tabOther";
+            this.tabOther.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOther.Size = new System.Drawing.Size(560, 382);
+            this.tabOther.TabIndex = 1;
+            this.tabOther.Text = "Other";
+            this.tabOther.UseVisualStyleBackColor = true;
+            // 
+            // cbScanCOM
+            // 
+            this.cbScanCOM.FormattingEnabled = true;
+            this.cbScanCOM.Location = new System.Drawing.Point(104, 13);
+            this.cbScanCOM.Name = "cbScanCOM";
+            this.cbScanCOM.Size = new System.Drawing.Size(61, 21);
+            this.cbScanCOM.TabIndex = 0;
+            // 
+            // lblScanCOM
+            // 
+            this.lblScanCOM.AutoSize = true;
+            this.lblScanCOM.Location = new System.Drawing.Point(6, 16);
+            this.lblScanCOM.Name = "lblScanCOM";
+            this.lblScanCOM.Size = new System.Drawing.Size(92, 13);
+            this.lblScanCOM.TabIndex = 1;
+            this.lblScanCOM.Text = "Scaner COM port:";
+            // 
+            // gbScanner
+            // 
+            this.gbScanner.Controls.Add(this.btnScanRefresh);
+            this.gbScanner.Controls.Add(this.lblScanCOM);
+            this.gbScanner.Controls.Add(this.cbScanCOM);
+            this.gbScanner.Location = new System.Drawing.Point(6, 6);
+            this.gbScanner.Name = "gbScanner";
+            this.gbScanner.Size = new System.Drawing.Size(548, 45);
+            this.gbScanner.TabIndex = 2;
+            this.gbScanner.TabStop = false;
+            this.gbScanner.Text = "Barcode scanner";
+            // 
+            // btnScanRefresh
+            // 
+            this.btnScanRefresh.Image = global::Katalog.Properties.Resources.Refresh16;
+            this.btnScanRefresh.Location = new System.Drawing.Point(171, 11);
+            this.btnScanRefresh.Name = "btnScanRefresh";
+            this.btnScanRefresh.Size = new System.Drawing.Size(26, 23);
+            this.btnScanRefresh.TabIndex = 2;
+            this.btnScanRefresh.UseVisualStyleBackColor = true;
+            this.btnScanRefresh.Click += new System.EventHandler(this.btnScanRefresh_Click);
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,10 +446,13 @@
             this.tabControl1.ResumeLayout(false);
             this.tabInvNums.ResumeLayout(false);
             this.tabInvNums.PerformLayout();
-            this.gbItems.ResumeLayout(false);
-            this.gbItems.PerformLayout();
             this.gbBooks.ResumeLayout(false);
             this.gbBooks.PerformLayout();
+            this.gbItems.ResumeLayout(false);
+            this.gbItems.PerformLayout();
+            this.tabOther.ResumeLayout(false);
+            this.gbScanner.ResumeLayout(false);
+            this.gbScanner.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -443,5 +492,9 @@
         private System.Windows.Forms.Label lblBookStart;
         private System.Windows.Forms.TextBox txtBookStart;
         private System.Windows.Forms.CheckBox chbIncSpecimen;
+        private System.Windows.Forms.GroupBox gbScanner;
+        private System.Windows.Forms.Label lblScanCOM;
+        private System.Windows.Forms.ComboBox cbScanCOM;
+        private System.Windows.Forms.Button btnScanRefresh;
     }
 }

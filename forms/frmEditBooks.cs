@@ -321,7 +321,7 @@ namespace Katalog
                 if (locs != "") locs += ";";
                 locs += Locations[i];
 
-                int maxNum = Conv.ToNumber(InvNumbers[i]);
+                long maxNum = Conv.ToNumber(InvNumbers[i]);
                 if (maxNum > MaxInvNumbers.Book) MaxInvNumbers.Book = maxNum;
             }
             book.InventoryNumber = invNums;
@@ -339,12 +339,7 @@ namespace Katalog
             book.FastTags = fastTag;
         }
 
-        /// <summary>
-        /// Button OK
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOk_Click(object sender, EventArgs e)
+        private void SaveItem()
         {
             Books book;
 
@@ -365,7 +360,8 @@ namespace Katalog
             if (ID != Guid.Empty)
             {
                 book = db.Books.Find(ID);
-            } else
+            }
+            else
             {
                 book = new Books();
                 book.Id = Guid.NewGuid();
@@ -377,9 +373,34 @@ namespace Katalog
             // ----- Update database -----
             if (ID == Guid.Empty) db.Books.Add(book);
             db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Button OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            // ----- Save to DB -----
+            SaveItem();
 
             // ----- Exit -----
             this.DialogResult = DialogResult.OK;
+        }
+
+        /// <summary>
+        /// Button Save - New
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveNew_Click(object sender, EventArgs e)
+        {
+            // ----- Save to DB -----
+            SaveItem();
+
+            // ----- Exit -----
+            this.DialogResult = DialogResult.Yes;
         }
 
         #endregion
@@ -903,5 +924,6 @@ namespace Katalog
 
             return list;
         }
+
     }
 }

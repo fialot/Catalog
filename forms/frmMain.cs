@@ -21,8 +21,6 @@ namespace Katalog
 {
     public partial class frmMain : Form
     {
-        databaseEntities db = new databaseEntities();
-
         #region Constructor
 
         public frmMain()
@@ -91,22 +89,7 @@ namespace Katalog
         {
             EnableEditItems();
         }
-
-        /// <summary>
-        /// Edit Item
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void olvContacts_DoubleClick(object sender, EventArgs e)
-        {
-            if (olvContacts.SelectedIndex >= 0)
-            {
-                frmEditContacts form = new frmEditContacts();
-                form.ShowDialog(((Contacts)olvContacts.SelectedObject).Id);
-                UpdateConOLV();
-            }
-        }
-
+        
         #endregion
 
         #region Borrowing
@@ -137,11 +120,36 @@ namespace Katalog
             databaseEntities db = new databaseEntities();
 
             List<Borrowing> borr;
-
-            if (chbShowReturned.Checked)
-                borr = db.Borrowing.ToList();
+            // ----- Show Expired -----
+            if (cbBorrShow.SelectedIndex == 1)
+            {
+                DateTime now = DateTime.Now;
+                borr = db.Borrowing.Where(p => ((p.To ?? now) < DateTime.Now) && (p.Status ?? 1) != 2).ToList();
+            }
+            // ----- Show Borrowed -----
+            else if (cbBorrShow.SelectedIndex == 2)
+            {
+                if (chbShowReturned.Checked)
+                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 1 || (p.Status ?? 1) == 2)).ToList();
+                else
+                    borr = db.Borrowing.Where(p => (p.Status ?? 1) == 1).ToList();
+            }
+            // ----- Show Reserved -----
+            else if (cbBorrShow.SelectedIndex == 3)
+            {
+                if (chbShowReturned.Checked)
+                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 2)).ToList();
+                else
+                    borr = db.Borrowing.Where(p => (p.Status ?? 1) == 0).ToList();
+            }
+            // ----- Show All -----
             else
-                borr = db.Borrowing.Where(p => (p.Status ?? 1) != 2).ToList();
+            {
+                if (chbShowReturned.Checked)
+                    borr = db.Borrowing.ToList();
+                else
+                    borr = db.Borrowing.Where(p => (p.Status ?? 1) != 2).ToList();
+            }
 
             
             brPerson.AspectGetter = delegate (object x) {
@@ -185,7 +193,7 @@ namespace Katalog
                 if (status == 2)        // Returned
                     return 6;
                 else if (status == 0)   // Reserved
-                    return 7;
+                    return 9;
                 else return 7;          // Borrowed
             };
             brStatus.AspectGetter = delegate (object x) {
@@ -211,21 +219,20 @@ namespace Katalog
         }
 
         /// <summary>
-        /// Edit Item
+        /// Color Row
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvBorrowing_DoubleClick(object sender, EventArgs e)
+        private void olvBorrowing_FormatRow(object sender, FormatRowEventArgs e)
         {
-            if (olvBorrowing.SelectedIndex >= 0)
-            {
-                frmEditBorrowing form = new frmEditBorrowing();
-                form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).ID);
-                UpdateBorrOLV();
-                UpdateConOLV();
-                UpdateItemsOLV();
-                UpdateBooksOLV();
-            }
+            Borrowing itm = (Borrowing)e.Model;
+            DateTime now = DateTime.Now;
+            if (itm.Status == 2)
+                e.Item.ForeColor = Color.Gray;
+            else if ((itm.To ?? now) < now )
+                e.Item.ForeColor = Color.Red;
+            else
+                e.Item.ForeColor = Color.Black;
         }
 
         /// <summary>
@@ -314,20 +321,6 @@ namespace Katalog
             EnableEditItems();
         }
 
-        /// <summary>
-        /// Edit Item
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void olvItem_DoubleClick(object sender, EventArgs e)
-        {
-            if (olvItem.SelectedIndex >= 0)
-            {
-                frmEditItem form = new frmEditItem();
-                form.ShowDialog(((Items)olvItem.SelectedObject).Id);
-                UpdateItemsOLV();
-            }
-        }
 
         /// <summary>
         /// Color Row
@@ -443,20 +436,20 @@ namespace Katalog
         }
 
         /// <summary>
-        /// Edit Item
+        /// Color Row
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvBooks_DoubleClick(object sender, EventArgs e)
+        private void olvBooks_FormatRow(object sender, FormatRowEventArgs e)
         {
-            if (olvBooks.SelectedIndex >= 0)
-            {
-                frmEditBooks form = new frmEditBooks();
-                form.ShowDialog(((Books)olvBooks.SelectedObject).Id);
-                UpdateBooksOLV();
-            }
+            Books itm = (Books)e.Model;
+            if (itm.Available == 0)
+                e.Item.ForeColor = Color.Red;
+            else
+                e.Item.ForeColor = Color.Black;
         }
-        
+
+
         #endregion
 
 
@@ -494,39 +487,215 @@ namespace Katalog
         }
 
         /// <summary>
+        /// Show Add New Item Form
+        /// </summary>
+        private void NewItem()
+        {
+            // ----- Contact -----
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                frmEditContacts form = new frmEditContacts();
+                var res = form.ShowDialog();                    // Show Edit form
+                while (res == DialogResult.Yes)                 // If New item request
+                {
+                    form.Dispose();
+                    form = new frmEditContacts();               // New Form
+                    res = form.ShowDialog();                    // Show new Edit form
+                }
+                UpdateConOLV();                                 // Update Contact OLV
+            }
+            // ----- Borrowing -----
+            else if (tabCatalog.SelectedTab == tabBorrowing)
+            {
+                frmEditBorrowing form = new frmEditBorrowing();
+                var res = form.ShowDialog();                    // Show Edit form
+                while (res == DialogResult.Yes)                 // If New item request
+                {
+                    form.Dispose();
+                    form = new frmEditBorrowing();              // New Form
+                    res = form.ShowDialog();                    // Show new Edit form
+                } 
+                UpdateBorrOLV();                                // Update Borrowing OLV
+                UpdateConOLV();                                 // Update Contact OLV
+                UpdateItemsOLV();                               // Update Items OLV
+                UpdateBooksOLV();                               // Update Books OLV
+            }
+            // ----- Item -----
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                frmEditItem form = new frmEditItem();
+                var res = form.ShowDialog();                    // Show Edit form
+                while (res == DialogResult.Yes)                 // If New item request
+                {
+                    form.Dispose();
+                    form = new frmEditItem();                   // New Form
+                    res = form.ShowDialog();                    // Show new Edit form
+                }
+                UpdateItemsOLV();                               // Update Items OLV
+            }
+            // ----- Book -----
+            else if (tabCatalog.SelectedTab == tabBooks)
+            {
+                frmEditBooks form = new frmEditBooks();
+                var res = form.ShowDialog();                    // Show Edit form
+                while (res == DialogResult.Yes)                 // If New item request
+                {
+                    form.Dispose();
+                    form = new frmEditBooks();                  // New Form
+                    res = form.ShowDialog();                    // Show new Edit form
+                }
+                UpdateBooksOLV();                               // Update Books OLV
+            }
+        }
+
+        /// <summary>
+        /// Show Edit Item Form
+        /// </summary>
+        private void EditItem()
+        {
+            // ----- Contact -----
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+                {
+                    frmEditContacts form = new frmEditContacts();   // Show Edit form
+                    var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).Id);
+                    while (res == DialogResult.Yes)                 // If New item request
+                    {
+                        form.Dispose();
+                        form = new frmEditContacts();               // New Form
+                        res = form.ShowDialog();                    // Show new Edit form
+                    }
+                    UpdateConOLV();                                 // Update Contact OLV
+                }
+            }
+            // ----- Borrowing -----
+            else if (tabCatalog.SelectedTab == tabBorrowing)
+            {
+                if (olvBorrowing.SelectedIndex >= 0)                // If selected Item
+                {
+                    frmEditBorrowing form = new frmEditBorrowing(); // Show Edit form
+                    var res = form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).ID);
+                    while (res == DialogResult.Yes)                 // If New item request
+                    {
+                        form.Dispose();
+                        form = new frmEditBorrowing();              // New Form
+                        res = form.ShowDialog();                    // Show new Edit form
+                    }
+                    UpdateBorrOLV();                                // Update Borrowing OLV
+                }
+            }
+            // ----- Item -----
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                if (olvItem.SelectedIndex >= 0)                     // If selected Item
+                {
+                    frmEditItem form = new frmEditItem();           // Show Edit form
+                    var res = form.ShowDialog(((Items)olvItem.SelectedObject).Id);
+                    while (res == DialogResult.Yes)                 // If New item request
+                    {
+                        form.Dispose();
+                        form = new frmEditItem();                   // New Form
+                        res = form.ShowDialog();                    // Show new Edit form
+                    }
+                    UpdateItemsOLV();                               // Update Items OLV
+                }
+            }
+            // ----- Book -----
+            else if (tabCatalog.SelectedTab == tabBooks)
+            {
+                if (olvBooks.SelectedIndex >= 0)                    // If selected Item
+                {
+                    frmEditBooks form = new frmEditBooks();         // Show Edit form
+                    var res = form.ShowDialog(((Books)olvBooks.SelectedObject).Id);
+                    while (res == DialogResult.Yes)                 // If New item request
+                    {
+                        form.Dispose();
+                        form = new frmEditBooks();                  // New Form
+                        res = form.ShowDialog();                    // Show new Edit form
+                    }
+                    UpdateBooksOLV();                               // Update Books OLV
+                }
+            }
+        }
+
+        /// <summary>
+        /// Delete Item
+        /// </summary>
+        private void DeleteItem()
+        {
+            databaseEntities db = new databaseEntities();
+
+            // ----- Contact -----
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+                {                                                   // Find Object
+                    Contacts contact = db.Contacts.Find(((Contacts)olvContacts.SelectedObject).Id);
+
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + contact.Name.Trim() + " " + contact.Surname.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    {
+                        db.Contacts.Remove(contact);                // Delete Item
+                        db.SaveChanges();                           // Save to DB
+                        UpdateConOLV();                             // Update Contacts OLV 
+                    }
+                }
+            }
+            // ----- Borrowing -----
+            else if (tabCatalog.SelectedTab == tabBorrowing)
+            {
+                if (olvBorrowing.SelectedIndex >= 0)                // If selected Item
+                {                                                   // Find Object
+                    Borrowing borr = db.Borrowing.Find(((Borrowing)olvBorrowing.SelectedObject).ID);
+
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetBorrItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    {
+                        db.Borrowing.Remove(borr);                  // Delete Item
+                        db.SaveChanges();                           // Save to DB
+                        UpdateBorrOLV();                            // Update Borrowing OLV 
+                    }
+                }
+            }
+            // ----- Item -----
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                if (olvItem.SelectedIndex >= 0)                     // If selected Item
+                {                                                   // Find Object
+                    Items itm = db.Items.Find(((Items)olvItem.SelectedObject).Id);
+
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + itm.Name.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    {
+                        db.Items.Remove(itm);                       // Delete Item
+                        db.SaveChanges();                           // Save to DB
+                        UpdateItemsOLV();                           // Update Items OLV 
+                    }
+                }
+            }
+            // ----- Book -----
+            else if (tabCatalog.SelectedTab == tabBooks)
+            {
+                if (olvBooks.SelectedIndex >= 0)                    // If selected Item
+                {                                                   // Find Object
+                    Books book = db.Books.Find(((Books)olvBooks.SelectedObject).Id);
+
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + book.Title.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    {
+                        db.Books.Remove(book);                      // Delete Item
+                        db.SaveChanges();                           // Save to DB
+                        UpdateBooksOLV();                           // Update Books OLV                   
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Button New Item
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNewItem_Click(object sender, EventArgs e)
         {
-            if (tabCatalog.SelectedTab == tabContacts)
-            {
-                frmEditContacts form = new frmEditContacts();
-                form.ShowDialog();
-                UpdateConOLV();
-            }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
-            {
-                frmEditBorrowing form = new frmEditBorrowing();
-                form.ShowDialog();
-                UpdateBorrOLV();
-                UpdateConOLV();
-                UpdateItemsOLV();
-                UpdateBooksOLV();
-            }
-            else if (tabCatalog.SelectedTab == tabItems)
-            {
-                frmEditItem form = new frmEditItem();
-                form.ShowDialog();
-                UpdateItemsOLV();
-            }
-            else if (tabCatalog.SelectedTab == tabBooks)
-            {
-                frmEditBooks form = new frmEditBooks();
-                form.ShowDialog();
-                UpdateBooksOLV();
-            } 
+            NewItem();
         }
 
         /// <summary>
@@ -536,43 +705,7 @@ namespace Katalog
         /// <param name="e"></param>
         private void btnEditItem_Click(object sender, EventArgs e)
         {
-            if (tabCatalog.SelectedTab == tabContacts)
-            {
-                if (olvContacts.SelectedIndex >= 0)
-                {
-                    frmEditContacts form = new frmEditContacts();
-                    form.ShowDialog(((Contacts)olvContacts.SelectedObject).Id);
-                    UpdateConOLV();
-                }
-                
-            }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
-            {
-                if (olvBorrowing.SelectedIndex >= 0)
-                {
-                    frmEditBorrowing form = new frmEditBorrowing();
-                    form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).ID);
-                    UpdateBorrOLV();
-                }
-            }
-            else if (tabCatalog.SelectedTab == tabItems)
-            {
-                if (olvItem.SelectedIndex >= 0)
-                {
-                    frmEditItem form = new frmEditItem();
-                    form.ShowDialog(((Items)olvItem.SelectedObject).Id);
-                    UpdateItemsOLV();
-                }
-            }
-            else if (tabCatalog.SelectedTab == tabBooks)
-            {
-                if (olvBooks.SelectedIndex >= 0)
-                {
-                    frmEditBooks form = new frmEditBooks();
-                    form.ShowDialog(((Books)olvBooks.SelectedObject).Id);
-                    UpdateBooksOLV();
-                }
-            }
+            EditItem();
         }
 
         /// <summary>
@@ -582,65 +715,7 @@ namespace Katalog
         /// <param name="e"></param>
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
-            databaseEntities db = new databaseEntities();
-
-            if (tabCatalog.SelectedTab == tabContacts)
-            {
-                if (olvContacts.SelectedIndex >= 0)
-                {
-                    Contacts contact = db.Contacts.Find(((Contacts)olvContacts.SelectedObject).Id);
-
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + contact.Name.Trim() + " " + contact.Surname.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
-                    {
-                        db.Contacts.Remove(contact);
-                        db.SaveChanges();
-                        UpdateConOLV();
-                    }
-                }
-            }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
-            {
-                if (olvBorrowing.SelectedIndex >= 0)
-                {
-                    Borrowing borr = db.Borrowing.Find(((Borrowing)olvBorrowing.SelectedObject).ID);
-
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetBorrItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
-                    {
-                        db.Borrowing.Remove(borr);
-                        db.SaveChanges();
-                        UpdateBorrOLV();
-                    }
-                }
-            }
-            else if (tabCatalog.SelectedTab == tabItems)
-            {
-                if (olvItem.SelectedIndex >= 0)
-                {
-                    Items itm = db.Items.Find(((Items)olvItem.SelectedObject).Id);
-
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + itm.Name.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
-                    {
-                        db.Items.Remove(itm);
-                        db.SaveChanges();
-                        UpdateItemsOLV();
-                    }
-                }
-            }
-
-            else if (tabCatalog.SelectedTab == tabBooks)
-            {
-                if (olvBooks.SelectedIndex >= 0)
-                {
-                    Books book = db.Books.Find(((Books)olvBooks.SelectedObject).Id);
-
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + book.Title.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
-                    {
-                        db.Books.Remove(book);
-                        db.SaveChanges();
-                        UpdateBooksOLV();
-                    }
-                }
-            }
+            DeleteItem();
         }
 
         #endregion
@@ -1551,6 +1626,20 @@ namespace Katalog
 
         #endregion
 
+        private void PrepareForm()
+        {
+            cbBorrShow.Items.Add(Lng.Get("All"));
+            cbBorrShow.Items.Add(Lng.Get("Expired"));
+            cbBorrShow.Items.Add(Lng.Get("Borrowed"));
+            cbBorrShow.Items.Add(Lng.Get("Reserved"));
+            cbBorrShow.SelectedIndex = 0;
+        }
+
+        private void cbBorrShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateBorrOLV();
+        }
+
         private void mnuAbout_Click(object sender, EventArgs e)
         {
             frmAbout formAbout = new frmAbout();
@@ -1558,9 +1647,9 @@ namespace Katalog
         }
 
 
-        private int GetMaxNum(List<string> list)
+        private long GetMaxNum(List<string> list)
         {
-            int num = 0;
+            long num = 0;
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] != null)
@@ -1568,7 +1657,7 @@ namespace Katalog
                     string[] separate = list[i].Trim().Split(new string[] { ";" }, StringSplitOptions.None);
                     for (int j = 0; j < separate.Length; j++)
                     {
-                        int value = Conv.ToNumber(separate[j]);
+                        long value = Conv.ToNumber(separate[j]);
                         if (num < value) num = value;
                     }
                 }
@@ -1579,6 +1668,8 @@ namespace Katalog
 
         private void CheckMaxInvNums()
         {
+            databaseEntities db = new databaseEntities();
+
             var list = db.Contacts.Select(u => u.code).ToList();
             MaxInvNumbers.Contact = GetMaxNum(list);
             list = db.Items.Select(u => u.InventoryNumber).ToList();
@@ -1589,6 +1680,8 @@ namespace Katalog
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            PrepareForm();
+
             UpdateConOLV();
             UpdateBorrOLV();
             UpdateItemsOLV();
@@ -1628,5 +1721,6 @@ namespace Katalog
 
 
         }
+
     }
 }

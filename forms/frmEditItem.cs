@@ -265,7 +265,7 @@ namespace Katalog
                 if (locs != "") locs += ";";
                 locs += Locations[i];
 
-                int maxNum = Conv.ToNumber(InvNumbers[i]);
+                long maxNum = Conv.ToNumber(InvNumbers[i]);
                 if (maxNum > MaxInvNumbers.Item) MaxInvNumbers.Item = maxNum;
             }
             itm.InventoryNumber = invNums;
@@ -286,12 +286,7 @@ namespace Katalog
             itm.Updated = DateTime.Now;
         }
 
-        /// <summary>
-        /// Button OK
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOk_Click(object sender, EventArgs e)
+        private void SaveItem()
         {
             Items itm;
 
@@ -309,7 +304,7 @@ namespace Katalog
             }
 
             // ----- ID -----
-                if (ID != Guid.Empty)
+            if (ID != Guid.Empty)
             {
                 itm = db.Items.Find(ID);
             }
@@ -325,9 +320,34 @@ namespace Katalog
             // ----- Update database -----
             if (ID == Guid.Empty) db.Items.Add(itm);
             db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Button OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            // ----- Save to DB -----
+            SaveItem();
 
             // ----- Exit -----
             this.DialogResult = DialogResult.OK;
+        }
+
+        /// <summary>
+        /// Button Save - New
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveNew_Click(object sender, EventArgs e)
+        {
+            // ----- Save to DB -----
+            SaveItem();
+
+            // ----- Exit -----
+            this.DialogResult = DialogResult.Yes;
         }
 
         #endregion
@@ -465,5 +485,6 @@ namespace Katalog
                 txtLocation.Text = dialog.FileName;
             }
         }
+
     }
 }

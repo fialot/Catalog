@@ -9,32 +9,64 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using myFunctions;
+using Communications;
+using TCPClient;
 
 namespace Katalog
 {
-
     public partial class frmEditBorrowing : Form
     {
-        databaseEntities db = new databaseEntities();
-        Guid ID = Guid.Empty;
+        #region Variables
+
+        List<Guid> ID = new List<Guid>();
         Guid LastItemGuid = Guid.Empty;
         Guid ItemGuid = Guid.Empty;
         Guid PersonGuid = Guid.Empty;
         string ItemInvNum = "";
 
-        List<CInfo> contList = new List<CInfo>();
-        List<IInfo> itemList = new List<IInfo>();
+        List<CInfo> contList = new List<CInfo>();           // Contact list
+        List<IInfo> itemList = new List<IInfo>();           // Item list
+
+        List<IInfo> selItemList = new List<IInfo>();        // Selected Item List
+        List<IInfo> origItemList = new List<IInfo>();       // Item list befor change
+        Communication com = new Communication();
+        string Barcode = "";
+
+        public delegate void MyDelegate(comStatus status);
+
+        #endregion
+
+        #region Constructor
 
         public frmEditBorrowing()
         {
             InitializeComponent();
         }
-                
-        public DialogResult ShowDialog(Guid ID)
+
+        #endregion
+
+        #region Functions
+
+        /// <summary>
+        /// Fing other borrowings to fill Item list
+        /// </summary>
+        /// <param name="ID">Main ID</param>
+        /// <returns></returns>
+        private List<Guid> FindOtherBorrowings(Guid ID)
         {
-            this.ID = ID;
-            return base.ShowDialog();
+            databaseEntities db = new databaseEntities();
+
+            List<Guid> list = new List<Guid>();
+
+            Borrowing borr = db.Borrowing.Find(ID);
+            if (borr != null)
+            {
+                list = db.Borrowing.Where(x => x.PersonID == borr.PersonID && x.Status == borr.Status && x.From == borr.From && x.To == borr.To).Select(x => x.ID).ToList();
+            }
+
+            return list;
         }
+
 
         private void FindPerson()
         {
@@ -51,6 +83,43 @@ namespace Katalog
             }
         }
 
+
+        private Guid FindPersonByCode(string code)
+        {
+            long iCode = Conv.ToNumber(code);
+            long num = -1;
+            foreach (var item in contList)
+            {
+                num = Conv.ToNumber(item.PersonalNum);
+                if (num == iCode || num == iCode / 10)
+                {
+                    return item.ID;
+                }
+            }
+            return Guid.Empty;
+        }
+
+
+        private Guid FindItemByCode(string code, out ItemTypes type)
+        {
+            long iCode = Conv.ToNumber(code);
+            long num = -1;
+            type = ItemTypes.item;
+
+            foreach (var item in itemList)
+            {
+                num = Conv.ToNumber(item.InvNum);
+                if (num == iCode || num == iCode / 10)
+                {
+                    type = (ItemTypes)cbItemType.SelectedIndex;
+                    return item.ID;
+                }
+            }
+            
+            return Guid.Empty;
+        }
+
+
         private void FindItem()
         {
             //PersonGuid = Guid.Empty;
@@ -66,35 +135,89 @@ namespace Katalog
             }
         }
 
-        private void FillBorr(ref Borrowing borr)
+        private List<IInfo> CreateCountList()
         {
-            if (cbItemType.SelectedIndex == 0)
-                borr.ItemType = "item";
-            else if (cbItemType.SelectedIndex == 1)
-                borr.ItemType = "book";
+            List<IInfo> list = new List<IInfo>();
 
-            borr.ItemID = ItemGuid;
-            borr.ItemNum = Conv.ToShortNull(cbItemNum.Text);
-            borr.ItemInvNum = ItemInvNum;
-            borr.PersonID = PersonGuid;
+            // selItemList
+            foreach (var item in selItemList)
+            {
+                bool find = false;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].ID == item.ID)
+                    {
+                        IInfo x = list[i];
+                        x.Count++;
+                        list.RemoveAt(i);
+                        list.Insert(i, x);
+                        find = true;
+                        break;
+                    }
+                }
+                if (!find)
+                {
+                    IInfo x = item;
+                    x.Count = 1;
+                    list.Add(x);
+                }
+            }
 
-            borr.From = dtFrom.Value;
-            borr.To = dtTo.Value;
-            borr.Status = (short)cbStatus.SelectedIndex;
+            foreach (var item in origItemList)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].ID == item.ID)
+                    {
+                        IInfo x = list[i];
+                        x.Count--;
+                        list.RemoveAt(i);
+                        list.Insert(i, x);
+                        break;
+                    }
+                }
+            }
 
+            return list;
+        }
+
+        private List<IInfo> RemoveUsed(List<IInfo> list)
+        {
+            List<IInfo> counts = CreateCountList();
+
+            for (int j = list.Count-1; j >= 0 ; j--)
+            {
+                for (int i = 0; i < counts.Count; i++)
+                {
+                    if(counts[i].ID == list[j].ID)
+                    {
+                        if (list[j].Available <= counts[i].Count)
+                        {
+                            list.Remove(list[j]);
+                            break;
+                        }
+                            
+                    }
+                }
+            }
+            return list;
         }
 
         private void SetItemsContext()
         {
+            databaseEntities db = new databaseEntities();
+
             txtItem.AutoCompleteCustomSource.Clear();
 
             if (cbItemType.SelectedIndex == 0)
             {
-                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1}).ToList();
+                itemList = RemoveUsed(itemList);
             }
             else if (cbItemType.SelectedIndex == 1)
             {
-                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (short)(x.Count ?? 1), Count = (short)(x.Count ?? 1) }).ToList();
+                itemList = RemoveUsed(itemList);
             }
 
             for (int i = 0; i < itemList.Count; i++)
@@ -105,6 +228,8 @@ namespace Katalog
 
         private void SetContactsContext()
         {
+            databaseEntities db = new databaseEntities();
+
             contList = db.Contacts.Where(x => x.Active ?? true).Select(x => new CInfo { ID = x.Id, Name = x.Name.Trim(), Surname = x.Surname.Trim(), PersonalNum = x.code.Trim() }).ToList();
             for (int i = 0; i < contList.Count; i++)
             {
@@ -113,8 +238,73 @@ namespace Katalog
             }
         }
 
+        private void UpdateOLV()
+        {
+
+            itName.AspectGetter = delegate (object x) {
+                return ((IInfo)x).Name.Trim();
+            };
+            itInvNum.AspectGetter = delegate (object x) {
+                return ((IInfo)x).InvNum.Trim();
+            };
+            itNumber.AspectGetter = delegate (object x) {
+                return ((IInfo)x).ItemNum;
+            };
+
+            olvItem.SetObjects(selItemList);
+        }
+
+        private void RefreshAvailableItems(List<IInfo> list)
+        {
+            databaseEntities db = new databaseEntities();
+            List<short?> borr = new List<short?>();
+
+            foreach (var itm in list)
+            {
+                borr = db.Borrowing.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.item.ToString()) && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
+
+                if (itm.ItemType == ItemTypes.item)
+                {
+                    Items item = db.Items.Find(itm.ID);
+                    item.Available = (short)((item.Count ?? 1) - borr.Count);
+                }
+                else if (itm.ItemType == ItemTypes.book)
+                {
+                    Books book = db.Books.Find(itm.ID);
+                    book.Available = (short)((book.Count ?? 1) - borr.Count);
+                }
+            }
+            db.SaveChanges();
+        }
+
+        #endregion
+
+        #region Load Form
+
+        public DialogResult ShowDialog(Guid ID)
+        {
+            this.ID = FindOtherBorrowings(ID);
+            return base.ShowDialog();
+        }
+
+        public DialogResult ShowDialog(List<Guid> ID)
+        {
+            this.ID = ID;
+            return base.ShowDialog();
+        }
+
         private void frmEditBorrowing_Load(object sender, EventArgs e)
         {
+            databaseEntities db = new databaseEntities();
+
+            com.ReceivedData += new ReceivedEventHandler(DataReceive);
+            try
+            {
+                com.ConnectSP(Properties.Settings.Default.scanCOM);
+            }
+            catch { }
+            
+
             cbStatus.Items.Clear();
             cbStatus.Items.Add(Lng.Get("Reserved"));
             cbStatus.Items.Add(Lng.Get("Borrowed"));
@@ -132,44 +322,23 @@ namespace Katalog
             dtFrom.Value = DateTime.Now;
             dtTo.Value = DateTime.Now.AddDays(Properties.Settings.Default.DefaultBorrInterval);
 
-            if (ID != Guid.Empty)
+            if (ID.Count > 0)
             {
-                Borrowing borr = db.Borrowing.Find(ID);
+                Borrowing borr = new Borrowing();
 
-                switch (borr.ItemType.Trim())
+                foreach (var itm in ID)
                 {
-                    case "item":
-                        cbItemType.SelectedIndex = 0;
-                        break;
-                    case "book":
-                        cbItemType.SelectedIndex = 1;
-                        break;
+                    borr = db.Borrowing.Find(itm);
+
+                    IInfo info = GetInfo(borr.ItemID ?? Guid.Empty, (ItemTypes)Enum.Parse(typeof(ItemTypes), borr.ItemType, true), borr.ItemNum ?? 1);
+                    selItemList.Add(info);
+                    origItemList.Add(info);
                 }
 
-                
-
-                if (cbItemType.SelectedIndex == 0)
-                {
-                    Items itm = db.Items.Find(borr.ItemID);
-                    if (itm != null)
-                    {
-                        txtItem.Text = itm.Name.Trim();
-                    }
-                }
-                else if (cbItemType.SelectedIndex == 1)
-                {
-                    Books book = db.Books.Find(borr.ItemID);
-                    
-                    if (book != null)
-                    {
-                        txtItem.Text = book.Title.Trim();
-                    }
-                }
 
                 // ----- Fill Inventory number
-                ItemGuid = borr.ItemID ?? Guid.Empty;
                 FillInventoryNumber();
-                cbItemNum.Text = (borr.ItemNum ?? 1).ToString();
+                //cbItemNum.Text = (borr.ItemNum ?? 1).ToString();
 
                 Contacts person = db.Contacts.Find(borr.PersonID);
                 if (person != null)
@@ -177,7 +346,7 @@ namespace Katalog
                     txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
                     lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
                 }
-                    
+
 
                 dtFrom.Value = borr.From ?? DateTime.Now;
                 dtTo.Value = borr.To ?? DateTime.Now;
@@ -186,34 +355,32 @@ namespace Katalog
                 ItemGuid = borr.ItemID ?? Guid.Empty;
                 LastItemGuid = ItemGuid;
                 PersonGuid = borr.PersonID ?? Guid.Empty;
+
+                UpdateOLV();
             }
         }
 
-        private void RefreshAvailableItems()
+        #endregion
+
+        #region Close Form
+
+        private void FillBorr(ref Borrowing borr, IInfo item)
         {
-            List<short?> borr = new List<short?>();
+            borr.ItemType = item.ItemType.ToString();
+            borr.ItemID = item.ID;
+            borr.ItemNum = (short)item.ItemNum;
+            borr.ItemInvNum = item.InvNum;
 
-            if (cbItemType.SelectedIndex == 0)
-            {
-                borr = db.Borrowing.Where(p => (p.ItemID == ItemGuid) && p.ItemType.Contains("item") && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
-                Items itm = db.Items.Find(ItemGuid);
-                itm.Available = (short)((itm.Count ?? 1) -borr.Count);
-                db.SaveChanges();
-            }
-            else if (cbItemType.SelectedIndex == 1)
-            {
-                borr = db.Borrowing.Where(p => (p.ItemID == ItemGuid) && p.ItemType.Contains("book") && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
-                Books itm = db.Books.Find(ItemGuid);
-                itm.Available = (short)((itm.Count ?? 1) - borr.Count);
-                db.SaveChanges();
-            }
-
+            borr.PersonID = PersonGuid;
+            borr.From = dtFrom.Value;
+            borr.To = dtTo.Value;
+            borr.Status = (short)cbStatus.SelectedIndex;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
             FindPerson();
-            FindItem();
+
 
             if (PersonGuid == Guid.Empty)
             {
@@ -221,47 +388,59 @@ namespace Katalog
                 return;
             }
 
-            if (ItemGuid == Guid.Empty)
+            if (selItemList.Count == 0)
             {
                 Dialogs.ShowWar(Lng.Get("NoSelItem", "Not selected item!"), Lng.Get("Warning"));
                 return;
             }
-
-            if (Conv.ToIntDef(cbItemNum.Text,0) == 0)
-            {
-                Dialogs.ShowWar(Lng.Get("NoSelItemNum", "Not selected item number!"), Lng.Get("Warning"));
-                return;
-            }
-
+            
             databaseEntities db = new databaseEntities();
 
             Borrowing borr;
 
-            // ----- ID -----
-            if (ID != Guid.Empty)
+            // ----- Delete old data -----
+            if (ID.Count > 0)
             {
-                borr = db.Borrowing.Find(ID);
+                foreach (var itm in ID)
+                {
+                    borr = db.Borrowing.Find(itm);
+                    db.Borrowing.Remove(borr);
+                }
+                db.SaveChanges();
             }
-            else
+
+            // ----- Create new
+            foreach (var itm in selItemList)
             {
                 borr = new Borrowing();
                 borr.ID = Guid.NewGuid();
+                FillBorr(ref borr, itm);
+                db.Borrowing.Add(borr);
             }
-
-            FillBorr(ref borr);
-
-            if (ID == Guid.Empty) db.Borrowing.Add(borr);
             db.SaveChanges();
 
-            RefreshAvailableItems();
-            
+            RefreshAvailableItems(selItemList);
+
+            com.Close();
 
             this.DialogResult = DialogResult.OK;
+
+        }
+        
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            com.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
-        
+        #endregion
+
+        #region Person
+
         private void txtPerson_TextChanged(object sender, EventArgs e)
         {
+            databaseEntities db = new databaseEntities();
+
             PersonGuid = Guid.Empty;
             FindPerson();
             if (PersonGuid != Guid.Empty)
@@ -274,8 +453,32 @@ namespace Katalog
             }
         }
 
+
+        private void btnAddPerson_Click(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+
+            Guid ID;
+            frmEditContacts form = new frmEditContacts();
+            form.ShowDialog(out ID);
+
+            Contacts person = db.Contacts.Find(ID);
+            if (person != null)
+            {
+                txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
+                PersonGuid = ID;
+                lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
+            }
+        }
+
+        #endregion
+
+        #region Item 
+
         private void FillInventoryNumber()
         {
+            databaseEntities db = new databaseEntities();
+
             if (ItemGuid != Guid.Empty)
             {
                 List<IInfo> itm = new List<IInfo>();
@@ -286,7 +489,7 @@ namespace Katalog
                 }
                 else if (cbItemType.SelectedIndex == 1)
                 {
-                    itm = db.Books.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = (int)(x.Count ?? 1) }).ToList();
+                    itm = db.Books.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = (short)(x.Count ?? 1) }).ToList();
                 }
 
                 if (itm.Count == 1)
@@ -319,12 +522,30 @@ namespace Katalog
             }
         }
 
+        private List<int> RemoveSelectedItemNums(List<int> list)
+        {
+            foreach(var item in selItemList)
+            {
+                if (item.ID == ItemGuid)
+                {
+                    for (int i = list.Count - 1; i >= 0; i--)
+                    {
+                        if (list[i] == item.ItemNum)
+                            list.RemoveAt(i);
+                    }
+                }
+            }
+            return list;
+        }
+
         private List<int> GetItemNums(IInfo itm)
         {
+            databaseEntities db = new databaseEntities();
+
             List<int> res = new List<int>();
 
-            var borr = db.Borrowing.Where(x => (x.ID != ID) && (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
-
+            var borr = db.Borrowing.Where(x => (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
+            //var borr = db.Borrowing.Where(x => x.ItemNum.ToString().Any(x.ID != ID) && (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
             int Count = itm.Count;
 
             for (int i = 1; i <= Count; i++)
@@ -335,6 +556,7 @@ namespace Katalog
                 if (!find)
                     res.Add(i);
             }
+            res = RemoveSelectedItemNums(res);
             return res;
         }
 
@@ -354,29 +576,187 @@ namespace Katalog
             txtItem.Text = "";
             txtItem.Focus();
         }
-
-        private void btnAddPerson_Click(object sender, EventArgs e)
-        {
-            Guid ID;
-            frmEditContacts form = new frmEditContacts();
-            form.ShowDialog(out ID);
-
-            Contacts person = db.Contacts.Find(ID);
-            if (person != null)
-            {
-                txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
-                PersonGuid = ID;
-                lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
-            }
-        }
-
+        
         private void cbItemNum_SelectedIndexChanged(object sender, EventArgs e)
         {
             LastItemGuid = ItemGuid;
             FillInventoryNumber();
         }
-        
+
+
+        /// <summary>
+        /// Get Item info from DB
+        /// </summary>
+        /// <param name="ID">Item ID</param>
+        /// <param name="type">Item type (Item, Book...)</param>
+        /// <param name="ItemNum">Select Item Number</param>
+        /// <returns></returns>
+        private IInfo GetInfo(Guid ID, ItemTypes type, int ItemNum)
+        {
+            databaseEntities db = new databaseEntities();
+
+            IInfo newItem = new IInfo();
+            List<IInfo> list = null;
+
+            // ----- Items -----
+            if (type == ItemTypes.item)
+            {
+                Items itm = db.Items.Find(ID);          // Find Item
+                if (itm != null)
+                {
+                    list = db.Items.Where(x => x.Id == ID).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                }
+            }
+            // ----- Books -----
+            else if (type == ItemTypes.book)
+            {
+                Books book = db.Books.Find(ID);         // Find Book
+                if (book != null)
+                {
+                    list = db.Books.Where(x => x.Id == ID).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                }
+            }
+
+            if (list != null)                           // If found
+            {
+                newItem = list[0];
+                newItem.ItemNum = ItemNum;              // Fill Values
+                string[] invNumbers = newItem.InvNum.Split(new string[] { ";" }, StringSplitOptions.None);
+                if (newItem.ItemNum <= invNumbers.Length)
+                {
+                    newItem.InvNum = invNumbers[newItem.ItemNum - 1];
+                }
+                newItem.ItemType = type;
+            }
+            return newItem;
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            // ----- Find selected Item -----
+            FindItem();
+
+            if (ItemGuid == Guid.Empty)
+            {
+                Dialogs.ShowWar(Lng.Get("NoSelItem", "Not selected item!"), Lng.Get("Warning"));
+                return;
+            }
+
+            if (Conv.ToIntDef(cbItemNum.Text, 0) == 0)
+            {
+                Dialogs.ShowWar(Lng.Get("NoSelItemNum", "Not selected item number!"), Lng.Get("Warning"));
+                return;
+            }
+
+            // ----- Add selected item to list -----
+            IInfo newItem = GetInfo(ItemGuid, (ItemTypes)cbItemType.SelectedIndex, Conv.ToIntDef(cbItemNum.Text, 0));
+            selItemList.Add(newItem);
+            UpdateOLV();
+
+            // ----- Refresh Items TextBox -----
+            SetItemsContext();
+            txtItem.Text = "";
+        }
+
+        private void btnDelItem_Click(object sender, EventArgs e)
+        {
+            if (olvItem.SelectedIndex >= 0)
+            {
+                IInfo info = (IInfo)olvItem.SelectedItem.RowObject;
+                selItemList.Remove(info);
+                UpdateOLV();
+
+                // ----- Refresh Items TextBox -----
+                SetItemsContext();
+            }
+        }
+
+
+        #endregion
+
+
+        #region Barcode
+
+
+        private void DataReceive(object source, comStatus status)
+        {
+            txtPerson.Invoke(new MyDelegate(updateLog), new Object[] { status }); //BeginInvoke
+
+        }
+
+
+        public void updateLog(comStatus status)
+        {
+            if (status == comStatus.Close)
+            {
+                
+            }
+            else if (status == comStatus.OK)
+            {
+                TimeOut.Enabled = false;
+                Barcode += com.ReadString();
+                TimeOut.Enabled = true;
+            }
+            else if (status == comStatus.Open)
+            {
+
+            }
+            else if (status == comStatus.OpenError)
+            {
+                
+            }
+        }
+
+        private void TimeOut_Tick(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+
+            TimeOut.Enabled = false;
+            if (txtPerson.Focused)
+            {
+                Guid ID = FindPersonByCode(Barcode);
+                if (ID != Guid.Empty)
+                {
+                    Contacts person = db.Contacts.Find(ID);
+                    txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
+                    lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
+                    PersonGuid = person.Id;
+                    txtItem.Focus();
+                }
+                else
+                    Dialogs.ShowWar(Lng.Get("NoPersonNumber", "This ID have no person!"), Lng.Get("Warning"));
+               
+            } else if(txtItem.Focused)
+            {
+                ItemTypes type;
+                Guid ID = FindItemByCode(Barcode, out type);
+                if (ID != Guid.Empty)
+                {
+                    if (type == ItemTypes.book)
+                    {
+                        
+                        Books book = db.Books.Find(ID);
+                        txtItem.Text = book.Title.Trim();
+                        ItemGuid = ID;
+                        FillInventoryNumber();
+                    }
+                }
+                else
+                    Dialogs.ShowWar(Lng.Get("NoPersonNumber", "This ID have no person!"), Lng.Get("Warning"));
+            }
+            Barcode = "";
+        }
+
+
+        #endregion
+
+        private void frmEditBorrowing_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            com.Close();
+        }
     }
+
+    public enum ItemTypes { item = 0, book = 1 }
 
     public class CInfo
     {
@@ -391,6 +771,9 @@ namespace Katalog
         public Guid ID { get; set; }
         public string Name { get; set; }
         public string InvNum { get; set; }
-        public int Count { get; set; }
+        public short Count { get; set; }
+        public short Available { get; set; }
+        public int ItemNum { get; set; }
+        public ItemTypes ItemType { get; set; }
     }
 }

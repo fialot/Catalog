@@ -312,4 +312,7 @@
   <data name="ServerError" xml:space="preserve">
     <value>Nelze se připojit na server!</value>
   </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Prošlé</value>
+  </data>
 </root>

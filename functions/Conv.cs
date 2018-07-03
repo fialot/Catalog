@@ -422,7 +422,7 @@ namespace myFunctions
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static int ToNumber(string val)
+        public static long ToNumber(string val)
         {
             string clean = "";
             for (int i = 0; i < val.Length; i++)
@@ -430,7 +430,7 @@ namespace myFunctions
                 if (val[i] >= '0' && val[i] <= '9')
                     clean += val[i];
             }
-            return ToIntDef(clean, 0);
+            return (long)ToLongDef(clean, 0);
         }
 
         /// <summary>

@@ -201,5 +201,17 @@ namespace Katalog.Properties {
                 this["BookMinCharLen"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string scanCOM {
+            get {
+                return ((string)(this["scanCOM"]));
+            }
+            set {
+                this["scanCOM"] = value;
+            }
+        }
     }
 }

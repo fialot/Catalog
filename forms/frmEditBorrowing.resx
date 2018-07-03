@@ -126,13 +126,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>404, 362</value>
-  </data>
-  <data name="btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>303, 469</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>75, 23</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
@@ -160,13 +157,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 362</value>
-  </data>
-  <data name="btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>222, 469</value>
   </data>
   <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>75, 23</value>
   </data>
   <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
@@ -187,13 +181,10 @@
     <value>6</value>
   </data>
   <data name="dtFrom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 39</value>
-  </data>
-  <data name="dtFrom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>10, 32</value>
   </data>
   <data name="dtFrom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 22</value>
+    <value>131, 20</value>
   </data>
   <data name="dtFrom.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -211,13 +202,10 @@
     <value>1</value>
   </data>
   <data name="dtTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 39</value>
-  </data>
-  <data name="dtTo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>147, 32</value>
   </data>
   <data name="dtTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 22</value>
+    <value>131, 20</value>
   </data>
   <data name="dtTo.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
@@ -241,13 +229,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblItemType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 22</value>
-  </data>
-  <data name="lblItemType.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>7, 18</value>
   </data>
   <data name="lblItemType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
+    <value>50, 13</value>
   </data>
   <data name="lblItemType.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -265,7 +250,7 @@
     <value>gbItem</value>
   </data>
   <data name="&gt;&gt;lblItemType.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="lblItem.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -274,13 +259,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="lblItem.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>97, 18</value>
   </data>
   <data name="lblItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 17</value>
+    <value>27, 13</value>
   </data>
   <data name="lblItem.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -298,16 +280,13 @@
     <value>gbItem</value>
   </data>
   <data name="&gt;&gt;lblItem.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="cbItemType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 42</value>
-  </data>
-  <data name="cbItemType.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>7, 34</value>
   </data>
   <data name="cbItemType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 24</value>
+    <value>87, 21</value>
   </data>
   <data name="cbItemType.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -322,7 +301,7 @@
     <value>gbItem</value>
   </data>
   <data name="&gt;&gt;cbItemType.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="lblFrom.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -331,13 +310,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblFrom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 20</value>
-  </data>
-  <data name="lblFrom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>7, 16</value>
   </data>
   <data name="lblFrom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 17</value>
+    <value>30, 13</value>
   </data>
   <data name="lblFrom.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -364,13 +340,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 20</value>
-  </data>
-  <data name="lblTo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>144, 16</value>
   </data>
   <data name="lblTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 17</value>
+    <value>20, 13</value>
   </data>
   <data name="lblTo.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
@@ -393,14 +366,8 @@
   <metadata name="mnuGetPerson.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="jménoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 24</value>
-  </data>
-  <data name="jménoToolStripMenuItem.Text" xml:space="preserve">
-    <value>jméno</value>
-  </data>
   <data name="mnuGetPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 28</value>
+    <value>109, 26</value>
   </data>
   <data name="&gt;&gt;mnuGetPerson.Name" xml:space="preserve">
     <value>mnuGetPerson</value>
@@ -408,14 +375,17 @@
   <data name="&gt;&gt;mnuGetPerson.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="txtItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>175, 42</value>
+  <data name="jménoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 22</value>
   </data>
-  <data name="txtItem.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="jménoToolStripMenuItem.Text" xml:space="preserve">
+    <value>jméno</value>
+  </data>
+  <data name="txtItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 34</value>
   </data>
   <data name="txtItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 22</value>
+    <value>178, 20</value>
   </data>
   <data name="txtItem.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -430,16 +400,13 @@
     <value>gbItem</value>
   </data>
   <data name="&gt;&gt;txtItem.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="cbItemNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 42</value>
-  </data>
-  <data name="cbItemNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>284, 34</value>
   </data>
   <data name="cbItemNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 24</value>
+    <value>40, 21</value>
   </data>
   <data name="cbItemNum.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -454,7 +421,7 @@
     <value>gbItem</value>
   </data>
   <data name="&gt;&gt;cbItemNum.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="lblItemNum.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -463,13 +430,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblItemNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>416, 22</value>
-  </data>
-  <data name="lblItemNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>281, 18</value>
   </data>
   <data name="lblItemNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 17</value>
+    <value>44, 13</value>
   </data>
   <data name="lblItemNum.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -487,28 +451,43 @@
     <value>gbItem</value>
   </data>
   <data name="&gt;&gt;lblItemNum.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.Name" xml:space="preserve">
+    <value>btnDelItem</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.Name" xml:space="preserve">
+    <value>btnAddItem</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
+    <value>olvItem</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="lblInvNum.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblInvNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblInvNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 71</value>
-  </data>
-  <data name="lblInvNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 17</value>
-  </data>
-  <data name="lblInvNum.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="lblInvNum.Text" xml:space="preserve">
-    <value>Inventory number: -</value>
   </data>
   <data name="&gt;&gt;lblInvNum.Name" xml:space="preserve">
     <value>lblInvNum</value>
@@ -520,19 +499,13 @@
     <value>gbItem</value>
   </data>
   <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="gbItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 45</value>
-  </data>
-  <data name="gbItem.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="gbItem.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>10, 195</value>
   </data>
   <data name="gbItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 107</value>
+    <value>363, 264</value>
   </data>
   <data name="gbItem.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -552,6 +525,216 @@
   <data name="&gt;&gt;gbItem.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="btnDelItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnDelItem.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDelItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>330, 58</value>
+  </data>
+  <data name="btnDelItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 23</value>
+  </data>
+  <data name="btnDelItem.TabIndex" type="System.Int32, mscorlib">
+    <value>73</value>
+  </data>
+  <data name="btnDelItem.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.Name" xml:space="preserve">
+    <value>btnDelItem</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;btnDelItem.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnAddItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnAddItem.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAddItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>330, 32</value>
+  </data>
+  <data name="btnAddItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 23</value>
+  </data>
+  <data name="btnAddItem.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="btnAddItem.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.Name" xml:space="preserve">
+    <value>btnAddItem</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;btnAddItem.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="olvItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="olvItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 83</value>
+  </data>
+  <data name="olvItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 175</value>
+  </data>
+  <data name="olvItem.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
+    <value>olvItem</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="itName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="itName.Width" type="System.Int32, mscorlib">
+    <value>163</value>
+  </data>
+  <data name="itNumber.DisplayIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="itNumber.Text" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="itNumber.Width" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="itInvNum.DisplayIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="itInvNum.Text" xml:space="preserve">
+    <value>Inv. Num.</value>
+  </data>
+  <data name="itInvNum.Width" type="System.Int32, mscorlib">
+    <value>97</value>
+  </data>
+  <data name="lblInvNum.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblInvNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblInvNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 58</value>
+  </data>
+  <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 13</value>
+  </data>
+  <data name="lblInvNum.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lblInvNum.Text" xml:space="preserve">
+    <value>Inventory number: -</value>
+  </data>
+  <data name="&gt;&gt;lblInvNum.Name" xml:space="preserve">
+    <value>lblInvNum</value>
+  </data>
+  <data name="&gt;&gt;lblInvNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblInvNum.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblPersonNum.Name" xml:space="preserve">
+    <value>lblPersonNum</value>
+  </data>
+  <data name="&gt;&gt;lblPersonNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPersonNum.Parent" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="&gt;&gt;lblPersonNum.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtPerson.Name" xml:space="preserve">
+    <value>txtPerson</value>
+  </data>
+  <data name="&gt;&gt;txtPerson.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPerson.Parent" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="&gt;&gt;txtPerson.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnAddPerson.Name" xml:space="preserve">
+    <value>btnAddPerson</value>
+  </data>
+  <data name="&gt;&gt;btnAddPerson.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAddPerson.Parent" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="&gt;&gt;btnAddPerson.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblPerson.Name" xml:space="preserve">
+    <value>lblPerson</value>
+  </data>
+  <data name="&gt;&gt;lblPerson.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPerson.Parent" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="&gt;&gt;lblPerson.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="gbPerson.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 38</value>
+  </data>
+  <data name="gbPerson.Size" type="System.Drawing.Size, System.Drawing">
+    <value>363, 80</value>
+  </data>
+  <data name="gbPerson.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="gbPerson.Text" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="&gt;&gt;gbPerson.Name" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="&gt;&gt;gbPerson.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbPerson.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbPerson.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="lblPersonNum.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -559,13 +742,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblPersonNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 68</value>
-  </data>
-  <data name="lblPersonNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>7, 55</value>
   </data>
   <data name="lblPersonNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
+    <value>87, 13</value>
   </data>
   <data name="lblPersonNum.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -586,13 +766,10 @@
     <value>0</value>
   </data>
   <data name="txtPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 39</value>
-  </data>
-  <data name="txtPerson.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>10, 32</value>
   </data>
   <data name="txtPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>401, 22</value>
+    <value>302, 20</value>
   </data>
   <data name="txtPerson.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -613,13 +790,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnAddPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 37</value>
-  </data>
-  <data name="btnAddPerson.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>318, 30</value>
   </data>
   <data name="btnAddPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 28</value>
+    <value>23, 23</value>
   </data>
   <data name="btnAddPerson.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -646,13 +820,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 20</value>
-  </data>
-  <data name="lblPerson.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>7, 16</value>
   </data>
   <data name="lblPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 17</value>
+    <value>40, 13</value>
   </data>
   <data name="lblPerson.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -672,47 +843,11 @@
   <data name="&gt;&gt;lblPerson.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="gbPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 159</value>
-  </data>
-  <data name="gbPerson.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="gbPerson.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="gbPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 98</value>
-  </data>
-  <data name="gbPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="gbPerson.Text" xml:space="preserve">
-    <value>Person</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Name" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="gbTerm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 265</value>
-  </data>
-  <data name="gbTerm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="gbTerm.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>10, 124</value>
   </data>
   <data name="gbTerm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 80</value>
+    <value>363, 65</value>
   </data>
   <data name="gbTerm.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -733,13 +868,10 @@
     <value>2</value>
   </data>
   <data name="cbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 13</value>
-  </data>
-  <data name="cbStatus.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>10, 11</value>
   </data>
   <data name="cbStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 24</value>
+    <value>118, 21</value>
   </data>
   <data name="cbStatus.TabIndex" type="System.Int32, mscorlib">
     <value>71</value>
@@ -754,16 +886,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbStatus.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
+  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>149, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>520, 405</value>
+    <value>390, 504</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2058,9 +2193,6 @@
         /////////////////////////////w==
 </value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
@@ -2072,6 +2204,30 @@
   </data>
   <data name="&gt;&gt;jménoToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;itName.Name" xml:space="preserve">
+    <value>itName</value>
+  </data>
+  <data name="&gt;&gt;itName.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;itNumber.Name" xml:space="preserve">
+    <value>itNumber</value>
+  </data>
+  <data name="&gt;&gt;itNumber.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;itInvNum.Name" xml:space="preserve">
+    <value>itInvNum</value>
+  </data>
+  <data name="&gt;&gt;itInvNum.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
+    <value>TimeOut</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmEditBorrowing</value>

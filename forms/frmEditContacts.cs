@@ -202,21 +202,16 @@ namespace Katalog
             contact.GoogleID = "";
         }
 
-        /// <summary>
-        /// Button OK
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOk_Click(object sender, EventArgs e)
+        private void SaveItem()
         {
-
             Contacts contact;
 
             // ----- ID -----
             if (ID != Guid.Empty)
             {
                 contact = db.Contacts.Find(ID);
-            } else
+            }
+            else
             {
                 contact = new Contacts();
                 contact.Id = Guid.NewGuid();
@@ -228,7 +223,34 @@ namespace Katalog
             db.SaveChanges();
 
             ID = contact.Id;
+        }
+
+        /// <summary>
+        /// Button OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            // ----- Save to DB -----
+            SaveItem();
+
+            // ----- Exit -----
             this.DialogResult = DialogResult.OK;
+        }
+
+        /// <summary>
+        /// Button Save - New
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveNew_Click(object sender, EventArgs e)
+        {
+            // ----- Save to DB -----
+            SaveItem();
+
+            // ----- Exit -----
+            this.DialogResult = DialogResult.Yes;
         }
 
         #endregion
@@ -278,5 +300,6 @@ namespace Katalog
         }
 
         #endregion
+
     }
 }

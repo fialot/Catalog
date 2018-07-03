@@ -67,6 +67,7 @@
             this.lblCondition = new System.Windows.Forms.Label();
             this.txtCondition = new System.Windows.Forms.TextBox();
             this.lblUpdated = new System.Windows.Forms.Label();
+            this.btnSaveNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbSpecimen.SuspendLayout();
             this.SuspendLayout();
@@ -318,10 +319,18 @@
             resources.ApplyResources(this.lblUpdated, "lblUpdated");
             this.lblUpdated.Name = "lblUpdated";
             // 
+            // btnSaveNew
+            // 
+            resources.ApplyResources(this.btnSaveNew, "btnSaveNew");
+            this.btnSaveNew.Name = "btnSaveNew";
+            this.btnSaveNew.UseVisualStyleBackColor = true;
+            this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
+            // 
             // frmEditItem
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.lblUpdated);
             this.Controls.Add(this.lblCondition);
             this.Controls.Add(this.txtCondition);
@@ -402,5 +411,6 @@
         private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.TextBox txtCondition;
         private System.Windows.Forms.Label lblUpdated;
+        private System.Windows.Forms.Button btnSaveNew;
     }
 }

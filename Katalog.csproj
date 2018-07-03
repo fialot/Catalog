@@ -147,6 +147,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\AbortableBackgroundWorker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Audio.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -156,6 +159,8 @@
     <Compile Include="Borrowing.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="classes\Communication.cs" />
+    <Compile Include="classes\SocketClient.cs" />
     <Compile Include="Contacts.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -389,6 +394,8 @@
     <Content Include="imports\Zoom.Net.dll" />
     <Content Include="imports\Zoom.Net.YazSharp.dll" />
     <Content Include="Resources\Catalog.ico" />
+    <None Include="Resources\Refresh16.png" />
+    <None Include="Resources\Refresh.png" />
     <None Include="Resources\Circle_Blue.ico" />
   </ItemGroup>
   <ItemGroup>
