@@ -48,7 +48,7 @@ namespace Katalog.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100000000000")]
         public long ContactStart {
             get {
                 return ((long)(this["ContactStart"]));
@@ -84,7 +84,7 @@ namespace Katalog.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200000000000")]
         public long ItemStart {
             get {
                 return ((long)(this["ItemStart"]));
@@ -120,7 +120,7 @@ namespace Katalog.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
         public int ContactMinCharLen {
             get {
                 return ((int)(this["ContactMinCharLen"]));
@@ -132,7 +132,7 @@ namespace Katalog.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
         public int ItemMinCharLen {
             get {
                 return ((int)(this["ItemMinCharLen"]));
@@ -156,7 +156,7 @@ namespace Katalog.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("300000000000")]
         public long BookStart {
             get {
                 return ((long)(this["BookStart"]));
@@ -192,7 +192,7 @@ namespace Katalog.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
         public int BookMinCharLen {
             get {
                 return ((int)(this["BookMinCharLen"]));
@@ -211,6 +211,18 @@ namespace Katalog.Properties {
             }
             set {
                 this["scanCOM"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BookUseISBN {
+            get {
+                return ((bool)(this["BookUseISBN"]));
+            }
+            set {
+                this["BookUseISBN"] = value;
             }
         }
     }

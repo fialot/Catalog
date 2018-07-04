@@ -14,6 +14,8 @@ using myFunctions;
 using System.Xml;
 using System.Xml.Linq;
 using System.Net;
+using Communications;
+using TCPClient;
 
 namespace Katalog
 {
@@ -35,6 +37,10 @@ namespace Katalog
         bool IsUsed = false;
 
         const int MaximumNumberOfResults = 20;
+
+        Communication com = new Communication();
+        public delegate void MyDelegate(comStatus status);
+        string Barcode = "";
 
         #endregion
 
@@ -107,6 +113,13 @@ namespace Katalog
         /// <param name="e"></param>
         private void frmEditBooks_Load(object sender, EventArgs e)
         {
+            com.ReceivedData += new ReceivedEventHandler(DataReceive);
+            try
+            {
+                com.ConnectSP(Properties.Settings.Default.scanCOM);
+            }
+            catch { }
+
             // ----- Prepare type -----
             cbType.Items.Clear();
             cbType.Items.Add("");
@@ -223,6 +236,10 @@ namespace Katalog
                 if (flag.HasFlag(FastFlags.FLAG4)) btnTag4.BackColor = SelectColor;
                 if (flag.HasFlag(FastFlags.FLAG5)) btnTag5.BackColor = SelectColor;
                 if (flag.HasFlag(FastFlags.FLAG6)) btnTag6.BackColor = SelectColor;
+
+
+                // ----- Update -----
+                lblUpdated.Text = Lng.Get("LastUpdate", "Last update") + ": " + (book.Updated ?? DateTime.Now).ToShortDateString();
             }
         }
 
@@ -238,7 +255,7 @@ namespace Katalog
         private bool IsDuplicate(out string InvNum)
         {
             InvNum = "";
-            var list = db.Books.Where(x => x.Id != ID).Select(x => x.InventoryNumber).ToList();
+            var list = db.Books.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -326,7 +343,12 @@ namespace Katalog
             }
             book.InventoryNumber = invNums;
             book.Location = locs;
-
+            if (Properties.Settings.Default.BookUseISBN)
+                book.Barcode = Conv.ToNumber(InvNumbers[0]);
+            else if (ItemCount == 1)
+                book.Barcode = Conv.ToNumber(book.InventoryNumber);
+            else
+                book.Barcode = 0;
 
             // ----- Fast tags -----
             short fastTag = 0;
@@ -364,7 +386,7 @@ namespace Katalog
             else
             {
                 book = new Books();
-                book.Id = Guid.NewGuid();
+                book.ID = Guid.NewGuid();
             }
 
             // ----- Fill Book values -----
@@ -419,7 +441,11 @@ namespace Katalog
             ItemCount++;
             string InvNum = txtInvNum.Text;
             // ----- Increment Inv Num -----
-            if (Properties.Settings.Default.IncSpecimenInv)
+            if (Properties.Settings.Default.BookUseISBN)
+            {
+                InvNum = txtISBN.Text;
+            }
+            else if (Properties.Settings.Default.IncSpecimenInv)
             {
                 TempMaxInvNum++;
                 InvNum = Properties.Settings.Default.BookPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.BookMinCharLen.ToString()) + Properties.Settings.Default.BookSuffix;
@@ -532,6 +558,12 @@ namespace Katalog
 
         private void brnGetDataISBN_Click(object sender, EventArgs e)
         {
+            GetDataFromWeb();
+
+        }
+
+        private void GetDataFromWeb()
+        {
             try
             {
                 var connection = new Connection("aleph.nkp.cz", 9991)
@@ -637,7 +669,7 @@ namespace Katalog
                             response.Close();
                             readStream.Close();
 
-                            
+
                         }
 
                         // ----- Get from databazeknih -----
@@ -735,7 +767,7 @@ namespace Katalog
                                                 posStop = data.IndexOf("<", posStart);
                                                 if (posStop >= 0)
                                                 {
-                                                    itm.SeriesNum = Conv.ToNumber( data.Substring(posStart, posStop - posStart)).ToString();
+                                                    itm.SeriesNum = Conv.ToNumber(data.Substring(posStart, posStop - posStart)).ToString();
                                                 }
                                             }
                                         }
@@ -780,11 +812,11 @@ namespace Katalog
                 {
                     Dialogs.ShowWar(Lng.Get("BookNotFound", "Book not found!"), Lng.Get("Warning"));
                 }
-            } catch (Exception Err)
+            }
+            catch (Exception Err)
             {
                 Dialogs.ShowErr(Lng.Get("ServerError", "Cannot connet to server!") + " (" + Err.Message + ")", Lng.Get("Warning"));
             }
-
         }
 
         private void FillByBookItems(bookItem itm)
@@ -925,5 +957,68 @@ namespace Katalog
             return list;
         }
 
+        private void txtISBN_TextChanged(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.BookUseISBN)
+            {
+                txtInvNum.Text = txtISBN.Text;
+            }
+        }
+
+        #region Barcode
+
+
+        private void DataReceive(object source, comStatus status)
+        {
+            txtInvNum.Invoke(new MyDelegate(updateLog), new Object[] { status }); //BeginInvoke
+
+        }
+
+        public void updateLog(comStatus status)
+        {
+            if (status == comStatus.Close)
+            {
+
+            }
+            else if (status == comStatus.OK)
+            {
+                TimeOut.Enabled = false;
+                Barcode += com.ReadString();
+                TimeOut.Enabled = true;
+            }
+            else if (status == comStatus.Open)
+            {
+
+            }
+            else if (status == comStatus.OpenError)
+            {
+
+            }
+        }
+
+        private void TimeOut_Tick(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+
+            TimeOut.Enabled = false;
+            if (txtInvNum.Focused)
+            {
+                txtInvNum.Text = Barcode.Replace("\r", "").Replace("\n,", "");
+            } else
+            {
+                txtISBN.Text = Barcode.Replace("\r", "").Replace("\n,", "");
+                GetDataFromWeb();
+                if (Properties.Settings.Default.BookUseISBN)
+                    txtInvNum.Text = Barcode.Replace("\r", "").Replace("\n,", "");
+            }
+            Barcode = "";
+        }
+
+        #endregion
+
+        private void frmEditBooks_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            com.Close();
+        }
     }
 }

@@ -5,13 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4bc31ca992ec4cb9bc16843325a9c14a" Name="Diagram1">
-        <EntityTypeShape EntityType="databaseModel.Audio" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="databaseModel.Books" Width="1.5" PointX="4.625" PointY="0.625" />
+        <EntityTypeShape EntityType="databaseModel.Borrowing" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="databaseModel.Contacts" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="databaseModel.Foto" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="databaseModel.Video" Width="1.5" PointX="6.75" PointY="5.75" />
-        <EntityTypeShape EntityType="databaseModel.Contacts" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="databaseModel.Items" Width="1.5" PointX="9.375" PointY="0.75" />
-        <EntityTypeShape EntityType="databaseModel.Borrowing" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="databaseModel.Books" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="databaseModel.Items" Width="1.5" PointX="2.625" PointY="4" />
+        <EntityTypeShape EntityType="databaseModel.Video" Width="1.5" PointX="8.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

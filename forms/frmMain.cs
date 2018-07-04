@@ -175,7 +175,9 @@ namespace Katalog
                 return ((Borrowing)x).ItemNum;
             };
             brItemInvNum.AspectGetter = delegate (object x) {
-                return ((Borrowing)x).ItemInvNum.Trim();
+                if (((Borrowing)x).ItemInvNum != null)
+                    return ((Borrowing)x).ItemInvNum.Trim();
+                return "";
             };
             brFrom.AspectGetter = delegate (object x) {
                 if (((Borrowing)x).From == null) return "";
@@ -559,7 +561,7 @@ namespace Katalog
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {
                     frmEditContacts form = new frmEditContacts();   // Show Edit form
-                    var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).Id);
+                    var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
                     while (res == DialogResult.Yes)                 // If New item request
                     {
                         form.Dispose();
@@ -575,7 +577,9 @@ namespace Katalog
                 if (olvBorrowing.SelectedIndex >= 0)                // If selected Item
                 {
                     frmEditBorrowing form = new frmEditBorrowing(); // Show Edit form
-                    var res = form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).ID);
+                    List<Guid> gList = new List<Guid>();
+                    gList.Add(((Borrowing)olvBorrowing.SelectedObject).ID);
+                    var res = form.ShowDialog(gList);
                     while (res == DialogResult.Yes)                 // If New item request
                     {
                         form.Dispose();
@@ -583,6 +587,9 @@ namespace Katalog
                         res = form.ShowDialog();                    // Show new Edit form
                     }
                     UpdateBorrOLV();                                // Update Borrowing OLV
+                    UpdateConOLV();                                 // Update Contact OLV
+                    UpdateItemsOLV();                               // Update Items OLV
+                    UpdateBooksOLV();                               // Update Books OLV
                 }
             }
             // ----- Item -----
@@ -591,7 +598,7 @@ namespace Katalog
                 if (olvItem.SelectedIndex >= 0)                     // If selected Item
                 {
                     frmEditItem form = new frmEditItem();           // Show Edit form
-                    var res = form.ShowDialog(((Items)olvItem.SelectedObject).Id);
+                    var res = form.ShowDialog(((Items)olvItem.SelectedObject).ID);
                     while (res == DialogResult.Yes)                 // If New item request
                     {
                         form.Dispose();
@@ -607,7 +614,7 @@ namespace Katalog
                 if (olvBooks.SelectedIndex >= 0)                    // If selected Item
                 {
                     frmEditBooks form = new frmEditBooks();         // Show Edit form
-                    var res = form.ShowDialog(((Books)olvBooks.SelectedObject).Id);
+                    var res = form.ShowDialog(((Books)olvBooks.SelectedObject).ID);
                     while (res == DialogResult.Yes)                 // If New item request
                     {
                         form.Dispose();
@@ -631,7 +638,7 @@ namespace Katalog
             {
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {                                                   // Find Object
-                    Contacts contact = db.Contacts.Find(((Contacts)olvContacts.SelectedObject).Id);
+                    Contacts contact = db.Contacts.Find(((Contacts)olvContacts.SelectedObject).ID);
 
                     if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + contact.Name.Trim() + " " + contact.Surname.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
@@ -661,7 +668,7 @@ namespace Katalog
             {
                 if (olvItem.SelectedIndex >= 0)                     // If selected Item
                 {                                                   // Find Object
-                    Items itm = db.Items.Find(((Items)olvItem.SelectedObject).Id);
+                    Items itm = db.Items.Find(((Items)olvItem.SelectedObject).ID);
 
                     if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + itm.Name.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
@@ -676,7 +683,7 @@ namespace Katalog
             {
                 if (olvBooks.SelectedIndex >= 0)                    // If selected Item
                 {                                                   // Find Object
-                    Books book = db.Books.Find(((Books)olvBooks.SelectedObject).Id);
+                    Books book = db.Books.Find(((Books)olvBooks.SelectedObject).ID);
 
                     if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + book.Title.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
@@ -1190,9 +1197,9 @@ namespace Katalog
 
             foreach(var item in con)
             {
-                lines += item.Name.Trim() + ";" + item.Surname.Trim() + ";" + item.Nick.Trim() + ";" + item.sex.Trim() + ";" + item.Birth.ToString() + ";" + item.Phone.Trim() + ";" + item.Email.Trim() + ";" + item.WWW.Trim() + ";" + item.IM.Trim() + ";";
+                lines += item.Name.Trim() + ";" + item.Surname.Trim() + ";" + item.Nick.Trim() + ";" + item.Sex.Trim() + ";" + item.Birth.ToString() + ";" + item.Phone.Trim() + ";" + item.Email.Trim() + ";" + item.WWW.Trim() + ";" + item.IM.Trim() + ";";
                 lines += item.Company.Trim() + ";" + item.Position.Trim() + ";" + item.Street.Trim() + ";" + item.City.Trim() + ";" + item.Region.Trim() + ";" + item.Country.Trim() + ";" + item.PostCode.Trim() + ";";
-                lines += item.code.Trim() + ";" + item.Note.Trim() + ";" + item.Tags.Trim() + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+                lines += item.PersonCode.Trim() + ";" + item.Note.Trim() + ";" + item.Tags.Trim() + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1222,7 +1229,7 @@ namespace Katalog
             foreach (var item in itm)
             {
                 lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
-                lines += item.AcqDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" + item.InventoryNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+                lines += item.AcquisitionDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" + item.InventoryNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1236,7 +1243,7 @@ namespace Katalog
 
             foreach (var item in book)
             {
-                lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.FastTags.ToString() + ";" + item.Id + Environment.NewLine;
+                lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
             }
 
             Files.SaveFile(path, lines);
@@ -1307,7 +1314,7 @@ namespace Katalog
                 contact.Name = item[0];
                 contact.Surname = item[1];
                 contact.Nick = item[2];
-                contact.sex = item[3];
+                contact.Sex = item[3];
                 contact.Birth = Conv.ToDateTimeNull(item[4]);
                 contact.Phone = item[5];
                 contact.Email = item[6];
@@ -1320,11 +1327,11 @@ namespace Katalog
                 contact.Region = item[13];
                 contact.Country = item[14];
                 contact.PostCode = item[15];
-                contact.code = item[16];
+                contact.PersonCode = item[16];
                 contact.Note = item[17];
                 contact.Tags = item[18];
-                contact.FastTags = Conv.ToUIntDef(item[19], 0);
-                contact.Id = Conv.ToGuid(item[20]);
+                contact.FastTags = Conv.ToShortDef(item[19], 0);
+                contact.ID = Conv.ToGuid(item[20]);
                 con.Add(contact);
             }
 
@@ -1367,14 +1374,14 @@ namespace Katalog
                 itm.Subcategory = item[2];
                 itm.Keywords = item[3];
                 itm.Note = item[4].Replace("\n", Environment.NewLine);
-                itm.AcqDate = Conv.ToDateTimeNull(item[5]);
+                itm.AcquisitionDate = Conv.ToDateTimeNull(item[5]);
                 itm.Price = Conv.ToDoubleNull(item[6]);
                 itm.Excluded = Conv.ToBoolNull(item[7]);
                 itm.Count = Conv.ToShortNull(item[8]);
                 itm.InventoryNumber = item[9].Replace(",", ";");
                 itm.Location = item[10].Replace(",", ";");
                 itm.FastTags = Conv.ToShortDef(item[11], 0);
-                itm.Id = Conv.ToGuid(item[12]);
+                itm.ID = Conv.ToGuid(item[12]);
                 con.Add(itm);
             }
 
@@ -1394,7 +1401,7 @@ namespace Katalog
                 itm.AuthorName = item[1];
                 itm.AuthorSurname = item[2];
                 itm.FastTags = Conv.ToShortNull(item[3]);
-                itm.Id = Conv.ToGuid(item[4]);
+                itm.ID = Conv.ToGuid(item[4]);
                 con.Add(itm);
             }
 
@@ -1411,7 +1418,7 @@ namespace Katalog
             contact.Name = newItem.Name;
             contact.Surname = newItem.Surname;
             contact.Nick = newItem.Nick;
-            contact.sex = newItem.sex;
+            contact.Sex = newItem.Sex;
 
             // ----- Contacts -----
             //for (int i = 0; i < )
@@ -1435,8 +1442,8 @@ namespace Katalog
             //contact.FastTags = 0;
             
 
-            contact.code = newItem.code;
-            contact.update = DateTime.Now;
+            contact.PersonCode = newItem.PersonCode;
+            contact.Updated = DateTime.Now;
 
             contact.Company = newItem.Company;
             contact.Position = newItem.Position;
@@ -1473,7 +1480,7 @@ namespace Katalog
             itm.Keywords = newItem.Keywords;
             itm.Note = newItem.Note;
 
-            itm.AcqDate = newItem.AcqDate;
+            itm.AcquisitionDate = newItem.AcquisitionDate;
             itm.Price = newItem.Price;
 
             itm.Excluded = newItem.Excluded;
@@ -1512,9 +1519,9 @@ namespace Katalog
 
                         Contacts contact;
                         // ----- ID -----
-                        if (item.Id != Guid.Empty)
+                        if (item.ID != Guid.Empty)
                         {
-                            contact = db.Contacts.Find(item.Id);
+                            contact = db.Contacts.Find(item.ID);
                             if (contact != null)
                                 FillContact(ref contact, item);
                             else
@@ -1525,7 +1532,7 @@ namespace Katalog
                         }
                         else
                         {
-                            item.Id = Guid.NewGuid();
+                            item.ID = Guid.NewGuid();
                             db.Contacts.Add(item);
                         }
                     }
@@ -1570,9 +1577,9 @@ namespace Katalog
 
                         Items itm;
                         // ----- ID -----
-                        if (item.Id != Guid.Empty)
+                        if (item.ID != Guid.Empty)
                         {
-                            itm = db.Items.Find(item.Id);
+                            itm = db.Items.Find(item.ID);
                             if (itm != null)
                                 FillItem(ref itm, item);
                             else
@@ -1583,7 +1590,7 @@ namespace Katalog
                         }
                         else
                         {
-                            item.Id = Guid.NewGuid();
+                            item.ID = Guid.NewGuid();
                             db.Items.Add(item);
                         }
                     }
@@ -1599,9 +1606,9 @@ namespace Katalog
 
                         Books itm;
                         // ----- ID -----
-                        if (item.Id != Guid.Empty)
+                        if (item.ID != Guid.Empty)
                         {
-                            itm = db.Books.Find(item.Id);
+                            itm = db.Books.Find(item.ID);
                             if (itm != null)
                                 FillBook(ref itm, item);
                             else
@@ -1612,7 +1619,7 @@ namespace Katalog
                         }
                         else
                         {
-                            item.Id = Guid.NewGuid();
+                            item.ID = Guid.NewGuid();
                             db.Books.Add(item);
                         }
                     }
@@ -1670,7 +1677,7 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            var list = db.Contacts.Select(u => u.code).ToList();
+            var list = db.Contacts.Select(u => u.PersonCode).ToList();
             MaxInvNumbers.Contact = GetMaxNum(list);
             list = db.Items.Select(u => u.InventoryNumber).ToList();
             MaxInvNumbers.Item = GetMaxNum(list);

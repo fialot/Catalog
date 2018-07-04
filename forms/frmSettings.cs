@@ -36,6 +36,7 @@ namespace Katalog
             Properties.Settings.Default.BookMinCharLen = Conv.ToIntDef(txtBookMinCharLen.Text, 1);
             Properties.Settings.Default.BookPrefix = txtBookPrefix.Text;
             Properties.Settings.Default.BookSuffix = txtBookSuffix.Text;
+            Properties.Settings.Default.BookUseISBN = chbUseISBN.Checked;
 
             Properties.Settings.Default.IncSpecimenInv = chbIncSpecimen.Checked;
 
@@ -67,6 +68,7 @@ namespace Katalog
             txtBookMinCharLen.Text = Properties.Settings.Default.BookMinCharLen.ToString();
             txtBookPrefix.Text = Properties.Settings.Default.BookPrefix;
             txtBookSuffix.Text = Properties.Settings.Default.BookSuffix;
+            chbUseISBN.Checked = Properties.Settings.Default.BookUseISBN;
 
             chbIncSpecimen.Checked = Properties.Settings.Default.IncSpecimenInv;
 

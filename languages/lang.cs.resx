@@ -315,4 +315,10 @@
   <data name="Expired" xml:space="preserve">
     <value>Prošlé</value>
   </data>
+  <data name="NoItemNumber" xml:space="preserve">
+    <value>Toto ID neobsahuje žádný předmět!</value>
+  </data>
+  <data name="NoPersonNumber" xml:space="preserve">
+    <value>Toto ID neobsahuje žádná osoba!</value>
+  </data>
 </root>

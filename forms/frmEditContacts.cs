@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using myFunctions;
+using Communications;
+using TCPClient;
 
 namespace Katalog
 {
@@ -21,6 +23,12 @@ namespace Katalog
 
         databaseEntities db = new databaseEntities();       // Database
         Guid ID = Guid.Empty;                               // Selected Item GUID (No Guid = new item)
+
+        long TempMaxInvNum = MaxInvNumbers.Contact;             // Max Inv. Number
+
+        Communication com = new Communication();
+        public delegate void MyDelegate(comStatus status);
+        string Barcode = "";
 
         #endregion
 
@@ -65,12 +73,23 @@ namespace Katalog
         /// <param name="e"></param>
         private void frmEditContacts_Load(object sender, EventArgs e)
         {
+            com.ReceivedData += new ReceivedEventHandler(DataReceive);
+            try
+            {
+                com.ConnectSP(Properties.Settings.Default.scanCOM);
+            }
+            catch { }
+
             // ----- Add Sex -----
             cbSex.Items.Clear();
             cbSex.Items.Add("");
             cbSex.Items.Add(Lng.Get("Male"));
             cbSex.Items.Add(Lng.Get("Female"));
             cbSex.SelectedIndex = 0;
+
+            // ----- New Inv Number -----
+            TempMaxInvNum++;
+            txtCode.Text = Properties.Settings.Default.ContactPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.ContactMinCharLen.ToString()) + Properties.Settings.Default.ContactSuffix;
 
             // ----- If Edit -> fill form -----
             if (ID != Guid.Empty)
@@ -84,8 +103,8 @@ namespace Katalog
                 txtName.Text = contact.Name.Trim();
                 txtSurname.Text = contact.Surname.Trim();
                 txtNick.Text = contact.Nick.Trim();
-                if (contact.sex.Trim() == "M") cbSex.SelectedIndex = 1;
-                else if (contact.sex.Trim() == "F") cbSex.SelectedIndex = 2;
+                if (contact.Sex.Trim() == "M") cbSex.SelectedIndex = 1;
+                else if (contact.Sex.Trim() == "F") cbSex.SelectedIndex = 2;
                 else cbSex.SelectedIndex = 0;
 
                 // ----- Contacts -----
@@ -110,7 +129,7 @@ namespace Katalog
                 //contact.FastTags = 0;
 
 
-                txtCode.Text = contact.code.Trim();
+                txtCode.Text = contact.PersonCode.Trim();
 
                 txtCompany.Text = contact.Company.Trim();
                 txtPosition.Text = contact.Position.Trim();
@@ -125,6 +144,9 @@ namespace Katalog
                 if (flag.HasFlag(FastFlags.FLAG4)) btnTag4.BackColor = Color.SkyBlue;
                 if (flag.HasFlag(FastFlags.FLAG5)) btnTag5.BackColor = Color.SkyBlue;
                 if (flag.HasFlag(FastFlags.FLAG6)) btnTag6.BackColor = Color.SkyBlue;
+
+                // ----- Updated -----
+                lblLastUpdate.Text = Lng.Get("LastUpdate", "Last update") + ": " + (contact.Updated ?? DateTime.Now).ToString();
 
                 // ----- Unused now -----
                 /*contact.Partner = "";
@@ -152,9 +174,9 @@ namespace Katalog
             contact.Surname = txtSurname.Text;
             contact.Nick = txtNick.Text;
 
-            if (cbSex.SelectedIndex == 1) contact.sex = "M";
-            else if (cbSex.SelectedIndex == 2) contact.sex = "F" ;
-            else contact.sex = "";
+            if (cbSex.SelectedIndex == 1) contact.Sex = "M";
+            else if (cbSex.SelectedIndex == 2) contact.Sex = "F" ;
+            else contact.Sex = "";
 
             // ----- Contacts -----
             //for (int i = 0; i < )
@@ -177,8 +199,9 @@ namespace Katalog
             contact.Tags = txtTag.Text;
             //contact.FastTags = 0;
 
-            contact.code = txtCode.Text;
-            contact.update = DateTime.Now;
+            contact.PersonCode = txtCode.Text;
+            contact.Barcode = Conv.ToNumber(txtCode.Text);
+            contact.Updated = DateTime.Now;
 
             contact.Company = txtCompany.Text;
             contact.Position = txtPosition.Text;
@@ -214,7 +237,7 @@ namespace Katalog
             else
             {
                 contact = new Contacts();
-                contact.Id = Guid.NewGuid();
+                contact.ID = Guid.NewGuid();
             }
 
             FillContact(ref contact);
@@ -222,7 +245,7 @@ namespace Katalog
             if (ID == Guid.Empty) db.Contacts.Add(contact);
             db.SaveChanges();
 
-            ID = contact.Id;
+            ID = contact.ID;
         }
 
         /// <summary>
@@ -252,6 +275,53 @@ namespace Katalog
             // ----- Exit -----
             this.DialogResult = DialogResult.Yes;
         }
+
+
+        #region Barcode
+
+
+        private void DataReceive(object source, comStatus status)
+        {
+            txtCode.Invoke(new MyDelegate(updateLog), new Object[] { status }); //BeginInvoke
+
+        }
+        
+        public void updateLog(comStatus status)
+        {
+            if (status == comStatus.Close)
+            {
+
+            }
+            else if (status == comStatus.OK)
+            {
+                TimeOut.Enabled = false;
+                Barcode += com.ReadString();
+                TimeOut.Enabled = true;
+            }
+            else if (status == comStatus.Open)
+            {
+
+            }
+            else if (status == comStatus.OpenError)
+            {
+
+            }
+        }
+
+        private void TimeOut_Tick(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+
+            TimeOut.Enabled = false;
+            if (txtCode.Focused)
+            {
+                txtCode.Text = Barcode.Replace("\r", "").Replace("\n,", "");
+            }
+            Barcode = "";
+        }
+
+
+        #endregion
 
         #endregion
 
@@ -301,5 +371,9 @@ namespace Katalog
 
         #endregion
 
+        private void frmEditContacts_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            com.Close();
+        }
     }
 }

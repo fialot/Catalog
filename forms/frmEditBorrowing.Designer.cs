@@ -199,9 +199,11 @@
             this.olvItem.GridLines = true;
             this.olvItem.Name = "olvItem";
             this.olvItem.ShowGroups = false;
+            this.olvItem.TabStop = false;
             this.olvItem.UseCompatibleStateImageBehavior = false;
             this.olvItem.View = System.Windows.Forms.View.Details;
             this.olvItem.VirtualMode = true;
+            this.olvItem.SelectedIndexChanged += new System.EventHandler(this.olvItem_SelectedIndexChanged);
             // 
             // itName
             // 

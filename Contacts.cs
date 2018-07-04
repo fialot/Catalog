@@ -14,7 +14,7 @@ namespace Katalog
     
     public partial class Contacts
     {
-        public System.Guid Id { get; set; }
+        public System.Guid ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Nick { get; set; }
@@ -30,16 +30,17 @@ namespace Katalog
         public string Note { get; set; }
         public Nullable<System.DateTime> Birth { get; set; }
         public string Tags { get; set; }
-        public Nullable<long> FastTags { get; set; }
+        public Nullable<short> FastTags { get; set; }
         public string Partner { get; set; }
         public string Childs { get; set; }
         public string Parrents { get; set; }
         public byte[] Avatar { get; set; }
         public string Company { get; set; }
         public string Position { get; set; }
-        public string sex { get; set; }
-        public string code { get; set; }
-        public Nullable<System.DateTime> update { get; set; }
+        public string Sex { get; set; }
+        public string PersonCode { get; set; }
+        public Nullable<long> Barcode { get; set; }
+        public Nullable<System.DateTime> Updated { get; set; }
         public string GoogleID { get; set; }
         public Nullable<bool> Active { get; set; }
     }

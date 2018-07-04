@@ -161,14 +161,11 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuShowContacts = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowBorrowing = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuShowReservations = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuShowItems = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowBooks = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowBoardGames = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuShowAudio = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuShowVideo = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuShowPhoto = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuLists = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBookLists = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAuthorList = new System.Windows.Forms.ToolStripMenuItem();
@@ -669,9 +666,10 @@
             this.imgBarList.Images.SetKeyName(2, "Rezervations");
             this.imgBarList.Images.SetKeyName(3, "Item");
             this.imgBarList.Images.SetKeyName(4, "Books");
-            this.imgBarList.Images.SetKeyName(5, "Dice");
-            this.imgBarList.Images.SetKeyName(6, "Song");
-            this.imgBarList.Images.SetKeyName(7, "Video");
+            this.imgBarList.Images.SetKeyName(5, "BoardGame");
+            this.imgBarList.Images.SetKeyName(6, "Dice");
+            this.imgBarList.Images.SetKeyName(7, "Song");
+            this.imgBarList.Images.SetKeyName(8, "Video");
             // 
             // toolStripEditItem
             // 
@@ -1232,14 +1230,11 @@
             this.toolStripMenuItem2,
             this.mnuShowContacts,
             this.mnuShowBorrowing,
-            this.mnuShowReservations,
             this.toolStripMenuItem3,
             this.mnuShowItems,
             this.mnuShowBooks,
             this.mnuShowBoardGames,
-            this.mnuShowAudio,
-            this.mnuShowVideo,
-            this.mnuShowPhoto});
+            this.toolStripMenuItem6});
             this.mnuShow.Name = "mnuShow";
             resources.ApplyResources(this.mnuShow, "mnuShow");
             // 
@@ -1270,11 +1265,6 @@
             this.mnuShowBorrowing.Name = "mnuShowBorrowing";
             resources.ApplyResources(this.mnuShowBorrowing, "mnuShowBorrowing");
             // 
-            // mnuShowReservations
-            // 
-            this.mnuShowReservations.Name = "mnuShowReservations";
-            resources.ApplyResources(this.mnuShowReservations, "mnuShowReservations");
-            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
@@ -1295,20 +1285,10 @@
             this.mnuShowBoardGames.Name = "mnuShowBoardGames";
             resources.ApplyResources(this.mnuShowBoardGames, "mnuShowBoardGames");
             // 
-            // mnuShowAudio
+            // toolStripMenuItem6
             // 
-            this.mnuShowAudio.Name = "mnuShowAudio";
-            resources.ApplyResources(this.mnuShowAudio, "mnuShowAudio");
-            // 
-            // mnuShowVideo
-            // 
-            this.mnuShowVideo.Name = "mnuShowVideo";
-            resources.ApplyResources(this.mnuShowVideo, "mnuShowVideo");
-            // 
-            // mnuShowPhoto
-            // 
-            this.mnuShowPhoto.Name = "mnuShowPhoto";
-            resources.ApplyResources(this.mnuShowPhoto, "mnuShowPhoto");
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
             // 
             // mnuLists
             // 
@@ -1475,11 +1455,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuShowContacts;
         private System.Windows.Forms.ToolStripMenuItem mnuShowBorrowing;
-        private System.Windows.Forms.ToolStripMenuItem mnuShowReservations;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnuShowBooks;
         private System.Windows.Forms.ToolStripMenuItem mnuShowBoardGames;
-        private System.Windows.Forms.ToolStripMenuItem mnuShowVideo;
         private System.Windows.Forms.ToolStripMenuItem mnuLists;
         private System.Windows.Forms.ToolStripMenuItem mnuBookLists;
         private System.Windows.Forms.ToolStripMenuItem mnuAuthorList;
@@ -1512,8 +1490,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuNewItem;
         private System.Windows.Forms.ToolStripMenuItem mnuEditItem;
         private System.Windows.Forms.ToolStripMenuItem mnuDelItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuShowAudio;
-        private System.Windows.Forms.ToolStripMenuItem mnuShowPhoto;
         private System.Windows.Forms.ToolStripMenuItem mnuLanguage;
         private System.Windows.Forms.ToolStripMenuItem mnuLangEnglish;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
@@ -1614,6 +1590,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cbBorrShow;
         private System.Windows.Forms.Label lblBorrShow;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
     }
 }
 

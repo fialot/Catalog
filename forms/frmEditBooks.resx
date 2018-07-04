@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>48</value>
+    <value>49</value>
   </data>
   <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -165,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>47</value>
   </data>
   <data name="lblAuthor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -192,7 +192,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblAuthor.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>45</value>
   </data>
   <data name="txtAuthor.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 67</value>
@@ -213,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtAuthor.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>46</value>
   </data>
   <data name="lblTranslator.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -240,7 +240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblTranslator.ZOrder" xml:space="preserve">
-    <value>43</value>
+    <value>44</value>
   </data>
   <data name="lblIllustrator.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -267,7 +267,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblIllustrator.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>43</value>
   </data>
   <data name="&gt;&gt;lblOrigName.Name" xml:space="preserve">
     <value>lblOrigName</value>
@@ -363,7 +363,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gbOriginal.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>42</value>
   </data>
   <data name="lblOrigName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -544,7 +544,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblType.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>41</value>
   </data>
   <data name="cbType.Location" type="System.Drawing.Point, System.Drawing">
     <value>454, 27</value>
@@ -565,7 +565,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbType.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>40</value>
   </data>
   <data name="lblSeries.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -688,7 +688,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblContent.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>38</value>
   </data>
   <data name="txtContent.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 298</value>
@@ -712,7 +712,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtContent.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>39</value>
   </data>
   <data name="lblGenre.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -835,7 +835,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>31</value>
   </data>
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -862,7 +862,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>30</value>
   </data>
   <data name="btnTag6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -886,7 +886,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag6.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>32</value>
   </data>
   <data name="btnTag5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -910,7 +910,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag5.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>33</value>
   </data>
   <data name="btnTag4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -934,7 +934,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag4.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>34</value>
   </data>
   <data name="btnTag3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -958,7 +958,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag3.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>35</value>
   </data>
   <data name="btnTag2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -982,7 +982,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag2.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>36</value>
   </data>
   <data name="btnTag1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1009,7 +1009,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag1.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>37</value>
   </data>
   <data name="imgCover.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -1033,7 +1033,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;imgCover.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>48</value>
   </data>
   <data name="lblHero.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1060,7 +1060,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblHero.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="txtHero.Location" type="System.Drawing.Point, System.Drawing">
     <value>123, 197</value>
@@ -1081,7 +1081,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtHero.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="lblISBN.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1108,7 +1108,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblISBN.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="txtISBN.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 145</value>
@@ -1129,7 +1129,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtISBN.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="txtTranslator.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 106</value>
@@ -1150,7 +1150,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtTranslator.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="txtIllustrator.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 106</value>
@@ -1171,7 +1171,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtIllustrator.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="txtSNumber.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 113</value>
@@ -1243,7 +1243,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtYear.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="lblYear.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1273,7 +1273,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblYear.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="txtEdition.Location" type="System.Drawing.Point, System.Drawing">
     <value>454, 145</value>
@@ -1294,7 +1294,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtEdition.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="lblEdition.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1324,7 +1324,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblEdition.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="txtLanguage.Location" type="System.Drawing.Point, System.Drawing">
     <value>454, 106</value>
@@ -1345,7 +1345,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtLanguage.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="lblLanguage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1375,7 +1375,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLanguage.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="txtPublisher.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 145</value>
@@ -1396,7 +1396,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPublisher.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="lblPublusher.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1426,7 +1426,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPublusher.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="lblSubGenre.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1591,7 +1591,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gbRating.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="chbReaded.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1750,7 +1750,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblNote.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="txtNote.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 236</value>
@@ -1774,7 +1774,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtNote.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="lblURL.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1804,7 +1804,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblURL.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="txtURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>307, 197</value>
@@ -1825,7 +1825,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtURL.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="lblPrice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1897,7 +1897,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPages.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="lblPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1927,7 +1927,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPages.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="lblLocation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2062,7 +2062,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gbSpecimen.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2245,7 +2245,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gbInclusion.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="txtKeywords.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 152</value>
@@ -2326,7 +2326,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblBookbinding.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cbBookbinding.Location" type="System.Drawing.Point, System.Drawing">
     <value>454, 67</value>
@@ -2347,7 +2347,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbBookbinding.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="lblAuthorSurname.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2377,7 +2377,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblAuthorSurname.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="txtAuthorSurname.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 67</value>
@@ -2398,7 +2398,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtAuthorSurname.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="brnGetDataISBN.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 473</value>
@@ -2422,7 +2422,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;brnGetDataISBN.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnSaveNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -2452,8 +2452,38 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSaveNew.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblUpdated.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblUpdated.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblUpdated.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 478</value>
+  </data>
+  <data name="lblUpdated.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 13</value>
+  </data>
+  <data name="lblUpdated.TabIndex" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.Name" xml:space="preserve">
+    <value>lblUpdated</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -3851,6 +3881,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Books</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
+    <value>TimeOut</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmEditBooks</value>

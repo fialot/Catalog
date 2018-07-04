@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditItem));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
@@ -68,6 +69,7 @@
             this.txtCondition = new System.Windows.Forms.TextBox();
             this.lblUpdated = new System.Windows.Forms.Label();
             this.btnSaveNew = new System.Windows.Forms.Button();
+            this.TimeOut = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbSpecimen.SuspendLayout();
             this.SuspendLayout();
@@ -326,6 +328,11 @@
             this.btnSaveNew.UseVisualStyleBackColor = true;
             this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
             // 
+            // TimeOut
+            // 
+            this.TimeOut.Interval = 200;
+            this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
+            // 
             // frmEditItem
             // 
             resources.ApplyResources(this, "$this");
@@ -362,6 +369,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frmEditItem";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditItem_FormClosing);
             this.Load += new System.EventHandler(this.frmEditItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).EndInit();
             this.gbSpecimen.ResumeLayout(false);
@@ -412,5 +420,6 @@
         private System.Windows.Forms.TextBox txtCondition;
         private System.Windows.Forms.Label lblUpdated;
         private System.Windows.Forms.Button btnSaveNew;
+        private System.Windows.Forms.Timer TimeOut;
     }
 }

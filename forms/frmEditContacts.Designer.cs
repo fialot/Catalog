@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditContacts));
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -88,6 +89,8 @@
             this.cbWWW = new System.Windows.Forms.ComboBox();
             this.chbActive = new System.Windows.Forms.CheckBox();
             this.btnSaveNew = new System.Windows.Forms.Button();
+            this.lblLastUpdate = new System.Windows.Forms.Label();
+            this.TimeOut = new System.Windows.Forms.Timer(this.components);
             this.gbAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).BeginInit();
             this.SuspendLayout();
@@ -442,10 +445,21 @@
             this.btnSaveNew.UseVisualStyleBackColor = true;
             this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
             // 
+            // lblLastUpdate
+            // 
+            resources.ApplyResources(this.lblLastUpdate, "lblLastUpdate");
+            this.lblLastUpdate.Name = "lblLastUpdate";
+            // 
+            // TimeOut
+            // 
+            this.TimeOut.Interval = 200;
+            this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
+            // 
             // frmEditContacts
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.chbActive);
             this.Controls.Add(this.cbWWW);
@@ -498,6 +512,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frmEditContacts";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditContacts_FormClosing);
             this.Load += new System.EventHandler(this.frmEditContacts_Load);
             this.gbAddress.ResumeLayout(false);
             this.gbAddress.PerformLayout();
@@ -568,5 +583,7 @@
         private System.Windows.Forms.ComboBox cbWWW;
         private System.Windows.Forms.CheckBox chbActive;
         private System.Windows.Forms.Button btnSaveNew;
+        private System.Windows.Forms.Label lblLastUpdate;
+        private System.Windows.Forms.Timer TimeOut;
     }
 }

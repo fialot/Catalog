@@ -25,12 +25,11 @@ namespace Katalog
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Audio> Audio { get; set; }
-        public virtual DbSet<Foto> Foto { get; set; }
-        public virtual DbSet<Video> Video { get; set; }
-        public virtual DbSet<Contacts> Contacts { get; set; }
-        public virtual DbSet<Items> Items { get; set; }
-        public virtual DbSet<Borrowing> Borrowing { get; set; }
         public virtual DbSet<Books> Books { get; set; }
+        public virtual DbSet<Borrowing> Borrowing { get; set; }
+        public virtual DbSet<Contacts> Contacts { get; set; }
+        public virtual DbSet<Foto> Foto { get; set; }
+        public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<Video> Video { get; set; }
     }
 }

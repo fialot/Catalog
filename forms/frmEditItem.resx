@@ -594,150 +594,6 @@
   <data name="&gt;&gt;lblCategory.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;lblCount.Name" xml:space="preserve">
-    <value>lblCount</value>
-  </data>
-  <data name="&gt;&gt;lblCount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCount.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;lblCount.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnPlace.Name" xml:space="preserve">
-    <value>btnPlace</value>
-  </data>
-  <data name="&gt;&gt;btnPlace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPlace.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;btnPlace.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnDelSpecimen.Name" xml:space="preserve">
-    <value>btnDelSpecimen</value>
-  </data>
-  <data name="&gt;&gt;btnDelSpecimen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDelSpecimen.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;btnDelSpecimen.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnAddSpecimen.Name" xml:space="preserve">
-    <value>btnAddSpecimen</value>
-  </data>
-  <data name="&gt;&gt;btnAddSpecimen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAddSpecimen.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;btnAddSpecimen.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;cbSpecimen.Name" xml:space="preserve">
-    <value>cbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;cbSpecimen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbSpecimen.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;cbSpecimen.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblSpecimen.Name" xml:space="preserve">
-    <value>lblSpecimen</value>
-  </data>
-  <data name="&gt;&gt;lblSpecimen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSpecimen.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;lblSpecimen.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblLocation.Name" xml:space="preserve">
-    <value>lblLocation</value>
-  </data>
-  <data name="&gt;&gt;lblLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLocation.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;lblLocation.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.Name" xml:space="preserve">
-    <value>txtInvNum</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.Name" xml:space="preserve">
-    <value>txtLocation</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Name" xml:space="preserve">
-    <value>lblInvNum</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Parent" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="gbSpecimen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 259</value>
-  </data>
-  <data name="gbSpecimen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>522, 97</value>
-  </data>
-  <data name="gbSpecimen.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="gbSpecimen.Text" xml:space="preserve">
-    <value>Specimen</value>
-  </data>
-  <data name="&gt;&gt;gbSpecimen.Name" xml:space="preserve">
-    <value>gbSpecimen</value>
-  </data>
-  <data name="&gt;&gt;gbSpecimen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbSpecimen.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbSpecimen.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="lblCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1007,6 +863,30 @@
   </data>
   <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="gbSpecimen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 259</value>
+  </data>
+  <data name="gbSpecimen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>522, 97</value>
+  </data>
+  <data name="gbSpecimen.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="gbSpecimen.Text" xml:space="preserve">
+    <value>Specimen</value>
+  </data>
+  <data name="&gt;&gt;gbSpecimen.Name" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;gbSpecimen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbSpecimen.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbSpecimen.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="lblPrice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1296,6 +1176,9 @@
   <data name="&gt;&gt;btnSaveNew.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2532,6 +2415,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Item</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
+    <value>TimeOut</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmEditItem</value>

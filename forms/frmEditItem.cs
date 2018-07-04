@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Communications;
 using myFunctions;
+using TCPClient;
 
 namespace Katalog
 {
@@ -33,6 +34,10 @@ namespace Katalog
 
         long TempMaxInvNum = MaxInvNumbers.Item;             // Max Inv. Number
         bool IsUsed = false;
+
+        Communication com = new Communication();
+        public delegate void MyDelegate(comStatus status);
+        string Barcode = "";
 
         #endregion
 
@@ -85,6 +90,12 @@ namespace Katalog
         /// <param name="e"></param>
         private void frmEditItem_Load(object sender, EventArgs e)
         {
+            com.ReceivedData += new ReceivedEventHandler(DataReceive);
+            try
+            {
+                com.ConnectSP(Properties.Settings.Default.scanCOM);
+            }
+            catch { }
 
             var categoryList = db.Items.Select(x => x.Category.Trim()).ToList();
             var subcategoryList = db.Items.Select(x => x.Subcategory.Trim()).ToList();
@@ -151,7 +162,7 @@ namespace Katalog
                 txtNote.Text = itm.Note.Trim();                     // Note
 
                 txtPrice.Text = itm.Price.ToString();               // Price
-                dtAcqDate.Value = itm.AcqDate ?? DateTime.Now;      // Acqusition date
+                dtAcqDate.Value = itm.AcquisitionDate ?? DateTime.Now;      // Acqusition date
                 chbExcluded.Checked = itm.Excluded ?? false;        // Excluded
                 txtCondition.Text = itm.Condition.Trim();
 
@@ -196,6 +207,7 @@ namespace Katalog
                 if (flag.HasFlag(FastFlags.FLAG5)) btnTag5.BackColor = SelectColor;
                 if (flag.HasFlag(FastFlags.FLAG6)) btnTag6.BackColor = SelectColor;
 
+                // ----- Update -----
                 lblUpdated.Text = Lng.Get("LastUpdate", "Last update") + ": " + (itm.Updated ?? DateTime.Now).ToShortDateString();
             }
         }
@@ -212,7 +224,7 @@ namespace Katalog
         private bool IsDuplicate(out string InvNum)
         {
             InvNum = "";
-            var list = db.Items.Where(x => x.Id != ID).Select(x => x.InventoryNumber).ToList();
+            var list = db.Items.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -250,7 +262,7 @@ namespace Katalog
             itm.Note = txtNote.Text;                        // Note
 
             itm.Price = Conv.ToDoubleNull(txtPrice.Text);   // Price
-            itm.AcqDate = dtAcqDate.Value;                  // Acqusition date
+            itm.AcquisitionDate = dtAcqDate.Value;                  // Acqusition date
             itm.Excluded = chbExcluded.Checked;             // Excluded
             itm.Condition = txtCondition.Text;              // Condition
 
@@ -270,7 +282,10 @@ namespace Katalog
             }
             itm.InventoryNumber = invNums;
             itm.Location = locs;
-
+            if (ItemCount == 1)
+                itm.Barcode = Conv.ToNumber(itm.InventoryNumber);
+            else
+                itm.Barcode = 0;
 
             // ----- Fast tags -----
             short fastTag = 0;
@@ -311,7 +326,7 @@ namespace Katalog
             else
             {
                 itm = new Items();
-                itm.Id = Guid.NewGuid();
+                itm.ID = Guid.NewGuid();
             }
 
             // ----- Fill Item values -----
@@ -476,6 +491,51 @@ namespace Katalog
 
         #endregion
 
+        #region Barcode
+
+
+        private void DataReceive(object source, comStatus status)
+        {
+            txtInvNum.Invoke(new MyDelegate(updateLog), new Object[] { status }); //BeginInvoke
+
+        }
+
+        public void updateLog(comStatus status)
+        {
+            if (status == comStatus.Close)
+            {
+
+            }
+            else if (status == comStatus.OK)
+            {
+                TimeOut.Enabled = false;
+                Barcode += com.ReadString();
+                TimeOut.Enabled = true;
+            }
+            else if (status == comStatus.Open)
+            {
+
+            }
+            else if (status == comStatus.OpenError)
+            {
+
+            }
+        }
+
+        private void TimeOut_Tick(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+
+            TimeOut.Enabled = false;
+            if (txtInvNum.Focused)
+            {
+                txtInvNum.Text = Barcode.Replace("\r", "").Replace("\n,", "");
+            }
+            Barcode = "";
+        }
+
+
+        #endregion
         private void btnPlace_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -486,5 +546,9 @@ namespace Katalog
             }
         }
 
+        private void frmEditItem_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            com.Close();
+        }
     }
 }

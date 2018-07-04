@@ -87,7 +87,7 @@ namespace Katalog
         private Guid FindPersonByCode(string code)
         {
             long iCode = Conv.ToNumber(code);
-            long num = -1;
+            /*long num = -1;
             foreach (var item in contList)
             {
                 num = Conv.ToNumber(item.PersonalNum);
@@ -95,15 +95,102 @@ namespace Katalog
                 {
                     return item.ID;
                 }
+            }*/
+            databaseEntities db = new databaseEntities();
+            var list = db.Contacts.Where(x => x.Barcode == iCode).ToList();
+            if (list.Count > 0)
+                return list[0].ID;
+            else
+            {
+                list = db.Contacts.Where(x => x.Barcode == iCode / 10).ToList();    // remove EAN checksum
+                if (list.Count > 0)
+                    return list[0].ID;
             }
+
             return Guid.Empty;
         }
 
-
-        private Guid FindItemByCode(string code, out ItemTypes type)
+        private List<long> GetBarcodes(string InvNums)
         {
+            List<long> res = new List<long>();
+            string[] split = InvNums.Split(new string[] { ";" }, StringSplitOptions.None);
+            foreach (var item in split)
+                res.Add(Conv.ToNumber(item));
+            return res;
+        }
+
+        private Guid FindItemByCode(string code, out ItemTypes type, out short ItemNum)
+        {
+            type = ItemTypes.item;
             long iCode = Conv.ToNumber(code);
-            long num = -1;
+
+            databaseEntities db = new databaseEntities();
+            ItemNum = 1;
+
+            // ----- Try find Inventary code -----
+            var itmList = db.Items.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+            if (itmList.Count > 0)
+            {
+                type = ItemTypes.item;
+                return itmList[0].ID;
+            }
+            else
+            {
+                itmList = db.Items.Where(x => x.Barcode == iCode / 10).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();    // remove EAN checksum
+                if (itmList.Count > 0)
+                {
+                    type = ItemTypes.item;
+                    return itmList[0].ID;
+                }
+            }
+
+            var bookList = db.Books.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+            if (bookList.Count > 0)
+            {
+                type = ItemTypes.book;
+                return bookList[0].ID;
+            }
+            else
+            {
+                bookList = db.Books.Where(x => x.Barcode == iCode / 10).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();    // remove EAN checksum
+                if (bookList.Count > 0)
+                {
+                    type = ItemTypes.book;
+                    return bookList[0].ID;
+                }
+            }
+
+            // ----- Find from more inventary codes ------
+
+            itmList = db.Items.Where(x => x.Barcode == 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+            foreach(var item in itmList)
+            {
+                var bar = GetBarcodes(item.InvNum);
+                for (int i = 0; i < bar.Count; i++)
+                    if (bar[i] == iCode || bar[i] == iCode/10)
+                    {
+                        type = ItemTypes.item;
+                        ItemNum = (short)i;
+                        return item.ID;
+                    }
+            }
+
+            bookList = db.Books.Where(x => x.Barcode == 0).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+            foreach (var item in itmList)
+            {
+                var bar = GetBarcodes(item.InvNum);
+                for (int i = 0; i < bar.Count; i++)
+                    if (bar[i] == iCode || bar[i] == iCode / 10)
+                    {
+                        type = ItemTypes.item;
+                        ItemNum = (short)i;
+                        return item.ID;
+                    }
+            }
+
+
+
+            /*long num = -1;
             type = ItemTypes.item;
 
             foreach (var item in itemList)
@@ -114,8 +201,8 @@ namespace Katalog
                     type = (ItemTypes)cbItemType.SelectedIndex;
                     return item.ID;
                 }
-            }
-            
+            }*/
+
             return Guid.Empty;
         }
 
@@ -211,12 +298,12 @@ namespace Katalog
 
             if (cbItemType.SelectedIndex == 0)
             {
-                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1}).ToList();
+                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1}).ToList();
                 itemList = RemoveUsed(itemList);
             }
             else if (cbItemType.SelectedIndex == 1)
             {
-                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (short)(x.Count ?? 1), Count = (short)(x.Count ?? 1) }).ToList();
+                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (short)(x.Count ?? 1), Count = (short)(x.Count ?? 1) }).ToList();
                 itemList = RemoveUsed(itemList);
             }
 
@@ -230,7 +317,7 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            contList = db.Contacts.Where(x => x.Active ?? true).Select(x => new CInfo { ID = x.Id, Name = x.Name.Trim(), Surname = x.Surname.Trim(), PersonalNum = x.code.Trim() }).ToList();
+            contList = db.Contacts.Where(x => x.Active ?? true).Select(x => new CInfo { ID = x.ID, Name = x.Name.Trim(), Surname = x.Surname.Trim(), PersonalNum = x.PersonCode.Trim() }).ToList();
             for (int i = 0; i < contList.Count; i++)
             {
                 txtPerson.AutoCompleteCustomSource.Add(contList[i].Name + " " + contList[i].Surname + " #" + i.ToString());
@@ -242,10 +329,14 @@ namespace Katalog
         {
 
             itName.AspectGetter = delegate (object x) {
-                return ((IInfo)x).Name.Trim();
+                if (((IInfo)x).Name != null)
+                    return ((IInfo)x).Name.Trim();
+                return "";
             };
             itInvNum.AspectGetter = delegate (object x) {
-                return ((IInfo)x).InvNum.Trim();
+                if (((IInfo)x).InvNum != null)
+                    return ((IInfo)x).InvNum.Trim();
+                return "";
             };
             itNumber.AspectGetter = delegate (object x) {
                 return ((IInfo)x).ItemNum;
@@ -261,17 +352,19 @@ namespace Katalog
 
             foreach (var itm in list)
             {
-                borr = db.Borrowing.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.item.ToString()) && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
+                borr = db.Borrowing.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(itm.ItemType.ToString()) && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
 
                 if (itm.ItemType == ItemTypes.item)
                 {
                     Items item = db.Items.Find(itm.ID);
-                    item.Available = (short)((item.Count ?? 1) - borr.Count);
+                    if (item != null)
+                        item.Available = (short)((item.Count ?? 1) - borr.Count);
                 }
                 else if (itm.ItemType == ItemTypes.book)
                 {
                     Books book = db.Books.Find(itm.ID);
-                    book.Available = (short)((book.Count ?? 1) - borr.Count);
+                    if (book != null)
+                        book.Available = (short)((book.Count ?? 1) - borr.Count);
                 }
             }
             db.SaveChanges();
@@ -344,7 +437,7 @@ namespace Katalog
                 if (person != null)
                 {
                     txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
-                    lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
+                    lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
                 }
 
 
@@ -446,7 +539,7 @@ namespace Katalog
             if (PersonGuid != Guid.Empty)
             {
                 Contacts person = db.Contacts.Find(PersonGuid);
-                lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
+                lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
             } else
             {
                 lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": -";
@@ -467,7 +560,7 @@ namespace Katalog
             {
                 txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
                 PersonGuid = ID;
-                lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
+                lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
             }
         }
 
@@ -485,11 +578,11 @@ namespace Katalog
                 // ----- Fill Inventory number -----
                 if (cbItemType.SelectedIndex == 0)
                 {
-                    itm = db.Items.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
+                    itm = db.Items.Where(x => x.ID == ItemGuid).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
                 }
                 else if (cbItemType.SelectedIndex == 1)
                 {
-                    itm = db.Books.Where(x => x.Id == ItemGuid).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = (short)(x.Count ?? 1) }).ToList();
+                    itm = db.Books.Where(x => x.ID == ItemGuid).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
                 }
 
                 if (itm.Count == 1)
@@ -604,7 +697,7 @@ namespace Katalog
                 Items itm = db.Items.Find(ID);          // Find Item
                 if (itm != null)
                 {
-                    list = db.Items.Where(x => x.Id == ID).Select(x => new IInfo { ID = x.Id, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                    list = db.Items.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
                 }
             }
             // ----- Books -----
@@ -613,7 +706,7 @@ namespace Katalog
                 Books book = db.Books.Find(ID);         // Find Book
                 if (book != null)
                 {
-                    list = db.Books.Where(x => x.Id == ID).Select(x => new IInfo { ID = x.Id, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                    list = db.Books.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
                 }
             }
 
@@ -631,7 +724,7 @@ namespace Katalog
             return newItem;
         }
 
-        private void btnAddItem_Click(object sender, EventArgs e)
+        private void AddItem()
         {
             // ----- Find selected Item -----
             FindItem();
@@ -656,6 +749,11 @@ namespace Katalog
             // ----- Refresh Items TextBox -----
             SetItemsContext();
             txtItem.Text = "";
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            AddItem();
         }
 
         private void btnDelItem_Click(object sender, EventArgs e)
@@ -719,8 +817,8 @@ namespace Katalog
                 {
                     Contacts person = db.Contacts.Find(ID);
                     txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
-                    lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.code.Trim();
-                    PersonGuid = person.Id;
+                    lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
+                    PersonGuid = person.ID;
                     txtItem.Focus();
                 }
                 else
@@ -729,20 +827,29 @@ namespace Katalog
             } else if(txtItem.Focused)
             {
                 ItemTypes type;
-                Guid ID = FindItemByCode(Barcode, out type);
+                short ItemNum;
+                Guid ID = FindItemByCode(Barcode, out type, out ItemNum);
                 if (ID != Guid.Empty)
                 {
-                    if (type == ItemTypes.book)
+                    cbItemType.SelectedIndex = (int)type;
+                    if (type == ItemTypes.item)
                     {
-                        
+                        Items itm = db.Items.Find(ID);
+                        txtItem.Text = itm.Name.Trim();
+                    }
+                    else if (type == ItemTypes.book)
+                    {
                         Books book = db.Books.Find(ID);
                         txtItem.Text = book.Title.Trim();
-                        ItemGuid = ID;
-                        FillInventoryNumber();
                     }
+                    ItemGuid = ID;
+                    FillInventoryNumber();
+                    cbItemNum.Text = ItemNum.ToString();
+
+                    AddItem();
                 }
                 else
-                    Dialogs.ShowWar(Lng.Get("NoPersonNumber", "This ID have no person!"), Lng.Get("Warning"));
+                    Dialogs.ShowWar(Lng.Get("NoItemNumber", "This ID have no item!"), Lng.Get("Warning"));
             }
             Barcode = "";
         }
@@ -753,6 +860,18 @@ namespace Katalog
         private void frmEditBorrowing_FormClosing(object sender, FormClosingEventArgs e)
         {
             com.Close();
+        }
+
+        private void olvItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (olvItem.SelectedIndex >= 0)
+            {
+                btnDelItem.Enabled = true;
+            }
+            else
+            {
+                btnDelItem.Enabled = false;
+            }
         }
     }
 

@@ -150,9 +150,6 @@
     <Compile Include="classes\AbortableBackgroundWorker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Audio.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Books.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>

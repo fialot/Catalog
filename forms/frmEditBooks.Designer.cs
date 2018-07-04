@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditBooks));
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -113,6 +114,8 @@
             this.txtAuthorSurname = new System.Windows.Forms.TextBox();
             this.brnGetDataISBN = new System.Windows.Forms.Button();
             this.btnSaveNew = new System.Windows.Forms.Button();
+            this.lblUpdated = new System.Windows.Forms.Label();
+            this.TimeOut = new System.Windows.Forms.Timer(this.components);
             this.gbOriginal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCover)).BeginInit();
             this.gbRating.SuspendLayout();
@@ -344,6 +347,7 @@
             // 
             resources.ApplyResources(this.txtISBN, "txtISBN");
             this.txtISBN.Name = "txtISBN";
+            this.txtISBN.TextChanged += new System.EventHandler(this.txtISBN_TextChanged);
             // 
             // txtTranslator
             // 
@@ -623,10 +627,21 @@
             this.btnSaveNew.UseVisualStyleBackColor = true;
             this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
             // 
+            // lblUpdated
+            // 
+            resources.ApplyResources(this.lblUpdated, "lblUpdated");
+            this.lblUpdated.Name = "lblUpdated";
+            // 
+            // TimeOut
+            // 
+            this.TimeOut.Interval = 200;
+            this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
+            // 
             // frmEditBooks
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblUpdated);
             this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.brnGetDataISBN);
             this.Controls.Add(this.lblAuthorSurname);
@@ -679,6 +694,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frmEditBooks";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditBooks_FormClosing);
             this.Load += new System.EventHandler(this.frmEditBooks_Load);
             this.gbOriginal.ResumeLayout(false);
             this.gbOriginal.PerformLayout();
@@ -780,5 +796,7 @@
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Button brnGetDataISBN;
         private System.Windows.Forms.Button btnSaveNew;
+        private System.Windows.Forms.Label lblUpdated;
+        private System.Windows.Forms.Timer TimeOut;
     }
 }

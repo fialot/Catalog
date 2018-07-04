@@ -62,10 +62,11 @@
             this.lblItemStart = new System.Windows.Forms.Label();
             this.txtItemStart = new System.Windows.Forms.TextBox();
             this.tabOther = new System.Windows.Forms.TabPage();
-            this.cbScanCOM = new System.Windows.Forms.ComboBox();
-            this.lblScanCOM = new System.Windows.Forms.Label();
             this.gbScanner = new System.Windows.Forms.GroupBox();
             this.btnScanRefresh = new System.Windows.Forms.Button();
+            this.lblScanCOM = new System.Windows.Forms.Label();
+            this.cbScanCOM = new System.Windows.Forms.ComboBox();
+            this.chbUseISBN = new System.Windows.Forms.CheckBox();
             this.gbContacts.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabInvNums.SuspendLayout();
@@ -206,6 +207,7 @@
             // 
             // gbBooks
             // 
+            this.gbBooks.Controls.Add(this.chbUseISBN);
             this.gbBooks.Controls.Add(this.lblBookMinCharLen);
             this.gbBooks.Controls.Add(this.txtBookMinCharLen);
             this.gbBooks.Controls.Add(this.lblBookSuffix);
@@ -216,7 +218,7 @@
             this.gbBooks.Controls.Add(this.txtBookStart);
             this.gbBooks.Location = new System.Drawing.Point(6, 170);
             this.gbBooks.Name = "gbBooks";
-            this.gbBooks.Size = new System.Drawing.Size(548, 76);
+            this.gbBooks.Size = new System.Drawing.Size(548, 97);
             this.gbBooks.TabIndex = 52;
             this.gbBooks.TabStop = false;
             this.gbBooks.Text = "Books";
@@ -288,7 +290,7 @@
             // chbIncSpecimen
             // 
             this.chbIncSpecimen.AutoSize = true;
-            this.chbIncSpecimen.Location = new System.Drawing.Point(15, 252);
+            this.chbIncSpecimen.Location = new System.Drawing.Point(6, 273);
             this.chbIncSpecimen.Name = "chbIncSpecimen";
             this.chbIncSpecimen.Size = new System.Drawing.Size(144, 17);
             this.chbIncSpecimen.TabIndex = 51;
@@ -387,23 +389,6 @@
             this.tabOther.Text = "Other";
             this.tabOther.UseVisualStyleBackColor = true;
             // 
-            // cbScanCOM
-            // 
-            this.cbScanCOM.FormattingEnabled = true;
-            this.cbScanCOM.Location = new System.Drawing.Point(104, 13);
-            this.cbScanCOM.Name = "cbScanCOM";
-            this.cbScanCOM.Size = new System.Drawing.Size(61, 21);
-            this.cbScanCOM.TabIndex = 0;
-            // 
-            // lblScanCOM
-            // 
-            this.lblScanCOM.AutoSize = true;
-            this.lblScanCOM.Location = new System.Drawing.Point(6, 16);
-            this.lblScanCOM.Name = "lblScanCOM";
-            this.lblScanCOM.Size = new System.Drawing.Size(92, 13);
-            this.lblScanCOM.TabIndex = 1;
-            this.lblScanCOM.Text = "Scaner COM port:";
-            // 
             // gbScanner
             // 
             this.gbScanner.Controls.Add(this.btnScanRefresh);
@@ -425,6 +410,33 @@
             this.btnScanRefresh.TabIndex = 2;
             this.btnScanRefresh.UseVisualStyleBackColor = true;
             this.btnScanRefresh.Click += new System.EventHandler(this.btnScanRefresh_Click);
+            // 
+            // lblScanCOM
+            // 
+            this.lblScanCOM.AutoSize = true;
+            this.lblScanCOM.Location = new System.Drawing.Point(6, 16);
+            this.lblScanCOM.Name = "lblScanCOM";
+            this.lblScanCOM.Size = new System.Drawing.Size(92, 13);
+            this.lblScanCOM.TabIndex = 1;
+            this.lblScanCOM.Text = "Scaner COM port:";
+            // 
+            // cbScanCOM
+            // 
+            this.cbScanCOM.FormattingEnabled = true;
+            this.cbScanCOM.Location = new System.Drawing.Point(104, 13);
+            this.cbScanCOM.Name = "cbScanCOM";
+            this.cbScanCOM.Size = new System.Drawing.Size(61, 21);
+            this.cbScanCOM.TabIndex = 0;
+            // 
+            // chbUseISBN
+            // 
+            this.chbUseISBN.AutoSize = true;
+            this.chbUseISBN.Location = new System.Drawing.Point(9, 58);
+            this.chbUseISBN.Name = "chbUseISBN";
+            this.chbUseISBN.Size = new System.Drawing.Size(172, 17);
+            this.chbUseISBN.TabIndex = 54;
+            this.chbUseISBN.Text = "Use ISBN as Inventory number";
+            this.chbUseISBN.UseVisualStyleBackColor = true;
             // 
             // frmSettings
             // 
@@ -496,5 +508,6 @@
         private System.Windows.Forms.Label lblScanCOM;
         private System.Windows.Forms.ComboBox cbScanCOM;
         private System.Windows.Forms.Button btnScanRefresh;
+        private System.Windows.Forms.CheckBox chbUseISBN;
     }
 }

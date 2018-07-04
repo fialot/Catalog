@@ -133,7 +133,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
+    <value>42</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -163,7 +163,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
+    <value>41</value>
   </data>
   <data name="btnOk.Text" xml:space="preserve">
     <value>OK</value>
@@ -187,7 +187,7 @@
     <value>131, 20</value>
   </data>
   <data name="dtFrom.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>53</value>
   </data>
   <data name="&gt;&gt;dtFrom.Name" xml:space="preserve">
     <value>dtFrom</value>
@@ -208,7 +208,7 @@
     <value>131, 20</value>
   </data>
   <data name="dtTo.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>55</value>
   </data>
   <data name="&gt;&gt;dtTo.Name" xml:space="preserve">
     <value>dtTo</value>
@@ -235,7 +235,7 @@
     <value>50, 13</value>
   </data>
   <data name="lblItemType.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>21</value>
   </data>
   <data name="lblItemType.Text" xml:space="preserve">
     <value>Item type</value>
@@ -265,7 +265,7 @@
     <value>27, 13</value>
   </data>
   <data name="lblItem.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>23</value>
   </data>
   <data name="lblItem.Text" xml:space="preserve">
     <value>Item</value>
@@ -289,7 +289,7 @@
     <value>87, 21</value>
   </data>
   <data name="cbItemType.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>22</value>
   </data>
   <data name="&gt;&gt;cbItemType.Name" xml:space="preserve">
     <value>cbItemType</value>
@@ -316,7 +316,7 @@
     <value>30, 13</value>
   </data>
   <data name="lblFrom.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>52</value>
   </data>
   <data name="lblFrom.Text" xml:space="preserve">
     <value>From</value>
@@ -346,7 +346,7 @@
     <value>20, 13</value>
   </data>
   <data name="lblTo.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>54</value>
   </data>
   <data name="lblTo.Text" xml:space="preserve">
     <value>To</value>
@@ -388,7 +388,7 @@
     <value>178, 20</value>
   </data>
   <data name="txtItem.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>24</value>
   </data>
   <data name="&gt;&gt;txtItem.Name" xml:space="preserve">
     <value>txtItem</value>
@@ -409,7 +409,7 @@
     <value>40, 21</value>
   </data>
   <data name="cbItemNum.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>26</value>
   </data>
   <data name="&gt;&gt;cbItemNum.Name" xml:space="preserve">
     <value>cbItemNum</value>
@@ -436,7 +436,7 @@
     <value>44, 13</value>
   </data>
   <data name="lblItemNum.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>25</value>
   </data>
   <data name="lblItemNum.Text" xml:space="preserve">
     <value>Number</value>
@@ -453,78 +453,6 @@
   <data name="&gt;&gt;lblItemNum.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;btnDelItem.Name" xml:space="preserve">
-    <value>btnDelItem</value>
-  </data>
-  <data name="&gt;&gt;btnDelItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDelItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnDelItem.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.Name" xml:space="preserve">
-    <value>btnAddItem</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
-    <value>olvItem</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Name" xml:space="preserve">
-    <value>lblInvNum</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="gbItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 195</value>
-  </data>
-  <data name="gbItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>363, 264</value>
-  </data>
-  <data name="gbItem.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="gbItem.Text" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Name" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbItem.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="btnDelItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -538,7 +466,7 @@
     <value>24, 23</value>
   </data>
   <data name="btnDelItem.TabIndex" type="System.Int32, mscorlib">
-    <value>73</value>
+    <value>28</value>
   </data>
   <data name="btnDelItem.Text" xml:space="preserve">
     <value>-</value>
@@ -568,7 +496,7 @@
     <value>24, 23</value>
   </data>
   <data name="btnAddItem.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
+    <value>27</value>
   </data>
   <data name="btnAddItem.Text" xml:space="preserve">
     <value>+</value>
@@ -584,30 +512,6 @@
   </data>
   <data name="&gt;&gt;btnAddItem.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="olvItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="olvItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 83</value>
-  </data>
-  <data name="olvItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>344, 175</value>
-  </data>
-  <data name="olvItem.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
-    <value>olvItem</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="itName.Text" xml:space="preserve">
     <value>Name</value>
@@ -633,6 +537,30 @@
   <data name="itInvNum.Width" type="System.Int32, mscorlib">
     <value>97</value>
   </data>
+  <data name="olvItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="olvItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 83</value>
+  </data>
+  <data name="olvItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 175</value>
+  </data>
+  <data name="olvItem.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
+    <value>olvItem</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="lblInvNum.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -646,7 +574,7 @@
     <value>98, 13</value>
   </data>
   <data name="lblInvNum.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>29</value>
   </data>
   <data name="lblInvNum.Text" xml:space="preserve">
     <value>Inventory number: -</value>
@@ -662,6 +590,30 @@
   </data>
   <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="gbItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 195</value>
+  </data>
+  <data name="gbItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>363, 264</value>
+  </data>
+  <data name="gbItem.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="gbItem.Text" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="&gt;&gt;gbItem.Name" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;gbItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbItem.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbItem.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;lblPersonNum.Name" xml:space="preserve">
     <value>lblPersonNum</value>
@@ -718,7 +670,7 @@
     <value>363, 80</value>
   </data>
   <data name="gbPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>10</value>
   </data>
   <data name="gbPerson.Text" xml:space="preserve">
     <value>Person</value>
@@ -748,7 +700,7 @@
     <value>87, 13</value>
   </data>
   <data name="lblPersonNum.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>14</value>
   </data>
   <data name="lblPersonNum.Text" xml:space="preserve">
     <value>Person number: -</value>
@@ -772,7 +724,7 @@
     <value>302, 20</value>
   </data>
   <data name="txtPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;txtPerson.Name" xml:space="preserve">
     <value>txtPerson</value>
@@ -796,7 +748,7 @@
     <value>23, 23</value>
   </data>
   <data name="btnAddPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>13</value>
   </data>
   <data name="btnAddPerson.Text" xml:space="preserve">
     <value>+</value>
@@ -826,7 +778,7 @@
     <value>40, 13</value>
   </data>
   <data name="lblPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>11</value>
   </data>
   <data name="lblPerson.Text" xml:space="preserve">
     <value>Person</value>
@@ -850,7 +802,7 @@
     <value>363, 65</value>
   </data>
   <data name="gbTerm.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>51</value>
   </data>
   <data name="gbTerm.Text" xml:space="preserve">
     <value>Term</value>
@@ -874,7 +826,7 @@
     <value>118, 21</value>
   </data>
   <data name="cbStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>71</value>
+    <value>50</value>
   </data>
   <data name="&gt;&gt;cbStatus.Name" xml:space="preserve">
     <value>cbStatus</value>

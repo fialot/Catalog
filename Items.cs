@@ -14,7 +14,7 @@ namespace Katalog
     
     public partial class Items
     {
-        public System.Guid Id { get; set; }
+        public System.Guid ID { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string Subcategory { get; set; }
@@ -22,9 +22,10 @@ namespace Katalog
         public string Keywords { get; set; }
         public string Note { get; set; }
         public Nullable<short> Count { get; set; }
-        public Nullable<System.DateTime> AcqDate { get; set; }
+        public Nullable<System.DateTime> AcquisitionDate { get; set; }
         public Nullable<double> Price { get; set; }
         public string InventoryNumber { get; set; }
+        public Nullable<long> Barcode { get; set; }
         public string Location { get; set; }
         public string Condition { get; set; }
         public Nullable<short> FastTags { get; set; }
