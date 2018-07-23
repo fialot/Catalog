@@ -56,6 +56,17 @@ namespace Katalog
 
                 return ret;
             };
+            conFastTagsNum.AspectGetter = delegate (object x) {
+                string res = "";
+                FastFlags flag = (FastFlags)((Contacts)x).FastTags;
+                if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
+                if (flag.HasFlag(FastFlags.FLAG2)) res += "2";
+                if (flag.HasFlag(FastFlags.FLAG3)) res += "3";
+                if (flag.HasFlag(FastFlags.FLAG4)) res += "4";
+                if (flag.HasFlag(FastFlags.FLAG5)) res += "5";
+                if (flag.HasFlag(FastFlags.FLAG6)) res += "6";
+                return res;
+            };
             conName.AspectGetter = delegate (object x) {
                 return ((Contacts)x).Name.Trim();
             };
@@ -277,6 +288,18 @@ namespace Katalog
 
                 return ret;
             };
+            itFastTagsNum.AspectGetter = delegate (object x) {
+                string res = "";
+                FastFlags flag = (FastFlags)((Items)x).FastTags;
+                if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
+                if (flag.HasFlag(FastFlags.FLAG2)) res += "2";
+                if (flag.HasFlag(FastFlags.FLAG3)) res += "3";
+                if (flag.HasFlag(FastFlags.FLAG4)) res += "4";
+                if (flag.HasFlag(FastFlags.FLAG5)) res += "5";
+                if (flag.HasFlag(FastFlags.FLAG6)) res += "6";
+                return res;
+            };
+
             itName.AspectGetter = delegate (object x) {
                 return ((Items)x).Name.Trim();
             };
@@ -375,6 +398,17 @@ namespace Katalog
                 if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
 
                 return ret;
+            };
+            bkFastTagsNum.AspectGetter = delegate (object x) {
+                string res = "";
+                FastFlags flag = (FastFlags)((Books)x).FastTags;
+                if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
+                if (flag.HasFlag(FastFlags.FLAG2)) res += "2";
+                if (flag.HasFlag(FastFlags.FLAG3)) res += "3";
+                if (flag.HasFlag(FastFlags.FLAG4)) res += "4";
+                if (flag.HasFlag(FastFlags.FLAG5)) res += "5";
+                if (flag.HasFlag(FastFlags.FLAG6)) res += "6";
+                return res;
             };
             bkName.AspectGetter = delegate (object x) {
                 if (((Books)x).Title == null) return "";
@@ -730,9 +764,11 @@ namespace Katalog
         #region Filter
 
         TextMatchFilter FastFilter;                         // Fast filter
+        TextMatchFilter FastFilterTags;                     // Fast Tags filter
         TextMatchFilter StandardFilter;                     // Standard filter
 
         List<string> FastFilterList = new List<string>();   // Fast Filter list
+        List<string> FastTagFilterList = new List<string>();   // Fast Tag Filter list
 
         /// <summary>
         /// Update Filter Combobox
@@ -920,32 +956,55 @@ namespace Katalog
         }
 
         /// <summary>
+        /// Set Fast Tag Filter Change
+        /// </summary>
+        /// <param name="set">Set/remove Filter</param>
+        /// <param name="letter">Filter letter</param>
+        void SetFastTagFilter(bool set, string letter)
+        {
+            if (set)
+            {
+                // ----- Add Fast Filter -----
+                FastTagFilterList.Add(letter);
+            }
+            else
+            {
+                // ----- Remove Fast Filter -----
+                FastTagFilterList.Remove(letter);
+            }
+
+            // ----- Use Filter -----
+            UseFilters();
+        }
+
+        /// <summary>
         /// Use filters
         /// </summary>
         private void UseFilters()
         {
             UseFastFilter();
+            UseFastTagFilter();
             UseStandardFilter();
 
             if (tabCatalog.SelectedTab == tabContacts)
             {
                 olvContacts.UseFiltering = true;
-                olvContacts.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, StandardFilter });
+                olvContacts.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
                 olvBorrowing.UseFiltering = true;
-                olvBorrowing.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, StandardFilter });
+                olvBorrowing.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
             else if (tabCatalog.SelectedTab == tabItems)
             {
                 olvItem.UseFiltering = true;
-                olvItem.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, StandardFilter });
+                olvItem.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
             else if (tabCatalog.SelectedTab == tabBooks)
             {
                 olvBooks.UseFiltering = true;
-                olvBooks.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, StandardFilter });
+                olvBooks.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
         }
 
@@ -1046,7 +1105,55 @@ namespace Katalog
             }
 
         }
-        
+
+        /// <summary>
+        /// Use Fast Tag Filter
+        /// </summary>
+        private void UseFastTagFilter()
+        {
+            if (FastFilterTags != null) FastFilterTags.Columns = null;
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                if (FastTagFilterList.Count == 0)
+                    FastFilterTags = TextMatchFilter.Contains(olvContacts, "");
+                else
+                {
+                    string[] filterArray = FastTagFilterList.ToArray();
+                    FastFilterTags = TextMatchFilter.Contains(olvContacts, filterArray);
+                    FastFilterTags.Columns = new OLVColumn[] { conFastTagsNum };
+                }
+            }
+            else if (tabCatalog.SelectedTab == tabBorrowing)
+            {
+                FastFilterTags = TextMatchFilter.Contains(olvBorrowing, "");
+            }
+            else if (tabCatalog.SelectedTab == tabItems)
+            {
+                if (FastTagFilterList.Count == 0)
+                    FastFilterTags = TextMatchFilter.Contains(olvItem, "");
+                else
+                {
+                    string[] filterArray = FastTagFilterList.ToArray();
+                    FastFilterTags = TextMatchFilter.Contains(olvItem, filterArray);
+                    FastFilterTags.Columns = new OLVColumn[] { itFastTagsNum };
+                }
+                
+            }
+            else if (tabCatalog.SelectedTab == tabBooks)
+            {
+                if (FastTagFilterList.Count == 0)
+                    FastFilterTags = TextMatchFilter.Contains(olvBooks, "");
+                else
+                {
+                    string[] filterArray = FastTagFilterList.ToArray();
+                    FastFilterTags = TextMatchFilter.Contains(olvBooks, filterArray);
+                    FastFilterTags.Columns = new OLVColumn[] { bkFastTagsNum };
+                }
+                
+            }
+
+        }
+
         /// <summary>
         /// Use Standard Filter
         /// </summary>
@@ -1153,6 +1260,18 @@ namespace Katalog
             string letter = ((ToolStripButton)sender).Text;
             bool set = ((ToolStripButton)sender).Checked;
             SetFastFilter(set, letter);
+        }
+
+        /// <summary>
+        /// Filter Fast Tags
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFilterPin1_Click(object sender, EventArgs e)
+        {
+            string letter = Conv.ToNumber(((ToolStripButton)sender).Name).ToString();
+            bool set = ((ToolStripButton)sender).Checked;
+            SetFastTagFilter(set, letter);
         }
 
         /// <summary>
@@ -1729,5 +1848,6 @@ namespace Katalog
 
         }
 
+        
     }
 }

@@ -42,6 +42,7 @@
             this.conPhone = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.conEmail = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.conAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.conFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imgOLV = new System.Windows.Forms.ImageList(this.components);
             this.tabBorrowing = new System.Windows.Forms.TabPage();
             this.cbBorrShow = new System.Windows.Forms.ComboBox();
@@ -69,6 +70,7 @@
             this.itCounts = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.itAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.itExcluded = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.itFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabBooks = new System.Windows.Forms.TabPage();
             this.olvBooks = new BrightIdeasSoftware.FastObjectListView();
             this.bkFastTags = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -84,6 +86,7 @@
             this.bkLocation = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.bkKeywords = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.bkSeries = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bkFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabGames = new System.Windows.Forms.TabPage();
             this.tabAudio = new System.Windows.Forms.TabPage();
             this.tabVideo = new System.Windows.Forms.TabPage();
@@ -264,6 +267,7 @@
             this.olvContacts.AllColumns.Add(this.conPhone);
             this.olvContacts.AllColumns.Add(this.conEmail);
             this.olvContacts.AllColumns.Add(this.conAddress);
+            this.olvContacts.AllColumns.Add(this.conFastTagsNum);
             resources.ApplyResources(this.olvContacts, "olvContacts");
             this.olvContacts.CellEditUseWholeCell = false;
             this.olvContacts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -272,7 +276,8 @@
             this.conSurname,
             this.conPhone,
             this.conEmail,
-            this.conAddress});
+            this.conAddress,
+            this.conFastTagsNum});
             this.olvContacts.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvContacts.FullRowSelect = true;
             this.olvContacts.GridLines = true;
@@ -313,6 +318,10 @@
             // conAddress
             // 
             resources.ApplyResources(this.conAddress, "conAddress");
+            // 
+            // conFastTagsNum
+            // 
+            resources.ApplyResources(this.conFastTagsNum, "conFastTagsNum");
             // 
             // imgOLV
             // 
@@ -456,6 +465,7 @@
             this.olvItem.AllColumns.Add(this.itCounts);
             this.olvItem.AllColumns.Add(this.itAvailable);
             this.olvItem.AllColumns.Add(this.itExcluded);
+            this.olvItem.AllColumns.Add(this.itFastTagsNum);
             resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.CellEditUseWholeCell = false;
             this.olvItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -468,7 +478,8 @@
             this.itKeywords,
             this.itCounts,
             this.itAvailable,
-            this.itExcluded});
+            this.itExcluded,
+            this.itFastTagsNum});
             this.olvItem.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvItem.FullRowSelect = true;
             this.olvItem.GridLines = true;
@@ -526,6 +537,10 @@
             // 
             resources.ApplyResources(this.itExcluded, "itExcluded");
             // 
+            // itFastTagsNum
+            // 
+            resources.ApplyResources(this.itFastTagsNum, "itFastTagsNum");
+            // 
             // tabBooks
             // 
             this.tabBooks.Controls.Add(this.olvBooks);
@@ -548,6 +563,7 @@
             this.olvBooks.AllColumns.Add(this.bkLocation);
             this.olvBooks.AllColumns.Add(this.bkKeywords);
             this.olvBooks.AllColumns.Add(this.bkSeries);
+            this.olvBooks.AllColumns.Add(this.bkFastTagsNum);
             resources.ApplyResources(this.olvBooks, "olvBooks");
             this.olvBooks.CellEditUseWholeCell = false;
             this.olvBooks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -563,7 +579,8 @@
             this.bkInvNum,
             this.bkLocation,
             this.bkKeywords,
-            this.bkSeries});
+            this.bkSeries,
+            this.bkFastTagsNum});
             this.olvBooks.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvBooks.FullRowSelect = true;
             this.olvBooks.GridLines = true;
@@ -632,6 +649,10 @@
             // bkSeries
             // 
             resources.ApplyResources(this.bkSeries, "bkSeries");
+            // 
+            // bkFastTagsNum
+            // 
+            resources.ApplyResources(this.bkFastTagsNum, "bkFastTagsNum");
             // 
             // tabGames
             // 
@@ -1082,6 +1103,7 @@
             this.btnFilterPin1.Image = global::Katalog.Properties.Resources.circ_green;
             resources.ApplyResources(this.btnFilterPin1, "btnFilterPin1");
             this.btnFilterPin1.Name = "btnFilterPin1";
+            this.btnFilterPin1.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin2
             // 
@@ -1090,6 +1112,7 @@
             this.btnFilterPin2.Image = global::Katalog.Properties.Resources.circ_red;
             resources.ApplyResources(this.btnFilterPin2, "btnFilterPin2");
             this.btnFilterPin2.Name = "btnFilterPin2";
+            this.btnFilterPin2.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin3
             // 
@@ -1098,6 +1121,7 @@
             this.btnFilterPin3.Image = global::Katalog.Properties.Resources.circ_orange;
             resources.ApplyResources(this.btnFilterPin3, "btnFilterPin3");
             this.btnFilterPin3.Name = "btnFilterPin3";
+            this.btnFilterPin3.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin4
             // 
@@ -1106,6 +1130,7 @@
             this.btnFilterPin4.Image = global::Katalog.Properties.Resources.circ_yellow;
             resources.ApplyResources(this.btnFilterPin4, "btnFilterPin4");
             this.btnFilterPin4.Name = "btnFilterPin4";
+            this.btnFilterPin4.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin5
             // 
@@ -1114,6 +1139,7 @@
             this.btnFilterPin5.Image = global::Katalog.Properties.Resources.circ_grey;
             resources.ApplyResources(this.btnFilterPin5, "btnFilterPin5");
             this.btnFilterPin5.Name = "btnFilterPin5";
+            this.btnFilterPin5.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin6
             // 
@@ -1122,6 +1148,7 @@
             this.btnFilterPin6.Image = global::Katalog.Properties.Resources.Circle_Blue;
             resources.ApplyResources(this.btnFilterPin6, "btnFilterPin6");
             this.btnFilterPin6.Name = "btnFilterPin6";
+            this.btnFilterPin6.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // menuStrip1
             // 
@@ -1591,6 +1618,9 @@
         private System.Windows.Forms.ComboBox cbBorrShow;
         private System.Windows.Forms.Label lblBorrShow;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private BrightIdeasSoftware.OLVColumn itFastTagsNum;
+        private BrightIdeasSoftware.OLVColumn conFastTagsNum;
+        private BrightIdeasSoftware.OLVColumn bkFastTagsNum;
     }
 }
 
