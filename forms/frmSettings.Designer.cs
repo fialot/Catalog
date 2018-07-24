@@ -43,6 +43,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabInvNums = new System.Windows.Forms.TabPage();
             this.gbBooks = new System.Windows.Forms.GroupBox();
+            this.chbUseISBN = new System.Windows.Forms.CheckBox();
             this.lblBookMinCharLen = new System.Windows.Forms.Label();
             this.txtBookMinCharLen = new System.Windows.Forms.TextBox();
             this.lblBookSuffix = new System.Windows.Forms.Label();
@@ -66,7 +67,15 @@
             this.btnScanRefresh = new System.Windows.Forms.Button();
             this.lblScanCOM = new System.Windows.Forms.Label();
             this.cbScanCOM = new System.Windows.Forms.ComboBox();
-            this.chbUseISBN = new System.Windows.Forms.CheckBox();
+            this.gbBoardgames = new System.Windows.Forms.GroupBox();
+            this.lblBoardMinCharLen = new System.Windows.Forms.Label();
+            this.txtBoardMinCharLen = new System.Windows.Forms.TextBox();
+            this.lblBoardSuffix = new System.Windows.Forms.Label();
+            this.lblBoardPrefix = new System.Windows.Forms.Label();
+            this.txtBoardSuffix = new System.Windows.Forms.TextBox();
+            this.txtBoardPrefix = new System.Windows.Forms.TextBox();
+            this.lblBoardStart = new System.Windows.Forms.Label();
+            this.txtBoardStart = new System.Windows.Forms.TextBox();
             this.gbContacts.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabInvNums.SuspendLayout();
@@ -74,6 +83,7 @@
             this.gbItems.SuspendLayout();
             this.tabOther.SuspendLayout();
             this.gbScanner.SuspendLayout();
+            this.gbBoardgames.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -193,6 +203,7 @@
             // 
             // tabInvNums
             // 
+            this.tabInvNums.Controls.Add(this.gbBoardgames);
             this.tabInvNums.Controls.Add(this.gbBooks);
             this.tabInvNums.Controls.Add(this.chbIncSpecimen);
             this.tabInvNums.Controls.Add(this.gbItems);
@@ -222,6 +233,16 @@
             this.gbBooks.TabIndex = 52;
             this.gbBooks.TabStop = false;
             this.gbBooks.Text = "Books";
+            // 
+            // chbUseISBN
+            // 
+            this.chbUseISBN.AutoSize = true;
+            this.chbUseISBN.Location = new System.Drawing.Point(9, 58);
+            this.chbUseISBN.Name = "chbUseISBN";
+            this.chbUseISBN.Size = new System.Drawing.Size(172, 17);
+            this.chbUseISBN.TabIndex = 54;
+            this.chbUseISBN.Text = "Use ISBN as Inventory number";
+            this.chbUseISBN.UseVisualStyleBackColor = true;
             // 
             // lblBookMinCharLen
             // 
@@ -290,7 +311,7 @@
             // chbIncSpecimen
             // 
             this.chbIncSpecimen.AutoSize = true;
-            this.chbIncSpecimen.Location = new System.Drawing.Point(6, 273);
+            this.chbIncSpecimen.Location = new System.Drawing.Point(6, 359);
             this.chbIncSpecimen.Name = "chbIncSpecimen";
             this.chbIncSpecimen.Size = new System.Drawing.Size(144, 17);
             this.chbIncSpecimen.TabIndex = 51;
@@ -428,15 +449,86 @@
             this.cbScanCOM.Size = new System.Drawing.Size(61, 21);
             this.cbScanCOM.TabIndex = 0;
             // 
-            // chbUseISBN
+            // gbBoardgames
             // 
-            this.chbUseISBN.AutoSize = true;
-            this.chbUseISBN.Location = new System.Drawing.Point(9, 58);
-            this.chbUseISBN.Name = "chbUseISBN";
-            this.chbUseISBN.Size = new System.Drawing.Size(172, 17);
-            this.chbUseISBN.TabIndex = 54;
-            this.chbUseISBN.Text = "Use ISBN as Inventory number";
-            this.chbUseISBN.UseVisualStyleBackColor = true;
+            this.gbBoardgames.Controls.Add(this.lblBoardMinCharLen);
+            this.gbBoardgames.Controls.Add(this.txtBoardMinCharLen);
+            this.gbBoardgames.Controls.Add(this.lblBoardSuffix);
+            this.gbBoardgames.Controls.Add(this.lblBoardPrefix);
+            this.gbBoardgames.Controls.Add(this.txtBoardSuffix);
+            this.gbBoardgames.Controls.Add(this.txtBoardPrefix);
+            this.gbBoardgames.Controls.Add(this.lblBoardStart);
+            this.gbBoardgames.Controls.Add(this.txtBoardStart);
+            this.gbBoardgames.Location = new System.Drawing.Point(6, 273);
+            this.gbBoardgames.Name = "gbBoardgames";
+            this.gbBoardgames.Size = new System.Drawing.Size(548, 76);
+            this.gbBoardgames.TabIndex = 53;
+            this.gbBoardgames.TabStop = false;
+            this.gbBoardgames.Text = "Board games";
+            // 
+            // lblBoardMinCharLen
+            // 
+            this.lblBoardMinCharLen.AutoSize = true;
+            this.lblBoardMinCharLen.Location = new System.Drawing.Point(226, 16);
+            this.lblBoardMinCharLen.Name = "lblBoardMinCharLen";
+            this.lblBoardMinCharLen.Size = new System.Drawing.Size(86, 13);
+            this.lblBoardMinCharLen.TabIndex = 53;
+            this.lblBoardMinCharLen.Text = "Min. char. length";
+            // 
+            // txtBoardMinCharLen
+            // 
+            this.txtBoardMinCharLen.Location = new System.Drawing.Point(229, 32);
+            this.txtBoardMinCharLen.Name = "txtBoardMinCharLen";
+            this.txtBoardMinCharLen.Size = new System.Drawing.Size(73, 20);
+            this.txtBoardMinCharLen.TabIndex = 52;
+            // 
+            // lblBoardSuffix
+            // 
+            this.lblBoardSuffix.AutoSize = true;
+            this.lblBoardSuffix.Location = new System.Drawing.Point(407, 16);
+            this.lblBoardSuffix.Name = "lblBoardSuffix";
+            this.lblBoardSuffix.Size = new System.Drawing.Size(33, 13);
+            this.lblBoardSuffix.TabIndex = 49;
+            this.lblBoardSuffix.Text = "Suffix";
+            // 
+            // lblBoardPrefix
+            // 
+            this.lblBoardPrefix.AutoSize = true;
+            this.lblBoardPrefix.Location = new System.Drawing.Point(328, 16);
+            this.lblBoardPrefix.Name = "lblBoardPrefix";
+            this.lblBoardPrefix.Size = new System.Drawing.Size(33, 13);
+            this.lblBoardPrefix.TabIndex = 47;
+            this.lblBoardPrefix.Text = "Prefix";
+            // 
+            // txtBoardSuffix
+            // 
+            this.txtBoardSuffix.Location = new System.Drawing.Point(410, 32);
+            this.txtBoardSuffix.Name = "txtBoardSuffix";
+            this.txtBoardSuffix.Size = new System.Drawing.Size(73, 20);
+            this.txtBoardSuffix.TabIndex = 48;
+            // 
+            // txtBoardPrefix
+            // 
+            this.txtBoardPrefix.Location = new System.Drawing.Point(331, 32);
+            this.txtBoardPrefix.Name = "txtBoardPrefix";
+            this.txtBoardPrefix.Size = new System.Drawing.Size(73, 20);
+            this.txtBoardPrefix.TabIndex = 47;
+            // 
+            // lblBoardStart
+            // 
+            this.lblBoardStart.AutoSize = true;
+            this.lblBoardStart.Location = new System.Drawing.Point(6, 16);
+            this.lblBoardStart.Name = "lblBoardStart";
+            this.lblBoardStart.Size = new System.Drawing.Size(132, 13);
+            this.lblBoardStart.TabIndex = 46;
+            this.lblBoardStart.Text = "Start inventory numbers by";
+            // 
+            // txtBoardStart
+            // 
+            this.txtBoardStart.Location = new System.Drawing.Point(9, 32);
+            this.txtBoardStart.Name = "txtBoardStart";
+            this.txtBoardStart.Size = new System.Drawing.Size(214, 20);
+            this.txtBoardStart.TabIndex = 45;
             // 
             // frmSettings
             // 
@@ -465,6 +557,8 @@
             this.tabOther.ResumeLayout(false);
             this.gbScanner.ResumeLayout(false);
             this.gbScanner.PerformLayout();
+            this.gbBoardgames.ResumeLayout(false);
+            this.gbBoardgames.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -509,5 +603,14 @@
         private System.Windows.Forms.ComboBox cbScanCOM;
         private System.Windows.Forms.Button btnScanRefresh;
         private System.Windows.Forms.CheckBox chbUseISBN;
+        private System.Windows.Forms.GroupBox gbBoardgames;
+        private System.Windows.Forms.Label lblBoardMinCharLen;
+        private System.Windows.Forms.TextBox txtBoardMinCharLen;
+        private System.Windows.Forms.Label lblBoardSuffix;
+        private System.Windows.Forms.Label lblBoardPrefix;
+        private System.Windows.Forms.TextBox txtBoardSuffix;
+        private System.Windows.Forms.TextBox txtBoardPrefix;
+        private System.Windows.Forms.Label lblBoardStart;
+        private System.Windows.Forms.TextBox txtBoardStart;
     }
 }

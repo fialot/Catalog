@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,23 +15,22 @@ using TCPClient;
 
 namespace Katalog
 {
-    public partial class frmEditItem : Form
+    public partial class frmEditBoardGames : Form
     {
-
         #region Variables
         
         Color SelectColor = Color.SkyBlue;                  // FastTags Select color
 
         databaseEntities db = new databaseEntities();       // Database
         Guid ID = Guid.Empty;                               // Selected Item GUID (No Guid = new item)
-        
+
 
         int ItemCount = 1;                                  // Item count
         List<string> InvNumbers = new List<string>();       // Items Inventory numbers
         List<string> Locations = new List<string>();        // Items Locations 
         int SelSpecimen = 0;
 
-        long TempMaxInvNum = MaxInvNumbers.Item;             // Max Inv. Number
+        long TempMaxInvNum = MaxInvNumbers.Boardgame;       // Max Inv. Number
         bool IsUsed = false;
 
         Communication com = new Communication();
@@ -41,7 +41,7 @@ namespace Katalog
 
         #region Constructor
 
-        public frmEditItem()
+        public frmEditBoardGames()
         {
             InitializeComponent();
         }
@@ -49,6 +49,7 @@ namespace Katalog
         #endregion
 
         #region Form Load
+
 
         List<string> DeleteDuplicates(List<string> list)
         {
@@ -70,6 +71,7 @@ namespace Katalog
             return res;
         }
 
+
         /// <summary>
         /// ShowDialog with ID (Edit)
         /// </summary>
@@ -81,13 +83,10 @@ namespace Katalog
             return base.ShowDialog();
         }
 
-        /// <summary>
-        /// Form Load
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEditItem_Load(object sender, EventArgs e)
+
+        private void frmEditBoardGames_Load(object sender, EventArgs e)
         {
+            // ----- Init COM (Barcode) -----
             com.ReceivedData += new ReceivedEventHandler(DataReceive);
             try
             {
@@ -95,9 +94,8 @@ namespace Katalog
             }
             catch { }
 
-            var categoryList = db.Items.Select(x => x.Category.Trim()).ToList();
-            var subcategoryList = db.Items.Select(x => x.Subcategory.Trim()).ToList();
-            var locationList = db.Items.Select(x => x.Location.Trim()).ToList();
+            var categoryList = db.Boardgames.Select(x => x.Category.Trim()).ToList();
+            var locationList = db.Boardgames.Select(x => x.Location.Trim()).ToList();
 
             for (int i = locationList.Count - 1; i >= 0; i--)
             {
@@ -105,7 +103,7 @@ namespace Katalog
                 if (temp.Length > 1)
                 {
                     locationList.RemoveAt(i);
-                    foreach ( var item in temp)
+                    foreach (var item in temp)
                     {
                         locationList.Insert(i, item);
                     }
@@ -113,7 +111,6 @@ namespace Katalog
             }
 
             categoryList = DeleteDuplicates(categoryList);
-            subcategoryList = DeleteDuplicates(subcategoryList);
             locationList = DeleteDuplicates(locationList);
 
             // ----- Prepare autocomplete -----
@@ -125,8 +122,6 @@ namespace Katalog
 
             foreach (var item in categoryList)
                 txtCategory.AutoCompleteCustomSource.Add(item);
-            foreach (var item in subcategoryList)
-                txtSubCategory.AutoCompleteCustomSource.Add(item);
             foreach (var item in locationList)
                 txtLocation.AutoCompleteCustomSource.Add(item);
 
@@ -139,30 +134,54 @@ namespace Katalog
 
             // ----- Set Acquisition date -----
             dtAcqDate.Value = DateTime.Now;
+            numMinPlayers.Value = 2;          // Min Players
+            numMaxPlayers.Value = 4;          // Max Players
 
             // ----- New Inv Number -----
             TempMaxInvNum++;
-            txtInvNum.Text = Properties.Settings.Default.ItemPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.ItemMinCharLen.ToString()) + Properties.Settings.Default.ItemSuffix;
+            txtInvNum.Text = Properties.Settings.Default.BoardPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.BoardMinCharLen.ToString()) + Properties.Settings.Default.BoardSuffix;
 
             // ----- If Edit -> fill form -----
             if (ID != Guid.Empty)
             {
-                Items itm = db.Items.Find(ID);
+                Boardgames itm = db.Boardgames.Find(ID);
 
                 // ----- Fill Image -----
-                imgImg.Image = Conv.ByteArrayToImage(itm.Image);
+                imgCover.Image = Conv.ByteArrayToImage(itm.Cover);
+                img1.Image = Conv.ByteArrayToImage(itm.Img1);
+                img2.Image = Conv.ByteArrayToImage(itm.Img2);
+                img3.Image = Conv.ByteArrayToImage(itm.Img3);
 
                 // ----- Fill main data -----   
                 txtName.Text = itm.Name.Trim();                     // Name
+                txtURL.Text = itm.URL.Trim();                       // URL
                 txtCategory.Text = itm.Category.Trim();             // Category
-                txtSubCategory.Text = itm.Subcategory.Trim();       // SubCategory
+                txtLanguage.Text = itm.Language.Trim();             // Language
                 txtKeywords.Text = itm.Keywords.Trim();             // Keywords
+                txtGameWorld.Text = itm.GameWorld.Trim();           // Game World
+                txtPublisher.Text = itm.Publisher.Trim();           // Publisher
+                txtAuthor.Text = itm.Author.Trim();                 // Author
+                txtYear.Text = itm.Year.ToString();                 // Year
+
                 txtNote.Text = itm.Note.Trim();                     // Note
 
+                numMinPlayers.Value = itm.MinPlayers ?? 0;          // Min Players
+                numMaxPlayers.Value = itm.MaxPlayers ?? 0;          // Max Players
+                numMinAge.Value = itm.MinAge ?? 0;                  // Min Age
+                numGameTime.Value = itm.GameTime ?? 0;              // Game Time
+
+                txtFamily.Text = itm.Family.Trim();                 // Family
+                chbExtension.Checked = itm.Extension ?? false;      // Extension
+                numExtension.Value = itm.ExtensionNumber ?? 0;      // Extension number
+
+                dtAcqDate.Value = itm.AcquisitionDate ?? DateTime.Now;  // Acqusition date
                 txtPrice.Text = itm.Price.ToString();               // Price
-                dtAcqDate.Value = itm.AcquisitionDate ?? DateTime.Now;      // Acqusition date
+                txtCondition.Text = itm.Condition.Trim();           // Condition
                 chbExcluded.Checked = itm.Excluded ?? false;        // Excluded
-                txtCondition.Text = itm.Condition.Trim();
+
+                txtRating.Text = itm.Rating.ToString();             // Rating
+                txtMyRating.Text = itm.MyRating.ToString();         // My rating
+                
 
                 // ----- Fill Specimen -----
                 ItemCount = itm.Count ?? 1;                         // Get counts
@@ -179,7 +198,7 @@ namespace Katalog
 
                 for (int i = 0; i < ItemCount; i++)                 // Fill specimen
                 {
-                    cbSpecimen.Items.Add((i+1).ToString());
+                    cbSpecimen.Items.Add((i + 1).ToString());
                     if (i < invNums.Length)                         // Inventory numbers list
                         InvNumbers.Add(invNums[i]);
                     else
@@ -192,7 +211,7 @@ namespace Katalog
                 txtInvNum.Text = InvNumbers[0];                     // Inventory number
                 txtLocation.Text = Locations[0];                    // Location
                 cbSpecimen.SelectedIndex = 0;
-                
+
 
                 lblCount.Text = "/ " + ItemCount.ToString();        // Counts
 
@@ -222,7 +241,7 @@ namespace Katalog
         private bool IsDuplicate(out string InvNum)
         {
             InvNum = "";
-            var list = db.Items.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
+            var list = db.Boardgames.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -246,23 +265,49 @@ namespace Katalog
         /// Fill Item values
         /// </summary>
         /// <param name="itm"></param>
-        private void FillItem(ref Items itm)
+        private void FillItem(ref Boardgames itm)
         {
             // ----- Fill Image -----
-            byte[] bytes = Conv.ImageToByteArray(imgImg.Image);
-            if (bytes != null) itm.Image = bytes;
+            byte[] bytes = Conv.ImageToByteArray(imgCover.Image);
+            if (bytes != null) itm.Cover = bytes;
+            bytes = Conv.ImageToByteArray(img1.Image);
+            if (bytes != null) itm.Img1 = bytes;
+            bytes = Conv.ImageToByteArray(img2.Image);
+            if (bytes != null) itm.Img2 = bytes;
+            bytes = Conv.ImageToByteArray(img3.Image);
+            if (bytes != null) itm.Img3 = bytes;
+
 
             // ----- Fill main data -----   
             itm.Name = txtName.Text;                        // Name
+            itm.URL = txtURL.Text;                          // URL
             itm.Category = txtCategory.Text;                // Category
-            itm.Subcategory = txtSubCategory.Text;          // SubCategory
+
+            itm.Language = txtLanguage.Text;                // Language
             itm.Keywords = txtKeywords.Text;                // Keywords
+            itm.GameWorld = txtGameWorld.Text;              // Game World
+            itm.Publisher = txtPublisher.Text;              // Publisher
+            itm.Author = txtAuthor.Text;                    // Author
+            itm.Year = Conv.ToShortNull(txtYear.Text);      // Year
+
             itm.Note = txtNote.Text;                        // Note
 
+            itm.MinPlayers = (short)numMinPlayers.Value;    // Min Players
+            itm.MaxPlayers = (short)numMaxPlayers.Value;    // Max Players
+            itm.MinAge = (short)numMinAge.Value;            // Min Age
+            itm.GameTime = (short)numGameTime.Value;        // Game Time
+
+            itm.Family = txtFamily.Text;                    // Family
+            itm.Extension = chbExtension.Checked;           // Extension
+            itm.ExtensionNumber = (short)numExtension.Value;  // Extension number
+
             itm.Price = Conv.ToDoubleNull(txtPrice.Text);   // Price
-            itm.AcquisitionDate = dtAcqDate.Value;                  // Acqusition date
+            itm.AcquisitionDate = dtAcqDate.Value;          // Acqusition date
             itm.Excluded = chbExcluded.Checked;             // Excluded
             itm.Condition = txtCondition.Text;              // Condition
+
+            itm.Rating = Conv.ToShortNull(txtRating.Text);  // Rating
+            itm.MyRating = Conv.ToShortNull(txtMyRating.Text);  // My rating
 
             // ----- Fill Specimen -----
             itm.Count = (short)ItemCount;                   // Get counts
@@ -276,7 +321,7 @@ namespace Katalog
                 locs += Locations[i];
 
                 long maxNum = Conv.ToNumber(InvNumbers[i]);
-                if (maxNum > MaxInvNumbers.Item) MaxInvNumbers.Item = maxNum;
+                if (maxNum > MaxInvNumbers.Boardgame) MaxInvNumbers.Boardgame = maxNum;
             }
             itm.InventoryNumber = invNums;
             itm.Location = locs;
@@ -301,7 +346,7 @@ namespace Katalog
 
         private void SaveItem()
         {
-            Items itm;
+            Boardgames itm;
 
             // ----- Save last Specimen values -----
             InvNumbers.RemoveAt(SelSpecimen);
@@ -319,11 +364,11 @@ namespace Katalog
             // ----- ID -----
             if (ID != Guid.Empty)
             {
-                itm = db.Items.Find(ID);
+                itm = db.Boardgames.Find(ID);
             }
             else
             {
-                itm = new Items();
+                itm = new Boardgames();
                 itm.ID = Guid.NewGuid();
             }
 
@@ -331,7 +376,7 @@ namespace Katalog
             FillItem(ref itm);
 
             // ----- Update database -----
-            if (ID == Guid.Empty) db.Items.Add(itm);
+            if (ID == Guid.Empty) db.Boardgames.Add(itm);
             db.SaveChanges();
         }
 
@@ -363,13 +408,54 @@ namespace Katalog
             this.DialogResult = DialogResult.Yes;
         }
 
+        #endregion
 
-        private void frmEditItem_FormClosing(object sender, FormClosingEventArgs e)
+        #region Barcode
+
+
+        private void DataReceive(object source, comStatus status)
         {
-            com.Close();
+            txtInvNum.Invoke(new MyDelegate(updateLog), new Object[] { status }); //BeginInvoke
+
         }
 
+        public void updateLog(comStatus status)
+        {
+            if (status == comStatus.Close)
+            {
+
+            }
+            else if (status == comStatus.OK)
+            {
+                TimeOut.Enabled = false;
+                Barcode += com.ReadString();
+                TimeOut.Enabled = true;
+            }
+            else if (status == comStatus.Open)
+            {
+
+            }
+            else if (status == comStatus.OpenError)
+            {
+
+            }
+        }
+
+        private void TimeOut_Tick(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+
+            TimeOut.Enabled = false;
+            if (txtInvNum.Focused)
+            {
+                txtInvNum.Text = Barcode.Replace("\r", "").Replace("\n,", "");
+            }
+            Barcode = "";
+        }
+
+
         #endregion
+
 
         #region Specimen
 
@@ -378,7 +464,7 @@ namespace Katalog
             if (ID != Guid.Empty)
                 if (IsUsed)
                 {
-                    Dialogs.ShowWar(Lng.Get("ItmIsUsed","Speciman count cannot change, because item is used (borrowed/reserved)."), Lng.Get("Warning"));
+                    Dialogs.ShowWar(Lng.Get("ItmIsUsed", "Speciman count cannot change, because item is used (borrowed/reserved)."), Lng.Get("Warning"));
                     return;
                 }
 
@@ -421,7 +507,7 @@ namespace Katalog
                     txtInvNum.Text = InvNumbers[sel];
                     txtLocation.Text = Locations[sel];
                 }
-                
+
                 lblCount.Text = "/ " + ItemCount.ToString();        // Counts
                 if (ItemCount == 1)
                 {
@@ -485,6 +571,7 @@ namespace Katalog
         /// <param name="e"></param>
         private void imgImg_Click(object sender, EventArgs e)
         {
+            PictureBox imgImg = (PictureBox)sender;
             Image img = imgImg.Image;
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = Lng.Get("Images") + " |*.jpg;*.jpeg;*.jpe;*.tiff;*.png;*.gif";
@@ -504,54 +591,84 @@ namespace Katalog
         }
 
         #endregion
-
-        #region Barcode
-
-
-        private void DataReceive(object source, comStatus status)
+        private void frmEditBoardGames_FormClosing(object sender, FormClosingEventArgs e)
         {
-            txtInvNum.Invoke(new MyDelegate(updateLog), new Object[] { status }); //BeginInvoke
-
+            com.Close();
         }
 
-        public void updateLog(comStatus status)
+        private void btnGetFromURL_Click(object sender, EventArgs e)
         {
-            if (status == comStatus.Close)
-            {
+            GetBoardDesc(txtURL.Text);
+        }
 
-            }
-            else if (status == comStatus.OK)
-            {
-                TimeOut.Enabled = false;
-                Barcode += com.ReadString();
-                TimeOut.Enabled = true;
-            }
-            else if (status == comStatus.Open)
-            {
+        private void GetBoardDesc(string url)
+        {
+            
 
-            }
-            else if (status == comStatus.OpenError)
+            // ----- Get Cober from "Obalkyknih.cz" -----
+            string urlAddress = url;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            if (response.StatusCode == HttpStatusCode.OK)
             {
+                Stream receiveStream = response.GetResponseStream();
+                StreamReader readStream = null;
+
+                if (response.CharacterSet == null)
+                {
+                    readStream = new StreamReader(receiveStream);
+                }
+                else
+                {
+                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                }
+
+                string data = readStream.ReadToEnd();
+
+                int pos = data.IndexOf("table class=\"detail\"");
+                if (pos >= 0)
+                {
+                    int posStart = data.IndexOf("<a href=", pos);
+                    if (posStart >= 0)
+                    {
+                        posStart += 9;
+                        int posStop = data.IndexOf("\"", posStart);
+                        if (posStop >= 0)
+                        {
+                            string strImg = data.Substring(posStart, posStop - posStart);
+                            using (WebClient client = new WebClient())
+                            {
+                                string path = Path.GetTempFileName();
+                                client.DownloadFile(strImg, path);
+                                //itm.coverPath = path;
+                            }
+
+                        }
+                    }
+                }
+
+                // ----- Anotation -----
+                pos = data.IndexOf("<h3>Anotace</h3>");
+                if (pos >= 0)
+                {
+                    int posStart = data.IndexOf("<p>", pos);
+                    if (posStart >= 0)
+                    {
+                        posStart += 3;
+                        int posStop = data.IndexOf("</p>", posStart);
+                        if (posStop >= 0)
+                        {
+                            //itm.Content = data.Substring(posStart, posStop - posStart).Trim();
+                        }
+                    }
+                }
+                response.Close();
+                readStream.Close();
+
 
             }
         }
-
-        private void TimeOut_Tick(object sender, EventArgs e)
-        {
-            databaseEntities db = new databaseEntities();
-
-            TimeOut.Enabled = false;
-            if (txtInvNum.Focused)
-            {
-                txtInvNum.Text = Barcode.Replace("\r", "").Replace("\n,", "");
-            }
-            Barcode = "";
-        }
-
-
-        #endregion
-
-        
-
     }
 }

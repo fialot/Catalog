@@ -58,5 +58,17 @@
     <Setting Name="BookUseISBN" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="BoardStart" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">400000000000</Value>
+    </Setting>
+    <Setting Name="BoardPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G</Value>
+    </Setting>
+    <Setting Name="BoardSuffix" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BoardMinCharLen" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

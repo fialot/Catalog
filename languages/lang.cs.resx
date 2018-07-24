@@ -321,4 +321,10 @@
   <data name="NoPersonNumber" xml:space="preserve">
     <value>Toto ID neobsahuje žádná osoba!</value>
   </data>
+  <data name="Available" xml:space="preserve">
+    <value>Volné</value>
+  </data>
+  <data name="Boardgame" xml:space="preserve">
+    <value>Desková hra</value>
+  </data>
 </root>

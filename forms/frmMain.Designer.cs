@@ -87,7 +87,19 @@
             this.bkKeywords = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.bkSeries = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.bkFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.tabGames = new System.Windows.Forms.TabPage();
+            this.tabBoardGames = new System.Windows.Forms.TabPage();
+            this.chbShowExcludedBoard = new System.Windows.Forms.CheckBox();
+            this.olvBoard = new BrightIdeasSoftware.FastObjectListView();
+            this.bgTags = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgCategory = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgInvNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgLocation = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgKeywords = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgCounts = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgExcluded = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.bgTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabAudio = new System.Windows.Forms.TabPage();
             this.tabVideo = new System.Windows.Forms.TabPage();
             this.tabFoto = new System.Windows.Forms.TabPage();
@@ -198,6 +210,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvItem)).BeginInit();
             this.tabBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvBooks)).BeginInit();
+            this.tabBoardGames.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvBoard)).BeginInit();
             this.toolStripEditItem.SuspendLayout();
             this.toolStripFastFilter.SuspendLayout();
             this.toolStripFilter.SuspendLayout();
@@ -226,7 +240,7 @@
             this.tabCatalog.Controls.Add(this.tabBorrowing);
             this.tabCatalog.Controls.Add(this.tabItems);
             this.tabCatalog.Controls.Add(this.tabBooks);
-            this.tabCatalog.Controls.Add(this.tabGames);
+            this.tabCatalog.Controls.Add(this.tabBoardGames);
             this.tabCatalog.Controls.Add(this.tabAudio);
             this.tabCatalog.Controls.Add(this.tabVideo);
             this.tabCatalog.Controls.Add(this.tabFoto);
@@ -654,11 +668,102 @@
             // 
             resources.ApplyResources(this.bkFastTagsNum, "bkFastTagsNum");
             // 
-            // tabGames
+            // tabBoardGames
             // 
-            resources.ApplyResources(this.tabGames, "tabGames");
-            this.tabGames.Name = "tabGames";
-            this.tabGames.UseVisualStyleBackColor = true;
+            this.tabBoardGames.Controls.Add(this.chbShowExcludedBoard);
+            this.tabBoardGames.Controls.Add(this.olvBoard);
+            resources.ApplyResources(this.tabBoardGames, "tabBoardGames");
+            this.tabBoardGames.Name = "tabBoardGames";
+            this.tabBoardGames.UseVisualStyleBackColor = true;
+            // 
+            // chbShowExcludedBoard
+            // 
+            resources.ApplyResources(this.chbShowExcludedBoard, "chbShowExcludedBoard");
+            this.chbShowExcludedBoard.Name = "chbShowExcludedBoard";
+            this.chbShowExcludedBoard.UseVisualStyleBackColor = true;
+            this.chbShowExcludedBoard.CheckedChanged += new System.EventHandler(this.chbShowExcludedBoard_CheckedChanged);
+            // 
+            // olvBoard
+            // 
+            this.olvBoard.AllColumns.Add(this.bgTags);
+            this.olvBoard.AllColumns.Add(this.bgName);
+            this.olvBoard.AllColumns.Add(this.bgCategory);
+            this.olvBoard.AllColumns.Add(this.bgInvNum);
+            this.olvBoard.AllColumns.Add(this.bgLocation);
+            this.olvBoard.AllColumns.Add(this.bgKeywords);
+            this.olvBoard.AllColumns.Add(this.bgCounts);
+            this.olvBoard.AllColumns.Add(this.bgAvailable);
+            this.olvBoard.AllColumns.Add(this.bgExcluded);
+            this.olvBoard.AllColumns.Add(this.bgTagsNum);
+            resources.ApplyResources(this.olvBoard, "olvBoard");
+            this.olvBoard.CellEditUseWholeCell = false;
+            this.olvBoard.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.bgTags,
+            this.bgName,
+            this.bgCategory,
+            this.bgInvNum,
+            this.bgLocation,
+            this.bgKeywords,
+            this.bgCounts,
+            this.bgAvailable,
+            this.bgExcluded,
+            this.bgTagsNum});
+            this.olvBoard.Cursor = System.Windows.Forms.Cursors.Default;
+            this.olvBoard.FullRowSelect = true;
+            this.olvBoard.GridLines = true;
+            this.olvBoard.Name = "olvBoard";
+            this.olvBoard.ShowGroups = false;
+            this.olvBoard.SmallImageList = this.imgOLV;
+            this.olvBoard.UseCompatibleStateImageBehavior = false;
+            this.olvBoard.View = System.Windows.Forms.View.Details;
+            this.olvBoard.VirtualMode = true;
+            this.olvBoard.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvBoard_FormatRow);
+            this.olvBoard.SelectedIndexChanged += new System.EventHandler(this.olvBoard_SelectedIndexChanged);
+            this.olvBoard.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
+            // 
+            // bgTags
+            // 
+            resources.ApplyResources(this.bgTags, "bgTags");
+            // 
+            // bgName
+            // 
+            this.bgName.AspectName = "";
+            resources.ApplyResources(this.bgName, "bgName");
+            // 
+            // bgCategory
+            // 
+            this.bgCategory.AspectName = "";
+            resources.ApplyResources(this.bgCategory, "bgCategory");
+            // 
+            // bgInvNum
+            // 
+            resources.ApplyResources(this.bgInvNum, "bgInvNum");
+            // 
+            // bgLocation
+            // 
+            resources.ApplyResources(this.bgLocation, "bgLocation");
+            // 
+            // bgKeywords
+            // 
+            this.bgKeywords.AspectName = "";
+            resources.ApplyResources(this.bgKeywords, "bgKeywords");
+            // 
+            // bgCounts
+            // 
+            this.bgCounts.AspectName = "";
+            resources.ApplyResources(this.bgCounts, "bgCounts");
+            // 
+            // bgAvailable
+            // 
+            resources.ApplyResources(this.bgAvailable, "bgAvailable");
+            // 
+            // bgExcluded
+            // 
+            resources.ApplyResources(this.bgExcluded, "bgExcluded");
+            // 
+            // bgTagsNum
+            // 
+            resources.ApplyResources(this.bgTagsNum, "bgTagsNum");
             // 
             // tabAudio
             // 
@@ -1450,6 +1555,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvItem)).EndInit();
             this.tabBooks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.olvBooks)).EndInit();
+            this.tabBoardGames.ResumeLayout(false);
+            this.tabBoardGames.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvBoard)).EndInit();
             this.toolStripEditItem.ResumeLayout(false);
             this.toolStripEditItem.PerformLayout();
             this.toolStripFastFilter.ResumeLayout(false);
@@ -1610,7 +1718,7 @@
         private BrightIdeasSoftware.OLVColumn bkLocation;
         private BrightIdeasSoftware.OLVColumn bkKeywords;
         private BrightIdeasSoftware.OLVColumn bkSeries;
-        private System.Windows.Forms.TabPage tabGames;
+        private System.Windows.Forms.TabPage tabBoardGames;
         private System.Windows.Forms.TabPage tabAudio;
         private System.Windows.Forms.TabPage tabVideo;
         private System.Windows.Forms.TabPage tabFoto;
@@ -1621,6 +1729,18 @@
         private BrightIdeasSoftware.OLVColumn itFastTagsNum;
         private BrightIdeasSoftware.OLVColumn conFastTagsNum;
         private BrightIdeasSoftware.OLVColumn bkFastTagsNum;
+        private System.Windows.Forms.CheckBox chbShowExcludedBoard;
+        private BrightIdeasSoftware.FastObjectListView olvBoard;
+        private BrightIdeasSoftware.OLVColumn bgTags;
+        private BrightIdeasSoftware.OLVColumn bgName;
+        private BrightIdeasSoftware.OLVColumn bgCategory;
+        private BrightIdeasSoftware.OLVColumn bgInvNum;
+        private BrightIdeasSoftware.OLVColumn bgLocation;
+        private BrightIdeasSoftware.OLVColumn bgKeywords;
+        private BrightIdeasSoftware.OLVColumn bgCounts;
+        private BrightIdeasSoftware.OLVColumn bgAvailable;
+        private BrightIdeasSoftware.OLVColumn bgExcluded;
+        private BrightIdeasSoftware.OLVColumn bgTagsNum;
     }
 }
 

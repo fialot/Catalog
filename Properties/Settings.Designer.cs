@@ -225,5 +225,53 @@ namespace Katalog.Properties {
                 this["BookUseISBN"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400000000000")]
+        public long BoardStart {
+            get {
+                return ((long)(this["BoardStart"]));
+            }
+            set {
+                this["BoardStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G")]
+        public string BoardPrefix {
+            get {
+                return ((string)(this["BoardPrefix"]));
+            }
+            set {
+                this["BoardPrefix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BoardSuffix {
+            get {
+                return ((string)(this["BoardSuffix"]));
+            }
+            set {
+                this["BoardSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        public int BoardMinCharLen {
+            get {
+                return ((int)(this["BoardMinCharLen"]));
+            }
+            set {
+                this["BoardMinCharLen"] = value;
+            }
+        }
     }
 }

@@ -160,6 +160,23 @@ namespace Katalog
                 }
             }
 
+            var boardList = db.Boardgames.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+            if (boardList.Count > 0)
+            {
+                type = ItemTypes.boardgame;
+                return boardList[0].ID;
+            }
+            else
+            {
+                boardList = db.Boardgames.Where(x => x.Barcode == iCode / 10).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();    // remove EAN checksum
+                if (boardList.Count > 0)
+                {
+                    type = ItemTypes.boardgame;
+                    return boardList[0].ID;
+                }
+            }
+
+
             // ----- Find from more inventary codes ------
 
             itmList = db.Items.Where(x => x.Barcode == 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
@@ -182,12 +199,24 @@ namespace Katalog
                 for (int i = 0; i < bar.Count; i++)
                     if (bar[i] == iCode || bar[i] == iCode / 10)
                     {
-                        type = ItemTypes.item;
+                        type = ItemTypes.book;
                         ItemNum = (short)i;
                         return item.ID;
                     }
             }
 
+            boardList = db.Boardgames.Where(x => x.Barcode == 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+            foreach (var item in boardList)
+            {
+                var bar = GetBarcodes(item.InvNum);
+                for (int i = 0; i < bar.Count; i++)
+                    if (bar[i] == iCode || bar[i] == iCode / 10)
+                    {
+                        type = ItemTypes.boardgame;
+                        ItemNum = (short)i;
+                        return item.ID;
+                    }
+            }
 
 
             /*long num = -1;
@@ -306,6 +335,11 @@ namespace Katalog
                 itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (short)(x.Count ?? 1), Count = (short)(x.Count ?? 1) }).ToList();
                 itemList = RemoveUsed(itemList);
             }
+            else if (cbItemType.SelectedIndex == 2)
+            {
+                itemList = db.Boardgames.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (short)(x.Count ?? 1), Count = (short)(x.Count ?? 1) }).ToList();
+                itemList = RemoveUsed(itemList);
+            }
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -366,6 +400,12 @@ namespace Katalog
                     if (book != null)
                         book.Available = (short)((book.Count ?? 1) - borr.Count);
                 }
+                else if (itm.ItemType == ItemTypes.boardgame)
+                {
+                    Boardgames board = db.Boardgames.Find(itm.ID);
+                    if (board != null)
+                        board.Available = (short)((board.Count ?? 1) - borr.Count);
+                }
             }
             db.SaveChanges();
         }
@@ -407,6 +447,7 @@ namespace Katalog
             cbItemType.Items.Clear();
             cbItemType.Items.Add(Lng.Get("Item"));
             cbItemType.Items.Add(Lng.Get("Book"));
+            cbItemType.Items.Add(Lng.Get("Board game"));
             cbItemType.SelectedIndex = 0;
 
             SetContactsContext();
@@ -584,6 +625,10 @@ namespace Katalog
                 {
                     itm = db.Books.Where(x => x.ID == ItemGuid).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
                 }
+                else if (cbItemType.SelectedIndex == 2)
+                {
+                    itm = db.Boardgames.Where(x => x.ID == ItemGuid).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
+                }
 
                 if (itm.Count == 1)
                 {
@@ -709,6 +754,16 @@ namespace Katalog
                     list = db.Books.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
                 }
             }
+            // ----- BoardGames -----
+            else if (type == ItemTypes.boardgame)
+            {
+                Boardgames boardgame = db.Boardgames.Find(ID);         // Find Boardgame
+                if (boardgame != null)
+                {
+                    list = db.Boardgames.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
+                }
+            }
+
 
             if (list != null)                           // If found
             {
@@ -875,7 +930,7 @@ namespace Katalog
         }
     }
 
-    public enum ItemTypes { item = 0, book = 1 }
+    public enum ItemTypes { item = 0, book = 1, boardgame = 2 }
 
     public class CInfo
     {

@@ -38,6 +38,11 @@ namespace Katalog
             Properties.Settings.Default.BookSuffix = txtBookSuffix.Text;
             Properties.Settings.Default.BookUseISBN = chbUseISBN.Checked;
 
+            Properties.Settings.Default.BoardStart = Conv.ToLongDef(txtBoardStart.Text, 1);
+            Properties.Settings.Default.BoardMinCharLen = Conv.ToIntDef(txtBoardMinCharLen.Text, 1);
+            Properties.Settings.Default.BoardPrefix = txtBoardPrefix.Text;
+            Properties.Settings.Default.BoardSuffix = txtBoardSuffix.Text;
+
             Properties.Settings.Default.IncSpecimenInv = chbIncSpecimen.Checked;
 
             Properties.Settings.Default.scanCOM = cbScanCOM.Text;
@@ -69,6 +74,11 @@ namespace Katalog
             txtBookPrefix.Text = Properties.Settings.Default.BookPrefix;
             txtBookSuffix.Text = Properties.Settings.Default.BookSuffix;
             chbUseISBN.Checked = Properties.Settings.Default.BookUseISBN;
+
+            txtBoardStart.Text = Properties.Settings.Default.BoardStart.ToString();
+            txtBoardMinCharLen.Text = Properties.Settings.Default.BoardMinCharLen.ToString();
+            txtBoardPrefix.Text = Properties.Settings.Default.BoardPrefix;
+            txtBoardSuffix.Text = Properties.Settings.Default.BoardSuffix;
 
             chbIncSpecimen.Checked = Properties.Settings.Default.IncSpecimenInv;
 

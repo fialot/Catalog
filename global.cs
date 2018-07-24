@@ -24,7 +24,8 @@ namespace Katalog
     {
         public static long Contact = Properties.Settings.Default.ContactStart - 1;
         public static long Item = Properties.Settings.Default.ItemStart - 1;
-        public static long Book = 0;
+        public static long Book = Properties.Settings.Default.BookStart - 1;
+        public static long Boardgame = Properties.Settings.Default.BoardStart - 1;
     }
 
     static class global

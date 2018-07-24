@@ -31,5 +31,6 @@ namespace Katalog
         public virtual DbSet<Foto> Foto { get; set; }
         public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<Video> Video { get; set; }
+        public virtual DbSet<Boardgames> Boardgames { get; set; }
     }
 }

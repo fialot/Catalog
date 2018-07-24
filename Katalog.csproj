@@ -147,6 +147,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boardgames.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="classes\AbortableBackgroundWorker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -175,6 +178,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEditBoardGames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEditBoardGames.Designer.cs">
+      <DependentUpon>frmEditBoardGames.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmEditBorrowing.cs">
       <SubType>Form</SubType>
@@ -248,6 +257,12 @@
     </Compile>
     <EmbeddedResource Include="forms\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditBoardGames.cs.resx">
+      <DependentUpon>frmEditBoardGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditBoardGames.resx">
+      <DependentUpon>frmEditBoardGames.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEditBooks.cs.resx">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
