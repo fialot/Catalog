@@ -327,4 +327,7 @@
   <data name="Boardgame" xml:space="preserve">
     <value>Desková hra</value>
   </data>
+  <data name="Note" xml:space="preserve">
+    <value>Poznámka</value>
+  </data>
 </root>

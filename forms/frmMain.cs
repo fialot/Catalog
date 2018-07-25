@@ -1,19 +1,11 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using myFunctions;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Xsl;
-using BrightIdeasSoftware;
-using myFunctions;
 
 
 
@@ -103,9 +95,9 @@ namespace Katalog
         
         #endregion
 
-        #region Borrowing
+        #region Lending
 
-        string GetBorrItemName(string type, Guid id)
+        string GetLendingItemName(string type, Guid id)
         {
             databaseEntities db = new databaseEntities();
 
@@ -128,53 +120,53 @@ namespace Katalog
         }
 
         /// <summary>
-        /// Update Borrowing ObjectListView
+        /// Update Lending ObjectListView
         /// </summary>
-        void UpdateBorrOLV()
+        void UpdateLendingOLV()
         {
             databaseEntities db = new databaseEntities();
 
-            List<Borrowing> borr;
+            List<Lending> lend;
             // ----- Show Expired -----
-            if (cbBorrShow.SelectedIndex == 1)
+            if (cbLendingShow.SelectedIndex == 1)
             {
                 DateTime now = DateTime.Now;
-                borr = db.Borrowing.Where(p => ((p.To ?? now) < DateTime.Now) && (p.Status ?? 1) != 2).ToList();
+                lend = db.Lending.Where(p => ((p.To ?? now) < DateTime.Now) && (p.Status ?? 1) != 2).ToList();
             }
             // ----- Show Borrowed -----
-            else if (cbBorrShow.SelectedIndex == 2)
+            else if (cbLendingShow.SelectedIndex == 2)
             {
                 if (chbShowReturned.Checked)
-                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 1 || (p.Status ?? 1) == 2)).ToList();
+                    lend = db.Lending.Where(p => ((p.Status ?? 1) == 1 || (p.Status ?? 1) == 2)).ToList();
                 else
-                    borr = db.Borrowing.Where(p => (p.Status ?? 1) == 1).ToList();
+                    lend = db.Lending.Where(p => (p.Status ?? 1) == 1).ToList();
             }
             // ----- Show Reserved -----
-            else if (cbBorrShow.SelectedIndex == 3)
+            else if (cbLendingShow.SelectedIndex == 3)
             {
                 if (chbShowReturned.Checked)
-                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 2)).ToList();
+                    lend = db.Lending.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 2)).ToList();
                 else
-                    borr = db.Borrowing.Where(p => (p.Status ?? 1) == 0).ToList();
+                    lend = db.Lending.Where(p => (p.Status ?? 1) == 0).ToList();
             }
             // ----- Show All -----
             else
             {
                 if (chbShowReturned.Checked)
-                    borr = db.Borrowing.ToList();
+                    lend = db.Lending.ToList();
                 else
-                    borr = db.Borrowing.Where(p => (p.Status ?? 1) != 2).ToList();
+                    lend = db.Lending.Where(p => (p.Status ?? 1) != 2).ToList();
             }
 
             
-            brPerson.AspectGetter = delegate (object x) {
-                Contacts contact = db.Contacts.Find(((Borrowing)x).PersonID);
+            ldPerson.AspectGetter = delegate (object x) {
+                Contacts contact = db.Contacts.Find(((Lending)x).PersonID);
                 if (contact != null)
                     return contact.Name.Trim() + " " + contact.Surname.Trim();
                 else return "";
             };
-            brType.AspectGetter = delegate (object x) {
-                switch (((Borrowing)x).ItemType.Trim())
+            ldItemType.AspectGetter = delegate (object x) {
+                switch (((Lending)x).ItemType.Trim())
                 {
                     case "item":
                         return Lng.Get("Item");
@@ -185,11 +177,170 @@ namespace Katalog
                 }
                 return Lng.Get("Unknown");
             };
-            brName.AspectGetter = delegate (object x) {
-                return GetBorrItemName(((Borrowing)x).ItemType.Trim(), ((Borrowing)x).ItemID ?? Guid.Empty);
+            ldItemName.AspectGetter = delegate (object x) {
+                return GetLendingItemName(((Lending)x).ItemType.Trim(), ((Lending)x).ItemID ?? Guid.Empty);
             };
-            brItemNum.AspectGetter = delegate (object x) {
-                return ((Borrowing)x).ItemNum;
+            ldItemNum.AspectGetter = delegate (object x) {
+                return ((Lending)x).ItemNum;
+            };
+            ldItemInvNum.AspectGetter = delegate (object x) {
+                if (((Lending)x).ItemInvNum != null)
+                    return ((Lending)x).ItemInvNum.Trim();
+                return "";
+            };
+            ldFrom.AspectGetter = delegate (object x) {
+                if (((Lending)x).From == null) return "";
+                DateTime t = ((Lending)x).From ?? DateTime.Now;
+                return t.ToShortDateString();
+            };
+            ldTo.AspectGetter = delegate (object x) {
+                if (((Lending)x).To == null) return "";
+                DateTime t = ((Lending)x).To ?? DateTime.Now;
+                return t.ToShortDateString();
+            };
+            //brStatus.Renderer = new ImageRenderer();
+            ldStatus.ImageGetter = delegate (object x) {
+                int status = ((Lending)x).Status ?? 1;
+                if (status == 2)        // Returned
+                    return 6;
+                else if (status == 0)   // Reserved
+                    return 9;
+                else return 7;          // Borrowed
+            };
+            ldStatus.AspectGetter = delegate (object x) {
+                int status = ((Lending)x).Status ?? 1;
+                if (status == 2)        // Returned
+                    return Lng.Get("Returned");
+                else if (status == 0)   // Reserved
+                    return Lng.Get("Reserved");
+                else return Lng.Get("Borrowed"); // Borrowed
+            };
+
+            olvLending.SetObjects(lend);
+        }
+
+        /// <summary>
+        /// OLV Lending selected index change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void olvLending_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnableEditItems();
+        }
+
+        /// <summary>
+        /// Color Row
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void olvLending_FormatRow(object sender, FormatRowEventArgs e)
+        {
+            Lending itm = (Lending)e.Model;
+            DateTime now = DateTime.Now;
+            if (itm.Status == 2)
+                e.Item.ForeColor = Color.Gray;
+            else if ((itm.To ?? now) < now )
+                e.Item.ForeColor = Color.Red;
+            else
+                e.Item.ForeColor = Color.Black;
+        }
+
+        /// <summary>
+        /// Show returned Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chbShowReturned_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateLendingOLV();
+        }
+        
+        private void cbLendingShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateLendingOLV();
+        }
+
+        #endregion
+
+        #region Borrowing
+
+        /// <summary>
+        /// Update Lending ObjectListView
+        /// </summary>
+        void UpdateBorrowingOLV()
+        {
+            databaseEntities db = new databaseEntities();
+
+            List<Borrowing> borr;
+            // ----- Show Expired -----
+            if (cbBorrowingShow.SelectedIndex == 1)
+            {
+                DateTime now = DateTime.Now;
+                borr = db.Borrowing.Where(p => ((p.To ?? now) < DateTime.Now) && (p.Status ?? 1) != 2).ToList();
+            }
+            // ----- Show Borrowed -----
+            else if (cbBorrowingShow.SelectedIndex == 2)
+            {
+                if (chbBorrowingReturned.Checked)
+                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 1 || (p.Status ?? 1) == 2)).ToList();
+                else
+                    borr = db.Borrowing.Where(p => (p.Status ?? 1) == 1).ToList();
+            }
+            // ----- Show Reserved -----
+            else if (cbBorrowingShow.SelectedIndex == 3)
+            {
+                if (chbBorrowingReturned.Checked)
+                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 2)).ToList();
+                else
+                    borr = db.Borrowing.Where(p => (p.Status ?? 1) == 0).ToList();
+            }
+            // ----- Show All -----
+            else
+            {
+                if (chbBorrowingReturned.Checked)
+                    borr = db.Borrowing.ToList();
+                else
+                    borr = db.Borrowing.Where(p => (p.Status ?? 1) != 2).ToList();
+            }
+
+            brFastTags.Renderer = new ImageRenderer();
+            brFastTags.AspectGetter = delegate (object x) {
+                List<int> ret = new List<int>();
+                if (((Borrowing)x).FastTags != null)
+                {
+                    FastFlags flag = (FastFlags)((Borrowing)x).FastTags;
+                    if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
+                    if (flag.HasFlag(FastFlags.FLAG2)) ret.Add(1);
+                    if (flag.HasFlag(FastFlags.FLAG3)) ret.Add(2);
+                    if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
+                    if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
+                    if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
+                }
+                return ret;
+            };
+            brFastTagsNum.AspectGetter = delegate (object x) {
+                string res = "";
+                if (((Borrowing)x).FastTags != null)
+                {
+                    FastFlags flag = (FastFlags)((Borrowing)x).FastTags;
+                    if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
+                    if (flag.HasFlag(FastFlags.FLAG2)) res += "2";
+                    if (flag.HasFlag(FastFlags.FLAG3)) res += "3";
+                    if (flag.HasFlag(FastFlags.FLAG4)) res += "4";
+                    if (flag.HasFlag(FastFlags.FLAG5)) res += "5";
+                    if (flag.HasFlag(FastFlags.FLAG6)) res += "6";
+                }
+                return res;
+            };
+            brPerson.AspectGetter = delegate (object x) {
+                Contacts contact = db.Contacts.Find(((Borrowing)x).PersonID);
+                if (contact != null)
+                    return contact.Name.Trim() + " " + contact.Surname.Trim();
+                else return "";
+            };
+            brItemName.AspectGetter = delegate (object x) {
+                return ((Borrowing)x).Item.Trim();
             };
             brItemInvNum.AspectGetter = delegate (object x) {
                 if (((Borrowing)x).ItemInvNum != null)
@@ -223,12 +374,18 @@ namespace Katalog
                     return Lng.Get("Reserved");
                 else return Lng.Get("Borrowed"); // Borrowed
             };
+            brNote.AspectGetter = delegate (object x) {
+                if (((Borrowing)x).Note != null)
+                    return ((Borrowing)x).Note.Trim();
+                else
+                    return "";
+            };
 
             olvBorrowing.SetObjects(borr);
         }
 
         /// <summary>
-        /// OLV Borrowing selected index change
+        /// OLV Lending selected index change
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -248,7 +405,7 @@ namespace Katalog
             DateTime now = DateTime.Now;
             if (itm.Status == 2)
                 e.Item.ForeColor = Color.Gray;
-            else if ((itm.To ?? now) < now )
+            else if ((itm.To ?? now) < now)
                 e.Item.ForeColor = Color.Red;
             else
                 e.Item.ForeColor = Color.Black;
@@ -259,11 +416,15 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void chbShowReturned_CheckedChanged(object sender, EventArgs e)
+        private void chbBorrowingReturned_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateBorrOLV();
+            UpdateBorrowingOLV();
         }
 
+        private void cbBorrowingShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateBorrowingOLV();
+        }
         #endregion
 
         #region Items
@@ -328,7 +489,7 @@ namespace Katalog
                 return ((Items)x).Count.ToString();
             };
             itAvailable.AspectGetter = delegate (object x) {
-                /*var borr = db.Borrowing.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
+                /*var borr = db.Lending.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
                 int count = ((Items)x).Count ?? 1 - borr.Count;*/
                 return ((Items)x).Available ?? (((Items)x).Count ?? 1);
             };
@@ -428,7 +589,7 @@ namespace Katalog
                 return ((Books)x).Count.ToString();
             };
             bkAvailable.AspectGetter = delegate (object x) {
-                /*var borr = db.Borrowing.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
+                /*var borr = db.Lending.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
                 int count = ((Items)x).Count ?? 1 - borr.Count;*/
                 return ((Books)x).Available ?? (((Books)x).Count ?? 1);
             };
@@ -553,7 +714,7 @@ namespace Katalog
                 return ((Boardgames)x).Count.ToString();
             };
             bgAvailable.AspectGetter = delegate (object x) {
-                /*var borr = db.Borrowing.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
+                /*var borr = db.Lending.Where(p => p.ItemID == ((Items)x).Id && p.ItemType.Contains("item") && !(p.Returned ?? false)).ToList();
                 int count = ((Items)x).Count ?? 1 - borr.Count;*/
                 return ((Boardgames)x).Available ?? (((Boardgames)x).Count ?? 1);
             };
@@ -614,6 +775,8 @@ namespace Katalog
 
             if (tabCatalog.SelectedTab == tabContacts)
                 index = olvContacts.SelectedIndex;
+            else if (tabCatalog.SelectedTab == tabLending)
+                index = olvLending.SelectedIndex;
             else if (tabCatalog.SelectedTab == tabBorrowing)
                 index = olvBorrowing.SelectedIndex;
             else if (tabCatalog.SelectedTab == tabItems)
@@ -657,6 +820,23 @@ namespace Katalog
                 }
                 UpdateConOLV();                                 // Update Contact OLV
             }
+            // ----- Lending -----
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                frmEditLending form = new frmEditLending();
+                var res = form.ShowDialog();                    // Show Edit form
+                while (res == DialogResult.Yes)                 // If New item request
+                {
+                    form.Dispose();
+                    form = new frmEditLending();                // New Form
+                    res = form.ShowDialog();                    // Show new Edit form
+                } 
+                UpdateLendingOLV();                             // Update Lending OLV
+                UpdateConOLV();                                 // Update Contact OLV
+                UpdateItemsOLV();                               // Update Items OLV
+                UpdateBooksOLV();                               // Update Books OLV
+                UpdateBoardOLV();                               // Update Board OLV
+            }
             // ----- Borrowing -----
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
@@ -667,12 +847,9 @@ namespace Katalog
                     form.Dispose();
                     form = new frmEditBorrowing();              // New Form
                     res = form.ShowDialog();                    // Show new Edit form
-                } 
-                UpdateBorrOLV();                                // Update Borrowing OLV
+                }
+                UpdateBorrowingOLV();                           // Update Borrowing OLV
                 UpdateConOLV();                                 // Update Contact OLV
-                UpdateItemsOLV();                               // Update Items OLV
-                UpdateBooksOLV();                               // Update Books OLV
-                UpdateBoardOLV();                               // Update Board OLV
             }
             // ----- Item -----
             else if (tabCatalog.SelectedTab == tabItems)
@@ -736,6 +913,28 @@ namespace Katalog
                     UpdateConOLV();                                 // Update Contact OLV
                 }
             }
+            // ----- Lending -----
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                if (olvLending.SelectedIndex >= 0)                // If selected Item
+                {
+                    frmEditLending form = new frmEditLending(); // Show Edit form
+                    List<Guid> gList = new List<Guid>();
+                    gList.Add(((Lending)olvLending.SelectedObject).ID);
+                    var res = form.ShowDialog(gList);
+                    while (res == DialogResult.Yes)                 // If New item request
+                    {
+                        form.Dispose();
+                        form = new frmEditLending();              // New Form
+                        res = form.ShowDialog();                    // Show new Edit form
+                    }
+                    UpdateLendingOLV();                                // Update Lending OLV
+                    UpdateConOLV();                                 // Update Contact OLV
+                    UpdateItemsOLV();                               // Update Items OLV
+                    UpdateBooksOLV();                               // Update Books OLV
+                    UpdateBoardOLV();                               // Update Board OLV
+                }
+            }
             // ----- Borrowing -----
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
@@ -751,11 +950,8 @@ namespace Katalog
                         form = new frmEditBorrowing();              // New Form
                         res = form.ShowDialog();                    // Show new Edit form
                     }
-                    UpdateBorrOLV();                                // Update Borrowing OLV
+                    UpdateBorrowingOLV();                           // Update Borrowing OLV
                     UpdateConOLV();                                 // Update Contact OLV
-                    UpdateItemsOLV();                               // Update Items OLV
-                    UpdateBooksOLV();                               // Update Books OLV
-                    UpdateBoardOLV();                               // Update Board OLV
                 }
             }
             // ----- Item -----
@@ -830,6 +1026,21 @@ namespace Katalog
                     }
                 }
             }
+            // ----- Lending -----
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                if (olvLending.SelectedIndex >= 0)                  // If selected Item
+                {                                                   // Find Object
+                    Lending borr = db.Lending.Find(((Lending)olvLending.SelectedObject).ID);
+
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetLendingItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    {
+                        db.Lending.Remove(borr);                    // Delete Item
+                        db.SaveChanges();                           // Save to DB
+                        UpdateLendingOLV();                         // Update Lending OLV 
+                    }
+                }
+            }
             // ----- Borrowing -----
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
@@ -837,11 +1048,11 @@ namespace Katalog
                 {                                                   // Find Object
                     Borrowing borr = db.Borrowing.Find(((Borrowing)olvBorrowing.SelectedObject).ID);
 
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetBorrItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + borr.Item + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
                         db.Borrowing.Remove(borr);                  // Delete Item
                         db.SaveChanges();                           // Save to DB
-                        UpdateBorrOLV();                            // Update Borrowing OLV 
+                        UpdateBorrowingOLV();                       // Update Borrowing OLV 
                     }
                 }
             }
@@ -958,7 +1169,7 @@ namespace Katalog
                 cbFastFilterCol.Items.Add(Lng.Get("Address"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (tabCatalog.SelectedTab == tabLending)
             {
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("Type"));
@@ -971,6 +1182,22 @@ namespace Katalog
 
                 cbFastFilterCol.Items.Add(Lng.Get("All"));
                 cbFastFilterCol.Items.Add(Lng.Get("Type"));
+                cbFastFilterCol.Items.Add(Lng.Get("ItemName"));
+                cbFastFilterCol.Items.Add(Lng.Get("Person"));
+                cbFastFilterCol.SelectedIndex = 0;
+            }
+            else if (tabCatalog.SelectedTab == tabBorrowing)
+            {
+                cbFilterCol.Items.Add(Lng.Get("All"));
+                cbFilterCol.Items.Add(Lng.Get("ItemName"));
+                cbFilterCol.Items.Add(Lng.Get("Person"));
+                cbFilterCol.Items.Add(Lng.Get("From"));
+                cbFilterCol.Items.Add(Lng.Get("To"));
+                cbFilterCol.Items.Add(Lng.Get("Status"));
+                cbFilterCol.Items.Add(Lng.Get("Note"));
+                cbFilterCol.SelectedIndex = 0;
+
+                cbFastFilterCol.Items.Add(Lng.Get("All"));
                 cbFastFilterCol.Items.Add(Lng.Get("ItemName"));
                 cbFastFilterCol.Items.Add(Lng.Get("Person"));
                 cbFastFilterCol.SelectedIndex = 0;
@@ -1174,6 +1401,11 @@ namespace Katalog
                 olvContacts.UseFiltering = true;
                 olvContacts.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                olvLending.UseFiltering = true;
+                olvLending.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
+            }
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
                 olvBorrowing.UseFiltering = true;
@@ -1223,6 +1455,24 @@ namespace Katalog
                 else if (cbFastFilterCol.SelectedIndex == 5)
                     FastFilter.Columns = new OLVColumn[] { conAddress };
             }
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                if (FastFilterList.Count == 0)
+                    FastFilter = TextMatchFilter.Contains(olvLending, "");
+                else
+                {
+                    string[] filterArray = FastFilterList.ToArray();
+                    FastFilter = TextMatchFilter.Prefix(olvLending, filterArray);
+                }
+                if (cbFastFilterCol.SelectedIndex == 0)
+                    FastFilter.Columns = new OLVColumn[] { ldItemType, ldItemName, ldPerson};
+                else if (cbFastFilterCol.SelectedIndex == 1)
+                    FastFilter.Columns = new OLVColumn[] { ldItemType };
+                else if (cbFastFilterCol.SelectedIndex == 2)
+                    FastFilter.Columns = new OLVColumn[] { ldItemName };
+                else if (cbFastFilterCol.SelectedIndex == 3)
+                    FastFilter.Columns = new OLVColumn[] { ldPerson };
+            }
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
                 if (FastFilterList.Count == 0)
@@ -1233,12 +1483,10 @@ namespace Katalog
                     FastFilter = TextMatchFilter.Prefix(olvBorrowing, filterArray);
                 }
                 if (cbFastFilterCol.SelectedIndex == 0)
-                    FastFilter.Columns = new OLVColumn[] { brType, brName, brPerson};
+                    FastFilter.Columns = new OLVColumn[] { brItemName, brPerson };
                 else if (cbFastFilterCol.SelectedIndex == 1)
-                    FastFilter.Columns = new OLVColumn[] { brType };
+                    FastFilter.Columns = new OLVColumn[] { brItemName };
                 else if (cbFastFilterCol.SelectedIndex == 2)
-                    FastFilter.Columns = new OLVColumn[] { brName };
-                else if (cbFastFilterCol.SelectedIndex == 3)
                     FastFilter.Columns = new OLVColumn[] { brPerson };
             }
             else if (tabCatalog.SelectedTab == tabItems)
@@ -1332,9 +1580,20 @@ namespace Katalog
                     FastFilterTags.Columns = new OLVColumn[] { conFastTagsNum };
                 }
             }
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                FastFilterTags = TextMatchFilter.Contains(olvLending, "");
+            }
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
-                FastFilterTags = TextMatchFilter.Contains(olvBorrowing, "");
+                if (FastTagFilterList.Count == 0)
+                    FastFilterTags = TextMatchFilter.Contains(olvBorrowing, "");
+                else
+                {
+                    string[] filterArray = FastTagFilterList.ToArray();
+                    FastFilterTags = TextMatchFilter.Contains(olvBorrowing, filterArray);
+                    FastFilterTags.Columns = new OLVColumn[] { brFastTagsNum };
+                }
             }
             else if (tabCatalog.SelectedTab == tabItems)
             {
@@ -1396,24 +1655,43 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 5)
                     StandardFilter.Columns = new OLVColumn[] { conAddress };
             } 
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                StandardFilter = TextMatchFilter.Contains(olvLending, txtFilter.Text);
+
+                if (cbFilterCol.SelectedIndex == 0)
+                    StandardFilter.Columns = new OLVColumn[] { ldItemType, ldItemName, ldPerson, ldFrom, ldTo, ldStatus };
+                else if (cbFilterCol.SelectedIndex == 1)
+                    StandardFilter.Columns = new OLVColumn[] { ldItemType };
+                else if (cbFilterCol.SelectedIndex == 2)
+                    StandardFilter.Columns = new OLVColumn[] { ldItemName };
+                else if (cbFilterCol.SelectedIndex == 3)
+                    StandardFilter.Columns = new OLVColumn[] { ldPerson };
+                else if (cbFilterCol.SelectedIndex == 4)
+                    StandardFilter.Columns = new OLVColumn[] { ldFrom };
+                else if (cbFilterCol.SelectedIndex == 5)
+                    StandardFilter.Columns = new OLVColumn[] { ldTo };
+                else if (cbFilterCol.SelectedIndex == 6)
+                    StandardFilter.Columns = new OLVColumn[] { ldStatus };
+            }
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
                 StandardFilter = TextMatchFilter.Contains(olvBorrowing, txtFilter.Text);
 
                 if (cbFilterCol.SelectedIndex == 0)
-                    StandardFilter.Columns = new OLVColumn[] { brType, brName, brPerson, brFrom, brTo, brStatus };
+                    StandardFilter.Columns = new OLVColumn[] { brItemName, brPerson, brFrom, brTo, brStatus, brNote };
                 else if (cbFilterCol.SelectedIndex == 1)
-                    StandardFilter.Columns = new OLVColumn[] { brType };
+                    StandardFilter.Columns = new OLVColumn[] { brItemName };
                 else if (cbFilterCol.SelectedIndex == 2)
-                    StandardFilter.Columns = new OLVColumn[] { brName };
-                else if (cbFilterCol.SelectedIndex == 3)
                     StandardFilter.Columns = new OLVColumn[] { brPerson };
-                else if (cbFilterCol.SelectedIndex == 4)
+                else if (cbFilterCol.SelectedIndex == 3)
                     StandardFilter.Columns = new OLVColumn[] { brFrom };
-                else if (cbFilterCol.SelectedIndex == 5)
+                else if (cbFilterCol.SelectedIndex == 4)
                     StandardFilter.Columns = new OLVColumn[] { brTo };
-                else if (cbFilterCol.SelectedIndex == 6)
+                else if (cbFilterCol.SelectedIndex == 5)
                     StandardFilter.Columns = new OLVColumn[] { brStatus };
+                else if (cbFilterCol.SelectedIndex == 6)
+                    StandardFilter.Columns = new OLVColumn[] { brNote };
             }
             else if (tabCatalog.SelectedTab == tabItems)
             {
@@ -1566,7 +1844,7 @@ namespace Katalog
             Files.SaveFile(path, lines);
         }
 
-        private void ExportBorCSV(string path, List<Borrowing> bor)
+        private void ExportBorCSV(string path, List<Lending> bor)
         {
             string lines;
 
@@ -1626,13 +1904,13 @@ namespace Katalog
                     }
                     ExportConCSV(dialog.FileName, con);
                 }
-                else if (tabCatalog.SelectedTab == tabBorrowing)
+                else if (tabCatalog.SelectedTab == tabLending)
                 {
-                    List<Borrowing> itm = new List<Borrowing>();
+                    List<Lending> itm = new List<Lending>();
 
-                    foreach (var item in olvBorrowing.FilteredObjects)
+                    foreach (var item in olvLending.FilteredObjects)
                     {
-                        itm.Add((Borrowing)item);
+                        itm.Add((Lending)item);
                     }
                     ExportBorCSV(dialog.FileName, itm);
                 }
@@ -1699,15 +1977,15 @@ namespace Katalog
             return con;
         }
 
-        private List<Borrowing> ImportBorCSV(string path)
+        private List<Lending> ImportBorCSV(string path)
         {
-            List<Borrowing> con = new List<Borrowing>();
+            List<Lending> con = new List<Lending>();
             string text = Files.LoadFile(path);
             CSVfile file = Files.ParseCSV(text);
 
             foreach (var item in file.data)
             {
-                Borrowing itm = new Borrowing();
+                Lending itm = new Lending();
                 itm.ItemType = item[0];
                 itm.ItemID = Conv.ToGuid(item[1]);
                 itm.PersonID = Conv.ToGuid(item[2]);
@@ -1817,7 +2095,7 @@ namespace Katalog
             contact.GoogleID = "";*/
         }
 
-        private void FillBorrowing(ref Borrowing itm, Borrowing newItem)
+        private void FillLending(ref Lending itm, Lending newItem)
         {
             itm.ItemType = newItem.ItemType;
             itm.ItemID = newItem.ItemID;
@@ -1900,34 +2178,34 @@ namespace Katalog
                     db.SaveChanges();
                     UpdateConOLV();
                 }
-                else if (tabCatalog.SelectedTab == tabBorrowing)
+                else if (tabCatalog.SelectedTab == tabLending)
                 {
-                    List<Borrowing> con = ImportBorCSV(dialog.FileName);
+                    List<Lending> con = ImportBorCSV(dialog.FileName);
                     foreach (var item in con)
                     {
 
 
-                        Borrowing itm;
+                        Lending itm;
                         // ----- ID -----
                         if (item.ID != Guid.Empty)
                         {
-                            itm = db.Borrowing.Find(item.ID);
+                            itm = db.Lending.Find(item.ID);
                             if (itm != null)
-                                FillBorrowing(ref itm, item);
+                                FillLending(ref itm, item);
                             else
                             {
-                                db.Borrowing.Add(item);
+                                db.Lending.Add(item);
                             }
 
                         }
                         else
                         {
                             item.ID = Guid.NewGuid();
-                            db.Borrowing.Add(item);
+                            db.Lending.Add(item);
                         }
                     }
                     db.SaveChanges();
-                    UpdateBorrOLV();
+                    UpdateLendingOLV();
                 }
                 else if (tabCatalog.SelectedTab == tabItems)
                 {
@@ -1996,17 +2274,19 @@ namespace Katalog
 
         private void PrepareForm()
         {
-            cbBorrShow.Items.Add(Lng.Get("All"));
-            cbBorrShow.Items.Add(Lng.Get("Expired"));
-            cbBorrShow.Items.Add(Lng.Get("Borrowed"));
-            cbBorrShow.Items.Add(Lng.Get("Reserved"));
-            cbBorrShow.SelectedIndex = 0;
+            cbLendingShow.Items.Add(Lng.Get("All"));
+            cbLendingShow.Items.Add(Lng.Get("Expired"));
+            cbLendingShow.Items.Add(Lng.Get("Borrowed"));
+            cbLendingShow.Items.Add(Lng.Get("Reserved"));
+            cbLendingShow.SelectedIndex = 0;
+
+            cbBorrowingShow.Items.Add(Lng.Get("All"));
+            cbBorrowingShow.Items.Add(Lng.Get("Expired"));
+            cbBorrowingShow.Items.Add(Lng.Get("Borrowed"));
+            cbBorrowingShow.Items.Add(Lng.Get("Reserved"));
+            cbBorrowingShow.SelectedIndex = 0;
         }
 
-        private void cbBorrShow_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateBorrOLV();
-        }
 
         private void mnuAbout_Click(object sender, EventArgs e)
         {
@@ -2053,7 +2333,8 @@ namespace Katalog
             PrepareForm();
 
             UpdateConOLV();
-            UpdateBorrOLV();
+            UpdateLendingOLV();
+            UpdateBorrowingOLV();
             UpdateItemsOLV();
             UpdateBooksOLV();
             UpdateBoardOLV();

@@ -188,8 +188,14 @@
     <Compile Include="forms\frmEditBorrowing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditBorrowing.Designer.cs">
+    <Compile Include="forms\frmEditBorrowing.designer.cs">
       <DependentUpon>frmEditBorrowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEditLending.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEditLending.Designer.cs">
+      <DependentUpon>frmEditLending.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmSettings.cs">
       <SubType>Form</SubType>
@@ -250,6 +256,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lang.cs.resx</DependentUpon>
     </Compile>
+    <Compile Include="Lending.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Video.cs">
@@ -276,6 +285,12 @@
     <EmbeddedResource Include="forms\frmEditBorrowing.resx">
       <DependentUpon>frmEditBorrowing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditLending.cs.resx">
+      <DependentUpon>frmEditLending.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditLending.resx">
+      <DependentUpon>frmEditLending.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEditContacts.cs.resx">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmMain.ce.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMain.cs.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

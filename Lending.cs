@@ -12,10 +12,12 @@ namespace Katalog
     using System;
     using System.Collections.Generic;
     
-    public partial class Borrowing
+    public partial class Lending
     {
         public System.Guid ID { get; set; }
-        public string Item { get; set; }
+        public string ItemType { get; set; }
+        public Nullable<System.Guid> ItemID { get; set; }
+        public Nullable<short> ItemNum { get; set; }
         public string ItemInvNum { get; set; }
         public Nullable<System.Guid> PersonID { get; set; }
         public Nullable<System.DateTime> From { get; set; }

@@ -44,19 +44,33 @@
             this.conAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.conFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imgOLV = new System.Windows.Forms.ImageList(this.components);
-            this.tabBorrowing = new System.Windows.Forms.TabPage();
-            this.cbBorrShow = new System.Windows.Forms.ComboBox();
-            this.lblBorrShow = new System.Windows.Forms.Label();
+            this.tabLending = new System.Windows.Forms.TabPage();
+            this.olvLending = new BrightIdeasSoftware.FastObjectListView();
+            this.ldPerson = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldItemType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldItemName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldItemNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldItemInvNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldFrom = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldTo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.cbLendingShow = new System.Windows.Forms.ComboBox();
+            this.lblLendingShow = new System.Windows.Forms.Label();
             this.chbShowReturned = new System.Windows.Forms.CheckBox();
+            this.tabBorrowing = new System.Windows.Forms.TabPage();
+            this.cbBorrowingShow = new System.Windows.Forms.ComboBox();
+            this.lblShowBorrowing = new System.Windows.Forms.Label();
+            this.chbBorrowingReturned = new System.Windows.Forms.CheckBox();
             this.olvBorrowing = new BrightIdeasSoftware.FastObjectListView();
+            this.brFastTags = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.brPerson = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.brType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.brName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.brItemNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.brItemName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.brItemInvNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.brFrom = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.brTo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.brStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.brNote = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.brFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabItems = new System.Windows.Forms.TabPage();
             this.chbShowExcluded = new System.Windows.Forms.CheckBox();
             this.olvItem = new BrightIdeasSoftware.FastObjectListView();
@@ -156,6 +170,8 @@
             this.btnFilterPin4 = new System.Windows.Forms.ToolStripButton();
             this.btnFilterPin5 = new System.Windows.Forms.ToolStripButton();
             this.btnFilterPin6 = new System.Windows.Forms.ToolStripButton();
+            this.brType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.brItemNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNewDB = new System.Windows.Forms.ToolStripMenuItem();
@@ -198,12 +214,16 @@
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.btnBorrowings = new System.Windows.Forms.Button();
+            this.btnClearOldReservations = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.tabCatalog.SuspendLayout();
             this.tabContacts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvContacts)).BeginInit();
+            this.tabLending.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvLending)).BeginInit();
             this.tabBorrowing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvBorrowing)).BeginInit();
             this.tabItems.SuspendLayout();
@@ -237,6 +257,7 @@
             // tabCatalog
             // 
             this.tabCatalog.Controls.Add(this.tabContacts);
+            this.tabCatalog.Controls.Add(this.tabLending);
             this.tabCatalog.Controls.Add(this.tabBorrowing);
             this.tabCatalog.Controls.Add(this.tabItems);
             this.tabCatalog.Controls.Add(this.tabBooks);
@@ -352,28 +373,98 @@
             this.imgOLV.Images.SetKeyName(8, "Stop");
             this.imgOLV.Images.SetKeyName(9, "Reserved");
             // 
-            // tabBorrowing
+            // tabLending
             // 
-            this.tabBorrowing.Controls.Add(this.cbBorrShow);
-            this.tabBorrowing.Controls.Add(this.lblBorrShow);
-            this.tabBorrowing.Controls.Add(this.chbShowReturned);
-            this.tabBorrowing.Controls.Add(this.olvBorrowing);
-            resources.ApplyResources(this.tabBorrowing, "tabBorrowing");
-            this.tabBorrowing.Name = "tabBorrowing";
-            this.tabBorrowing.UseVisualStyleBackColor = true;
+            this.tabLending.Controls.Add(this.olvLending);
+            this.tabLending.Controls.Add(this.cbLendingShow);
+            this.tabLending.Controls.Add(this.lblLendingShow);
+            this.tabLending.Controls.Add(this.chbShowReturned);
+            resources.ApplyResources(this.tabLending, "tabLending");
+            this.tabLending.Name = "tabLending";
+            this.tabLending.UseVisualStyleBackColor = true;
             // 
-            // cbBorrShow
+            // olvLending
             // 
-            this.cbBorrShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBorrShow.FormattingEnabled = true;
-            resources.ApplyResources(this.cbBorrShow, "cbBorrShow");
-            this.cbBorrShow.Name = "cbBorrShow";
-            this.cbBorrShow.SelectedIndexChanged += new System.EventHandler(this.cbBorrShow_SelectedIndexChanged);
+            this.olvLending.AllColumns.Add(this.ldPerson);
+            this.olvLending.AllColumns.Add(this.ldItemType);
+            this.olvLending.AllColumns.Add(this.ldItemName);
+            this.olvLending.AllColumns.Add(this.ldItemNum);
+            this.olvLending.AllColumns.Add(this.ldItemInvNum);
+            this.olvLending.AllColumns.Add(this.ldFrom);
+            this.olvLending.AllColumns.Add(this.ldTo);
+            this.olvLending.AllColumns.Add(this.ldStatus);
+            resources.ApplyResources(this.olvLending, "olvLending");
+            this.olvLending.CellEditUseWholeCell = false;
+            this.olvLending.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ldPerson,
+            this.ldItemType,
+            this.ldItemName,
+            this.ldItemNum,
+            this.ldItemInvNum,
+            this.ldFrom,
+            this.ldTo,
+            this.ldStatus});
+            this.olvLending.Cursor = System.Windows.Forms.Cursors.Default;
+            this.olvLending.FullRowSelect = true;
+            this.olvLending.GridLines = true;
+            this.olvLending.Name = "olvLending";
+            this.olvLending.ShowGroups = false;
+            this.olvLending.SmallImageList = this.imgOLV;
+            this.olvLending.UseCompatibleStateImageBehavior = false;
+            this.olvLending.View = System.Windows.Forms.View.Details;
+            this.olvLending.VirtualMode = true;
+            this.olvLending.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvLending_FormatRow);
+            this.olvLending.SelectedIndexChanged += new System.EventHandler(this.olvLending_SelectedIndexChanged);
+            this.olvLending.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
-            // lblBorrShow
+            // ldPerson
             // 
-            resources.ApplyResources(this.lblBorrShow, "lblBorrShow");
-            this.lblBorrShow.Name = "lblBorrShow";
+            resources.ApplyResources(this.ldPerson, "ldPerson");
+            // 
+            // ldItemType
+            // 
+            this.ldItemType.AspectName = "";
+            resources.ApplyResources(this.ldItemType, "ldItemType");
+            // 
+            // ldItemName
+            // 
+            this.ldItemName.AspectName = "";
+            resources.ApplyResources(this.ldItemName, "ldItemName");
+            // 
+            // ldItemNum
+            // 
+            resources.ApplyResources(this.ldItemNum, "ldItemNum");
+            // 
+            // ldItemInvNum
+            // 
+            resources.ApplyResources(this.ldItemInvNum, "ldItemInvNum");
+            // 
+            // ldFrom
+            // 
+            this.ldFrom.AspectName = "";
+            resources.ApplyResources(this.ldFrom, "ldFrom");
+            // 
+            // ldTo
+            // 
+            this.ldTo.AspectName = "";
+            resources.ApplyResources(this.ldTo, "ldTo");
+            // 
+            // ldStatus
+            // 
+            resources.ApplyResources(this.ldStatus, "ldStatus");
+            // 
+            // cbLendingShow
+            // 
+            this.cbLendingShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLendingShow.FormattingEnabled = true;
+            resources.ApplyResources(this.cbLendingShow, "cbLendingShow");
+            this.cbLendingShow.Name = "cbLendingShow";
+            this.cbLendingShow.SelectedIndexChanged += new System.EventHandler(this.cbLendingShow_SelectedIndexChanged);
+            // 
+            // lblLendingShow
+            // 
+            resources.ApplyResources(this.lblLendingShow, "lblLendingShow");
+            this.lblLendingShow.Name = "lblLendingShow";
             // 
             // chbShowReturned
             // 
@@ -382,27 +473,61 @@
             this.chbShowReturned.UseVisualStyleBackColor = true;
             this.chbShowReturned.CheckedChanged += new System.EventHandler(this.chbShowReturned_CheckedChanged);
             // 
+            // tabBorrowing
+            // 
+            this.tabBorrowing.Controls.Add(this.btnClearOldReservations);
+            this.tabBorrowing.Controls.Add(this.btnBorrowings);
+            this.tabBorrowing.Controls.Add(this.cbBorrowingShow);
+            this.tabBorrowing.Controls.Add(this.lblShowBorrowing);
+            this.tabBorrowing.Controls.Add(this.chbBorrowingReturned);
+            this.tabBorrowing.Controls.Add(this.olvBorrowing);
+            resources.ApplyResources(this.tabBorrowing, "tabBorrowing");
+            this.tabBorrowing.Name = "tabBorrowing";
+            this.tabBorrowing.UseVisualStyleBackColor = true;
+            // 
+            // cbBorrowingShow
+            // 
+            this.cbBorrowingShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBorrowingShow.FormattingEnabled = true;
+            resources.ApplyResources(this.cbBorrowingShow, "cbBorrowingShow");
+            this.cbBorrowingShow.Name = "cbBorrowingShow";
+            this.cbBorrowingShow.SelectedIndexChanged += new System.EventHandler(this.cbBorrowingShow_SelectedIndexChanged);
+            // 
+            // lblShowBorrowing
+            // 
+            resources.ApplyResources(this.lblShowBorrowing, "lblShowBorrowing");
+            this.lblShowBorrowing.Name = "lblShowBorrowing";
+            // 
+            // chbBorrowingReturned
+            // 
+            resources.ApplyResources(this.chbBorrowingReturned, "chbBorrowingReturned");
+            this.chbBorrowingReturned.Name = "chbBorrowingReturned";
+            this.chbBorrowingReturned.UseVisualStyleBackColor = true;
+            this.chbBorrowingReturned.CheckedChanged += new System.EventHandler(this.chbBorrowingReturned_CheckedChanged);
+            // 
             // olvBorrowing
             // 
+            this.olvBorrowing.AllColumns.Add(this.brFastTags);
             this.olvBorrowing.AllColumns.Add(this.brPerson);
-            this.olvBorrowing.AllColumns.Add(this.brType);
-            this.olvBorrowing.AllColumns.Add(this.brName);
-            this.olvBorrowing.AllColumns.Add(this.brItemNum);
+            this.olvBorrowing.AllColumns.Add(this.brItemName);
             this.olvBorrowing.AllColumns.Add(this.brItemInvNum);
             this.olvBorrowing.AllColumns.Add(this.brFrom);
             this.olvBorrowing.AllColumns.Add(this.brTo);
             this.olvBorrowing.AllColumns.Add(this.brStatus);
+            this.olvBorrowing.AllColumns.Add(this.brNote);
+            this.olvBorrowing.AllColumns.Add(this.brFastTagsNum);
             resources.ApplyResources(this.olvBorrowing, "olvBorrowing");
             this.olvBorrowing.CellEditUseWholeCell = false;
             this.olvBorrowing.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.brFastTags,
             this.brPerson,
-            this.brType,
-            this.brName,
-            this.brItemNum,
+            this.brItemName,
             this.brItemInvNum,
             this.brFrom,
             this.brTo,
-            this.brStatus});
+            this.brStatus,
+            this.brNote,
+            this.brFastTagsNum});
             this.olvBorrowing.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvBorrowing.FullRowSelect = true;
             this.olvBorrowing.GridLines = true;
@@ -416,23 +541,18 @@
             this.olvBorrowing.SelectedIndexChanged += new System.EventHandler(this.olvBorrowing_SelectedIndexChanged);
             this.olvBorrowing.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
+            // brFastTags
+            // 
+            resources.ApplyResources(this.brFastTags, "brFastTags");
+            // 
             // brPerson
             // 
             resources.ApplyResources(this.brPerson, "brPerson");
             // 
-            // brType
+            // brItemName
             // 
-            this.brType.AspectName = "";
-            resources.ApplyResources(this.brType, "brType");
-            // 
-            // brName
-            // 
-            this.brName.AspectName = "";
-            resources.ApplyResources(this.brName, "brName");
-            // 
-            // brItemNum
-            // 
-            resources.ApplyResources(this.brItemNum, "brItemNum");
+            this.brItemName.AspectName = "";
+            resources.ApplyResources(this.brItemName, "brItemName");
             // 
             // brItemInvNum
             // 
@@ -451,6 +571,14 @@
             // brStatus
             // 
             resources.ApplyResources(this.brStatus, "brStatus");
+            // 
+            // brNote
+            // 
+            resources.ApplyResources(this.brNote, "brNote");
+            // 
+            // brFastTagsNum
+            // 
+            resources.ApplyResources(this.brFastTagsNum, "brFastTagsNum");
             // 
             // tabItems
             // 
@@ -788,14 +916,15 @@
             this.imgBarList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgBarList.ImageStream")));
             this.imgBarList.TransparentColor = System.Drawing.Color.Transparent;
             this.imgBarList.Images.SetKeyName(0, "Contact");
-            this.imgBarList.Images.SetKeyName(1, "Borrowing");
-            this.imgBarList.Images.SetKeyName(2, "Rezervations");
-            this.imgBarList.Images.SetKeyName(3, "Item");
-            this.imgBarList.Images.SetKeyName(4, "Books");
-            this.imgBarList.Images.SetKeyName(5, "BoardGame");
-            this.imgBarList.Images.SetKeyName(6, "Dice");
-            this.imgBarList.Images.SetKeyName(7, "Song");
-            this.imgBarList.Images.SetKeyName(8, "Video");
+            this.imgBarList.Images.SetKeyName(1, "Lending");
+            this.imgBarList.Images.SetKeyName(2, "Borrowing");
+            this.imgBarList.Images.SetKeyName(3, "Rezervations");
+            this.imgBarList.Images.SetKeyName(4, "Item");
+            this.imgBarList.Images.SetKeyName(5, "Books");
+            this.imgBarList.Images.SetKeyName(6, "BoardGame");
+            this.imgBarList.Images.SetKeyName(7, "Dice");
+            this.imgBarList.Images.SetKeyName(8, "Song");
+            this.imgBarList.Images.SetKeyName(9, "Video");
             // 
             // toolStripEditItem
             // 
@@ -1255,6 +1384,15 @@
             this.btnFilterPin6.Name = "btnFilterPin6";
             this.btnFilterPin6.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
+            // brType
+            // 
+            this.brType.AspectName = "";
+            resources.ApplyResources(this.brType, "brType");
+            // 
+            // brItemNum
+            // 
+            resources.ApplyResources(this.brItemNum, "brItemNum");
+            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1529,6 +1667,18 @@
             resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             // 
+            // btnBorrowings
+            // 
+            resources.ApplyResources(this.btnBorrowings, "btnBorrowings");
+            this.btnBorrowings.Name = "btnBorrowings";
+            this.btnBorrowings.UseVisualStyleBackColor = true;
+            // 
+            // btnClearOldReservations
+            // 
+            resources.ApplyResources(this.btnClearOldReservations, "btnClearOldReservations");
+            this.btnClearOldReservations.Name = "btnClearOldReservations";
+            this.btnClearOldReservations.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -1547,6 +1697,9 @@
             this.tabCatalog.ResumeLayout(false);
             this.tabContacts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.olvContacts)).EndInit();
+            this.tabLending.ResumeLayout(false);
+            this.tabLending.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvLending)).EndInit();
             this.tabBorrowing.ResumeLayout(false);
             this.tabBorrowing.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvBorrowing)).EndInit();
@@ -1679,17 +1832,8 @@
         private BrightIdeasSoftware.OLVColumn conPhone;
         private BrightIdeasSoftware.OLVColumn conEmail;
         private BrightIdeasSoftware.OLVColumn conAddress;
-        private System.Windows.Forms.TabPage tabBorrowing;
+        private System.Windows.Forms.TabPage tabLending;
         private System.Windows.Forms.CheckBox chbShowReturned;
-        private BrightIdeasSoftware.FastObjectListView olvBorrowing;
-        private BrightIdeasSoftware.OLVColumn brPerson;
-        private BrightIdeasSoftware.OLVColumn brType;
-        private BrightIdeasSoftware.OLVColumn brName;
-        private BrightIdeasSoftware.OLVColumn brItemNum;
-        private BrightIdeasSoftware.OLVColumn brItemInvNum;
-        private BrightIdeasSoftware.OLVColumn brFrom;
-        private BrightIdeasSoftware.OLVColumn brTo;
-        private BrightIdeasSoftware.OLVColumn brStatus;
         private System.Windows.Forms.TabPage tabItems;
         private System.Windows.Forms.CheckBox chbShowExcluded;
         private BrightIdeasSoftware.FastObjectListView olvItem;
@@ -1723,8 +1867,8 @@
         private System.Windows.Forms.TabPage tabVideo;
         private System.Windows.Forms.TabPage tabFoto;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox cbBorrShow;
-        private System.Windows.Forms.Label lblBorrShow;
+        private System.Windows.Forms.ComboBox cbLendingShow;
+        private System.Windows.Forms.Label lblLendingShow;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private BrightIdeasSoftware.OLVColumn itFastTagsNum;
         private BrightIdeasSoftware.OLVColumn conFastTagsNum;
@@ -1741,6 +1885,33 @@
         private BrightIdeasSoftware.OLVColumn bgAvailable;
         private BrightIdeasSoftware.OLVColumn bgExcluded;
         private BrightIdeasSoftware.OLVColumn bgTagsNum;
+        private System.Windows.Forms.TabPage tabBorrowing;
+        private System.Windows.Forms.ComboBox cbBorrowingShow;
+        private System.Windows.Forms.Label lblShowBorrowing;
+        private System.Windows.Forms.CheckBox chbBorrowingReturned;
+        private BrightIdeasSoftware.FastObjectListView olvBorrowing;
+        private BrightIdeasSoftware.OLVColumn brPerson;
+        private BrightIdeasSoftware.OLVColumn brItemName;
+        private BrightIdeasSoftware.OLVColumn brItemInvNum;
+        private BrightIdeasSoftware.OLVColumn brFrom;
+        private BrightIdeasSoftware.OLVColumn brTo;
+        private BrightIdeasSoftware.OLVColumn brStatus;
+        private BrightIdeasSoftware.OLVColumn brType;
+        private BrightIdeasSoftware.OLVColumn brItemNum;
+        private BrightIdeasSoftware.FastObjectListView olvLending;
+        private BrightIdeasSoftware.OLVColumn ldPerson;
+        private BrightIdeasSoftware.OLVColumn ldItemType;
+        private BrightIdeasSoftware.OLVColumn ldItemName;
+        private BrightIdeasSoftware.OLVColumn ldItemNum;
+        private BrightIdeasSoftware.OLVColumn ldItemInvNum;
+        private BrightIdeasSoftware.OLVColumn ldFrom;
+        private BrightIdeasSoftware.OLVColumn ldTo;
+        private BrightIdeasSoftware.OLVColumn ldStatus;
+        private BrightIdeasSoftware.OLVColumn brFastTags;
+        private BrightIdeasSoftware.OLVColumn brNote;
+        private BrightIdeasSoftware.OLVColumn brFastTagsNum;
+        private System.Windows.Forms.Button btnClearOldReservations;
+        private System.Windows.Forms.Button btnBorrowings;
     }
 }
 
