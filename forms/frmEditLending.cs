@@ -393,6 +393,7 @@ namespace Katalog
             cbStatus.Items.Add(Lng.Get("Reserved"));
             cbStatus.Items.Add(Lng.Get("Borrowed"));
             cbStatus.Items.Add(Lng.Get("Returned"));
+            cbStatus.Items.Add(Lng.Get("Canceled"));
             cbStatus.SelectedIndex = 1;
 
             // ----- Prepare Item type Combo box -----
@@ -443,7 +444,9 @@ namespace Katalog
                 // ----- Fill other values -----
                 dtFrom.Value = lend.From ?? DateTime.Now;
                 dtTo.Value = lend.To ?? DateTime.Now;
-                cbStatus.SelectedIndex = lend.Status ?? 1;
+                int stat = lend.Status ?? 1;
+                if (stat < cbStatus.Items.Count)
+                    cbStatus.SelectedIndex = stat;
                 txtNote.Text = lend.Note;
 
                 ItemGuid = lend.ItemID ?? Guid.Empty;

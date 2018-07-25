@@ -113,6 +113,7 @@ namespace Katalog
             cbStatus.Items.Add(Lng.Get("Reserved"));
             cbStatus.Items.Add(Lng.Get("Borrowed"));
             cbStatus.Items.Add(Lng.Get("Returned"));
+            cbStatus.Items.Add(Lng.Get("Canceled"));
             cbStatus.SelectedIndex = 1;
 
             // ----- Prepare Contacts autocomplete Context -----

@@ -117,507 +117,208 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblItemNum.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <metadata name="imgOLV.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>847, 17</value>
+  </metadata>
+  <data name="imgOLV.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADk
+        KwAAAk1TRnQBSQFMAgEBCwEAAVABAQFQAQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABMAMAAQEBAAEgBgABMCYAA8wB/wJBAcwB/wGAAVcC/wGAAVcC/wJBAcwB/wOyBf8UAAT/A+oB/wPq
+        Af8D6gH/A+oB/wPqAf8D6gH/A+oB/wPqAf8D6gH/A+oB/wPqAf8D6gH/A+oF/xwAAwYBCAMhATADFAEb
+        AwABAWAAA90B/wEOAUEC/wEOAUEC/wJBAv8CQQL/AYABVwL/AYABVwL/ApkC/wKZAv8BkAGpAa0B/xIA
+        AaUB/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wIOAZkB/wIAAaUB/wIAAaUB/wIA
+        AaUB/wIAAaUB/wIAAZkB/wIAAZkB/wNSAf8YAAMGAQgCLgGWAfICSwHTAf8CPQE+AWoDFAEcAwABAVgA
+        A8AB/wEAAQ4C/wEAAQ4C/wIOAv8CDgL/AisC/wJBAv8CQQL/AYABVwL/AYABVwL/ApkC/wJBAcwB/wwA
+        Ag4BzAH/AQABDgHMAf8BAAEOAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIA
+        AZkB/wIAAZkB/wIAAZkB/wIAAZkB/wIAAcwB/wNSAf8UAAMGAQgCLAGWAfICTgHkAf8CKQHhAf8CTQHU
+        Af8CPQE+AWoDFAEcAwABAVAAA/EB/wIAAcwB/wIAAcwB/wEAAQ4BzAH/AQABDgL/A8AB/wPxBf8D1wH/
+        AkEC/wGAAVcC/wGAAVcC/wKZAv8BkAGpAa0B/wgAAkEBzAH/AQ4BQQL/AQABDgHMAf8D1wH/A+oB/wPx
+        Af8D1wH/A1IF/wPqAf8D4wH/ApkBzAH/AgABmQH/AgABgAX/EAADBgEIAiwBmAHyAksB4AH/AiUB3AH/
+        AigB4AH/AisB5AH/Ak0B1QH/Aj0BPgFqAxQBHAMAAQFMAAIrAv8CAAHMAf8CAAHMAf8BAAEOAcwB/xAA
+        AkEBzAH/AisC/wJBAv8CQQL/AYABVwL/ApkG/wgAAg4BzAH/AQABDgHMAf8DzAH/A+oB/wPxAf8D3QH/
+        A4YF/wPqAf8D6gH/AgABzAH/Ag4BzAH/A4YB/xAAAwYBCAIsAZgB8gJHAdwB/wIgAdcB/wIkAdsB/wIn
+        Ad4B/wIqAeIB/wItAeUB/wJOAdUB/wI9AT4BagMUARwDAAEBRAAE/wJBAv8CQQHMAf8CDgL/EAABDgFB
+        AcwB/wEAAQ4C/wIOAv8BDgFBAv8CQQL/AkEC/wGAAVcC/wPAAf8IAAKZAcwB/wIrAv8BAAEOAcwN/wGk
+        AqAF/wPxAf8CmQHMAf8CAAHMAf8CAAGABf8MAAMGAQgCLAGZAfICRAHYAf8CHAHSAf8CHwHWAf8CIgHZ
+        Af8CJQHdAf8CKAHgAf8CKwHjAf8CLQHlAf8CTgHVAf8CPQE+AWoDFAEcAwABAUAAA8wB/wJBAv8CQQHM
+        Af8CQQHMAf8MAAJBAcwB/wIAAcwB/wEAAQ4C/wEAAQ4C/wJBAcwB/wPXAf8CKwL/AkEC/wJBAcwB/wwA
+        Ag4BzAH/AQABDgL/AcYB1gHvCf8DQQn/AgABzAH/Ag4BzAH/A7IB/wwAAwQBBgIsAZkB8gJAAdQB/wIX
+        Ac0B/wIaAdEB/wIdAdQB/wIgAdcB/wIjAdoB/wImAd0B/wIoAeAB/wIqAeIB/wIsAeUB/wJNAdUB/wI9
+        AT4BagMUARtAAAKZAcwB/wGAAVcC/wGAAVcC/wOyAf8IAAJBAcwB/wIOAcwB/wIAAcwB/wIAAcwB/wJB
+        AcwB/wQABP8CDgL/AisC/wJBAv8MAAHGAdYB7wH/ApkC/wKZBv8D3QH/AwQF/wKZAv8CDgL/AgABgAX/
+        DAACLQGWAfABiAF1Av8BiAF1Av8BiAF1Av8CGQHPAf8CGwHSAf8CHgHVAf8CIQHYAf8CIwHaAf8CJQHd
+        Af8BegFwAfcB/wGIAXUC/wGIAXUC/wFdAVMB4AH/Ax4BK0AAApkBzAH/ApkC/wGAAVcC/wOyAf8EAAKZ
+        AcwB/wJBAcwB/wJBAcwB/wJBAcwB/wJBAcwB/wgAA/EB/wJBAv8CQQL/AkEC/xIAAaUB/wLMAv8CzAL/
+        AaQCoAH/AwAF/wIrAv8CDgHMAf8D1wH/HAACFwGuAf8CFwHNAf8CGQHQAf8CHAHSAf8CHgHVAf8CIAHX
+        Af8CIgHaAf8CZQHnAf8DJwE6TAADzAH/ApkC/wKZAv8BQQGZAcwB/wKZAcwB/wGAAVcC/wGAAVcC/wGA
+        AVcC/wFBAZkBzAH/DAADsgH/AkEC/wJBAv8CQQHMAf8QAAPxAf8BgAFXAv8CmQL/A+oB/wOGAf8CmQL/
+        AkEC/wIAAYAB/yAAAhcBrgH/AlQB2QH/AjkB1QH/AhkB0AH/AhwB0gH/Ah4B1QH/AiAB1wH/AmMB5AH/
+        AycBOkwABP8CzAL/ApkC/wKZAv8CmQL/ApkC/wGAAVcC/wKZAcwB/xAAAkEC/wJBAcwB/wJBAv8D1wH/
+        FAACDgGZAf8CzAL/AswG/wGAAVcC/wIOAcwB/wPqAf8gAAIWAa4B/wJWAdgB/wJUAdkB/wJTAdoB/wJT
+        AdsB/wJSAdwB/wJEAdsB/wJ7AecB/wMnATpQAAKZAv8CzAL/AZkBzAL/ApkC/wKZAv8CmQHMAf8MAAT/
+        AYABVwL/AkEBzAH/AkEBzAH/AYABVwL/GAAE/wJBAcwB/wLMAv8CmQL/ApkC/wIOAZkB/yQAAhYBrwH/
+        AlcB1wH/AlYB2AH/AlQB2QH/AlMB2gH/AlMB2wH/AlMB3AH/AogB5wH/AycBOlAABP8D8QH/AswC/wLM
+        Av8BmQHMAv8CmQHMAf8DsgH/A7IB/wKZAcwB/wKZAv8BgAFXAv8BgAFXAv8BgAFXAv8D4wH/HAACQQHM
+        Af8CzAL/AswC/wIOAcwB/wPxAf8kAAIWAa8B/wJYAdUB/wJXAdcB/wJWAdcB/wJWAdgB/wJUAdkB/wJT
+        AdoB/wKJAeYB/wMnATpUAAPxAf8B8AH7Av8CzAL/AswC/wLMAv8BmQHMAv8BmQHMAv8CmQL/ApkC/wKZ
+        Av8CmQL/A8wB/yAABP8BDgFBAcwB/wLMAv8CQQGZAf8oAAIWAa8B/wJZAdQB/wJYAdUB/wJXAdYB/wJW
+        AdcB/wJWAdgB/wJWAdgB/wKKAeQB/wMnATpYAAT/AcYB1gHvAf8D8QH/AswC/wLMAv8CzAL/AZkBzAL/
+        AswC/wKZAv8D8QH/KAABxgHWAe8B/wJBAcwF/ygAAhUBrwH/AWUBYQHeAf8BZAFgAd8B/wFkAWAB3wH/
+        AWMBXwHgAf8BYwFfAeEB/wFiAV4B4QH/AosB4wH/AycBOmAABP8D1wH/ApkBzAH/ApkBzAH/A8wF/2QA
+        AhUBsAH/AhUBsAH/AhUBrwH/AhYBrwH/AhYBrwH/AhYBrwH/AhYBrwH/AhYBrgH/AwoBDlwABP8DsgH/
+        A0EB/wNSAf8DUgH/A0EB/wOGAf8D6gH/IAAE/wOyAf8DQQH/A0EB/wNBAf8DQQH/A4YB/wPqAf+cAAPA
+        Af8DsgX/A+oB/wPdAf8D3QH/A/EF/wOyAf8DhgX/FAADwAH/A7IF/wHwAcoBpgL/AUEBDgL/AUEBDgL/
+        AcwBmQX/A7IB/wOGBf9QAAT/Ag4BzAH/Ag4BzAX/FAACQQHMAf8CQQL/AkEBzAH/EAADlgH/A+oB/wPX
+        Af8DzAH/A9cB/wPdAf8D4wH/A+oB/wPqBf8D8QH/AzoF/wwAA5YB/wPqAf8BzAJBAf8BzAEOAQAB/wHM
+        AQ4BAAL/AUEBAAL/AUEBAAL/AZkBAAL/AZkBAAL/AcwBQQH/A/EB/wM6Bf8UAAOGAf8CQQEOBf8oAAT/
+        AkEBzAH/AgAC/wIAAv8CDgHMAf8D8QH/DAACQQHMAf8CKwL/AisC/wJBAv8CQQHMAf8IAAPMAf8D6gH/
+        A8wB/wPMAf8DzAH/A9cB/wPdAf8D3QH/A+MB/wPqAf8D8QH/A/EB/wPxAf8DUgH/CAADwAH/A+oB/wHM
+        AQ4BAAH/AcwBDgEAAf8BzAEOAQAB/wHMAQ4BAAL/AUEBAAL/AUEBAAL/AZkBAAL/AZkBAAL/AZkBAAL/
+        AZkBAAH/A/EB/wNSAf8QAAT/AQ4BmQEOAf8BDgHMAZkB/wJBAQ4F/yQAAkEBmQH/AgAC/wIAAv8CAAL/
+        AgABzAH/Ag4BzAX/BAACQQHMAf8CDgL/Ag4BzAH/AisC/wIrAv8CmQL/BAAE/wOyAf8D3QH/A9cB/wPM
+        Af8DzAH/A9cB/wPXAf8D3QH/A+MB/wPqAf8D6gH/A/EB/wPxAf8DsgH/A+oF/wGkAqAB/wHMAkEB/wHM
+        AQ4BAAH/AcwBDgEAAf8BzAEOAQAB/wHMAQ4BAAH/AcwBQQEAAv8BQQEAAv8BQQEAAv8BmQEAAv8BmQEA
+        Av8BmQEAAv8BmQFBAf8DsgH/A+oB/wwAAaQCoAH/AUEBzAGZAf8BQQHMAZkB/wFBAcwBmQH/AkEBDgH/
+        JAAE/wJBAcwB/wIAAv8CAAL/AgABzAH/AgABzAH/AgABzAH/AkEBzAH/Ag4C/wIOAcwB/wIOAcwB/wIr
+        Av8BgAFXAv8CQQHMAf8EAAPMBf8D1wH/A9cB/wPMAf8DzAH/A8wB/wPXAf8D3QH/A90B/wPjAf8D6gH/
+        A+oB/wPjBf8DhgH/A8wF/wHMAQ4BAAH/AcwBDgEAAf8BzAEOAQAB/wHMAQ4BAAH/AcwBDgEAAf8BzAEO
+        AQAC/wFBAQAC/wFBAQAC/wFBAQAC/wGZAQAC/wGZAQAC/wGZAQAF/wOGAf8MAAEOAZkBDgH/AZkB/wHM
+        Af8BmQH/AcwB/wFBAcwBmQH/AUEBzAGZAf8CQQEOAf8kAAT/Ag4BzAH/AgAC/wIAAcwB/wIAAcwB/wIA
+        AcwB/wIAAcwB/wIAAcwB/wIOAcwB/wIOAcwB/wJBAv8CQQHMAf8IAAOGAf8D8QH/A+MB/wPXAf8D1wH/
+        A8wB/wPMAf8D1wH/A9cB/wPdAf8D3QH/A+MB/wPjAf8D4wH/A/EB/wNBAf8DhgL/AswC/wGZAQ4B/wHM
+        AQ4BAAH/AcwBDgEAAf8BzAEOAQAB/wHMAQ4BAAH/AcwBDgEAAf8BzAFBAQAC/wFBAQAC/wFBAQAC/wFB
+        AQAC/wFBAQAC/wFBAQAC/wHMAZkB/wNBAf8IAAPXAf8BQQHMAZkB/wGZAf8BzAH/AQ4BzAFBAf8BmQH/
+        AcwB/wGZAf8BzAH/AUEBzAGZAf8BQQGZAQ4B/yQABP8CDgHMAf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHM
+        Af8CAAHMAf8CDgHMAf8CKwL/AkEBzAH/DAADhgH/A/EB/wPqAf8D4wH/A9cB/wPMAf8DzAH/A8wB/wPX
+        Af8D1wH/A90B/wPdAf8D3QH/A90B/wPXAf8DUgH/A1IC/wHMAZkC/wGZAQ4C/wFBAQ4B/wHMAQ4BAAH/
+        AcwBDgEAAf8BzAEOAQAB/wHMAQ4BAAH/AcwBDgEAAf8BzAFBAQAB/wHMAUEBAAL/AUEBAAL/AUEBAAL/
+        AUEBAAL/AUEBDgH/A1IB/wgAAQ4BmQEOAf8BzAH/AcwB/wEOAZkBDgH/A9cB/wEOAZkBDgH/AZkB/wHM
+        Af8BmQH/AcwB/wFBAcwBmQH/ApkBQQH/JAAE/wIOAcwB/wIOAcwB/wJBAv8CQQL/AkEC/wIOAv8CQQHM
+        Af8QAAOGAf8D6gH/A+oB/wPjAf8D4wH/A90B/wPMAf8DzAH/A8wB/wPMAf8D1wH/A9cB/wPXAf8D1wH/
+        A9cB/wNSAf8DUgL/AcwBQQL/AZkBDgL/AZkBDgL/AUEBDgH/AcwBQQEOAf8BzAEOAQAB/wHMAQ4BAAH/
+        AcwBDgEAAf8BzAEOAQAB/wHMAQ4BAAH/AcwBDgEAAf8BzAFBAQAB/wHMAQ4BAAH/AcwBQQEOAf8DUgH/
+        BAAD8QH/AUEBzAGZAf8BDgGZAQ4F/wQABP8BDgGZAQ4B/wFBAf8BmQH/AUEB/wHMAf8BQQHMAZkB/wGZ
+        AcwBmQH/IAACQQHMAf8CDgL/ApkC/wKZAv8CmQL/ApkC/wGAAVcC/wIOAcwF/wwAA4YB/wPxAf8D6gH/
+        A+oB/wPjAf8D4wH/A90B/wPdAf8D3QH/A9cB/wPXAf8D1wH/A90B/wPdAf8D8QH/A0EB/wOGAf8B8AHK
+        AaYC/wGZAQ4C/wGZAQ4C/wFBAQ4B/wHMAUEBDgH/AcwBQQEOAf8BzAFBAQ4B/wHMAUEBDgH/AcwCDgH/
+        AcwBQQEOAf8BzAFBAQ4B/wHMAUEBDgL/AkEC/wLMAf8DQQH/BAABQQGZAQ4B/wEOAZkBDgX/EAADwAH/
+        AQ4BzAFBAf8BQQH/AcwB/wEOAcwBmQH/AcAB3AHAAf8YAAJBAcwB/wIOAv8CmQL/ApkC/wKZAv8CQQL/
+        ApkC/wKZAv8CmQL/AkEBzAH/A/EB/wgAA8wF/wPxAf8D6gH/A+oB/wPjAf8D4wH/A90B/wPdAf8D3QH/
+        A90B/wPdAf8D3QH/A+MF/wOyAf8DzAb/AcwBmQL/AZkBDgL/AZkBDgL/AUEBDgH/AcwBQQEOAf8BzAFB
+        AQ4B/wHMAUEBDgH/AcwBQQEOAf8BzAFBAQ4B/wHMAUEBDgH/AcwCQQL/ApkF/wOyAf8EAAj/GAAD8QH/
+        AQ4BmQEAAf8BQQH/AcwB/wEOAcwBQQH/A9cB/xAAApkBzAH/Ag4C/wLMAv8CzAL/AswC/wIAAv8CAAHM
+        Af8BgAFXAv8CzAL/AswC/wKZAv8CQQHMBf8EAAT/A7IB/wPqAf8D8QH/A+oB/wPqAf8D4wH/A+MB/wPd
+        Af8D3QH/A90B/wPdAf8D4wH/A+MB/wOyCf8BpAKgAv8BzAFBAv8BzAGZAv8BmQEOAv8BmQEOAv8BQQEO
+        Av8BQQEOAf8BzAFBAQ4B/wHMAUEBDgH/AcwBQQEOAf8BzAFBAQ4C/wGZAUEC/wGZAUEB/wOyBf8sAAFB
+        AcwBQQH/AUEB/wGZAf8BDgHMAUEB/wPqAf8IAAKZAcwB/wIrAv8CzAL/AswC/wLMAv8CAAL/AkEBzAX/
+        AgABzAH/ApkC/wLMAv8CzAL/ApkC/wJBAcwB/wgAA8AB/wPdAf8D4wH/A/EB/wPqAf8D6gH/A+MB/wPj
+        Af8D4wH/A+MB/wPqAf8D3QH/A+oB/wPAAf8IAAPAAf8D3QL/AZkBDgL/AcwBmQL/AZkBDgL/AZkBDgL/
+        AZkBDgL/AUEBDgL/AUEBDgL/AUEBDgL/AcwBmQH/AcwBQQEOAf8D6gH/A8AB/zQAA+oB/wEOAcwBDgH/
+        AQ4BzAEOAf8IAAPAAf8CKwr/Ag4C/wKZAcwB/wgABP8CDgHMAf8CmQL/A+oB/wLMAv8CQQHMAf8MAAOZ
+        Af8D3QH/A+oB/wPqAf8D8QH/A/EB/wPxAf8D8QH/A+oB/wPqAf8D6gH/A4YB/xAAA5YB/wPdAv8BzAFB
+        Av8BmQFBAv8BzAGZAv8BzAGZAv8BzAGZAf8B8AHKAaYC/wGZAUEC/wGZAUEB/wPqAf8DhgH/PAAE/wEO
+        AZkBDgH/DAACmQHMAf8CDgL/Ag4C/wKZAcwB/xAABP8CDgHMAf8CmQL/AkEBzAX/EAADwAH/AaQCoAX/
+        A/EB/wPqAf8D6gH/A/EF/wGkAqAB/wPMAf8YAAPAAf8BpAKgBf8B8AHKAaYC/wGZAUEC/wGZAUEB/wHw
+        AcoBpgX/AaQCoAH/A8wB/1gAA8AB/wKZAcwB/xgABP8CDgGZBf8YAAT/A8wB/wOGAf8DUgH/A1IB/wOG
+        Af8D1wX/IAAE/wPMAf8DhgH/A1IB/wNSAf8DhgH/A9cF/6AABP8DsgH/A0EB/wNSAf8DUgH/A0EB/wOG
+        Af8D6gH/IAAE/wOyAf8DQQH/A1IB/wNSAf8DQQH/A4YB/wPqAf8gAAT/A7IB/wNBAf8DUgH/A1IB/wNB
+        Af8DhgH/A+oB/yAABP8DsgH/A0EB/wNSAf8DUgH/A0EB/wOGAf8D6gH/HAADwAH/A7IF/wGZAcwBmQH/
+        AQ4BQQEOAf8BDgFBAQ4B/wGZAcwBmQX/A7IB/wOGBf8UAAPAAf8DsgX/ApkC/wIOAcwB/wIOAcwB/wGZ
+        AcwG/wOyAf8DhgX/FAADwAH/A7IF/wGZAcwC/wEOAUEC/wEOAZkC/wGZAcwG/wOyAf8DhgX/FAADwAH/
+        A7IF/wGZA/8BDgHMAv8BDgHMAv8BmQf/A7IB/wOGBf8QAAOWAf8D6gH/AUEBmQFBAf8BAAFBAQAB/wEA
+        AYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AQABmQEAAf8BQQHMAUEB/wPxAf8DOgX/DAADlgH/
+        A+oB/wJBAcwB/wIAAcwB/wEAAQ4BzAH/AQABDgHMAf8BAAEOAcwB/wIOAv8BDgFBAv8BgAFXAv8D8QH/
+        AzoF/wwAA5YB/wPqAf8BQQGZAv8BAAFBAv8BAAFBAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BQQHM
+        Av8D8QH/AzoF/wwAA5YB/wPqAf8BQQHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAP/
+        AUED/wPxAf8DOgX/CAADzAH/A+oB/wEAAUEBAAH/AQABQQEAAf8BAAFBAQAB/wEAAYABAAH/AQABgAEA
+        Af8BAAGAAQAB/wEAAYABAAH/AQABmQEAAf8BDgGZAQ4B/wEOAZkBDgH/A/EB/wNSAf8IAAPMAf8D6gH/
+        AgABzAH/AgABzAH/AgABzAH/AQABDgHMAf8BAAEOAcwB/wEAAQ4BzAH/Ag4C/wEOAUEC/wJBAv8CKwL/
+        A/EB/wNSAf8IAAPMAf8D6gH/AQABQQL/AQABQQL/AQABQQL/AQABQQL/AQ4BmQL/AQ4BmQL/AQ4BmQL/
+        AQ4BmQL/AQ4BmQL/AQ4BmQL/A/EB/wNSAf8IAAPMAf8D6gH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
+        AQABzAL/AQABzAL/AQABzAL/AQAD/wEAA/8BAAP/A/EB/wNSAf8EAAT/A7IB/wFBAZkBQQH/AQABQQEA
+        Af8BAAFBAQAB/wEAAUEBAAH/AQABQQEAAf8BAAGAAQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEA
+        AZkBAAH/AQABmQEOAf8BQQGZAUEB/wOyAf8D6gX/A7IB/wJBAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wEA
+        AQ4BzAH/AQABDgHMAf8BAAEOAcwB/wEAAQ4BzAH/Ag4C/wEOAUEC/wIrAv8BgAFXAv8DsgH/A+oF/wOy
+        Af8BQQGZAv8BAAFBAv8BAAFBAv8BAAFBAv8BAAFBAv8BDgFBAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZ
+        Av8BDgGZAv8BQQHMAv8DsgH/A+oF/wOyAf8BQQHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
+        Av8BAAHMAv8BAAHMAv8BAAP/AQAD/wEAA/8BQQP/A7IB/wPqAf8DzAX/AQABgAEAAf8BAAFBAQAB/wEA
+        AUEBAAH/AQABQQEAAf8BAAFBAQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AQABgAEA
+        Af8BAAGZAQAB/wEAAYABAAH/AfAB+wL/A4YB/wPMBf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHM
+        Af8BAAEOAcwB/wEAAQ4BzAH/AQABDgHMAf8CDgHMAf8CDgL/AQ4BQQL/Ag4C/wHwAfsC/wOGAf8DzAX/
+        AQABQQL/AQABQQL/AQABQQL/AQABQQHMAf8BAAFBAv8BDgFBAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZ
+        Av8BDgGZAv8BDgGZBv8DhgH/A8wF/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEA
+        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAA/8BAAHMAv8B8AH7Av8DhgH/A4YB/wHAAdwBwAH/AQ4BmQEO
+        Af8BAAGAAQAB/wEAAUEBAAH/AQABQQEAAf8BAAFBAQAB/wEAAUEBAAH/AQABgAEAAf8BAAGAAQAB/wEA
+        AYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AZkBzAGZAf8DQQH/A4YB/wLMAv8CDgHMAf8CAAHM
+        Af8CAAHMAf8CAAHMAf8CAAHMAf8BAAEOAcwB/wEAAQ4BzAH/AQABDgHMAf8BAAEOAcwB/wEAAQ4BzAH/
+        AQABDgHMAf8BAAEOAcwB/wGZAcwC/wNBAf8DhgH/AcYB1gHvAf8BDgGZAv8BAAFBAv8BAAFBAv8BAAFB
+        Av8BAAFBAv8BAAFBAv8BDgFBAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BmQHMAv8DQQH/
+        A4YB/wHMA/8BDgHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
+        Av8BAAHMAv8BAAHMAv8BAAHMAv8BmQP/A0EB/wOGAf8BmQHMAZkB/wEOAZkBDgH/AQ4BmQEOAf8BAAGA
+        AQAB/wEAAUEBAAH/AQABQQEAAf8BAAFBAQAB/wEAAUEBAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/
+        AQABgAEAAf8BAAGAAQAB/wEOAUEBDgH/A1IB/wOGAf8BgAFXAv8CKwL/AisC/wIAAcwB/wIAAcwB/wIA
+        AcwB/wIAAcwB/wEAAQ4BzAH/AQABDgHMAf8BAAEOAcwB/wEAAQ4BzAH/AQABDgHMAf8BAAEOAcwB/wIO
+        AcwB/wNSAf8DhgH/AZkBzAL/AQ4BmQL/AQ4BmQL/AQABQQL/AQABQQL/AQABQQL/AQABQQL/AQABQQL/
+        AQ4BQQL/AQ4BQQL/AQ4BmQL/AQ4BmQL/AQ4BmQL/AQ4BQQL/A1IB/wOGAf8BmQP/AQ4BzAL/AQ4BzAL/
+        AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
+        AQ4BzAL/A1IB/wOGAf8BQQHMAZkB/wEOAZkBDgH/AQ4BmQEOAf8BDgGZAQ4B/wEOAZkBDgH/AQABQQEA
+        Af8BAAFBAQAB/wEAAUEBAAH/AQABQQEAAf8BAAFBAQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEO
+        AUEBDgH/A1IB/wOGAf8BgAFXAv8CKwL/Ag4BzAH/Ag4BzAH/Ag4BzAH/AgABzAH/AgABzAH/AgABzAH/
+        AgABzAH/AQABDgHMAf8BAAEOAcwB/wEAAQ4BzAH/AQABDgHMAf8CDgHMAf8DUgH/A4YB/wFBAcwC/wEO
+        AZkC/wEOAZkC/wEOAZkC/wEOAZkC/wEAAUEC/wEAAUEC/wEAAUEC/wEAAUEC/wEAAUEC/wEOAUEC/wEO
+        AUEC/wEOAUEC/wEOAUEC/wNSAf8DhgH/AUED/wEOAcwC/wEOAcwC/wEOAcwC/wEOAcwC/wEAAcwC/wEA
+        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEOAcwC/wNSAf8DhgH/AcAB3AHA
+        Af8BDgGZAUEB/wEOAZkBDgH/AQ4BmQEOAf8BDgGZAQ4B/wEOAZkBDgH/AQ4BmQEOAf8BDgGZAQ4B/wEO
+        AUEBDgH/AQ4BQQEOAf8BDgGZAQ4B/wEOAZkBDgH/AUEBmQFBAf8BwAHcAcAB/wNBAf8DhgH/AswC/wIr
+        Av8CKwL/Ag4BzAH/Ag4BzAH/Ag4BzAH/AisC/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wJB
+        AcwB/wLMAv8DQQH/A4YB/wHGAdYB7wH/AQ4BmQL/AQ4BmQL/AQ4BmQL/AQ4BmQL/AQ4BmQL/AQ4BmQL/
+        AQ4BmQL/AQ4BQQL/AQ4BQQL/AQ4BmQL/AQ4BmQL/AUEBmQL/AswC/wNBAf8DhgH/AcwD/wEOA/8BDgHM
+        Av8BDgHMAv8BDgHMAv8BDgHMAv8BDgHMAv8BDgHMAv8BDgHMAv8BDgHMAv8BDgHMAv8BDgHMAv8BQQHM
+        Av8BzAP/A0EB/wPMBf8BmQHMAZkB/wEOAZkBDgH/AQ4BmQEOAf8BDgGZAQ4B/wEOAZkBDgH/AQ4BmQEO
+        Af8BDgGZAQ4B/wEOAZkBDgH/AQ4BmQEOAf8BDgGZAQ4B/wFBAZkBQQH/AZkBzAGZBf8DsgH/A8wF/wKZ
+        Av8CDgHMAf8CDgHMAf8CDgHMAf8CDgHMAf8CDgHMAf8CDgHMAf8CKwL/AisC/wEOAUEBzAH/AkEBzAH/
+        AYABVwb/A7IB/wPMBf8BmQHMAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZ
+        Av8BQQGZAv8BQQGZAv8BQQGZAv8BmQHMBv8DsgH/A8wF/wGZA/8BDgP/AQ4BzAL/AQ4BzAL/AQ4BzAL/
+        AQ4BzAL/AQ4BzAL/AQ4BzAL/AQ4BzAL/AQ4BzAL/AUEBzAL/AZkBzAb/A7IF/wOyAf8BQQHMAUEB/wGZ
+        AcwBmQH/AQ4BmQEOAf8BDgGZAQ4B/wEOAZkBDgH/AQ4BmQEOAf8BDgGZAQ4B/wEOAZkBDgH/AQ4BmQEO
+        Af8BDgGZAQ4B/wFBAZkBQQH/AUEBmQFBAf8Dsgn/A7IB/wGAAVcC/wKZAv8CDgHMAf8CDgHMAf8CDgHM
+        Af8CDgHMAf8CDgHMAf8CDgHMAf8CDgHMAf8CKwL/AYABVwL/AYABVwL/A7IJ/wOyAf8BQQHMAv8BmQHM
+        Av8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BDgGZAv8BQQGZAv8BQQGZ
+        Av8Dsgn/A7IB/wFBA/8BmQP/AQ4D/wEOAcwC/wEOAcwC/wEOAcwC/wEOAcwC/wEOAcwC/wEOAcwC/wEO
+        AcwC/wFBAcwC/wFBAcwC/wOyBf8EAAPAAf8D3QH/AQ4BmQEOAf8BmQHMAZkB/wEOAZkBDgH/AQ4BmQEO
+        Af8BDgGZAQ4B/wEOAZkBDgH/AQ4BmQEOAf8BDgGZAQ4B/wGZAcwBmQH/AQ4BmQEOAf8D6gH/A8AB/wgA
+        A8AB/wPdAf8CDgL/ApkC/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wIOAcwB/wKZAv8CKwL/
+        A+oB/wPAAf8IAAPAAf8D3QH/AQ4BmQL/AZkBzAL/AQ4BmQL/AQ4BmQL/AQ4BmQL/AQ4BmQL/AQ4BmQL/
+        AQ4BmQL/AZkBzAL/AQ4BmQL/A+oB/wPAAf8IAAPAAf8D3QH/AQ4D/wGZA/8BDgP/AQ4BzAL/AQ4BzAL/
+        AQ4BzAL/AQ4BzAL/AQ4BzAL/AZkD/wEOAcwC/wPqAf8DwAH/DAADmQH/A90B/wFBAcwBQQH/AUEBzAFB
+        Af8BmQHMAZkB/wGZAcwBmQH/AZkBzAGZAf8BmQHMAZkB/wFBAcwBQQH/AUEBmQFBAf8D6gH/A4YB/xAA
+        A5kB/wPdAf8BgAFXAv8CQQL/ApkC/wKZAv8CmQL/ApkC/wGAAVcC/wGAAVcC/wPqAf8DhgH/EAADmQH/
+        A90B/wFBAcwC/wFBAcwC/wGZAcwC/wGZAcwC/wGZAcwC/wGZAcwC/wFBAcwC/wFBAcwC/wPqAf8DhgH/
+        EAADmQH/A90B/wFBA/8BQQP/AZkD/wGZA/8BmQP/AZkD/wFBA/8BQQHMAv8D6gH/A4YB/xQAA8AB/wGk
+        AqAF/wHAAdwBwAH/AUEBzAFBAf8BQQHMAUEB/wHAAdwBwAX/AaQCoAH/A8wB/xgAA8AB/wGkAqAF/wLM
+        Av8CKwL/AisC/wLMBv8BpAKgAf8DzAH/GAADwAH/AaQCoAX/AcYB1gHvAf8BQQHMAv8BQQGZAv8BxgHW
+        Ae8F/wGkAqAB/wPMAf8YAAPAAf8BpAKgBf8BzAP/AUED/wFBA/8BzAf/AaQCoAH/A8wB/xwABP8DzAH/
+        A4YB/wNSAf8DUgH/A4YB/wPXBf8gAAT/A8wB/wOGAf8DUgH/A1IB/wOGAf8D1wX/IAAE/wPMAf8DhgH/
+        A1IB/wNSAf8DhgH/A9cF/yAABP8DzAH/A4YB/wNSAf8DUgH/A4YB/wPXBf8QAAFCAU0BPgcAAT4DAAEo
+        AwABQAMAATADAAEBAQABAQUAAYABARYAA/8BAAH4AQ8BgAEAAf4BHwIAAeABBwGAAQAB/AEPAgABwAED
+        AYABAAH4AQcCAAGAAQEBgAEAAfABAwIAAYcBgAHAAQEB4AEBAgABDwEAAcABAQHAAwABDgEAAeABAwGA
+        AwABDAEQAeABAwGAAwABCAEwAfABBwHwAQcDAAFwAfABDwHwAQcDAAHwAfgBDwHwAQcCAAGBAcEB+AEf
+        AfABBwIAAYABAQH8AR8B8AEHAgABwAEDAfwBPwHwAQcCAAHgAQcB/gE/AfABBwIAAfgBHwL/AfABBwIA
+        AfABDwHwAQ8E/wHgAQMB4AEDAv8BwwHjAcABAQHAAQEB8QH/AYEBwQGAAQEBgAEBAeAB/wGAAYEEAAHg
+        Af8BgAEBBAAB4AF/AcABAwQAAcABPwHgAQcEAAHAAR8B8AEPBAABhAEPAfABBwQAAY8BBwHgAQMEAAGf
+        AYMBwAEBBAAB/wHhAYABAQGAAQEBgAEBAf8B8QKBAcABAwHAAQMB/wH5AcMBwQHgAQcB4AEHAv8B5wHj
+        AfABDwHwAQ8E/wHwAQ8B8AEPAfABDwHwAQ8B4AEDAeABAwHgAQMB4AEDAcABAQHAAQEBwAEBAcABAQGA
+        AQEBgAEBAYABAQGAAQFAAAGAAQEBgAEBAYABAQGAAQEBwAEDAcABAwHAAQMBwAEDAeABBwHgAQcB4AEH
+        AeABBwHwAQ8B8AEPAfABDwHwAQ8L
+</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
-  </data>
-  <data name="btnTag3.TabIndex" type="System.Int32, mscorlib">
-    <value>82</value>
-  </data>
-  <data name="lblTo.Text" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="btnTag3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="&gt;&gt;btnTag1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;txtItem.Name" xml:space="preserve">
-    <value>txtItem</value>
-  </data>
-  <data name="&gt;&gt;gbTerm.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
+  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnAddPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
-  </data>
-  <data name="btnDelItem.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="&gt;&gt;itInvNum.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gbItem.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;cbStatus.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="itInvNum.Text" xml:space="preserve">
-    <value>Inv. Num.</value>
-  </data>
-  <data name="cbItemNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 21</value>
-  </data>
-  <data name="txtNote.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 20</value>
-  </data>
-  <data name="dtTo.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;mnuGetPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnDelItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>330, 58</value>
-  </data>
-  <data name="gbTerm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 124</value>
-  </data>
-  <data name="&gt;&gt;btnDelItem.Name" xml:space="preserve">
-    <value>btnDelItem</value>
-  </data>
-  <data name="&gt;&gt;btnAddPerson.Name" xml:space="preserve">
-    <value>btnAddPerson</value>
-  </data>
-  <data name="&gt;&gt;lblTo.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblInvNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 58</value>
-  </data>
-  <data name="&gt;&gt;cbItemType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTag3.Name" xml:space="preserve">
-    <value>btnTag3</value>
-  </data>
-  <data name="lblTo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag4.TabIndex" type="System.Int32, mscorlib">
-    <value>83</value>
-  </data>
-  <data name="gbPerson.Text" xml:space="preserve">
-    <value>Lending to</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnTag4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnTag3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="&gt;&gt;lblItem.Name" xml:space="preserve">
-    <value>lblItem</value>
-  </data>
-  <data name="lblPersonNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;cbItemNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblFrom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="dtFrom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 20</value>
-  </data>
-  <data name="resource.Text" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="&gt;&gt;lblTo.Name" xml:space="preserve">
-    <value>lblTo</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
-    <value>btnOk</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Lending</value>
-  </data>
-  <data name="&gt;&gt;lblTo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnTag1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="lblInvNum.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblInvNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;lblItemType.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="btnTag3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;btnTag1.Name" xml:space="preserve">
-    <value>btnTag1</value>
-  </data>
-  <data name="btnTag1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;lblFrom.Name" xml:space="preserve">
-    <value>lblFrom</value>
-  </data>
-  <data name="lblItemType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 18</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
-    <value>olvItem</value>
-  </data>
-  <data name="lblNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 462</value>
-  </data>
-  <data name="btnTag3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 3</value>
-  </data>
-  <data name="lblItemNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>281, 18</value>
-  </data>
-  <data name="cbItemType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 21</value>
-  </data>
-  <data name="btnTag5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="lblFrom.Text" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="&gt;&gt;txtNote.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;itNumber.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="btnTag4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnTag6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 20</value>
-  </data>
-  <data name="lblItemType.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="lblPerson.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="lblItem.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtNote.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="itNumber.Text" xml:space="preserve">
-    <value>Number</value>
-  </data>
-  <data name="lblItemNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="lblFrom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 16</value>
-  </data>
-  <data name="&gt;&gt;cbStatus.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="itName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="gbPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 38</value>
-  </data>
-  <data name="&gt;&gt;lblNote.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cbItemType.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="itInvNum.Width" type="System.Int32, mscorlib">
-    <value>97</value>
-  </data>
-  <data name="&gt;&gt;lblTo.Parent" xml:space="preserve">
-    <value>gbTerm</value>
-  </data>
-  <data name="btnAddPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblItemNum.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="txtItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 34</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnTag6.TabIndex" type="System.Int32, mscorlib">
-    <value>85</value>
-  </data>
-  <data name="gbPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="btnAddPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>318, 30</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.Name" xml:space="preserve">
-    <value>btnTag5</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
-    <value>btnCancel</value>
-  </data>
-  <data name="btnTag2.TabIndex" type="System.Int32, mscorlib">
-    <value>81</value>
-  </data>
-  <data name="&gt;&gt;txtItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="btnTag5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnTag1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 3</value>
-  </data>
-  <data name="&gt;&gt;btnAddPerson.Parent" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;dtFrom.Name" xml:space="preserve">
-    <value>dtFrom</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.Name" xml:space="preserve">
-    <value>btnTag2</value>
-  </data>
-  <data name="&gt;&gt;lblItemNum.Name" xml:space="preserve">
-    <value>lblItemNum</value>
-  </data>
-  <data name="&gt;&gt;cbItemNum.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="btnTag2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lblNote.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;cbStatus.Name" xml:space="preserve">
-    <value>cbStatus</value>
-  </data>
-  <data name="btnTag5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="lblItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 18</value>
-  </data>
-  <data name="btnTag4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="btnTag2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;gbTerm.Name" xml:space="preserve">
-    <value>gbTerm</value>
-  </data>
-  <data name="btnTag6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="&gt;&gt;itName.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="btnAddItem.Text" xml:space="preserve">
-    <value>+</value>
-  </data>
-  <data name="&gt;&gt;txtPerson.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblItem.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;dtFrom.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;mnuGetPerson.Name" xml:space="preserve">
-    <value>mnuGetPerson</value>
-  </data>
-  <data name="lblNote.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lblFrom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
-    <value>TimeOut</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gbItem.Text" xml:space="preserve">
-    <value>Lended item</value>
-  </data>
-  <data name="gbPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>363, 80</value>
-  </data>
-  <data name="itName.Width" type="System.Int32, mscorlib">
-    <value>163</value>
-  </data>
-  <data name="btnAddPerson.Text" xml:space="preserve">
-    <value>+</value>
-  </data>
-  <data name="&gt;&gt;btnDelItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAddPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtNote.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 478</value>
-  </data>
-  <data name="lblFrom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Name" xml:space="preserve">
-    <value>lblInvNum</value>
-  </data>
-  <data name="&gt;&gt;lblInvNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Name" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="lblItemNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblPerson.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;dtTo.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.Name" xml:space="preserve">
-    <value>btnTag4</value>
-  </data>
-  <data name="gbTerm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>363, 65</value>
-  </data>
-  <data name="lblItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
-  </data>
-  <data name="&gt;&gt;txtPerson.Name" xml:space="preserve">
-    <value>txtPerson</value>
-  </data>
-  <data name="txtPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;lblItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.Name" xml:space="preserve">
-    <value>btnTag6</value>
-  </data>
-  <data name="btnAddItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.Name" xml:space="preserve">
-    <value>btnAddItem</value>
-  </data>
-  <data name="btnAddItem.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;txtItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnDelItem.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;gbItem.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="lblItemType.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>61</value>
-  </data>
-  <data name="&gt;&gt;jménoToolStripMenuItem.Name" xml:space="preserve">
-    <value>jménoToolStripMenuItem</value>
-  </data>
-  <data name="txtItem.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAMDAAAAEAIACoJQAAJgAAAICAAAABACAAKAgBAM4lAAAoAAAAMAAAAGAAAAABACAAAAAAAAAk
@@ -1911,463 +1612,4 @@
         /////////////////////////////w==
 </value>
   </data>
-  <data name="btnDelItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;cbItemNum.Name" xml:space="preserve">
-    <value>cbItemNum</value>
-  </data>
-  <data name="&gt;&gt;btnTag3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="dtTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 32</value>
-  </data>
-  <data name="mnuGetPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 26</value>
-  </data>
-  <data name="&gt;&gt;lblItemNum.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lblPersonNum.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="lblPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 16</value>
-  </data>
-  <data name="&gt;&gt;btnDelItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;gbTerm.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="lblNote.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblItemType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
-  </data>
-  <data name="cbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 11</value>
-  </data>
-  <data name="lblPersonNum.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblItem.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;itNumber.Name" xml:space="preserve">
-    <value>itNumber</value>
-  </data>
-  <data name="btnAddItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>330, 32</value>
-  </data>
-  <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 13</value>
-  </data>
-  <data name="&gt;&gt;lblItemType.Name" xml:space="preserve">
-    <value>lblItemType</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="btnTag1.TabIndex" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="lblTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 16</value>
-  </data>
-  <data name="&gt;&gt;itName.Name" xml:space="preserve">
-    <value>itName</value>
-  </data>
-  <data name="&gt;&gt;btnTag1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtPerson.Parent" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.Parent" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="btnTag6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 3</value>
-  </data>
-  <data name="&gt;&gt;jménoToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnTag5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;lblItemType.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="lblTo.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="gbItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 195</value>
-  </data>
-  <data name="olvItem.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="dtTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 20</value>
-  </data>
-  <data name="&gt;&gt;cbStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblItemNum.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="lblInvNum.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbItemNum.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="btnTag1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="btnAddItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 23</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>frmEditLending</value>
-  </data>
-  <data name="olvItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>344, 175</value>
-  </data>
-  <data name="&gt;&gt;cbItemType.Name" xml:space="preserve">
-    <value>cbItemType</value>
-  </data>
-  <data name="&gt;&gt;lblNote.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblItem.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="btnOk.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;btnTag3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnTag3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 32</value>
-  </data>
-  <data name="lblFrom.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;txtPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDelItem.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnTag6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnAddPerson.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="gbTerm.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="dtFrom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 32</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="lblFrom.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="olvItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 83</value>
-  </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 512</value>
-  </data>
-  <data name="&gt;&gt;lblItemNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblItemType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dtFrom.Parent" xml:space="preserve">
-    <value>gbTerm</value>
-  </data>
-  <data name="lblTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 13</value>
-  </data>
-  <data name="lblInvNum.Text" xml:space="preserve">
-    <value>Inventory number: -</value>
-  </data>
-  <data name="btnTag6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="&gt;&gt;txtItem.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;dtTo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblTo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 20</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnDelItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 23</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnTag1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblItemType.Text" xml:space="preserve">
-    <value>Item type</value>
-  </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="lblPersonNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
-  </data>
-  <data name="&gt;&gt;dtTo.Parent" xml:space="preserve">
-    <value>gbTerm</value>
-  </data>
-  <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
-  </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnTag3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="cbItemType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 34</value>
-  </data>
-  <data name="&gt;&gt;lblNote.Name" xml:space="preserve">
-    <value>lblNote</value>
-  </data>
-  <data name="lblPerson.Text" xml:space="preserve">
-    <value>Person</value>
-  </data>
-  <data name="btnTag5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 3</value>
-  </data>
-  <data name="cbItemNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>284, 34</value>
-  </data>
-  <data name="lblItem.Text" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="lblPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="btnTag4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 3</value>
-  </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>303, 512</value>
-  </data>
-  <data name="cbStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 21</value>
-  </data>
-  <data name="&gt;&gt;btnAddItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFrom.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblNote.Text" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="lblItemType.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="lblPersonNum.Text" xml:space="preserve">
-    <value>Person number: -</value>
-  </data>
-  <data name="btnTag2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>178, 3</value>
-  </data>
-  <data name="btnTag2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="&gt;&gt;btnAddPerson.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblFrom.Parent" xml:space="preserve">
-    <value>gbTerm</value>
-  </data>
-  <data name="gbTerm.Text" xml:space="preserve">
-    <value>Term</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.Name" xml:space="preserve">
-    <value>lblPersonNum</value>
-  </data>
-  <data name="&gt;&gt;itInvNum.Name" xml:space="preserve">
-    <value>itInvNum</value>
-  </data>
-  <data name="jménoToolStripMenuItem.Text" xml:space="preserve">
-    <value>jméno</value>
-  </data>
-  <data name="dtFrom.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="btnDelItem.Text" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="&gt;&gt;lblItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtNote.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>390, 547</value>
-  </data>
-  <data name="&gt;&gt;dtFrom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblNote.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.Parent" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblItemNum.Text" xml:space="preserve">
-    <value>Number</value>
-  </data>
-  <data name="btnAddItem.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="&gt;&gt;cbItemType.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbItemNum.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.Name" xml:space="preserve">
-    <value>lblPerson</value>
-  </data>
-  <data name="btnDelItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Name" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="jménoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 22</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnTag4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;TimeOut.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbItemType.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;dtTo.Name" xml:space="preserve">
-    <value>dtTo</value>
-  </data>
-  <data name="lblPersonNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
-  </data>
-  <data name="gbItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>363, 264</value>
-  </data>
-  <data name="&gt;&gt;txtNote.Name" xml:space="preserve">
-    <value>txtNote</value>
-  </data>
-  <data name="olvItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;gbTerm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblNote.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="itNumber.Width" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="btnTag2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnTag5.TabIndex" type="System.Int32, mscorlib">
-    <value>84</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>149, 17</value>
-  </metadata>
-  <metadata name="mnuGetPerson.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

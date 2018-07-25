@@ -330,4 +330,7 @@
   <data name="Note" xml:space="preserve">
     <value>Poznámka</value>
   </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Zrušeno</value>
+  </data>
 </root>

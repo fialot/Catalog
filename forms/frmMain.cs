@@ -97,28 +97,6 @@ namespace Katalog
 
         #region Lending
 
-        string GetLendingItemName(string type, Guid id)
-        {
-            databaseEntities db = new databaseEntities();
-
-            switch (type)
-            {
-                case "item":
-                    Items itm = db.Items.Find(id);
-                    if (itm != null) return itm.Name.Trim();
-                    break;
-                case "book":
-                    Books book = db.Books.Find(id);
-                    if (book != null) return book.Title.Trim();
-                    break;
-                case "boardgame":
-                    Boardgames board = db.Boardgames.Find(id);
-                    if (board != null) return board.Name.Trim();
-                    break;
-            }
-            return "";
-        }
-
         /// <summary>
         /// Update Lending ObjectListView
         /// </summary>
@@ -131,7 +109,7 @@ namespace Katalog
             if (cbLendingShow.SelectedIndex == 1)
             {
                 DateTime now = DateTime.Now;
-                lend = db.Lending.Where(p => ((p.To ?? now) < DateTime.Now) && (p.Status ?? 1) != 2).ToList();
+                lend = db.Lending.Where(p => ((p.To ?? now) < DateTime.Now) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).ToList();
             }
             // ----- Show Borrowed -----
             else if (cbLendingShow.SelectedIndex == 2)
@@ -145,7 +123,7 @@ namespace Katalog
             else if (cbLendingShow.SelectedIndex == 3)
             {
                 if (chbShowReturned.Checked)
-                    lend = db.Lending.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 2)).ToList();
+                    lend = db.Lending.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 3)).ToList();
                 else
                     lend = db.Lending.Where(p => (p.Status ?? 1) == 0).ToList();
             }
@@ -155,7 +133,7 @@ namespace Katalog
                 if (chbShowReturned.Checked)
                     lend = db.Lending.ToList();
                 else
-                    lend = db.Lending.Where(p => (p.Status ?? 1) != 2).ToList();
+                    lend = db.Lending.Where(p => (p.Status ?? 1) == 0 || (p.Status ?? 1) == 1).ToList();
             }
 
             ldFastTags.Renderer = new ImageRenderer();
@@ -206,7 +184,7 @@ namespace Katalog
                 return Lng.Get("Unknown");
             };
             ldItemName.AspectGetter = delegate (object x) {
-                return GetLendingItemName(((Lending)x).ItemType.Trim(), ((Lending)x).ItemID ?? Guid.Empty);
+                return global.GetLendingItemName(((Lending)x).ItemType.Trim(), ((Lending)x).ItemID ?? Guid.Empty);
             };
             ldItemNum.AspectGetter = delegate (object x) {
                 return ((Lending)x).ItemNum;
@@ -233,7 +211,9 @@ namespace Katalog
                     return 6;
                 else if (status == 0)   // Reserved
                     return 9;
-                else return 7;          // Borrowed
+                else if (status == 3)   // Canceled
+                    return 7;
+                else return 10;         // Borrowed
             };
             ldStatus.AspectGetter = delegate (object x) {
                 int status = ((Lending)x).Status ?? 1;
@@ -241,6 +221,8 @@ namespace Katalog
                     return Lng.Get("Returned");
                 else if (status == 0)   // Reserved
                     return Lng.Get("Reserved");
+                else if (status == 3)   // Canceled
+                    return Lng.Get("Canceled");
                 else return Lng.Get("Borrowed"); // Borrowed
             };
             ldNote.AspectGetter = delegate (object x) {
@@ -268,7 +250,7 @@ namespace Katalog
         {
             Lending itm = (Lending)e.Model;
             DateTime now = DateTime.Now;
-            if (itm.Status == 2)
+            if (itm.Status == 2 || itm.Status == 3)
                 e.Item.ForeColor = Color.Gray;
             else if ((itm.To ?? now) < now )
                 e.Item.ForeColor = Color.Red;
@@ -302,12 +284,13 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
+
             List<Borrowing> borr;
             // ----- Show Expired -----
             if (cbBorrowingShow.SelectedIndex == 1)
             {
                 DateTime now = DateTime.Now;
-                borr = db.Borrowing.Where(p => ((p.To ?? now) < DateTime.Now) && (p.Status ?? 1) != 2).ToList();
+                borr = db.Borrowing.Where(p => ((p.To ?? now) < DateTime.Now) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).ToList();
             }
             // ----- Show Borrowed -----
             else if (cbBorrowingShow.SelectedIndex == 2)
@@ -321,7 +304,7 @@ namespace Katalog
             else if (cbBorrowingShow.SelectedIndex == 3)
             {
                 if (chbBorrowingReturned.Checked)
-                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 2)).ToList();
+                    borr = db.Borrowing.Where(p => ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 3)).ToList();
                 else
                     borr = db.Borrowing.Where(p => (p.Status ?? 1) == 0).ToList();
             }
@@ -331,7 +314,7 @@ namespace Katalog
                 if (chbBorrowingReturned.Checked)
                     borr = db.Borrowing.ToList();
                 else
-                    borr = db.Borrowing.Where(p => (p.Status ?? 1) != 2).ToList();
+                    borr = db.Borrowing.Where(p => (p.Status ?? 1) == 0 || (p.Status ?? 1) == 1).ToList();
             }
 
             brFastTags.Renderer = new ImageRenderer();
@@ -394,7 +377,9 @@ namespace Katalog
                     return 6;
                 else if (status == 0)   // Reserved
                     return 9;
-                else return 7;          // Borrowed
+                else if (status == 3)   // Canceled
+                    return 7;
+                else return 10;         // Borrowed
             };
             brStatus.AspectGetter = delegate (object x) {
                 int status = ((Borrowing)x).Status ?? 1;
@@ -402,6 +387,8 @@ namespace Katalog
                     return Lng.Get("Returned");
                 else if (status == 0)   // Reserved
                     return Lng.Get("Reserved");
+                else if (status == 3)   // Canceled
+                    return Lng.Get("Canceled");
                 else return Lng.Get("Borrowed"); // Borrowed
             };
             brNote.AspectGetter = delegate (object x) {
@@ -433,7 +420,7 @@ namespace Katalog
         {
             Borrowing itm = (Borrowing)e.Model;
             DateTime now = DateTime.Now;
-            if (itm.Status == 2)
+            if (itm.Status == 2 || itm.Status == 3)     // Returned, Canceled
                 e.Item.ForeColor = Color.Gray;
             else if ((itm.To ?? now) < now)
                 e.Item.ForeColor = Color.Red;
@@ -1063,7 +1050,7 @@ namespace Katalog
                 {                                                   // Find Object
                     Lending borr = db.Lending.Find(((Lending)olvLending.SelectedObject).ID);
 
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + GetLendingItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + global.GetLendingItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
                         db.Lending.Remove(borr);                    // Delete Item
                         db.SaveChanges();                           // Save to DB
@@ -1161,6 +1148,20 @@ namespace Katalog
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
             DeleteItem();
+        }
+
+        private void EditPersonalLending()
+        {
+            // ----- Contact -----
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+                {
+                    frmEditPersonLending form = new frmEditPersonLending();   // Show Edit form
+                    var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
+                    UpdateLendingOLV();
+                }
+            }
         }
 
         #endregion
@@ -2414,6 +2415,9 @@ namespace Katalog
 
         }
 
-        
+        private void btnPersonalLending_Click(object sender, EventArgs e)
+        {
+            EditPersonalLending();
+        }
     }
 }

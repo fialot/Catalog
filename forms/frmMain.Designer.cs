@@ -33,6 +33,7 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tabCatalog = new System.Windows.Forms.TabControl();
             this.tabContacts = new System.Windows.Forms.TabPage();
+            this.btnPersonalLending = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.olvContacts = new BrightIdeasSoftware.FastObjectListView();
@@ -55,6 +56,7 @@
             this.ldFrom = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldTo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldNote = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cbLendingShow = new System.Windows.Forms.ComboBox();
             this.lblLendingShow = new System.Windows.Forms.Label();
@@ -218,7 +220,6 @@
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.ldNote = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -276,12 +277,20 @@
             // 
             // tabContacts
             // 
+            this.tabContacts.Controls.Add(this.btnPersonalLending);
             this.tabContacts.Controls.Add(this.button1);
             this.tabContacts.Controls.Add(this.btnTest);
             this.tabContacts.Controls.Add(this.olvContacts);
             resources.ApplyResources(this.tabContacts, "tabContacts");
             this.tabContacts.Name = "tabContacts";
             this.tabContacts.UseVisualStyleBackColor = true;
+            // 
+            // btnPersonalLending
+            // 
+            resources.ApplyResources(this.btnPersonalLending, "btnPersonalLending");
+            this.btnPersonalLending.Name = "btnPersonalLending";
+            this.btnPersonalLending.UseVisualStyleBackColor = true;
+            this.btnPersonalLending.Click += new System.EventHandler(this.btnPersonalLending_Click);
             // 
             // button1
             // 
@@ -375,6 +384,7 @@
             this.imgOLV.Images.SetKeyName(7, "No");
             this.imgOLV.Images.SetKeyName(8, "Stop");
             this.imgOLV.Images.SetKeyName(9, "Reserved");
+            this.imgOLV.Images.SetKeyName(10, "Lend");
             // 
             // tabLending
             // 
@@ -465,6 +475,10 @@
             // ldStatus
             // 
             resources.ApplyResources(this.ldStatus, "ldStatus");
+            // 
+            // ldNote
+            // 
+            resources.ApplyResources(this.ldNote, "ldNote");
             // 
             // ldFastTagsNum
             // 
@@ -1696,10 +1710,6 @@
             resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             // 
-            // ldNote
-            // 
-            resources.ApplyResources(this.ldNote, "ldNote");
-            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -1936,6 +1946,7 @@
         private BrightIdeasSoftware.OLVColumn ldFastTags;
         private BrightIdeasSoftware.OLVColumn ldFastTagsNum;
         private BrightIdeasSoftware.OLVColumn ldNote;
+        private System.Windows.Forms.Button btnPersonalLending;
     }
 }
 

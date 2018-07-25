@@ -46,6 +46,28 @@ namespace Katalog
 
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
+
+        public static string GetLendingItemName(string type, Guid id)
+        {
+            databaseEntities db = new databaseEntities();
+
+            switch (type)
+            {
+                case "item":
+                    Items itm = db.Items.Find(id);
+                    if (itm != null) return itm.Name.Trim();
+                    break;
+                case "book":
+                    Books book = db.Books.Find(id);
+                    if (book != null) return book.Title.Trim();
+                    break;
+                case "boardgame":
+                    Boardgames board = db.Boardgames.Find(id);
+                    if (board != null) return board.Name.Trim();
+                    break;
+            }
+            return "";
+        }
     }
 
     

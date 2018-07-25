@@ -157,11 +157,11 @@
   <data name="itName.Text" xml:space="preserve">
     <value>Název</value>
   </data>
-  <data name="itNumber.Text" xml:space="preserve">
-    <value>Číslo</value>
-  </data>
   <data name="itInvNum.Text" xml:space="preserve">
     <value>Inv. č.</value>
+  </data>
+  <data name="itNumber.Text" xml:space="preserve">
+    <value>Číslo</value>
   </data>
   <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 13</value>
@@ -186,6 +186,12 @@
   </data>
   <data name="gbTerm.Text" xml:space="preserve">
     <value>Termín</value>
+  </data>
+  <data name="lblNote.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>Poznámka</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
