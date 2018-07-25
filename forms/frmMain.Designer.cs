@@ -46,6 +46,7 @@
             this.imgOLV = new System.Windows.Forms.ImageList(this.components);
             this.tabLending = new System.Windows.Forms.TabPage();
             this.olvLending = new BrightIdeasSoftware.FastObjectListView();
+            this.ldFastTags = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldPerson = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldItemType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldItemName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -54,10 +55,13 @@
             this.ldFrom = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldTo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ldStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ldFastTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cbLendingShow = new System.Windows.Forms.ComboBox();
             this.lblLendingShow = new System.Windows.Forms.Label();
             this.chbShowReturned = new System.Windows.Forms.CheckBox();
             this.tabBorrowing = new System.Windows.Forms.TabPage();
+            this.btnClearOldReservations = new System.Windows.Forms.Button();
+            this.btnBorrowings = new System.Windows.Forms.Button();
             this.cbBorrowingShow = new System.Windows.Forms.ComboBox();
             this.lblShowBorrowing = new System.Windows.Forms.Label();
             this.chbBorrowingReturned = new System.Windows.Forms.CheckBox();
@@ -214,8 +218,7 @@
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.btnBorrowings = new System.Windows.Forms.Button();
-            this.btnClearOldReservations = new System.Windows.Forms.Button();
+            this.ldNote = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -385,6 +388,7 @@
             // 
             // olvLending
             // 
+            this.olvLending.AllColumns.Add(this.ldFastTags);
             this.olvLending.AllColumns.Add(this.ldPerson);
             this.olvLending.AllColumns.Add(this.ldItemType);
             this.olvLending.AllColumns.Add(this.ldItemName);
@@ -393,9 +397,12 @@
             this.olvLending.AllColumns.Add(this.ldFrom);
             this.olvLending.AllColumns.Add(this.ldTo);
             this.olvLending.AllColumns.Add(this.ldStatus);
+            this.olvLending.AllColumns.Add(this.ldNote);
+            this.olvLending.AllColumns.Add(this.ldFastTagsNum);
             resources.ApplyResources(this.olvLending, "olvLending");
             this.olvLending.CellEditUseWholeCell = false;
             this.olvLending.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ldFastTags,
             this.ldPerson,
             this.ldItemType,
             this.ldItemName,
@@ -403,7 +410,9 @@
             this.ldItemInvNum,
             this.ldFrom,
             this.ldTo,
-            this.ldStatus});
+            this.ldStatus,
+            this.ldNote,
+            this.ldFastTagsNum});
             this.olvLending.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvLending.FullRowSelect = true;
             this.olvLending.GridLines = true;
@@ -416,6 +425,10 @@
             this.olvLending.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvLending_FormatRow);
             this.olvLending.SelectedIndexChanged += new System.EventHandler(this.olvLending_SelectedIndexChanged);
             this.olvLending.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
+            // 
+            // ldFastTags
+            // 
+            resources.ApplyResources(this.ldFastTags, "ldFastTags");
             // 
             // ldPerson
             // 
@@ -453,6 +466,10 @@
             // 
             resources.ApplyResources(this.ldStatus, "ldStatus");
             // 
+            // ldFastTagsNum
+            // 
+            resources.ApplyResources(this.ldFastTagsNum, "ldFastTagsNum");
+            // 
             // cbLendingShow
             // 
             this.cbLendingShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -484,6 +501,18 @@
             resources.ApplyResources(this.tabBorrowing, "tabBorrowing");
             this.tabBorrowing.Name = "tabBorrowing";
             this.tabBorrowing.UseVisualStyleBackColor = true;
+            // 
+            // btnClearOldReservations
+            // 
+            resources.ApplyResources(this.btnClearOldReservations, "btnClearOldReservations");
+            this.btnClearOldReservations.Name = "btnClearOldReservations";
+            this.btnClearOldReservations.UseVisualStyleBackColor = true;
+            // 
+            // btnBorrowings
+            // 
+            resources.ApplyResources(this.btnBorrowings, "btnBorrowings");
+            this.btnBorrowings.Name = "btnBorrowings";
+            this.btnBorrowings.UseVisualStyleBackColor = true;
             // 
             // cbBorrowingShow
             // 
@@ -1667,17 +1696,9 @@
             resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             // 
-            // btnBorrowings
+            // ldNote
             // 
-            resources.ApplyResources(this.btnBorrowings, "btnBorrowings");
-            this.btnBorrowings.Name = "btnBorrowings";
-            this.btnBorrowings.UseVisualStyleBackColor = true;
-            // 
-            // btnClearOldReservations
-            // 
-            resources.ApplyResources(this.btnClearOldReservations, "btnClearOldReservations");
-            this.btnClearOldReservations.Name = "btnClearOldReservations";
-            this.btnClearOldReservations.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.ldNote, "ldNote");
             // 
             // frmMain
             // 
@@ -1912,6 +1933,9 @@
         private BrightIdeasSoftware.OLVColumn brFastTagsNum;
         private System.Windows.Forms.Button btnClearOldReservations;
         private System.Windows.Forms.Button btnBorrowings;
+        private BrightIdeasSoftware.OLVColumn ldFastTags;
+        private BrightIdeasSoftware.OLVColumn ldFastTagsNum;
+        private BrightIdeasSoftware.OLVColumn ldNote;
     }
 }
 

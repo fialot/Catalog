@@ -403,11 +403,25 @@ namespace Katalog
                 lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
             }
         }
+        
+        /// <summary>
+        /// Enter key -> Jump to Item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtPerson_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtItem.Focus();
+            }
+        }
+
 
         #endregion
 
         #region Item 
-        
+
         /// <summary>
         /// Update Items OLV
         /// </summary>
@@ -593,7 +607,7 @@ namespace Katalog
                
             }
             // ----- Fill Inventory number -----
-            else if(txtItem.Focused)
+            else if (txtItem.Focused)
             {
                 txtItem.Text += "; " + Barcode;
                 AddItem();
@@ -621,6 +635,5 @@ namespace Katalog
 
         #endregion
 
-        
     }
 }

@@ -158,7 +158,35 @@ namespace Katalog
                     lend = db.Lending.Where(p => (p.Status ?? 1) != 2).ToList();
             }
 
-            
+            ldFastTags.Renderer = new ImageRenderer();
+            ldFastTags.AspectGetter = delegate (object x) {
+                List<int> ret = new List<int>();
+                if (((Lending)x).FastTags != null)
+                {
+                    FastFlags flag = (FastFlags)((Lending)x).FastTags;
+                    if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
+                    if (flag.HasFlag(FastFlags.FLAG2)) ret.Add(1);
+                    if (flag.HasFlag(FastFlags.FLAG3)) ret.Add(2);
+                    if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
+                    if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
+                    if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
+                }
+                return ret;
+            };
+            ldFastTagsNum.AspectGetter = delegate (object x) {
+                string res = "";
+                if (((Lending)x).FastTags != null)
+                {
+                    FastFlags flag = (FastFlags)((Lending)x).FastTags;
+                    if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
+                    if (flag.HasFlag(FastFlags.FLAG2)) res += "2";
+                    if (flag.HasFlag(FastFlags.FLAG3)) res += "3";
+                    if (flag.HasFlag(FastFlags.FLAG4)) res += "4";
+                    if (flag.HasFlag(FastFlags.FLAG5)) res += "5";
+                    if (flag.HasFlag(FastFlags.FLAG6)) res += "6";
+                }
+                return res;
+            };
             ldPerson.AspectGetter = delegate (object x) {
                 Contacts contact = db.Contacts.Find(((Lending)x).PersonID);
                 if (contact != null)
@@ -215,7 +243,9 @@ namespace Katalog
                     return Lng.Get("Reserved");
                 else return Lng.Get("Borrowed"); // Borrowed
             };
-
+            ldNote.AspectGetter = delegate (object x) {
+                return ((Lending)x).Note;
+            };
             olvLending.SetObjects(lend);
         }
 
@@ -1178,6 +1208,7 @@ namespace Katalog
                 cbFilterCol.Items.Add(Lng.Get("From"));
                 cbFilterCol.Items.Add(Lng.Get("To"));
                 cbFilterCol.Items.Add(Lng.Get("Status"));
+                cbFilterCol.Items.Add(Lng.Get("Note"));
                 cbFilterCol.SelectedIndex = 0;
 
                 cbFastFilterCol.Items.Add(Lng.Get("All"));
@@ -1582,7 +1613,14 @@ namespace Katalog
             }
             else if (tabCatalog.SelectedTab == tabLending)
             {
-                FastFilterTags = TextMatchFilter.Contains(olvLending, "");
+                if (FastTagFilterList.Count == 0)
+                    FastFilterTags = TextMatchFilter.Contains(olvLending, "");
+                else
+                {
+                    string[] filterArray = FastTagFilterList.ToArray();
+                    FastFilterTags = TextMatchFilter.Contains(olvLending, filterArray);
+                    FastFilterTags.Columns = new OLVColumn[] { ldFastTagsNum };
+                }
             }
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {
@@ -1660,7 +1698,7 @@ namespace Katalog
                 StandardFilter = TextMatchFilter.Contains(olvLending, txtFilter.Text);
 
                 if (cbFilterCol.SelectedIndex == 0)
-                    StandardFilter.Columns = new OLVColumn[] { ldItemType, ldItemName, ldPerson, ldFrom, ldTo, ldStatus };
+                    StandardFilter.Columns = new OLVColumn[] { ldItemType, ldItemName, ldPerson, ldFrom, ldTo, ldStatus, ldNote };
                 else if (cbFilterCol.SelectedIndex == 1)
                     StandardFilter.Columns = new OLVColumn[] { ldItemType };
                 else if (cbFilterCol.SelectedIndex == 2)
@@ -1673,6 +1711,8 @@ namespace Katalog
                     StandardFilter.Columns = new OLVColumn[] { ldTo };
                 else if (cbFilterCol.SelectedIndex == 6)
                     StandardFilter.Columns = new OLVColumn[] { ldStatus };
+                else if (cbFilterCol.SelectedIndex == 7)
+                    StandardFilter.Columns = new OLVColumn[] { ldNote };
             }
             else if (tabCatalog.SelectedTab == tabBorrowing)
             {

@@ -222,6 +222,7 @@
             resources.ApplyResources(this.txtPerson, "txtPerson");
             this.txtPerson.Name = "txtPerson";
             this.txtPerson.TextChanged += new System.EventHandler(this.txtPerson_TextChanged);
+            this.txtPerson.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerson_KeyDown);
             // 
             // btnAddPerson
             // 

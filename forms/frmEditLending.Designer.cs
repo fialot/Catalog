@@ -60,6 +60,14 @@
             this.gbTerm = new System.Windows.Forms.GroupBox();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.TimeOut = new System.Windows.Forms.Timer(this.components);
+            this.btnTag6 = new System.Windows.Forms.Button();
+            this.btnTag5 = new System.Windows.Forms.Button();
+            this.btnTag4 = new System.Windows.Forms.Button();
+            this.btnTag3 = new System.Windows.Forms.Button();
+            this.btnTag2 = new System.Windows.Forms.Button();
+            this.btnTag1 = new System.Windows.Forms.Button();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.lblNote = new System.Windows.Forms.Label();
             this.mnuGetPerson.SuspendLayout();
             this.gbItem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvItem)).BeginInit();
@@ -139,6 +147,7 @@
             resources.ApplyResources(this.txtItem, "txtItem");
             this.txtItem.Name = "txtItem";
             this.txtItem.TextChanged += new System.EventHandler(this.txtItem_TextChanged);
+            this.txtItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtItem_KeyDown);
             // 
             // cbItemNum
             // 
@@ -245,6 +254,7 @@
             resources.ApplyResources(this.txtPerson, "txtPerson");
             this.txtPerson.Name = "txtPerson";
             this.txtPerson.TextChanged += new System.EventHandler(this.txtPerson_TextChanged);
+            this.txtPerson.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerson_KeyDown);
             // 
             // btnAddPerson
             // 
@@ -280,10 +290,81 @@
             this.TimeOut.Interval = 200;
             this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
             // 
+            // btnTag6
+            // 
+            resources.ApplyResources(this.btnTag6, "btnTag6");
+            this.btnTag6.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTag6.Image = global::Katalog.Properties.Resources.Circle_Blue;
+            this.btnTag6.Name = "btnTag6";
+            this.btnTag6.UseVisualStyleBackColor = false;
+            this.btnTag6.Click += new System.EventHandler(this.btnTag1_Click);
+            // 
+            // btnTag5
+            // 
+            resources.ApplyResources(this.btnTag5, "btnTag5");
+            this.btnTag5.Image = global::Katalog.Properties.Resources.circ_grey;
+            this.btnTag5.Name = "btnTag5";
+            this.btnTag5.UseVisualStyleBackColor = true;
+            this.btnTag5.Click += new System.EventHandler(this.btnTag1_Click);
+            // 
+            // btnTag4
+            // 
+            resources.ApplyResources(this.btnTag4, "btnTag4");
+            this.btnTag4.Image = global::Katalog.Properties.Resources.circ_yellow;
+            this.btnTag4.Name = "btnTag4";
+            this.btnTag4.UseVisualStyleBackColor = true;
+            this.btnTag4.Click += new System.EventHandler(this.btnTag1_Click);
+            // 
+            // btnTag3
+            // 
+            resources.ApplyResources(this.btnTag3, "btnTag3");
+            this.btnTag3.Image = global::Katalog.Properties.Resources.circ_orange;
+            this.btnTag3.Name = "btnTag3";
+            this.btnTag3.UseVisualStyleBackColor = true;
+            this.btnTag3.Click += new System.EventHandler(this.btnTag1_Click);
+            // 
+            // btnTag2
+            // 
+            resources.ApplyResources(this.btnTag2, "btnTag2");
+            this.btnTag2.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTag2.Image = global::Katalog.Properties.Resources.circ_red;
+            this.btnTag2.Name = "btnTag2";
+            this.btnTag2.UseVisualStyleBackColor = false;
+            this.btnTag2.Click += new System.EventHandler(this.btnTag1_Click);
+            // 
+            // btnTag1
+            // 
+            resources.ApplyResources(this.btnTag1, "btnTag1");
+            this.btnTag1.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTag1.Image = global::Katalog.Properties.Resources.circ_green;
+            this.btnTag1.Name = "btnTag1";
+            this.btnTag1.UseVisualStyleBackColor = false;
+            this.btnTag1.Click += new System.EventHandler(this.btnTag1_Click);
+            // 
+            // txtNote
+            // 
+            this.txtNote.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNote.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtNote, "txtNote");
+            this.txtNote.Name = "txtNote";
+            // 
+            // lblNote
+            // 
+            resources.ApplyResources(this.lblNote, "lblNote");
+            this.lblNote.Name = "lblNote";
+            // 
             // frmEditLending
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtNote);
+            this.Controls.Add(this.lblNote);
+            this.Controls.Add(this.btnTag6);
+            this.Controls.Add(this.btnTag5);
+            this.Controls.Add(this.btnTag4);
+            this.Controls.Add(this.btnTag3);
+            this.Controls.Add(this.btnTag2);
+            this.Controls.Add(this.btnTag1);
             this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.gbTerm);
             this.Controls.Add(this.gbPerson);
@@ -304,6 +385,7 @@
             this.gbTerm.ResumeLayout(false);
             this.gbTerm.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -339,5 +421,13 @@
         private BrightIdeasSoftware.OLVColumn itNumber;
         private System.Windows.Forms.Button btnDelItem;
         private System.Windows.Forms.Timer TimeOut;
+        private System.Windows.Forms.Button btnTag6;
+        private System.Windows.Forms.Button btnTag5;
+        private System.Windows.Forms.Button btnTag4;
+        private System.Windows.Forms.Button btnTag3;
+        private System.Windows.Forms.Button btnTag2;
+        private System.Windows.Forms.Button btnTag1;
+        private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.Label lblNote;
     }
 }

@@ -18,10 +18,11 @@ namespace Katalog
     {
         #region Variables
 
-        List<Guid> ID = new List<Guid>();
-        Guid LastItemGuid = Guid.Empty;
-        Guid ItemGuid = Guid.Empty;
-        Guid PersonGuid = Guid.Empty;
+        // ----- Item Lists -----
+        List<Guid> ID = new List<Guid>();                   // List of Lending IDs
+        Guid LastItemGuid = Guid.Empty;                     // Last Item ID
+        Guid ItemGuid = Guid.Empty;                         // Item ID
+        Guid PersonGuid = Guid.Empty;                       // Person ID
         string ItemInvNum = "";
 
         List<CInfo> contList = new List<CInfo>();           // Contact list
@@ -29,10 +30,14 @@ namespace Katalog
 
         List<IInfo> selItemList = new List<IInfo>();        // Selected Item List
         List<IInfo> origItemList = new List<IInfo>();       // Item list befor change
-        Communication com = new Communication();
-        string Barcode = "";
 
-        public delegate void MyDelegate(comStatus status);
+        // ----- Fast Tags -----
+        Color SelectColor = Color.SkyBlue;                  // FastTags Select color
+
+        // ----- Barcode -----
+        Communication com = new Communication();            // Barcode reader communication
+        string Barcode = "";                                // Readed barcode
+        public delegate void MyDelegate(comStatus status);  // Communication delegate
 
         #endregion
 
@@ -47,68 +52,7 @@ namespace Katalog
 
         #region Functions
 
-        /// <summary>
-        /// Fing other Lendings to fill Item list
-        /// </summary>
-        /// <param name="ID">Main ID</param>
-        /// <returns></returns>
-        private List<Guid> FindOtherLendings(Guid ID)
-        {
-            databaseEntities db = new databaseEntities();
-
-            List<Guid> list = new List<Guid>();
-
-            Lending borr = db.Lending.Find(ID);
-            if (borr != null)
-            {
-                list = db.Lending.Where(x => x.PersonID == borr.PersonID && x.Status == borr.Status && x.From == borr.From && x.To == borr.To).Select(x => x.ID).ToList();
-            }
-
-            return list;
-        }
-
-
-        private void FindPerson()
-        {
-            //PersonGuid = Guid.Empty;
-            string text = txtPerson.Text;
-            int pos = text.IndexOf("#");
-            if (pos >= 0)
-            {
-                int val = Conv.ToIntDef(text.Substring(pos + 1), -1);
-                if (val >= 0 && val < contList.Count)
-                {
-                    PersonGuid = contList[val].ID;
-                }
-            }
-        }
-
-
-        private Guid FindPersonByCode(string code)
-        {
-            long iCode = Conv.ToNumber(code);
-            /*long num = -1;
-            foreach (var item in contList)
-            {
-                num = Conv.ToNumber(item.PersonalNum);
-                if (num == iCode || num == iCode / 10)
-                {
-                    return item.ID;
-                }
-            }*/
-            databaseEntities db = new databaseEntities();
-            var list = db.Contacts.Where(x => x.Barcode == iCode).ToList();
-            if (list.Count > 0)
-                return list[0].ID;
-            else
-            {
-                list = db.Contacts.Where(x => x.Barcode == iCode / 10).ToList();    // remove EAN checksum
-                if (list.Count > 0)
-                    return list[0].ID;
-            }
-
-            return Guid.Empty;
-        }
+       
 
         private List<long> GetBarcodes(string InvNums)
         {
@@ -347,37 +291,8 @@ namespace Katalog
             }
         }
 
-        private void SetContactsContext()
-        {
-            databaseEntities db = new databaseEntities();
 
-            contList = db.Contacts.Where(x => x.Active ?? true).Select(x => new CInfo { ID = x.ID, Name = x.Name.Trim(), Surname = x.Surname.Trim(), PersonalNum = x.PersonCode.Trim() }).ToList();
-            for (int i = 0; i < contList.Count; i++)
-            {
-                txtPerson.AutoCompleteCustomSource.Add(contList[i].Name + " " + contList[i].Surname + " #" + i.ToString());
-                txtPerson.AutoCompleteCustomSource.Add(contList[i].Surname + " " + contList[i].Name + " #" + i.ToString());
-            }
-        }
-
-        private void UpdateOLV()
-        {
-
-            itName.AspectGetter = delegate (object x) {
-                if (((IInfo)x).Name != null)
-                    return ((IInfo)x).Name.Trim();
-                return "";
-            };
-            itInvNum.AspectGetter = delegate (object x) {
-                if (((IInfo)x).InvNum != null)
-                    return ((IInfo)x).InvNum.Trim();
-                return "";
-            };
-            itNumber.AspectGetter = delegate (object x) {
-                return ((IInfo)x).ItemNum;
-            };
-
-            olvItem.SetObjects(selItemList);
-        }
+        
 
         private void RefreshAvailableItems(List<IInfo> list)
         {
@@ -414,82 +329,137 @@ namespace Katalog
 
         #region Load Form
 
+        /// <summary>
+        /// Fing other Lendings to fill Item list
+        /// </summary>
+        /// <param name="ID">Main ID</param>
+        /// <returns></returns>
+        private List<Guid> FindOtherLendings(Guid ID)
+        {
+            databaseEntities db = new databaseEntities();
+
+            List<Guid> list = new List<Guid>();
+
+            Lending borr = db.Lending.Find(ID);
+            if (borr != null)
+            {
+                list = db.Lending.Where(x => x.PersonID == borr.PersonID && x.Status == borr.Status && x.From == borr.From && x.To == borr.To).Select(x => x.ID).ToList();
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Show dialog with edit related items
+        /// </summary>
+        /// <param name="ID">Item ID</param>
+        /// <returns></returns>
         public DialogResult ShowDialog(Guid ID)
         {
             this.ID = FindOtherLendings(ID);
             return base.ShowDialog();
         }
 
+        /// <summary>
+        /// Show dialog with selected related items
+        /// </summary>
+        /// <param name="ID">Item IDs</param>
+        /// <returns></returns>
         public DialogResult ShowDialog(List<Guid> ID)
         {
             this.ID = ID;
             return base.ShowDialog();
         }
 
+        /// <summary>
+        /// Load Form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmEditLending_Load(object sender, EventArgs e)
         {
             databaseEntities db = new databaseEntities();
 
+            // ----- Create connection to barcode reader -----
             com.ReceivedData += new ReceivedEventHandler(DataReceive);
             try
             {
                 com.ConnectSP(Properties.Settings.Default.scanCOM);
             }
             catch { }
-            
 
+            // ----- Prepare Status Combo box -----
             cbStatus.Items.Clear();
             cbStatus.Items.Add(Lng.Get("Reserved"));
             cbStatus.Items.Add(Lng.Get("Borrowed"));
             cbStatus.Items.Add(Lng.Get("Returned"));
             cbStatus.SelectedIndex = 1;
 
+            // ----- Prepare Item type Combo box -----
             cbItemType.Items.Clear();
             cbItemType.Items.Add(Lng.Get("Item"));
             cbItemType.Items.Add(Lng.Get("Book"));
             cbItemType.Items.Add(Lng.Get("Board game"));
             cbItemType.SelectedIndex = 0;
 
-            SetContactsContext();
-            SetItemsContext();
+            // ----- Prepare autocomplete Context -----
+            SetContactsContext();               // Contacts
+            SetItemsContext();                  // Items
 
+            // ----- Set Default values -----
             dtFrom.Value = DateTime.Now;
             dtTo.Value = DateTime.Now.AddDays(Properties.Settings.Default.DefaultBorrInterval);
 
+            // ----- If Edit items -----
             if (ID.Count > 0)
             {
-                Lending borr = new Lending();
+                Lending lend = new Lending();
 
+                // ----- Find all edited items -----
                 foreach (var itm in ID)
                 {
-                    borr = db.Lending.Find(itm);
+                    lend = db.Lending.Find(itm);
 
-                    IInfo info = GetInfo(borr.ItemID ?? Guid.Empty, (ItemTypes)Enum.Parse(typeof(ItemTypes), borr.ItemType, true), borr.ItemNum ?? 1);
-                    selItemList.Add(info);
-                    origItemList.Add(info);
+                    // ----- Fill Item list -----
+                    IInfo info = GetInfo(lend.ItemID ?? Guid.Empty, (ItemTypes)Enum.Parse(typeof(ItemTypes), lend.ItemType, true), lend.ItemNum ?? 1);
+
+                    selItemList.Add(info);      // Selected list
+                    origItemList.Add(info);     // Original list
                 }
 
 
-                // ----- Fill Inventory number
+                // ----- Fill Inventory number -----
                 FillInventoryNumber();
                 //cbItemNum.Text = (borr.ItemNum ?? 1).ToString();
 
-                Contacts person = db.Contacts.Find(borr.PersonID);
+                // ----- Fill Person -----
+                Contacts person = db.Contacts.Find(lend.PersonID);
                 if (person != null)
                 {
                     txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
                     lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
                 }
 
+                // ----- Fill other values -----
+                dtFrom.Value = lend.From ?? DateTime.Now;
+                dtTo.Value = lend.To ?? DateTime.Now;
+                cbStatus.SelectedIndex = lend.Status ?? 1;
+                txtNote.Text = lend.Note;
 
-                dtFrom.Value = borr.From ?? DateTime.Now;
-                dtTo.Value = borr.To ?? DateTime.Now;
-                cbStatus.SelectedIndex = borr.Status ?? 1;
-
-                ItemGuid = borr.ItemID ?? Guid.Empty;
+                ItemGuid = lend.ItemID ?? Guid.Empty;
                 LastItemGuid = ItemGuid;
-                PersonGuid = borr.PersonID ?? Guid.Empty;
+                PersonGuid = lend.PersonID ?? Guid.Empty;
 
+                // ----- Fill Fast tags -----
+                FastFlags flag = (FastFlags)(lend.FastTags ?? 0);
+                if (flag.HasFlag(FastFlags.FLAG1)) btnTag1.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG2)) btnTag2.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG3)) btnTag3.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG4)) btnTag4.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG5)) btnTag5.BackColor = SelectColor;
+                if (flag.HasFlag(FastFlags.FLAG6)) btnTag6.BackColor = SelectColor;
+
+                // ----- Update Items OLV -----
                 UpdateOLV();
             }
         }
@@ -498,24 +468,48 @@ namespace Katalog
 
         #region Close Form
 
-        private void FillBorr(ref Lending borr, IInfo item)
+        /// <summary>
+        /// Fill Lending Items
+        /// </summary>
+        /// <param name="lend"></param>
+        /// <param name="item"></param>
+        private void FillLend(ref Lending lend, IInfo item)
         {
-            borr.ItemType = item.ItemType.ToString();
-            borr.ItemID = item.ID;
-            borr.ItemNum = (short)item.ItemNum;
-            borr.ItemInvNum = item.InvNum;
+            // ----- Item -----
+            lend.ItemType = item.ItemType.ToString();
+            lend.ItemID = item.ID;
+            lend.ItemNum = (short)item.ItemNum;
+            lend.ItemInvNum = item.InvNum;
+            
+            // ----- Other -----
+            lend.PersonID = PersonGuid;
+            lend.From = dtFrom.Value;
+            lend.To = dtTo.Value;
+            lend.Status = (short)cbStatus.SelectedIndex;
+            lend.Note = txtNote.Text;
 
-            borr.PersonID = PersonGuid;
-            borr.From = dtFrom.Value;
-            borr.To = dtTo.Value;
-            borr.Status = (short)cbStatus.SelectedIndex;
+            // ----- Fast tags -----
+            short fastTag = 0;
+            if (btnTag1.BackColor == SelectColor) fastTag |= 0x01;
+            if (btnTag2.BackColor == SelectColor) fastTag |= 0x02;
+            if (btnTag3.BackColor == SelectColor) fastTag |= 0x04;
+            if (btnTag4.BackColor == SelectColor) fastTag |= 0x08;
+            if (btnTag5.BackColor == SelectColor) fastTag |= 0x10;
+            if (btnTag6.BackColor == SelectColor) fastTag |= 0x20;
+            lend.FastTags = fastTag;
         }
 
+        /// <summary>
+        /// Button Ok
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
+            // ----- Find selected person in DB -----
             FindPerson();
 
-
+            // ----- Check if record valid -----
             if (PersonGuid == Guid.Empty)
             {
                 Dialogs.ShowWar(Lng.Get("NoSelPerson", "Not selected person!"), Lng.Get("Warning"));
@@ -543,34 +537,128 @@ namespace Katalog
                 db.SaveChanges();
             }
 
-            // ----- Create new
+            // ----- Create new -----
             foreach (var itm in selItemList)
             {
                 borr = new Lending();
                 borr.ID = Guid.NewGuid();
-                FillBorr(ref borr, itm);
+                FillLend(ref borr, itm);
                 db.Lending.Add(borr);
             }
+
+            // ----- Save to DB -----
             db.SaveChanges();
 
+            // ----- Refresh Available Items in Items Tables -----
             RefreshAvailableItems(selItemList);
 
+            // ----- Close Barcode reader connection -----
             com.Close();
 
             this.DialogResult = DialogResult.OK;
 
         }
-        
+
+        /// <summary>
+        /// Button Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            // ----- Close Barcode reader connection -----
             com.Close();
+
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        /// <summary>
+        /// Form Closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEditLending_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // ----- Close Barcode reader connection -----
+            com.Close();
         }
 
         #endregion
 
         #region Person
 
+        /// <summary>
+        /// Find person by Index from txtPerson (Fill PersonGUID)
+        /// </summary>
+        private void FindPerson()
+        {
+            //PersonGuid = Guid.Empty;
+            string text = txtPerson.Text;
+            int pos = text.IndexOf("#");
+            if (pos >= 0)
+            {
+                int val = Conv.ToIntDef(text.Substring(pos + 1), -1);
+                if (val >= 0 && val < contList.Count)
+                {
+                    PersonGuid = contList[val].ID;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Find Person in DB by Code
+        /// </summary>
+        /// <param name="barcode">Person Code</param>
+        /// <returns>Person ID</returns>
+        private Guid FindPersonByCode(string barcode)
+        {
+            long iCode = Conv.ToNumber(barcode);
+            /*long num = -1;
+            foreach (var item in contList)
+            {
+                num = Conv.ToNumber(item.PersonalNum);
+                if (num == iCode || num == iCode / 10)
+                {
+                    return item.ID;
+                }
+            }*/
+
+            // ----- Try find Person by barcode -----
+            databaseEntities db = new databaseEntities();
+            var list = db.Contacts.Where(x => x.Barcode == iCode).ToList();
+            if (list.Count > 0)
+                return list[0].ID;
+            // ----- If no found -> tryfind Person by barcode without checksum -----
+            else
+            {
+                list = db.Contacts.Where(x => x.Barcode == iCode / 10).ToList();    // remove EAN checksum
+                if (list.Count > 0)
+                    return list[0].ID;
+            }
+            // ----- If not found -> return Empty GUID -----
+            return Guid.Empty;
+        }
+
+        /// <summary>
+        /// Create Contact list for autocomplete function
+        /// </summary>
+        private void SetContactsContext()
+        {
+            databaseEntities db = new databaseEntities();
+
+            contList = db.Contacts.Where(x => x.Active ?? true).Select(x => new CInfo { ID = x.ID, Name = x.Name.Trim(), Surname = x.Surname.Trim(), PersonalNum = x.PersonCode.Trim() }).ToList();
+            for (int i = 0; i < contList.Count; i++)
+            {
+                txtPerson.AutoCompleteCustomSource.Add(contList[i].Name + " " + contList[i].Surname + " #" + i.ToString());
+                txtPerson.AutoCompleteCustomSource.Add(contList[i].Surname + " " + contList[i].Name + " #" + i.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Textbox Person Change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPerson_TextChanged(object sender, EventArgs e)
         {
             databaseEntities db = new databaseEntities();
@@ -587,15 +675,21 @@ namespace Katalog
             }
         }
 
-
+        /// <summary>
+        /// Button add person
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddPerson_Click(object sender, EventArgs e)
         {
             databaseEntities db = new databaseEntities();
 
+            // ----- Create new Contact -----
             Guid ID;
             frmEditContacts form = new frmEditContacts();
             form.ShowDialog(out ID);
 
+            // ----- Select this Contact -----
             Contacts person = db.Contacts.Find(ID);
             if (person != null)
             {
@@ -605,9 +699,48 @@ namespace Katalog
             }
         }
 
+        /// <summary>
+        /// Enter key -> Jump to Item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtPerson_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtItem.Focus();
+            }
+        }
+
         #endregion
 
         #region Item 
+
+        /// <summary>
+        /// Update Items OLV
+        /// </summary>
+        private void UpdateOLV()
+        {
+            // ----- Column Name -----
+            itName.AspectGetter = delegate (object x) {
+                if (((IInfo)x).Name != null)
+                    return ((IInfo)x).Name.Trim();
+                return "";
+            };
+            // ----- Column Inventory number -----
+            itInvNum.AspectGetter = delegate (object x) {
+                if (((IInfo)x).InvNum != null)
+                    return ((IInfo)x).InvNum.Trim();
+                return "";
+            };
+            // ----- Column Number -----
+            itNumber.AspectGetter = delegate (object x) {
+                return ((IInfo)x).ItemNum;
+            };
+
+            // ----- Set model to OLV -----
+            olvItem.SetObjects(selItemList);
+        }
 
         private void FillInventoryNumber()
         {
@@ -697,9 +830,7 @@ namespace Katalog
             res = RemoveSelectedItemNums(res);
             return res;
         }
-
-
-
+        
         private void txtItem_TextChanged(object sender, EventArgs e)
         {
             ItemGuid = Guid.Empty;
@@ -720,8 +851,7 @@ namespace Katalog
             LastItemGuid = ItemGuid;
             FillInventoryNumber();
         }
-
-
+        
         /// <summary>
         /// Get Item info from DB
         /// </summary>
@@ -779,6 +909,9 @@ namespace Katalog
             return newItem;
         }
 
+        /// <summary>
+        /// Add Item to list
+        /// </summary>
         private void AddItem()
         {
             // ----- Find selected Item -----
@@ -806,44 +939,95 @@ namespace Katalog
             txtItem.Text = "";
         }
 
+        /// <summary>
+        /// Button Add Item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            AddItem();
+            AddItem();              // Add Item to list
         }
 
+        /// <summary>
+        /// Add Item by Enter key
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddItem();      // Add Item to list
+            }
+        }
+
+        /// <summary>
+        /// Button Delete Item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelItem_Click(object sender, EventArgs e)
         {
+            // ----- If select Item -----
             if (olvItem.SelectedIndex >= 0)
             {
+                // ----- Remove -----
                 IInfo info = (IInfo)olvItem.SelectedItem.RowObject;
                 selItemList.Remove(info);
+
+                // ----- Update OLV -----
                 UpdateOLV();
+                olvItem.SelectedIndex = -1;
 
                 // ----- Refresh Items TextBox -----
                 SetItemsContext();
             }
         }
 
-
-        #endregion
-
-
-        #region Barcode
-
-
-        private void DataReceive(object source, comStatus status)
+        /// <summary>
+        /// Change OLV Selected Index
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void olvItem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPerson.Invoke(new MyDelegate(updateLog), new Object[] { status }); //BeginInvoke
-
+            // ----- Enable / Disable Delete button -----
+            if (olvItem.SelectedIndex >= 0)
+            {
+                btnDelItem.Enabled = true;
+            }
+            else
+            {
+                btnDelItem.Enabled = false;
+            }
         }
 
+        #endregion
+        
+        #region Barcode
 
-        public void updateLog(comStatus status)
+        /// <summary>
+        /// Data receive delegate
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="status"></param>
+        private void DataReceive(object source, comStatus status)
+        {
+            txtPerson.Invoke(new MyDelegate(DataProcess), new Object[] { status }); //BeginInvoke
+        }
+
+        /// <summary>
+        /// Data process function
+        /// </summary>
+        /// <param name="status"></param>
+        public void DataProcess(comStatus status)
         {
             if (status == comStatus.Close)
             {
                 
             }
+            // ----- Status Incoming data -----
             else if (status == comStatus.OK)
             {
                 TimeOut.Enabled = false;
@@ -860,11 +1044,17 @@ namespace Katalog
             }
         }
 
+        /// <summary>
+        /// Process data after timeout
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimeOut_Tick(object sender, EventArgs e)
         {
             databaseEntities db = new databaseEntities();
 
             TimeOut.Enabled = false;
+            // ----- Fill Person by Barcode -----
             if (txtPerson.Focused)
             {
                 Guid ID = FindPersonByCode(Barcode);
@@ -879,7 +1069,9 @@ namespace Katalog
                 else
                     Dialogs.ShowWar(Lng.Get("NoPersonNumber", "This ID have no person!"), Lng.Get("Warning"));
                
-            } else if(txtItem.Focused)
+            }
+            // ----- Fill Inventory number -----
+            else if (txtItem.Focused)
             {
                 ItemTypes type;
                 short ItemNum;
@@ -887,16 +1079,19 @@ namespace Katalog
                 if (ID != Guid.Empty)
                 {
                     cbItemType.SelectedIndex = (int)type;
+                    // ----- Item -----
                     if (type == ItemTypes.item)
                     {
                         Items itm = db.Items.Find(ID);
                         txtItem.Text = itm.Name.Trim();
                     }
+                    // ----- Book -----
                     else if (type == ItemTypes.book)
                     {
                         Books book = db.Books.Find(ID);
                         txtItem.Text = book.Title.Trim();
                     }
+                    // ----- Board game -----
                     else if (type == ItemTypes.boardgame)
                     {
                         Boardgames board = db.Boardgames.Find(ID);
@@ -914,25 +1109,26 @@ namespace Katalog
             Barcode = "";
         }
 
+        #endregion
+
+        #region FastTags
+
+        /// <summary>
+        /// Set fast tag
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTag1_Click(object sender, EventArgs e)
+        {
+            if (((Button)sender).BackColor == SystemColors.Control)
+                ((Button)sender).BackColor = SelectColor;
+            else
+                ((Button)sender).BackColor = SystemColors.Control;
+        }
 
         #endregion
 
-        private void frmEditLending_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            com.Close();
-        }
-
-        private void olvItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (olvItem.SelectedIndex >= 0)
-            {
-                btnDelItem.Enabled = true;
-            }
-            else
-            {
-                btnDelItem.Enabled = false;
-            }
-        }
+        
     }
 
     public enum ItemTypes { item = 0, book = 1, boardgame = 2 }
