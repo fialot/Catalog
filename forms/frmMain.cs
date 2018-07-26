@@ -2386,6 +2386,10 @@ namespace Katalog
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            tabCatalog.TabPages.Remove(tabAudio);
+            tabCatalog.TabPages.Remove(tabVideo);
+            tabCatalog.TabPages.Remove(tabFoto);
+
             PrepareForm();
 
             UpdateConOLV();
@@ -2533,6 +2537,78 @@ namespace Katalog
             list.Add(info);
             list.Add(info);
             PrintPDF.CreateTemplate(list);
+        }
+
+        private int FindTabPosition(TabPage page)
+        {
+            int pos = 0;
+            if (page == tabLending) pos = 1;
+            if (page == tabBorrowing) pos = 2;
+            if (page == tabItems) pos = 3;
+            if (page == tabBooks) pos = 4;
+            if (page == tabBoardGames) pos = 5;
+            if (pos > tabCatalog.TabPages.Count) pos = tabCatalog.TabPages.Count;
+            
+            /*for (int i = pos - 1; i >= 0; i--)
+            {
+                if (page == tabBorrowing)
+
+
+            }*/
+
+            return pos;
+        }
+
+        private void mnuShowTabs_Click(object sender, EventArgs e)
+        {
+            // ----- Tab Contacts -----
+            if (((ToolStripMenuItem)sender).Tag == "Contacts")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    tabCatalog.TabPages.Remove(tabContacts);
+                else
+                    tabCatalog.TabPages.Insert(0, tabContacts);
+            }
+            // ----- Tab Lending -----
+            else if (((ToolStripMenuItem)sender).Tag == "Lending")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    tabCatalog.TabPages.Remove(tabLending);
+                else
+                    tabCatalog.TabPages.Insert(FindTabPosition(tabLending), tabLending);
+            }
+            // ----- Tab Borrowing -----
+            else if (((ToolStripMenuItem)sender).Tag == "Borrowing")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    tabCatalog.TabPages.Remove(tabBorrowing);
+                else
+                    tabCatalog.TabPages.Insert(FindTabPosition(tabBorrowing), tabBorrowing);
+            }
+            // ----- Tab Items -----
+            else if (((ToolStripMenuItem)sender).Tag == "Items")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    tabCatalog.TabPages.Remove(tabItems);
+                else
+                    tabCatalog.TabPages.Insert(FindTabPosition(tabItems), tabItems);
+            }
+            // ----- Tab Books -----
+            else if (((ToolStripMenuItem)sender).Tag == "Books")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    tabCatalog.TabPages.Remove(tabBooks);
+                else
+                    tabCatalog.TabPages.Insert(FindTabPosition(tabBooks), tabBooks);
+            }
+            // ----- Tab Boardgames -----
+            else if (((ToolStripMenuItem)sender).Tag == "Boardgames")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    tabCatalog.TabPages.Remove(tabBoardGames);
+                else
+                    tabCatalog.TabPages.Insert(FindTabPosition(tabBoardGames), tabBoardGames);
+            }
         }
     }
 }
