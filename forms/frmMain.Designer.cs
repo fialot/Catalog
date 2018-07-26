@@ -217,9 +217,12 @@
             this.mnuLangEnglish = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSubTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRecalculateAvailableItems = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.btnPrintTest = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -277,6 +280,7 @@
             // 
             // tabContacts
             // 
+            this.tabContacts.Controls.Add(this.btnPrintTest);
             this.tabContacts.Controls.Add(this.btnPersonalLending);
             this.tabContacts.Controls.Add(this.button1);
             this.tabContacts.Controls.Add(this.btnTest);
@@ -434,7 +438,7 @@
             this.olvLending.VirtualMode = true;
             this.olvLending.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvLending_FormatRow);
             this.olvLending.SelectedIndexChanged += new System.EventHandler(this.olvLending_SelectedIndexChanged);
-            this.olvLending.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
+            this.olvLending.DoubleClick += new System.EventHandler(this.olvLending_DoubleClick);
             // 
             // ldFastTags
             // 
@@ -1663,7 +1667,8 @@
             this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuLanguage,
             this.toolStripMenuItem5,
-            this.mnuOptions});
+            this.mnuOptions,
+            this.mnuSubTools});
             this.mnuTools.Name = "mnuTools";
             resources.ApplyResources(this.mnuTools, "mnuTools");
             // 
@@ -1691,6 +1696,19 @@
             resources.ApplyResources(this.mnuOptions, "mnuOptions");
             this.mnuOptions.Click += new System.EventHandler(this.mnuOptions_Click);
             // 
+            // mnuSubTools
+            // 
+            this.mnuSubTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuRecalculateAvailableItems});
+            this.mnuSubTools.Name = "mnuSubTools";
+            resources.ApplyResources(this.mnuSubTools, "mnuSubTools");
+            // 
+            // mnuRecalculateAvailableItems
+            // 
+            this.mnuRecalculateAvailableItems.Name = "mnuRecalculateAvailableItems";
+            resources.ApplyResources(this.mnuRecalculateAvailableItems, "mnuRecalculateAvailableItems");
+            this.mnuRecalculateAvailableItems.Click += new System.EventHandler(this.mnuRecalculateAvailableItems_Click);
+            // 
             // mnuHelp
             // 
             this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1709,6 +1727,12 @@
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
+            // 
+            // btnPrintTest
+            // 
+            resources.ApplyResources(this.btnPrintTest, "btnPrintTest");
+            this.btnPrintTest.Name = "btnPrintTest";
+            this.btnPrintTest.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -1947,6 +1971,9 @@
         private BrightIdeasSoftware.OLVColumn ldFastTagsNum;
         private BrightIdeasSoftware.OLVColumn ldNote;
         private System.Windows.Forms.Button btnPersonalLending;
+        private System.Windows.Forms.ToolStripMenuItem mnuSubTools;
+        private System.Windows.Forms.ToolStripMenuItem mnuRecalculateAvailableItems;
+        private System.Windows.Forms.Button btnPrintTest;
     }
 }
 

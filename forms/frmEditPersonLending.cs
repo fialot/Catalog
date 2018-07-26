@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TCPClient;
+using myFunctions;
+
 
 namespace Katalog
 {
@@ -28,6 +30,9 @@ namespace Katalog
         Communication com = new Communication();            // Barcode reader communication
         string Barcode = "";                                // Readed barcode
         public delegate void MyDelegate(comStatus status);  // Communication delegate
+
+        // ----- Status -----
+        bool changed = false;
 
         #endregion
 
@@ -53,7 +58,7 @@ namespace Katalog
 
             List<Guid> list = new List<Guid>();
 
-            list = db.Lending.Where(x => x.PersonID == ID && (x.Status == 0 || x.Status == 1)).Select(x => x.ID).ToList();
+            list = db.Lending.Where(x => x.PersonID == ID && (x.Status == (short)LendStatus.Reserved || x.Status == (short)LendStatus.Lended)).Select(x => x.ID).ToList();
 
             return list;
         }
@@ -66,8 +71,22 @@ namespace Katalog
         public DialogResult ShowDialog(Guid ID)
         {
             PersonID = ID;
-            this.ID = FindOtherBorrowings(ID);
+            this.ID = FindOtherBorrowings(PersonID);
             return base.ShowDialog();
+        }
+
+        private void RefreshItems()
+        {
+            this.ID = FindOtherBorrowings(PersonID);
+
+            lendList.Clear();
+            foreach (var item in this.ID)
+            {
+                var lend = db.Lending.Find(item);
+                lendList.Add(lend);
+            }
+
+            UpdateOLV();
         }
 
         /// <summary>
@@ -94,18 +113,27 @@ namespace Katalog
             lblPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
             lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
 
-            foreach (var item in this.ID)
-            {
-                var lend = db.Lending.Find(item);
-                lendList.Add(lend);
-            }
-            
-            UpdateOLV();
+            RefreshItems();
         }
 
         #endregion
 
         #region Form Closing
+
+        /// <summary>
+        /// Save changes to DB
+        /// </summary>
+        private void SaveChanges()
+        {
+            // ----- Save changes -----
+            db.SaveChanges();
+
+            // ----- Refresh Available Items -----
+            RefreshAvailableItems();
+
+            // ----- No changes indicator -----
+            changed = false;
+        }
 
         /// <summary>
         /// Form Closing
@@ -130,21 +158,21 @@ namespace Katalog
 
             foreach (var itm in lendList)
             {
-                borr = db.Lending.Where(p => (p.ItemID == itm.ItemID) && p.ItemType.Contains(itm.ItemType.ToString()) && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
+                borr = db.Lending.Where(p => (p.ItemID == itm.ItemID) && p.ItemType.Contains(itm.ItemType.Trim()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ItemNum).ToList();
 
-                if (itm.ItemType == "item")
+                if (itm.ItemType.Trim() == "item")
                 {
                     Items item = db.Items.Find(itm.ItemID);
                     if (item != null)
                         item.Available = (short)((item.Count ?? 1) - borr.Count);
                 }
-                else if (itm.ItemType == "book")
+                else if (itm.ItemType.Trim() == "book")
                 {
                     Books book = db.Books.Find(itm.ItemID);
                     if (book != null)
                         book.Available = (short)((book.Count ?? 1) - borr.Count);
                 }
-                else if (itm.ItemType == "boardgame")
+                else if (itm.ItemType.Trim() == "boardgame")
                 {
                     Boardgames board = db.Boardgames.Find(itm.ItemID);
                     if (board != null)
@@ -161,9 +189,8 @@ namespace Katalog
         /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
-            db.SaveChanges();
-
-            RefreshAvailableItems();
+            // ----- Save changes to DB -----
+            SaveChanges();
 
             // ----- Close Barcode reader connection -----
             com.Close();
@@ -229,23 +256,23 @@ namespace Katalog
             // ----- Column Status -----
             itStatus.ImageGetter = delegate (object x) {
                 int status = ((Lending)x).Status ?? 1;
-                if (status == 2)        // Returned
+                if (status == (short)LendStatus.Returned)       // Returned
                     return 6;
-                else if (status == 0)   // Reserved
+                else if (status == (short)LendStatus.Reserved)  // Reserved
                     return 9;
-                else if (status == 3)   // Canceled
+                else if (status == (short)LendStatus.Canceled)  // Canceled
                     return 7;
-                else return 10;         // Borrowed
+                else return 10;                                 // Borrowed
             };
             itStatus.AspectGetter = delegate (object x) {
                 int status = ((Lending)x).Status ?? 1;
-                if (status == 2)        // Returned
+                if (status == (short)LendStatus.Returned)       // Returned
                     return Lng.Get("Returned");
-                else if (status == 0)   // Reserved
+                else if (status == (short)LendStatus.Reserved)  // Reserved
                     return Lng.Get("Reserved");
-                else if (status == 3)   // Canceled
+                else if (status == (short)LendStatus.Canceled)  // Canceled
                     return Lng.Get("Canceled");
-                else return Lng.Get("Borrowed"); // Borrowed
+                else return Lng.Get("Borrowed");                // Borrowed
             };
             // ----- Column Note -----
             itNote.AspectGetter = delegate (object x) {
@@ -338,22 +365,24 @@ namespace Katalog
 
         private void btnCancelAll_Click(object sender, EventArgs e)
         {
+            changed = true;
             foreach (var item in lendList)
             {
-                if (item.Status == 0) // Reserved
-                    item.Status = 3;
+                if (item.Status == (short)LendStatus.Reserved) // Reserved
+                    item.Status = (short)LendStatus.Canceled;
             }
             UpdateOLV();
         }
 
         private void btnReturnAll_Click(object sender, EventArgs e)
         {
+            changed = true;
 
             foreach (var item in lendList)
             {
-                if (item.Status == 1)       // Lended
+                if (item.Status == (short)LendStatus.Lended)       // Lended
                 {  
-                    item.Status = 2;
+                    item.Status = (short)LendStatus.Returned;
                     item.To = DateTime.Now;
                 }
             }
@@ -362,26 +391,64 @@ namespace Katalog
 
         private void btnLend_Click(object sender, EventArgs e)
         {
-            
+            if (changed)
+            {
+                if (Dialogs.ShowQuest(Lng.Get("saveChangesBeforeLending", "Before lending new items you must save changes to database. Save changes?"), Lng.Get("SaveChanges", "Save changes?")) == DialogResult.No)
+                    return;
+            }
+
+            // ----- Close Barcode reader connection -----
+            com.Close();
+
+            // ----- Save changes to DB -----
+            SaveChanges();
+
+            // ----- Show Lending Dialog -----
+            frmEditLending form = new frmEditLending();
+            form.ShowPersonDialog(PersonID);
+
+            RefreshItems();
+
+            // ----- Start Barcode reader Connection -----
+            try
+            {
+                com.ConnectSP(Properties.Settings.Default.scanCOM);
+            }
+            catch { }
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
             if (olvItem.SelectedObjects.Count > 0)
             {
+                changed = true;
                 for (int i = olvItem.SelectedObjects.Count - 1; i >= 0; i--)
                 {
                     // ----- Lended -----
-                    if (((Lending)(olvItem.SelectedObjects[i])).Status == 1)
+                    if (((Lending)(olvItem.SelectedObjects[i])).Status == (short)LendStatus.Lended)
                     {
-                        ((Lending)(olvItem.SelectedObjects[i])).Status = 2;
+                        ((Lending)(olvItem.SelectedObjects[i])).Status = (short)LendStatus.Returned;
                         ((Lending)(olvItem.SelectedObjects[i])).To = DateTime.Now;
                     }
                     // ----- Reserved -----
-                    else if (((Lending)(olvItem.SelectedObjects[i])).Status == 0) ((Lending)(olvItem.SelectedObjects[i])).Status = 3;
+                    else if (((Lending)(olvItem.SelectedObjects[i])).Status == (short)LendStatus.Reserved)
+                        ((Lending)(olvItem.SelectedObjects[i])).Status = (short)LendStatus.Canceled;
                 }
                 UpdateOLV();
             }
+        }
+
+        private void olvItem_SelectionChanged(object sender, EventArgs e)
+        {
+            if (olvItem.SelectedObjects.Count > 0)
+            {
+                btnReturn.Enabled = true;
+            } else btnReturn.Enabled = false;
+        }
+
+        private void btnPrintLend_Click(object sender, EventArgs e)
+        {
+            PrintPDF.PrintTable(lblPerson.Text + " - " + Lng.Get("Lended"), global.GetTable(lendList));
         }
     }
 }

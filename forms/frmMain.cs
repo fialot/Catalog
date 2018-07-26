@@ -273,6 +273,11 @@ namespace Katalog
             UpdateLendingOLV();
         }
 
+        private void olvLending_DoubleClick(object sender, EventArgs e)
+        {
+            EditPersonalLending();
+        }
+
         #endregion
 
         #region Borrowing
@@ -1159,6 +1164,16 @@ namespace Katalog
                 {
                     frmEditPersonLending form = new frmEditPersonLending();   // Show Edit form
                     var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
+                    UpdateLendingOLV();
+                }
+            }
+            // ----- Lending -----
+            else if (tabCatalog.SelectedTab == tabLending)
+            {
+                if (olvLending.SelectedIndex >= 0)                 // If selected Item
+                {
+                    frmEditPersonLending form = new frmEditPersonLending();   // Show Edit form
+                    var res = form.ShowDialog(((Lending)olvLending.SelectedObject).PersonID ?? Guid.Empty);
                     UpdateLendingOLV();
                 }
             }
@@ -2418,6 +2433,106 @@ namespace Katalog
         private void btnPersonalLending_Click(object sender, EventArgs e)
         {
             EditPersonalLending();
+        }
+
+        private void RecalculateAvailableItems()
+        {
+
+        }
+
+        private void mnuRecalculateAvailableItems_Click(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+            string log = "";
+            
+            // ----- Recalculate Items -----
+            var list = db.Items.Select(x => new IInfo { ID = x.ID, Name = x.Name, Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+
+            foreach (var itm in list)
+            {
+                var lend = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.item.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ItemNum).ToList();
+                int available = itm.Count - lend.Count;
+                if (available < 0)
+                {
+                    log += Lng.Get("Error") + ": " + itm.Name + " - " + Lng.Get("AvailableNegative", "available is negative number!") + " " + available.ToString() + " -> 0" + Environment.NewLine;
+                    available = 0;
+                }
+
+                if (available != itm.Available)
+                {
+                    log += Lng.Get("Fixed") + ": " + itm.Name + " - " + Lng.Get("Available") + " " + itm.Available.ToString() + " -> " + available.ToString() + Environment.NewLine;
+                   
+                    Items item = db.Items.Find(itm.ID);
+                    if (item != null) item.Available = (short) available; 
+                }
+            }
+
+            // ----- Recalculate Books -----
+            list = db.Books.Select(x => new IInfo { ID = x.ID, Name = x.Title, Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+
+            foreach (var itm in list)
+            {
+                var lend = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.book.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ItemNum).ToList();
+                int available = itm.Count - lend.Count;
+                if (available < 0)
+                {
+                    log += Lng.Get("Error") + ": " + itm.Name + " - " + Lng.Get("AvailableNegative", "available is negative number!") + " " + available.ToString() + " -> 0" + Environment.NewLine;
+                    available = 0;
+                }
+
+                if (available != itm.Available)
+                {
+                    log += Lng.Get("Fixed") + ": " + itm.Name + " - " + Lng.Get("Available") + " " + itm.Available.ToString() + " -> " + available.ToString() + Environment.NewLine;
+
+                    Books book = db.Books.Find(itm.ID);
+                    if (book != null) book.Available = (short)available;
+                }
+            }
+
+            // ----- Recalculate Board games -----
+            list = db.Boardgames.Select(x => new IInfo { ID = x.ID, Name = x.Name, Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+
+            foreach (var itm in list)
+            {
+                var lend = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.boardgame.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ItemNum).ToList();
+                int available = itm.Count - lend.Count;
+                if (available < 0)
+                {
+                    log += Lng.Get("Error") + ": " + itm.Name + " - " + Lng.Get("AvailableNegative", "available is negative number!") + " " + available.ToString() + " -> 0" + Environment.NewLine;
+                    available = 0;
+                }
+
+                if (available != itm.Available)
+                {
+                    log += Lng.Get("Fixed") + ": " + itm.Name + " - " + Lng.Get("Available") + " " + itm.Available.ToString() + " -> " + available.ToString() + Environment.NewLine;
+
+                    Boardgames board = db.Boardgames.Find(itm.ID);
+                    if (board != null) board.Available = (short)available;
+                }
+            }
+
+            // ----- Save DB -----
+            db.SaveChanges();
+
+            UpdateItemsOLV();
+            UpdateBooksOLV();
+            UpdateBoardOLV();
+
+            if (log == "")
+                Dialogs.ShowInfo(Lng.Get("Done") + " - " + Lng.Get("NoChanges", "no changes") + ".", Lng.Get("Done"));
+            else
+                Dialogs.ShowInfo(log, Lng.Get("Done"));
+        }
+
+        private void btnPrintTest_Click(object sender, EventArgs e)
+        {
+            List<LInfo> list = new List<LInfo>();
+            LInfo info = new LInfo();
+            info.Name = "XXX";
+            info.LendTo = DateTime.Now;
+            list.Add(info);
+            list.Add(info);
+            PrintPDF.CreateTemplate(list);
         }
     }
 }

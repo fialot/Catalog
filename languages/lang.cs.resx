@@ -130,7 +130,7 @@
     <value>Kniha</value>
   </data>
   <data name="Borrowed" xml:space="preserve">
-    <value>Zapůjčeno</value>
+    <value>Vypůjčeno</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Kategorie</value>
@@ -332,5 +332,35 @@
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Zrušeno</value>
+  </data>
+  <data name="AvailableNegative" xml:space="preserve">
+    <value>volné kusy jsou v záporných číslech!</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Dokončeno</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Opraveno</value>
+  </data>
+  <data name="NoChanges" xml:space="preserve">
+    <value>žádné změny</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Uložit změny?</value>
+  </data>
+  <data name="saveChangesBeforeLending" xml:space="preserve">
+    <value>Před zapůjčením nových položek je nutné uložit změny do databáze. Opravdu uložit?</value>
+  </data>
+  <data name="Lended" xml:space="preserve">
+    <value>Zapůjčeno</value>
+  </data>
+  <data name="LendFrom" xml:space="preserve">
+    <value>Zapůjčeno od</value>
+  </data>
+  <data name="LendTo" xml:space="preserve">
+    <value>Zapůjčeno do</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Číslo</value>
   </data>
 </root>

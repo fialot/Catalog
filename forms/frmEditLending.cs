@@ -291,9 +291,7 @@ namespace Katalog
             }
         }
 
-
-        
-
+              
         private void RefreshAvailableItems(List<IInfo> list)
         {
             databaseEntities db = new databaseEntities();
@@ -301,7 +299,7 @@ namespace Katalog
 
             foreach (var itm in list)
             {
-                borr = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(itm.ItemType.ToString()) && (p.Status ?? 1) != 2).Select(c => c.ItemNum).ToList();
+                borr = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(itm.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ItemNum).ToList();
 
                 if (itm.ItemType == ItemTypes.item)
                 {
@@ -359,7 +357,18 @@ namespace Katalog
             this.ID = FindOtherLendings(ID);
             return base.ShowDialog();
         }
-
+        
+        /// <summary>
+        /// Show dialog with edit related items
+        /// </summary>
+        /// <param name="ID">Item ID</param>
+        /// <returns></returns>
+        public DialogResult ShowPersonDialog(Guid ID)
+        {
+            PersonGuid = ID;
+            return base.ShowDialog();
+        }
+        
         /// <summary>
         /// Show dialog with selected related items
         /// </summary>
@@ -464,6 +473,22 @@ namespace Katalog
 
                 // ----- Update Items OLV -----
                 UpdateOLV();
+            }
+            // ----- Lending to person -----
+            else if (PersonGuid != Guid.Empty)
+            {
+                Guid temp = PersonGuid;
+                // ----- Fill Person -----
+                Contacts person = db.Contacts.Find(PersonGuid);
+                if (person != null)
+                {
+                    txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
+                    lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
+                }
+                PersonGuid = temp;
+                txtPerson.Enabled = false;
+                btnAddPerson.Enabled = false;
+                this.ActiveControl = txtItem;
             }
         }
 
@@ -818,7 +843,7 @@ namespace Katalog
 
             List<int> res = new List<int>();
 
-            var borr = db.Lending.Where(x => (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
+            var borr = db.Lending.Where(x => (x.ItemID == ItemGuid) && ((x.Status ?? 1) == (short)LendStatus.Reserved || (x.Status ?? 1) == (short)LendStatus.Lended)).Select(x => x.ItemNum ?? 1).ToList();
             //var borr = db.Lending.Where(x => x.ItemNum.ToString().Any(x.ID != ID) && (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
             int Count = itm.Count;
 
@@ -1134,25 +1159,5 @@ namespace Katalog
         
     }
 
-    public enum ItemTypes { item = 0, book = 1, boardgame = 2 }
-
-    public class CInfo
-    {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string PersonalNum { get; set; }
-    }
-
-    public class IInfo
-    {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-        public string InvNum { get; set; }
-        public short Count { get; set; }
-        public short Available { get; set; }
-        public int ItemNum { get; set; }
-        public ItemTypes ItemType { get; set; }
-        public string Note { get; set; }
-    }
+    
 }
