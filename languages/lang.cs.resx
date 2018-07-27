@@ -363,4 +363,10 @@
   <data name="Number" xml:space="preserve">
     <value>Číslo</value>
   </data>
+  <data name="ParseFileError" xml:space="preserve">
+    <value>Chyba zpracování souboru</value>
+  </data>
+  <data name="SuccesfullyImport" xml:space="preserve">
+    <value>Import proběhl vpořádku</value>
+  </data>
 </root>

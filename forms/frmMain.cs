@@ -1992,15 +1992,20 @@ namespace Katalog
             contact.Parrents = "";*/
         }
 
+
         private void FillLending(ref Lending itm, Lending newItem)
         {
             itm.ItemType = newItem.ItemType;
             itm.ItemID = newItem.ItemID;
             itm.ItemNum = newItem.ItemNum;
+            itm.ItemInvNum = newItem.ItemInvNum;
             itm.PersonID = newItem.PersonID;
             itm.From = newItem.From;
             itm.To = newItem.To;
             itm.Status = newItem.Status;
+            itm.Note = newItem.Note;
+            itm.FastTags = newItem.FastTags;
+            itm.Updated = newItem.Updated;
         }
 
         private void FillItem(ref Items itm, Items newItem)
@@ -2049,6 +2054,12 @@ namespace Katalog
                 if (tabCatalog.SelectedTab == tabContacts)
                 {
                     List<Contacts> con = global.ImportContactsCSV(dialog.FileName);
+                    if (con == null)
+                    {
+                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                        return;
+                    }
+
                     foreach (var item in con)
                     {
                         
@@ -2074,10 +2085,17 @@ namespace Katalog
                     }
                     db.SaveChanges();
                     UpdateConOLV();
+                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport","Import was succesfully done") + ".", Lng.Get("Import"));
                 }
                 else if (tabCatalog.SelectedTab == tabLending)
                 {
                     List<Lending> con = global.ImportLendedCSV(dialog.FileName);
+                    if (con == null)
+                    {
+                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                        return;
+                    }
+
                     foreach (var item in con)
                     {
 
@@ -2103,10 +2121,17 @@ namespace Katalog
                     }
                     db.SaveChanges();
                     UpdateLendingOLV();
+                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
                 else if (tabCatalog.SelectedTab == tabItems)
                 {
                     List<Items> con = global.ImportItemsCSV(dialog.FileName);
+                    if (con == null)
+                    {
+                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                        return;
+                    }
+
                     foreach (var item in con)
                     {
 
@@ -2132,10 +2157,17 @@ namespace Katalog
                     }
                     db.SaveChanges();
                     UpdateItemsOLV();
+                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
                 else if (tabCatalog.SelectedTab == tabBooks)
                 {
                     List<Books> con = global.ImportBooksCSV(dialog.FileName);
+                    if (con == null)
+                    {
+                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                        return;
+                    }
+
                     foreach (var item in con)
                     {
 
@@ -2161,6 +2193,7 @@ namespace Katalog
                     }
                     db.SaveChanges();
                     UpdateBooksOLV();
+                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
             }
 

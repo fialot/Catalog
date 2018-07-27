@@ -225,6 +225,7 @@
     <Compile Include="forms\frmSettings.Designer.cs">
       <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="functions\Str.cs" />
     <Compile Include="global.cs" />
     <Compile Include="forms\frmEditBooks.cs">
       <SubType>Form</SubType>

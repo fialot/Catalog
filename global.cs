@@ -213,17 +213,21 @@ namespace Katalog
         /// </summary>
         /// <param name="path">File path</param>
         /// <param name="con">Contact list</param>
-        public static void ExportContactsCSV(string path, List<Contacts> con)
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportContactsCSV(string path, List<Contacts> con)
         {
-            string lines;
+            // ----- Head -----
+            string lines = "FialotCatalog:Contacts v1" + Environment.NewLine;
 
-            lines = "name;surname;nick;sex;birth;phone;email;www;im;company;position;street;city;region;country;postcode;personcode;note;groups;tags;updated;googleID;active;avatar;GUID" + Environment.NewLine;
+            // ----- Names -----
+            lines += "name;surname;nick;sex;birth;phone;email;www;im;company;position;street;city;region;country;postcode;personcode;note;groups;tags;updated;googleID;active;avatar;GUID" + Environment.NewLine;
 
+            // ----- Data -----
             int imgNum = 0;
             foreach (var item in con)
             {
-                string imgFileName = "";
                 // ----- Images -----
+                string imgFileName = "";
                 if (item.Avatar != null && item.Avatar.Length > 0)
                 {
                     try
@@ -255,7 +259,7 @@ namespace Katalog
                 
             }
 
-            Files.SaveFile(path, lines);
+            return Files.SaveFile(path, lines);
         }
 
         /// <summary>
@@ -263,41 +267,53 @@ namespace Katalog
         /// </summary>
         /// <param name="path">File path</param>
         /// <param name="bor">Lending list</param>
-        public static void ExportLendedCSV(string path, List<Lending> bor)
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportLendedCSV(string path, List<Lending> bor)
         {
-            string lines;
+            // ----- Head -----
+            string lines = "FialotCatalog:Lending v1" + Environment.NewLine;
 
-            lines = "itemType;ItemID;personID;from;to;status;GUID" + Environment.NewLine;
+            // ----- Names -----
+            lines += "itemType;itemID;itemNum;itemInvNum;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
 
+            // ----- Data -----
             foreach (var item in bor)
             {
-                lines += item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";";
-                lines += item.Status.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
+                lines += item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.ItemNum.ToString() + ";" + item.ItemInvNum.Trim() + ";";
+                lines += item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";" + item.Status.ToString() + ";";
+                lines += item.Note.Trim() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
             }
 
-            Files.SaveFile(path, lines);
+            // ----- Save to file ------
+            return Files.SaveFile(path, lines);
         }
-
+        
         /// <summary>
-        /// Export Lending to CSV file
+        /// Export Borrowing to CSV file
         /// </summary>
         /// <param name="path">File path</param>
-        /// <param name="bor">Lending list</param>
-        public static void ExportBorrowedCSV(string path, List<Lending> bor)
+        /// <param name="bor">Borrowing list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportBorrowingCSV(string path, List<Borrowing> bor)
         {
-            string lines;
+            // ----- Head -----
+            string lines = "FialotCatalog:Borrowing v1" + Environment.NewLine;
 
-            lines = "itemType;ItemID;personID;from;to;status;GUID" + Environment.NewLine;
+            // ----- Names -----
+            lines += "item;itemInvNum;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
 
+            // ----- Data -----
             foreach (var item in bor)
             {
-                lines += item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";";
-                lines += item.Status.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
+                lines += item.Item.Trim() + ";" + item.ItemInvNum.Trim() + ";";
+                lines += item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";" + item.Status.ToString() + ";";
+                lines += item.Note.Trim() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
             }
 
-            Files.SaveFile(path, lines);
+            // ----- Save to file ------
+            return Files.SaveFile(path, lines);
         }
-
+        
         /// <summary>
         /// Export Items to CSV file
         /// </summary>
@@ -341,12 +357,30 @@ namespace Katalog
 
         #region Import
 
+        /// <summary>
+        /// Import Contacts from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Contact list</returns>
         public static List<Contacts> ImportContactsCSV(string path)
         {
             List<Contacts> con = new List<Contacts>();
+
+            // ----- Load file -----
             string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Contacts"))
+                return null;
+
+            // ----- Parse CSV File -----
             CSVfile file = Files.ParseCSV(text);
 
+            // ----- Check table size -----
+            if (file.head.Length != 25)
+                return null;
+
+            // ----- Parse data -----
             foreach (var item in file.data)
             {
                 string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_images" + Path.DirectorySeparatorChar + item[23];
@@ -384,28 +418,99 @@ namespace Katalog
             return con;
         }
 
+        /// <summary>
+        /// Import Lended from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Lending list</returns>
         public static List<Lending> ImportLendedCSV(string path)
         {
             List<Lending> con = new List<Lending>();
+
+            // ----- Load file -----
             string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Lending"))
+                return null;
+
+            // ----- Parse CSV File -----
             CSVfile file = Files.ParseCSV(text);
 
+            // ----- Check table size -----
+            if (file.head.Length != 12)
+                return null;
+
+            // ----- Parse data -----
             foreach (var item in file.data)
             {
                 Lending itm = new Lending();
                 itm.ItemType = item[0];
                 itm.ItemID = Conv.ToGuid(item[1]);
-                itm.PersonID = Conv.ToGuid(item[2]);
-                itm.From = Conv.ToDateTimeNull(item[3]);
-                itm.To = Conv.ToDateTimeNull(item[4]);
-                itm.Status = Conv.ToShortNull(item[5]);
-                itm.ID = Conv.ToGuid(item[6]);
+                itm.ItemNum = Conv.ToShortNull(item[2]);
+                itm.ItemInvNum = item[3];
+                itm.PersonID = Conv.ToGuid(item[4]);
+                itm.From = Conv.ToDateTimeNull(item[5]);
+                itm.To = Conv.ToDateTimeNull(item[6]);
+                itm.Status = Conv.ToShortNull(item[7]);
+                itm.Note = item[8];
+                itm.FastTags = Conv.ToShortNull(item[9]);
+                itm.Updated = Conv.ToDateTimeNull(item[10]);
+                itm.ID = Conv.ToGuid(item[11]);
                 con.Add(itm);
             }
 
             return con;
         }
 
+        /// <summary>
+        /// Import Borrowing from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Borrowing list</returns>
+        public static List<Borrowing> ImportBorowingCSV(string path)
+        {
+            List<Borrowing> con = new List<Borrowing>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Borrowing"))
+                return null;
+
+            // ----- Parse CSV File -----
+            CSVfile file = Files.ParseCSV(text);
+
+            // ----- Check table size -----
+            if (file.head.Length != 10)
+                return null;
+
+            // ----- Parse data -----
+            foreach (var item in file.data)
+            {
+                Borrowing itm = new Borrowing();
+                itm.Item = item[0];
+                itm.ItemInvNum = item[1];
+                itm.PersonID = Conv.ToGuid(item[2]);
+                itm.From = Conv.ToDateTimeNull(item[3]);
+                itm.To = Conv.ToDateTimeNull(item[4]);
+                itm.Status = Conv.ToShortNull(item[5]);
+                itm.Note = item[6];
+                itm.FastTags = Conv.ToShortNull(item[7]);
+                itm.Updated = Conv.ToDateTimeNull(item[8]);
+                itm.ID = Conv.ToGuid(item[9]);
+                con.Add(itm);
+            }
+
+            return con;
+        }
+
+        /// <summary>
+        /// Import Items from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Item list</returns>
         public static List<Items> ImportItemsCSV(string path)
         {
             List<Items> con = new List<Items>();
@@ -434,6 +539,11 @@ namespace Katalog
             return con;
         }
 
+        /// <summary>
+        /// Import Books from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Book list</returns>
         public static List<Books> ImportBooksCSV(string path)
         {
             List<Books> con = new List<Books>();
