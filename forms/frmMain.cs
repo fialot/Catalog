@@ -1883,71 +1883,12 @@ namespace Katalog
         #endregion
 
         #region Export
-        
-        private void ExportConCSV(string path, List<Contacts> con)
-        {
-            string lines;
-
-            lines = "name;surname;nick;sex;birth;phone;email;www;im;company;position;street;city;region;country;postcode;code;note;groups;tags;GUID" + Environment.NewLine;
-
-            foreach(var item in con)
-            {
-                lines += item.Name.Trim() + ";" + item.Surname.Trim() + ";" + item.Nick.Trim() + ";" + item.Sex.Trim() + ";" + item.Birth.ToString() + ";" + item.Phone.Trim() + ";" + item.Email.Trim() + ";" + item.WWW.Trim() + ";" + item.IM.Trim() + ";";
-                lines += item.Company.Trim() + ";" + item.Position.Trim() + ";" + item.Street.Trim() + ";" + item.City.Trim() + ";" + item.Region.Trim() + ";" + item.Country.Trim() + ";" + item.PostCode.Trim() + ";";
-                lines += item.PersonCode.Trim() + ";" + item.Note.Trim() + ";" + item.Tags.Trim() + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
-            }
-
-            Files.SaveFile(path, lines);
-        }
-
-        private void ExportBorCSV(string path, List<Lending> bor)
-        {
-            string lines;
-
-            lines = "itemType;ItemID;personID;from;to;status;GUID" + Environment.NewLine;
-
-            foreach (var item in bor)
-            {
-                lines += item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";";
-                lines += item.Status.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
-            }
-
-            Files.SaveFile(path, lines);
-        }
-
-        private void ExportItmCSV(string path, List<Items> itm)
-        {
-            string lines;
-
-            lines = "name;category;subcategory;keywords;note;acqdate;price;excluded;count;invnum;location;fasttags;GUID" + Environment.NewLine;
-
-            foreach (var item in itm)
-            {
-                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
-                lines += item.AcquisitionDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" + item.InventoryNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
-            }
-
-            Files.SaveFile(path, lines);
-        }
-        
-        private void ExportBooksCSV(string path, List<Books> book)
-        {
-            string lines;
-
-            lines = "name;authorName;authorSurname;fasttags;GUID" + Environment.NewLine;
-
-            foreach (var item in book)
-            {
-                lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
-            }
-
-            Files.SaveFile(path, lines);
-        }
-        
+             
         private void mnuExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = "CSV file|*.csv";
+            dialog.FileName = "data.csv";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 if (tabCatalog.SelectedTab == tabContacts)
@@ -1958,7 +1899,7 @@ namespace Katalog
                     {
                         con.Add((Contacts)item);
                     }
-                    ExportConCSV(dialog.FileName, con);
+                    global.ExportContactsCSV(dialog.FileName, con);
                 }
                 else if (tabCatalog.SelectedTab == tabLending)
                 {
@@ -1968,7 +1909,7 @@ namespace Katalog
                     {
                         itm.Add((Lending)item);
                     }
-                    ExportBorCSV(dialog.FileName, itm);
+                    global.ExportLendedCSV(dialog.FileName, itm);
                 }
                 else if (tabCatalog.SelectedTab == tabItems)
                 {
@@ -1978,7 +1919,7 @@ namespace Katalog
                     {
                         itm.Add((Items)item);
                     }
-                    ExportItmCSV(dialog.FileName, itm);
+                    global.ExportItemsCSV(dialog.FileName, itm);
                 }
                 else if (tabCatalog.SelectedTab == tabBooks)
                 {
@@ -1988,7 +1929,7 @@ namespace Katalog
                     {
                         itm.Add((Books)item);
                     }
-                    ExportBooksCSV(dialog.FileName, itm);
+                    global.ExportBooksCSV(dialog.FileName, itm);
                 }
             }
         }
@@ -1997,123 +1938,21 @@ namespace Katalog
 
         #region Import
 
-        private List<Contacts> ImportConCSV(string path)
-        {
-            List<Contacts> con = new List<Contacts>();
-            string text = Files.LoadFile(path);
-            CSVfile file = Files.ParseCSV(text);
-
-            foreach (var item in file.data)
-            {
-                Contacts contact = new Contacts();
-                contact.Name = item[0];
-                contact.Surname = item[1];
-                contact.Nick = item[2];
-                contact.Sex = item[3];
-                contact.Birth = Conv.ToDateTimeNull(item[4]);
-                contact.Phone = item[5];
-                contact.Email = item[6];
-                contact.WWW = item[7];
-                contact.IM = item[8];
-                contact.Company = item[9];
-                contact.Position = item[10];
-                contact.Street = item[11];
-                contact.City = item[12];
-                contact.Region = item[13];
-                contact.Country = item[14];
-                contact.PostCode = item[15];
-                contact.PersonCode = item[16];
-                contact.Note = item[17];
-                contact.Tags = item[18];
-                contact.FastTags = Conv.ToShortDef(item[19], 0);
-                contact.ID = Conv.ToGuid(item[20]);
-                con.Add(contact);
-            }
-
-            return con;
-        }
-
-        private List<Lending> ImportBorCSV(string path)
-        {
-            List<Lending> con = new List<Lending>();
-            string text = Files.LoadFile(path);
-            CSVfile file = Files.ParseCSV(text);
-
-            foreach (var item in file.data)
-            {
-                Lending itm = new Lending();
-                itm.ItemType = item[0];
-                itm.ItemID = Conv.ToGuid(item[1]);
-                itm.PersonID = Conv.ToGuid(item[2]);
-                itm.From = Conv.ToDateTimeNull(item[3]);
-                itm.To = Conv.ToDateTimeNull(item[4]);
-                itm.Status = Conv.ToShortNull(item[5]);
-                itm.ID = Conv.ToGuid(item[6]);
-                con.Add(itm);
-            }
-
-            return con;
-        }
-
-        private List<Items> ImportItmCSV(string path)
-        {
-            List<Items> con = new List<Items>();
-            string text = Files.LoadFile(path);
-            CSVfile file = Files.ParseCSV(text);
-
-            foreach (var item in file.data)
-            {
-                Items itm = new Items();
-                itm.Name = item[0];
-                itm.Category = item[1];
-                itm.Subcategory = item[2];
-                itm.Keywords = item[3];
-                itm.Note = item[4].Replace("\n", Environment.NewLine);
-                itm.AcquisitionDate = Conv.ToDateTimeNull(item[5]);
-                itm.Price = Conv.ToDoubleNull(item[6]);
-                itm.Excluded = Conv.ToBoolNull(item[7]);
-                itm.Count = Conv.ToShortNull(item[8]);
-                itm.InventoryNumber = item[9].Replace(",", ";");
-                itm.Location = item[10].Replace(",", ";");
-                itm.FastTags = Conv.ToShortDef(item[11], 0);
-                itm.ID = Conv.ToGuid(item[12]);
-                con.Add(itm);
-            }
-
-            return con;
-        }
-
-        private List<Books> ImportBookCSV(string path)
-        {
-            List<Books> con = new List<Books>();
-            string text = Files.LoadFile(path);
-            CSVfile file = Files.ParseCSV(text);
-
-            foreach (var item in file.data)
-            {
-                Books itm = new Books();
-                itm.Title = item[0];
-                itm.AuthorName = item[1];
-                itm.AuthorSurname = item[2];
-                itm.FastTags = Conv.ToShortNull(item[3]);
-                itm.ID = Conv.ToGuid(item[4]);
-                con.Add(itm);
-            }
-
-            return con;
-        }
+       
 
 
         private void FillContact(ref Contacts contact, Contacts newItem)
         {
             // ----- Avatar -----
-            //contact.Avatar = ImageToByteArray(imgAvatar.Image);
+            contact.Avatar = newItem.Avatar;
 
             // ----- Name -----
             contact.Name = newItem.Name;
             contact.Surname = newItem.Surname;
             contact.Nick = newItem.Nick;
             contact.Sex = newItem.Sex;
+
+            contact.Birth = newItem.Birth;
 
             // ----- Contacts -----
             //for (int i = 0; i < )
@@ -2123,6 +1962,9 @@ namespace Katalog
             contact.WWW = newItem.WWW;
             contact.IM = newItem.IM;
 
+            // ----- Company -----
+            contact.Company = newItem.Company;
+            contact.Position = newItem.Position;
 
             // ----- Address -----
             contact.Street = newItem.Street;
@@ -2132,23 +1974,22 @@ namespace Katalog
             contact.PostCode = newItem.PostCode;
 
             contact.Note = newItem.Note;
-            contact.Birth = newItem.Birth;
+            
             contact.Tags = newItem.Tags;
-            //contact.FastTags = 0;
+            contact.FastTags = newItem.FastTags;
             
 
             contact.PersonCode = newItem.PersonCode;
             contact.Updated = DateTime.Now;
-
-            contact.Company = newItem.Company;
-            contact.Position = newItem.Position;
+            contact.Active = newItem.Active;
+            contact.GoogleID = newItem.GoogleID;
+            
 
 
             // ----- Unused now -----
             /*contact.Partner = "";
             contact.Childs = "";
-            contact.Parrents = "";
-            contact.GoogleID = "";*/
+            contact.Parrents = "";*/
         }
 
         private void FillLending(ref Lending itm, Lending newItem)
@@ -2207,7 +2048,7 @@ namespace Katalog
 
                 if (tabCatalog.SelectedTab == tabContacts)
                 {
-                    List<Contacts> con = ImportConCSV(dialog.FileName);
+                    List<Contacts> con = global.ImportContactsCSV(dialog.FileName);
                     foreach (var item in con)
                     {
                         
@@ -2236,7 +2077,7 @@ namespace Katalog
                 }
                 else if (tabCatalog.SelectedTab == tabLending)
                 {
-                    List<Lending> con = ImportBorCSV(dialog.FileName);
+                    List<Lending> con = global.ImportLendedCSV(dialog.FileName);
                     foreach (var item in con)
                     {
 
@@ -2265,7 +2106,7 @@ namespace Katalog
                 }
                 else if (tabCatalog.SelectedTab == tabItems)
                 {
-                    List<Items> con = ImportItmCSV(dialog.FileName);
+                    List<Items> con = global.ImportItemsCSV(dialog.FileName);
                     foreach (var item in con)
                     {
 
@@ -2294,7 +2135,7 @@ namespace Katalog
                 }
                 else if (tabCatalog.SelectedTab == tabBooks)
                 {
-                    List<Books> con = ImportBookCSV(dialog.FileName);
+                    List<Books> con = global.ImportBooksCSV(dialog.FileName);
                     foreach (var item in con)
                     {
 
@@ -2542,19 +2383,19 @@ namespace Katalog
         private int FindTabPosition(TabPage page)
         {
             int pos = 0;
-            if (page == tabLending) pos = 1;
-            if (page == tabBorrowing) pos = 2;
-            if (page == tabItems) pos = 3;
-            if (page == tabBooks) pos = 4;
-            if (page == tabBoardGames) pos = 5;
-            if (pos > tabCatalog.TabPages.Count) pos = tabCatalog.TabPages.Count;
-            
-            /*for (int i = pos - 1; i >= 0; i--)
-            {
-                if (page == tabBorrowing)
+            if (page == tabContacts) return pos;
+            if (mnuShowContacts.Checked) pos++;
+            if (page == tabLending) return pos;
+            if (mnuShowLending.Checked) pos++;
+            if (page == tabBorrowing) return pos;
+            if (mnuShowBorrowing.Checked) pos++;
+            if (page == tabItems) return pos;
+            if (mnuShowItems.Checked) pos++;
+            if (page == tabBooks) return pos;
+            if (mnuShowBooks.Checked) pos++;
+            if (page == tabBoardGames) return pos;
+           
 
-
-            }*/
 
             return pos;
         }
@@ -2608,6 +2449,20 @@ namespace Katalog
                     tabCatalog.TabPages.Remove(tabBoardGames);
                 else
                     tabCatalog.TabPages.Insert(FindTabPosition(tabBoardGames), tabBoardGames);
+            }
+        }
+
+        private void mnuShowToolbars_Click(object sender, EventArgs e)
+        {
+            // ----- Toolbar Filter -----
+            if (((ToolStripMenuItem)sender).Tag == "Filter")
+            {
+                toolFilter.Visible = ((ToolStripMenuItem)sender).Checked;
+            }
+            // ----- Toolbar Fast Filter -----
+            else if (((ToolStripMenuItem)sender).Tag == "FastFilter")
+            {
+                toolFastFilter.Visible = ((ToolStripMenuItem)sender).Checked;
             }
         }
     }

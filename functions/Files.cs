@@ -25,6 +25,23 @@ namespace myFunctions
         #region Load Files
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static byte[] LoadBinFile(string fileName)
+        {
+            try
+            {
+                return File.ReadAllBytes(fileName);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Load text file
         /// </summary>
         /// <param name="fileName">Filename</param>

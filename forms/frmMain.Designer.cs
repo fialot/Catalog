@@ -125,11 +125,11 @@
             this.tabVideo = new System.Windows.Forms.TabPage();
             this.tabFoto = new System.Windows.Forms.TabPage();
             this.imgBarList = new System.Windows.Forms.ImageList(this.components);
-            this.toolStripEditItem = new System.Windows.Forms.ToolStrip();
+            this.toolEditItem = new System.Windows.Forms.ToolStrip();
             this.btnNewItem = new System.Windows.Forms.ToolStripButton();
             this.btnEditItem = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripFastFilter = new System.Windows.Forms.ToolStrip();
+            this.toolFastFilter = new System.Windows.Forms.ToolStrip();
             this.btnFilterA = new System.Windows.Forms.ToolStripButton();
             this.btnFilterB = new System.Windows.Forms.ToolStripButton();
             this.btnFilterC = new System.Windows.Forms.ToolStripButton();
@@ -167,7 +167,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFilter09 = new System.Windows.Forms.ToolStripButton();
             this.cbFastFilterCol = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripFilter = new System.Windows.Forms.ToolStrip();
+            this.toolFilter = new System.Windows.Forms.ToolStrip();
             this.lblFilter = new System.Windows.Forms.ToolStripLabel();
             this.txtFilter = new System.Windows.Forms.ToolStripTextBox();
             this.cbFilterCol = new System.Windows.Forms.ToolStripComboBox();
@@ -195,7 +195,8 @@
             this.mnuDelItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShow = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuToolBars = new System.Windows.Forms.ToolStripMenuItem();
-            this.filtryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuShowFilter = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuShowFastFilter = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuShowContacts = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowLending = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,7 +205,6 @@
             this.mnuShowItems = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowBooks = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowBoardGames = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuLists = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBookLists = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAuthorList = new System.Windows.Forms.ToolStripMenuItem();
@@ -215,9 +215,6 @@
             this.mnuLanguageLists = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPublishing = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTools = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuLanguage = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuLangEnglish = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSubTools = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRecalculateAvailableItems = new System.Windows.Forms.ToolStripMenuItem();
@@ -240,9 +237,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvBooks)).BeginInit();
             this.tabBoardGames.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvBoard)).BeginInit();
-            this.toolStripEditItem.SuspendLayout();
-            this.toolStripFastFilter.SuspendLayout();
-            this.toolStripFilter.SuspendLayout();
+            this.toolEditItem.SuspendLayout();
+            this.toolFastFilter.SuspendLayout();
+            this.toolFilter.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -271,9 +268,9 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             resources.ApplyResources(this.toolStripContainer1.TopToolStripPanel, "toolStripContainer1.TopToolStripPanel");
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripEditItem);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripFastFilter);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripFilter);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolEditItem);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolFastFilter);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolFilter);
             // 
             // tabCatalog
             // 
@@ -999,15 +996,15 @@
             this.imgBarList.Images.SetKeyName(8, "Song");
             this.imgBarList.Images.SetKeyName(9, "Video");
             // 
-            // toolStripEditItem
+            // toolEditItem
             // 
-            resources.ApplyResources(this.toolStripEditItem, "toolStripEditItem");
-            this.toolStripEditItem.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripEditItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.toolEditItem, "toolEditItem");
+            this.toolEditItem.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolEditItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNewItem,
             this.btnEditItem,
             this.btnDeleteItem});
-            this.toolStripEditItem.Name = "toolStripEditItem";
+            this.toolEditItem.Name = "toolEditItem";
             // 
             // btnNewItem
             // 
@@ -1033,11 +1030,11 @@
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
-            // toolStripFastFilter
+            // toolFastFilter
             // 
-            resources.ApplyResources(this.toolStripFastFilter, "toolStripFastFilter");
-            this.toolStripFastFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripFastFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.toolFastFilter, "toolFastFilter");
+            this.toolFastFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolFastFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnFilterA,
             this.btnFilterB,
             this.btnFilterC,
@@ -1075,7 +1072,7 @@
             this.toolStripSeparator1,
             this.btnFilter09,
             this.cbFastFilterCol});
-            this.toolStripFastFilter.Name = "toolStripFastFilter";
+            this.toolFastFilter.Name = "toolFastFilter";
             // 
             // btnFilterA
             // 
@@ -1369,11 +1366,11 @@
             this.cbFastFilterCol.Name = "cbFastFilterCol";
             this.cbFastFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFastFilterCol_SelectedIndexChanged);
             // 
-            // toolStripFilter
+            // toolFilter
             // 
-            resources.ApplyResources(this.toolStripFilter, "toolStripFilter");
-            this.toolStripFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.toolFilter, "toolFilter");
+            this.toolFilter.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolFilter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblFilter,
             this.txtFilter,
             this.cbFilterCol,
@@ -1383,7 +1380,7 @@
             this.btnFilterPin4,
             this.btnFilterPin5,
             this.btnFilterPin6});
-            this.toolStripFilter.Name = "toolStripFilter";
+            this.toolFilter.Name = "toolFilter";
             // 
             // lblFilter
             // 
@@ -1578,21 +1575,36 @@
             this.toolStripMenuItem3,
             this.mnuShowItems,
             this.mnuShowBooks,
-            this.mnuShowBoardGames,
-            this.toolStripMenuItem6});
+            this.mnuShowBoardGames});
             this.mnuShow.Name = "mnuShow";
             // 
             // mnuToolBars
             // 
             resources.ApplyResources(this.mnuToolBars, "mnuToolBars");
             this.mnuToolBars.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filtryToolStripMenuItem});
+            this.mnuShowFilter,
+            this.mnuShowFastFilter});
             this.mnuToolBars.Name = "mnuToolBars";
             // 
-            // filtryToolStripMenuItem
+            // mnuShowFilter
             // 
-            resources.ApplyResources(this.filtryToolStripMenuItem, "filtryToolStripMenuItem");
-            this.filtryToolStripMenuItem.Name = "filtryToolStripMenuItem";
+            resources.ApplyResources(this.mnuShowFilter, "mnuShowFilter");
+            this.mnuShowFilter.Checked = true;
+            this.mnuShowFilter.CheckOnClick = true;
+            this.mnuShowFilter.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuShowFilter.Name = "mnuShowFilter";
+            this.mnuShowFilter.Tag = "Filter";
+            this.mnuShowFilter.Click += new System.EventHandler(this.mnuShowToolbars_Click);
+            // 
+            // mnuShowFastFilter
+            // 
+            resources.ApplyResources(this.mnuShowFastFilter, "mnuShowFastFilter");
+            this.mnuShowFastFilter.Checked = true;
+            this.mnuShowFastFilter.CheckOnClick = true;
+            this.mnuShowFastFilter.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuShowFastFilter.Name = "mnuShowFastFilter";
+            this.mnuShowFastFilter.Tag = "FastFilter";
+            this.mnuShowFastFilter.Click += new System.EventHandler(this.mnuShowToolbars_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -1664,11 +1676,6 @@
             this.mnuShowBoardGames.Tag = "Boardgames";
             this.mnuShowBoardGames.Click += new System.EventHandler(this.mnuShowTabs_Click);
             // 
-            // toolStripMenuItem6
-            // 
-            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            // 
             // mnuLists
             // 
             resources.ApplyResources(this.mnuLists, "mnuLists");
@@ -1728,28 +1735,9 @@
             // 
             resources.ApplyResources(this.mnuTools, "mnuTools");
             this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuLanguage,
-            this.toolStripMenuItem5,
             this.mnuOptions,
             this.mnuSubTools});
             this.mnuTools.Name = "mnuTools";
-            // 
-            // mnuLanguage
-            // 
-            resources.ApplyResources(this.mnuLanguage, "mnuLanguage");
-            this.mnuLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuLangEnglish});
-            this.mnuLanguage.Name = "mnuLanguage";
-            // 
-            // mnuLangEnglish
-            // 
-            resources.ApplyResources(this.mnuLangEnglish, "mnuLangEnglish");
-            this.mnuLangEnglish.Name = "mnuLangEnglish";
-            // 
-            // toolStripMenuItem5
-            // 
-            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             // 
             // mnuOptions
             // 
@@ -1822,12 +1810,12 @@
             this.tabBoardGames.ResumeLayout(false);
             this.tabBoardGames.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvBoard)).EndInit();
-            this.toolStripEditItem.ResumeLayout(false);
-            this.toolStripEditItem.PerformLayout();
-            this.toolStripFastFilter.ResumeLayout(false);
-            this.toolStripFastFilter.PerformLayout();
-            this.toolStripFilter.ResumeLayout(false);
-            this.toolStripFilter.PerformLayout();
+            this.toolEditItem.ResumeLayout(false);
+            this.toolEditItem.PerformLayout();
+            this.toolFastFilter.ResumeLayout(false);
+            this.toolFastFilter.PerformLayout();
+            this.toolFilter.ResumeLayout(false);
+            this.toolFilter.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1842,7 +1830,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.ToolStrip toolStripFilter;
+        private System.Windows.Forms.ToolStrip toolFilter;
         private System.Windows.Forms.ToolStripMenuItem mnuNewDB;
         private System.Windows.Forms.ToolStripMenuItem mnuOpenDB;
         private System.Windows.Forms.ToolStripMenuItem mnuSavaAsDB;
@@ -1850,7 +1838,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.ToolStripMenuItem mnuShow;
         private System.Windows.Forms.ToolStripMenuItem mnuToolBars;
-        private System.Windows.Forms.ToolStripMenuItem filtryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuShowFilter;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuShowContacts;
         private System.Windows.Forms.ToolStripMenuItem mnuShowBorrowing;
@@ -1882,17 +1870,14 @@
         private System.Windows.Forms.ToolStripButton btnFilterPin4;
         private System.Windows.Forms.ToolStripButton btnFilterPin5;
         private System.Windows.Forms.ToolStripButton btnFilterPin6;
-        private System.Windows.Forms.ToolStrip toolStripEditItem;
+        private System.Windows.Forms.ToolStrip toolEditItem;
         private System.Windows.Forms.ToolStripButton btnNewItem;
         private System.Windows.Forms.ToolStripButton btnEditItem;
         private System.Windows.Forms.ToolStripButton btnDeleteItem;
         private System.Windows.Forms.ToolStripMenuItem mnuNewItem;
         private System.Windows.Forms.ToolStripMenuItem mnuEditItem;
         private System.Windows.Forms.ToolStripMenuItem mnuDelItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuLanguage;
-        private System.Windows.Forms.ToolStripMenuItem mnuLangEnglish;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
-        private System.Windows.Forms.ToolStrip toolStripFastFilter;
+        private System.Windows.Forms.ToolStrip toolFastFilter;
         private System.Windows.Forms.ToolStripButton btnFilterA;
         private System.Windows.Forms.ToolStripButton btnFilterB;
         private System.Windows.Forms.ToolStripButton btnFilterC;
@@ -1980,7 +1965,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cbLendingShow;
         private System.Windows.Forms.Label lblLendingShow;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private BrightIdeasSoftware.OLVColumn itFastTagsNum;
         private BrightIdeasSoftware.OLVColumn conFastTagsNum;
         private BrightIdeasSoftware.OLVColumn bkFastTagsNum;
@@ -2031,6 +2015,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuRecalculateAvailableItems;
         private System.Windows.Forms.Button btnPrintTest;
         private System.Windows.Forms.ToolStripMenuItem mnuShowLending;
+        private System.Windows.Forms.ToolStripMenuItem mnuShowFastFilter;
     }
 }
 
