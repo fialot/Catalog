@@ -172,7 +172,7 @@ namespace Katalog
                 else return "";
             };
             ldItemType.AspectGetter = delegate (object x) {
-                switch (((Lending)x).ItemType.Trim())
+                switch (((Lending)x).CopyType.Trim())
                 {
                     case "item":
                         return Lng.Get("Item");
@@ -184,14 +184,14 @@ namespace Katalog
                 return Lng.Get("Unknown");
             };
             ldItemName.AspectGetter = delegate (object x) {
-                return global.GetLendingItemName(((Lending)x).ItemType.Trim(), ((Lending)x).ItemID ?? Guid.Empty);
+                return global.GetLendingItemName(((Lending)x).CopyType.Trim(), ((Lending)x).CopyID ?? Guid.Empty);
             };
             ldItemNum.AspectGetter = delegate (object x) {
-                return ((Lending)x).ItemNum;
+                return 0;
             };
             ldItemInvNum.AspectGetter = delegate (object x) {
-                if (((Lending)x).ItemInvNum != null)
-                    return ((Lending)x).ItemInvNum.Trim();
+                if (((Lending)x).CopyID != null)
+                    return db.Copies.Find(((Lending)x).CopyID).InventoryNumber;
                 return "";
             };
             ldFrom.AspectGetter = delegate (object x) {
@@ -499,10 +499,10 @@ namespace Katalog
                 return ((Items)x).Subcategory.Trim();
             };
             itInvNum.AspectGetter = delegate (object x) {
-                return ((Items)x).InventoryNumber.Trim();
+                return global.GetInvNumList(((Items)x).ID);
             };
             itLocation.AspectGetter = delegate (object x) {
-                return ((Items)x).Location.Trim();
+                return global.GetLocationList(((Items)x).ID);
             };
             itKeywords.AspectGetter = delegate (object x) {
                 return ((Items)x).Keywords.Trim();
@@ -631,12 +631,10 @@ namespace Katalog
                 return ((Books)x).SubGenre.Trim();
             };
             bkInvNum.AspectGetter = delegate (object x) {
-                if (((Books)x).InventoryNumber == null) return "";
-                return ((Books)x).InventoryNumber.Trim();
+                return global.GetInvNumList(((Books)x).ID);
             };
             bkLocation.AspectGetter = delegate (object x) {
-                if (((Books)x).Location == null) return "";
-                return ((Books)x).Location.Trim();
+                return global.GetLocationList(((Books)x).ID);
             };
             bkKeywords.AspectGetter = delegate (object x) {
                 if (((Books)x).Keywords == null) return "";
@@ -724,10 +722,10 @@ namespace Katalog
                 return ((Boardgames)x).Category.Trim();
             };
             bgInvNum.AspectGetter = delegate (object x) {
-                return ((Boardgames)x).InventoryNumber.Trim();
+                return global.GetInvNumList(((Boardgames)x).ID);
             };
             bgLocation.AspectGetter = delegate (object x) {
-                return ((Boardgames)x).Location.Trim();
+                return global.GetLocationList(((Boardgames)x).ID);
             };
             bgKeywords.AspectGetter = delegate (object x) {
                 return ((Boardgames)x).Keywords.Trim();
@@ -1055,7 +1053,7 @@ namespace Katalog
                 {                                                   // Find Object
                     Lending borr = db.Lending.Find(((Lending)olvLending.SelectedObject).ID);
 
-                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + global.GetLendingItemName(borr.ItemType.Trim(), borr.ItemID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + global.GetLendingItemName(borr.CopyType.Trim(), borr.CopyID ?? Guid.Empty) + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
                     {
                         db.Lending.Remove(borr);                    // Delete Item
                         db.SaveChanges();                           // Save to DB
@@ -1995,10 +1993,8 @@ namespace Katalog
 
         private void FillLending(ref Lending itm, Lending newItem)
         {
-            itm.ItemType = newItem.ItemType;
-            itm.ItemID = newItem.ItemID;
-            itm.ItemNum = newItem.ItemNum;
-            itm.ItemInvNum = newItem.ItemInvNum;
+            itm.CopyType = newItem.CopyType;
+            itm.CopyType = newItem.CopyType;
             itm.PersonID = newItem.PersonID;
             itm.From = newItem.From;
             itm.To = newItem.To;
@@ -2021,12 +2017,9 @@ namespace Katalog
             itm.Keywords = newItem.Keywords;
             itm.Note = newItem.Note;
 
-            itm.AcquisitionDate = newItem.AcquisitionDate;
-            itm.Price = newItem.Price;
+            itm.Manufacturer = newItem.Manufacturer;
 
             itm.Excluded = newItem.Excluded;
-            itm.InventoryNumber = newItem.InventoryNumber;
-            itm.Location = newItem.Location;
             itm.FastTags = newItem.FastTags;
         }
         
@@ -2250,11 +2243,11 @@ namespace Katalog
 
             var list = db.Contacts.Select(u => u.PersonCode).ToList();
             MaxInvNumbers.Contact = GetMaxNum(list);
-            list = db.Items.Select(u => u.InventoryNumber).ToList();
+            list = db.Copies.Where(x => x.ItemType.Trim() == "item").Select(u => u.InventoryNumber).ToList();
             MaxInvNumbers.Item = GetMaxNum(list);
-            list = db.Books.Select(u => u.InventoryNumber).ToList();
+            list = db.Copies.Where(x => x.ItemType.Trim() == "book").Select(u => u.InventoryNumber).ToList();
             MaxInvNumbers.Book = GetMaxNum(list);
-            list = db.Boardgames.Select(u => u.InventoryNumber).ToList();
+            list = db.Copies.Where(x => x.ItemType.Trim() == "boardgame").Select(u => u.InventoryNumber).ToList();
             MaxInvNumbers.Boardgame = GetMaxNum(list);
         }
 
@@ -2328,7 +2321,7 @@ namespace Katalog
 
             foreach (var itm in list)
             {
-                var lend = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.item.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ItemNum).ToList();
+                var lend = db.Lending.Where(p => (p.CopyID == itm.ID) && p.CopyType.Contains(ItemTypes.item.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ID).ToList();
                 int available = itm.Count - lend.Count;
                 if (available < 0)
                 {
@@ -2350,7 +2343,7 @@ namespace Katalog
 
             foreach (var itm in list)
             {
-                var lend = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.book.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ItemNum).ToList();
+                var lend = db.Lending.Where(p => (p.CopyID == itm.ID) && p.CopyType.Contains(ItemTypes.book.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ID).ToList();
                 int available = itm.Count - lend.Count;
                 if (available < 0)
                 {
@@ -2372,7 +2365,7 @@ namespace Katalog
 
             foreach (var itm in list)
             {
-                var lend = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(ItemTypes.boardgame.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ItemNum).ToList();
+                var lend = db.Lending.Where(p => (p.CopyID == itm.ID) && p.CopyType.Contains(ItemTypes.boardgame.ToString()) && ((p.Status ?? 1) == 0 || (p.Status ?? 1) == 1)).Select(c => c.ID).ToList();
                 int available = itm.Count - lend.Count;
                 if (available < 0)
                 {

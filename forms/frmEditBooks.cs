@@ -194,8 +194,8 @@ namespace Katalog
                 txtMyRating.Text = book.MyRating.ToString();
                 chbReaded.Checked = book.Readed ?? false;
 
-                dtAcqDate.Value = book.AcquisitionDate ?? DateTime.Now;
-                txtPrice.Text = book.Price.ToString();
+               // dtAcqDate.Value = book.AcquisitionDate ?? DateTime.Now;
+                //txtPrice.Text = book.Price.ToString();
 
                 // ----- Fill Specimen -----
                 ItemCount = (int)(book.Count ?? 1);                         // Get counts
@@ -207,10 +207,10 @@ namespace Katalog
                 InvNumbers.Clear();
                 Locations.Clear();
 
-                string[] invNums = book.InventoryNumber.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
-                string[] locs = book.Location.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
+                //string[] invNums = book.InventoryNumber.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
+               // string[] locs = book.Location.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
 
-                for (int i = 0; i < ItemCount; i++)                 // Fill specimen
+                /*for (int i = 0; i < ItemCount; i++)                 // Fill specimen
                 {
                     cbSpecimen.Items.Add((i + 1).ToString());
                     if (i < invNums.Length)                         // Inventory numbers list
@@ -221,7 +221,7 @@ namespace Katalog
                         Locations.Add(locs[i]);
                     else
                         Locations.Add("");
-                }
+                }*/
                 txtInvNum.Text = InvNumbers[0];                     // Inventory number
                 txtLocation.Text = Locations[0];                    // Location
                 cbSpecimen.SelectedIndex = 0;
@@ -255,7 +255,7 @@ namespace Katalog
         private bool IsDuplicate(out string InvNum)
         {
             InvNum = "";
-            var list = db.Books.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
+            /*var list = db.Books.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -271,7 +271,7 @@ namespace Katalog
                         }
                     }
                 }
-            }
+            }*/
             return false;
 
         }
@@ -324,8 +324,8 @@ namespace Katalog
             book.MyRating = Conv.ToShortNull(txtMyRating.Text);
             book.Readed = chbReaded.Checked;
 
-            book.AcquisitionDate = dtAcqDate.Value;
-            book.Price = Conv.ToDoubleNull(txtPrice.Text);
+            //book.AcquisitionDate = dtAcqDate.Value;
+            //book.Price = Conv.ToDoubleNull(txtPrice.Text);
 
             // ----- Fill Specimen -----
             book.Count = (short)ItemCount;                   // Get counts
@@ -341,14 +341,14 @@ namespace Katalog
                 long maxNum = Conv.ToNumber(InvNumbers[i]);
                 if (maxNum > MaxInvNumbers.Book) MaxInvNumbers.Book = maxNum;
             }
-            book.InventoryNumber = invNums;
+           /* book.InventoryNumber = invNums;
             book.Location = locs;
             if (Properties.Settings.Default.BookUseISBN)
                 book.Barcode = Conv.ToNumber(InvNumbers[0]);
             else if (ItemCount == 1)
                 book.Barcode = Conv.ToNumber(book.InventoryNumber);
             else
-                book.Barcode = 0;
+                book.Barcode = 0;*/
 
             // ----- Fast tags -----
             short fastTag = 0;

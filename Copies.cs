@@ -12,21 +12,20 @@ namespace Katalog
     using System;
     using System.Collections.Generic;
     
-    public partial class Items
+    public partial class Copies
     {
         public System.Guid ID { get; set; }
-        public string Name { get; set; }
-        public string Category { get; set; }
-        public string Subcategory { get; set; }
-        public string Subcategory2 { get; set; }
-        public string Keywords { get; set; }
-        public string Manufacturer { get; set; }
+        public string ItemType { get; set; }
+        public Nullable<System.Guid> ItemID { get; set; }
+        public Nullable<short> ItemNum { get; set; }
+        public string InventoryNumber { get; set; }
+        public Nullable<long> Barcode { get; set; }
+        public string Condition { get; set; }
+        public string Location { get; set; }
         public string Note { get; set; }
-        public byte[] Image { get; set; }
-        public Nullable<short> Count { get; set; }
-        public Nullable<short> Available { get; set; }
-        public Nullable<short> FastTags { get; set; }
-        public Nullable<System.DateTime> Updated { get; set; }
+        public Nullable<System.DateTime> AcquisitionDate { get; set; }
+        public Nullable<double> Price { get; set; }
         public Nullable<bool> Excluded { get; set; }
+        public Nullable<short> Status { get; set; }
     }
 }

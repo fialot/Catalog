@@ -95,9 +95,9 @@ namespace Katalog
             catch { }
 
             var categoryList = db.Boardgames.Select(x => x.Category.Trim()).ToList();
-            var locationList = db.Boardgames.Select(x => x.Location.Trim()).ToList();
+            //var locationList = db.Boardgames.Select(x => x.Location.Trim()).ToList();
 
-            for (int i = locationList.Count - 1; i >= 0; i--)
+            /*for (int i = locationList.Count - 1; i >= 0; i--)
             {
                 string[] temp = locationList[i].Split(new string[] { ";" }, StringSplitOptions.None);
                 if (temp.Length > 1)
@@ -108,10 +108,10 @@ namespace Katalog
                         locationList.Insert(i, item);
                     }
                 }
-            }
+            }*/
 
             categoryList = DeleteDuplicates(categoryList);
-            locationList = DeleteDuplicates(locationList);
+            //locationList = DeleteDuplicates(locationList);
 
             // ----- Prepare autocomplete -----
             txtCondition.AutoCompleteCustomSource.Add(Lng.Get("New"));
@@ -122,8 +122,8 @@ namespace Katalog
 
             foreach (var item in categoryList)
                 txtCategory.AutoCompleteCustomSource.Add(item);
-            foreach (var item in locationList)
-                txtLocation.AutoCompleteCustomSource.Add(item);
+           /* foreach (var item in locationList)
+                txtLocation.AutoCompleteCustomSource.Add(item);*/
 
             // ----- Add Specimen -----
             cbSpecimen.Items.Clear();
@@ -174,9 +174,9 @@ namespace Katalog
                 chbExtension.Checked = itm.Extension ?? false;      // Extension
                 numExtension.Value = itm.ExtensionNumber ?? 0;      // Extension number
 
-                dtAcqDate.Value = itm.AcquisitionDate ?? DateTime.Now;  // Acqusition date
+                /*dtAcqDate.Value = itm.AcquisitionDate ?? DateTime.Now;  // Acqusition date
                 txtPrice.Text = itm.Price.ToString();               // Price
-                txtCondition.Text = itm.Condition.Trim();           // Condition
+                txtCondition.Text = itm.Condition.Trim();           // Condition*/
                 chbExcluded.Checked = itm.Excluded ?? false;        // Excluded
 
                 txtRating.Text = itm.Rating.ToString();             // Rating
@@ -193,7 +193,7 @@ namespace Katalog
                 InvNumbers.Clear();
                 Locations.Clear();
 
-                string[] invNums = itm.InventoryNumber.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
+                /*string[] invNums = itm.InventoryNumber.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
                 string[] locs = itm.Location.Trim().Split(new string[] { ";" }, StringSplitOptions.None);
 
                 for (int i = 0; i < ItemCount; i++)                 // Fill specimen
@@ -207,7 +207,7 @@ namespace Katalog
                         Locations.Add(locs[i]);
                     else
                         Locations.Add("");
-                }
+                }*/
                 txtInvNum.Text = InvNumbers[0];                     // Inventory number
                 txtLocation.Text = Locations[0];                    // Location
                 cbSpecimen.SelectedIndex = 0;
@@ -241,7 +241,7 @@ namespace Katalog
         private bool IsDuplicate(out string InvNum)
         {
             InvNum = "";
-            var list = db.Boardgames.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
+            /*var list = db.Boardgames.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -257,7 +257,7 @@ namespace Katalog
                         }
                     }
                 }
-            }
+            }*/
             return false;
         }
 
@@ -301,10 +301,10 @@ namespace Katalog
             itm.Extension = chbExtension.Checked;           // Extension
             itm.ExtensionNumber = (short)numExtension.Value;  // Extension number
 
-            itm.Price = Conv.ToDoubleNull(txtPrice.Text);   // Price
+            /*itm.Price = Conv.ToDoubleNull(txtPrice.Text);   // Price
             itm.AcquisitionDate = dtAcqDate.Value;          // Acqusition date
             itm.Excluded = chbExcluded.Checked;             // Excluded
-            itm.Condition = txtCondition.Text;              // Condition
+            itm.Condition = txtCondition.Text;              // Condition*/
 
             itm.Rating = Conv.ToShortNull(txtRating.Text);  // Rating
             itm.MyRating = Conv.ToShortNull(txtMyRating.Text);  // My rating
@@ -323,12 +323,12 @@ namespace Katalog
                 long maxNum = Conv.ToNumber(InvNumbers[i]);
                 if (maxNum > MaxInvNumbers.Boardgame) MaxInvNumbers.Boardgame = maxNum;
             }
-            itm.InventoryNumber = invNums;
+           /* itm.InventoryNumber = invNums;
             itm.Location = locs;
             if (ItemCount == 1)
                 itm.Barcode = Conv.ToNumber(itm.InventoryNumber);
             else
-                itm.Barcode = 0;
+                itm.Barcode = 0;*/
 
             // ----- Fast tags -----
             short fastTag = 0;

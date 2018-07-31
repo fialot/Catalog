@@ -28,8 +28,8 @@ namespace Katalog
         List<CInfo> contList = new List<CInfo>();           // Contact list
         List<IInfo> itemList = new List<IInfo>();           // Item list
 
-        List<IInfo> selItemList = new List<IInfo>();        // Selected Item List
-        List<IInfo> origItemList = new List<IInfo>();       // Item list befor change
+        List<Copies> selItemList = new List<Copies>();      // Selected Item List
+        List<Copies> origItemList = new List<Copies>();     // Item list befor change
 
         // ----- Fast Tags -----
         Color SelectColor = Color.SkyBlue;                  // FastTags Select color
@@ -72,7 +72,7 @@ namespace Katalog
             ItemNum = 1;
 
             // ----- Try find Inventary code -----
-            var itmList = db.Items.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
+            /*var itmList = db.Items.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
             if (itmList.Count > 0)
             {
                 type = ItemTypes.item;
@@ -160,7 +160,7 @@ namespace Katalog
                         ItemNum = (short)i;
                         return item.ID;
                     }
-            }
+            }*/
 
 
             /*long num = -1;
@@ -217,9 +217,9 @@ namespace Katalog
                 }
                 if (!find)
                 {
-                    IInfo x = item;
+                    /*IInfo x = item;
                     x.Count = 1;
-                    list.Add(x);
+                    list.Add(x);*/
                 }
             }
 
@@ -241,48 +241,19 @@ namespace Katalog
             return list;
         }
 
-        private List<IInfo> RemoveUsed(List<IInfo> list)
-        {
-            List<IInfo> counts = CreateCountList();
-
-            for (int j = list.Count-1; j >= 0 ; j--)
-            {
-                for (int i = 0; i < counts.Count; i++)
-                {
-                    if(counts[i].ID == list[j].ID)
-                    {
-                        if (list[j].Available <= counts[i].Count)
-                        {
-                            list.Remove(list[j]);
-                            break;
-                        }
-                            
-                    }
-                }
-            }
-            return list;
-        }
-
         private void SetItemsContext()
         {
             databaseEntities db = new databaseEntities();
 
             txtItem.AutoCompleteCustomSource.Clear();
 
-            if (cbItemType.SelectedIndex == 0)
+            itemList = db.Copies.Where(x => !(x.Excluded ?? false) && ((x.Status ?? (short)LendStatus.Returned) == (short)LendStatus.Canceled || (x.Status ?? (short)LendStatus.Returned) == (short)LendStatus.Returned)).Select(x => new IInfo { ID = x.ID, InvNum = x.InventoryNumber.Trim(), ItemType = global.GetItemType(x.ItemType)}).ToList();
+
+
+            for (int i = 0; i < itemList.Count; i++)
             {
-                itemList = db.Items.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1}).ToList();
-                itemList = RemoveUsed(itemList);
-            }
-            else if (cbItemType.SelectedIndex == 1)
-            {
-                itemList = db.Books.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (short)(x.Count ?? 1), Count = (short)(x.Count ?? 1) }).ToList();
-                itemList = RemoveUsed(itemList);
-            }
-            else if (cbItemType.SelectedIndex == 2)
-            {
-                itemList = db.Boardgames.Where(x => !(x.Excluded ?? false) && (x.Available ?? (x.Count ?? 1)) > 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (short)(x.Count ?? 1), Count = (short)(x.Count ?? 1) }).ToList();
-                itemList = RemoveUsed(itemList);
+                itemList[i].Name = global.GetLendingItemName(itemList[i].ItemType.ToString(), itemList[i].ID);
+                txtItem.AutoCompleteCustomSource.Add(itemList[i].Name + " #" + i.ToString());
             }
 
             for (int i = 0; i < itemList.Count; i++)
@@ -292,16 +263,15 @@ namespace Katalog
         }
 
               
-        private void RefreshAvailableItems(List<IInfo> list)
+        private void RefreshAvailableItems(List<Copies> list)
         {
             databaseEntities db = new databaseEntities();
-            List<short?> borr = new List<short?>();
 
             foreach (var itm in list)
             {
-                borr = db.Lending.Where(p => (p.ItemID == itm.ID) && p.ItemType.Contains(itm.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ItemNum).ToList();
+                var borr = db.Lending.Where(p => (p.CopyID == itm.ID) && p.CopyType.Contains(itm.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
 
-                if (itm.ItemType == ItemTypes.item)
+                /*if (itm.ItemType == ItemTypes.item)
                 {
                     Items item = db.Items.Find(itm.ID);
                     if (item != null)
@@ -318,7 +288,7 @@ namespace Katalog
                     Boardgames board = db.Boardgames.Find(itm.ID);
                     if (board != null)
                         board.Available = (short)((board.Count ?? 1) - borr.Count);
-                }
+                }*/
             }
             db.SaveChanges();
         }
@@ -431,15 +401,14 @@ namespace Katalog
                     lend = db.Lending.Find(itm);
 
                     // ----- Fill Item list -----
-                    IInfo info = GetInfo(lend.ItemID ?? Guid.Empty, (ItemTypes)Enum.Parse(typeof(ItemTypes), lend.ItemType, true), lend.ItemNum ?? 1);
-
-                    selItemList.Add(info);      // Selected list
-                    origItemList.Add(info);     // Original list
+                    Copies copy = db.Copies.Find(lend.CopyID);
+                    selItemList.Add(copy);          // Selected list
+                    origItemList.Add(copy);         // Original list    
                 }
 
 
                 // ----- Fill Inventory number -----
-                FillInventoryNumber();
+                //FillInventoryNumber();
                 //cbItemNum.Text = (borr.ItemNum ?? 1).ToString();
 
                 // ----- Fill Person -----
@@ -458,7 +427,7 @@ namespace Katalog
                     cbStatus.SelectedIndex = stat;
                 txtNote.Text = lend.Note;
 
-                ItemGuid = lend.ItemID ?? Guid.Empty;
+                ItemGuid = lend.CopyID ?? Guid.Empty;
                 LastItemGuid = ItemGuid;
                 PersonGuid = lend.PersonID ?? Guid.Empty;
 
@@ -501,13 +470,11 @@ namespace Katalog
         /// </summary>
         /// <param name="lend"></param>
         /// <param name="item"></param>
-        private void FillLend(ref Lending lend, IInfo item)
+        private void FillLend(ref Lending lend, Copies item)
         {
             // ----- Item -----
-            lend.ItemType = item.ItemType.ToString();
-            lend.ItemID = item.ID;
-            lend.ItemNum = (short)item.ItemNum;
-            lend.ItemInvNum = item.InvNum;
+            lend.CopyType = item.ItemType.ToString();
+            lend.CopyID = item.ID;
             
             // ----- Other -----
             lend.PersonID = PersonGuid;
@@ -749,27 +716,27 @@ namespace Katalog
         /// </summary>
         private void UpdateOLV()
         {
+
             // ----- Column Name -----
             itName.AspectGetter = delegate (object x) {
-                if (((IInfo)x).Name != null)
-                    return ((IInfo)x).Name.Trim();
-                return "";
+                return global.GetLendingItemName(((Copies)x).ItemType, ((Copies)x).ItemID ?? Guid.Empty);
             };
             // ----- Column Inventory number -----
             itInvNum.AspectGetter = delegate (object x) {
-                if (((IInfo)x).InvNum != null)
-                    return ((IInfo)x).InvNum.Trim();
+                if (((Copies)x).InventoryNumber != null)
+                    return ((Copies)x).InventoryNumber.Trim();
                 return "";
             };
             // ----- Column Number -----
             itNumber.AspectGetter = delegate (object x) {
-                return ((IInfo)x).ItemNum;
+                return ((Copies)x).ItemNum;
             };
 
             // ----- Set model to OLV -----
             olvItem.SetObjects(selItemList);
         }
 
+        /*
         private void FillInventoryNumber()
         {
             databaseEntities db = new databaseEntities();
@@ -819,8 +786,9 @@ namespace Katalog
                 cbItemNum.Items.Clear();
                 lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": -";
             }
-        }
+        }*/
 
+        /*
         private List<int> RemoveSelectedItemNums(List<int> list)
         {
             foreach(var item in selItemList)
@@ -843,7 +811,7 @@ namespace Katalog
 
             List<int> res = new List<int>();
 
-            var borr = db.Lending.Where(x => (x.ItemID == ItemGuid) && ((x.Status ?? 1) == (short)LendStatus.Reserved || (x.Status ?? 1) == (short)LendStatus.Lended)).Select(x => x.ItemNum ?? 1).ToList();
+            var borr = db.Lending.Where(x => (x.CopyID == ItemGuid) && ((x.Status ?? 1) == (short)LendStatus.Reserved || (x.Status ?? 1) == (short)LendStatus.Lended)).Select(x => x. ?? 1).ToList();
             //var borr = db.Lending.Where(x => x.ItemNum.ToString().Any(x.ID != ID) && (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
             int Count = itm.Count;
 
@@ -858,12 +826,12 @@ namespace Katalog
             res = RemoveSelectedItemNums(res);
             return res;
         }
-        
+        */
         private void txtItem_TextChanged(object sender, EventArgs e)
         {
             ItemGuid = Guid.Empty;
             FindItem();
-            FillInventoryNumber();
+           // FillInventoryNumber();
             LastItemGuid = ItemGuid;
         }
 
@@ -877,7 +845,7 @@ namespace Katalog
         private void cbItemNum_SelectedIndexChanged(object sender, EventArgs e)
         {
             LastItemGuid = ItemGuid;
-            FillInventoryNumber();
+            //FillInventoryNumber();
         }
         
         /// <summary>
@@ -895,7 +863,7 @@ namespace Katalog
             List<IInfo> list = null;
 
             // ----- Items -----
-            if (type == ItemTypes.item)
+            /*if (type == ItemTypes.item)
             {
                 Items itm = db.Items.Find(ID);          // Find Item
                 if (itm != null)
@@ -920,7 +888,7 @@ namespace Katalog
                 {
                     list = db.Boardgames.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
                 }
-            }
+            }*/
 
 
             if (list != null)                           // If found
@@ -958,8 +926,8 @@ namespace Katalog
             }
 
             // ----- Add selected item to list -----
-            IInfo newItem = GetInfo(ItemGuid, (ItemTypes)cbItemType.SelectedIndex, Conv.ToIntDef(cbItemNum.Text, 0));
-            selItemList.Add(newItem);
+            //IInfo newItem = GetInfo(ItemGuid, (ItemTypes)cbItemType.SelectedIndex, Conv.ToIntDef(cbItemNum.Text, 0));
+            //selItemList.Add(newItem);
             UpdateOLV();
 
             // ----- Refresh Items TextBox -----
@@ -1002,7 +970,7 @@ namespace Katalog
             {
                 // ----- Remove -----
                 IInfo info = (IInfo)olvItem.SelectedItem.RowObject;
-                selItemList.Remove(info);
+                //selItemList.Remove(info);
 
                 // ----- Update OLV -----
                 UpdateOLV();
@@ -1126,7 +1094,7 @@ namespace Katalog
                         txtItem.Text = board.Name.Trim();
                     }
                     ItemGuid = ID;
-                    FillInventoryNumber();
+                    //FillInventoryNumber();
                     cbItemNum.Text = ItemNum.ToString();
 
                     AddItem();

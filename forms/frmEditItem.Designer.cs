@@ -58,18 +58,18 @@
             this.txtInvNum = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.lblInvNum = new System.Windows.Forms.Label();
+            this.txtSubCategory = new System.Windows.Forms.TextBox();
+            this.lblSubCategory = new System.Windows.Forms.Label();
+            this.lblUpdated = new System.Windows.Forms.Label();
+            this.btnSaveNew = new System.Windows.Forms.Button();
+            this.TimeOut = new System.Windows.Forms.Timer(this.components);
+            this.lblCondition = new System.Windows.Forms.Label();
+            this.txtCondition = new System.Windows.Forms.TextBox();
+            this.chbExcluded = new System.Windows.Forms.CheckBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.dtAcqDate = new System.Windows.Forms.DateTimePicker();
             this.lblAcqDate = new System.Windows.Forms.Label();
-            this.txtSubCategory = new System.Windows.Forms.TextBox();
-            this.lblSubCategory = new System.Windows.Forms.Label();
-            this.chbExcluded = new System.Windows.Forms.CheckBox();
-            this.lblCondition = new System.Windows.Forms.Label();
-            this.txtCondition = new System.Windows.Forms.TextBox();
-            this.lblUpdated = new System.Windows.Forms.Label();
-            this.btnSaveNew = new System.Windows.Forms.Button();
-            this.TimeOut = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbSpecimen.SuspendLayout();
             this.SuspendLayout();
@@ -191,6 +191,13 @@
             // 
             // gbSpecimen
             // 
+            this.gbSpecimen.Controls.Add(this.lblCondition);
+            this.gbSpecimen.Controls.Add(this.txtCondition);
+            this.gbSpecimen.Controls.Add(this.chbExcluded);
+            this.gbSpecimen.Controls.Add(this.lblPrice);
+            this.gbSpecimen.Controls.Add(this.txtPrice);
+            this.gbSpecimen.Controls.Add(this.dtAcqDate);
+            this.gbSpecimen.Controls.Add(this.lblAcqDate);
             this.gbSpecimen.Controls.Add(this.lblCount);
             this.gbSpecimen.Controls.Add(this.btnPlace);
             this.gbSpecimen.Controls.Add(this.btnDelSpecimen);
@@ -222,14 +229,14 @@
             resources.ApplyResources(this.btnDelSpecimen, "btnDelSpecimen");
             this.btnDelSpecimen.Name = "btnDelSpecimen";
             this.btnDelSpecimen.UseVisualStyleBackColor = true;
-            this.btnDelSpecimen.Click += new System.EventHandler(this.btnDelSpecimen_Click);
+            this.btnDelSpecimen.Click += new System.EventHandler(this.btnDelCopy_Click);
             // 
             // btnAddSpecimen
             // 
             resources.ApplyResources(this.btnAddSpecimen, "btnAddSpecimen");
             this.btnAddSpecimen.Name = "btnAddSpecimen";
             this.btnAddSpecimen.UseVisualStyleBackColor = true;
-            this.btnAddSpecimen.Click += new System.EventHandler(this.btnAddSpecimen_Click);
+            this.btnAddSpecimen.Click += new System.EventHandler(this.btnAddCopy_Click);
             // 
             // cbSpecimen
             // 
@@ -237,7 +244,7 @@
             this.cbSpecimen.FormattingEnabled = true;
             resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
             this.cbSpecimen.Name = "cbSpecimen";
-            this.cbSpecimen.SelectedIndexChanged += new System.EventHandler(this.cbSpecimen_SelectedIndexChanged);
+            this.cbSpecimen.SelectedIndexChanged += new System.EventHandler(this.cbCopy_SelectedIndexChanged);
             // 
             // lblSpecimen
             // 
@@ -266,6 +273,53 @@
             resources.ApplyResources(this.lblInvNum, "lblInvNum");
             this.lblInvNum.Name = "lblInvNum";
             // 
+            // txtSubCategory
+            // 
+            this.txtSubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtSubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtSubCategory, "txtSubCategory");
+            this.txtSubCategory.Name = "txtSubCategory";
+            // 
+            // lblSubCategory
+            // 
+            resources.ApplyResources(this.lblSubCategory, "lblSubCategory");
+            this.lblSubCategory.Name = "lblSubCategory";
+            // 
+            // lblUpdated
+            // 
+            resources.ApplyResources(this.lblUpdated, "lblUpdated");
+            this.lblUpdated.Name = "lblUpdated";
+            // 
+            // btnSaveNew
+            // 
+            resources.ApplyResources(this.btnSaveNew, "btnSaveNew");
+            this.btnSaveNew.Name = "btnSaveNew";
+            this.btnSaveNew.UseVisualStyleBackColor = true;
+            this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
+            // 
+            // TimeOut
+            // 
+            this.TimeOut.Interval = 200;
+            this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
+            // 
+            // lblCondition
+            // 
+            resources.ApplyResources(this.lblCondition, "lblCondition");
+            this.lblCondition.Name = "lblCondition";
+            // 
+            // txtCondition
+            // 
+            this.txtCondition.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCondition.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtCondition, "txtCondition");
+            this.txtCondition.Name = "txtCondition";
+            // 
+            // chbExcluded
+            // 
+            resources.ApplyResources(this.chbExcluded, "chbExcluded");
+            this.chbExcluded.Name = "chbExcluded";
+            this.chbExcluded.UseVisualStyleBackColor = true;
+            // 
             // lblPrice
             // 
             resources.ApplyResources(this.lblPrice, "lblPrice");
@@ -286,77 +340,23 @@
             resources.ApplyResources(this.lblAcqDate, "lblAcqDate");
             this.lblAcqDate.Name = "lblAcqDate";
             // 
-            // txtSubCategory
-            // 
-            this.txtSubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtSubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtSubCategory, "txtSubCategory");
-            this.txtSubCategory.Name = "txtSubCategory";
-            // 
-            // lblSubCategory
-            // 
-            resources.ApplyResources(this.lblSubCategory, "lblSubCategory");
-            this.lblSubCategory.Name = "lblSubCategory";
-            // 
-            // chbExcluded
-            // 
-            resources.ApplyResources(this.chbExcluded, "chbExcluded");
-            this.chbExcluded.Name = "chbExcluded";
-            this.chbExcluded.UseVisualStyleBackColor = true;
-            // 
-            // lblCondition
-            // 
-            resources.ApplyResources(this.lblCondition, "lblCondition");
-            this.lblCondition.Name = "lblCondition";
-            // 
-            // txtCondition
-            // 
-            this.txtCondition.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtCondition.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtCondition, "txtCondition");
-            this.txtCondition.Name = "txtCondition";
-            // 
-            // lblUpdated
-            // 
-            resources.ApplyResources(this.lblUpdated, "lblUpdated");
-            this.lblUpdated.Name = "lblUpdated";
-            // 
-            // btnSaveNew
-            // 
-            resources.ApplyResources(this.btnSaveNew, "btnSaveNew");
-            this.btnSaveNew.Name = "btnSaveNew";
-            this.btnSaveNew.UseVisualStyleBackColor = true;
-            this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
-            // 
-            // TimeOut
-            // 
-            this.TimeOut.Interval = 200;
-            this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
-            // 
             // frmEditItem
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.lblUpdated);
-            this.Controls.Add(this.lblCondition);
-            this.Controls.Add(this.txtCondition);
-            this.Controls.Add(this.chbExcluded);
             this.Controls.Add(this.txtSubCategory);
             this.Controls.Add(this.lblSubCategory);
             this.Controls.Add(this.gbSpecimen);
             this.Controls.Add(this.txtCategory);
             this.Controls.Add(this.lblCategory);
-            this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblNote);
             this.Controls.Add(this.txtNote);
-            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.lblKeywords);
             this.Controls.Add(this.btnTag6);
-            this.Controls.Add(this.dtAcqDate);
             this.Controls.Add(this.btnTag5);
-            this.Controls.Add(this.lblAcqDate);
             this.Controls.Add(this.btnTag4);
             this.Controls.Add(this.btnTag3);
             this.Controls.Add(this.btnTag2);
@@ -405,21 +405,21 @@
         private System.Windows.Forms.Button btnAddSpecimen;
         private System.Windows.Forms.ComboBox cbSpecimen;
         private System.Windows.Forms.Label lblSpecimen;
-        private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblLocation;
-        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtInvNum;
         private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.Label lblInvNum;
-        private System.Windows.Forms.DateTimePicker dtAcqDate;
-        private System.Windows.Forms.Label lblAcqDate;
         private System.Windows.Forms.TextBox txtSubCategory;
         private System.Windows.Forms.Label lblSubCategory;
-        private System.Windows.Forms.CheckBox chbExcluded;
-        private System.Windows.Forms.Label lblCondition;
-        private System.Windows.Forms.TextBox txtCondition;
         private System.Windows.Forms.Label lblUpdated;
         private System.Windows.Forms.Button btnSaveNew;
         private System.Windows.Forms.Timer TimeOut;
+        private System.Windows.Forms.Label lblCondition;
+        private System.Windows.Forms.TextBox txtCondition;
+        private System.Windows.Forms.CheckBox chbExcluded;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.DateTimePicker dtAcqDate;
+        private System.Windows.Forms.Label lblAcqDate;
     }
 }

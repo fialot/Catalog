@@ -33,24 +33,18 @@ namespace Katalog
         public string Family { get; set; }
         public Nullable<short> ExtensionNumber { get; set; }
         public string Rules { get; set; }
-        public Nullable<long> Barcode { get; set; }
         public string Keywords { get; set; }
-        public Nullable<short> Count { get; set; }
-        public Nullable<System.DateTime> AcquisitionDate { get; set; }
-        public Nullable<double> Price { get; set; }
-        public string InventoryNumber { get; set; }
-        public string Location { get; set; }
-        public string Condition { get; set; }
         public byte[] Cover { get; set; }
         public byte[] Img1 { get; set; }
         public byte[] Img2 { get; set; }
         public byte[] Img3 { get; set; }
         public string MaterialPath { get; set; }
-        public Nullable<bool> Excluded { get; set; }
-        public Nullable<short> Available { get; set; }
-        public Nullable<System.DateTime> Updated { get; set; }
         public string URL { get; set; }
         public Nullable<short> Rating { get; set; }
         public Nullable<short> MyRating { get; set; }
+        public Nullable<short> Count { get; set; }
+        public Nullable<short> Available { get; set; }
+        public Nullable<System.DateTime> Updated { get; set; }
+        public Nullable<bool> Excluded { get; set; }
     }
 }

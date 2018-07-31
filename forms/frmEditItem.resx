@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>20</value>
   </data>
   <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>21</value>
   </data>
   <data name="imgImg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -205,7 +205,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;imgImg.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>19</value>
   </data>
   <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -235,7 +235,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>17</value>
   </data>
   <data name="txtName.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 81</value>
@@ -256,7 +256,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>18</value>
   </data>
   <data name="btnTag6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -286,7 +286,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag6.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>11</value>
   </data>
   <data name="btnTag5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -316,7 +316,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag5.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>12</value>
   </data>
   <data name="btnTag4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -346,7 +346,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag4.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>13</value>
   </data>
   <data name="btnTag3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -376,7 +376,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag3.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>14</value>
   </data>
   <data name="btnTag2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -406,7 +406,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag2.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>15</value>
   </data>
   <data name="btnTag1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -436,7 +436,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag1.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>16</value>
   </data>
   <data name="txtKeywords.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 157</value>
@@ -457,7 +457,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtKeywords.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>9</value>
   </data>
   <data name="lblKeywords.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -487,7 +487,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblKeywords.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>10</value>
   </data>
   <data name="lblNote.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -517,7 +517,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblNote.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="txtNote.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 196</value>
@@ -541,7 +541,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtNote.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>8</value>
   </data>
   <data name="txtCategory.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 118</value>
@@ -562,7 +562,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtCategory.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>5</value>
   </data>
   <data name="lblCategory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -592,7 +592,190 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCategory.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>6</value>
+  </data>
+  <data name="lblCondition.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCondition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCondition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 93</value>
+  </data>
+  <data name="lblCondition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="lblCondition.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="lblCondition.Text" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.Name" xml:space="preserve">
+    <value>lblCondition</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.Parent" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtCondition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>264, 109</value>
+  </data>
+  <data name="txtCondition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 20</value>
+  </data>
+  <data name="txtCondition.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;txtCondition.Name" xml:space="preserve">
+    <value>txtCondition</value>
+  </data>
+  <data name="&gt;&gt;txtCondition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCondition.Parent" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;txtCondition.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbExcluded.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbExcluded.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbExcluded.Location" type="System.Drawing.Point, System.Drawing">
+    <value>431, 109</value>
+  </data>
+  <data name="chbExcluded.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="chbExcluded.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="chbExcluded.Text" xml:space="preserve">
+    <value>Excluded</value>
+  </data>
+  <data name="&gt;&gt;chbExcluded.Name" xml:space="preserve">
+    <value>chbExcluded</value>
+  </data>
+  <data name="&gt;&gt;chbExcluded.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbExcluded.Parent" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;chbExcluded.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblPrice.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPrice.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPrice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 93</value>
+  </data>
+  <data name="lblPrice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="lblPrice.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="lblPrice.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.Name" xml:space="preserve">
+    <value>lblPrice</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.Parent" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtPrice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 109</value>
+  </data>
+  <data name="txtPrice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="txtPrice.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Name" xml:space="preserve">
+    <value>txtPrice</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Parent" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="dtAcqDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 109</value>
+  </data>
+  <data name="dtAcqDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 20</value>
+  </data>
+  <data name="dtAcqDate.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;dtAcqDate.Name" xml:space="preserve">
+    <value>dtAcqDate</value>
+  </data>
+  <data name="&gt;&gt;dtAcqDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtAcqDate.Parent" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;dtAcqDate.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lblAcqDate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblAcqDate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblAcqDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 93</value>
+  </data>
+  <data name="lblAcqDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
+  </data>
+  <data name="lblAcqDate.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="lblAcqDate.Text" xml:space="preserve">
+    <value>Acquisition date</value>
+  </data>
+  <data name="&gt;&gt;lblAcqDate.Name" xml:space="preserve">
+    <value>lblAcqDate</value>
+  </data>
+  <data name="&gt;&gt;lblAcqDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblAcqDate.Parent" xml:space="preserve">
+    <value>gbSpecimen</value>
+  </data>
+  <data name="&gt;&gt;lblAcqDate.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="lblCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -622,7 +805,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;lblCount.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>7</value>
   </data>
   <data name="btnPlace.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -649,7 +832,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;btnPlace.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>8</value>
   </data>
   <data name="btnDelSpecimen.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -679,7 +862,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;btnDelSpecimen.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>9</value>
   </data>
   <data name="btnAddSpecimen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -706,7 +889,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;btnAddSpecimen.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>10</value>
   </data>
   <data name="cbSpecimen.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 30</value>
@@ -727,7 +910,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;cbSpecimen.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>11</value>
   </data>
   <data name="lblSpecimen.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -760,7 +943,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;lblSpecimen.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>12</value>
   </data>
   <data name="lblLocation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -790,7 +973,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;lblLocation.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>13</value>
   </data>
   <data name="txtInvNum.Location" type="System.Drawing.Point, System.Drawing">
     <value>191, 30</value>
@@ -811,7 +994,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;txtInvNum.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>14</value>
   </data>
   <data name="txtLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 70</value>
@@ -832,7 +1015,7 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;txtLocation.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>15</value>
   </data>
   <data name="lblInvNum.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -862,13 +1045,13 @@
     <value>gbSpecimen</value>
   </data>
   <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>16</value>
   </data>
   <data name="gbSpecimen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 259</value>
+    <value>12, 220</value>
   </data>
   <data name="gbSpecimen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>522, 97</value>
+    <value>522, 142</value>
   </data>
   <data name="gbSpecimen.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -886,109 +1069,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gbSpecimen.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="lblPrice.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblPrice.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblPrice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 217</value>
-  </data>
-  <data name="lblPrice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
-  </data>
-  <data name="lblPrice.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="lblPrice.Text" xml:space="preserve">
-    <value>Price</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.Name" xml:space="preserve">
-    <value>lblPrice</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="txtPrice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 233</value>
-  </data>
-  <data name="txtPrice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 20</value>
-  </data>
-  <data name="txtPrice.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.Name" xml:space="preserve">
-    <value>txtPrice</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="dtAcqDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 233</value>
-  </data>
-  <data name="dtAcqDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 20</value>
-  </data>
-  <data name="dtAcqDate.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.Name" xml:space="preserve">
-    <value>dtAcqDate</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="lblAcqDate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblAcqDate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblAcqDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 217</value>
-  </data>
-  <data name="lblAcqDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 13</value>
-  </data>
-  <data name="lblAcqDate.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="lblAcqDate.Text" xml:space="preserve">
-    <value>Acquisition date</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.Name" xml:space="preserve">
-    <value>lblAcqDate</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>4</value>
   </data>
   <data name="txtSubCategory.Location" type="System.Drawing.Point, System.Drawing">
     <value>335, 118</value>
@@ -1009,7 +1090,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtSubCategory.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="lblSubCategory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1039,84 +1120,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSubCategory.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="chbExcluded.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chbExcluded.Location" type="System.Drawing.Point, System.Drawing">
-    <value>462, 233</value>
-  </data>
-  <data name="chbExcluded.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 17</value>
-  </data>
-  <data name="chbExcluded.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="chbExcluded.Text" xml:space="preserve">
-    <value>Excluded</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.Name" xml:space="preserve">
-    <value>chbExcluded</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lblCondition.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCondition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCondition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 217</value>
-  </data>
-  <data name="lblCondition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
-  </data>
-  <data name="lblCondition.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="lblCondition.Text" xml:space="preserve">
-    <value>Condition</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.Name" xml:space="preserve">
-    <value>lblCondition</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtCondition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 233</value>
-  </data>
-  <data name="txtCondition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 20</value>
-  </data>
-  <data name="txtCondition.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.Name" xml:space="preserve">
-    <value>txtCondition</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="lblUpdated.AutoSize" type="System.Boolean, mscorlib">

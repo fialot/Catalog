@@ -45,11 +45,6 @@ namespace Katalog
         public Nullable<bool> Readed { get; set; }
         public Nullable<short> Count { get; set; }
         public Nullable<short> Available { get; set; }
-        public string InventoryNumber { get; set; }
-        public Nullable<long> Barcode { get; set; }
-        public string Location { get; set; }
-        public Nullable<System.DateTime> AcquisitionDate { get; set; }
-        public Nullable<double> Price { get; set; }
         public string Type { get; set; }
         public string Bookbinding { get; set; }
         public byte[] Cover { get; set; }

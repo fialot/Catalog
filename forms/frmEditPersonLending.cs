@@ -154,27 +154,26 @@ namespace Katalog
         {
 
             databaseEntities db = new databaseEntities();
-            List<short?> borr = new List<short?>();
 
             foreach (var itm in lendList)
             {
-                borr = db.Lending.Where(p => (p.ItemID == itm.ItemID) && p.ItemType.Contains(itm.ItemType.Trim()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ItemNum).ToList();
+                var borr = db.Lending.Where(p => (p.CopyID == itm.CopyID) && p.CopyType.Contains(itm.CopyType.Trim()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
 
-                if (itm.ItemType.Trim() == "item")
+                if (itm.CopyType.Trim() == "item")
                 {
-                    Items item = db.Items.Find(itm.ItemID);
+                    Items item = db.Items.Find(itm.CopyID);
                     if (item != null)
                         item.Available = (short)((item.Count ?? 1) - borr.Count);
                 }
-                else if (itm.ItemType.Trim() == "book")
+                else if (itm.CopyType.Trim() == "book")
                 {
-                    Books book = db.Books.Find(itm.ItemID);
+                    Books book = db.Books.Find(itm.CopyID);
                     if (book != null)
                         book.Available = (short)((book.Count ?? 1) - borr.Count);
                 }
-                else if (itm.ItemType.Trim() == "boardgame")
+                else if (itm.CopyType.Trim() == "boardgame")
                 {
-                    Boardgames board = db.Boardgames.Find(itm.ItemID);
+                    Boardgames board = db.Boardgames.Find(itm.CopyID);
                     if (board != null)
                         board.Available = (short)((board.Count ?? 1) - borr.Count);
                 }
@@ -220,11 +219,11 @@ namespace Katalog
         {
             // ----- Column Name -----
             itName.AspectGetter = delegate (object x) {
-                return global.GetLendingItemName(((Lending)x).ItemType.Trim(), ((Lending)x).ItemID ?? Guid.Empty);
+                return global.GetLendingItemName(((Lending)x).CopyType.Trim(), ((Lending)x).CopyID ?? Guid.Empty);
             };
             // ----- Column Type -----
             itType.AspectGetter = delegate (object x) {
-                switch (((Lending)x).ItemType.Trim())
+                switch (((Lending)x).CopyType.Trim())
                 {
                     case "item":
                         return Lng.Get("Item");
@@ -237,9 +236,7 @@ namespace Katalog
             };
             // ----- Column Inventory number -----
             itInvNumber.AspectGetter = delegate (object x) {
-                if (((Lending)x).ItemInvNum != null)
-                    return ((Lending)x).ItemInvNum.Trim();
-                return "";
+                return db.Copies.Find(((Lending)x).CopyID).InventoryNumber;
             };
             // ----- Column From -----
             itFrom.AspectGetter = delegate (object x) {

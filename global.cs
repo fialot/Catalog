@@ -104,6 +104,133 @@ namespace Katalog
             return "";
         }
 
+        public static List<string> DeleteDuplicates(List<string> list)
+        {
+            List<string> res = new List<string>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                bool find = false;
+                for (int j = 0; j < res.Count; j++)
+                {
+                    if (list[i] == res[j])
+                    {
+                        find = true;
+                        break;
+                    }
+                }
+                if (!find && list[i] != "")
+                    res.Add(list[i]);
+            }
+            return res;
+        }
+
+        public static string GetInvNumList(Guid id)
+        {
+            databaseEntities db = new databaseEntities();
+            var list = db.Copies.Where(x => x.ItemID == id).Select(x => x.InventoryNumber).ToList();
+            list = DeleteDuplicates(list);
+
+            string NumList = "";
+            foreach(var item in list)
+            {
+                if (NumList != "") NumList += ", ";
+                NumList += item;
+            }
+            return NumList;
+        }
+        
+        public static string GetLocationList(Guid id)
+        {
+            databaseEntities db = new databaseEntities();
+            var list = db.Copies.Where(x => x.ItemID == id).Select(x => x.Location).ToList();
+            list = DeleteDuplicates(list);
+            string NumList = "";
+            foreach (var item in list)
+            {
+                if (NumList != "") NumList += ", ";
+                NumList += item;
+            }
+            return NumList;
+        }
+
+
+
+        /// <summary>
+        /// Check if item available
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static bool IsAvailable(short? status)
+        {
+            short stat = status ?? (short)LendStatus.Returned;
+            if (stat == (short)LendStatus.Canceled || stat == (short)LendStatus.Returned)
+                return true;
+            else
+                return false;
+        }
+
+        #region Copies
+
+        /// <summary>
+        /// Create new Copy item
+        /// </summary>
+        public static Copies CreateCopy(Guid ItemID, ItemTypes ItemType)
+        {
+            Copies itm = new Copies();
+
+            // ----- Init values -----
+            itm.ID = Guid.NewGuid();                // ID
+            itm.ItemID = ItemID;                    // Item ID
+            itm.ItemType = ItemType.ToString();     // Item Type - Item
+            itm.ItemNum = 0;                        // ItemNum
+            itm.Note = "";                          // Note
+            itm.Status = (short)LendStatus.Returned;// Status
+
+            //itm.Price = 0;                        // Price
+            itm.AcquisitionDate = DateTime.Now;     // Acqusition date
+            itm.Excluded = false;                   // Excluded
+            //itm.Condition = "";                   // Condition
+            //itm.InventoryNumber = "";             // Inventory Number
+            //itm.Barcode = "";                     // Barcode
+            itm.Location = "";                      // Location
+
+            // ----- Return Copy -----
+            return itm;
+        }
+
+        /// <summary>
+        /// Create new Copy item and copy data from another structure
+        /// </summary>
+        /// <param name="input">Input</param>
+        public static Copies CopyCopies(Copies input)
+        {
+            // ----- Try parse ItemType -----
+            ItemTypes type = ItemTypes.item;
+            try
+            {
+                Enum.TryParse(input.ItemType, out type);
+            } catch { }
+            
+            // ----- Create new Copy -----
+            Copies itm = CreateCopy(input.ItemID ?? Guid.Empty, type);
+
+            // ----- Fill Copy -----
+            itm.Price = input.Price;                        // Price
+            itm.AcquisitionDate = input.AcquisitionDate;    // Acqusition date
+            itm.Excluded = input.Excluded;                  // Excluded
+            itm.Condition = input.Condition;                // Condition
+            itm.InventoryNumber = input.InventoryNumber;    // Inventory Number
+            itm.Barcode = input.Barcode;                    // Barcode
+            itm.Location = input.Location;                  // Location
+            itm.Note = input.Note;
+
+            // ----- Return Copy -----
+            return itm;
+        }
+
+        #endregion
+
+
         #region Translate Type Names
 
         /// <summary>
@@ -116,7 +243,30 @@ namespace Katalog
             string strType = type.ToString();
             return GetItemTypeName(strType);
         }
-        
+
+
+        /// <summary>
+        /// Get Item Type Name from ItemType
+        /// </summary>
+        /// <param name="type">Item Type</param>
+        /// <returns>Item Type Name</returns>
+        public static ItemTypes GetItemType(string type)
+        {
+            type = type.Trim();
+            switch (type)
+            {
+                case "item":                    // Item
+                    return ItemTypes.item;
+                case "book":                    // Book
+                    return ItemTypes.book;
+                case "boardgame":               // Board game
+                    return ItemTypes.boardgame;
+                default:                        // Unknown
+                    return ItemTypes.item;
+            }
+        }
+
+
         /// <summary>
         /// Get Item Type Name from ItemType
         /// </summary>
@@ -193,8 +343,8 @@ namespace Katalog
             for (int i = 0; i < lendList.Count; i++)
             {
                 tab[i + 2, 0] = (i + 1).ToString();
-                tab[i + 2, 1] = global.GetItemTypeName(lendList[i].ItemType);
-                tab[i + 2, 2] = global.GetLendingItemName(lendList[i].ItemType.Trim(), lendList[i].ItemID ?? Guid.Empty);
+                tab[i + 2, 1] = global.GetItemTypeName(lendList[i].CopyType);
+                tab[i + 2, 2] = global.GetLendingItemName(lendList[i].CopyType.Trim(), lendList[i].CopyID ?? Guid.Empty);
                 tab[i + 2, 3] = (lendList[i].From ?? DateTime.Now).ToShortDateString();
                 tab[i + 2, 4] = (lendList[i].To ?? DateTime.Now).ToShortDateString();
                 tab[i + 2, 5] = global.GetStatusName(lendList[i].Status ?? 1);
@@ -274,12 +424,12 @@ namespace Katalog
             string lines = "FialotCatalog:Lending v1" + Environment.NewLine;
 
             // ----- Names -----
-            lines += "itemType;itemID;itemNum;itemInvNum;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
+            lines += "itemType;itemID;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
 
             // ----- Data -----
             foreach (var item in bor)
             {
-                lines += item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.ItemNum.ToString() + ";" + item.ItemInvNum.Trim() + ";";
+                lines += item.CopyType.Trim() + ";" + item.CopyID.ToString() + ";";
                 lines += item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";" + item.Status.ToString() + ";";
                 lines += item.Note.Trim() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
             }
@@ -321,16 +471,46 @@ namespace Katalog
         /// <param name="itm">Item list</param>
         public static void ExportItemsCSV(string path, List<Items> itm)
         {
-            string lines;
+            // ----- Head -----
+            string lines = "FialotCatalog:Items v1" + Environment.NewLine;
 
-            lines = "name;category;subcategory;keywords;note;acqdate;price;excluded;count;invnum;location;fasttags;GUID" + Environment.NewLine;
+            // ----- Names -----
+            lines = "name;category;subcategory;subcategory2;keywords;note;excluded;count;fasttags;image;updated;GUID" + Environment.NewLine;
 
+            // ----- Data -----
+            int imgNum = 0;
             foreach (var item in itm)
             {
-                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
-                lines += item.AcquisitionDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" + item.InventoryNumber.Trim().Replace(";", ",") + ";" + item.Location.Trim().Replace(";", ",") + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
+                // ----- Images -----
+                string imgFileName = "";
+                if (item.Image != null && item.Image.Length > 0)
+                {
+                    try
+                    {
+                        imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
+                        string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_images";
+                        Directory.CreateDirectory(imgPath);
+                        imgPath += Path.DirectorySeparatorChar + imgFileName;
+                        try
+                        {
+                            File.WriteAllBytes(imgPath, item.Image);
+                            imgNum++;
+                        }
+                        catch
+                        {
+                            imgFileName = "";
+                        }
+                    }
+                    catch { }
+                }
+
+                // ----- Other data -----
+                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
+                lines += ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" ;
+                lines += item.FastTags.ToString() + ";" + imgFileName + ";" + item.Updated.ToString() + ";" + item.ID + Environment.NewLine;
             }
 
+            // ----- Save to file ------
             Files.SaveFile(path, lines);
         }
 
@@ -438,25 +618,23 @@ namespace Katalog
             CSVfile file = Files.ParseCSV(text);
 
             // ----- Check table size -----
-            if (file.head.Length != 12)
+            if (file.head.Length != 10)
                 return null;
 
             // ----- Parse data -----
             foreach (var item in file.data)
             {
                 Lending itm = new Lending();
-                itm.ItemType = item[0];
-                itm.ItemID = Conv.ToGuid(item[1]);
-                itm.ItemNum = Conv.ToShortNull(item[2]);
-                itm.ItemInvNum = item[3];
-                itm.PersonID = Conv.ToGuid(item[4]);
-                itm.From = Conv.ToDateTimeNull(item[5]);
-                itm.To = Conv.ToDateTimeNull(item[6]);
-                itm.Status = Conv.ToShortNull(item[7]);
-                itm.Note = item[8];
-                itm.FastTags = Conv.ToShortNull(item[9]);
-                itm.Updated = Conv.ToDateTimeNull(item[10]);
-                itm.ID = Conv.ToGuid(item[11]);
+                itm.CopyType = item[0];
+                itm.CopyID = Conv.ToGuid(item[1]);
+                itm.PersonID = Conv.ToGuid(item[2]);
+                itm.From = Conv.ToDateTimeNull(item[3]);
+                itm.To = Conv.ToDateTimeNull(item[4]);
+                itm.Status = Conv.ToShortNull(item[5]);
+                itm.Note = item[6];
+                itm.FastTags = Conv.ToShortNull(item[7]);
+                itm.Updated = Conv.ToDateTimeNull(item[8]);
+                itm.ID = Conv.ToGuid(item[9]);
                 con.Add(itm);
             }
 
@@ -525,14 +703,10 @@ namespace Katalog
                 itm.Subcategory = item[2];
                 itm.Keywords = item[3];
                 itm.Note = item[4].Replace("\n", Environment.NewLine);
-                itm.AcquisitionDate = Conv.ToDateTimeNull(item[5]);
-                itm.Price = Conv.ToDoubleNull(item[6]);
-                itm.Excluded = Conv.ToBoolNull(item[7]);
-                itm.Count = Conv.ToShortNull(item[8]);
-                itm.InventoryNumber = item[9].Replace(",", ";");
-                itm.Location = item[10].Replace(",", ";");
-                itm.FastTags = Conv.ToShortDef(item[11], 0);
-                itm.ID = Conv.ToGuid(item[12]);
+                itm.Excluded = Conv.ToBoolNull(item[5]);
+                itm.Count = Conv.ToShortNull(item[6]);
+                itm.FastTags = Conv.ToShortDef(item[7], 0);
+                itm.ID = Conv.ToGuid(item[8]);
                 con.Add(itm);
             }
 

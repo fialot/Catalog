@@ -15,10 +15,8 @@ namespace Katalog
     public partial class Lending
     {
         public System.Guid ID { get; set; }
-        public string ItemType { get; set; }
-        public Nullable<System.Guid> ItemID { get; set; }
-        public Nullable<short> ItemNum { get; set; }
-        public string ItemInvNum { get; set; }
+        public string CopyType { get; set; }
+        public Nullable<System.Guid> CopyID { get; set; }
         public Nullable<System.Guid> PersonID { get; set; }
         public Nullable<System.DateTime> From { get; set; }
         public Nullable<System.DateTime> To { get; set; }
