@@ -187,7 +187,8 @@ namespace Katalog
                 numMaxPlayers.Value = 4;          // Max Players
 
                 // ----- New Inv Number -----
-                TempMaxInvNum++;
+                if(TempMaxInvNum < Properties.Settings.Default.BoardStart) TempMaxInvNum = Properties.Settings.Default.BoardStart;
+                else TempMaxInvNum++;
                 txtInvNum.Text = Properties.Settings.Default.BoardPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.BoardMinCharLen.ToString()) + Properties.Settings.Default.BoardSuffix;
             }
         }
@@ -411,7 +412,7 @@ namespace Katalog
             if (Properties.Settings.Default.IncSpecimenInv)
             {
                 TempMaxInvNum++;
-                InvNum = Properties.Settings.Default.ItemPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.ItemMinCharLen.ToString()) + Properties.Settings.Default.ItemSuffix;
+                InvNum = Properties.Settings.Default.BoardPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.BoardMinCharLen.ToString()) + Properties.Settings.Default.BoardSuffix;
             }
 
             //  ----- Save Form fill to selected Copy -----

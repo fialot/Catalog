@@ -133,7 +133,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>42</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -163,7 +163,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>41</value>
   </data>
   <data name="btnOk.Text" xml:space="preserve">
     <value>OK</value>
@@ -1162,7 +1162,7 @@
     <value>115, 23</value>
   </data>
   <data name="btnSaveNew.TabIndex" type="System.Int32, mscorlib">
-    <value>74</value>
+    <value>40</value>
   </data>
   <data name="btnSaveNew.Text" xml:space="preserve">
     <value>Save &amp;&amp; New</value>

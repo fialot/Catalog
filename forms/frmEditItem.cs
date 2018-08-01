@@ -168,7 +168,8 @@ namespace Katalog
                 dtAcqDate.Value = DateTime.Now;
 
                 // ----- New Inv Number -----
-                TempMaxInvNum++;
+                if (TempMaxInvNum < Properties.Settings.Default.ItemStart) TempMaxInvNum = Properties.Settings.Default.ItemStart;
+                else TempMaxInvNum++;
                 txtInvNum.Text = Properties.Settings.Default.ItemPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.ItemMinCharLen.ToString()) + Properties.Settings.Default.ItemSuffix;
 
             }

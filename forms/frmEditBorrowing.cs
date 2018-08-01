@@ -137,7 +137,7 @@ namespace Katalog
                     IInfo info = new IInfo();
                     info.Name = borr.Item.Trim();
                     if (borr.ItemInvNum != null)
-                        info.InvNum = borr.ItemInvNum.Trim();
+                        info.InventoryNumber = borr.ItemInvNum.Trim();
                     if (borr.Note != null)
                         info.Note = borr.Note.Trim();
 
@@ -188,7 +188,7 @@ namespace Katalog
         {
             // ----- Item -----
             borr.Item = item.Name;
-            borr.ItemInvNum = item.InvNum;
+            borr.ItemInvNum = item.InventoryNumber;
             borr.Note = item.Note;
 
             // ----- Other -----
@@ -436,8 +436,8 @@ namespace Katalog
             };
             // ----- Column Inventory number -----
             itInvNumber.AspectGetter = delegate (object x) {
-                if (((IInfo)x).InvNum != null)
-                    return ((IInfo)x).InvNum.Trim();
+                if (((IInfo)x).InventoryNumber != null)
+                    return ((IInfo)x).InventoryNumber.Trim();
                 return "";
             };
             // ----- Column Note -----
@@ -468,7 +468,7 @@ namespace Katalog
             string[] split = txtItem.Text.Split(new string[] { ";" }, StringSplitOptions.None);
             newItem.Name = split[0];
             if (split.Length > 1)
-                newItem.InvNum = split[1];
+                newItem.InventoryNumber = split[1];
             if (split.Length > 2)
                 newItem.Note = split[2];
             selItemList.Add(newItem);

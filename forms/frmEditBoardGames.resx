@@ -1281,78 +1281,6 @@
   <data name="&gt;&gt;lblMaxPlayers.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;lblGameTime.Name" xml:space="preserve">
-    <value>lblGameTime</value>
-  </data>
-  <data name="&gt;&gt;lblGameTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblGameTime.Parent" xml:space="preserve">
-    <value>gbPlayers</value>
-  </data>
-  <data name="&gt;&gt;lblGameTime.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;numGameTime.Name" xml:space="preserve">
-    <value>numGameTime</value>
-  </data>
-  <data name="&gt;&gt;numGameTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;numGameTime.Parent" xml:space="preserve">
-    <value>gbPlayers</value>
-  </data>
-  <data name="&gt;&gt;numGameTime.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblMinAge.Name" xml:space="preserve">
-    <value>lblMinAge</value>
-  </data>
-  <data name="&gt;&gt;lblMinAge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMinAge.Parent" xml:space="preserve">
-    <value>gbPlayers</value>
-  </data>
-  <data name="&gt;&gt;lblMinAge.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;numMinAge.Name" xml:space="preserve">
-    <value>numMinAge</value>
-  </data>
-  <data name="&gt;&gt;numMinAge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;numMinAge.Parent" xml:space="preserve">
-    <value>gbPlayers</value>
-  </data>
-  <data name="&gt;&gt;numMinAge.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="gbPlayers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>579, 64</value>
-  </data>
-  <data name="gbPlayers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 101</value>
-  </data>
-  <data name="gbPlayers.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="gbPlayers.Text" xml:space="preserve">
-    <value>Players</value>
-  </data>
-  <data name="&gt;&gt;gbPlayers.Name" xml:space="preserve">
-    <value>gbPlayers</value>
-  </data>
-  <data name="&gt;&gt;gbPlayers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbPlayers.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbPlayers.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
   <data name="lblGameTime.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1454,6 +1382,30 @@
   </data>
   <data name="&gt;&gt;numMinAge.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="gbPlayers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>579, 64</value>
+  </data>
+  <data name="gbPlayers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 101</value>
+  </data>
+  <data name="gbPlayers.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="gbPlayers.Text" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="&gt;&gt;gbPlayers.Name" xml:space="preserve">
+    <value>gbPlayers</value>
+  </data>
+  <data name="&gt;&gt;gbPlayers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbPlayers.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbPlayers.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="txtAuthor.Location" type="System.Drawing.Point, System.Drawing">
     <value>183, 196</value>
@@ -1872,54 +1824,6 @@
   <data name="&gt;&gt;img1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;img3.Name" xml:space="preserve">
-    <value>img3</value>
-  </data>
-  <data name="&gt;&gt;img3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;img3.Parent" xml:space="preserve">
-    <value>gbImages</value>
-  </data>
-  <data name="&gt;&gt;img3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;img2.Name" xml:space="preserve">
-    <value>img2</value>
-  </data>
-  <data name="&gt;&gt;img2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;img2.Parent" xml:space="preserve">
-    <value>gbImages</value>
-  </data>
-  <data name="&gt;&gt;img2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="gbImages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>579, 291</value>
-  </data>
-  <data name="gbImages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 113</value>
-  </data>
-  <data name="gbImages.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="gbImages.Text" xml:space="preserve">
-    <value>Images</value>
-  </data>
-  <data name="&gt;&gt;gbImages.Name" xml:space="preserve">
-    <value>gbImages</value>
-  </data>
-  <data name="&gt;&gt;gbImages.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbImages.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbImages.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="img3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1973,6 +1877,30 @@
   </data>
   <data name="&gt;&gt;img2.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="gbImages.Location" type="System.Drawing.Point, System.Drawing">
+    <value>579, 291</value>
+  </data>
+  <data name="gbImages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 113</value>
+  </data>
+  <data name="gbImages.TabIndex" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="gbImages.Text" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="&gt;&gt;gbImages.Name" xml:space="preserve">
+    <value>gbImages</value>
+  </data>
+  <data name="&gt;&gt;gbImages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbImages.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbImages.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -2143,7 +2071,7 @@
     <value>2</value>
   </data>
   <data name="txtRating.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 410</value>
+    <value>103, 410</value>
   </data>
   <data name="txtRating.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>
@@ -2164,7 +2092,7 @@
     <value>1</value>
   </data>
   <data name="txtMyRating.Location" type="System.Drawing.Point, System.Drawing">
-    <value>251, 410</value>
+    <value>258, 410</value>
   </data>
   <data name="txtMyRating.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>

@@ -25,11 +25,13 @@ namespace Katalog
         Guid PersonGuid = Guid.Empty;                       // Person ID
         string ItemInvNum = "";
 
+        // ----- Autofill -----
         List<CInfo> contList = new List<CInfo>();           // Contact list
         List<IInfo> itemList = new List<IInfo>();           // Item list
 
+        // ----- Selected items -----
         List<Copies> selItemList = new List<Copies>();      // Selected Item List
-        List<Copies> origItemList = new List<Copies>();     // Item list befor change
+        //List<Copies> origItemList = new List<Copies>();     // Item list befor change
 
         // ----- Fast Tags -----
         Color SelectColor = Color.SkyBlue;                  // FastTags Select color
@@ -52,247 +54,72 @@ namespace Katalog
 
         #region Functions
 
-       
-
-        private List<long> GetBarcodes(string InvNums)
-        {
-            List<long> res = new List<long>();
-            string[] split = InvNums.Split(new string[] { ";" }, StringSplitOptions.None);
-            foreach (var item in split)
-                res.Add(Conv.ToNumber(item));
-            return res;
-        }
-
-        private Guid FindItemByCode(string code, out ItemTypes type, out short ItemNum)
-        {
-            type = ItemTypes.item;
-            long iCode = Conv.ToNumber(code);
-
-            databaseEntities db = new databaseEntities();
-            ItemNum = 1;
-
-            // ----- Try find Inventary code -----
-            /*var itmList = db.Items.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
-            if (itmList.Count > 0)
-            {
-                type = ItemTypes.item;
-                return itmList[0].ID;
-            }
-            else
-            {
-                itmList = db.Items.Where(x => x.Barcode == iCode / 10).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();    // remove EAN checksum
-                if (itmList.Count > 0)
-                {
-                    type = ItemTypes.item;
-                    return itmList[0].ID;
-                }
-            }
-
-            var bookList = db.Books.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
-            if (bookList.Count > 0)
-            {
-                type = ItemTypes.book;
-                return bookList[0].ID;
-            }
-            else
-            {
-                bookList = db.Books.Where(x => x.Barcode == iCode / 10).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();    // remove EAN checksum
-                if (bookList.Count > 0)
-                {
-                    type = ItemTypes.book;
-                    return bookList[0].ID;
-                }
-            }
-
-            var boardList = db.Boardgames.Where(x => x.Barcode == iCode).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
-            if (boardList.Count > 0)
-            {
-                type = ItemTypes.boardgame;
-                return boardList[0].ID;
-            }
-            else
-            {
-                boardList = db.Boardgames.Where(x => x.Barcode == iCode / 10).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();    // remove EAN checksum
-                if (boardList.Count > 0)
-                {
-                    type = ItemTypes.boardgame;
-                    return boardList[0].ID;
-                }
-            }
-
-
-            // ----- Find from more inventary codes ------
-
-            itmList = db.Items.Where(x => x.Barcode == 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
-            foreach(var item in itmList)
-            {
-                var bar = GetBarcodes(item.InvNum);
-                for (int i = 0; i < bar.Count; i++)
-                    if (bar[i] == iCode || bar[i] == iCode/10)
-                    {
-                        type = ItemTypes.item;
-                        ItemNum = (short)i;
-                        return item.ID;
-                    }
-            }
-
-            bookList = db.Books.Where(x => x.Barcode == 0).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
-            foreach (var item in itmList)
-            {
-                var bar = GetBarcodes(item.InvNum);
-                for (int i = 0; i < bar.Count; i++)
-                    if (bar[i] == iCode || bar[i] == iCode / 10)
-                    {
-                        type = ItemTypes.book;
-                        ItemNum = (short)i;
-                        return item.ID;
-                    }
-            }
-
-            boardList = db.Boardgames.Where(x => x.Barcode == 0).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim(), Available = x.Available ?? (x.Count ?? 1), Count = x.Count ?? 1 }).ToList();
-            foreach (var item in boardList)
-            {
-                var bar = GetBarcodes(item.InvNum);
-                for (int i = 0; i < bar.Count; i++)
-                    if (bar[i] == iCode || bar[i] == iCode / 10)
-                    {
-                        type = ItemTypes.boardgame;
-                        ItemNum = (short)i;
-                        return item.ID;
-                    }
-            }*/
-
-
-            /*long num = -1;
-            type = ItemTypes.item;
-
-            foreach (var item in itemList)
-            {
-                num = Conv.ToNumber(item.InvNum);
-                if (num == iCode || num == iCode / 10)
-                {
-                    type = (ItemTypes)cbItemType.SelectedIndex;
-                    return item.ID;
-                }
-            }*/
-
-            return Guid.Empty;
-        }
-
-
-        private void FindItem()
-        {
-            //PersonGuid = Guid.Empty;
-            string text = txtItem.Text;
-            int pos = text.IndexOf("#");
-            if (pos >= 0)
-            {
-                int val = Conv.ToIntDef(text.Substring(pos + 1), -1);
-                if (val >= 0 && val < itemList.Count)
-                {
-                    ItemGuid = itemList[val].ID;
-                }
-            }
-        }
-
-        private List<IInfo> CreateCountList()
-        {
-            List<IInfo> list = new List<IInfo>();
-
-            // selItemList
-            foreach (var item in selItemList)
-            {
-                bool find = false;
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].ID == item.ID)
-                    {
-                        IInfo x = list[i];
-                        x.Count++;
-                        list.RemoveAt(i);
-                        list.Insert(i, x);
-                        find = true;
-                        break;
-                    }
-                }
-                if (!find)
-                {
-                    /*IInfo x = item;
-                    x.Count = 1;
-                    list.Add(x);*/
-                }
-            }
-
-            foreach (var item in origItemList)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].ID == item.ID)
-                    {
-                        IInfo x = list[i];
-                        x.Count--;
-                        list.RemoveAt(i);
-                        list.Insert(i, x);
-                        break;
-                    }
-                }
-            }
-
-            return list;
-        }
-
+        /// <summary>
+        /// Set Items textbox context
+        /// </summary>
         private void SetItemsContext()
         {
             databaseEntities db = new databaseEntities();
 
             txtItem.AutoCompleteCustomSource.Clear();
 
-            itemList = db.Copies.Where(x => !(x.Excluded ?? false) && ((x.Status ?? (short)LendStatus.Returned) == (short)LendStatus.Canceled || (x.Status ?? (short)LendStatus.Returned) == (short)LendStatus.Returned)).Select(x => new IInfo { ID = x.ID, InvNum = x.InventoryNumber.Trim(), ItemType = global.GetItemType(x.ItemType)}).ToList();
+            itemList = db.Copies.Where(x => !(x.Excluded ?? false) && ((x.Status ?? (short)LendStatus.Returned) == (short)LendStatus.Canceled || (x.Status ?? (short)LendStatus.Returned) == (short)LendStatus.Returned)).Select(x => new IInfo { ID = x.ID, ItemID = x.ItemID ?? Guid.Empty, InventoryNumber = x.InventoryNumber.Trim(), ItemType = x.ItemType.Trim(), Barcode = x.Barcode ?? 0}).ToList();
 
 
-            for (int i = 0; i < itemList.Count; i++)
+            for (int j = 0; j < selItemList.Count; j++)
             {
-                itemList[i].Name = global.GetLendingItemName(itemList[i].ItemType.ToString(), itemList[i].ID);
-                txtItem.AutoCompleteCustomSource.Add(itemList[i].Name + " #" + i.ToString());
+                for (int i = itemList.Count - 1; i >= 0; i--)
+                {
+                    if (itemList[i].ID == selItemList[j].ID)
+                    {
+                        itemList.RemoveAt(i);
+                        break;
+                    }
+                }
             }
 
             for (int i = 0; i < itemList.Count; i++)
             {
+                itemList[i].Name = global.GetLendingItemName(itemList[i].ItemType.ToString(), itemList[i].ItemID);
                 txtItem.AutoCompleteCustomSource.Add(itemList[i].Name + " #" + i.ToString());
             }
         }
-
-              
+            
+        /// <summary>
+        /// Refresh Available Items
+        /// </summary>
+        /// <param name="list"></param>
         private void RefreshAvailableItems(List<Copies> list)
         {
             databaseEntities db = new databaseEntities();
 
             foreach (var itm in list)
             {
-                var borr = db.Lending.Where(p => (p.CopyID == itm.ID) && p.CopyType.Contains(itm.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
+                // ----- Refresh available items -----
+                var borr = db.Copies.Where(p => (p.ItemID == itm.ItemID) && p.ItemType.Contains(itm.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
 
-                /*if (itm.ItemType == ItemTypes.item)
+                if (global.GetItemType(itm.ItemType) == ItemTypes.item)
                 {
-                    Items item = db.Items.Find(itm.ID);
+                    Items item = db.Items.Find(itm.ItemID);
                     if (item != null)
                         item.Available = (short)((item.Count ?? 1) - borr.Count);
                 }
-                else if (itm.ItemType == ItemTypes.book)
+                else if (global.GetItemType(itm.ItemType) == ItemTypes.book)
                 {
-                    Books book = db.Books.Find(itm.ID);
+                    Books book = db.Books.Find(itm.ItemID);
                     if (book != null)
                         book.Available = (short)((book.Count ?? 1) - borr.Count);
                 }
-                else if (itm.ItemType == ItemTypes.boardgame)
+                else if (global.GetItemType(itm.ItemType) == ItemTypes.boardgame)
                 {
-                    Boardgames board = db.Boardgames.Find(itm.ID);
+                    Boardgames board = db.Boardgames.Find(itm.ItemID);
                     if (board != null)
                         board.Available = (short)((board.Count ?? 1) - borr.Count);
-                }*/
+                }
             }
             db.SaveChanges();
         }
-
+        
         #endregion
 
         #region Load Form
@@ -374,14 +201,7 @@ namespace Katalog
             cbStatus.Items.Add(Lng.Get("Returned"));
             cbStatus.Items.Add(Lng.Get("Canceled"));
             cbStatus.SelectedIndex = 1;
-
-            // ----- Prepare Item type Combo box -----
-            cbItemType.Items.Clear();
-            cbItemType.Items.Add(Lng.Get("Item"));
-            cbItemType.Items.Add(Lng.Get("Book"));
-            cbItemType.Items.Add(Lng.Get("Board game"));
-            cbItemType.SelectedIndex = 0;
-
+            
             // ----- Prepare autocomplete Context -----
             SetContactsContext();               // Contacts
             SetItemsContext();                  // Items
@@ -403,14 +223,9 @@ namespace Katalog
                     // ----- Fill Item list -----
                     Copies copy = db.Copies.Find(lend.CopyID);
                     selItemList.Add(copy);          // Selected list
-                    origItemList.Add(copy);         // Original list    
+                    //origItemList.Add(copy);         // Original list    
                 }
-
-
-                // ----- Fill Inventory number -----
-                //FillInventoryNumber();
-                //cbItemNum.Text = (borr.ItemNum ?? 1).ToString();
-
+                
                 // ----- Fill Person -----
                 Contacts person = db.Contacts.Find(lend.PersonID);
                 if (person != null)
@@ -544,9 +359,12 @@ namespace Katalog
             // ----- Save to DB -----
             db.SaveChanges();
 
+            // ----- Refresh Copy Status -----
+            global.RefreshCopiesStatus(selItemList, (short)cbStatus.SelectedIndex);
+
             // ----- Refresh Available Items in Items Tables -----
             RefreshAvailableItems(selItemList);
-
+            
             // ----- Close Barcode reader connection -----
             com.Close();
 
@@ -712,6 +530,54 @@ namespace Katalog
         #region Item 
 
         /// <summary>
+        /// Find item by Barcode
+        /// </summary>
+        /// <param name="code">Barcode</param>
+        /// <returns></returns>
+        private Guid FindItemByCode(string code)
+        {
+            long iCode = Conv.ToNumber(code);
+
+            /*databaseEntities db = new databaseEntities();
+            var items = db.Copies.Where(x => (x.Barcode ?? 0) == iCode).Select(x => x.ID).ToList();*/
+
+
+            // ----- Find by barcode -----
+            foreach (var item in itemList)
+            {
+                if (item.Barcode == iCode)
+                    return item.ID;
+            }
+
+            // ----- Barcode without checksum -----
+            foreach (var item in itemList)
+            {
+                if (item.Barcode == iCode / 10)
+                    return item.ID;
+            }
+
+            return Guid.Empty;
+        }
+
+        /// <summary>
+        /// Find Item by selected Name
+        /// </summary>
+        private void FindItem()
+        {
+            //PersonGuid = Guid.Empty;
+            string text = txtItem.Text;
+            int pos = text.IndexOf("#");
+            if (pos >= 0)
+            {
+                int val = Conv.ToIntDef(text.Substring(pos + 1), -1);
+                if (val >= 0 && val < itemList.Count)
+                {
+                    ItemGuid = itemList[val].ID;
+                }
+            }
+        }
+        
+        /// <summary>
         /// Update Items OLV
         /// </summary>
         private void UpdateOLV()
@@ -728,188 +594,21 @@ namespace Katalog
                 return "";
             };
             // ----- Column Number -----
-            itNumber.AspectGetter = delegate (object x) {
-                return ((Copies)x).ItemNum;
+            itType.AspectGetter = delegate (object x) {
+                return global.GetItemTypeName(((Copies)x).ItemType);
             };
 
             // ----- Set model to OLV -----
             olvItem.SetObjects(selItemList);
         }
-
-        /*
-        private void FillInventoryNumber()
-        {
-            databaseEntities db = new databaseEntities();
-
-            if (ItemGuid != Guid.Empty)
-            {
-                List<IInfo> itm = new List<IInfo>();
-                // ----- Fill Inventory number -----
-                if (cbItemType.SelectedIndex == 0)
-                {
-                    itm = db.Items.Where(x => x.ID == ItemGuid).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
-                }
-                else if (cbItemType.SelectedIndex == 1)
-                {
-                    itm = db.Books.Where(x => x.ID == ItemGuid).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
-                }
-                else if (cbItemType.SelectedIndex == 2)
-                {
-                    itm = db.Boardgames.Where(x => x.ID == ItemGuid).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = (x.InventoryNumber ?? "").Trim(), Count = x.Count ?? 1 }).ToList();
-                }
-
-                if (itm.Count == 1)
-                {
-                    // ----- Change GUID -----
-                    if (LastItemGuid != ItemGuid)
-                    {
-                        List<int> nums = GetItemNums(itm[0]);
-                        cbItemNum.Items.Clear();
-                        for (int i = 0; i < nums.Count; i++)
-                            cbItemNum.Items.Add(nums[i].ToString());
-                        if (cbItemNum.Items.Count > 0)
-                            cbItemNum.SelectedIndex = 0;
-                    }
-                    string[] invNumbers = itm[0].InvNum.Split(new string[] { ";" }, StringSplitOptions.None);
-                    int invNumIdx = Conv.ToShortDef(cbItemNum.Text, 0);
-                    if (invNumIdx > 0)
-                    {
-                        ItemInvNum = invNumbers[invNumIdx - 1];
-                        lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": " + ItemInvNum;
-                    }
-                    else lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": -";
-                }
-            }
-            else
-            {
-                ItemInvNum = "";
-                cbItemNum.Items.Clear();
-                lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": -";
-            }
-        }*/
-
-        /*
-        private List<int> RemoveSelectedItemNums(List<int> list)
-        {
-            foreach(var item in selItemList)
-            {
-                if (item.ID == ItemGuid)
-                {
-                    for (int i = list.Count - 1; i >= 0; i--)
-                    {
-                        if (list[i] == item.ItemNum)
-                            list.RemoveAt(i);
-                    }
-                }
-            }
-            return list;
-        }
-
-        private List<int> GetItemNums(IInfo itm)
-        {
-            databaseEntities db = new databaseEntities();
-
-            List<int> res = new List<int>();
-
-            var borr = db.Lending.Where(x => (x.CopyID == ItemGuid) && ((x.Status ?? 1) == (short)LendStatus.Reserved || (x.Status ?? 1) == (short)LendStatus.Lended)).Select(x => x. ?? 1).ToList();
-            //var borr = db.Lending.Where(x => x.ItemNum.ToString().Any(x.ID != ID) && (x.ItemID == ItemGuid) && (x.Status ?? 1) != 2).Select(x => x.ItemNum ?? 1).ToList();
-            int Count = itm.Count;
-
-            for (int i = 1; i <= Count; i++)
-            {
-                bool find = false;
-                for (int j = 0; j < borr.Count; j++)
-                    if (borr[j] == i) find = true;
-                if (!find)
-                    res.Add(i);
-            }
-            res = RemoveSelectedItemNums(res);
-            return res;
-        }
-        */
-        private void txtItem_TextChanged(object sender, EventArgs e)
-        {
-            ItemGuid = Guid.Empty;
-            FindItem();
-           // FillInventoryNumber();
-            LastItemGuid = ItemGuid;
-        }
-
-        private void cbItemType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetItemsContext();
-            txtItem.Text = "";
-            txtItem.Focus();
-        }
-        
-        private void cbItemNum_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LastItemGuid = ItemGuid;
-            //FillInventoryNumber();
-        }
-        
-        /// <summary>
-        /// Get Item info from DB
-        /// </summary>
-        /// <param name="ID">Item ID</param>
-        /// <param name="type">Item type (Item, Book...)</param>
-        /// <param name="ItemNum">Select Item Number</param>
-        /// <returns></returns>
-        private IInfo GetInfo(Guid ID, ItemTypes type, int ItemNum)
-        {
-            databaseEntities db = new databaseEntities();
-
-            IInfo newItem = new IInfo();
-            List<IInfo> list = null;
-
-            // ----- Items -----
-            /*if (type == ItemTypes.item)
-            {
-                Items itm = db.Items.Find(ID);          // Find Item
-                if (itm != null)
-                {
-                    list = db.Items.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
-                }
-            }
-            // ----- Books -----
-            else if (type == ItemTypes.book)
-            {
-                Books book = db.Books.Find(ID);         // Find Book
-                if (book != null)
-                {
-                    list = db.Books.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Title.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
-                }
-            }
-            // ----- BoardGames -----
-            else if (type == ItemTypes.boardgame)
-            {
-                Boardgames boardgame = db.Boardgames.Find(ID);         // Find Boardgame
-                if (boardgame != null)
-                {
-                    list = db.Boardgames.Where(x => x.ID == ID).Select(x => new IInfo { ID = x.ID, Name = x.Name.Trim(), InvNum = x.InventoryNumber.Trim() }).ToList();
-                }
-            }*/
-
-
-            if (list != null)                           // If found
-            {
-                newItem = list[0];
-                newItem.ItemNum = ItemNum;              // Fill Values
-                string[] invNumbers = newItem.InvNum.Split(new string[] { ";" }, StringSplitOptions.None);
-                if (newItem.ItemNum <= invNumbers.Length)
-                {
-                    newItem.InvNum = invNumbers[newItem.ItemNum - 1];
-                }
-                newItem.ItemType = type;
-            }
-            return newItem;
-        }
-
+            
         /// <summary>
         /// Add Item to list
         /// </summary>
         private void AddItem()
         {
+            databaseEntities db = new databaseEntities();
+
             // ----- Find selected Item -----
             FindItem();
 
@@ -919,20 +618,38 @@ namespace Katalog
                 return;
             }
 
-            if (Conv.ToIntDef(cbItemNum.Text, 0) == 0)
-            {
-                Dialogs.ShowWar(Lng.Get("NoSelItemNum", "Not selected item number!"), Lng.Get("Warning"));
-                return;
-            }
-
             // ----- Add selected item to list -----
-            //IInfo newItem = GetInfo(ItemGuid, (ItemTypes)cbItemType.SelectedIndex, Conv.ToIntDef(cbItemNum.Text, 0));
-            //selItemList.Add(newItem);
+            var newItem = db.Copies.Find(ItemGuid);
+            selItemList.Add(newItem);
             UpdateOLV();
 
             // ----- Refresh Items TextBox -----
             SetItemsContext();
             txtItem.Text = "";
+        }
+
+        /// <summary>
+        /// Item Changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtItem_TextChanged(object sender, EventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+
+            ItemGuid = Guid.Empty;
+            FindItem();
+            if (ItemGuid != Guid.Empty)
+            {
+                var copy = db.Copies.Find(ItemGuid);
+                lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": " + copy.InventoryNumber;
+            }
+            else
+            {
+                lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": -";
+            }
+
+            LastItemGuid = ItemGuid;
         }
 
         /// <summary>
@@ -969,8 +686,8 @@ namespace Katalog
             if (olvItem.SelectedIndex >= 0)
             {
                 // ----- Remove -----
-                IInfo info = (IInfo)olvItem.SelectedItem.RowObject;
-                //selItemList.Remove(info);
+                var info = (Copies)olvItem.SelectedItem.RowObject;
+                selItemList.Remove(info);
 
                 // ----- Update OLV -----
                 UpdateOLV();
@@ -1069,33 +786,13 @@ namespace Katalog
             // ----- Fill Inventory number -----
             else if (txtItem.Focused)
             {
-                ItemTypes type;
-                short ItemNum;
-                Guid ID = FindItemByCode(Barcode, out type, out ItemNum);
+                Guid ID = FindItemByCode(Barcode);
                 if (ID != Guid.Empty)
                 {
-                    cbItemType.SelectedIndex = (int)type;
-                    // ----- Item -----
-                    if (type == ItemTypes.item)
-                    {
-                        Items itm = db.Items.Find(ID);
-                        txtItem.Text = itm.Name.Trim();
-                    }
-                    // ----- Book -----
-                    else if (type == ItemTypes.book)
-                    {
-                        Books book = db.Books.Find(ID);
-                        txtItem.Text = book.Title.Trim();
-                    }
-                    // ----- Board game -----
-                    else if (type == ItemTypes.boardgame)
-                    {
-                        Boardgames board = db.Boardgames.Find(ID);
-                        txtItem.Text = board.Name.Trim();
-                    }
+                    var copy = db.Copies.Find(ID);
                     ItemGuid = ID;
-                    //FillInventoryNumber();
-                    cbItemNum.Text = ItemNum.ToString();
+                    txtItem.Text = global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty);
+                    lblInvNum.Text = Lng.Get("InventoryNumber", "Inventory number") + ": " + copy.InventoryNumber;
 
                     AddItem();
                 }

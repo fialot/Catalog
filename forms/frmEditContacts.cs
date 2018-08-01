@@ -88,7 +88,8 @@ namespace Katalog
             cbSex.SelectedIndex = 0;
 
             // ----- New Inv Number -----
-            TempMaxInvNum++;
+            if (TempMaxInvNum < Properties.Settings.Default.ContactStart) TempMaxInvNum = Properties.Settings.Default.ContactStart;
+            else TempMaxInvNum++;
             txtCode.Text = Properties.Settings.Default.ContactPrefix + (TempMaxInvNum).ToString("D" + Properties.Settings.Default.ContactMinCharLen.ToString()) + Properties.Settings.Default.ContactSuffix;
 
             // ----- If Edit -> fill form -----

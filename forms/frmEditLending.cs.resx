@@ -121,12 +121,6 @@
     <value>Storno</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblItemType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="lblItemType.Text" xml:space="preserve">
-    <value>Typ předmětu</value>
-  </data>
   <data name="lblItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 13</value>
   </data>
@@ -145,23 +139,18 @@
   <data name="lblTo.Text" xml:space="preserve">
     <value>Půjčeno do</value>
   </data>
-  <data name="lblItemNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
-  </data>
-  <data name="lblItemNum.Text" xml:space="preserve">
-    <value>Číslo</value>
-  </data>
-  <data name="gbItem.Text" xml:space="preserve">
-    <value>Půjčený předmět</value>
-  </data>
   <data name="itName.Text" xml:space="preserve">
     <value>Název</value>
   </data>
   <data name="itInvNum.Text" xml:space="preserve">
     <value>Inv. č.</value>
   </data>
-  <data name="itNumber.Text" xml:space="preserve">
-    <value>Číslo</value>
+  <data name="itType.Text" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="resource.Text" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 13</value>
@@ -169,8 +158,8 @@
   <data name="lblInvNum.Text" xml:space="preserve">
     <value>Inventární číslo: -</value>
   </data>
-  <data name="gbPerson.Text" xml:space="preserve">
-    <value>Zapůjčit komu</value>
+  <data name="gbItem.Text" xml:space="preserve">
+    <value>Půjčený předmět</value>
   </data>
   <data name="lblPersonNum.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 13</value>
@@ -183,6 +172,9 @@
   </data>
   <data name="lblPerson.Text" xml:space="preserve">
     <value>Osoba</value>
+  </data>
+  <data name="gbPerson.Text" xml:space="preserve">
+    <value>Zapůjčit komu</value>
   </data>
   <data name="gbTerm.Text" xml:space="preserve">
     <value>Termín</value>

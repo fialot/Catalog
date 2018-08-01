@@ -128,6 +128,9 @@ namespace Katalog
             // ----- Save changes -----
             db.SaveChanges();
 
+            // ----- Refresh Copy Status -----
+            global.RefreshCopiesStatus(lendList);
+
             // ----- Refresh Available Items -----
             RefreshAvailableItems();
 
@@ -157,23 +160,25 @@ namespace Katalog
 
             foreach (var itm in lendList)
             {
-                var borr = db.Lending.Where(p => (p.CopyID == itm.CopyID) && p.CopyType.Contains(itm.CopyType.Trim()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
+                var copy = db.Copies.Find(itm.CopyID);
 
-                if (itm.CopyType.Trim() == "item")
+                var borr = db.Copies.Where(p => (p.ItemID == copy.ItemID) && p.ItemType.Contains(copy.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
+
+                if (global.GetItemType(copy.ItemType) == ItemTypes.item)
                 {
-                    Items item = db.Items.Find(itm.CopyID);
+                    Items item = db.Items.Find(copy.ItemID);
                     if (item != null)
                         item.Available = (short)((item.Count ?? 1) - borr.Count);
                 }
-                else if (itm.CopyType.Trim() == "book")
+                else if (global.GetItemType(copy.ItemType) == ItemTypes.book)
                 {
-                    Books book = db.Books.Find(itm.CopyID);
+                    Books book = db.Books.Find(copy.ItemID);
                     if (book != null)
                         book.Available = (short)((book.Count ?? 1) - borr.Count);
                 }
-                else if (itm.CopyType.Trim() == "boardgame")
+                else if (global.GetItemType(copy.ItemType) == ItemTypes.boardgame)
                 {
-                    Boardgames board = db.Boardgames.Find(itm.CopyID);
+                    Boardgames board = db.Boardgames.Find(copy.ItemID);
                     if (board != null)
                         board.Available = (short)((board.Count ?? 1) - borr.Count);
                 }
@@ -219,7 +224,8 @@ namespace Katalog
         {
             // ----- Column Name -----
             itName.AspectGetter = delegate (object x) {
-                return global.GetLendingItemName(((Lending)x).CopyType.Trim(), ((Lending)x).CopyID ?? Guid.Empty);
+                var copy = db.Copies.Find(((Lending)x).CopyID);
+                return global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty);
             };
             // ----- Column Type -----
             itType.AspectGetter = delegate (object x) {
@@ -388,30 +394,44 @@ namespace Katalog
 
         private void btnLend_Click(object sender, EventArgs e)
         {
-            if (changed)
+            if (olvItem.SelectedObjects.Count > 0)
             {
-                if (Dialogs.ShowQuest(Lng.Get("saveChangesBeforeLending", "Before lending new items you must save changes to database. Save changes?"), Lng.Get("SaveChanges", "Save changes?")) == DialogResult.No)
-                    return;
+                changed = true;
+                for (int i = olvItem.SelectedObjects.Count - 1; i >= 0; i--)
+                {
+                    ((Lending)(olvItem.SelectedObjects[i])).Status = (short)LendStatus.Lended;
+                    ((Lending)(olvItem.SelectedObjects[i])).To = DateTime.Now.AddMonths(1);
+                }
+                UpdateOLV();
+                olvItem.SelectedIndex = -1;
             }
-
-            // ----- Close Barcode reader connection -----
-            com.Close();
-
-            // ----- Save changes to DB -----
-            SaveChanges();
-
-            // ----- Show Lending Dialog -----
-            frmEditLending form = new frmEditLending();
-            form.ShowPersonDialog(PersonID);
-
-            RefreshItems();
-
-            // ----- Start Barcode reader Connection -----
-            try
+            else
             {
-                com.ConnectSP(Properties.Settings.Default.scanCOM);
+                if (changed)
+                {
+                    if (Dialogs.ShowQuest(Lng.Get("saveChangesBeforeLending", "Before lending new items you must save changes to database. Save changes?"), Lng.Get("SaveChanges", "Save changes?")) == DialogResult.No)
+                        return;
+                }
+
+                // ----- Close Barcode reader connection -----
+                com.Close();
+
+                // ----- Save changes to DB -----
+                SaveChanges();
+
+                // ----- Show Lending Dialog -----
+                frmEditLending form = new frmEditLending();
+                form.ShowPersonDialog(PersonID);
+
+                RefreshItems();
+
+                // ----- Start Barcode reader Connection -----
+                try
+                {
+                    com.ConnectSP(Properties.Settings.Default.scanCOM);
+                }
+                catch { }
             }
-            catch { }
         }
 
         private void btnReturn_Click(object sender, EventArgs e)

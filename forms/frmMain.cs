@@ -24,6 +24,13 @@ namespace Katalog
 
         #region ObjectListView
 
+        void UpdateAllItemsOLV()
+        {
+            UpdateItemsOLV();
+            UpdateBooksOLV();
+            UpdateBoardOLV();
+        }
+
         #region Contacts
 
         /// <summary>
@@ -184,7 +191,8 @@ namespace Katalog
                 return Lng.Get("Unknown");
             };
             ldItemName.AspectGetter = delegate (object x) {
-                return global.GetLendingItemName(((Lending)x).CopyType.Trim(), ((Lending)x).CopyID ?? Guid.Empty);
+                var copy = db.Copies.Find(((Lending)x).CopyID);
+                return global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty);
             };
             ldItemNum.AspectGetter = delegate (object x) {
                 return 0;
@@ -853,9 +861,7 @@ namespace Katalog
                 } 
                 UpdateLendingOLV();                             // Update Lending OLV
                 UpdateConOLV();                                 // Update Contact OLV
-                UpdateItemsOLV();                               // Update Items OLV
-                UpdateBooksOLV();                               // Update Books OLV
-                UpdateBoardOLV();                               // Update Board OLV
+                UpdateAllItemsOLV();
             }
             // ----- Borrowing -----
             else if (tabCatalog.SelectedTab == tabBorrowing)
@@ -950,9 +956,7 @@ namespace Katalog
                     }
                     UpdateLendingOLV();                                // Update Lending OLV
                     UpdateConOLV();                                 // Update Contact OLV
-                    UpdateItemsOLV();                               // Update Items OLV
-                    UpdateBooksOLV();                               // Update Books OLV
-                    UpdateBoardOLV();                               // Update Board OLV
+                    UpdateAllItemsOLV();
                 }
             }
             // ----- Borrowing -----
@@ -1058,6 +1062,7 @@ namespace Katalog
                         db.Lending.Remove(borr);                    // Delete Item
                         db.SaveChanges();                           // Save to DB
                         UpdateLendingOLV();                         // Update Lending OLV 
+                        UpdateAllItemsOLV();
                     }
                 }
             }
@@ -1163,6 +1168,7 @@ namespace Katalog
                     frmEditPersonLending form = new frmEditPersonLending();   // Show Edit form
                     var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
                     UpdateLendingOLV();
+                    UpdateAllItemsOLV();
                 }
             }
             // ----- Lending -----
@@ -1173,6 +1179,7 @@ namespace Katalog
                     frmEditPersonLending form = new frmEditPersonLending();   // Show Edit form
                     var res = form.ShowDialog(((Lending)olvLending.SelectedObject).PersonID ?? Guid.Empty);
                     UpdateLendingOLV();
+                    UpdateAllItemsOLV();
                 }
             }
         }

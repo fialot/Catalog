@@ -36,11 +36,15 @@ namespace Katalog
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
-        public string InvNum { get; set; }
+        public string InventoryNumber { get; set; }
+        public long Barcode { get; set; }
         public short Count { get; set; }
         public short Available { get; set; }
+
+        public Guid ItemID { get; set; }
+        public string ItemType { get; set; }
         public int ItemNum { get; set; }
-        public ItemTypes ItemType { get; set; }
+                
         public string Note { get; set; }
     }
 
@@ -86,7 +90,7 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            switch (type)
+            switch (type.Trim())
             {
                 case "item":
                     Items itm = db.Items.Find(id);
@@ -178,7 +182,6 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            InventoryNumber = "";
             var list = db.Copies.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
 
             for (int i = 0; i < list.Count; i++)
@@ -278,6 +281,51 @@ namespace Katalog
             return count;
         }
 
+        /// <summary>
+        /// Refresh Copies status
+        /// </summary>
+        /// <param name="list">Copies list to refresf</param>
+        /// <param name="status">Status</param>
+        public static void RefreshCopiesStatus(List<Copies> list, LendStatus status)
+        {
+            RefreshCopiesStatus(list, (short)status);
+        }
+
+        /// <summary>
+        /// Refresh Copies status
+        /// </summary>
+        /// <param name="list">Copies list to refresf</param>
+        /// <param name="status">Status</param>
+        public static void RefreshCopiesStatus(List<Copies> list, short status)
+        {
+            databaseEntities db = new databaseEntities();
+
+            foreach (var itm in list)
+            {
+                var copy = db.Copies.Find(itm.ID);
+                copy.Status = status;
+            }
+            db.SaveChanges();
+        }
+        
+        /// <summary>
+        /// Refresh Copies status
+        /// </summary>
+        /// <param name="list">Copies list to refresf</param>
+        /// <param name="status">Status</param>
+        public static void RefreshCopiesStatus(List<Lending> list)
+        {
+            databaseEntities db = new databaseEntities();
+
+            foreach (var itm in list)
+            {
+                var copy = db.Copies.Find(itm.CopyID);
+                copy.Status = itm.Status;
+            }
+            db.SaveChanges();
+        }
+
+
         #endregion
 
 
@@ -367,6 +415,8 @@ namespace Katalog
         /// <returns>PDF table</returns>
         public static string[,] GetTable(List<Lending> lendList)
         {
+            databaseEntities db = new databaseEntities();
+
             // ----- Return if no data -----
             if (lendList == null) return null;
 
@@ -392,9 +442,10 @@ namespace Katalog
             // ----- 3+. ROW - fill data-----
             for (int i = 0; i < lendList.Count; i++)
             {
+                var copy = db.Copies.Find(lendList[i].CopyID);
                 tab[i + 2, 0] = (i + 1).ToString();
                 tab[i + 2, 1] = global.GetItemTypeName(lendList[i].CopyType);
-                tab[i + 2, 2] = global.GetLendingItemName(lendList[i].CopyType.Trim(), lendList[i].CopyID ?? Guid.Empty);
+                tab[i + 2, 2] = global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty);
                 tab[i + 2, 3] = (lendList[i].From ?? DateTime.Now).ToShortDateString();
                 tab[i + 2, 4] = (lendList[i].To ?? DateTime.Now).ToShortDateString();
                 tab[i + 2, 5] = global.GetStatusName(lendList[i].Status ?? 1);

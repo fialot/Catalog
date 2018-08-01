@@ -48,18 +48,18 @@
             this.txtInvNum = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.lblInvNum = new System.Windows.Forms.Label();
+            this.dtAcqDate = new System.Windows.Forms.DateTimePicker();
+            this.lblAcqDate = new System.Windows.Forms.Label();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.lblCategory = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
             this.lblNote = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtKeywords = new System.Windows.Forms.TextBox();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.btnTag6 = new System.Windows.Forms.Button();
-            this.dtAcqDate = new System.Windows.Forms.DateTimePicker();
             this.btnTag5 = new System.Windows.Forms.Button();
-            this.lblAcqDate = new System.Windows.Forms.Label();
             this.btnTag4 = new System.Windows.Forms.Button();
             this.btnTag3 = new System.Windows.Forms.Button();
             this.btnTag2 = new System.Windows.Forms.Button();
@@ -247,6 +247,26 @@
             resources.ApplyResources(this.lblInvNum, "lblInvNum");
             this.lblInvNum.Name = "lblInvNum";
             // 
+            // dtAcqDate
+            // 
+            resources.ApplyResources(this.dtAcqDate, "dtAcqDate");
+            this.dtAcqDate.Name = "dtAcqDate";
+            // 
+            // lblAcqDate
+            // 
+            resources.ApplyResources(this.lblAcqDate, "lblAcqDate");
+            this.lblAcqDate.Name = "lblAcqDate";
+            // 
+            // txtPrice
+            // 
+            resources.ApplyResources(this.txtPrice, "txtPrice");
+            this.txtPrice.Name = "txtPrice";
+            // 
+            // lblPrice
+            // 
+            resources.ApplyResources(this.lblPrice, "lblPrice");
+            this.lblPrice.Name = "lblPrice";
+            // 
             // txtCategory
             // 
             this.txtCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -259,11 +279,6 @@
             resources.ApplyResources(this.lblCategory, "lblCategory");
             this.lblCategory.Name = "lblCategory";
             // 
-            // lblPrice
-            // 
-            resources.ApplyResources(this.lblPrice, "lblPrice");
-            this.lblPrice.Name = "lblPrice";
-            // 
             // lblNote
             // 
             resources.ApplyResources(this.lblNote, "lblNote");
@@ -273,11 +288,6 @@
             // 
             resources.ApplyResources(this.txtNote, "txtNote");
             this.txtNote.Name = "txtNote";
-            // 
-            // txtPrice
-            // 
-            resources.ApplyResources(this.txtPrice, "txtPrice");
-            this.txtPrice.Name = "txtPrice";
             // 
             // txtKeywords
             // 
@@ -298,11 +308,6 @@
             this.btnTag6.UseVisualStyleBackColor = false;
             this.btnTag6.Click += new System.EventHandler(this.btnTag1_Click);
             // 
-            // dtAcqDate
-            // 
-            resources.ApplyResources(this.dtAcqDate, "dtAcqDate");
-            this.dtAcqDate.Name = "dtAcqDate";
-            // 
             // btnTag5
             // 
             resources.ApplyResources(this.btnTag5, "btnTag5");
@@ -310,11 +315,6 @@
             this.btnTag5.Name = "btnTag5";
             this.btnTag5.UseVisualStyleBackColor = true;
             this.btnTag5.Click += new System.EventHandler(this.btnTag1_Click);
-            // 
-            // lblAcqDate
-            // 
-            resources.ApplyResources(this.lblAcqDate, "lblAcqDate");
-            this.lblAcqDate.Name = "lblAcqDate";
             // 
             // btnTag4
             // 
