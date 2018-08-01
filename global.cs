@@ -768,6 +768,66 @@ namespace Katalog
             Files.SaveFile(path, lines);
         }
 
+        /// <summary>
+        /// Export Boardgames to CSV file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Item list</param>
+        public static void ExportBoardCSV(string path, List<Boardgames> itm)
+        {
+            databaseEntities db = new databaseEntities();
+
+            // ----- Head -----
+            string lines = "FialotCatalog:Boardgames v1" + Environment.NewLine;
+
+            // ----- Names -----
+            lines += "name;category;subcategory;subcategory2;keywords;manufacturer;note;excluded;count;fasttags;image;updated;GUID" + Environment.NewLine;
+
+            // ----- Data -----
+            int imgNum = 0;
+            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+            Directory.CreateDirectory(filePath);        // create files path
+
+            // ----- Copies -----
+            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.item.ToString())).ToList();
+            string copiesPath = filePath + Path.DirectorySeparatorChar + "copies.csv";
+            ExportCopiesCSV(copiesPath, copies);
+
+            // ----- Data -----
+            foreach (var item in itm)
+            {
+                // ----- Images -----
+                string imgFileName = "";
+                if (item.Image != null && item.Image.Length > 0)
+                {
+                    try
+                    {
+                        imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
+
+                        string imgPath = filePath + Path.DirectorySeparatorChar + imgFileName;
+                        try
+                        {
+                            File.WriteAllBytes(imgPath, item.Image);
+                            imgNum++;
+                        }
+                        catch
+                        {
+                            imgFileName = "";
+                        }
+                    }
+                    catch { }
+                }
+
+                // ----- Other data -----
+                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2 + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
+                lines += item.Manufacturer + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";";
+                lines += item.FastTags.ToString() + ";" + imgFileName + ";" + item.Updated.ToString() + ";" + item.ID + Environment.NewLine;
+            }
+
+            // ----- Save to file ------
+            Files.SaveFile(path, lines);
+        }
+
         #endregion
 
         #region Import
