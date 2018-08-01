@@ -455,6 +455,50 @@ namespace Katalog
             return tab;
         }
 
+
+        /// <summary>
+        /// Create Borrowing table for PDF document
+        /// </summary>
+        /// <param name="borrList">Borowing list</param>
+        /// <returns>PDF table</returns>
+        public static string[,] GetTable(List<Borrowing> borrList)
+        {
+            databaseEntities db = new databaseEntities();
+
+            // ----- Return if no data -----
+            if (borrList == null) return null;
+
+            // ----- Compute Tabsize -----
+            string[,] tab = new string[borrList.Count + 2, 5];  // 5 Columns
+
+            // ----- 1. ROW - columns size -----
+            tab[0, 0] = "1cm";
+            tab[0, 1] = "8.5cm";
+            tab[0, 2] = "2cm";
+            tab[0, 3] = "2cm";
+            tab[0, 4] = "2.5cm";
+
+            // ----- 2. ROW - columns names -----
+            tab[1, 0] = Lng.Get("Number");
+            tab[1, 1] = Lng.Get("ItemName", "Name");
+            tab[1, 2] = Lng.Get("From", "From");
+            tab[1, 3] = Lng.Get("To", "To");
+            tab[1, 4] = Lng.Get("Status");
+
+            // ----- 3+. ROW - fill data-----
+            for (int i = 0; i < borrList.Count; i++)
+            {
+                tab[i + 2, 0] = (i + 1).ToString();
+                tab[i + 2, 1] = borrList[i].Item.Trim();
+                tab[i + 2, 2] = (borrList[i].From ?? DateTime.Now).ToShortDateString();
+                tab[i + 2, 3] = (borrList[i].To ?? DateTime.Now).ToShortDateString();
+                tab[i + 2, 4] = global.GetStatusName(borrList[i].Status ?? 1);
+            }
+
+            // ----- Return table -----
+            return tab;
+        }
+
         #endregion
 
         #region Export

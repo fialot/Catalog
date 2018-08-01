@@ -216,6 +216,12 @@
     <Compile Include="forms\frmEditLending.Designer.cs">
       <DependentUpon>frmEditLending.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmEditPersonBorrowing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEditPersonBorrowing.Designer.cs">
+      <DependentUpon>frmEditPersonBorrowing.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmEditPersonLending.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +334,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEditItem.resx">
       <DependentUpon>frmEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditPersonBorrowing.cs.resx">
+      <DependentUpon>frmEditPersonBorrowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEditPersonBorrowing.resx">
+      <DependentUpon>frmEditPersonBorrowing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEditPersonLending.cs.resx">
       <DependentUpon>frmEditPersonLending.cs</DependentUpon>

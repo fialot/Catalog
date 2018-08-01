@@ -245,36 +245,22 @@
             // 
             // toolStripContainer1
             // 
-            resources.ApplyResources(this.toolStripContainer1, "toolStripContainer1");
-            // 
-            // toolStripContainer1.BottomToolStripPanel
-            // 
-            resources.ApplyResources(this.toolStripContainer1.BottomToolStripPanel, "toolStripContainer1.BottomToolStripPanel");
             // 
             // toolStripContainer1.ContentPanel
             // 
-            resources.ApplyResources(this.toolStripContainer1.ContentPanel, "toolStripContainer1.ContentPanel");
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabCatalog);
-            // 
-            // toolStripContainer1.LeftToolStripPanel
-            // 
-            resources.ApplyResources(this.toolStripContainer1.LeftToolStripPanel, "toolStripContainer1.LeftToolStripPanel");
+            resources.ApplyResources(this.toolStripContainer1.ContentPanel, "toolStripContainer1.ContentPanel");
+            resources.ApplyResources(this.toolStripContainer1, "toolStripContainer1");
             this.toolStripContainer1.Name = "toolStripContainer1";
-            // 
-            // toolStripContainer1.RightToolStripPanel
-            // 
-            resources.ApplyResources(this.toolStripContainer1.RightToolStripPanel, "toolStripContainer1.RightToolStripPanel");
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            resources.ApplyResources(this.toolStripContainer1.TopToolStripPanel, "toolStripContainer1.TopToolStripPanel");
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolEditItem);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolFastFilter);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolFilter);
             // 
             // tabCatalog
             // 
-            resources.ApplyResources(this.tabCatalog, "tabCatalog");
             this.tabCatalog.Controls.Add(this.tabContacts);
             this.tabCatalog.Controls.Add(this.tabLending);
             this.tabCatalog.Controls.Add(this.tabBorrowing);
@@ -284,6 +270,7 @@
             this.tabCatalog.Controls.Add(this.tabAudio);
             this.tabCatalog.Controls.Add(this.tabVideo);
             this.tabCatalog.Controls.Add(this.tabFoto);
+            resources.ApplyResources(this.tabCatalog, "tabCatalog");
             this.tabCatalog.ImageList = this.imgBarList;
             this.tabCatalog.Name = "tabCatalog";
             this.tabCatalog.SelectedIndex = 0;
@@ -291,12 +278,12 @@
             // 
             // tabContacts
             // 
-            resources.ApplyResources(this.tabContacts, "tabContacts");
             this.tabContacts.Controls.Add(this.btnPrintTest);
             this.tabContacts.Controls.Add(this.btnPersonalLending);
             this.tabContacts.Controls.Add(this.button1);
             this.tabContacts.Controls.Add(this.btnTest);
             this.tabContacts.Controls.Add(this.olvContacts);
+            resources.ApplyResources(this.tabContacts, "tabContacts");
             this.tabContacts.Name = "tabContacts";
             this.tabContacts.UseVisualStyleBackColor = true;
             // 
@@ -329,7 +316,6 @@
             // 
             // olvContacts
             // 
-            resources.ApplyResources(this.olvContacts, "olvContacts");
             this.olvContacts.AllColumns.Add(this.conFastTags);
             this.olvContacts.AllColumns.Add(this.conName);
             this.olvContacts.AllColumns.Add(this.conSurname);
@@ -337,6 +323,7 @@
             this.olvContacts.AllColumns.Add(this.conEmail);
             this.olvContacts.AllColumns.Add(this.conAddress);
             this.olvContacts.AllColumns.Add(this.conFastTagsNum);
+            resources.ApplyResources(this.olvContacts, "olvContacts");
             this.olvContacts.CellEditUseWholeCell = false;
             this.olvContacts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.conFastTags,
@@ -350,7 +337,6 @@
             this.olvContacts.FullRowSelect = true;
             this.olvContacts.GridLines = true;
             this.olvContacts.Name = "olvContacts";
-            this.olvContacts.OverlayText.Text = resources.GetString("resource.Text");
             this.olvContacts.ShowGroups = false;
             this.olvContacts.SmallImageList = this.imgOLV;
             this.olvContacts.UseCompatibleStateImageBehavior = false;
@@ -410,17 +396,16 @@
             // 
             // tabLending
             // 
-            resources.ApplyResources(this.tabLending, "tabLending");
             this.tabLending.Controls.Add(this.olvLending);
             this.tabLending.Controls.Add(this.cbLendingShow);
             this.tabLending.Controls.Add(this.lblLendingShow);
             this.tabLending.Controls.Add(this.chbShowReturned);
+            resources.ApplyResources(this.tabLending, "tabLending");
             this.tabLending.Name = "tabLending";
             this.tabLending.UseVisualStyleBackColor = true;
             // 
             // olvLending
             // 
-            resources.ApplyResources(this.olvLending, "olvLending");
             this.olvLending.AllColumns.Add(this.ldFastTags);
             this.olvLending.AllColumns.Add(this.ldPerson);
             this.olvLending.AllColumns.Add(this.ldItemType);
@@ -432,6 +417,7 @@
             this.olvLending.AllColumns.Add(this.ldStatus);
             this.olvLending.AllColumns.Add(this.ldNote);
             this.olvLending.AllColumns.Add(this.ldFastTagsNum);
+            resources.ApplyResources(this.olvLending, "olvLending");
             this.olvLending.CellEditUseWholeCell = false;
             this.olvLending.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ldFastTags,
@@ -449,7 +435,6 @@
             this.olvLending.FullRowSelect = true;
             this.olvLending.GridLines = true;
             this.olvLending.Name = "olvLending";
-            this.olvLending.OverlayText.Text = resources.GetString("resource.Text1");
             this.olvLending.ShowGroups = false;
             this.olvLending.SmallImageList = this.imgOLV;
             this.olvLending.UseCompatibleStateImageBehavior = false;
@@ -509,9 +494,9 @@
             // 
             // cbLendingShow
             // 
-            resources.ApplyResources(this.cbLendingShow, "cbLendingShow");
             this.cbLendingShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLendingShow.FormattingEnabled = true;
+            resources.ApplyResources(this.cbLendingShow, "cbLendingShow");
             this.cbLendingShow.Name = "cbLendingShow";
             this.cbLendingShow.SelectedIndexChanged += new System.EventHandler(this.cbLendingShow_SelectedIndexChanged);
             // 
@@ -529,13 +514,13 @@
             // 
             // tabBorrowing
             // 
-            resources.ApplyResources(this.tabBorrowing, "tabBorrowing");
             this.tabBorrowing.Controls.Add(this.btnClearOldReservations);
             this.tabBorrowing.Controls.Add(this.btnBorrowings);
             this.tabBorrowing.Controls.Add(this.cbBorrowingShow);
             this.tabBorrowing.Controls.Add(this.lblShowBorrowing);
             this.tabBorrowing.Controls.Add(this.chbBorrowingReturned);
             this.tabBorrowing.Controls.Add(this.olvBorrowing);
+            resources.ApplyResources(this.tabBorrowing, "tabBorrowing");
             this.tabBorrowing.Name = "tabBorrowing";
             this.tabBorrowing.UseVisualStyleBackColor = true;
             // 
@@ -553,9 +538,9 @@
             // 
             // cbBorrowingShow
             // 
-            resources.ApplyResources(this.cbBorrowingShow, "cbBorrowingShow");
             this.cbBorrowingShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBorrowingShow.FormattingEnabled = true;
+            resources.ApplyResources(this.cbBorrowingShow, "cbBorrowingShow");
             this.cbBorrowingShow.Name = "cbBorrowingShow";
             this.cbBorrowingShow.SelectedIndexChanged += new System.EventHandler(this.cbBorrowingShow_SelectedIndexChanged);
             // 
@@ -573,7 +558,6 @@
             // 
             // olvBorrowing
             // 
-            resources.ApplyResources(this.olvBorrowing, "olvBorrowing");
             this.olvBorrowing.AllColumns.Add(this.brFastTags);
             this.olvBorrowing.AllColumns.Add(this.brPerson);
             this.olvBorrowing.AllColumns.Add(this.brItemName);
@@ -583,6 +567,7 @@
             this.olvBorrowing.AllColumns.Add(this.brStatus);
             this.olvBorrowing.AllColumns.Add(this.brNote);
             this.olvBorrowing.AllColumns.Add(this.brFastTagsNum);
+            resources.ApplyResources(this.olvBorrowing, "olvBorrowing");
             this.olvBorrowing.CellEditUseWholeCell = false;
             this.olvBorrowing.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.brFastTags,
@@ -598,7 +583,6 @@
             this.olvBorrowing.FullRowSelect = true;
             this.olvBorrowing.GridLines = true;
             this.olvBorrowing.Name = "olvBorrowing";
-            this.olvBorrowing.OverlayText.Text = resources.GetString("resource.Text2");
             this.olvBorrowing.ShowGroups = false;
             this.olvBorrowing.SmallImageList = this.imgOLV;
             this.olvBorrowing.UseCompatibleStateImageBehavior = false;
@@ -606,7 +590,7 @@
             this.olvBorrowing.VirtualMode = true;
             this.olvBorrowing.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvBorrowing_FormatRow);
             this.olvBorrowing.SelectedIndexChanged += new System.EventHandler(this.olvBorrowing_SelectedIndexChanged);
-            this.olvBorrowing.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
+            this.olvBorrowing.DoubleClick += new System.EventHandler(this.olvBorrowing_DoubleClick);
             // 
             // brFastTags
             // 
@@ -649,9 +633,9 @@
             // 
             // tabItems
             // 
-            resources.ApplyResources(this.tabItems, "tabItems");
             this.tabItems.Controls.Add(this.chbShowExcluded);
             this.tabItems.Controls.Add(this.olvItem);
+            resources.ApplyResources(this.tabItems, "tabItems");
             this.tabItems.Name = "tabItems";
             this.tabItems.UseVisualStyleBackColor = true;
             // 
@@ -664,7 +648,6 @@
             // 
             // olvItem
             // 
-            resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.AllColumns.Add(this.itFastTags);
             this.olvItem.AllColumns.Add(this.itName);
             this.olvItem.AllColumns.Add(this.itCategory);
@@ -676,6 +659,7 @@
             this.olvItem.AllColumns.Add(this.itAvailable);
             this.olvItem.AllColumns.Add(this.itExcluded);
             this.olvItem.AllColumns.Add(this.itFastTagsNum);
+            resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.CellEditUseWholeCell = false;
             this.olvItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.itFastTags,
@@ -693,7 +677,6 @@
             this.olvItem.FullRowSelect = true;
             this.olvItem.GridLines = true;
             this.olvItem.Name = "olvItem";
-            this.olvItem.OverlayText.Text = resources.GetString("resource.Text3");
             this.olvItem.ShowGroups = false;
             this.olvItem.SmallImageList = this.imgOLV;
             this.olvItem.UseCompatibleStateImageBehavior = false;
@@ -753,14 +736,13 @@
             // 
             // tabBooks
             // 
-            resources.ApplyResources(this.tabBooks, "tabBooks");
             this.tabBooks.Controls.Add(this.olvBooks);
+            resources.ApplyResources(this.tabBooks, "tabBooks");
             this.tabBooks.Name = "tabBooks";
             this.tabBooks.UseVisualStyleBackColor = true;
             // 
             // olvBooks
             // 
-            resources.ApplyResources(this.olvBooks, "olvBooks");
             this.olvBooks.AllColumns.Add(this.bkFastTags);
             this.olvBooks.AllColumns.Add(this.bkName);
             this.olvBooks.AllColumns.Add(this.bkAuthor);
@@ -775,6 +757,7 @@
             this.olvBooks.AllColumns.Add(this.bkKeywords);
             this.olvBooks.AllColumns.Add(this.bkSeries);
             this.olvBooks.AllColumns.Add(this.bkFastTagsNum);
+            resources.ApplyResources(this.olvBooks, "olvBooks");
             this.olvBooks.CellEditUseWholeCell = false;
             this.olvBooks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.bkFastTags,
@@ -795,7 +778,6 @@
             this.olvBooks.FullRowSelect = true;
             this.olvBooks.GridLines = true;
             this.olvBooks.Name = "olvBooks";
-            this.olvBooks.OverlayText.Text = resources.GetString("resource.Text4");
             this.olvBooks.ShowGroups = false;
             this.olvBooks.SmallImageList = this.imgOLV;
             this.olvBooks.UseCompatibleStateImageBehavior = false;
@@ -867,9 +849,9 @@
             // 
             // tabBoardGames
             // 
-            resources.ApplyResources(this.tabBoardGames, "tabBoardGames");
             this.tabBoardGames.Controls.Add(this.chbShowExcludedBoard);
             this.tabBoardGames.Controls.Add(this.olvBoard);
+            resources.ApplyResources(this.tabBoardGames, "tabBoardGames");
             this.tabBoardGames.Name = "tabBoardGames";
             this.tabBoardGames.UseVisualStyleBackColor = true;
             // 
@@ -882,7 +864,6 @@
             // 
             // olvBoard
             // 
-            resources.ApplyResources(this.olvBoard, "olvBoard");
             this.olvBoard.AllColumns.Add(this.bgTags);
             this.olvBoard.AllColumns.Add(this.bgName);
             this.olvBoard.AllColumns.Add(this.bgCategory);
@@ -893,6 +874,7 @@
             this.olvBoard.AllColumns.Add(this.bgAvailable);
             this.olvBoard.AllColumns.Add(this.bgExcluded);
             this.olvBoard.AllColumns.Add(this.bgTagsNum);
+            resources.ApplyResources(this.olvBoard, "olvBoard");
             this.olvBoard.CellEditUseWholeCell = false;
             this.olvBoard.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.bgTags,
@@ -909,7 +891,6 @@
             this.olvBoard.FullRowSelect = true;
             this.olvBoard.GridLines = true;
             this.olvBoard.Name = "olvBoard";
-            this.olvBoard.OverlayText.Text = resources.GetString("resource.Text5");
             this.olvBoard.ShowGroups = false;
             this.olvBoard.SmallImageList = this.imgOLV;
             this.olvBoard.UseCompatibleStateImageBehavior = false;
@@ -1008,25 +989,25 @@
             // 
             // btnNewItem
             // 
-            resources.ApplyResources(this.btnNewItem, "btnNewItem");
             this.btnNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnNewItem.Image = global::Katalog.Properties.Resources.newItem;
+            resources.ApplyResources(this.btnNewItem, "btnNewItem");
             this.btnNewItem.Name = "btnNewItem";
             this.btnNewItem.Click += new System.EventHandler(this.btnNewItem_Click);
             // 
             // btnEditItem
             // 
-            resources.ApplyResources(this.btnEditItem, "btnEditItem");
             this.btnEditItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnEditItem.Image = global::Katalog.Properties.Resources.edit;
+            resources.ApplyResources(this.btnEditItem, "btnEditItem");
             this.btnEditItem.Name = "btnEditItem";
             this.btnEditItem.Click += new System.EventHandler(this.btnEditItem_Click);
             // 
             // btnDeleteItem
             // 
-            resources.ApplyResources(this.btnDeleteItem, "btnDeleteItem");
             this.btnDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnDeleteItem.Image = global::Katalog.Properties.Resources.delete;
+            resources.ApplyResources(this.btnDeleteItem, "btnDeleteItem");
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
@@ -1076,294 +1057,294 @@
             // 
             // btnFilterA
             // 
-            resources.ApplyResources(this.btnFilterA, "btnFilterA");
             this.btnFilterA.CheckOnClick = true;
             this.btnFilterA.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterA, "btnFilterA");
             this.btnFilterA.Name = "btnFilterA";
             this.btnFilterA.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterB
             // 
-            resources.ApplyResources(this.btnFilterB, "btnFilterB");
             this.btnFilterB.CheckOnClick = true;
             this.btnFilterB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterB, "btnFilterB");
             this.btnFilterB.Name = "btnFilterB";
             this.btnFilterB.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterC
             // 
-            resources.ApplyResources(this.btnFilterC, "btnFilterC");
             this.btnFilterC.CheckOnClick = true;
             this.btnFilterC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterC, "btnFilterC");
             this.btnFilterC.Name = "btnFilterC";
             this.btnFilterC.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterCC
             // 
-            resources.ApplyResources(this.btnFilterCC, "btnFilterCC");
             this.btnFilterCC.CheckOnClick = true;
             this.btnFilterCC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterCC, "btnFilterCC");
             this.btnFilterCC.Name = "btnFilterCC";
             this.btnFilterCC.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterD
             // 
-            resources.ApplyResources(this.btnFilterD, "btnFilterD");
             this.btnFilterD.CheckOnClick = true;
             this.btnFilterD.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterD, "btnFilterD");
             this.btnFilterD.Name = "btnFilterD";
             this.btnFilterD.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterDD
             // 
-            resources.ApplyResources(this.btnFilterDD, "btnFilterDD");
             this.btnFilterDD.CheckOnClick = true;
             this.btnFilterDD.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterDD, "btnFilterDD");
             this.btnFilterDD.Name = "btnFilterDD";
             this.btnFilterDD.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterE
             // 
-            resources.ApplyResources(this.btnFilterE, "btnFilterE");
             this.btnFilterE.CheckOnClick = true;
             this.btnFilterE.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterE, "btnFilterE");
             this.btnFilterE.Name = "btnFilterE";
             this.btnFilterE.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterF
             // 
-            resources.ApplyResources(this.btnFilterF, "btnFilterF");
             this.btnFilterF.CheckOnClick = true;
             this.btnFilterF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterF, "btnFilterF");
             this.btnFilterF.Name = "btnFilterF";
             this.btnFilterF.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterG
             // 
-            resources.ApplyResources(this.btnFilterG, "btnFilterG");
             this.btnFilterG.CheckOnClick = true;
             this.btnFilterG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterG, "btnFilterG");
             this.btnFilterG.Name = "btnFilterG";
             this.btnFilterG.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterH
             // 
-            resources.ApplyResources(this.btnFilterH, "btnFilterH");
             this.btnFilterH.CheckOnClick = true;
             this.btnFilterH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterH, "btnFilterH");
             this.btnFilterH.Name = "btnFilterH";
             this.btnFilterH.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterCH
             // 
-            resources.ApplyResources(this.btnFilterCH, "btnFilterCH");
             this.btnFilterCH.CheckOnClick = true;
             this.btnFilterCH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterCH, "btnFilterCH");
             this.btnFilterCH.Name = "btnFilterCH";
             this.btnFilterCH.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterI
             // 
-            resources.ApplyResources(this.btnFilterI, "btnFilterI");
             this.btnFilterI.CheckOnClick = true;
             this.btnFilterI.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterI, "btnFilterI");
             this.btnFilterI.Name = "btnFilterI";
             this.btnFilterI.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterJ
             // 
-            resources.ApplyResources(this.btnFilterJ, "btnFilterJ");
             this.btnFilterJ.CheckOnClick = true;
             this.btnFilterJ.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterJ, "btnFilterJ");
             this.btnFilterJ.Name = "btnFilterJ";
             this.btnFilterJ.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterK
             // 
-            resources.ApplyResources(this.btnFilterK, "btnFilterK");
             this.btnFilterK.CheckOnClick = true;
             this.btnFilterK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterK, "btnFilterK");
             this.btnFilterK.Name = "btnFilterK";
             this.btnFilterK.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterL
             // 
-            resources.ApplyResources(this.btnFilterL, "btnFilterL");
             this.btnFilterL.CheckOnClick = true;
             this.btnFilterL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterL, "btnFilterL");
             this.btnFilterL.Name = "btnFilterL";
             this.btnFilterL.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterM
             // 
-            resources.ApplyResources(this.btnFilterM, "btnFilterM");
             this.btnFilterM.CheckOnClick = true;
             this.btnFilterM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterM, "btnFilterM");
             this.btnFilterM.Name = "btnFilterM";
             this.btnFilterM.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterN
             // 
-            resources.ApplyResources(this.btnFilterN, "btnFilterN");
             this.btnFilterN.CheckOnClick = true;
             this.btnFilterN.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterN, "btnFilterN");
             this.btnFilterN.Name = "btnFilterN";
             this.btnFilterN.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterNN
             // 
-            resources.ApplyResources(this.btnFilterNN, "btnFilterNN");
             this.btnFilterNN.CheckOnClick = true;
             this.btnFilterNN.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterNN, "btnFilterNN");
             this.btnFilterNN.Name = "btnFilterNN";
             this.btnFilterNN.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterO
             // 
-            resources.ApplyResources(this.btnFilterO, "btnFilterO");
             this.btnFilterO.CheckOnClick = true;
             this.btnFilterO.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterO, "btnFilterO");
             this.btnFilterO.Name = "btnFilterO";
             this.btnFilterO.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterP
             // 
-            resources.ApplyResources(this.btnFilterP, "btnFilterP");
             this.btnFilterP.CheckOnClick = true;
             this.btnFilterP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterP, "btnFilterP");
             this.btnFilterP.Name = "btnFilterP";
             this.btnFilterP.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterQ
             // 
-            resources.ApplyResources(this.btnFilterQ, "btnFilterQ");
             this.btnFilterQ.CheckOnClick = true;
             this.btnFilterQ.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterQ, "btnFilterQ");
             this.btnFilterQ.Name = "btnFilterQ";
             this.btnFilterQ.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterR
             // 
-            resources.ApplyResources(this.btnFilterR, "btnFilterR");
             this.btnFilterR.CheckOnClick = true;
             this.btnFilterR.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterR, "btnFilterR");
             this.btnFilterR.Name = "btnFilterR";
             this.btnFilterR.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterRR
             // 
-            resources.ApplyResources(this.btnFilterRR, "btnFilterRR");
             this.btnFilterRR.CheckOnClick = true;
             this.btnFilterRR.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterRR, "btnFilterRR");
             this.btnFilterRR.Name = "btnFilterRR";
             this.btnFilterRR.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterS
             // 
-            resources.ApplyResources(this.btnFilterS, "btnFilterS");
             this.btnFilterS.CheckOnClick = true;
             this.btnFilterS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterS, "btnFilterS");
             this.btnFilterS.Name = "btnFilterS";
             this.btnFilterS.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterSS
             // 
-            resources.ApplyResources(this.btnFilterSS, "btnFilterSS");
             this.btnFilterSS.CheckOnClick = true;
             this.btnFilterSS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterSS, "btnFilterSS");
             this.btnFilterSS.Name = "btnFilterSS";
             this.btnFilterSS.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterT
             // 
-            resources.ApplyResources(this.btnFilterT, "btnFilterT");
             this.btnFilterT.CheckOnClick = true;
             this.btnFilterT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterT, "btnFilterT");
             this.btnFilterT.Name = "btnFilterT";
             this.btnFilterT.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterTT
             // 
-            resources.ApplyResources(this.btnFilterTT, "btnFilterTT");
             this.btnFilterTT.CheckOnClick = true;
             this.btnFilterTT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterTT, "btnFilterTT");
             this.btnFilterTT.Name = "btnFilterTT";
             this.btnFilterTT.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterU
             // 
-            resources.ApplyResources(this.btnFilterU, "btnFilterU");
             this.btnFilterU.CheckOnClick = true;
             this.btnFilterU.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterU, "btnFilterU");
             this.btnFilterU.Name = "btnFilterU";
             this.btnFilterU.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterV
             // 
-            resources.ApplyResources(this.btnFilterV, "btnFilterV");
             this.btnFilterV.CheckOnClick = true;
             this.btnFilterV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterV, "btnFilterV");
             this.btnFilterV.Name = "btnFilterV";
             this.btnFilterV.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterW
             // 
-            resources.ApplyResources(this.btnFilterW, "btnFilterW");
             this.btnFilterW.CheckOnClick = true;
             this.btnFilterW.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterW, "btnFilterW");
             this.btnFilterW.Name = "btnFilterW";
             this.btnFilterW.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterX
             // 
-            resources.ApplyResources(this.btnFilterX, "btnFilterX");
             this.btnFilterX.CheckOnClick = true;
             this.btnFilterX.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterX, "btnFilterX");
             this.btnFilterX.Name = "btnFilterX";
             this.btnFilterX.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterY
             // 
-            resources.ApplyResources(this.btnFilterY, "btnFilterY");
             this.btnFilterY.CheckOnClick = true;
             this.btnFilterY.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterY, "btnFilterY");
             this.btnFilterY.Name = "btnFilterY";
             this.btnFilterY.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterZ
             // 
-            resources.ApplyResources(this.btnFilterZ, "btnFilterZ");
             this.btnFilterZ.CheckOnClick = true;
             this.btnFilterZ.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterZ, "btnFilterZ");
             this.btnFilterZ.Name = "btnFilterZ";
             this.btnFilterZ.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // btnFilterZZ
             // 
-            resources.ApplyResources(this.btnFilterZZ, "btnFilterZZ");
             this.btnFilterZZ.CheckOnClick = true;
             this.btnFilterZZ.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilterZZ, "btnFilterZZ");
             this.btnFilterZZ.Name = "btnFilterZZ";
             this.btnFilterZZ.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // btnFilter09
             // 
-            resources.ApplyResources(this.btnFilter09, "btnFilter09");
             this.btnFilter09.CheckOnClick = true;
             this.btnFilter09.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            resources.ApplyResources(this.btnFilter09, "btnFilter09");
             this.btnFilter09.Name = "btnFilter09";
             this.btnFilter09.Click += new System.EventHandler(this.btnFilterA_Click);
             // 
             // cbFastFilterCol
             // 
-            resources.ApplyResources(this.cbFastFilterCol, "cbFastFilterCol");
             this.cbFastFilterCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFastFilterCol.Name = "cbFastFilterCol";
+            resources.ApplyResources(this.cbFastFilterCol, "cbFastFilterCol");
             this.cbFastFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFastFilterCol_SelectedIndexChanged);
             // 
             // toolFilter
@@ -1384,73 +1365,73 @@
             // 
             // lblFilter
             // 
-            resources.ApplyResources(this.lblFilter, "lblFilter");
             this.lblFilter.Name = "lblFilter";
+            resources.ApplyResources(this.lblFilter, "lblFilter");
             // 
             // txtFilter
             // 
-            resources.ApplyResources(this.txtFilter, "txtFilter");
             this.txtFilter.Name = "txtFilter";
+            resources.ApplyResources(this.txtFilter, "txtFilter");
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // cbFilterCol
             // 
-            resources.ApplyResources(this.cbFilterCol, "cbFilterCol");
             this.cbFilterCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilterCol.Name = "cbFilterCol";
+            resources.ApplyResources(this.cbFilterCol, "cbFilterCol");
             this.cbFilterCol.SelectedIndexChanged += new System.EventHandler(this.cbFilterCol_SelectedIndexChanged);
             // 
             // btnFilterPin1
             // 
-            resources.ApplyResources(this.btnFilterPin1, "btnFilterPin1");
             this.btnFilterPin1.CheckOnClick = true;
             this.btnFilterPin1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnFilterPin1.Image = global::Katalog.Properties.Resources.circ_green;
+            resources.ApplyResources(this.btnFilterPin1, "btnFilterPin1");
             this.btnFilterPin1.Name = "btnFilterPin1";
             this.btnFilterPin1.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin2
             // 
-            resources.ApplyResources(this.btnFilterPin2, "btnFilterPin2");
             this.btnFilterPin2.CheckOnClick = true;
             this.btnFilterPin2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnFilterPin2.Image = global::Katalog.Properties.Resources.circ_red;
+            resources.ApplyResources(this.btnFilterPin2, "btnFilterPin2");
             this.btnFilterPin2.Name = "btnFilterPin2";
             this.btnFilterPin2.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin3
             // 
-            resources.ApplyResources(this.btnFilterPin3, "btnFilterPin3");
             this.btnFilterPin3.CheckOnClick = true;
             this.btnFilterPin3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnFilterPin3.Image = global::Katalog.Properties.Resources.circ_orange;
+            resources.ApplyResources(this.btnFilterPin3, "btnFilterPin3");
             this.btnFilterPin3.Name = "btnFilterPin3";
             this.btnFilterPin3.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin4
             // 
-            resources.ApplyResources(this.btnFilterPin4, "btnFilterPin4");
             this.btnFilterPin4.CheckOnClick = true;
             this.btnFilterPin4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnFilterPin4.Image = global::Katalog.Properties.Resources.circ_yellow;
+            resources.ApplyResources(this.btnFilterPin4, "btnFilterPin4");
             this.btnFilterPin4.Name = "btnFilterPin4";
             this.btnFilterPin4.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin5
             // 
-            resources.ApplyResources(this.btnFilterPin5, "btnFilterPin5");
             this.btnFilterPin5.CheckOnClick = true;
             this.btnFilterPin5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnFilterPin5.Image = global::Katalog.Properties.Resources.circ_grey;
+            resources.ApplyResources(this.btnFilterPin5, "btnFilterPin5");
             this.btnFilterPin5.Name = "btnFilterPin5";
             this.btnFilterPin5.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
             // btnFilterPin6
             // 
-            resources.ApplyResources(this.btnFilterPin6, "btnFilterPin6");
             this.btnFilterPin6.CheckOnClick = true;
             this.btnFilterPin6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnFilterPin6.Image = global::Katalog.Properties.Resources.Circle_Blue;
+            resources.ApplyResources(this.btnFilterPin6, "btnFilterPin6");
             this.btnFilterPin6.Name = "btnFilterPin6";
             this.btnFilterPin6.Click += new System.EventHandler(this.btnFilterPin1_Click);
             // 
@@ -1465,7 +1446,6 @@
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFile,
@@ -1474,11 +1454,11 @@
             this.mnuLists,
             this.mnuTools,
             this.mnuHelp});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // mnuFile
             // 
-            resources.ApplyResources(this.mnuFile, "mnuFile");
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuNewDB,
             this.mnuOpenDB,
@@ -1489,83 +1469,83 @@
             this.toolStripMenuItem4,
             this.mnuExit});
             this.mnuFile.Name = "mnuFile";
+            resources.ApplyResources(this.mnuFile, "mnuFile");
             // 
             // mnuNewDB
             // 
-            resources.ApplyResources(this.mnuNewDB, "mnuNewDB");
             this.mnuNewDB.Name = "mnuNewDB";
+            resources.ApplyResources(this.mnuNewDB, "mnuNewDB");
             // 
             // mnuOpenDB
             // 
-            resources.ApplyResources(this.mnuOpenDB, "mnuOpenDB");
             this.mnuOpenDB.Name = "mnuOpenDB";
+            resources.ApplyResources(this.mnuOpenDB, "mnuOpenDB");
             // 
             // mnuSavaAsDB
             // 
-            resources.ApplyResources(this.mnuSavaAsDB, "mnuSavaAsDB");
             this.mnuSavaAsDB.Image = global::Katalog.Properties.Resources.save;
             this.mnuSavaAsDB.Name = "mnuSavaAsDB";
+            resources.ApplyResources(this.mnuSavaAsDB, "mnuSavaAsDB");
             // 
             // toolStripMenuItem1
             // 
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // mnuImport
             // 
-            resources.ApplyResources(this.mnuImport, "mnuImport");
             this.mnuImport.Name = "mnuImport";
+            resources.ApplyResources(this.mnuImport, "mnuImport");
             this.mnuImport.Click += new System.EventHandler(this.mnuImport_Click);
             // 
             // mnuExport
             // 
-            resources.ApplyResources(this.mnuExport, "mnuExport");
             this.mnuExport.Name = "mnuExport";
+            resources.ApplyResources(this.mnuExport, "mnuExport");
             this.mnuExport.Click += new System.EventHandler(this.mnuExport_Click);
             // 
             // toolStripMenuItem4
             // 
-            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             // 
             // mnuExit
             // 
-            resources.ApplyResources(this.mnuExit, "mnuExit");
             this.mnuExit.Name = "mnuExit";
+            resources.ApplyResources(this.mnuExit, "mnuExit");
             // 
             // mnuEdit
             // 
-            resources.ApplyResources(this.mnuEdit, "mnuEdit");
             this.mnuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuNewItem,
             this.mnuEditItem,
             this.mnuDelItem});
             this.mnuEdit.Name = "mnuEdit";
+            resources.ApplyResources(this.mnuEdit, "mnuEdit");
             // 
             // mnuNewItem
             // 
-            resources.ApplyResources(this.mnuNewItem, "mnuNewItem");
             this.mnuNewItem.Image = global::Katalog.Properties.Resources.newItem;
             this.mnuNewItem.Name = "mnuNewItem";
+            resources.ApplyResources(this.mnuNewItem, "mnuNewItem");
             this.mnuNewItem.Click += new System.EventHandler(this.btnNewItem_Click);
             // 
             // mnuEditItem
             // 
-            resources.ApplyResources(this.mnuEditItem, "mnuEditItem");
             this.mnuEditItem.Image = global::Katalog.Properties.Resources.edit;
             this.mnuEditItem.Name = "mnuEditItem";
+            resources.ApplyResources(this.mnuEditItem, "mnuEditItem");
             this.mnuEditItem.Click += new System.EventHandler(this.btnEditItem_Click);
             // 
             // mnuDelItem
             // 
-            resources.ApplyResources(this.mnuDelItem, "mnuDelItem");
             this.mnuDelItem.Image = global::Katalog.Properties.Resources.delete;
             this.mnuDelItem.Name = "mnuDelItem";
+            resources.ApplyResources(this.mnuDelItem, "mnuDelItem");
             this.mnuDelItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
             // mnuShow
             // 
-            resources.ApplyResources(this.mnuShow, "mnuShow");
             this.mnuShow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuToolBars,
             this.toolStripMenuItem2,
@@ -1577,115 +1557,115 @@
             this.mnuShowBooks,
             this.mnuShowBoardGames});
             this.mnuShow.Name = "mnuShow";
+            resources.ApplyResources(this.mnuShow, "mnuShow");
             // 
             // mnuToolBars
             // 
-            resources.ApplyResources(this.mnuToolBars, "mnuToolBars");
             this.mnuToolBars.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuShowFilter,
             this.mnuShowFastFilter});
             this.mnuToolBars.Name = "mnuToolBars";
+            resources.ApplyResources(this.mnuToolBars, "mnuToolBars");
             // 
             // mnuShowFilter
             // 
-            resources.ApplyResources(this.mnuShowFilter, "mnuShowFilter");
             this.mnuShowFilter.Checked = true;
             this.mnuShowFilter.CheckOnClick = true;
             this.mnuShowFilter.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowFilter.Name = "mnuShowFilter";
+            resources.ApplyResources(this.mnuShowFilter, "mnuShowFilter");
             this.mnuShowFilter.Tag = "Filter";
             this.mnuShowFilter.Click += new System.EventHandler(this.mnuShowToolbars_Click);
             // 
             // mnuShowFastFilter
             // 
-            resources.ApplyResources(this.mnuShowFastFilter, "mnuShowFastFilter");
             this.mnuShowFastFilter.Checked = true;
             this.mnuShowFastFilter.CheckOnClick = true;
             this.mnuShowFastFilter.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowFastFilter.Name = "mnuShowFastFilter";
+            resources.ApplyResources(this.mnuShowFastFilter, "mnuShowFastFilter");
             this.mnuShowFastFilter.Tag = "FastFilter";
             this.mnuShowFastFilter.Click += new System.EventHandler(this.mnuShowToolbars_Click);
             // 
             // toolStripMenuItem2
             // 
-            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // mnuShowContacts
             // 
-            resources.ApplyResources(this.mnuShowContacts, "mnuShowContacts");
             this.mnuShowContacts.Checked = true;
             this.mnuShowContacts.CheckOnClick = true;
             this.mnuShowContacts.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowContacts.Name = "mnuShowContacts";
+            resources.ApplyResources(this.mnuShowContacts, "mnuShowContacts");
             this.mnuShowContacts.Tag = "Contacts";
             this.mnuShowContacts.Click += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowLending
             // 
-            resources.ApplyResources(this.mnuShowLending, "mnuShowLending");
             this.mnuShowLending.Checked = true;
             this.mnuShowLending.CheckOnClick = true;
             this.mnuShowLending.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowLending.Name = "mnuShowLending";
+            resources.ApplyResources(this.mnuShowLending, "mnuShowLending");
             this.mnuShowLending.Tag = "Lending";
             this.mnuShowLending.Click += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowBorrowing
             // 
-            resources.ApplyResources(this.mnuShowBorrowing, "mnuShowBorrowing");
             this.mnuShowBorrowing.Checked = true;
             this.mnuShowBorrowing.CheckOnClick = true;
             this.mnuShowBorrowing.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowBorrowing.Name = "mnuShowBorrowing";
+            resources.ApplyResources(this.mnuShowBorrowing, "mnuShowBorrowing");
             this.mnuShowBorrowing.Tag = "Borrowing";
             this.mnuShowBorrowing.Click += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // toolStripMenuItem3
             // 
-            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             // 
             // mnuShowItems
             // 
-            resources.ApplyResources(this.mnuShowItems, "mnuShowItems");
             this.mnuShowItems.Checked = true;
             this.mnuShowItems.CheckOnClick = true;
             this.mnuShowItems.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowItems.Name = "mnuShowItems";
+            resources.ApplyResources(this.mnuShowItems, "mnuShowItems");
             this.mnuShowItems.Tag = "Items";
             this.mnuShowItems.Click += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowBooks
             // 
-            resources.ApplyResources(this.mnuShowBooks, "mnuShowBooks");
             this.mnuShowBooks.Checked = true;
             this.mnuShowBooks.CheckOnClick = true;
             this.mnuShowBooks.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowBooks.Name = "mnuShowBooks";
+            resources.ApplyResources(this.mnuShowBooks, "mnuShowBooks");
             this.mnuShowBooks.Tag = "Books";
             this.mnuShowBooks.Click += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowBoardGames
             // 
-            resources.ApplyResources(this.mnuShowBoardGames, "mnuShowBoardGames");
             this.mnuShowBoardGames.Checked = true;
             this.mnuShowBoardGames.CheckOnClick = true;
             this.mnuShowBoardGames.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuShowBoardGames.Name = "mnuShowBoardGames";
+            resources.ApplyResources(this.mnuShowBoardGames, "mnuShowBoardGames");
             this.mnuShowBoardGames.Tag = "Boardgames";
             this.mnuShowBoardGames.Click += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuLists
             // 
-            resources.ApplyResources(this.mnuLists, "mnuLists");
             this.mnuLists.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuBookLists});
             this.mnuLists.Name = "mnuLists";
+            resources.ApplyResources(this.mnuLists, "mnuLists");
             // 
             // mnuBookLists
             // 
-            resources.ApplyResources(this.mnuBookLists, "mnuBookLists");
             this.mnuBookLists.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuAuthorList,
             this.překladatelToolStripMenuItem,
@@ -1695,87 +1675,88 @@
             this.mnuLanguageLists,
             this.mnuPublishing});
             this.mnuBookLists.Name = "mnuBookLists";
+            resources.ApplyResources(this.mnuBookLists, "mnuBookLists");
             // 
             // mnuAuthorList
             // 
-            resources.ApplyResources(this.mnuAuthorList, "mnuAuthorList");
             this.mnuAuthorList.Name = "mnuAuthorList";
+            resources.ApplyResources(this.mnuAuthorList, "mnuAuthorList");
             // 
             // překladatelToolStripMenuItem
             // 
-            resources.ApplyResources(this.překladatelToolStripMenuItem, "překladatelToolStripMenuItem");
             this.překladatelToolStripMenuItem.Name = "překladatelToolStripMenuItem";
+            resources.ApplyResources(this.překladatelToolStripMenuItem, "překladatelToolStripMenuItem");
             // 
             // mnuIllustratorList
             // 
-            resources.ApplyResources(this.mnuIllustratorList, "mnuIllustratorList");
             this.mnuIllustratorList.Name = "mnuIllustratorList";
+            resources.ApplyResources(this.mnuIllustratorList, "mnuIllustratorList");
             // 
             // mnuGenre
             // 
-            resources.ApplyResources(this.mnuGenre, "mnuGenre");
             this.mnuGenre.Name = "mnuGenre";
+            resources.ApplyResources(this.mnuGenre, "mnuGenre");
             // 
             // mnuSeries
             // 
-            resources.ApplyResources(this.mnuSeries, "mnuSeries");
             this.mnuSeries.Name = "mnuSeries";
+            resources.ApplyResources(this.mnuSeries, "mnuSeries");
             // 
             // mnuLanguageLists
             // 
-            resources.ApplyResources(this.mnuLanguageLists, "mnuLanguageLists");
             this.mnuLanguageLists.Name = "mnuLanguageLists";
+            resources.ApplyResources(this.mnuLanguageLists, "mnuLanguageLists");
             // 
             // mnuPublishing
             // 
-            resources.ApplyResources(this.mnuPublishing, "mnuPublishing");
             this.mnuPublishing.Name = "mnuPublishing";
+            resources.ApplyResources(this.mnuPublishing, "mnuPublishing");
             // 
             // mnuTools
             // 
-            resources.ApplyResources(this.mnuTools, "mnuTools");
             this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuOptions,
             this.mnuSubTools});
             this.mnuTools.Name = "mnuTools";
+            resources.ApplyResources(this.mnuTools, "mnuTools");
             // 
             // mnuOptions
             // 
-            resources.ApplyResources(this.mnuOptions, "mnuOptions");
             this.mnuOptions.Image = global::Katalog.Properties.Resources.settings;
             this.mnuOptions.Name = "mnuOptions";
+            resources.ApplyResources(this.mnuOptions, "mnuOptions");
             this.mnuOptions.Click += new System.EventHandler(this.mnuOptions_Click);
             // 
             // mnuSubTools
             // 
-            resources.ApplyResources(this.mnuSubTools, "mnuSubTools");
             this.mnuSubTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRecalculateAvailableItems});
             this.mnuSubTools.Name = "mnuSubTools";
+            resources.ApplyResources(this.mnuSubTools, "mnuSubTools");
             // 
             // mnuRecalculateAvailableItems
             // 
-            resources.ApplyResources(this.mnuRecalculateAvailableItems, "mnuRecalculateAvailableItems");
             this.mnuRecalculateAvailableItems.Name = "mnuRecalculateAvailableItems";
+            resources.ApplyResources(this.mnuRecalculateAvailableItems, "mnuRecalculateAvailableItems");
             this.mnuRecalculateAvailableItems.Click += new System.EventHandler(this.mnuRecalculateAvailableItems_Click);
             // 
             // mnuHelp
             // 
-            resources.ApplyResources(this.mnuHelp, "mnuHelp");
             this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuAbout});
             this.mnuHelp.Name = "mnuHelp";
+            resources.ApplyResources(this.mnuHelp, "mnuHelp");
             // 
             // mnuAbout
             // 
-            resources.ApplyResources(this.mnuAbout, "mnuAbout");
             this.mnuAbout.Name = "mnuAbout";
+            resources.ApplyResources(this.mnuAbout, "mnuAbout");
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
             // 
             // statusBar
             // 
-            resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
+            resources.ApplyResources(this.statusBar, "statusBar");
             this.statusBar.Name = "statusBar";
             // 
             // frmMain

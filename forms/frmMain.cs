@@ -455,6 +455,13 @@ namespace Katalog
         {
             UpdateBorrowingOLV();
         }
+
+
+        private void olvBorrowing_DoubleClick(object sender, EventArgs e)
+        {
+            EditPersonalLending();
+        }
+
         #endregion
 
         #region Items
@@ -1180,6 +1187,16 @@ namespace Katalog
                     var res = form.ShowDialog(((Lending)olvLending.SelectedObject).PersonID ?? Guid.Empty);
                     UpdateLendingOLV();
                     UpdateAllItemsOLV();
+                }
+            }
+            // ----- Borrowing -----
+            else if (tabCatalog.SelectedTab == tabBorrowing)
+            {
+                if (olvBorrowing.SelectedIndex >= 0)                 // If selected Item
+                {
+                    frmEditPersonBorrowing form = new frmEditPersonBorrowing();   // Show Edit form
+                    var res = form.ShowDialog(((Borrowing)olvBorrowing.SelectedObject).PersonID ?? Guid.Empty);
+                    UpdateBorrowingOLV();
                 }
             }
         }
@@ -2498,5 +2515,6 @@ namespace Katalog
                 toolFastFilter.Visible = ((ToolStripMenuItem)sender).Checked;
             }
         }
+
     }
 }

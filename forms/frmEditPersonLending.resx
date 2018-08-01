@@ -117,605 +117,368 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="itInvNumber.Text" xml:space="preserve">
+    <value>Inv. Num.</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnReturn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 23</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
+    <value>TimeOut</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="gbPerson.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="btnPrintLend.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
   <data name="btnPrintLend.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnPrintLend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>595, 30</value>
+  <data name="&gt;&gt;itNote.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
   </data>
-  <data name="btnPrintLend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnPrintLend.TabIndex" type="System.Int32, mscorlib">
-    <value>81</value>
-  </data>
-  <data name="btnPrintLend.Text" xml:space="preserve">
-    <value>Print</value>
-  </data>
-  <data name="&gt;&gt;btnPrintLend.Name" xml:space="preserve">
-    <value>btnPrintLend</value>
-  </data>
-  <data name="&gt;&gt;btnPrintLend.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPrintLend.Parent" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;btnPrintLend.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblPersonNum.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblPersonNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblPersonNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
-  </data>
-  <data name="lblPersonNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
-  </data>
-  <data name="lblPersonNum.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="lblPersonNum.Text" xml:space="preserve">
-    <value>Person number: -</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.Name" xml:space="preserve">
-    <value>lblPersonNum</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.Parent" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;lblPersonNum.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lblPerson.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="gbItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>691, 473</value>
   </data>
   <data name="lblPerson.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 24pt</value>
   </data>
-  <data name="lblPerson.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 16</value>
-  </data>
-  <data name="lblPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 39</value>
-  </data>
-  <data name="lblPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="lblPerson.Text" xml:space="preserve">
-    <value>Person</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.Name" xml:space="preserve">
-    <value>lblPerson</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.Parent" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;lblPerson.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="gbPerson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="gbPerson.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 80</value>
-  </data>
-  <data name="gbPerson.TabIndex" type="System.Int32, mscorlib">
-    <value>76</value>
-  </data>
-  <data name="gbPerson.Text" xml:space="preserve">
-    <value>Person</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Name" xml:space="preserve">
-    <value>gbPerson</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbPerson.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="gbItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="btnLend.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnLend.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnLend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 444</value>
-  </data>
-  <data name="btnLend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="btnLend.TabIndex" type="System.Int32, mscorlib">
-    <value>81</value>
-  </data>
-  <data name="btnLend.Text" xml:space="preserve">
-    <value>Lend</value>
-  </data>
-  <data name="&gt;&gt;btnLend.Name" xml:space="preserve">
-    <value>btnLend</value>
-  </data>
-  <data name="&gt;&gt;btnLend.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLend.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnLend.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnCancelAll.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnCancelAll.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCancelAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>450, 444</value>
-  </data>
-  <data name="btnCancelAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 23</value>
-  </data>
-  <data name="btnCancelAll.TabIndex" type="System.Int32, mscorlib">
-    <value>83</value>
-  </data>
-  <data name="btnCancelAll.Text" xml:space="preserve">
-    <value>Cancel all reservations</value>
-  </data>
-  <data name="&gt;&gt;btnCancelAll.Name" xml:space="preserve">
-    <value>btnCancelAll</value>
-  </data>
-  <data name="&gt;&gt;btnCancelAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCancelAll.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnCancelAll.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnReturnAll.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnReturnAll.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnReturnAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>607, 444</value>
-  </data>
-  <data name="btnReturnAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnReturnAll.TabIndex" type="System.Int32, mscorlib">
-    <value>82</value>
-  </data>
-  <data name="btnReturnAll.Text" xml:space="preserve">
-    <value>Return all</value>
-  </data>
-  <data name="&gt;&gt;btnReturnAll.Name" xml:space="preserve">
-    <value>btnReturnAll</value>
-  </data>
-  <data name="&gt;&gt;btnReturnAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnReturnAll.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;btnReturnAll.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnReturn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnReturn.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnReturn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnReturn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 444</value>
-  </data>
-  <data name="btnReturn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 23</value>
-  </data>
-  <data name="btnReturn.TabIndex" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="btnReturn.Text" xml:space="preserve">
-    <value>Return / Cancel reservation</value>
+  <data name="&gt;&gt;itFrom.Name" xml:space="preserve">
+    <value>itFrom</value>
   </data>
   <data name="&gt;&gt;btnReturn.Name" xml:space="preserve">
     <value>btnReturn</value>
   </data>
+  <data name="&gt;&gt;itTo.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;lblPersonNum.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="itStatus.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="&gt;&gt;itTo.Name" xml:space="preserve">
+    <value>itTo</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnCancelAll.TabIndex" type="System.Int32, mscorlib">
+    <value>83</value>
+  </data>
+  <data name="&gt;&gt;itInvNumber.Name" xml:space="preserve">
+    <value>itInvNumber</value>
+  </data>
+  <data name="&gt;&gt;imgOLV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPersonNum.Parent" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="&gt;&gt;itType.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>547, 577</value>
+  </data>
+  <data name="btnReturn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="lblPerson.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;btnPrintLend.Parent" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="gbPerson.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnReturnAll.TabIndex" type="System.Int32, mscorlib">
+    <value>82</value>
+  </data>
+  <data name="lblPerson.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="gbPerson.Size" type="System.Drawing.Size, System.Drawing">
+    <value>691, 80</value>
+  </data>
+  <data name="itTo.Text" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Lending</value>
+  </data>
+  <data name="&gt;&gt;itNote.Name" xml:space="preserve">
+    <value>itNote</value>
+  </data>
+  <data name="itNote.Text" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="&gt;&gt;gbItem.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblPerson.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;itFrom.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
   <data name="&gt;&gt;btnReturn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gbItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 98</value>
+  </data>
+  <data name="&gt;&gt;itName.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="btnReturn.TabIndex" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="btnLend.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLend.Text" xml:space="preserve">
+    <value>Lend</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAll.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnReturn.Parent" xml:space="preserve">
     <value>gbItem</value>
   </data>
-  <data name="&gt;&gt;btnReturn.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="itName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="itName.Width" type="System.Int32, mscorlib">
-    <value>163</value>
-  </data>
-  <data name="itType.Text" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="itInvNumber.Text" xml:space="preserve">
-    <value>Inv. Num.</value>
-  </data>
-  <data name="itInvNumber.Width" type="System.Int32, mscorlib">
-    <value>94</value>
-  </data>
-  <data name="itFrom.Text" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="itTo.Text" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="itStatus.Text" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="itStatus.Width" type="System.Int32, mscorlib">
-    <value>86</value>
-  </data>
-  <data name="itNote.Text" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="itNote.Width" type="System.Int32, mscorlib">
-    <value>115</value>
-  </data>
-  <data name="olvItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="olvItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 19</value>
+  <data name="&gt;&gt;lblPerson.Name" xml:space="preserve">
+    <value>lblPerson</value>
   </data>
   <data name="olvItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>672, 419</value>
   </data>
-  <metadata name="imgOLV.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>847, 17</value>
-  </metadata>
-  <data name="imgOLV.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADk
-        KwAAAk1TRnQBSQFMAgEBCwEAAXABAQFwAQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
-        AwABMAMAAQEBAAEgBgABMCYAA8wB/wI+AcwB/wGAAVQC/wGAAVQC/wI+AcwB/wOyBf8UAAT/A+oB/wPq
-        Af8D6gH/A+oB/wPqAf8D6gH/A+oB/wPqAf8D6gH/A+oB/wPqAf8D6gH/A+oF/xwAAwYBCAMhATADFAEb
-        AwABAWAAA90B/wELAT4C/wELAT4C/wI+Av8CPgL/AYABVAL/AYABVAL/ApkC/wKZAv8BkAGpAa0B/xIA
-        AaUB/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wILAZkB/wIAAaUB/wIAAaUB/wIA
-        AaUB/wIAAaUB/wIAAZkB/wIAAZkB/wNPAf8YAAMGAQgCOQGJAfICSAHTAf8CPQE+AWoDFAEcAwABAVgA
-        A8AB/wEAAQsC/wEAAQsC/wILAv8CCwL/AigC/wI+Av8CPgL/AYABVAL/AYABVAL/ApkC/wI+AcwB/wwA
-        AgsBzAH/AQABCwHMAf8BAAELAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIA
-        AZkB/wIAAZkB/wIAAZkB/wIAAZkB/wIAAcwB/wNPAf8UAAMGAQgCOQGJAfICSwHkAf8CJgHhAf8CSgHU
-        Af8CPQE+AWoDFAEcAwABAVAAA/EB/wIAAcwB/wIAAcwB/wEAAQsBzAH/AQABCwL/A8AB/wPxBf8D1wH/
-        Aj4C/wGAAVQC/wGAAVQC/wKZAv8BkAGpAa0B/wgAAj4BzAH/AQsBPgL/AQABCwHMAf8D1wH/A+oB/wPx
-        Af8D1wH/A08F/wPqAf8D4wH/ApkBzAH/AgABmQH/AgABgAX/EAADBgEIAjkBigHyAkgB4AH/AiIB3AH/
-        AiUB4AH/AigB5AH/AkoB1QH/Aj0BPgFqAxQBHAMAAQFMAAIoAv8CAAHMAf8CAAHMAf8BAAELAcwB/xAA
-        Aj4BzAH/AigC/wI+Av8CPgL/AYABVAL/ApkG/wgAAgsBzAH/AQABCwHMAf8DzAH/A+oB/wPxAf8D3QH/
-        A4YF/wPqAf8D6gH/AgABzAH/AgsBzAH/A4YB/xAAAwYBCAI5AYoB8gJEAdwB/wIdAdcB/wIhAdsB/wIk
-        Ad4B/wInAeIB/wIqAeUB/wJLAdUB/wI9AT4BagMUARwDAAEBRAAE/wI+Av8CPgHMAf8CCwL/EAABCwE+
-        AcwB/wEAAQsC/wILAv8BCwE+Av8CPgL/Aj4C/wGAAVQC/wPAAf8IAAKZAcwB/wIoAv8BAAELAcwN/wGk
-        AqAF/wPxAf8CmQHMAf8CAAHMAf8CAAGABf8MAAMGAQgCOQGLAfICQQHYAf8CGQHSAf8CHAHWAf8CHwHZ
-        Af8CIgHdAf8CJQHgAf8CKAHjAf8CKgHlAf8CSwHVAf8CPQE+AWoDFAEcAwABAUAAA8wB/wI+Av8CPgHM
-        Af8CPgHMAf8MAAI+AcwB/wIAAcwB/wEAAQsC/wEAAQsC/wI+AcwB/wPXAf8CKAL/Aj4C/wI+AcwB/wwA
-        AgsBzAH/AQABCwL/AcYB1gHvCf8DPgn/AgABzAH/AgsBzAH/A7IB/wwAAwQBBgI5AYsB8gI9AdQB/wIU
-        Ac0B/wIXAdEB/wIaAdQB/wIdAdcB/wIgAdoB/wIjAd0B/wIlAeAB/wInAeIB/wIpAeUB/wJKAdUB/wI9
-        AT4BagMUARtAAAKZAcwB/wGAAVQC/wGAAVQC/wOyAf8IAAI+AcwB/wILAcwB/wIAAcwB/wIAAcwB/wI+
-        AcwB/wQABP8CCwL/AigC/wI+Av8MAAHGAdYB7wH/ApkC/wKZBv8D3QH/AwEF/wKZAv8CCwL/AgABgAX/
-        DAACOgGGAfABiAFyAv8BiAFyAv8BiAFyAv8CFgHPAf8CGAHSAf8CGwHVAf8CHgHYAf8CIAHaAf8CIgHd
-        Af8BdwFtAfcB/wGIAXIC/wGIAXIC/wFaAVAB4AH/Ax4BK0AAApkBzAH/ApkC/wGAAVQC/wOyAf8EAAKZ
-        AcwB/wI+AcwB/wI+AcwB/wI+AcwB/wI+AcwB/wgAA/EB/wI+Av8CPgL/Aj4C/xIAAaUB/wLMAv8CzAL/
-        AaQCoAH/AwAF/wIoAv8CCwHMAf8D1wH/HAACFAGuAf8CFAHNAf8CFgHQAf8CGQHSAf8CGwHVAf8CHQHX
-        Af8CHwHaAf8CYgHnAf8DJwE6TAADzAH/ApkC/wKZAv8BPgGZAcwB/wKZAcwB/wGAAVQC/wGAAVQC/wGA
-        AVQC/wE+AZkBzAH/DAADsgH/Aj4C/wI+Av8CPgHMAf8QAAPxAf8BgAFUAv8CmQL/A+oB/wOGAf8CmQL/
-        Aj4C/wIAAYAB/yAAAhQBrgH/AlEB2QH/AjYB1QH/AhYB0AH/AhkB0gH/AhsB1QH/Ah0B1wH/AmAB5AH/
-        AycBOkwABP8CzAL/ApkC/wKZAv8CmQL/ApkC/wGAAVQC/wKZAcwB/xAAAj4C/wI+AcwB/wI+Av8D1wH/
-        FAACCwGZAf8CzAL/AswG/wGAAVQC/wILAcwB/wPqAf8gAAITAa4B/wJTAdgB/wJRAdkB/wJQAdoB/wJQ
-        AdsB/wJPAdwB/wJBAdsB/wJ4AecB/wMnATpQAAKZAv8CzAL/AZkBzAL/ApkC/wKZAv8CmQHMAf8MAAT/
-        AYABVAL/Aj4BzAH/Aj4BzAH/AYABVAL/GAAE/wI+AcwB/wLMAv8CmQL/ApkC/wILAZkB/yQAAhMBrwH/
-        AlQB1wH/AlMB2AH/AlEB2QH/AlAB2gH/AlAB2wH/AlAB3AH/AogB5wH/AycBOlAABP8D8QH/AswC/wLM
-        Av8BmQHMAv8CmQHMAf8DsgH/A7IB/wKZAcwB/wKZAv8BgAFUAv8BgAFUAv8BgAFUAv8D4wH/HAACPgHM
-        Af8CzAL/AswC/wILAcwB/wPxAf8kAAITAa8B/wJVAdUB/wJUAdcB/wJTAdcB/wJTAdgB/wJRAdkB/wJQ
-        AdoB/wKJAeYB/wMnATpUAAPxAf8B8AH7Av8CzAL/AswC/wLMAv8BmQHMAv8BmQHMAv8CmQL/ApkC/wKZ
-        Av8CmQL/A8wB/yAABP8BCwE+AcwB/wLMAv8CPgGZAf8oAAITAa8B/wJWAdQB/wJVAdUB/wJUAdYB/wJT
-        AdcB/wJTAdgB/wJTAdgB/wKKAeQB/wMnATpYAAT/AcYB1gHvAf8D8QH/AswC/wLMAv8CzAL/AZkBzAL/
-        AswC/wKZAv8D8QH/KAABxgHWAe8B/wI+AcwF/ygAAhIBrwH/AWIBXgHeAf8BYQFdAd8B/wFhAV0B3wH/
-        AWABXAHgAf8BYAFcAeEB/wFfAVsB4QH/AosB4wH/AycBOmAABP8D1wH/ApkBzAH/ApkBzAH/A8wF/2QA
-        AhIBsAH/AhIBsAH/AhIBrwH/AhMBrwH/AhMBrwH/AhMBrwH/AhMBrwH/AhMBrgH/AwoBDlwABP8DsgH/
-        Az4B/wNPAf8DTwH/Az4B/wOGAf8D6gH/IAAE/wOyAf8DPgH/Az4B/wM+Af8DPgH/A4YB/wPqAf+cAAPA
-        Af8DsgX/A+oB/wPdAf8D3QH/A/EF/wOyAf8DhgX/FAADwAH/A7IF/wHwAcoBpgL/AT4BCwL/AT4BCwL/
-        AcwBmQX/A7IB/wOGBf9QAAT/AgsBzAH/AgsBzAX/FAACPgHMAf8CPgL/Aj4BzAH/EAADlgH/A+oB/wPX
-        Af8DzAH/A9cB/wPdAf8D4wH/A+oB/wPqBf8D8QH/AzcF/wwAA5YB/wPqAf8BzAI+Af8BzAELAQAB/wHM
-        AQsBAAL/AT4BAAL/AT4BAAL/AZkBAAL/AZkBAAL/AcwBPgH/A/EB/wM3Bf8UAAOGAf8CPgELBf8oAAT/
-        Aj4BzAH/AgAC/wIAAv8CCwHMAf8D8QH/DAACPgHMAf8CKAL/AigC/wI+Av8CPgHMAf8IAAPMAf8D6gH/
-        A8wB/wPMAf8DzAH/A9cB/wPdAf8D3QH/A+MB/wPqAf8D8QH/A/EB/wPxAf8DTwH/CAADwAH/A+oB/wHM
-        AQsBAAH/AcwBCwEAAf8BzAELAQAB/wHMAQsBAAL/AT4BAAL/AT4BAAL/AZkBAAL/AZkBAAL/AZkBAAL/
-        AZkBAAH/A/EB/wNPAf8QAAT/AQsBmQELAf8BCwHMAZkB/wI+AQsF/yQAAj4BmQH/AgAC/wIAAv8CAAL/
-        AgABzAH/AgsBzAX/BAACPgHMAf8CCwL/AgsBzAH/AigC/wIoAv8CmQL/BAAE/wOyAf8D3QH/A9cB/wPM
-        Af8DzAH/A9cB/wPXAf8D3QH/A+MB/wPqAf8D6gH/A/EB/wPxAf8DsgH/A+oF/wGkAqAB/wHMAj4B/wHM
-        AQsBAAH/AcwBCwEAAf8BzAELAQAB/wHMAQsBAAH/AcwBPgEAAv8BPgEAAv8BPgEAAv8BmQEAAv8BmQEA
-        Av8BmQEAAv8BmQE+Af8DsgH/A+oB/wwAAaQCoAH/AT4BzAGZAf8BPgHMAZkB/wE+AcwBmQH/Aj4BCwH/
-        JAAE/wI+AcwB/wIAAv8CAAL/AgABzAH/AgABzAH/AgABzAH/Aj4BzAH/AgsC/wILAcwB/wILAcwB/wIo
-        Av8BgAFUAv8CPgHMAf8EAAPMBf8D1wH/A9cB/wPMAf8DzAH/A8wB/wPXAf8D3QH/A90B/wPjAf8D6gH/
-        A+oB/wPjBf8DhgH/A8wF/wHMAQsBAAH/AcwBCwEAAf8BzAELAQAB/wHMAQsBAAH/AcwBCwEAAf8BzAEL
-        AQAC/wE+AQAC/wE+AQAC/wE+AQAC/wGZAQAC/wGZAQAC/wGZAQAF/wOGAf8MAAELAZkBCwH/AZkB/wHM
-        Af8BmQH/AcwB/wE+AcwBmQH/AT4BzAGZAf8CPgELAf8kAAT/AgsBzAH/AgAC/wIAAcwB/wIAAcwB/wIA
-        AcwB/wIAAcwB/wIAAcwB/wILAcwB/wILAcwB/wI+Av8CPgHMAf8IAAOGAf8D8QH/A+MB/wPXAf8D1wH/
-        A8wB/wPMAf8D1wH/A9cB/wPdAf8D3QH/A+MB/wPjAf8D4wH/A/EB/wM+Af8DhgL/AswC/wGZAQsB/wHM
-        AQsBAAH/AcwBCwEAAf8BzAELAQAB/wHMAQsBAAH/AcwBCwEAAf8BzAE+AQAC/wE+AQAC/wE+AQAC/wE+
-        AQAC/wE+AQAC/wE+AQAC/wHMAZkB/wM+Af8IAAPXAf8BPgHMAZkB/wGZAf8BzAH/AQsBzAE+Af8BmQH/
-        AcwB/wGZAf8BzAH/AT4BzAGZAf8BPgGZAQsB/yQABP8CCwHMAf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHM
-        Af8CAAHMAf8CCwHMAf8CKAL/Aj4BzAH/DAADhgH/A/EB/wPqAf8D4wH/A9cB/wPMAf8DzAH/A8wB/wPX
-        Af8D1wH/A90B/wPdAf8D3QH/A90B/wPXAf8DTwH/A08C/wHMAZkC/wGZAQsC/wE+AQsB/wHMAQsBAAH/
-        AcwBCwEAAf8BzAELAQAB/wHMAQsBAAH/AcwBCwEAAf8BzAE+AQAB/wHMAT4BAAL/AT4BAAL/AT4BAAL/
-        AT4BAAL/AT4BCwH/A08B/wgAAQsBmQELAf8BzAH/AcwB/wELAZkBCwH/A9cB/wELAZkBCwH/AZkB/wHM
-        Af8BmQH/AcwB/wE+AcwBmQH/ApkBPgH/JAAE/wILAcwB/wILAcwB/wI+Av8CPgL/Aj4C/wILAv8CPgHM
-        Af8QAAOGAf8D6gH/A+oB/wPjAf8D4wH/A90B/wPMAf8DzAH/A8wB/wPMAf8D1wH/A9cB/wPXAf8D1wH/
-        A9cB/wNPAf8DTwL/AcwBPgL/AZkBCwL/AZkBCwL/AT4BCwH/AcwBPgELAf8BzAELAQAB/wHMAQsBAAH/
-        AcwBCwEAAf8BzAELAQAB/wHMAQsBAAH/AcwBCwEAAf8BzAE+AQAB/wHMAQsBAAH/AcwBPgELAf8DTwH/
-        BAAD8QH/AT4BzAGZAf8BCwGZAQsF/wQABP8BCwGZAQsB/wE+Af8BmQH/AT4B/wHMAf8BPgHMAZkB/wGZ
-        AcwBmQH/IAACPgHMAf8CCwL/ApkC/wKZAv8CmQL/ApkC/wGAAVQC/wILAcwF/wwAA4YB/wPxAf8D6gH/
-        A+oB/wPjAf8D4wH/A90B/wPdAf8D3QH/A9cB/wPXAf8D1wH/A90B/wPdAf8D8QH/Az4B/wOGAf8B8AHK
-        AaYC/wGZAQsC/wGZAQsC/wE+AQsB/wHMAT4BCwH/AcwBPgELAf8BzAE+AQsB/wHMAT4BCwH/AcwCCwH/
-        AcwBPgELAf8BzAE+AQsB/wHMAT4BCwL/Aj4C/wLMAf8DPgH/BAABPgGZAQsB/wELAZkBCwX/EAADwAH/
-        AQsBzAE+Af8BPgH/AcwB/wELAcwBmQH/AcAB3AHAAf8YAAI+AcwB/wILAv8CmQL/ApkC/wKZAv8CPgL/
-        ApkC/wKZAv8CmQL/Aj4BzAH/A/EB/wgAA8wF/wPxAf8D6gH/A+oB/wPjAf8D4wH/A90B/wPdAf8D3QH/
-        A90B/wPdAf8D3QH/A+MF/wOyAf8DzAb/AcwBmQL/AZkBCwL/AZkBCwL/AT4BCwH/AcwBPgELAf8BzAE+
-        AQsB/wHMAT4BCwH/AcwBPgELAf8BzAE+AQsB/wHMAT4BCwH/AcwCPgL/ApkF/wOyAf8EAAj/GAAD8QH/
-        AQsBmQEAAf8BPgH/AcwB/wELAcwBPgH/A9cB/xAAApkBzAH/AgsC/wLMAv8CzAL/AswC/wIAAv8CAAHM
-        Af8BgAFUAv8CzAL/AswC/wKZAv8CPgHMBf8EAAT/A7IB/wPqAf8D8QH/A+oB/wPqAf8D4wH/A+MB/wPd
-        Af8D3QH/A90B/wPdAf8D4wH/A+MB/wOyCf8BpAKgAv8BzAE+Av8BzAGZAv8BmQELAv8BmQELAv8BPgEL
-        Av8BPgELAf8BzAE+AQsB/wHMAT4BCwH/AcwBPgELAf8BzAE+AQsC/wGZAT4C/wGZAT4B/wOyBf8sAAE+
-        AcwBPgH/AT4B/wGZAf8BCwHMAT4B/wPqAf8IAAKZAcwB/wIoAv8CzAL/AswC/wLMAv8CAAL/Aj4BzAX/
-        AgABzAH/ApkC/wLMAv8CzAL/ApkC/wI+AcwB/wgAA8AB/wPdAf8D4wH/A/EB/wPqAf8D6gH/A+MB/wPj
-        Af8D4wH/A+MB/wPqAf8D3QH/A+oB/wPAAf8IAAPAAf8D3QL/AZkBCwL/AcwBmQL/AZkBCwL/AZkBCwL/
-        AZkBCwL/AT4BCwL/AT4BCwL/AT4BCwL/AcwBmQH/AcwBPgELAf8D6gH/A8AB/zQAA+oB/wELAcwBCwH/
-        AQsBzAELAf8IAAPAAf8CKAr/AgsC/wKZAcwB/wgABP8CCwHMAf8CmQL/A+oB/wLMAv8CPgHMAf8MAAOZ
-        Af8D3QH/A+oB/wPqAf8D8QH/A/EB/wPxAf8D8QH/A+oB/wPqAf8D6gH/A4YB/xAAA5YB/wPdAv8BzAE+
-        Av8BmQE+Av8BzAGZAv8BzAGZAv8BzAGZAf8B8AHKAaYC/wGZAT4C/wGZAT4B/wPqAf8DhgH/PAAE/wEL
-        AZkBCwH/DAACmQHMAf8CCwL/AgsC/wKZAcwB/xAABP8CCwHMAf8CmQL/Aj4BzAX/EAADwAH/AaQCoAX/
-        A/EB/wPqAf8D6gH/A/EF/wGkAqAB/wPMAf8YAAPAAf8BpAKgBf8B8AHKAaYC/wGZAT4C/wGZAT4B/wHw
-        AcoBpgX/AaQCoAH/A8wB/1gAA8AB/wKZAcwB/xgABP8CCwGZBf8YAAT/A8wB/wOGAf8DTwH/A08B/wOG
-        Af8D1wX/IAAE/wPMAf8DhgH/A08B/wNPAf8DhgH/A9cF/6AABP8DsgH/Az4B/wNPAf8DTwH/Az4B/wOG
-        Af8D6gH/IAAE/wOyAf8DPgH/A08B/wNPAf8DPgH/A4YB/wPqAf8gAAT/A7IB/wM+Af8DTwH/A08B/wM+
-        Af8DhgH/A+oB/yAABP8DsgH/Az4B/wNPAf8DTwH/Az4B/wOGAf8D6gH/HAADwAH/A7IF/wGZAcwBmQH/
-        AQsBPgELAf8BCwE+AQsB/wGZAcwBmQX/A7IB/wOGBf8UAAPAAf8DsgX/ApkC/wILAcwB/wILAcwB/wGZ
-        AcwG/wOyAf8DhgX/FAADwAH/A7IF/wGZAcwC/wELAT4C/wELAZkC/wGZAcwG/wOyAf8DhgX/FAADwAH/
-        A7IF/wGZA/8BCwHMAv8BCwHMAv8BmQf/A7IB/wOGBf8QAAOWAf8D6gH/AT4BmQE+Af8BAAE+AQAB/wEA
-        AYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AQABmQEAAf8BPgHMAT4B/wPxAf8DNwX/DAADlgH/
-        A+oB/wI+AcwB/wIAAcwB/wEAAQsBzAH/AQABCwHMAf8BAAELAcwB/wILAv8BCwE+Av8BgAFUAv8D8QH/
-        AzcF/wwAA5YB/wPqAf8BPgGZAv8BAAE+Av8BAAE+Av8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BPgHM
-        Av8D8QH/AzcF/wwAA5YB/wPqAf8BPgHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAP/
-        AT4D/wPxAf8DNwX/CAADzAH/A+oB/wEAAT4BAAH/AQABPgEAAf8BAAE+AQAB/wEAAYABAAH/AQABgAEA
-        Af8BAAGAAQAB/wEAAYABAAH/AQABmQEAAf8BCwGZAQsB/wELAZkBCwH/A/EB/wNPAf8IAAPMAf8D6gH/
-        AgABzAH/AgABzAH/AgABzAH/AQABCwHMAf8BAAELAcwB/wEAAQsBzAH/AgsC/wELAT4C/wI+Av8CKAL/
-        A/EB/wNPAf8IAAPMAf8D6gH/AQABPgL/AQABPgL/AQABPgL/AQABPgL/AQsBmQL/AQsBmQL/AQsBmQL/
-        AQsBmQL/AQsBmQL/AQsBmQL/A/EB/wNPAf8IAAPMAf8D6gH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
-        AQABzAL/AQABzAL/AQABzAL/AQAD/wEAA/8BAAP/A/EB/wNPAf8EAAT/A7IB/wE+AZkBPgH/AQABPgEA
-        Af8BAAE+AQAB/wEAAT4BAAH/AQABPgEAAf8BAAGAAQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEA
-        AZkBAAH/AQABmQELAf8BPgGZAT4B/wOyAf8D6gX/A7IB/wI+AcwB/wIAAcwB/wIAAcwB/wIAAcwB/wEA
-        AQsBzAH/AQABCwHMAf8BAAELAcwB/wEAAQsBzAH/AgsC/wELAT4C/wIoAv8BgAFUAv8DsgH/A+oF/wOy
-        Af8BPgGZAv8BAAE+Av8BAAE+Av8BAAE+Av8BAAE+Av8BCwE+Av8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZ
-        Av8BCwGZAv8BPgHMAv8DsgH/A+oF/wOyAf8BPgHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
-        Av8BAAHMAv8BAAHMAv8BAAP/AQAD/wEAA/8BPgP/A7IB/wPqAf8DzAX/AQABgAEAAf8BAAE+AQAB/wEA
-        AT4BAAH/AQABPgEAAf8BAAE+AQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AQABgAEA
-        Af8BAAGZAQAB/wEAAYABAAH/AfAB+wL/A4YB/wPMBf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHM
-        Af8BAAELAcwB/wEAAQsBzAH/AQABCwHMAf8CCwHMAf8CCwL/AQsBPgL/AgsC/wHwAfsC/wOGAf8DzAX/
-        AQABPgL/AQABPgL/AQABPgL/AQABPgHMAf8BAAE+Av8BCwE+Av8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZ
-        Av8BCwGZAv8BCwGZBv8DhgH/A8wF/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEA
-        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAA/8BAAHMAv8B8AH7Av8DhgH/A4YB/wHAAdwBwAH/AQsBmQEL
-        Af8BAAGAAQAB/wEAAT4BAAH/AQABPgEAAf8BAAE+AQAB/wEAAT4BAAH/AQABgAEAAf8BAAGAAQAB/wEA
-        AYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AZkBzAGZAf8DPgH/A4YB/wLMAv8CCwHMAf8CAAHM
-        Af8CAAHMAf8CAAHMAf8CAAHMAf8BAAELAcwB/wEAAQsBzAH/AQABCwHMAf8BAAELAcwB/wEAAQsBzAH/
-        AQABCwHMAf8BAAELAcwB/wGZAcwC/wM+Af8DhgH/AcYB1gHvAf8BCwGZAv8BAAE+Av8BAAE+Av8BAAE+
-        Av8BAAE+Av8BAAE+Av8BCwE+Av8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BmQHMAv8DPgH/
-        A4YB/wHMA/8BCwHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
-        Av8BAAHMAv8BAAHMAv8BAAHMAv8BmQP/Az4B/wOGAf8BmQHMAZkB/wELAZkBCwH/AQsBmQELAf8BAAGA
-        AQAB/wEAAT4BAAH/AQABPgEAAf8BAAE+AQAB/wEAAT4BAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/
-        AQABgAEAAf8BAAGAAQAB/wELAT4BCwH/A08B/wOGAf8BgAFUAv8CKAL/AigC/wIAAcwB/wIAAcwB/wIA
-        AcwB/wIAAcwB/wEAAQsBzAH/AQABCwHMAf8BAAELAcwB/wEAAQsBzAH/AQABCwHMAf8BAAELAcwB/wIL
-        AcwB/wNPAf8DhgH/AZkBzAL/AQsBmQL/AQsBmQL/AQABPgL/AQABPgL/AQABPgL/AQABPgL/AQABPgL/
-        AQsBPgL/AQsBPgL/AQsBmQL/AQsBmQL/AQsBmQL/AQsBPgL/A08B/wOGAf8BmQP/AQsBzAL/AQsBzAL/
-        AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
-        AQsBzAL/A08B/wOGAf8BPgHMAZkB/wELAZkBCwH/AQsBmQELAf8BCwGZAQsB/wELAZkBCwH/AQABPgEA
-        Af8BAAE+AQAB/wEAAT4BAAH/AQABPgEAAf8BAAE+AQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEL
-        AT4BCwH/A08B/wOGAf8BgAFUAv8CKAL/AgsBzAH/AgsBzAH/AgsBzAH/AgABzAH/AgABzAH/AgABzAH/
-        AgABzAH/AQABCwHMAf8BAAELAcwB/wEAAQsBzAH/AQABCwHMAf8CCwHMAf8DTwH/A4YB/wE+AcwC/wEL
-        AZkC/wELAZkC/wELAZkC/wELAZkC/wEAAT4C/wEAAT4C/wEAAT4C/wEAAT4C/wEAAT4C/wELAT4C/wEL
-        AT4C/wELAT4C/wELAT4C/wNPAf8DhgH/AT4D/wELAcwC/wELAcwC/wELAcwC/wELAcwC/wEAAcwC/wEA
-        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wELAcwC/wNPAf8DhgH/AcAB3AHA
-        Af8BCwGZAT4B/wELAZkBCwH/AQsBmQELAf8BCwGZAQsB/wELAZkBCwH/AQsBmQELAf8BCwGZAQsB/wEL
-        AT4BCwH/AQsBPgELAf8BCwGZAQsB/wELAZkBCwH/AT4BmQE+Af8BwAHcAcAB/wM+Af8DhgH/AswC/wIo
-        Av8CKAL/AgsBzAH/AgsBzAH/AgsBzAH/AigC/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wI+
-        AcwB/wLMAv8DPgH/A4YB/wHGAdYB7wH/AQsBmQL/AQsBmQL/AQsBmQL/AQsBmQL/AQsBmQL/AQsBmQL/
-        AQsBmQL/AQsBPgL/AQsBPgL/AQsBmQL/AQsBmQL/AT4BmQL/AswC/wM+Af8DhgH/AcwD/wELA/8BCwHM
-        Av8BCwHMAv8BCwHMAv8BCwHMAv8BCwHMAv8BCwHMAv8BCwHMAv8BCwHMAv8BCwHMAv8BCwHMAv8BPgHM
-        Av8BzAP/Az4B/wPMBf8BmQHMAZkB/wELAZkBCwH/AQsBmQELAf8BCwGZAQsB/wELAZkBCwH/AQsBmQEL
-        Af8BCwGZAQsB/wELAZkBCwH/AQsBmQELAf8BCwGZAQsB/wE+AZkBPgH/AZkBzAGZBf8DsgH/A8wF/wKZ
-        Av8CCwHMAf8CCwHMAf8CCwHMAf8CCwHMAf8CCwHMAf8CCwHMAf8CKAL/AigC/wELAT4BzAH/Aj4BzAH/
-        AYABVAb/A7IB/wPMBf8BmQHMAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZ
-        Av8BPgGZAv8BPgGZAv8BPgGZAv8BmQHMBv8DsgH/A8wF/wGZA/8BCwP/AQsBzAL/AQsBzAL/AQsBzAL/
-        AQsBzAL/AQsBzAL/AQsBzAL/AQsBzAL/AQsBzAL/AT4BzAL/AZkBzAb/A7IF/wOyAf8BPgHMAT4B/wGZ
-        AcwBmQH/AQsBmQELAf8BCwGZAQsB/wELAZkBCwH/AQsBmQELAf8BCwGZAQsB/wELAZkBCwH/AQsBmQEL
-        Af8BCwGZAQsB/wE+AZkBPgH/AT4BmQE+Af8Dsgn/A7IB/wGAAVQC/wKZAv8CCwHMAf8CCwHMAf8CCwHM
-        Af8CCwHMAf8CCwHMAf8CCwHMAf8CCwHMAf8CKAL/AYABVAL/AYABVAL/A7IJ/wOyAf8BPgHMAv8BmQHM
-        Av8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BCwGZAv8BPgGZAv8BPgGZ
-        Av8Dsgn/A7IB/wE+A/8BmQP/AQsD/wELAcwC/wELAcwC/wELAcwC/wELAcwC/wELAcwC/wELAcwC/wEL
-        AcwC/wE+AcwC/wE+AcwC/wOyBf8EAAPAAf8D3QH/AQsBmQELAf8BmQHMAZkB/wELAZkBCwH/AQsBmQEL
-        Af8BCwGZAQsB/wELAZkBCwH/AQsBmQELAf8BCwGZAQsB/wGZAcwBmQH/AQsBmQELAf8D6gH/A8AB/wgA
-        A8AB/wPdAf8CCwL/ApkC/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wILAcwB/wKZAv8CKAL/
-        A+oB/wPAAf8IAAPAAf8D3QH/AQsBmQL/AZkBzAL/AQsBmQL/AQsBmQL/AQsBmQL/AQsBmQL/AQsBmQL/
-        AQsBmQL/AZkBzAL/AQsBmQL/A+oB/wPAAf8IAAPAAf8D3QH/AQsD/wGZA/8BCwP/AQsBzAL/AQsBzAL/
-        AQsBzAL/AQsBzAL/AQsBzAL/AZkD/wELAcwC/wPqAf8DwAH/DAADmQH/A90B/wE+AcwBPgH/AT4BzAE+
-        Af8BmQHMAZkB/wGZAcwBmQH/AZkBzAGZAf8BmQHMAZkB/wE+AcwBPgH/AT4BmQE+Af8D6gH/A4YB/xAA
-        A5kB/wPdAf8BgAFUAv8CPgL/ApkC/wKZAv8CmQL/ApkC/wGAAVQC/wGAAVQC/wPqAf8DhgH/EAADmQH/
-        A90B/wE+AcwC/wE+AcwC/wGZAcwC/wGZAcwC/wGZAcwC/wGZAcwC/wE+AcwC/wE+AcwC/wPqAf8DhgH/
-        EAADmQH/A90B/wE+A/8BPgP/AZkD/wGZA/8BmQP/AZkD/wE+A/8BPgHMAv8D6gH/A4YB/xQAA8AB/wGk
-        AqAF/wHAAdwBwAH/AT4BzAE+Af8BPgHMAT4B/wHAAdwBwAX/AaQCoAH/A8wB/xgAA8AB/wGkAqAF/wLM
-        Av8CKAL/AigC/wLMBv8BpAKgAf8DzAH/GAADwAH/AaQCoAX/AcYB1gHvAf8BPgHMAv8BPgGZAv8BxgHW
-        Ae8F/wGkAqAB/wPMAf8YAAPAAf8BpAKgBf8BzAP/AT4D/wE+A/8BzAf/AaQCoAH/A8wB/xwABP8DzAH/
-        A4YB/wNPAf8DTwH/A4YB/wPXBf8gAAT/A8wB/wOGAf8DTwH/A08B/wOGAf8D1wX/IAAE/wPMAf8DhgH/
-        A08B/wNPAf8DhgH/A9cF/yAABP8DzAH/A4YB/wNPAf8DTwH/A4YB/wPXBf8QAAFCAU0BPgcAAT4DAAEo
-        AwABQAMAATADAAEBAQABAQUAAYABARYAA/8BAAH4AQ8BgAEAAf4BHwIAAeABBwGAAQAB/AEPAgABwAED
-        AYABAAH4AQcCAAGAAQEBgAEAAfABAwIAAYcBgAHAAQEB4AEBAgABDwEAAcABAQHAAwABDgEAAeABAwGA
-        AwABDAEQAeABAwGAAwABCAEwAfABBwHwAQcDAAFwAfABDwHwAQcDAAHwAfgBDwHwAQcCAAGBAcEB+AEf
-        AfABBwIAAYABAQH8AR8B8AEHAgABwAEDAfwBPwHwAQcCAAHgAQcB/gE/AfABBwIAAfgBHwL/AfABBwIA
-        AfABDwHwAQ8E/wHgAQMB4AEDAv8BwwHjAcABAQHAAQEB8QH/AYEBwQGAAQEBgAEBAeAB/wGAAYEEAAHg
-        Af8BgAEBBAAB4AF/AcABAwQAAcABPwHgAQcEAAHAAR8B8AEPBAABhAEPAfABBwQAAY8BBwHgAQMEAAGf
-        AYMBwAEBBAAB/wHhAYABAQGAAQEBgAEBAf8B8QKBAcABAwHAAQMB/wH5AcMBwQHgAQcB4AEHAv8B5wHj
-        AfABDwHwAQ8E/wHwAQ8B8AEPAfABDwHwAQ8B4AEDAeABAwHgAQMB4AEDAcABAQHAAQEBwAEBAcABAQGA
-        AQEBgAEBAYABAQGAAQFAAAGAAQEBgAEBAYABAQGAAQEBwAEDAcABAwHAAQMBwAEDAeABBwHgAQcB4AEH
-        AeABBwHwAQ8B8AEPAfABDwHwAQ8L
-</value>
+  <data name="resource.Text" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="olvItem.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+  <data name="lblPersonNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 55</value>
   </data>
-  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
-    <value>olvItem</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;olvItem.Parent" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="gbItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 98</value>
-  </data>
-  <data name="gbItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 473</value>
-  </data>
-  <data name="gbItem.TabIndex" type="System.Int32, mscorlib">
-    <value>78</value>
-  </data>
-  <data name="gbItem.Text" xml:space="preserve">
-    <value>Borrowed Items</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Name" xml:space="preserve">
-    <value>gbItem</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbItem.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbItem.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>628, 577</value>
-  </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
-    <value>btnCancel</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>547, 577</value>
-  </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>79</value>
+  <data name="btnCancelAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>450, 444</value>
   </data>
   <data name="btnOk.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
-    <value>btnOk</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnPrintLend.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnReturnAll.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="olvItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 19</value>
   </data>
   <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnPrintLend.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;btnLend.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPerson.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnReturn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnPrintLend.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnPrintLend.Text" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="gbPerson.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
+  </data>
+  <data name="gbItem.TabIndex" type="System.Int32, mscorlib">
+    <value>78</value>
+  </data>
+  <data name="itType.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAll.Name" xml:space="preserve">
+    <value>btnCancelAll</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmEditPersonLending</value>
+  </data>
+  <data name="olvItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="&gt;&gt;olvItem.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>715, 612</value>
+  <data name="&gt;&gt;gbPerson.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnLend.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="btnReturn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 444</value>
+  </data>
+  <data name="&gt;&gt;itName.Name" xml:space="preserve">
+    <value>itName</value>
+  </data>
+  <data name="&gt;&gt;gbPerson.Name" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
+    <value>btnOk</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnCancelAll.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="itFrom.Text" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="btnCancelAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 23</value>
+  </data>
+  <data name="&gt;&gt;itType.Name" xml:space="preserve">
+    <value>itType</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="itStatus.Width" type="System.Int32, mscorlib">
+    <value>86</value>
+  </data>
+  <data name="btnCancelAll.Text" xml:space="preserve">
+    <value>Cancel all reservations</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAll.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="btnLend.TabIndex" type="System.Int32, mscorlib">
+    <value>81</value>
+  </data>
+  <data name="btnReturn.Text" xml:space="preserve">
+    <value>Return / Cancel reservation</value>
+  </data>
+  <data name="itNote.Width" type="System.Int32, mscorlib">
+    <value>115</value>
+  </data>
+  <data name="&gt;&gt;gbPerson.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;gbItem.Name" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="btnLend.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;itStatus.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="lblPersonNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 13</value>
+  </data>
+  <data name="&gt;&gt;itInvNumber.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="&gt;&gt;lblPerson.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="gbItem.Text" xml:space="preserve">
+    <value>Borrowed Items</value>
+  </data>
+  <data name="lblPersonNum.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="lblPerson.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 39</value>
+  </data>
+  <data name="gbItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;gbItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLend.Name" xml:space="preserve">
+    <value>btnLend</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;btnPrintLend.Name" xml:space="preserve">
+    <value>btnPrintLend</value>
+  </data>
+  <data name="gbPerson.Text" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;btnLend.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="&gt;&gt;lblPersonNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;imgOLV.Name" xml:space="preserve">
+    <value>imgOLV</value>
+  </data>
+  <data name="btnPrintLend.Location" type="System.Drawing.Point, System.Drawing">
+    <value>595, 30</value>
+  </data>
+  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnPrintLend.TabIndex" type="System.Int32, mscorlib">
+    <value>81</value>
+  </data>
+  <data name="&gt;&gt;btnReturn.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2010,70 +1773,310 @@
         /////////////////////////////w==
 </value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="lblPersonNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Lending</value>
-  </data>
-  <data name="&gt;&gt;itName.Name" xml:space="preserve">
-    <value>itName</value>
-  </data>
-  <data name="&gt;&gt;itName.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;itType.Name" xml:space="preserve">
-    <value>itType</value>
-  </data>
-  <data name="&gt;&gt;itType.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;itInvNumber.Name" xml:space="preserve">
-    <value>itInvNumber</value>
-  </data>
-  <data name="&gt;&gt;itInvNumber.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;itFrom.Name" xml:space="preserve">
-    <value>itFrom</value>
-  </data>
-  <data name="&gt;&gt;itFrom.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;itTo.Name" xml:space="preserve">
-    <value>itTo</value>
-  </data>
-  <data name="&gt;&gt;itTo.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;itStatus.Name" xml:space="preserve">
-    <value>itStatus</value>
-  </data>
-  <data name="&gt;&gt;itStatus.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;itNote.Name" xml:space="preserve">
-    <value>itNote</value>
-  </data>
-  <data name="&gt;&gt;itNote.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
-  </data>
-  <data name="&gt;&gt;imgOLV.Name" xml:space="preserve">
-    <value>imgOLV</value>
-  </data>
-  <data name="&gt;&gt;imgOLV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
-    <value>TimeOut</value>
+  <data name="lblPersonNum.Text" xml:space="preserve">
+    <value>Person number: -</value>
   </data>
   <data name="&gt;&gt;TimeOut.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>frmEditPersonLending</value>
+  <data name="&gt;&gt;lblPersonNum.Name" xml:space="preserve">
+    <value>lblPersonNum</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>79</value>
   </data>
+  <data name="lblPerson.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 16</value>
+  </data>
+  <data name="&gt;&gt;gbPerson.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnReturn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="gbPerson.TabIndex" type="System.Int32, mscorlib">
+    <value>76</value>
+  </data>
+  <data name="&gt;&gt;lblPerson.Parent" xml:space="preserve">
+    <value>gbPerson</value>
+  </data>
+  <data name="btnReturnAll.Text" xml:space="preserve">
+    <value>Return all</value>
+  </data>
+  <data name="olvItem.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="&gt;&gt;btnReturnAll.Name" xml:space="preserve">
+    <value>btnReturnAll</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>715, 612</value>
+  </data>
+  <data name="&gt;&gt;btnReturnAll.Parent" xml:space="preserve">
+    <value>gbItem</value>
+  </data>
+  <data name="lblPersonNum.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnReturnAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnLend.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 444</value>
+  </data>
+  <data name="btnPrintLend.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>628, 577</value>
+  </data>
+  <data name="itName.Width" type="System.Int32, mscorlib">
+    <value>163</value>
+  </data>
+  <data name="btnCancelAll.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="itName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;olvItem.Name" xml:space="preserve">
+    <value>olvItem</value>
+  </data>
+  <data name="&gt;&gt;btnReturnAll.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="imgOLV.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADm
+        KwAAAk1TRnQBSQFMAgEBCwEAAYABAQGIAQEBEAEAARABAAT/ASEBEAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABMAMAAQEBAAEgBgABMCYAA8wB/wI8AcwB/wGAAVIC/wGAAVIC/wI8AcwB/wOyBf8UAAT/A+oB/wPq
+        Af8D6gH/A+oB/wPqAf8D6gH/A+oB/wPqAf8D6gH/A+oB/wPqAf8D6gH/A+oF/xwAAwYBCAMhATADFAEb
+        AwABAWAAA90B/wEJATwC/wEJATwC/wI8Av8CPAL/AYABUgL/AYABUgL/ApkC/wKZAv8BkAGpAa0B/xIA
+        AaUB/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wIJAZkB/wIAAaUB/wIAAaUB/wIA
+        AaUB/wIAAaUB/wIAAZkB/wIAAZkB/wNNAf8YAAMGAQgCQAGBAfICRgHTAf8CPQE+AWoDFAEcAwABAVgA
+        A8AB/wEAAQkC/wEAAQkC/wIJAv8CCQL/AiYC/wI8Av8CPAL/AYABUgL/AYABUgL/ApkC/wI8AcwB/wwA
+        AgkBzAH/AQABCQHMAf8BAAEJAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIAAcwB/wIA
+        AZkB/wIAAZkB/wIAAZkB/wIAAZkB/wIAAcwB/wNNAf8UAAMGAQgCQAGBAfICSQHkAf8CJAHhAf8CSAHU
+        Af8CPQE+AWoDFAEcAwABAVAAA/EB/wIAAcwB/wIAAcwB/wEAAQkBzAH/AQABCQL/A8AB/wPxBf8D1wH/
+        AjwC/wGAAVIC/wGAAVIC/wKZAv8BkAGpAa0B/wgAAjwBzAH/AQkBPAL/AQABCQHMAf8D1wH/A+oB/wPx
+        Af8D1wH/A00F/wPqAf8D4wH/ApkBzAH/AgABmQH/AgABgAX/EAADBgEIAkABgwHyAkYB4AH/AiAB3AH/
+        AiMB4AH/AiYB5AH/AkgB1QH/Aj0BPgFqAxQBHAMAAQFMAAImAv8CAAHMAf8CAAHMAf8BAAEJAcwB/xAA
+        AjwBzAH/AiYC/wI8Av8CPAL/AYABUgL/ApkG/wgAAgkBzAH/AQABCQHMAf8DzAH/A+oB/wPxAf8D3QH/
+        A4YF/wPqAf8D6gH/AgABzAH/AgkBzAH/A4YB/xAAAwYBCAJAAYMB8gJCAdwB/wIbAdcB/wIfAdsB/wIi
+        Ad4B/wIlAeIB/wIoAeUB/wJJAdUB/wI9AT4BagMUARwDAAEBRAAE/wI8Av8CPAHMAf8CCQL/EAABCQE8
+        AcwB/wEAAQkC/wIJAv8BCQE8Av8CPAL/AjwC/wGAAVIC/wPAAf8IAAKZAcwB/wImAv8BAAEJAcwN/wGk
+        AqAF/wPxAf8CmQHMAf8CAAHMAf8CAAGABf8MAAMGAQgCQAGEAfICPwHYAf8CFwHSAf8CGgHWAf8CHQHZ
+        Af8CIAHdAf8CIwHgAf8CJgHjAf8CKAHlAf8CSQHVAf8CPQE+AWoDFAEcAwABAUAAA8wB/wI8Av8CPAHM
+        Af8CPAHMAf8MAAI8AcwB/wIAAcwB/wEAAQkC/wEAAQkC/wI8AcwB/wPXAf8CJgL/AjwC/wI8AcwB/wwA
+        AgkBzAH/AQABCQL/AcYB1gHvCf8DPAn/AgABzAH/AgkBzAH/A7IB/wwAAwQBBgJAAYQB8gI7AdQB/wIS
+        Ac0B/wIVAdEB/wIYAdQB/wIbAdcB/wIeAdoB/wIhAd0B/wIjAeAB/wIlAeIB/wInAeUB/wJIAdUB/wI9
+        AT4BagMUARtAAAKZAcwB/wGAAVIC/wGAAVIC/wOyAf8IAAI8AcwB/wIJAcwB/wIAAcwB/wIAAcwB/wI8
+        AcwB/wQABP8CCQL/AiYC/wI8Av8MAAHGAdYB7wH/ApkC/wKZBv8D3QH/AwAF/wKZAv8CCQL/AgABgAX/
+        DAACQAF8AfABiAFwAv8BiAFwAv8BiAFwAv8CFAHPAf8CFgHSAf8CGQHVAf8CHAHYAf8CHgHaAf8CIAHd
+        Af8BdQFrAfcB/wGIAXAC/wGIAXAC/wFYAU4B4AH/Ax4BK0AAApkBzAH/ApkC/wGAAVIC/wOyAf8EAAKZ
+        AcwB/wI8AcwB/wI8AcwB/wI8AcwB/wI8AcwB/wgAA/EB/wI8Av8CPAL/AjwC/xIAAaUB/wLMAv8CzAL/
+        AaQCoAH/AwAF/wImAv8CCQHMAf8D1wH/HAACEgGuAf8CEgHNAf8CFAHQAf8CFwHSAf8CGQHVAf8CGwHX
+        Af8CHQHaAf8CYAHnAf8DJwE6TAADzAH/ApkC/wKZAv8BPAGZAcwB/wKZAcwB/wGAAVIC/wGAAVIC/wGA
+        AVIC/wE8AZkBzAH/DAADsgH/AjwC/wI8Av8CPAHMAf8QAAPxAf8BgAFSAv8CmQL/A+oB/wOGAf8CmQL/
+        AjwC/wIAAYAB/yAAAhIBrgH/Ak8B2QH/AjQB1QH/AhQB0AH/AhcB0gH/AhkB1QH/AhsB1wH/Al4B5AH/
+        AycBOkwABP8CzAL/ApkC/wKZAv8CmQL/ApkC/wGAAVIC/wKZAcwB/xAAAjwC/wI8AcwB/wI8Av8D1wH/
+        FAACCQGZAf8CzAL/AswG/wGAAVIC/wIJAcwB/wPqAf8gAAIRAa4B/wJRAdgB/wJPAdkB/wJOAdoB/wJO
+        AdsB/wJNAdwB/wI/AdsB/wJ2AecB/wMnATpQAAKZAv8CzAL/AZkBzAL/ApkC/wKZAv8CmQHMAf8MAAT/
+        AYABUgL/AjwBzAH/AjwBzAH/AYABUgL/GAAE/wI8AcwB/wLMAv8CmQL/ApkC/wIJAZkB/yQAAhEBrwH/
+        AlIB1wH/AlEB2AH/Ak8B2QH/Ak4B2gH/Ak4B2wH/Ak4B3AH/AogB5wH/AycBOlAABP8D8QH/AswC/wLM
+        Av8BmQHMAv8CmQHMAf8DsgH/A7IB/wKZAcwB/wKZAv8BgAFSAv8BgAFSAv8BgAFSAv8D4wH/HAACPAHM
+        Af8CzAL/AswC/wIJAcwB/wPxAf8kAAIRAa8B/wJTAdUB/wJSAdcB/wJRAdcB/wJRAdgB/wJPAdkB/wJO
+        AdoB/wKJAeYB/wMnATpUAAPxAf8B8AH7Av8CzAL/AswC/wLMAv8BmQHMAv8BmQHMAv8CmQL/ApkC/wKZ
+        Av8CmQL/A8wB/yAABP8BCQE8AcwB/wLMAv8CPAGZAf8oAAIRAa8B/wJUAdQB/wJTAdUB/wJSAdYB/wJR
+        AdcB/wJRAdgB/wJRAdgB/wKKAeQB/wMnATpYAAT/AcYB1gHvAf8D8QH/AswC/wLMAv8CzAL/AZkBzAL/
+        AswC/wKZAv8D8QH/KAABxgHWAe8B/wI8AcwF/ygAAhABrwH/AWABXAHeAf8BXwFbAd8B/wFfAVsB3wH/
+        AV4BWgHgAf8BXgFaAeEB/wFdAVkB4QH/AosB4wH/AycBOmAABP8D1wH/ApkBzAH/ApkBzAH/A8wF/2QA
+        AhABsAH/AhABsAH/AhABrwH/AhEBrwH/AhEBrwH/AhEBrwH/AhEBrwH/AhEBrgH/AwoBDlwABP8DsgH/
+        AzwB/wNNAf8DTQH/AzwB/wOGAf8D6gH/IAAE/wOyAf8DPAH/AzwB/wM8Af8DPAH/A4YB/wPqAf+cAAPA
+        Af8DsgX/A+oB/wPdAf8D3QH/A/EF/wOyAf8DhgX/FAADwAH/A7IF/wHwAcoBpgL/ATwBCQL/ATwBCQL/
+        AcwBmQX/A7IB/wOGBf9QAAT/AgkBzAH/AgkBzAX/FAACPAHMAf8CPAL/AjwBzAH/EAADlgH/A+oB/wPX
+        Af8DzAH/A9cB/wPdAf8D4wH/A+oB/wPqBf8D8QH/AzUF/wwAA5YB/wPqAf8BzAI8Af8BzAEJAQAB/wHM
+        AQkBAAL/ATwBAAL/ATwBAAL/AZkBAAL/AZkBAAL/AcwBPAH/A/EB/wM1Bf8UAAOGAf8CPAEJBf8oAAT/
+        AjwBzAH/AgAC/wIAAv8CCQHMAf8D8QH/DAACPAHMAf8CJgL/AiYC/wI8Av8CPAHMAf8IAAPMAf8D6gH/
+        A8wB/wPMAf8DzAH/A9cB/wPdAf8D3QH/A+MB/wPqAf8D8QH/A/EB/wPxAf8DTQH/CAADwAH/A+oB/wHM
+        AQkBAAH/AcwBCQEAAf8BzAEJAQAB/wHMAQkBAAL/ATwBAAL/ATwBAAL/AZkBAAL/AZkBAAL/AZkBAAL/
+        AZkBAAH/A/EB/wNNAf8QAAT/AQkBmQEJAf8BCQHMAZkB/wI8AQkF/yQAAjwBmQH/AgAC/wIAAv8CAAL/
+        AgABzAH/AgkBzAX/BAACPAHMAf8CCQL/AgkBzAH/AiYC/wImAv8CmQL/BAAE/wOyAf8D3QH/A9cB/wPM
+        Af8DzAH/A9cB/wPXAf8D3QH/A+MB/wPqAf8D6gH/A/EB/wPxAf8DsgH/A+oF/wGkAqAB/wHMAjwB/wHM
+        AQkBAAH/AcwBCQEAAf8BzAEJAQAB/wHMAQkBAAH/AcwBPAEAAv8BPAEAAv8BPAEAAv8BmQEAAv8BmQEA
+        Av8BmQEAAv8BmQE8Af8DsgH/A+oB/wwAAaQCoAH/ATwBzAGZAf8BPAHMAZkB/wE8AcwBmQH/AjwBCQH/
+        JAAE/wI8AcwB/wIAAv8CAAL/AgABzAH/AgABzAH/AgABzAH/AjwBzAH/AgkC/wIJAcwB/wIJAcwB/wIm
+        Av8BgAFSAv8CPAHMAf8EAAPMBf8D1wH/A9cB/wPMAf8DzAH/A8wB/wPXAf8D3QH/A90B/wPjAf8D6gH/
+        A+oB/wPjBf8DhgH/A8wF/wHMAQkBAAH/AcwBCQEAAf8BzAEJAQAB/wHMAQkBAAH/AcwBCQEAAf8BzAEJ
+        AQAC/wE8AQAC/wE8AQAC/wE8AQAC/wGZAQAC/wGZAQAC/wGZAQAF/wOGAf8MAAEJAZkBCQH/AZkB/wHM
+        Af8BmQH/AcwB/wE8AcwBmQH/ATwBzAGZAf8CPAEJAf8kAAT/AgkBzAH/AgAC/wIAAcwB/wIAAcwB/wIA
+        AcwB/wIAAcwB/wIAAcwB/wIJAcwB/wIJAcwB/wI8Av8CPAHMAf8IAAOGAf8D8QH/A+MB/wPXAf8D1wH/
+        A8wB/wPMAf8D1wH/A9cB/wPdAf8D3QH/A+MB/wPjAf8D4wH/A/EB/wM8Af8DhgL/AswC/wGZAQkB/wHM
+        AQkBAAH/AcwBCQEAAf8BzAEJAQAB/wHMAQkBAAH/AcwBCQEAAf8BzAE8AQAC/wE8AQAC/wE8AQAC/wE8
+        AQAC/wE8AQAC/wE8AQAC/wHMAZkB/wM8Af8IAAPXAf8BPAHMAZkB/wGZAf8BzAH/AQkBzAE8Af8BmQH/
+        AcwB/wGZAf8BzAH/ATwBzAGZAf8BPAGZAQkB/yQABP8CCQHMAf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHM
+        Af8CAAHMAf8CCQHMAf8CJgL/AjwBzAH/DAADhgH/A/EB/wPqAf8D4wH/A9cB/wPMAf8DzAH/A8wB/wPX
+        Af8D1wH/A90B/wPdAf8D3QH/A90B/wPXAf8DTQH/A00C/wHMAZkC/wGZAQkC/wE8AQkB/wHMAQkBAAH/
+        AcwBCQEAAf8BzAEJAQAB/wHMAQkBAAH/AcwBCQEAAf8BzAE8AQAB/wHMATwBAAL/ATwBAAL/ATwBAAL/
+        ATwBAAL/ATwBCQH/A00B/wgAAQkBmQEJAf8BzAH/AcwB/wEJAZkBCQH/A9cB/wEJAZkBCQH/AZkB/wHM
+        Af8BmQH/AcwB/wE8AcwBmQH/ApkBPAH/JAAE/wIJAcwB/wIJAcwB/wI8Av8CPAL/AjwC/wIJAv8CPAHM
+        Af8QAAOGAf8D6gH/A+oB/wPjAf8D4wH/A90B/wPMAf8DzAH/A8wB/wPMAf8D1wH/A9cB/wPXAf8D1wH/
+        A9cB/wNNAf8DTQL/AcwBPAL/AZkBCQL/AZkBCQL/ATwBCQH/AcwBPAEJAf8BzAEJAQAB/wHMAQkBAAH/
+        AcwBCQEAAf8BzAEJAQAB/wHMAQkBAAH/AcwBCQEAAf8BzAE8AQAB/wHMAQkBAAH/AcwBPAEJAf8DTQH/
+        BAAD8QH/ATwBzAGZAf8BCQGZAQkF/wQABP8BCQGZAQkB/wE8Af8BmQH/ATwB/wHMAf8BPAHMAZkB/wGZ
+        AcwBmQH/IAACPAHMAf8CCQL/ApkC/wKZAv8CmQL/ApkC/wGAAVIC/wIJAcwF/wwAA4YB/wPxAf8D6gH/
+        A+oB/wPjAf8D4wH/A90B/wPdAf8D3QH/A9cB/wPXAf8D1wH/A90B/wPdAf8D8QH/AzwB/wOGAf8B8AHK
+        AaYC/wGZAQkC/wGZAQkC/wE8AQkB/wHMATwBCQH/AcwBPAEJAf8BzAE8AQkB/wHMATwBCQH/AcwCCQH/
+        AcwBPAEJAf8BzAE8AQkB/wHMATwBCQL/AjwC/wLMAf8DPAH/BAABPAGZAQkB/wEJAZkBCQX/EAADwAH/
+        AQkBzAE8Af8BPAH/AcwB/wEJAcwBmQH/AcAB3AHAAf8YAAI8AcwB/wIJAv8CmQL/ApkC/wKZAv8CPAL/
+        ApkC/wKZAv8CmQL/AjwBzAH/A/EB/wgAA8wF/wPxAf8D6gH/A+oB/wPjAf8D4wH/A90B/wPdAf8D3QH/
+        A90B/wPdAf8D3QH/A+MF/wOyAf8DzAb/AcwBmQL/AZkBCQL/AZkBCQL/ATwBCQH/AcwBPAEJAf8BzAE8
+        AQkB/wHMATwBCQH/AcwBPAEJAf8BzAE8AQkB/wHMATwBCQH/AcwCPAL/ApkF/wOyAf8EAAj/GAAD8QH/
+        AQkBmQEAAf8BPAH/AcwB/wEJAcwBPAH/A9cB/xAAApkBzAH/AgkC/wLMAv8CzAL/AswC/wIAAv8CAAHM
+        Af8BgAFSAv8CzAL/AswC/wKZAv8CPAHMBf8EAAT/A7IB/wPqAf8D8QH/A+oB/wPqAf8D4wH/A+MB/wPd
+        Af8D3QH/A90B/wPdAf8D4wH/A+MB/wOyCf8BpAKgAv8BzAE8Av8BzAGZAv8BmQEJAv8BmQEJAv8BPAEJ
+        Av8BPAEJAf8BzAE8AQkB/wHMATwBCQH/AcwBPAEJAf8BzAE8AQkC/wGZATwC/wGZATwB/wOyBf8sAAE8
+        AcwBPAH/ATwB/wGZAf8BCQHMATwB/wPqAf8IAAKZAcwB/wImAv8CzAL/AswC/wLMAv8CAAL/AjwBzAX/
+        AgABzAH/ApkC/wLMAv8CzAL/ApkC/wI8AcwB/wgAA8AB/wPdAf8D4wH/A/EB/wPqAf8D6gH/A+MB/wPj
+        Af8D4wH/A+MB/wPqAf8D3QH/A+oB/wPAAf8IAAPAAf8D3QL/AZkBCQL/AcwBmQL/AZkBCQL/AZkBCQL/
+        AZkBCQL/ATwBCQL/ATwBCQL/ATwBCQL/AcwBmQH/AcwBPAEJAf8D6gH/A8AB/zQAA+oB/wEJAcwBCQH/
+        AQkBzAEJAf8IAAPAAf8CJgr/AgkC/wKZAcwB/wgABP8CCQHMAf8CmQL/A+oB/wLMAv8CPAHMAf8MAAOZ
+        Af8D3QH/A+oB/wPqAf8D8QH/A/EB/wPxAf8D8QH/A+oB/wPqAf8D6gH/A4YB/xAAA5YB/wPdAv8BzAE8
+        Av8BmQE8Av8BzAGZAv8BzAGZAv8BzAGZAf8B8AHKAaYC/wGZATwC/wGZATwB/wPqAf8DhgH/PAAE/wEJ
+        AZkBCQH/DAACmQHMAf8CCQL/AgkC/wKZAcwB/xAABP8CCQHMAf8CmQL/AjwBzAX/EAADwAH/AaQCoAX/
+        A/EB/wPqAf8D6gH/A/EF/wGkAqAB/wPMAf8YAAPAAf8BpAKgBf8B8AHKAaYC/wGZATwC/wGZATwB/wHw
+        AcoBpgX/AaQCoAH/A8wB/1gAA8AB/wKZAcwB/xgABP8CCQGZBf8YAAT/A8wB/wOGAf8DTQH/A00B/wOG
+        Af8D1wX/IAAE/wPMAf8DhgH/A00B/wNNAf8DhgH/A9cF/6AABP8DsgH/AzwB/wNNAf8DTQH/AzwB/wOG
+        Af8D6gH/IAAE/wOyAf8DPAH/A00B/wNNAf8DPAH/A4YB/wPqAf8gAAT/A7IB/wM8Af8DTQH/A00B/wM8
+        Af8DhgH/A+oB/yAABP8DsgH/AzwB/wNNAf8DTQH/AzwB/wOGAf8D6gH/HAADwAH/A7IF/wGZAcwBmQH/
+        AQkBPAEJAf8BCQE8AQkB/wGZAcwBmQX/A7IB/wOGBf8UAAPAAf8DsgX/ApkC/wIJAcwB/wIJAcwB/wGZ
+        AcwG/wOyAf8DhgX/FAADwAH/A7IF/wGZAcwC/wEJATwC/wEJAZkC/wGZAcwG/wOyAf8DhgX/FAADwAH/
+        A7IF/wGZA/8BCQHMAv8BCQHMAv8BmQf/A7IB/wOGBf8QAAOWAf8D6gH/ATwBmQE8Af8BAAE8AQAB/wEA
+        AYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AQABmQEAAf8BPAHMATwB/wPxAf8DNQX/DAADlgH/
+        A+oB/wI8AcwB/wIAAcwB/wEAAQkBzAH/AQABCQHMAf8BAAEJAcwB/wIJAv8BCQE8Av8BgAFSAv8D8QH/
+        AzUF/wwAA5YB/wPqAf8BPAGZAv8BAAE8Av8BAAE8Av8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BPAHM
+        Av8D8QH/AzUF/wwAA5YB/wPqAf8BPAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAP/
+        ATwD/wPxAf8DNQX/CAADzAH/A+oB/wEAATwBAAH/AQABPAEAAf8BAAE8AQAB/wEAAYABAAH/AQABgAEA
+        Af8BAAGAAQAB/wEAAYABAAH/AQABmQEAAf8BCQGZAQkB/wEJAZkBCQH/A/EB/wNNAf8IAAPMAf8D6gH/
+        AgABzAH/AgABzAH/AgABzAH/AQABCQHMAf8BAAEJAcwB/wEAAQkBzAH/AgkC/wEJATwC/wI8Av8CJgL/
+        A/EB/wNNAf8IAAPMAf8D6gH/AQABPAL/AQABPAL/AQABPAL/AQABPAL/AQkBmQL/AQkBmQL/AQkBmQL/
+        AQkBmQL/AQkBmQL/AQkBmQL/A/EB/wNNAf8IAAPMAf8D6gH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
+        AQABzAL/AQABzAL/AQABzAL/AQAD/wEAA/8BAAP/A/EB/wNNAf8EAAT/A7IB/wE8AZkBPAH/AQABPAEA
+        Af8BAAE8AQAB/wEAATwBAAH/AQABPAEAAf8BAAGAAQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEA
+        AZkBAAH/AQABmQEJAf8BPAGZATwB/wOyAf8D6gX/A7IB/wI8AcwB/wIAAcwB/wIAAcwB/wIAAcwB/wEA
+        AQkBzAH/AQABCQHMAf8BAAEJAcwB/wEAAQkBzAH/AgkC/wEJATwC/wImAv8BgAFSAv8DsgH/A+oF/wOy
+        Af8BPAGZAv8BAAE8Av8BAAE8Av8BAAE8Av8BAAE8Av8BCQE8Av8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZ
+        Av8BCQGZAv8BPAHMAv8DsgH/A+oF/wOyAf8BPAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
+        Av8BAAHMAv8BAAHMAv8BAAP/AQAD/wEAA/8BPAP/A7IB/wPqAf8DzAX/AQABgAEAAf8BAAE8AQAB/wEA
+        ATwBAAH/AQABPAEAAf8BAAE8AQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AQABgAEA
+        Af8BAAGZAQAB/wEAAYABAAH/AfAB+wL/A4YB/wPMBf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHMAf8CAAHM
+        Af8BAAEJAcwB/wEAAQkBzAH/AQABCQHMAf8CCQHMAf8CCQL/AQkBPAL/AgkC/wHwAfsC/wOGAf8DzAX/
+        AQABPAL/AQABPAL/AQABPAL/AQABPAHMAf8BAAE8Av8BCQE8Av8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZ
+        Av8BCQGZAv8BCQGZBv8DhgH/A8wF/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEA
+        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAA/8BAAHMAv8B8AH7Av8DhgH/A4YB/wHAAdwBwAH/AQkBmQEJ
+        Af8BAAGAAQAB/wEAATwBAAH/AQABPAEAAf8BAAE8AQAB/wEAATwBAAH/AQABgAEAAf8BAAGAAQAB/wEA
+        AYABAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/AZkBzAGZAf8DPAH/A4YB/wLMAv8CCQHMAf8CAAHM
+        Af8CAAHMAf8CAAHMAf8CAAHMAf8BAAEJAcwB/wEAAQkBzAH/AQABCQHMAf8BAAEJAcwB/wEAAQkBzAH/
+        AQABCQHMAf8BAAEJAcwB/wGZAcwC/wM8Af8DhgH/AcYB1gHvAf8BCQGZAv8BAAE8Av8BAAE8Av8BAAE8
+        Av8BAAE8Av8BAAE8Av8BCQE8Av8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BmQHMAv8DPAH/
+        A4YB/wHMA/8BCQHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
+        Av8BAAHMAv8BAAHMAv8BAAHMAv8BmQP/AzwB/wOGAf8BmQHMAZkB/wEJAZkBCQH/AQkBmQEJAf8BAAGA
+        AQAB/wEAATwBAAH/AQABPAEAAf8BAAE8AQAB/wEAATwBAAH/AQABgAEAAf8BAAGAAQAB/wEAAYABAAH/
+        AQABgAEAAf8BAAGAAQAB/wEJATwBCQH/A00B/wOGAf8BgAFSAv8CJgL/AiYC/wIAAcwB/wIAAcwB/wIA
+        AcwB/wIAAcwB/wEAAQkBzAH/AQABCQHMAf8BAAEJAcwB/wEAAQkBzAH/AQABCQHMAf8BAAEJAcwB/wIJ
+        AcwB/wNNAf8DhgH/AZkBzAL/AQkBmQL/AQkBmQL/AQABPAL/AQABPAL/AQABPAL/AQABPAL/AQABPAL/
+        AQkBPAL/AQkBPAL/AQkBmQL/AQkBmQL/AQkBmQL/AQkBPAL/A00B/wOGAf8BmQP/AQkBzAL/AQkBzAL/
+        AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
+        AQkBzAL/A00B/wOGAf8BPAHMAZkB/wEJAZkBCQH/AQkBmQEJAf8BCQGZAQkB/wEJAZkBCQH/AQABPAEA
+        Af8BAAE8AQAB/wEAATwBAAH/AQABPAEAAf8BAAE8AQAB/wEAAYABAAH/AQABgAEAAf8BAAGAAQAB/wEJ
+        ATwBCQH/A00B/wOGAf8BgAFSAv8CJgL/AgkBzAH/AgkBzAH/AgkBzAH/AgABzAH/AgABzAH/AgABzAH/
+        AgABzAH/AQABCQHMAf8BAAEJAcwB/wEAAQkBzAH/AQABCQHMAf8CCQHMAf8DTQH/A4YB/wE8AcwC/wEJ
+        AZkC/wEJAZkC/wEJAZkC/wEJAZkC/wEAATwC/wEAATwC/wEAATwC/wEAATwC/wEAATwC/wEJATwC/wEJ
+        ATwC/wEJATwC/wEJATwC/wNNAf8DhgH/ATwD/wEJAcwC/wEJAcwC/wEJAcwC/wEJAcwC/wEAAcwC/wEA
+        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEJAcwC/wNNAf8DhgH/AcAB3AHA
+        Af8BCQGZATwB/wEJAZkBCQH/AQkBmQEJAf8BCQGZAQkB/wEJAZkBCQH/AQkBmQEJAf8BCQGZAQkB/wEJ
+        ATwBCQH/AQkBPAEJAf8BCQGZAQkB/wEJAZkBCQH/ATwBmQE8Af8BwAHcAcAB/wM8Af8DhgH/AswC/wIm
+        Av8CJgL/AgkBzAH/AgkBzAH/AgkBzAH/AiYC/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wI8
+        AcwB/wLMAv8DPAH/A4YB/wHGAdYB7wH/AQkBmQL/AQkBmQL/AQkBmQL/AQkBmQL/AQkBmQL/AQkBmQL/
+        AQkBmQL/AQkBPAL/AQkBPAL/AQkBmQL/AQkBmQL/ATwBmQL/AswC/wM8Af8DhgH/AcwD/wEJA/8BCQHM
+        Av8BCQHMAv8BCQHMAv8BCQHMAv8BCQHMAv8BCQHMAv8BCQHMAv8BCQHMAv8BCQHMAv8BCQHMAv8BPAHM
+        Av8BzAP/AzwB/wPMBf8BmQHMAZkB/wEJAZkBCQH/AQkBmQEJAf8BCQGZAQkB/wEJAZkBCQH/AQkBmQEJ
+        Af8BCQGZAQkB/wEJAZkBCQH/AQkBmQEJAf8BCQGZAQkB/wE8AZkBPAH/AZkBzAGZBf8DsgH/A8wF/wKZ
+        Av8CCQHMAf8CCQHMAf8CCQHMAf8CCQHMAf8CCQHMAf8CCQHMAf8CJgL/AiYC/wEJATwBzAH/AjwBzAH/
+        AYABUgb/A7IB/wPMBf8BmQHMAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZ
+        Av8BPAGZAv8BPAGZAv8BPAGZAv8BmQHMBv8DsgH/A8wF/wGZA/8BCQP/AQkBzAL/AQkBzAL/AQkBzAL/
+        AQkBzAL/AQkBzAL/AQkBzAL/AQkBzAL/AQkBzAL/ATwBzAL/AZkBzAb/A7IF/wOyAf8BPAHMATwB/wGZ
+        AcwBmQH/AQkBmQEJAf8BCQGZAQkB/wEJAZkBCQH/AQkBmQEJAf8BCQGZAQkB/wEJAZkBCQH/AQkBmQEJ
+        Af8BCQGZAQkB/wE8AZkBPAH/ATwBmQE8Af8Dsgn/A7IB/wGAAVIC/wKZAv8CCQHMAf8CCQHMAf8CCQHM
+        Af8CCQHMAf8CCQHMAf8CCQHMAf8CCQHMAf8CJgL/AYABUgL/AYABUgL/A7IJ/wOyAf8BPAHMAv8BmQHM
+        Av8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BCQGZAv8BPAGZAv8BPAGZ
+        Av8Dsgn/A7IB/wE8A/8BmQP/AQkD/wEJAcwC/wEJAcwC/wEJAcwC/wEJAcwC/wEJAcwC/wEJAcwC/wEJ
+        AcwC/wE8AcwC/wE8AcwC/wOyBf8EAAPAAf8D3QH/AQkBmQEJAf8BmQHMAZkB/wEJAZkBCQH/AQkBmQEJ
+        Af8BCQGZAQkB/wEJAZkBCQH/AQkBmQEJAf8BCQGZAQkB/wGZAcwBmQH/AQkBmQEJAf8D6gH/A8AB/wgA
+        A8AB/wPdAf8CCQL/ApkC/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wIJAcwB/wKZAv8CJgL/
+        A+oB/wPAAf8IAAPAAf8D3QH/AQkBmQL/AZkBzAL/AQkBmQL/AQkBmQL/AQkBmQL/AQkBmQL/AQkBmQL/
+        AQkBmQL/AZkBzAL/AQkBmQL/A+oB/wPAAf8IAAPAAf8D3QH/AQkD/wGZA/8BCQP/AQkBzAL/AQkBzAL/
+        AQkBzAL/AQkBzAL/AQkBzAL/AZkD/wEJAcwC/wPqAf8DwAH/DAADmQH/A90B/wE8AcwBPAH/ATwBzAE8
+        Af8BmQHMAZkB/wGZAcwBmQH/AZkBzAGZAf8BmQHMAZkB/wE8AcwBPAH/ATwBmQE8Af8D6gH/A4YB/xAA
+        A5kB/wPdAf8BgAFSAv8CPAL/ApkC/wKZAv8CmQL/ApkC/wGAAVIC/wGAAVIC/wPqAf8DhgH/EAADmQH/
+        A90B/wE8AcwC/wE8AcwC/wGZAcwC/wGZAcwC/wGZAcwC/wGZAcwC/wE8AcwC/wE8AcwC/wPqAf8DhgH/
+        EAADmQH/A90B/wE8A/8BPAP/AZkD/wGZA/8BmQP/AZkD/wE8A/8BPAHMAv8D6gH/A4YB/xQAA8AB/wGk
+        AqAF/wHAAdwBwAH/ATwBzAE8Af8BPAHMATwB/wHAAdwBwAX/AaQCoAH/A8wB/xgAA8AB/wGkAqAF/wLM
+        Av8CJgL/AiYC/wLMBv8BpAKgAf8DzAH/GAADwAH/AaQCoAX/AcYB1gHvAf8BPAHMAv8BPAGZAv8BxgHW
+        Ae8F/wGkAqAB/wPMAf8YAAPAAf8BpAKgBf8BzAP/ATwD/wE8A/8BzAf/AaQCoAH/A8wB/xwABP8DzAH/
+        A4YB/wNNAf8DTQH/A4YB/wPXBf8gAAT/A8wB/wOGAf8DTQH/A00B/wOGAf8D1wX/IAAE/wPMAf8DhgH/
+        A00B/wNNAf8DhgH/A9cF/yAABP8DzAH/A4YB/wNNAf8DTQH/A4YB/wPXBf8QAAFCAU0BPgcAAT4DAAEo
+        AwABQAMAATADAAEBAQABAQUAAYABARYAA/8BAAH4AQ8BgAEAAf4BHwIAAeABBwGAAQAB/AEPAgABwAED
+        AYABAAH4AQcCAAGAAQEBgAEAAfABAwIAAYcBgAHAAQEB4AEBAgABDwEAAcABAQHAAwABDgEAAeABAwGA
+        AwABDAEQAeABAwGAAwABCAEwAfABBwHwAQcDAAFwAfABDwHwAQcDAAHwAfgBDwHwAQcCAAGBAcEB+AEf
+        AfABBwIAAYABAQH8AR8B8AEHAgABwAEDAfwBPwHwAQcCAAHgAQcB/gE/AfABBwIAAfgBHwL/AfABBwIA
+        AfABDwHwAQ8E/wHgAQMB4AEDAv8BwwHjAcABAQHAAQEB8QH/AYEBwQGAAQEBgAEBAeAB/wGAAYEEAAHg
+        Af8BgAEBBAAB4AF/AcABAwQAAcABPwHgAQcEAAHAAR8B8AEPBAABhAEPAfABBwQAAY8BBwHgAQMEAAGf
+        AYMBwAEBBAAB/wHhAYABAQGAAQEBgAEBAf8B8QKBAcABAwHAAQMB/wH5AcMBwQHgAQcB4AEHAv8B5wHj
+        AfABDwHwAQ8E/wHwAQ8B8AEPAfABDwHwAQ8B4AEDAeABAwHgAQMB4AEDAcABAQHAAQEBwAEBAcABAQGA
+        AQEBgAEBAYABAQGAAQFAAAGAAQEBgAEBAYABAQGAAQEBwAEDAcABAwHAAQMBwAEDAeABBwHgAQcB4AEH
+        AeABBwHwAQ8B8AEPAfABDwHwAQ8WAAs=
+</value>
+  </data>
+  <data name="lblPerson.Text" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="&gt;&gt;btnLend.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;gbItem.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnReturnAll.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="itInvNumber.Width" type="System.Int32, mscorlib">
+    <value>94</value>
+  </data>
+  <data name="btnReturnAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>607, 444</value>
+  </data>
+  <data name="&gt;&gt;itStatus.Name" xml:space="preserve">
+    <value>itStatus</value>
+  </data>
+  <data name="btnReturnAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="imgOLV.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>847, 17</value>
+  </metadata>
 </root>

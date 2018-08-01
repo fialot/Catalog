@@ -1,6 +1,6 @@
 ﻿namespace Katalog
 {
-    partial class frmEditPersonLending
+    partial class frmEditPersonBorrowing
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditPersonLending));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditPersonBorrowing));
             this.gbPerson = new System.Windows.Forms.GroupBox();
             this.btnPrintLend = new System.Windows.Forms.Button();
             this.lblPersonNum = new System.Windows.Forms.Label();
@@ -41,7 +41,6 @@
             this.btnReturn = new System.Windows.Forms.Button();
             this.olvItem = new BrightIdeasSoftware.FastObjectListView();
             this.itName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.itType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.itInvNumber = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.itFrom = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.itTo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -126,7 +125,6 @@
             // 
             resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.AllColumns.Add(this.itName);
-            this.olvItem.AllColumns.Add(this.itType);
             this.olvItem.AllColumns.Add(this.itInvNumber);
             this.olvItem.AllColumns.Add(this.itFrom);
             this.olvItem.AllColumns.Add(this.itTo);
@@ -135,7 +133,6 @@
             this.olvItem.CellEditUseWholeCell = false;
             this.olvItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.itName,
-            this.itType,
             this.itInvNumber,
             this.itFrom,
             this.itTo,
@@ -159,10 +156,6 @@
             // 
             this.itName.AspectName = "";
             resources.ApplyResources(this.itName, "itName");
-            // 
-            // itType
-            // 
-            resources.ApplyResources(this.itType, "itType");
             // 
             // itInvNumber
             // 
@@ -219,7 +212,7 @@
             this.TimeOut.Interval = 200;
             this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
             // 
-            // frmEditPersonLending
+            // frmEditPersonBorrowing
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -228,10 +221,9 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "frmEditPersonLending";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditPersonLending_FormClosing);
-            this.Load += new System.EventHandler(this.frmEditPersonLending_Load);
+            this.Name = "frmEditPersonBorrowing";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditPersonBorrowing_FormClosing);
+            this.Load += new System.EventHandler(this.frmEditPersonBorrowing_Load);
             this.gbPerson.ResumeLayout(false);
             this.gbPerson.PerformLayout();
             this.gbItem.ResumeLayout(false);
@@ -243,25 +235,24 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbPerson;
+        private System.Windows.Forms.Button btnPrintLend;
         private System.Windows.Forms.Label lblPersonNum;
         private System.Windows.Forms.Label lblPerson;
         private System.Windows.Forms.GroupBox gbItem;
+        private System.Windows.Forms.Button btnLend;
+        private System.Windows.Forms.Button btnCancelAll;
+        private System.Windows.Forms.Button btnReturnAll;
+        private System.Windows.Forms.Button btnReturn;
         private BrightIdeasSoftware.FastObjectListView olvItem;
         private BrightIdeasSoftware.OLVColumn itName;
         private BrightIdeasSoftware.OLVColumn itInvNumber;
-        private BrightIdeasSoftware.OLVColumn itNote;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnReturn;
-        private BrightIdeasSoftware.OLVColumn itType;
         private BrightIdeasSoftware.OLVColumn itFrom;
         private BrightIdeasSoftware.OLVColumn itTo;
         private BrightIdeasSoftware.OLVColumn itStatus;
-        private System.Windows.Forms.Button btnCancelAll;
-        private System.Windows.Forms.Button btnReturnAll;
-        private System.Windows.Forms.Button btnLend;
+        private BrightIdeasSoftware.OLVColumn itNote;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Timer TimeOut;
         private System.Windows.Forms.ImageList imgOLV;
-        private System.Windows.Forms.Button btnPrintLend;
     }
 }

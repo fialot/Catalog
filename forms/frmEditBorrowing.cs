@@ -92,6 +92,17 @@ namespace Katalog
         }
 
         /// <summary>
+        /// Show dialog with edit related items
+        /// </summary>
+        /// <param name="ID">Item ID</param>
+        /// <returns></returns>
+        public DialogResult ShowPersonDialog(Guid ID)
+        {
+            PersonGuid = ID;
+            return base.ShowDialog();
+        }
+
+        /// <summary>
         /// Load Form
         /// </summary>
         /// <param name="sender"></param>
@@ -172,6 +183,22 @@ namespace Katalog
 
                 // ----- Update Items OLV -----
                 UpdateOLV();
+            } 
+            // ----- Lending to person -----
+            else if (PersonGuid != Guid.Empty)
+            {
+                Guid temp = PersonGuid;
+                // ----- Fill Person -----
+                Contacts person = db.Contacts.Find(PersonGuid);
+                if (person != null)
+                {
+                    txtPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
+                    lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();
+                }
+                PersonGuid = temp;
+                txtPerson.Enabled = false;
+                btnAddPerson.Enabled = false;
+                this.ActiveControl = txtItem;
             }
         }
 
