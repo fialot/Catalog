@@ -18,17 +18,20 @@ namespace Katalog
     {
 
         #region Variables
-        
+
+        // ----- Fast Tags -----
         Color SelectColor = Color.SkyBlue;                  // FastTags Select color
 
+        // ----- Database -----
         databaseEntities db = new databaseEntities();       // Database
         Guid ID = Guid.Empty;                               // Selected Item GUID (No Guid = new item)
-        
+
+        // ----- Copies -----
         List<Copies> CopiesList = new List<Copies>();       // Copies list
         List<Copies> OriginalCopies = new List<Copies>();   // Original Copies list
-
         int SelCopy = 0;                                    // Selected Copy
 
+        // ----- Inventory number -----
         long TempMaxInvNum = MaxInvNumbers.Item;            // Max Inv. Number
 
         // ----- Barcode reader communication -----
@@ -100,9 +103,9 @@ namespace Katalog
                 txtLocation.AutoCompleteCustomSource.Add(item);
 
             // ----- Add Specimen -----
-            cbSpecimen.Items.Clear();
-            cbSpecimen.Items.Add("1");
-            cbSpecimen.SelectedIndex = 0;
+            cbCopy.Items.Clear();
+            cbCopy.Items.Add("1");
+            cbCopy.SelectedIndex = 0;
 
             Copies copy = global.CreateCopy(ID, ItemTypes.item);
             CopiesList.Add(copy);
@@ -127,7 +130,7 @@ namespace Katalog
                 CopiesList = db.Copies.Where(x => x.ItemID == ID).ToList();
                 OriginalCopies = db.Copies.Where(x => x.ItemID == ID).ToList();
 
-                cbSpecimen.Items.Clear();
+                cbCopy.Items.Clear();
 
                 // ----- If found copies -----
                 if (CopiesList != null && CopiesList.Count > 0)
@@ -136,14 +139,14 @@ namespace Katalog
                     FillFromCopies(CopiesList[0]);
                     
                     // ----- Prepare buttons -----
-                    if (CopiesList.Count > 1) btnDelSpecimen.Enabled = true;
+                    if (CopiesList.Count > 1) btnDelCopy.Enabled = true;
 
                     // ----- Prepare combobox -----
                     for (int i = 0; i < CopiesList.Count; i++)              // Fill Copies combobox
                     {
-                        cbSpecimen.Items.Add((i + 1).ToString());
+                        cbCopy.Items.Add((i + 1).ToString());
                     }
-                    cbSpecimen.SelectedIndex = 0;
+                    cbCopy.SelectedIndex = 0;
                     lblCount.Text = "/ " + CopiesList.Count.ToString();            // Counts
                 }
 
@@ -176,53 +179,6 @@ namespace Katalog
         #region Form Close
 
         /// <summary>
-        /// Check Duplicate Inventory number
-        /// </summary>
-        /// <param name="InvNum">Ger duplicate Inventory number</param>
-        /// <returns>Returns true if duplicate exist</returns>
-        private bool IsDuplicate(string InvNum, Guid ID)
-        {
-            InvNum = "";
-            var list = db.Copies.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (InvNum.Trim() == list[i].Trim())
-                    return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Get available items
-        /// </summary>
-        /// <returns></returns>
-        private short GetAvailable()
-        {
-            short available = 0;
-            foreach (var item in CopiesList)
-            {
-                if (!(item.Excluded ?? false))
-                    if (item.Status == (short)LendStatus.Canceled || item.Status == (short)LendStatus.Returned) available++;
-            }
-            return available;
-        }
-        
-        /// <summary>
-        /// Get items count
-        /// </summary>
-        /// <returns></returns>
-        private short GetCount()
-        {
-            short count = 0;
-            foreach (var item in CopiesList)
-            {
-                if (!(item.Excluded ?? false)) count++;
-            }
-            return count;
-        }
-        
-        /// <summary>
         /// Fill Item values
         /// </summary>
         /// <param name="itm"></param>
@@ -241,8 +197,8 @@ namespace Katalog
             itm.Note = txtNote.Text;                        // Note
 
             // ----- Status -----
-            itm.Count = GetCount();                         // Get counts
-            itm.Available = GetAvailable();                 // Get available items
+            itm.Count = global.GetCopiesCount(CopiesList);          // Get counts
+            itm.Available = global.GetAvailableCopies(CopiesList);  // Get available items
 
             // ----- Fast tags -----
             short fastTag = 0;
@@ -307,7 +263,7 @@ namespace Katalog
             foreach (var item in CopiesList)
             {
                 string DulpicateInvNUm = "";
-                if (IsDuplicate(item.InventoryNumber, item.ID))
+                if (global.IsDuplicate(item.InventoryNumber, item.ID))
                 {
                     if (Dialogs.ShowQuest(String.Format(Lng.Get("DuplicateInvNum", "The inventory number {0} is already in use. Do you really write to database?"), DulpicateInvNUm), Lng.Get("Warning")) != DialogResult.Yes) return;
                 }
@@ -389,7 +345,7 @@ namespace Katalog
 
         #endregion
 
-        #region Copy
+        #region Copies
 
         /// <summary>
         /// Save Form Items to selected Copy
@@ -427,9 +383,9 @@ namespace Katalog
             CopiesList.Add(copy);
 
             // ----- Add New copy to combobox -----
-            cbSpecimen.Items.Add((cbSpecimen.Items.Count + 1).ToString());
-            cbSpecimen.SelectedIndex = cbSpecimen.Items.Count - 1;
-            btnDelSpecimen.Enabled = true;
+            cbCopy.Items.Add((cbCopy.Items.Count + 1).ToString());
+            cbCopy.SelectedIndex = cbCopy.Items.Count - 1;
+            btnDelCopy.Enabled = true;
 
             // ---- Refresh Counts label -----
             lblCount.Text = "/ " + CopiesList.Count.ToString();        // Counts
@@ -450,11 +406,11 @@ namespace Katalog
                     return;
                 }
 
-                int sel = cbSpecimen.SelectedIndex;
+                int sel = cbCopy.SelectedIndex;
                 CopiesList.RemoveAt(sel);
-                cbSpecimen.Items.RemoveAt(cbSpecimen.Items.Count - 1);
-                if (sel >= cbSpecimen.Items.Count)
-                    cbSpecimen.SelectedIndex = sel - 1;
+                cbCopy.Items.RemoveAt(cbCopy.Items.Count - 1);
+                if (sel >= cbCopy.Items.Count)
+                    cbCopy.SelectedIndex = sel - 1;
                 else
                 {
                     FillFromCopies(CopiesList[sel]);
@@ -463,7 +419,7 @@ namespace Katalog
                 lblCount.Text = "/ " + CopiesList.Count.ToString();        // Counts
                 if (CopiesList.Count == 1)
                 {
-                    btnDelSpecimen.Enabled = false;
+                    btnDelCopy.Enabled = false;
                 }
             }
             
@@ -485,8 +441,8 @@ namespace Katalog
                     CopiesList.RemoveAt(SelCopy);
                     CopiesList.Insert(SelCopy, copy);
                 }
-                FillFromCopies(CopiesList[cbSpecimen.SelectedIndex]);
-                SelCopy = cbSpecimen.SelectedIndex;
+                FillFromCopies(CopiesList[cbCopy.SelectedIndex]);
+                SelCopy = cbCopy.SelectedIndex;
             }
         }
 
@@ -495,7 +451,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPlace_Click(object sender, EventArgs e)
+        private void btnLocation_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = Lng.Get("AllFiles", "All files") + "|*.*";

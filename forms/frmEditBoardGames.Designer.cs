@@ -37,13 +37,13 @@
             this.chbExcluded = new System.Windows.Forms.CheckBox();
             this.txtLanguage = new System.Windows.Forms.TextBox();
             this.lblLanguage = new System.Windows.Forms.Label();
-            this.gbSpecimen = new System.Windows.Forms.GroupBox();
+            this.gbCopies = new System.Windows.Forms.GroupBox();
             this.lblCount = new System.Windows.Forms.Label();
-            this.btnPlace = new System.Windows.Forms.Button();
-            this.btnDelSpecimen = new System.Windows.Forms.Button();
-            this.btnAddSpecimen = new System.Windows.Forms.Button();
-            this.cbSpecimen = new System.Windows.Forms.ComboBox();
-            this.lblSpecimen = new System.Windows.Forms.Label();
+            this.btnLocation = new System.Windows.Forms.Button();
+            this.btnDelCopy = new System.Windows.Forms.Button();
+            this.btnAddCopy = new System.Windows.Forms.Button();
+            this.cbCopy = new System.Windows.Forms.ComboBox();
+            this.lblCopy = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
             this.txtInvNum = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
@@ -106,7 +106,7 @@
             this.lblMyRating = new System.Windows.Forms.Label();
             this.txtRating = new System.Windows.Forms.TextBox();
             this.txtMyRating = new System.Windows.Forms.TextBox();
-            this.gbSpecimen.SuspendLayout();
+            this.gbCopies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCover)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxPlayers)).BeginInit();
@@ -163,60 +163,67 @@
             resources.ApplyResources(this.lblLanguage, "lblLanguage");
             this.lblLanguage.Name = "lblLanguage";
             // 
-            // gbSpecimen
+            // gbCopies
             // 
-            this.gbSpecimen.Controls.Add(this.lblCount);
-            this.gbSpecimen.Controls.Add(this.btnPlace);
-            this.gbSpecimen.Controls.Add(this.btnDelSpecimen);
-            this.gbSpecimen.Controls.Add(this.btnAddSpecimen);
-            this.gbSpecimen.Controls.Add(this.cbSpecimen);
-            this.gbSpecimen.Controls.Add(this.lblSpecimen);
-            this.gbSpecimen.Controls.Add(this.lblLocation);
-            this.gbSpecimen.Controls.Add(this.txtInvNum);
-            this.gbSpecimen.Controls.Add(this.txtLocation);
-            this.gbSpecimen.Controls.Add(this.lblInvNum);
-            resources.ApplyResources(this.gbSpecimen, "gbSpecimen");
-            this.gbSpecimen.Name = "gbSpecimen";
-            this.gbSpecimen.TabStop = false;
+            this.gbCopies.Controls.Add(this.lblCount);
+            this.gbCopies.Controls.Add(this.btnLocation);
+            this.gbCopies.Controls.Add(this.btnDelCopy);
+            this.gbCopies.Controls.Add(this.btnAddCopy);
+            this.gbCopies.Controls.Add(this.cbCopy);
+            this.gbCopies.Controls.Add(this.lblCopy);
+            this.gbCopies.Controls.Add(this.lblLocation);
+            this.gbCopies.Controls.Add(this.txtInvNum);
+            this.gbCopies.Controls.Add(this.txtLocation);
+            this.gbCopies.Controls.Add(this.lblInvNum);
+            this.gbCopies.Controls.Add(this.dtAcqDate);
+            this.gbCopies.Controls.Add(this.lblAcqDate);
+            this.gbCopies.Controls.Add(this.txtPrice);
+            this.gbCopies.Controls.Add(this.lblPrice);
+            this.gbCopies.Controls.Add(this.chbExcluded);
+            this.gbCopies.Controls.Add(this.txtCondition);
+            this.gbCopies.Controls.Add(this.lblCondition);
+            resources.ApplyResources(this.gbCopies, "gbCopies");
+            this.gbCopies.Name = "gbCopies";
+            this.gbCopies.TabStop = false;
             // 
             // lblCount
             // 
             resources.ApplyResources(this.lblCount, "lblCount");
             this.lblCount.Name = "lblCount";
             // 
-            // btnPlace
+            // btnLocation
             // 
-            resources.ApplyResources(this.btnPlace, "btnPlace");
-            this.btnPlace.Name = "btnPlace";
-            this.btnPlace.UseVisualStyleBackColor = true;
-            this.btnPlace.Click += new System.EventHandler(this.btnPlace_Click);
+            resources.ApplyResources(this.btnLocation, "btnLocation");
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.UseVisualStyleBackColor = true;
+            this.btnLocation.Click += new System.EventHandler(this.btnLocation_Click);
             // 
-            // btnDelSpecimen
+            // btnDelCopy
             // 
-            resources.ApplyResources(this.btnDelSpecimen, "btnDelSpecimen");
-            this.btnDelSpecimen.Name = "btnDelSpecimen";
-            this.btnDelSpecimen.UseVisualStyleBackColor = true;
-            this.btnDelSpecimen.Click += new System.EventHandler(this.btnDelSpecimen_Click);
+            resources.ApplyResources(this.btnDelCopy, "btnDelCopy");
+            this.btnDelCopy.Name = "btnDelCopy";
+            this.btnDelCopy.UseVisualStyleBackColor = true;
+            this.btnDelCopy.Click += new System.EventHandler(this.btnDelCopy_Click);
             // 
-            // btnAddSpecimen
+            // btnAddCopy
             // 
-            resources.ApplyResources(this.btnAddSpecimen, "btnAddSpecimen");
-            this.btnAddSpecimen.Name = "btnAddSpecimen";
-            this.btnAddSpecimen.UseVisualStyleBackColor = true;
-            this.btnAddSpecimen.Click += new System.EventHandler(this.btnAddSpecimen_Click);
+            resources.ApplyResources(this.btnAddCopy, "btnAddCopy");
+            this.btnAddCopy.Name = "btnAddCopy";
+            this.btnAddCopy.UseVisualStyleBackColor = true;
+            this.btnAddCopy.Click += new System.EventHandler(this.btnAddCopy_Click);
             // 
-            // cbSpecimen
+            // cbCopy
             // 
-            this.cbSpecimen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSpecimen.FormattingEnabled = true;
-            resources.ApplyResources(this.cbSpecimen, "cbSpecimen");
-            this.cbSpecimen.Name = "cbSpecimen";
-            this.cbSpecimen.SelectedIndexChanged += new System.EventHandler(this.cbSpecimen_SelectedIndexChanged);
+            this.cbCopy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCopy.FormattingEnabled = true;
+            resources.ApplyResources(this.cbCopy, "cbCopy");
+            this.cbCopy.Name = "cbCopy";
+            this.cbCopy.SelectedIndexChanged += new System.EventHandler(this.cbCopy_SelectedIndexChanged);
             // 
-            // lblSpecimen
+            // lblCopy
             // 
-            resources.ApplyResources(this.lblSpecimen, "lblSpecimen");
-            this.lblSpecimen.Name = "lblSpecimen";
+            resources.ApplyResources(this.lblCopy, "lblCopy");
+            this.lblCopy.Name = "lblCopy";
             // 
             // lblLocation
             // 
@@ -630,24 +637,17 @@
             this.Controls.Add(this.gbPlayers);
             this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.lblUpdated);
-            this.Controls.Add(this.lblCondition);
-            this.Controls.Add(this.txtCondition);
-            this.Controls.Add(this.chbExcluded);
             this.Controls.Add(this.txtLanguage);
             this.Controls.Add(this.lblLanguage);
-            this.Controls.Add(this.gbSpecimen);
+            this.Controls.Add(this.gbCopies);
             this.Controls.Add(this.txtCategory);
             this.Controls.Add(this.lblCategory);
-            this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblNote);
             this.Controls.Add(this.txtNote);
-            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.lblKeywords);
             this.Controls.Add(this.btnTag6);
-            this.Controls.Add(this.dtAcqDate);
             this.Controls.Add(this.btnTag5);
-            this.Controls.Add(this.lblAcqDate);
             this.Controls.Add(this.btnTag4);
             this.Controls.Add(this.btnTag3);
             this.Controls.Add(this.btnTag2);
@@ -662,8 +662,8 @@
             this.Name = "frmEditBoardGames";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditBoardGames_FormClosing);
             this.Load += new System.EventHandler(this.frmEditBoardGames_Load);
-            this.gbSpecimen.ResumeLayout(false);
-            this.gbSpecimen.PerformLayout();
+            this.gbCopies.ResumeLayout(false);
+            this.gbCopies.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCover)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxPlayers)).EndInit();
@@ -692,13 +692,13 @@
         private System.Windows.Forms.CheckBox chbExcluded;
         private System.Windows.Forms.TextBox txtLanguage;
         private System.Windows.Forms.Label lblLanguage;
-        private System.Windows.Forms.GroupBox gbSpecimen;
+        private System.Windows.Forms.GroupBox gbCopies;
         private System.Windows.Forms.Label lblCount;
-        private System.Windows.Forms.Button btnPlace;
-        private System.Windows.Forms.Button btnDelSpecimen;
-        private System.Windows.Forms.Button btnAddSpecimen;
-        private System.Windows.Forms.ComboBox cbSpecimen;
-        private System.Windows.Forms.Label lblSpecimen;
+        private System.Windows.Forms.Button btnLocation;
+        private System.Windows.Forms.Button btnDelCopy;
+        private System.Windows.Forms.Button btnAddCopy;
+        private System.Windows.Forms.ComboBox cbCopy;
+        private System.Windows.Forms.Label lblCopy;
         private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.TextBox txtInvNum;
         private System.Windows.Forms.TextBox txtLocation;

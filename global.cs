@@ -169,6 +169,26 @@ namespace Katalog
                 return false;
         }
 
+        /// <summary>
+        /// Check Duplicate Inventory number
+        /// </summary>
+        /// <param name="InventoryNumber">Ger duplicate Inventory number</param>
+        /// <returns>Returns true if duplicate exist</returns>
+        public static bool IsDuplicate(string InventoryNumber, Guid ID)
+        {
+            databaseEntities db = new databaseEntities();
+
+            InventoryNumber = "";
+            var list = db.Copies.Where(x => x.ID != ID).Select(x => x.InventoryNumber).ToList();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (InventoryNumber.Trim() == list[i].Trim())
+                    return true;
+            }
+            return false;
+        }
+
         #region Copies
 
         /// <summary>
@@ -226,6 +246,36 @@ namespace Katalog
 
             // ----- Return Copy -----
             return itm;
+        }
+
+        /// <summary>
+        /// Get available items
+        /// </summary>
+        /// <param name="list">Copies list</param>
+        /// <returns>Number of available items</returns>
+        public static short GetAvailableCopies(List<Copies> list)
+        {
+            short available = 0;
+            foreach (var item in list)
+            {
+                if (!(item.Excluded ?? false))
+                    if (item.Status == (short)LendStatus.Canceled || item.Status == (short)LendStatus.Returned) available++;
+            }
+            return available;
+        }
+        
+        /// <summary>
+        /// Get copies count
+        /// </summary>
+        /// <returns></returns>
+        public static short GetCopiesCount(List<Copies> list)
+        {
+            short count = 0;
+            foreach (var item in list)
+            {
+                if (!(item.Excluded ?? false)) count++;
+            }
+            return count;
         }
 
         #endregion
