@@ -158,13 +158,13 @@
             // 
             // gbOriginal
             // 
-            resources.ApplyResources(this.gbOriginal, "gbOriginal");
             this.gbOriginal.Controls.Add(this.lblOrigName);
             this.gbOriginal.Controls.Add(this.txtOrigName);
             this.gbOriginal.Controls.Add(this.txtOrigLang);
             this.gbOriginal.Controls.Add(this.lblOrigLang);
             this.gbOriginal.Controls.Add(this.lblOrigYear);
             this.gbOriginal.Controls.Add(this.txtOrigYear);
+            resources.ApplyResources(this.gbOriginal, "gbOriginal");
             this.gbOriginal.Name = "gbOriginal";
             this.gbOriginal.TabStop = false;
             // 
@@ -205,9 +205,9 @@
             // 
             // cbType
             // 
-            resources.ApplyResources(this.cbType, "cbType");
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
+            resources.ApplyResources(this.cbType, "cbType");
             this.cbType.Name = "cbType";
             this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
@@ -325,8 +325,8 @@
             // 
             // imgCover
             // 
-            resources.ApplyResources(this.imgCover, "imgCover");
             this.imgCover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.imgCover, "imgCover");
             this.imgCover.Name = "imgCover";
             this.imgCover.TabStop = false;
             this.imgCover.Click += new System.EventHandler(this.imgCover_Click);
@@ -429,12 +429,12 @@
             // 
             // gbRating
             // 
-            resources.ApplyResources(this.gbRating, "gbRating");
             this.gbRating.Controls.Add(this.chbReaded);
             this.gbRating.Controls.Add(this.lblMyRating);
             this.gbRating.Controls.Add(this.txtMyRating);
             this.gbRating.Controls.Add(this.lblRating);
             this.gbRating.Controls.Add(this.txtRating);
+            resources.ApplyResources(this.gbRating, "gbRating");
             this.gbRating.Name = "gbRating";
             this.gbRating.TabStop = false;
             // 
@@ -516,7 +516,6 @@
             // 
             // gbCopies
             // 
-            resources.ApplyResources(this.gbCopies, "gbCopies");
             this.gbCopies.Controls.Add(this.lblCondition);
             this.gbCopies.Controls.Add(this.txtCondition);
             this.gbCopies.Controls.Add(this.chbExcluded);
@@ -534,6 +533,7 @@
             this.gbCopies.Controls.Add(this.lblInvNum);
             this.gbCopies.Controls.Add(this.dtAcqDate);
             this.gbCopies.Controls.Add(this.lblAcqDate);
+            resources.ApplyResources(this.gbCopies, "gbCopies");
             this.gbCopies.Name = "gbCopies";
             this.gbCopies.TabStop = false;
             // 
@@ -544,9 +544,9 @@
             // 
             // txtCondition
             // 
-            resources.ApplyResources(this.txtCondition, "txtCondition");
             this.txtCondition.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtCondition.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtCondition, "txtCondition");
             this.txtCondition.Name = "txtCondition";
             // 
             // chbExcluded
@@ -583,15 +583,14 @@
             // 
             // cbCopy
             // 
-            resources.ApplyResources(this.cbCopy, "cbCopy");
             this.cbCopy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCopy.FormattingEnabled = true;
+            resources.ApplyResources(this.cbCopy, "cbCopy");
             this.cbCopy.Name = "cbCopy";
             this.cbCopy.SelectedIndexChanged += new System.EventHandler(this.cbCopy_SelectedIndexChanged);
             // 
             // gbInclusion
             // 
-            resources.ApplyResources(this.gbInclusion, "gbInclusion");
             this.gbInclusion.Controls.Add(this.txtKeywords);
             this.gbInclusion.Controls.Add(this.lblKeywords);
             this.gbInclusion.Controls.Add(this.lblGenre);
@@ -602,6 +601,7 @@
             this.gbInclusion.Controls.Add(this.txtSNumber);
             this.gbInclusion.Controls.Add(this.txtSubGenre);
             this.gbInclusion.Controls.Add(this.lblSubGenre);
+            resources.ApplyResources(this.gbInclusion, "gbInclusion");
             this.gbInclusion.Name = "gbInclusion";
             this.gbInclusion.TabStop = false;
             // 
@@ -622,10 +622,10 @@
             // 
             // cbBookbinding
             // 
-            resources.ApplyResources(this.cbBookbinding, "cbBookbinding");
             this.cbBookbinding.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbBookbinding.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbBookbinding.FormattingEnabled = true;
+            resources.ApplyResources(this.cbBookbinding, "cbBookbinding");
             this.cbBookbinding.Name = "cbBookbinding";
             // 
             // lblAuthorSurname

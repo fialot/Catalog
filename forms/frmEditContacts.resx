@@ -317,150 +317,6 @@
   <data name="&gt;&gt;lblEmail.ZOrder" xml:space="preserve">
     <value>41</value>
   </data>
-  <data name="&gt;&gt;lblPostCode.Name" xml:space="preserve">
-    <value>lblPostCode</value>
-  </data>
-  <data name="&gt;&gt;lblPostCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblPostCode.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;lblPostCode.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtPostCode.Name" xml:space="preserve">
-    <value>txtPostCode</value>
-  </data>
-  <data name="&gt;&gt;txtPostCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtPostCode.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;txtPostCode.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblState.Name" xml:space="preserve">
-    <value>lblState</value>
-  </data>
-  <data name="&gt;&gt;lblState.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblState.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;lblState.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtState.Name" xml:space="preserve">
-    <value>txtState</value>
-  </data>
-  <data name="&gt;&gt;txtState.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtState.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;txtState.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblRegion.Name" xml:space="preserve">
-    <value>lblRegion</value>
-  </data>
-  <data name="&gt;&gt;lblRegion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRegion.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;lblRegion.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;txtRegion.Name" xml:space="preserve">
-    <value>txtRegion</value>
-  </data>
-  <data name="&gt;&gt;txtRegion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtRegion.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;txtRegion.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblCity.Name" xml:space="preserve">
-    <value>lblCity</value>
-  </data>
-  <data name="&gt;&gt;lblCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCity.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;lblCity.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;txtCity.Name" xml:space="preserve">
-    <value>txtCity</value>
-  </data>
-  <data name="&gt;&gt;txtCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCity.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;txtCity.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lblStreet.Name" xml:space="preserve">
-    <value>lblStreet</value>
-  </data>
-  <data name="&gt;&gt;lblStreet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblStreet.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;lblStreet.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.Name" xml:space="preserve">
-    <value>txtStreet</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.Parent" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="gbAddress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>543, 129</value>
-  </data>
-  <data name="gbAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 225</value>
-  </data>
-  <data name="gbAddress.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="gbAddress.Text" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.Name" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.ZOrder" xml:space="preserve">
-    <value>40</value>
-  </data>
   <data name="lblPostCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -700,6 +556,30 @@
   </data>
   <data name="&gt;&gt;txtStreet.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="gbAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>543, 129</value>
+  </data>
+  <data name="gbAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 225</value>
+  </data>
+  <data name="gbAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="gbAddress.Text" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.Name" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.ZOrder" xml:space="preserve">
+    <value>40</value>
   </data>
   <data name="lblSex.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1664,6 +1544,9 @@
   </data>
   <data name="&gt;&gt;btnSaveNew.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="lblLastUpdate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="lblLastUpdate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

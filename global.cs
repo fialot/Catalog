@@ -454,8 +454,7 @@ namespace Katalog
             // ----- Return table -----
             return tab;
         }
-
-
+        
         /// <summary>
         /// Create Borrowing table for PDF document
         /// </summary>
@@ -565,16 +564,22 @@ namespace Katalog
         /// <returns>Return True if saved succesfully</returns>
         public static bool ExportLendedCSV(string path, List<Lending> bor)
         {
+            databaseEntities db = new databaseEntities();
+
             // ----- Head -----
             string lines = "FialotCatalog:Lending v1" + Environment.NewLine;
 
             // ----- Names -----
-            lines += "itemType;itemID;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
+            lines += "copyName;copyInvNum;copyType;copyID;personName;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
 
             // ----- Data -----
             foreach (var item in bor)
             {
-                lines += item.CopyType.Trim() + ";" + item.CopyID.ToString() + ";";
+                var person = db.Contacts.Find(item.PersonID);           // Get person
+                var copy = db.Copies.Find(item.CopyID);                 // Get copy
+
+                lines += global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty) + ";" + copy.InventoryNumber + ";";
+                lines += item.CopyType.Trim() + ";" + item.CopyID.ToString() + ";" + person.Name.Trim() + " " + person.Surname.Trim() + ";";
                 lines += item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";" + item.Status.ToString() + ";";
                 lines += item.Note.Trim() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
             }
@@ -591,39 +596,81 @@ namespace Katalog
         /// <returns>Return True if saved succesfully</returns>
         public static bool ExportBorrowingCSV(string path, List<Borrowing> bor)
         {
+            databaseEntities db = new databaseEntities();
+
             // ----- Head -----
             string lines = "FialotCatalog:Borrowing v1" + Environment.NewLine;
 
             // ----- Names -----
-            lines += "item;itemInvNum;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
+            lines += "item;itemInvNum;person;personID;from;to;status;note;fastTags;updated;GUID" + Environment.NewLine;
 
             // ----- Data -----
             foreach (var item in bor)
             {
-                lines += item.Item.Trim() + ";" + item.ItemInvNum.Trim() + ";";
+                var person = db.Contacts.Find(item.PersonID);           // Get person
+
+                lines += item.Item + ";" + item.ItemInvNum + ";" + person.Name.Trim() + " " + person.Surname.Trim() + ";";
                 lines += item.PersonID.ToString() + ";" + item.From.ToString() + ";" + item.To.ToString() + ";" + item.Status.ToString() + ";";
-                lines += item.Note.Trim() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
+                lines += item.Note + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.ID.ToString() + Environment.NewLine;
             }
 
             // ----- Save to file ------
             return Files.SaveFile(path, lines);
         }
-        
+
         /// <summary>
-        /// Export Items to CSV file
+        /// Export Copies to CSV file
         /// </summary>
-        /// <param name="path">File path</param>
-        /// <param name="itm">Item list</param>
+        /// <param name="path"></param>
+        /// <param name="itm"></param>
+        public static void ExportCopiesCSV(string path, List<Copies> itm)
+        {
+            // ----- Head -----
+            string lines = "FialotCatalog:Copies v1" + Environment.NewLine;
+
+            // ----- Names -----
+            lines += "itemName;itemType;itemID;itemNum;invNumber;condition;location;note;acqDate;price;excluded;status;GUID" + Environment.NewLine;
+
+            // ----- Data -----
+            foreach (var item in itm)
+            {
+                // ----- Other data -----
+                lines += global.GetLendingItemName(item.ItemType, item.ItemID ?? Guid.Empty) + ";" + item.ItemType.Trim() + ";" + item.ItemID.ToString() + ";" + item.ItemNum.ToString() + ";";
+                lines += item.InventoryNumber.Trim() + ";" + item.Condition.Trim() + ";" + item.Location.Trim() + ";" + item.Note.Trim() + ";";
+                lines += item.AcquisitionDate.ToString() + ";" + item.Price.ToString() + ";" + item.Excluded.ToString() + ";" + item.Status + ";";
+                lines += item.ID + Environment.NewLine;
+            }
+
+            // ----- Save to file ------
+            Files.SaveFile(path, lines);
+        }
+
+        /// <summary>
+            /// Export Items to CSV file
+            /// </summary>
+            /// <param name="path">File path</param>
+            /// <param name="itm">Item list</param>
         public static void ExportItemsCSV(string path, List<Items> itm)
         {
+            databaseEntities db = new databaseEntities();
+
             // ----- Head -----
             string lines = "FialotCatalog:Items v1" + Environment.NewLine;
 
             // ----- Names -----
-            lines = "name;category;subcategory;subcategory2;keywords;note;excluded;count;fasttags;image;updated;GUID" + Environment.NewLine;
+            lines += "name;category;subcategory;subcategory2;keywords;manufacturer;note;excluded;count;fasttags;image;updated;GUID" + Environment.NewLine;
 
             // ----- Data -----
             int imgNum = 0;
+            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+            Directory.CreateDirectory(filePath);        // create files path
+
+            // ----- Copies -----
+            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.item.ToString())).ToList();
+            string copiesPath = filePath + Path.DirectorySeparatorChar + "copies.csv";
+            ExportCopiesCSV(copiesPath, copies);
+
+            // ----- Data -----
             foreach (var item in itm)
             {
                 // ----- Images -----
@@ -633,9 +680,8 @@ namespace Katalog
                     try
                     {
                         imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
-                        string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_images";
-                        Directory.CreateDirectory(imgPath);
-                        imgPath += Path.DirectorySeparatorChar + imgFileName;
+
+                        string imgPath = filePath + Path.DirectorySeparatorChar + imgFileName;
                         try
                         {
                             File.WriteAllBytes(imgPath, item.Image);
@@ -650,8 +696,8 @@ namespace Katalog
                 }
 
                 // ----- Other data -----
-                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2.Trim() + ";" + item.Keywords.Trim().Replace(";", ",") + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";";
-                lines += ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" ;
+                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2 + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
+                lines += item.Manufacturer + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") +";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" ;
                 lines += item.FastTags.ToString() + ";" + imgFileName + ";" + item.Updated.ToString() + ";" + item.ID + Environment.NewLine;
             }
 
@@ -666,15 +712,59 @@ namespace Katalog
         /// <param name="itm">Book list</param>
         public static void ExportBooksCSV(string path, List<Books> book)
         {
-            string lines;
+            databaseEntities db = new databaseEntities();
 
-            lines = "name;authorName;authorSurname;fasttags;GUID" + Environment.NewLine;
+            // ----- Head -----
+            string lines = "FialotCatalog:Books v1" + Environment.NewLine;
 
+            // ----- Names -----
+            lines += "Title;AuthorName;AuthorSurname;ISBN;Illustrator;Translator;Language;Publisher;Edition;Year;Pages;MainCharacter;URL;Note;Note1;Note2;Content;OrigName;OrigLanguage;OrigYear;Genre;SubGenre;Series;SeriesNum;Keywords;Rating;MyRating;Readed;Type;Bookbinding;EbookPath;EbookType;Publication;Excluded;Cover;Updated;FastTags;GUID" + Environment.NewLine;
+
+            // ----- Data -----
+            int imgNum = 0;
+            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+            Directory.CreateDirectory(filePath);        // create files path
+
+            // ----- Copies -----
+            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.book.ToString())).ToList();
+            string copiesPath = filePath + Path.DirectorySeparatorChar + "copies.csv";
+            ExportCopiesCSV(copiesPath, copies);
+                        
+            // ----- Data -----
             foreach (var item in book)
             {
-                lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
-            }
+                // ----- Cover -----
+                string imgFileName = "";
+                if (item.Cover != null && item.Cover.Length > 0)
+                {
+                    try
+                    {
+                        imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
 
+                        string imgPath = filePath + Path.DirectorySeparatorChar + imgFileName;
+                        try
+                        {
+                            File.WriteAllBytes(imgPath, item.Cover);
+                            imgNum++;
+                        }
+                        catch
+                        {
+                            imgFileName = "";
+                        }
+                    }
+                    catch { }
+                }
+
+                // ----- Other data -----
+                lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.ISBN + ";" + item.Illustrator + ";" + item.Translator + ";";
+                lines += item.Language + ";" + item.Publisher + ";" + item.Edition + ";" + item.Year + ";" + item.Pages + ";" + item.MainCharacter + ";";
+                lines += item.URL + ";" + item.Note.Replace(Environment.NewLine, "\n") + ";" + item.Note1.Replace(Environment.NewLine, "\n") + ";" + item.Note2.Replace(Environment.NewLine, "\n") + ";" + item.Content.Replace(Environment.NewLine, "\n") + ";";
+                lines += item.OrigName + ";" + item.OrigLanguage + ";" + item.OrigYear + ";" + item.Genre + ";" + item.SubGenre + ";" + item.Series + ";" + item.SeriesNum + ";";
+                lines += item.Keywords.Replace(";", ",") + ";" + item.Rating + ";" + item.MyRating + ";" + item.Readed + ";" + item.Type + ";" + item.Bookbinding + ";";
+                lines += item.EbookPath + ";" + item.EbookType + ";" + item.Publication + ";" + item.Excluded + ";" + imgFileName + ";" + item.Updated + ";";
+                lines += item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
+            }
+            // ----- Save to file ------
             Files.SaveFile(path, lines);
         }
 
@@ -763,23 +853,26 @@ namespace Katalog
             CSVfile file = Files.ParseCSV(text);
 
             // ----- Check table size -----
-            if (file.head.Length != 10)
+            if (file.head.Length != 13)
                 return null;
 
             // ----- Parse data -----
             foreach (var item in file.data)
             {
                 Lending itm = new Lending();
-                itm.CopyType = item[0];
-                itm.CopyID = Conv.ToGuid(item[1]);
-                itm.PersonID = Conv.ToGuid(item[2]);
-                itm.From = Conv.ToDateTimeNull(item[3]);
-                itm.To = Conv.ToDateTimeNull(item[4]);
-                itm.Status = Conv.ToShortNull(item[5]);
-                itm.Note = item[6];
-                itm.FastTags = Conv.ToShortNull(item[7]);
-                itm.Updated = Conv.ToDateTimeNull(item[8]);
-                itm.ID = Conv.ToGuid(item[9]);
+                //itm.CopyName = item[0];
+                //itm.CopyInvNum = item[1];
+                itm.CopyType = item[2];
+                itm.CopyID = Conv.ToGuid(item[3]);
+                //itm.PersonName = Conv.ToGuid(item[4]);
+                itm.PersonID = Conv.ToGuid(item[5]);
+                itm.From = Conv.ToDateTimeNull(item[6]);
+                itm.To = Conv.ToDateTimeNull(item[7]);
+                itm.Status = Conv.ToShortNull(item[8]);
+                itm.Note = item[9];
+                itm.FastTags = Conv.ToShortNull(item[10]);
+                itm.Updated = Conv.ToDateTimeNull(item[11]);
+                itm.ID = Conv.ToGuid(item[12]);
                 con.Add(itm);
             }
 
@@ -806,7 +899,7 @@ namespace Katalog
             CSVfile file = Files.ParseCSV(text);
 
             // ----- Check table size -----
-            if (file.head.Length != 10)
+            if (file.head.Length != 11)
                 return null;
 
             // ----- Parse data -----
@@ -815,14 +908,60 @@ namespace Katalog
                 Borrowing itm = new Borrowing();
                 itm.Item = item[0];
                 itm.ItemInvNum = item[1];
-                itm.PersonID = Conv.ToGuid(item[2]);
-                itm.From = Conv.ToDateTimeNull(item[3]);
-                itm.To = Conv.ToDateTimeNull(item[4]);
-                itm.Status = Conv.ToShortNull(item[5]);
-                itm.Note = item[6];
-                itm.FastTags = Conv.ToShortNull(item[7]);
-                itm.Updated = Conv.ToDateTimeNull(item[8]);
-                itm.ID = Conv.ToGuid(item[9]);
+                // PersonName = item[2];
+                itm.PersonID = Conv.ToGuid(item[3]);
+                itm.From = Conv.ToDateTimeNull(item[4]);
+                itm.To = Conv.ToDateTimeNull(item[5]);
+                itm.Status = Conv.ToShortNull(item[6]);
+                itm.Note = item[7];
+                itm.FastTags = Conv.ToShortNull(item[8]);
+                itm.Updated = Conv.ToDateTimeNull(item[9]);
+                itm.ID = Conv.ToGuid(item[10]);
+                con.Add(itm);
+            }
+
+            return con;
+        }
+
+        /// <summary>
+        /// Import Copies from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Item list</returns>
+        public static List<Copies> ImportCopiesCSV(string path)
+        {
+            List<Copies> con = new List<Copies>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Copies"))
+                return null;
+
+            // ----- Parse CSV File -----
+            CSVfile file = Files.ParseCSV(text);
+
+            // ----- Check table size -----
+            if (file.head.Length != 13)
+                return null;
+
+            foreach (var item in file.data)
+            {
+                Copies itm = new Copies();
+                //itm.ItemName = item[0];
+                itm.ItemType = item[1];
+                itm.ItemID = Conv.ToGuid(item[2]);
+                itm.ItemNum = Conv.ToShortNull(item[3]);
+                itm.InventoryNumber = item[4];
+                itm.Condition = item[5];
+                itm.Location = item[6];
+                itm.Note = item[7];
+                itm.AcquisitionDate = Conv.ToDateTimeNull(item[8]);
+                itm.Price = Conv.ToFloatDef(item[9], 0);
+                itm.Excluded = Conv.ToBoolNull(item[11]);
+                itm.Status = Conv.ToShortNull(item[11]);
+                itm.ID = Conv.ToGuid(item[12]);
                 con.Add(itm);
             }
 
@@ -834,24 +973,48 @@ namespace Katalog
         /// </summary>
         /// <param name="path">File path</param>
         /// <returns>Item list</returns>
-        public static List<Items> ImportItemsCSV(string path)
+        public static List<Items> ImportItemsCSV(string path, out List<Copies> copies)
         {
             List<Items> con = new List<Items>();
+            copies = null;
+
+            // ----- Load file -----
             string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Items"))
+                return null;
+
+            // ----- Parse CSV File -----
             CSVfile file = Files.ParseCSV(text);
+
+            // ----- Check table size -----
+            if (file.head.Length != 13)
+                return null;
+
+            // ----- Import Copies -----
+            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+            copies = ImportCopiesCSV(filePath + Path.DirectorySeparatorChar + "copies.csv");
 
             foreach (var item in file.data)
             {
+                string imgPath = filePath + Path.DirectorySeparatorChar + item[10];
+
                 Items itm = new Items();
                 itm.Name = item[0];
                 itm.Category = item[1];
                 itm.Subcategory = item[2];
-                itm.Keywords = item[3];
-                itm.Note = item[4].Replace("\n", Environment.NewLine);
-                itm.Excluded = Conv.ToBoolNull(item[5]);
-                itm.Count = Conv.ToShortNull(item[6]);
-                itm.FastTags = Conv.ToShortDef(item[7], 0);
-                itm.ID = Conv.ToGuid(item[8]);
+                itm.Subcategory2 = item[3];
+                itm.Keywords = item[4];
+                itm.Manufacturer = item[5];
+                itm.Note = item[6].Replace("\n", Environment.NewLine);
+                itm.Excluded = Conv.ToBoolNull(item[7]);
+                itm.Count = Conv.ToShortNull(item[8]);
+                itm.FastTags = Conv.ToShortDef(item[9], 0);
+                if (item[10] != "")
+                    itm.Image = Files.LoadBinFile(imgPath);
+                itm.Updated = Conv.ToDateTimeNull(item[11]);
+                itm.ID = Conv.ToGuid(item[12]);
                 con.Add(itm);
             }
 
@@ -863,20 +1026,73 @@ namespace Katalog
         /// </summary>
         /// <param name="path">File path</param>
         /// <returns>Book list</returns>
-        public static List<Books> ImportBooksCSV(string path)
+        public static List<Books> ImportBooksCSV(string path, out List<Copies> copies)
         {
             List<Books> con = new List<Books>();
+            copies = null;
+
+            // ----- Load file -----
             string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Books"))
+                return null;
+
+            // ----- Parse CSV File -----
             CSVfile file = Files.ParseCSV(text);
 
+            // ----- Check table size -----
+            if (file.head.Length != 38)
+                return null;
+
+            // ----- Import Copies -----
+            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+            copies = ImportCopiesCSV(filePath + Path.DirectorySeparatorChar + "copies.csv");
+            
             foreach (var item in file.data)
             {
+                string imgPath = filePath + Path.DirectorySeparatorChar + item[34];
+
                 Books itm = new Books();
                 itm.Title = item[0];
                 itm.AuthorName = item[1];
                 itm.AuthorSurname = item[2];
-                itm.FastTags = Conv.ToShortNull(item[3]);
-                itm.ID = Conv.ToGuid(item[4]);
+                itm.ISBN = item[3];
+                itm.Illustrator = item[4];
+                itm.Translator = item[5];
+                itm.Language = item[6];
+                itm.Publisher = item[7];
+                itm.Edition = item[8];
+                itm.Year = Conv.ToShortNull(item[9]);
+                itm.Pages = Conv.ToShortNull(item[10]);
+                itm.MainCharacter = item[11];
+                itm.URL = item[12];
+                itm.Note = item[13].Replace("\n",Environment.NewLine);
+                itm.Note1 = item[14].Replace("\n", Environment.NewLine);
+                itm.Note2 = item[15].Replace("\n", Environment.NewLine);
+                itm.Content = item[16];
+                itm.OrigName = item[17];
+                itm.OrigLanguage = item[18];
+                itm.OrigYear = Conv.ToShortNull(item[19]);
+                itm.Genre = item[20];
+                itm.SubGenre = item[21];
+                itm.Series = item[22];
+                itm.SeriesNum = Conv.ToShortNull(item[23]);
+                itm.Keywords = item[24].Replace(",", ";");
+                itm.Rating = Conv.ToShortNull(item[25]);
+                itm.MyRating = Conv.ToShortNull(item[26]);
+                itm.Readed = Conv.ToBoolNull(item[27]);
+                itm.Type = item[28];
+                itm.Bookbinding = item[29];
+                itm.EbookPath = item[30];
+                itm.EbookType = item[31];
+                itm.Publication = Conv.ToShortNull(item[32]);
+                itm.Excluded = Conv.ToBoolNull(item[33]);
+                if (item[34] != "")
+                    itm.Cover = Files.LoadBinFile(imgPath);
+                itm.Updated = Conv.ToDateTimeNull(item[35]);
+                itm.FastTags = Conv.ToShortNull(item[36]);
+                itm.ID = Conv.ToGuid(item[37]);
                 con.Add(itm);
             }
 

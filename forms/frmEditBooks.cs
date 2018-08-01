@@ -276,6 +276,9 @@ namespace Katalog
             book.Note = txtNote.Text;
             book.Content = txtContent.Text;
 
+            book.Note1 = "";
+            book.Note2 = "";
+
 
             // ----- Original book -----
             book.OrigName = txtOrigName.Text;

@@ -1122,6 +1122,9 @@
   <data name="&gt;&gt;lblSubCategory.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="lblUpdated.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="lblUpdated.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
