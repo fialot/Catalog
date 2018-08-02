@@ -1851,7 +1851,7 @@ namespace Katalog
                 StandardFilter = TextMatchFilter.Contains(olvBoard, txtFilter.Text);
 
                 if (cbFilterCol.SelectedIndex == 0)
-                    StandardFilter.Columns = new OLVColumn[] { bgName, itCategory, itInvNum, itLocation, itKeywords, itCounts, itAvailable, itExcluded };
+                    StandardFilter.Columns = new OLVColumn[] { bgName, bgCategory, bgInvNum, bgLocation, bgKeywords, bgCounts, bgAvailable, bgExcluded };
                 else if (cbFilterCol.SelectedIndex == 1)
                     StandardFilter.Columns = new OLVColumn[] { bgName };
                 else if (cbFilterCol.SelectedIndex == 2)
@@ -1985,6 +1985,16 @@ namespace Katalog
                         itm.Add((Books)item);
                     }
                     global.ExportBooksCSV(dialog.FileName, itm);
+                }
+                else if (tabCatalog.SelectedTab == tabBoardGames)
+                {
+                    List<Boardgames> itm = new List<Boardgames>();
+
+                    foreach (var item in olvBoard.FilteredObjects)
+                    {
+                        itm.Add((Boardgames)item);
+                    }
+                    global.ExportBoardCSV(dialog.FileName, itm);
                 }
             }
         }
@@ -2150,7 +2160,41 @@ namespace Katalog
 
         }
 
+        private void FillBoard(ref Boardgames itm, Boardgames newItem)
+        {
+            itm.Cover = newItem.Cover;
+            itm.Img1 = newItem.Img1;
+            itm.Img2 = newItem.Img2;
+            itm.Img3 = newItem.Img3;
+            
+            itm.Name = newItem.Name;
+            itm.Category = newItem.Category;
+            itm.MinPlayers = newItem.MinPlayers;
+            itm.MaxPlayers = newItem.MaxPlayers;
+            itm.MinAge = newItem.MinAge;
+            itm.GameTime = newItem.GameTime;
+            itm.GameWorld = newItem.GameWorld;
+            itm.Language = newItem.Language;
+            itm.Publisher = newItem.Publisher;
+            itm.Author = newItem.Author;
+            itm.Year = newItem.Year;
+            itm.Description = newItem.Description;
+            itm.Keywords = newItem.Keywords;
+            itm.Note = newItem.Note;
+            itm.Family = newItem.Family;
+            itm.Extension = newItem.Extension;
+            itm.ExtensionNumber = newItem.ExtensionNumber;
+            itm.Rules = newItem.Rules;
+            itm.MaterialPath = newItem.MaterialPath;
+            itm.Rating = newItem.Rating;
+            itm.MyRating = newItem.MyRating;
+            itm.URL = newItem.URL;
 
+            itm.Excluded = newItem.Excluded;
+            itm.FastTags = newItem.FastTags;
+            itm.Updated = newItem.Updated;
+        }
+        
         private void mnuImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -2375,6 +2419,64 @@ namespace Katalog
 
                     db.SaveChanges();
                     UpdateBooksOLV();
+                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+                }
+                else if (tabCatalog.SelectedTab == tabBoardGames)
+                {
+                    List<Boardgames> con = global.ImportBoardgamesCSV(dialog.FileName, out List<Copies> copies);
+                    if (con == null)
+                    {
+                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                        return;
+                    }
+
+                    foreach (var item in con)
+                    {
+
+
+                        Boardgames itm;
+                        // ----- ID -----
+                        if (item.ID != Guid.Empty)
+                        {
+                            itm = db.Boardgames.Find(item.ID);
+                            if (itm != null)
+                                FillBoard(ref itm, item);
+                            else
+                            {
+                                db.Boardgames.Add(item);
+                            }
+
+                        }
+                        else
+                        {
+                            item.ID = Guid.NewGuid();
+                            db.Boardgames.Add(item);
+                        }
+                    }
+
+                    foreach (var item in copies)
+                    {
+                        Copies itm;
+                        // ----- ID -----
+                        if (item.ID != Guid.Empty)
+                        {
+                            itm = db.Copies.Find(item.ID);
+                            if (itm != null)
+                                FillCopy(ref itm, item);
+                            else
+                            {
+                                db.Copies.Add(item);
+                            }
+                        }
+                        else
+                        {
+                            item.ID = Guid.NewGuid();
+                            db.Copies.Add(item);
+                        }
+                    }
+
+                    db.SaveChanges();
+                    UpdateBoardOLV();
                     Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
             }

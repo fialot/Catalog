@@ -503,6 +503,31 @@ namespace Katalog
         #region Export
 
         /// <summary>
+        /// Export Image
+        /// </summary>
+        /// <param name="path">Image path</param>
+        /// <param name="image">Image</param>
+        /// <returns></returns>
+        public static bool ExportImage(ref string path, byte[] image)
+        {
+            // ----- Images -----
+            if (image != null && image.Length > 0)
+            {
+                try
+                {
+                    File.WriteAllBytes(path, image);
+                    path = Path.GetFileName(path);
+                }
+                catch
+                {
+                    path = "";
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Export Contacts to CSV file
         /// </summary>
         /// <param name="path">File path</param>
@@ -516,41 +541,30 @@ namespace Katalog
             // ----- Names -----
             lines += "name;surname;nick;sex;birth;phone;email;www;im;company;position;street;city;region;country;postcode;personcode;note;groups;tags;updated;googleID;active;avatar;GUID" + Environment.NewLine;
 
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+            
             // ----- Data -----
             int imgNum = 0;
             foreach (var item in con)
             {
                 // ----- Images -----
-                string imgFileName = "";
-                if (item.Avatar != null && item.Avatar.Length > 0)
-                {
-                    try
-                    {
-                        imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
-                        string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_images";
-                        Directory.CreateDirectory(imgPath);
-                        imgPath += Path.DirectorySeparatorChar + imgFileName;
-                        try
-                        {
-                            File.WriteAllBytes(imgPath, item.Avatar);
-                            imgNum++;
-                        }
-                        catch
-                        {
-                            imgFileName = "";
-                        }
-                    }
-                    catch { }
-                    
-                }
-
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Avatar);
+                
                 // ----- Other data -----
                 lines += item.Name.Trim() + ";" + item.Surname.Trim() + ";" + item.Nick.Trim() + ";" + item.Sex.Trim() + ";" + item.Birth.ToString() + ";" + item.Phone.Trim() + ";" + item.Email.Trim() + ";" + item.WWW.Trim() + ";" + item.IM.Trim() + ";";
                 lines += item.Company.Trim() + ";" + item.Position.Trim() + ";" + item.Street.Trim() + ";" + item.City.Trim() + ";" + item.Region.Trim() + ";" + item.Country.Trim() + ";" + item.PostCode.Trim() + ";";
                 lines += item.PersonCode.Trim() + ";" + item.Note.Trim() + ";" + item.Tags.Trim() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.GoogleID.Trim() + ";" + (item.Active ?? true).ToString() + ";";
                 lines += imgFileName + ";" +  item.ID + Environment.NewLine;
 
-                
+                imgNum++;
             }
 
             return Files.SaveFile(path, lines);
@@ -660,45 +674,34 @@ namespace Katalog
             // ----- Names -----
             lines += "name;category;subcategory;subcategory2;keywords;manufacturer;note;excluded;count;fasttags;image;updated;GUID" + Environment.NewLine;
 
-            // ----- Data -----
-            int imgNum = 0;
-            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
-            Directory.CreateDirectory(filePath);        // create files path
-
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+            
             // ----- Copies -----
             var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.item.ToString())).ToList();
             string copiesPath = filePath + Path.DirectorySeparatorChar + "copies.csv";
             ExportCopiesCSV(copiesPath, copies);
 
             // ----- Data -----
+            int imgNum = 0;
             foreach (var item in itm)
             {
                 // ----- Images -----
-                string imgFileName = "";
-                if (item.Image != null && item.Image.Length > 0)
-                {
-                    try
-                    {
-                        imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
-
-                        string imgPath = filePath + Path.DirectorySeparatorChar + imgFileName;
-                        try
-                        {
-                            File.WriteAllBytes(imgPath, item.Image);
-                            imgNum++;
-                        }
-                        catch
-                        {
-                            imgFileName = "";
-                        }
-                    }
-                    catch { }
-                }
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
 
                 // ----- Other data -----
                 lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2 + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
                 lines += item.Manufacturer + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") +";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" ;
                 lines += item.FastTags.ToString() + ";" + imgFileName + ";" + item.Updated.ToString() + ";" + item.ID + Environment.NewLine;
+
+                imgNum++;
             }
 
             // ----- Save to file ------
@@ -720,40 +723,27 @@ namespace Katalog
             // ----- Names -----
             lines += "Title;AuthorName;AuthorSurname;ISBN;Illustrator;Translator;Language;Publisher;Edition;Year;Pages;MainCharacter;URL;Note;Note1;Note2;Content;OrigName;OrigLanguage;OrigYear;Genre;SubGenre;Series;SeriesNum;Keywords;Rating;MyRating;Readed;Type;Bookbinding;EbookPath;EbookType;Publication;Excluded;Cover;Updated;FastTags;GUID" + Environment.NewLine;
 
-            // ----- Data -----
-            int imgNum = 0;
-            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
-            Directory.CreateDirectory(filePath);        // create files path
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
 
             // ----- Copies -----
             var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.book.ToString())).ToList();
             string copiesPath = filePath + Path.DirectorySeparatorChar + "copies.csv";
             ExportCopiesCSV(copiesPath, copies);
-                        
+
             // ----- Data -----
+            int imgNum = 0;
             foreach (var item in book)
             {
                 // ----- Cover -----
-                string imgFileName = "";
-                if (item.Cover != null && item.Cover.Length > 0)
-                {
-                    try
-                    {
-                        imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
-
-                        string imgPath = filePath + Path.DirectorySeparatorChar + imgFileName;
-                        try
-                        {
-                            File.WriteAllBytes(imgPath, item.Cover);
-                            imgNum++;
-                        }
-                        catch
-                        {
-                            imgFileName = "";
-                        }
-                    }
-                    catch { }
-                }
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Cover);
 
                 // ----- Other data -----
                 lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.ISBN + ";" + item.Illustrator + ";" + item.Translator + ";";
@@ -763,6 +753,8 @@ namespace Katalog
                 lines += item.Keywords.Replace(";", ",") + ";" + item.Rating + ";" + item.MyRating + ";" + item.Readed + ";" + item.Type + ";" + item.Bookbinding + ";";
                 lines += item.EbookPath + ";" + item.EbookType + ";" + item.Publication + ";" + item.Excluded + ";" + imgFileName + ";" + item.Updated + ";";
                 lines += item.FastTags.ToString() + ";" + item.ID + Environment.NewLine;
+
+                imgNum++;
             }
             // ----- Save to file ------
             Files.SaveFile(path, lines);
@@ -781,52 +773,50 @@ namespace Katalog
             string lines = "FialotCatalog:Boardgames v1" + Environment.NewLine;
 
             // ----- Names -----
-            lines += "name;category;subcategory;subcategory2;keywords;manufacturer;note;excluded;count;fasttags;image;updated;GUID" + Environment.NewLine;
+            lines += "Name;Category;MinPlayers;MaxPlayers;MinAge;GameTime;GameWorld;Language;Publisher;Author;Year;Description;Keywords;Note;Family;Extension;ExtensionNumber;Rules;Cover;Img1;Img2;Img3;MaterialPath;Rating;MyRating;URL;Excluded;FastTags;Updated;GUID" + Environment.NewLine;
 
-            // ----- Data -----
-            int imgNum = 0;
-            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
-            Directory.CreateDirectory(filePath);        // create files path
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
 
             // ----- Copies -----
-            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.item.ToString())).ToList();
+            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.boardgame.ToString())).ToList();
             string copiesPath = filePath + Path.DirectorySeparatorChar + "copies.csv";
             ExportCopiesCSV(copiesPath, copies);
 
             // ----- Data -----
+            int imgNum = 0;
             foreach (var item in itm)
             {
                 // ----- Images -----
-                string imgFileName = "";
-                if (item.Image != null && item.Image.Length > 0)
-                {
-                    try
-                    {
-                        imgFileName = "img" + imgNum.ToString("D4") + ".jpg";
-
-                        string imgPath = filePath + Path.DirectorySeparatorChar + imgFileName;
-                        try
-                        {
-                            File.WriteAllBytes(imgPath, item.Image);
-                            imgNum++;
-                        }
-                        catch
-                        {
-                            imgFileName = "";
-                        }
-                    }
-                    catch { }
-                }
-
+                string imgCover = filePath + Path.DirectorySeparatorChar + "imgC" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgCover, item.Cover);
+                string img1 = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "A.jpg";
+                ExportImage(ref img1, item.Img1);
+                string img2 = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "B.jpg";
+                ExportImage(ref img2, item.Img2);
+                string img3 = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "C.jpg";
+                ExportImage(ref img3, item.Img3);
+                
                 // ----- Other data -----
-                lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2 + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
-                lines += item.Manufacturer + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";";
-                lines += item.FastTags.ToString() + ";" + imgFileName + ";" + item.Updated.ToString() + ";" + item.ID + Environment.NewLine;
+                lines += item.Name + ";" + item.Category + ";" + item.MinPlayers + ";" + item.MaxPlayers + ";" + item.MinAge + ";" + item.GameTime + ";" + item.GameWorld + ";";
+                lines += item.Language + ";" + item.Publisher + ";" + item.Author + ";" + item.Year + ";" + item.Description.Replace(Environment.NewLine, "\n") + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
+                lines += item.Note.Replace(Environment.NewLine, "\n") + ";" + item.Family + ";" + item.Extension + ";" + item.ExtensionNumber + ";" + item.Rules.Replace(Environment.NewLine, "\n") + ";";
+                lines += imgCover + ";" + img1 + ";" + img2 + ";" + img3 + ";" + item.MaterialPath + ";" + item.Rating + ";" + item.MyRating + ";" + item.URL + ";";
+                lines += item.Excluded + ";" + item.FastTags + ";" + item.Updated + ";" + item.ID + Environment.NewLine;
+
+                imgNum++;
             }
 
             // ----- Save to file ------
             Files.SaveFile(path, lines);
         }
+
 
         #endregion
 
@@ -1153,6 +1143,84 @@ namespace Katalog
                 itm.Updated = Conv.ToDateTimeNull(item[35]);
                 itm.FastTags = Conv.ToShortNull(item[36]);
                 itm.ID = Conv.ToGuid(item[37]);
+                con.Add(itm);
+            }
+
+            return con;
+        }
+        
+        /// <summary>
+        /// Import Boardgames from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Boardgame list</returns>
+        public static List<Boardgames> ImportBoardgamesCSV(string path, out List<Copies> copies)
+        {
+            List<Boardgames> con = new List<Boardgames>();
+            copies = null;
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Boardgames"))
+                return null;
+
+            // ----- Parse CSV File -----
+            CSVfile file = Files.ParseCSV(text);
+
+            // ----- Check table size -----
+            if (file.head.Length != 30)
+                return null;
+
+            // ----- Import Copies -----
+            string filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+            copies = ImportCopiesCSV(filePath + Path.DirectorySeparatorChar + "copies.csv");
+
+            foreach (var item in file.data)
+            {
+                //MaterialPath;Rating;MyRating;URL;Excluded;FastTags;Updated;GUID" + Environment.NewLine;
+
+                string CoverPath = filePath + Path.DirectorySeparatorChar + item[18];
+                string Img1Path = filePath + Path.DirectorySeparatorChar + item[19];
+                string Img2Path = filePath + Path.DirectorySeparatorChar + item[20];
+                string Img3Path = filePath + Path.DirectorySeparatorChar + item[21];
+
+                Boardgames itm = new Boardgames();
+                itm.Name = item[0];
+                itm.Category = item[1];
+                itm.MinPlayers = Conv.ToShortNull(item[2]);
+                itm.MaxPlayers = Conv.ToShortNull(item[3]);
+                itm.MinAge = Conv.ToShortNull(item[4]);
+                itm.GameTime = Conv.ToShortNull(item[5]);
+                itm.GameWorld = item[6];
+                itm.Language = item[7];
+                itm.Publisher = item[8];
+                itm.Author = item[9];
+                itm.Year = Conv.ToShortNull(item[10]);
+                itm.Description = item[11];
+                itm.Keywords = item[12];
+                itm.Note = item[13];
+                itm.Family = item[14];
+                itm.Extension = Conv.ToBoolNull(item[15]);
+                itm.ExtensionNumber = Conv.ToShortNull(item[16]);
+                itm.Rules = item[17];
+                if (item[18] != "")
+                    itm.Cover = Files.LoadBinFile(CoverPath);
+                if (item[19] != "")
+                    itm.Img1 = Files.LoadBinFile(Img1Path);
+                if (item[20] != "")
+                    itm.Img2 = Files.LoadBinFile(Img2Path);
+                if (item[21] != "")
+                    itm.Img3 = Files.LoadBinFile(Img3Path);
+                itm.MaterialPath = item[22];
+                itm.Rating = Conv.ToShortNull(item[23]);
+                itm.MyRating = Conv.ToShortNull(item[24]);
+                itm.URL = item[25];
+                itm.Excluded = Conv.ToBoolNull(item[26]);
+                itm.FastTags = Conv.ToShortNull(item[27]);
+                itm.Updated = Conv.ToDateTimeNull(item[28]);
+                itm.ID = Conv.ToGuid(item[29]);
                 con.Add(itm);
             }
 

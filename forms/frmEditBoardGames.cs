@@ -240,6 +240,10 @@ namespace Katalog
             itm.Rating = Conv.ToShortNull(txtRating.Text);  // Rating
             itm.MyRating = Conv.ToShortNull(txtMyRating.Text);  // My rating
 
+            itm.Description = "";
+            itm.Rules = "";
+            itm.MaterialPath = "";
+
             // ----- Status -----
             itm.Count = global.GetCopiesCount(CopiesList);          // Get counts
             itm.Available = global.GetAvailableCopies(CopiesList);  // Get available items
