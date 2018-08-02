@@ -1,4 +1,4 @@
 # Catalog
-Catalog is software for cataloging items, books or boardgames.
+Catalog is is a C# Windows form application for cataloging items, books or boardgames.
 
 
