@@ -369,4 +369,10 @@
   <data name="SuccesfullyImport" xml:space="preserve">
     <value>Import proběhl vpořádku</value>
   </data>
+  <data name="GoogleImportError" xml:space="preserve">
+    <value>Chyba importu z webu Google</value>
+  </data>
+  <data name="DeleteItems" xml:space="preserve">
+    <value>Opravdu vymazat vybrané položky?</value>
+  </data>
 </root>

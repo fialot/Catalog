@@ -67,23 +67,29 @@ namespace Katalog
                 return res;
             };
             conName.AspectGetter = delegate (object x) {
-                return ((Contacts)x).Name.Trim();
+                return ((Contacts)x).Name;
             };
             conSurname.AspectGetter = delegate (object x) {
-                return ((Contacts)x).Surname.Trim();
+                return ((Contacts)x).Surname;
             };
             conPhone.AspectGetter = delegate (object x) {
-                return ((Contacts)x).Phone.Trim();
+                return ((Contacts)x).Phone;
             };
             conEmail.AspectGetter = delegate (object x) {
-                return ((Contacts)x).Email.Trim();
+                return ((Contacts)x).Email;
             };
             conAddress.AspectGetter = delegate (object x) {
-                string address = ((Contacts)x).Street.Trim();
-                if (address != "") address += ", ";
-                address += ((Contacts)x).City.Trim();
-                if (address != "") address += ", ";
-                address += ((Contacts)x).Country.Trim();
+                string address = ((Contacts)x).Street;
+                string city = ((Contacts)x).City;
+                string country = ((Contacts)x).Country;
+
+                if ((city != null && city != "") && (address != null && address != ""))
+                    address += ", ";
+                address += city;
+
+                if ((country != null && country != "") && (address != null && address != ""))
+                    address += ", ";
+                address += country;
                 return address;
             };
 
@@ -806,33 +812,40 @@ namespace Katalog
 
         private void EnableEditItems()
         {
-            int index = -1;
+            int count = 0;
 
             if (tabCatalog.SelectedTab == tabContacts)
-                index = olvContacts.SelectedIndex;
+                count = olvContacts.SelectedObjects.Count;
             else if (tabCatalog.SelectedTab == tabLending)
-                index = olvLending.SelectedIndex;
+                count = olvLending.SelectedObjects.Count;
             else if (tabCatalog.SelectedTab == tabBorrowing)
-                index = olvBorrowing.SelectedIndex;
+                count = olvBorrowing.SelectedObjects.Count;
             else if (tabCatalog.SelectedTab == tabItems)
-                index = olvItem.SelectedIndex;
+                count = olvItem.SelectedObjects.Count;
             else if (tabCatalog.SelectedTab == tabBooks)
-                index = olvBooks.SelectedIndex;
+                count = olvBooks.SelectedObjects.Count;
             else if (tabCatalog.SelectedTab == tabBoardGames)
-                index = olvBoard.SelectedIndex;
+                count = olvBoard.SelectedObjects.Count;
 
-            if (index >= 0)
+            if (count == 1)
             {
                 btnEditItem.Enabled = true;
-                btnDeleteItem.Enabled = true;
                 mnuEditItem.Enabled = true;
-                mnuDelItem.Enabled = true;
             }
             else
             {
                 btnEditItem.Enabled = false;
-                btnDeleteItem.Enabled = false;
                 mnuEditItem.Enabled = false;
+            }
+
+            if (count >= 0)
+            {
+                btnDeleteItem.Enabled = true;
+                mnuDelItem.Enabled = true;
+            }
+            else
+            {
+                btnDeleteItem.Enabled = false;
                 mnuDelItem.Enabled = false;
             }
         }
@@ -1055,6 +1068,19 @@ namespace Katalog
                         db.SaveChanges();                           // Save to DB
                         UpdateConOLV();                             // Update Contacts OLV 
                     }
+                } else if (olvContacts.SelectedObjects != null)                 // If selected Item
+                {
+                    if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items?"), Lng.Get("Delete")) == DialogResult.Yes)
+                    {
+                        foreach (var item in olvContacts.SelectedObjects) // Find Object
+                        {
+                            Contacts contact = db.Contacts.Find(((Contacts)item).ID);
+                            db.Contacts.Remove(contact);                // Delete Item
+                        }
+                        db.SaveChanges();                           // Save to DB
+                        UpdateConOLV();                             // Update Contacts OLV 
+                    }
+
                 }
             }
             // ----- Lending -----
@@ -2563,7 +2589,45 @@ namespace Katalog
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            UpdateConOLV();
+            databaseEntities db = new databaseEntities();
+
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                List<Contacts> con = global.ImportContactsGoogle();
+                if (con == null)
+                {
+                    Dialogs.ShowErr(Lng.Get("GoogleImportError", "Google import Error") + ".", Lng.Get("Error"));
+                    return;
+                }
+
+                int x = 0;
+                foreach (var item in con)
+                {
+                    Contacts contact;
+                    // ----- ID -----
+                    if (item.ID != Guid.Empty)
+                    {
+                        contact = db.Contacts.Find(item.ID);
+                        if (contact != null)
+                            FillContact(ref contact, item);
+                        else
+                        {
+                            db.Contacts.Add(item);
+                        }
+
+                    }
+                    else
+                    {
+                        x++;
+                        item.ID = Guid.NewGuid();
+                        db.Contacts.Add(item);
+                        db.SaveChanges();
+                    }
+                }
+                db.SaveChanges();
+                UpdateConOLV();
+                Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+            }
         }
 
         private void tabCatalog_SelectedIndexChanged(object sender, EventArgs e)

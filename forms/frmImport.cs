@@ -27,10 +27,10 @@ namespace Katalog
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            GoogleContacts gc = new GoogleContacts();
+            /*GoogleContacts gc = new GoogleContacts();
             gc.Login();
             gc.ImportGmail();
-            MessageBox.Show("count: " + gc.Contact.Count.ToString());
+            MessageBox.Show("count: " + gc.Contact.Count.ToString());*/
         }
     }
 }

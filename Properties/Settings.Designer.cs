@@ -273,5 +273,17 @@ namespace Katalog.Properties {
                 this["BoardMinCharLen"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastGUserCred {
+            get {
+                return ((string)(this["LastGUserCred"]));
+            }
+            set {
+                this["LastGUserCred"] = value;
+            }
+        }
     }
 }

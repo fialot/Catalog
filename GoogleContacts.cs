@@ -40,6 +40,9 @@ namespace GContacts
         public string Firstname;
         public string AdditionalName;
         public string Surname;
+        public string FirstnamePhonetic;
+        public string AdditionalNamePhonetic;
+        public string SurnamePhonetic;
         public string Nick;
 
         public string Prefix;
@@ -93,7 +96,15 @@ namespace GContacts
 
         ContactsRequest cr;
 
-        public bool Login()
+        public static string RandomString(int length)
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private ContactsRequest GetContactRequest(string user)
         {
             string AppName = "Fialot catalog";
             string clientId = "109433857970-aqsm7jd6fqqkd0l7b413lu12gb1h8nca.apps.googleusercontent.com";
@@ -104,29 +115,43 @@ namespace GContacts
             //string[] scopes = new string[] { "https://www.googleapis.com/auth/contacts.readonly" };     // view your basic profile info.
 
             //string[] scopes = new string[] { "https://www.google.com/m8/feeds/groups/fialot@gmail.com/full" };     // view your basic profile info.
-            //try
+
+            // Use the current Google .net client library to get the Oauth2 stuff.
+            UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(new ClientSecrets { ClientId = clientId, ClientSecret = clientSecret }
+                                                                                         , scopes
+                                                                                         , user
+                                                                                         , CancellationToken.None
+                                                                                         , new FileDataStore("test")).Result;
+
+            // Translate the Oauth permissions to something the old client libray can read
+            OAuth2Parameters parameters = new OAuth2Parameters();
+            parameters.AccessToken = credential.Token.AccessToken;
+            parameters.RefreshToken = credential.Token.RefreshToken;
+            parameters.TokenType = credential.Token.TokenType;
+            parameters.TokenExpiry = DateTime.Now.AddYears(1);
+
+
+
+
+            RequestSettings settings = new RequestSettings(AppName, parameters);
+            //settings.Credentials = new GDataCredentials("mfialot@gmail.com", "timoty");
+            return new ContactsRequest(settings);
+        }
+
+        public bool Login(ref string user)
+        {
+            if (user == "") user = "user";
+            cr = GetContactRequest(user);
+
+            try
             {
-                // Use the current Google .net client library to get the Oauth2 stuff.
-                UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(new ClientSecrets { ClientId = clientId, ClientSecret = clientSecret }
-                                                                                             , scopes
-                                                                                             , "test10"
-                                                                                             , CancellationToken.None
-                                                                                             , new FileDataStore("test")).Result;
-
-                // Translate the Oauth permissions to something the old client libray can read
-                OAuth2Parameters parameters = new OAuth2Parameters();
-                parameters.AccessToken = credential.Token.AccessToken;
-                parameters.RefreshToken = credential.Token.RefreshToken;
-                parameters.TokenType = credential.Token.TokenType;
-                parameters.TokenExpiry = DateTime.Now.AddYears(1);
-
-
-
-
-                RequestSettings settings = new RequestSettings(AppName, parameters);
-                //settings.Credentials = new GDataCredentials("mfialot@gmail.com", "timoty");
-                cr = new ContactsRequest(settings);
-
+                Feed<Google.Contacts.Group> fg = cr.GetGroups();
+                int x = fg.PageSize;
+            }
+            catch (Exception Err)
+            {
+                user = RandomString(10);
+                cr = GetContactRequest(user);
             }
 
             return true;
@@ -182,23 +207,17 @@ namespace GContacts
                         if (!string.IsNullOrEmpty(name.NamePrefix))
                             item.Name.Prefix = name.NamePrefix;
                         if (!string.IsNullOrEmpty(name.GivenName))
-                        {
                             item.Name.Firstname = name.GivenName;
-                            if (!string.IsNullOrEmpty(name.GivenNamePhonetics))
-                                item.Name.Firstname += "/" + name.GivenNamePhonetics;
-                        }
+                        if (!string.IsNullOrEmpty(name.GivenNamePhonetics))
+                            item.Name.FirstnamePhonetic = name.GivenNamePhonetics;
                         if (!string.IsNullOrEmpty(name.AdditionalName))
-                        {
                             item.Name.AdditionalName = name.AdditionalName;
-                            if (!string.IsNullOrEmpty(name.AdditionalNamePhonetics))
-                                item.Name.AdditionalName += "/" + name.AdditionalNamePhonetics;
-                        }
+                        if (!string.IsNullOrEmpty(name.AdditionalNamePhonetics))
+                            item.Name.AdditionalNamePhonetic = name.AdditionalNamePhonetics;
                         if (!string.IsNullOrEmpty(name.FamilyName))
-                        {
                             item.Name.Surname = name.FamilyName;
-                            if (!string.IsNullOrEmpty(name.FamilyNamePhonetics))
-                                item.Name.Surname += "/" + name.FamilyNamePhonetics;
-                        }
+                        if (!string.IsNullOrEmpty(name.FamilyNamePhonetics))
+                            item.Name.SurnamePhonetic = name.FamilyNamePhonetics;
                         if (!string.IsNullOrEmpty(name.NameSuffix))
                             item.Name.Suffix = name.NameSuffix;
                         if (!string.IsNullOrEmpty(entry.ContactEntry.Nickname))
@@ -271,7 +290,7 @@ namespace GContacts
                         }
 
                         // ----- BIRTHDATE -----
-                        DateTime date;
+                        DateTime date = DateTime.MinValue;
                         if (DateTime.TryParse(entry.ContactEntry.Birthday, out date)) item.BirthDate = date;
 
                         // ----- DATES -----

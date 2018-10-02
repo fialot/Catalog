@@ -146,7 +146,7 @@
           <Property Name="PersonCode" Type="nvarchar" MaxLength="100" />
           <Property Name="Barcode" Type="bigint" />
           <Property Name="Updated" Type="datetime" />
-          <Property Name="GoogleID" Type="nvarchar" MaxLength="50" />
+          <Property Name="GoogleID" Type="nvarchar" MaxLength="100" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="Copies">
@@ -254,6 +254,7 @@
           <Property Name="update" Type="datetime" />
           <Property Name="Note1" Type="nchar" MaxLength="50" />
           <Property Name="Note2" Type="nchar" MaxLength="50" />
+          <Property Name="FastTags" Type="smallint" />
         </EntityType>
         <EntityContainer Name="databaseModelStoreContainer">
           <EntitySet Name="Audio" EntityType="Self.Audio" Schema="dbo" store:Type="Tables" />
@@ -275,12 +276,12 @@
           <EntitySet Name="Boardgames" EntityType="databaseModel.Boardgames" />
           <EntitySet Name="Books" EntityType="databaseModel.Books" />
           <EntitySet Name="Borrowing" EntityType="databaseModel.Borrowing" />
-          <EntitySet Name="Contacts" EntityType="databaseModel.Contacts" />
           <EntitySet Name="Copies" EntityType="databaseModel.Copies" />
           <EntitySet Name="Foto" EntityType="databaseModel.Foto" />
           <EntitySet Name="Items" EntityType="databaseModel.Items" />
           <EntitySet Name="Lending" EntityType="databaseModel.Lending" />
           <EntitySet Name="Video" EntityType="databaseModel.Video" />
+          <EntitySet Name="Contacts" EntityType="databaseModel.Contacts" />
         </EntityContainer>
         <EntityType Name="Boardgames">
           <Key>
@@ -378,40 +379,6 @@
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="FastTags" Type="Int16" />
           <Property Name="Updated" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="Contacts">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Nick" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Region" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PostCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="WWW" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Birth" Type="DateTime" Precision="0" />
-          <Property Name="Tags" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="FastTags" Type="Int16" />
-          <Property Name="Partner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Childs" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Parrents" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="PersonCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Barcode" Type="Int64" />
-          <Property Name="Updated" Type="DateTime" Precision="3" />
-          <Property Name="GoogleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Active" Type="Boolean" />
         </EntityType>
         <EntityType Name="Copies">
           <Key>
@@ -518,6 +485,41 @@
           <Property Name="update" Type="DateTime" Precision="3" />
           <Property Name="Note1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Note2" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="FastTags" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Nick" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WWW" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Birth" Type="DateTime" Precision="0" />
+          <Property Name="Tags" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FastTags" Type="Int16" />
+          <Property Name="Partner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Childs" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Parrents" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PersonCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Barcode" Type="Int64" />
+          <Property Name="Updated" Type="DateTime" Precision="3" />
+          <Property Name="GoogleID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -625,41 +627,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="databaseModel.Contacts">
-              <MappingFragment StoreEntitySet="Contacts">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="GoogleID" ColumnName="GoogleID" />
-                <ScalarProperty Name="Updated" ColumnName="Updated" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="PersonCode" ColumnName="PersonCode" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="Parrents" ColumnName="Parrents" />
-                <ScalarProperty Name="Childs" ColumnName="Childs" />
-                <ScalarProperty Name="Partner" ColumnName="Partner" />
-                <ScalarProperty Name="FastTags" ColumnName="FastTags" />
-                <ScalarProperty Name="Tags" ColumnName="Tags" />
-                <ScalarProperty Name="Birth" ColumnName="Birth" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="IM" ColumnName="IM" />
-                <ScalarProperty Name="WWW" ColumnName="WWW" />
-                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Nick" ColumnName="Nick" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Copies">
             <EntityTypeMapping TypeName="databaseModel.Copies">
               <MappingFragment StoreEntitySet="Copies">
@@ -736,6 +703,7 @@
           <EntitySetMapping Name="Video">
             <EntityTypeMapping TypeName="databaseModel.Video">
               <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="FastTags" ColumnName="FastTags" />
                 <ScalarProperty Name="Note2" ColumnName="Note2" />
                 <ScalarProperty Name="Note1" ColumnName="Note1" />
                 <ScalarProperty Name="update" ColumnName="update" />
@@ -768,6 +736,41 @@
                 <ScalarProperty Name="OrigName" ColumnName="OrigName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="databaseModel.Contacts">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="GoogleID" ColumnName="GoogleID" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="PersonCode" ColumnName="PersonCode" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Parrents" ColumnName="Parrents" />
+                <ScalarProperty Name="Childs" ColumnName="Childs" />
+                <ScalarProperty Name="Partner" ColumnName="Partner" />
+                <ScalarProperty Name="FastTags" ColumnName="FastTags" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IM" ColumnName="IM" />
+                <ScalarProperty Name="WWW" ColumnName="WWW" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Nick" ColumnName="Nick" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

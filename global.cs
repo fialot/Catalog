@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GContacts;
+
 namespace Katalog
 {
     [Flags]
@@ -882,6 +884,193 @@ namespace Katalog
 
             return con;
         }
+
+        private static string CValueToString(List<cValue> val)
+        {
+            string res = "";
+
+            if (val != null)
+            {
+                foreach(var item in val)
+                {
+                    if (res != "") res += ";";
+                    res += item.Value + "," + item.Desc;
+                }
+            }
+
+            return res;
+        }
+
+        private static string GetCompany(List<cCompany> val)
+        {
+            string res = "";
+
+            if (val != null)
+            {
+                foreach (var item in val)
+                {
+                    if (res != "") res += ";";
+                    res += item.Name;
+                }
+            }
+            return res;
+        }
+
+        private static string GetPosition(List<cCompany> val)
+        {
+            string res = "";
+
+            if (val != null)
+            {
+                foreach (var item in val)
+                {
+                    if (res != "") res += ";";
+                    res += item.Position;
+                }
+            }
+            return res;
+        }
+
+        private static string GetStreet(List<cAddress> val)
+        {
+
+            if (val != null && val.Count > 0)
+            {
+                foreach (var item in val)
+                {
+                    if (item.Primary)
+                    {
+                        return item.Street;
+                    }
+                }
+                return val[0].Street;
+            }
+            return "";
+        }
+        
+        private static string GetCity(List<cAddress> val)
+        {
+            if (val != null && val.Count > 0)
+            {
+                foreach (var item in val)
+                {
+                    if (item.Primary)
+                    {
+                        return item.City;
+                    }
+                }
+                return val[0].City;
+            }
+            return "";
+        }
+
+        private static string GetRegion(List<cAddress> val)
+        {
+            if (val != null && val.Count > 0)
+            {
+                foreach (var item in val)
+                {
+                    if (item.Primary)
+                    {
+                        return item.Region;
+                    }
+                }
+                return val[0].Region;
+            }
+            return "";
+        }
+        
+        private static string GetCountry(List<cAddress> val)
+        {
+            if (val != null && val.Count > 0)
+            {
+                foreach (var item in val)
+                {
+                    if (item.Primary)
+                    {
+                        return item.Country;
+                    }
+                }
+                return val[0].Country;
+            }
+            return "";
+        }
+
+        private static string GetPostCode(List<cAddress> val)
+        {
+            if (val != null && val.Count > 0)
+            {
+                foreach (var item in val)
+                {
+                    if (item.Primary)
+                    {
+                        return item.ZipCode;
+                    }
+                }
+                return val[0].Country;
+            }
+            return "";
+        }
+
+
+        /// <summary>
+        /// Import Contacts from Google
+        /// </summary>
+        /// <returns>Contact list</returns>
+        public static List<Contacts> ImportContactsGoogle()
+        {
+            List<Contacts> con = new List<Contacts>();
+
+            GoogleContacts GC = new GoogleContacts();
+            string user = Properties.Settings.Default.LastGUserCred;
+            if (GC.Login(ref user))
+            {
+                GC.ImportGmail();
+            }
+            else
+                return null;
+            Properties.Settings.Default.LastGUserCred = user;
+            Properties.Settings.Default.Save();
+
+            // ----- Parse data -----
+            foreach (var item in GC.Contact)
+            {
+                //string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_images" + Path.DirectorySeparatorChar + item[23];
+
+                Contacts contact = new Contacts();
+                contact.Name = item.Name.Firstname + " " + item.Name.AdditionalName;
+                contact.Surname = item.Name.Surname;
+                if (contact.Surname == null) contact.Surname = "";
+                contact.Nick = item.Name.Nick;
+                //contact.Sex = ;
+                if (item.BirthDate != DateTime.MinValue)
+                    contact.Birth = item.BirthDate;
+                contact.Phone = CValueToString(item.Phone);
+                contact.Email = CValueToString(item.Email);
+                contact.WWW = CValueToString(item.Web);
+                contact.IM = CValueToString(item.IM);
+                contact.Company = GetCompany(item.Company);
+                contact.Position = GetPosition(item.Company);
+                contact.Street = GetStreet(item.Address);
+                contact.City = GetCity(item.Address);
+                contact.Region = GetRegion(item.Address);
+                contact.Country = GetCountry(item.Address);
+                contact.PostCode = GetPostCode(item.Address);
+                contact.PersonCode = "";
+                contact.Note = item.Note;
+                contact.Tags = item.Group;
+                contact.FastTags = 0;
+                contact.Updated = DateTime.Now;
+                contact.GoogleID = item.gID;
+                contact.Active = true;
+                //contact.Avatar = Files.LoadBinFile(imgPath);
+                //contact.ID = Conv.ToGuid(item[24]);
+                con.Add(contact);
+            }
+
+            return con;
+        }
+
 
         /// <summary>
         /// Import Lended from CSV

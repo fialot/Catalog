@@ -53,7 +53,6 @@
             this.cbSex = new System.Windows.Forms.ComboBox();
             this.lblWWW = new System.Windows.Forms.Label();
             this.lblIM = new System.Windows.Forms.Label();
-            this.txtIM = new System.Windows.Forms.TextBox();
             this.dateBirth = new System.Windows.Forms.DateTimePicker();
             this.lblBirth = new System.Windows.Forms.Label();
             this.lblNote = new System.Windows.Forms.Label();
@@ -72,13 +71,13 @@
             this.btnTag1 = new System.Windows.Forms.Button();
             this.imgAvatar = new System.Windows.Forms.PictureBox();
             this.cbPhoneTag = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnAddPhone = new System.Windows.Forms.Button();
+            this.btnDelPhone = new System.Windows.Forms.Button();
+            this.btnDelEmail = new System.Windows.Forms.Button();
+            this.btnAddEmail = new System.Windows.Forms.Button();
             this.cbEmailTag = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnDelURL = new System.Windows.Forms.Button();
+            this.btnAddURL = new System.Windows.Forms.Button();
             this.cbWWWTag = new System.Windows.Forms.ComboBox();
             this.lblCompany = new System.Windows.Forms.Label();
             this.txtCompany = new System.Windows.Forms.TextBox();
@@ -91,6 +90,10 @@
             this.btnSaveNew = new System.Windows.Forms.Button();
             this.lblLastUpdate = new System.Windows.Forms.Label();
             this.TimeOut = new System.Windows.Forms.Timer(this.components);
+            this.cbIM = new System.Windows.Forms.ComboBox();
+            this.btnDelIM = new System.Windows.Forms.Button();
+            this.btnAddIM = new System.Windows.Forms.Button();
+            this.cbIMTag = new System.Windows.Forms.ComboBox();
             this.gbAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).BeginInit();
             this.SuspendLayout();
@@ -223,11 +226,6 @@
             resources.ApplyResources(this.lblIM, "lblIM");
             this.lblIM.Name = "lblIM";
             // 
-            // txtIM
-            // 
-            resources.ApplyResources(this.txtIM, "txtIM");
-            this.txtIM.Name = "txtIM";
-            // 
             // dateBirth
             // 
             resources.ApplyResources(this.dateBirth, "dateBirth");
@@ -344,29 +342,29 @@
             resources.ApplyResources(this.cbPhoneTag, "cbPhoneTag");
             this.cbPhoneTag.Name = "cbPhoneTag";
             // 
-            // button1
+            // btnAddPhone
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnAddPhone, "btnAddPhone");
+            this.btnAddPhone.Name = "btnAddPhone";
+            this.btnAddPhone.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnDelPhone
             // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnDelPhone, "btnDelPhone");
+            this.btnDelPhone.Name = "btnDelPhone";
+            this.btnDelPhone.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnDelEmail
             // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnDelEmail, "btnDelEmail");
+            this.btnDelEmail.Name = "btnDelEmail";
+            this.btnDelEmail.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnAddEmail
             // 
-            resources.ApplyResources(this.button4, "button4");
-            this.button4.Name = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnAddEmail, "btnAddEmail");
+            this.btnAddEmail.Name = "btnAddEmail";
+            this.btnAddEmail.UseVisualStyleBackColor = true;
             // 
             // cbEmailTag
             // 
@@ -374,17 +372,17 @@
             resources.ApplyResources(this.cbEmailTag, "cbEmailTag");
             this.cbEmailTag.Name = "cbEmailTag";
             // 
-            // button5
+            // btnDelURL
             // 
-            resources.ApplyResources(this.button5, "button5");
-            this.button5.Name = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnDelURL, "btnDelURL");
+            this.btnDelURL.Name = "btnDelURL";
+            this.btnDelURL.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnAddURL
             // 
-            resources.ApplyResources(this.button6, "button6");
-            this.button6.Name = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnAddURL, "btnAddURL");
+            this.btnAddURL.Name = "btnAddURL";
+            this.btnAddURL.UseVisualStyleBackColor = true;
             // 
             // cbWWWTag
             // 
@@ -455,10 +453,38 @@
             this.TimeOut.Interval = 200;
             this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
             // 
+            // cbIM
+            // 
+            this.cbIM.FormattingEnabled = true;
+            resources.ApplyResources(this.cbIM, "cbIM");
+            this.cbIM.Name = "cbIM";
+            // 
+            // btnDelIM
+            // 
+            resources.ApplyResources(this.btnDelIM, "btnDelIM");
+            this.btnDelIM.Name = "btnDelIM";
+            this.btnDelIM.UseVisualStyleBackColor = true;
+            // 
+            // btnAddIM
+            // 
+            resources.ApplyResources(this.btnAddIM, "btnAddIM");
+            this.btnAddIM.Name = "btnAddIM";
+            this.btnAddIM.UseVisualStyleBackColor = true;
+            // 
+            // cbIMTag
+            // 
+            this.cbIMTag.FormattingEnabled = true;
+            resources.ApplyResources(this.cbIMTag, "cbIMTag");
+            this.cbIMTag.Name = "cbIMTag";
+            // 
             // frmEditContacts
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbIM);
+            this.Controls.Add(this.btnDelIM);
+            this.Controls.Add(this.btnAddIM);
+            this.Controls.Add(this.cbIMTag);
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.chbActive);
@@ -469,14 +495,14 @@
             this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.lblCompany);
             this.Controls.Add(this.txtCompany);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnDelURL);
+            this.Controls.Add(this.btnAddURL);
             this.Controls.Add(this.cbWWWTag);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnDelEmail);
+            this.Controls.Add(this.btnAddEmail);
             this.Controls.Add(this.cbEmailTag);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDelPhone);
+            this.Controls.Add(this.btnAddPhone);
             this.Controls.Add(this.cbPhoneTag);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
@@ -495,7 +521,6 @@
             this.Controls.Add(this.lblBirth);
             this.Controls.Add(this.dateBirth);
             this.Controls.Add(this.lblIM);
-            this.Controls.Add(this.txtIM);
             this.Controls.Add(this.lblWWW);
             this.Controls.Add(this.cbSex);
             this.Controls.Add(this.lblSex);
@@ -548,7 +573,6 @@
         private System.Windows.Forms.ComboBox cbSex;
         private System.Windows.Forms.Label lblWWW;
         private System.Windows.Forms.Label lblIM;
-        private System.Windows.Forms.TextBox txtIM;
         private System.Windows.Forms.DateTimePicker dateBirth;
         private System.Windows.Forms.Label lblBirth;
         private System.Windows.Forms.Label lblNote;
@@ -566,13 +590,13 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ComboBox cbPhoneTag;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnAddPhone;
+        private System.Windows.Forms.Button btnDelPhone;
+        private System.Windows.Forms.Button btnDelEmail;
+        private System.Windows.Forms.Button btnAddEmail;
         private System.Windows.Forms.ComboBox cbEmailTag;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnDelURL;
+        private System.Windows.Forms.Button btnAddURL;
         private System.Windows.Forms.ComboBox cbWWWTag;
         private System.Windows.Forms.Label lblCompany;
         private System.Windows.Forms.TextBox txtCompany;
@@ -585,5 +609,9 @@
         private System.Windows.Forms.Button btnSaveNew;
         private System.Windows.Forms.Label lblLastUpdate;
         private System.Windows.Forms.Timer TimeOut;
+        private System.Windows.Forms.ComboBox cbIM;
+        private System.Windows.Forms.Button btnDelIM;
+        private System.Windows.Forms.Button btnAddIM;
+        private System.Windows.Forms.ComboBox cbIMTag;
     }
 }

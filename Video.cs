@@ -46,5 +46,6 @@ namespace Katalog
         public Nullable<System.DateTime> update { get; set; }
         public string Note1 { get; set; }
         public string Note2 { get; set; }
+        public Nullable<short> FastTags { get; set; }
     }
 }

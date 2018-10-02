@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>49</value>
+    <value>52</value>
   </data>
   <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -165,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>50</value>
   </data>
   <data name="lblSurname.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -192,7 +192,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSurname.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>48</value>
   </data>
   <data name="txtSurname.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 28</value>
@@ -213,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtSurname.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>49</value>
   </data>
   <data name="lblNick.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -240,7 +240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblNick.ZOrder" xml:space="preserve">
-    <value>43</value>
+    <value>46</value>
   </data>
   <data name="txtNick.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 67</value>
@@ -261,7 +261,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtNick.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>47</value>
   </data>
   <data name="lblPhone.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -288,7 +288,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPhone.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>45</value>
   </data>
   <data name="lblEmail.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -315,7 +315,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblEmail.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>44</value>
   </data>
   <data name="lblPostCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -579,7 +579,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gbAddress.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>43</value>
   </data>
   <data name="lblSex.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -606,7 +606,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSex.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>42</value>
   </data>
   <data name="cbSex.Location" type="System.Drawing.Point, System.Drawing">
     <value>454, 27</value>
@@ -627,7 +627,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbSex.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>41</value>
   </data>
   <data name="lblWWW.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -654,7 +654,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblWWW.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>40</value>
   </data>
   <data name="lblIM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -681,28 +681,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblIM.ZOrder" xml:space="preserve">
-    <value>35</value>
-  </data>
-  <data name="txtIM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 239</value>
-  </data>
-  <data name="txtIM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>433, 20</value>
-  </data>
-  <data name="txtIM.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;txtIM.Name" xml:space="preserve">
-    <value>txtIM</value>
-  </data>
-  <data name="&gt;&gt;txtIM.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtIM.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtIM.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>39</value>
   </data>
   <data name="dateBirth.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 67</value>
@@ -723,7 +702,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dateBirth.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>38</value>
   </data>
   <data name="lblBirth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -750,7 +729,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblBirth.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>37</value>
   </data>
   <data name="lblNote.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -777,7 +756,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblNote.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>35</value>
   </data>
   <data name="txtNote.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 317</value>
@@ -801,7 +780,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtNote.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>36</value>
   </data>
   <data name="lblTag.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -828,7 +807,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblTag.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>27</value>
   </data>
   <data name="txtTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>543, 83</value>
@@ -849,7 +828,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtTag.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>28</value>
   </data>
   <data name="lblCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -876,7 +855,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCode.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>25</value>
   </data>
   <data name="txtCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>552, 373</value>
@@ -897,7 +876,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtCode.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>26</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -925,7 +904,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>24</value>
   </data>
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -952,7 +931,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>23</value>
   </data>
   <data name="btnTag6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -976,7 +955,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag6.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>29</value>
   </data>
   <data name="btnTag5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1000,7 +979,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag5.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>30</value>
   </data>
   <data name="btnTag4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1024,7 +1003,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag4.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>31</value>
   </data>
   <data name="btnTag3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1048,7 +1027,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag3.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>32</value>
   </data>
   <data name="btnTag2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1072,7 +1051,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag2.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>33</value>
   </data>
   <data name="btnTag1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1096,7 +1075,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag1.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>34</value>
   </data>
   <data name="imgAvatar.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -1120,7 +1099,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;imgAvatar.ZOrder" xml:space="preserve">
-    <value>48</value>
+    <value>51</value>
   </data>
   <data name="cbPhoneTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 106</value>
@@ -1141,103 +1120,103 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbPhoneTag.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>22</value>
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnAddPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 104</value>
   </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnAddPhone.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 23</value>
   </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnAddPhone.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
+  <data name="btnAddPhone.Text" xml:space="preserve">
     <value>+</value>
   </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
+  <data name="&gt;&gt;btnAddPhone.Name" xml:space="preserve">
+    <value>btnAddPhone</value>
   </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnAddPhone.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnAddPhone.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>17</value>
+  <data name="&gt;&gt;btnAddPhone.ZOrder" xml:space="preserve">
+    <value>21</value>
   </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnDelPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>489, 104</value>
   </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnDelPhone.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 23</value>
   </data>
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnDelPhone.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
+  <data name="btnDelPhone.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="&gt;&gt;button2.Name" xml:space="preserve">
-    <value>button2</value>
+  <data name="&gt;&gt;btnDelPhone.Name" xml:space="preserve">
+    <value>btnDelPhone</value>
   </data>
-  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnDelPhone.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnDelPhone.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="&gt;&gt;btnDelPhone.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
-  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnDelEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>489, 143</value>
   </data>
-  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnDelEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 23</value>
   </data>
-  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnDelEmail.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="button3.Text" xml:space="preserve">
+  <data name="btnDelEmail.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="&gt;&gt;button3.Name" xml:space="preserve">
-    <value>button3</value>
+  <data name="&gt;&gt;btnDelEmail.Name" xml:space="preserve">
+    <value>btnDelEmail</value>
   </data>
-  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnDelEmail.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnDelEmail.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="&gt;&gt;btnDelEmail.ZOrder" xml:space="preserve">
+    <value>17</value>
   </data>
-  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnAddEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 143</value>
   </data>
-  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnAddEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 23</value>
   </data>
-  <data name="button4.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnAddEmail.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="button4.Text" xml:space="preserve">
+  <data name="btnAddEmail.Text" xml:space="preserve">
     <value>+</value>
   </data>
-  <data name="&gt;&gt;button4.Name" xml:space="preserve">
-    <value>button4</value>
+  <data name="&gt;&gt;btnAddEmail.Name" xml:space="preserve">
+    <value>btnAddEmail</value>
   </data>
-  <data name="&gt;&gt;button4.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnAddEmail.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnAddEmail.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="&gt;&gt;btnAddEmail.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
   <data name="cbEmailTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 145</value>
@@ -1258,55 +1237,55 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbEmailTag.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>19</value>
   </data>
-  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnDelURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>489, 198</value>
   </data>
-  <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnDelURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 23</value>
   </data>
-  <data name="button5.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnDelURL.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="button5.Text" xml:space="preserve">
+  <data name="btnDelURL.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="&gt;&gt;button5.Name" xml:space="preserve">
-    <value>button5</value>
+  <data name="&gt;&gt;btnDelURL.Name" xml:space="preserve">
+    <value>btnDelURL</value>
   </data>
-  <data name="&gt;&gt;button5.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnDelURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button5.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnDelURL.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="&gt;&gt;btnDelURL.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
-  <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnAddURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 198</value>
   </data>
-  <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnAddURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 23</value>
   </data>
-  <data name="button6.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnAddURL.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="button6.Text" xml:space="preserve">
+  <data name="btnAddURL.Text" xml:space="preserve">
     <value>+</value>
   </data>
-  <data name="&gt;&gt;button6.Name" xml:space="preserve">
-    <value>button6</value>
+  <data name="&gt;&gt;btnAddURL.Name" xml:space="preserve">
+    <value>btnAddURL</value>
   </data>
-  <data name="&gt;&gt;button6.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnAddURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button6.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnAddURL.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;btnAddURL.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
   <data name="cbWWWTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 200</value>
@@ -1327,7 +1306,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbWWWTag.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>16</value>
   </data>
   <data name="lblCompany.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1354,7 +1333,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCompany.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>12</value>
   </data>
   <data name="txtCompany.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 278</value>
@@ -1375,7 +1354,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtCompany.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>13</value>
   </data>
   <data name="lblPosition.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1402,7 +1381,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPosition.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="txtPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>231, 278</value>
@@ -1423,7 +1402,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPosition.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="cbPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 106</value>
@@ -1444,7 +1423,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbPhone.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
   <data name="cbEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 145</value>
@@ -1465,7 +1444,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbEmail.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <data name="cbWWW.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 200</value>
@@ -1486,7 +1465,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbWWW.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="chbActive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1513,7 +1492,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chbActive.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="btnSaveNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1543,7 +1522,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSaveNew.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="lblLastUpdate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -1573,11 +1552,107 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLastUpdate.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="cbIM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 239</value>
+  </data>
+  <data name="cbIM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 21</value>
+  </data>
+  <data name="cbIM.TabIndex" type="System.Int32, mscorlib">
+    <value>76</value>
+  </data>
+  <data name="&gt;&gt;cbIM.Name" xml:space="preserve">
+    <value>cbIM</value>
+  </data>
+  <data name="&gt;&gt;cbIM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbIM.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbIM.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnDelIM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDelIM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>489, 237</value>
+  </data>
+  <data name="btnDelIM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 23</value>
+  </data>
+  <data name="btnDelIM.TabIndex" type="System.Int32, mscorlib">
+    <value>79</value>
+  </data>
+  <data name="btnDelIM.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="&gt;&gt;btnDelIM.Name" xml:space="preserve">
+    <value>btnDelIM</value>
+  </data>
+  <data name="&gt;&gt;btnDelIM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDelIM.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDelIM.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnAddIM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAddIM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>451, 237</value>
+  </data>
+  <data name="btnAddIM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 23</value>
+  </data>
+  <data name="btnAddIM.TabIndex" type="System.Int32, mscorlib">
+    <value>78</value>
+  </data>
+  <data name="btnAddIM.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="&gt;&gt;btnAddIM.Name" xml:space="preserve">
+    <value>btnAddIM</value>
+  </data>
+  <data name="&gt;&gt;btnAddIM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAddIM.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnAddIM.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cbIMTag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>303, 239</value>
+  </data>
+  <data name="cbIMTag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cbIMTag.TabIndex" type="System.Int32, mscorlib">
+    <value>77</value>
+  </data>
+  <data name="&gt;&gt;cbIMTag.Name" xml:space="preserve">
+    <value>cbIMTag</value>
+  </data>
+  <data name="&gt;&gt;cbIMTag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbIMTag.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbIMTag.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

@@ -17,6 +17,12 @@ namespace Katalog
 {
     public partial class frmEditContacts : Form
     {
+        public struct DataItem
+        {
+            public string name;
+            public string tag;
+        }
+
         #region Variables
 
         Color SelectColor = Color.SkyBlue;                  // FastTags Select color
@@ -29,6 +35,11 @@ namespace Katalog
         Communication com = new Communication();
         public delegate void MyDelegate(comStatus status);
         string Barcode = "";
+
+        List<DataItem> PhoneNums = new List<DataItem>();
+        List<DataItem> Emails = new List<DataItem>();
+        List<DataItem> URLs = new List<DataItem>();
+        List<DataItem> IMs = new List<DataItem>();
 
         #endregion
 
@@ -66,6 +77,22 @@ namespace Katalog
             return res;
         }
 
+        private List<DataItem> GetDataItem(string text)
+        {
+            List<DataItem> list = new List<DataItem>();
+            string[] itemSplit = text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < itemSplit.Length; i++)
+            {
+                string[] tagSplit = itemSplit[i].Split(new string[] { "," }, StringSplitOptions.None);
+                DataItem itm = new DataItem();
+                itm.name = tagSplit[0];
+                if (tagSplit.Length > 0)
+                    itm.tag = tagSplit[1];
+                list.Add(itm);
+            }
+            return list;
+        }
+
         /// <summary>
         /// Form Load
         /// </summary>
@@ -101,39 +128,43 @@ namespace Katalog
                 imgAvatar.Image = Conv.ByteArrayToImage(contact.Avatar);
 
                 // ----- Name -----
-                txtName.Text = contact.Name.Trim();
-                txtSurname.Text = contact.Surname.Trim();
-                txtNick.Text = contact.Nick.Trim();
-                if (contact.Sex.Trim() == "M") cbSex.SelectedIndex = 1;
-                else if (contact.Sex.Trim() == "F") cbSex.SelectedIndex = 2;
+                txtName.Text = contact.Name;
+                txtSurname.Text = contact.Surname;
+                txtNick.Text = contact.Nick;
+                if (contact.Sex == "M") cbSex.SelectedIndex = 1;
+                else if (contact.Sex == "F") cbSex.SelectedIndex = 2;
                 else cbSex.SelectedIndex = 0;
 
                 // ----- Contacts -----
-                //for (int i = 0; i < )
-                cbPhone.Text = contact.Phone.Trim();
+                PhoneNums = GetDataItem(contact.Phone);
+                Emails = GetDataItem(contact.Email);
+                URLs = GetDataItem(contact.WWW);
+                IMs = GetDataItem(contact.IM);
 
-                cbEmail.Text = contact.Email.Trim();
-                cbWWW.Text = contact.WWW.Trim();
-                txtIM.Text = contact.IM.Trim();
+                //for (int i = 0; i < )
+                cbPhone.Text = contact.Phone;
+                cbEmail.Text = contact.Email;
+                cbWWW.Text = contact.WWW;
+                cbIM.Text = contact.IM;
 
 
                 // ----- Address -----
-                txtStreet.Text = contact.Street.Trim();
-                txtCity.Text = contact.City.Trim();
-                txtRegion.Text = contact.Region.Trim();
-                txtState.Text = contact.Country.Trim();
-                txtPostCode.Text = contact.PostCode.Trim();
+                txtStreet.Text = contact.Street;
+                txtCity.Text = contact.City;
+                txtRegion.Text = contact.Region;
+                txtState.Text = contact.Country;
+                txtPostCode.Text = contact.PostCode;
 
-                txtNote.Text = contact.Note.Trim();
+                txtNote.Text = contact.Note;
                 dateBirth.Value = contact.Birth ?? DateTime.Now;
-                txtTag.Text = contact.Tags.Trim();
+                txtTag.Text = contact.Tags;
                 //contact.FastTags = 0;
 
 
-                txtCode.Text = contact.PersonCode.Trim();
+                txtCode.Text = contact.PersonCode;
 
-                txtCompany.Text = contact.Company.Trim();
-                txtPosition.Text = contact.Position.Trim();
+                txtCompany.Text = contact.Company;
+                txtPosition.Text = contact.Position;
 
                 chbActive.Checked = contact.Active ?? true;
 
@@ -185,7 +216,7 @@ namespace Katalog
 
             contact.Email = cbEmail.Text;
             contact.WWW = cbWWW.Text;
-            contact.IM = txtIM.Text;
+            contact.IM = cbIM.Text;
 
 
             // ----- Address -----
