@@ -51,7 +51,7 @@
             this.txtStreet = new System.Windows.Forms.TextBox();
             this.lblSex = new System.Windows.Forms.Label();
             this.cbSex = new System.Windows.Forms.ComboBox();
-            this.lblWWW = new System.Windows.Forms.Label();
+            this.lbURL = new System.Windows.Forms.Label();
             this.lblIM = new System.Windows.Forms.Label();
             this.dateBirth = new System.Windows.Forms.DateTimePicker();
             this.lblBirth = new System.Windows.Forms.Label();
@@ -78,14 +78,14 @@
             this.cbEmailTag = new System.Windows.Forms.ComboBox();
             this.btnDelURL = new System.Windows.Forms.Button();
             this.btnAddURL = new System.Windows.Forms.Button();
-            this.cbWWWTag = new System.Windows.Forms.ComboBox();
+            this.cbURLTag = new System.Windows.Forms.ComboBox();
             this.lblCompany = new System.Windows.Forms.Label();
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.lblPosition = new System.Windows.Forms.Label();
             this.txtPosition = new System.Windows.Forms.TextBox();
             this.cbPhone = new System.Windows.Forms.ComboBox();
             this.cbEmail = new System.Windows.Forms.ComboBox();
-            this.cbWWW = new System.Windows.Forms.ComboBox();
+            this.cbURL = new System.Windows.Forms.ComboBox();
             this.chbActive = new System.Windows.Forms.CheckBox();
             this.btnSaveNew = new System.Windows.Forms.Button();
             this.lblLastUpdate = new System.Windows.Forms.Label();
@@ -94,6 +94,7 @@
             this.btnDelIM = new System.Windows.Forms.Button();
             this.btnAddIM = new System.Windows.Forms.Button();
             this.cbIMTag = new System.Windows.Forms.ComboBox();
+            this.lblGoogleID = new System.Windows.Forms.Label();
             this.gbAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).BeginInit();
             this.SuspendLayout();
@@ -216,10 +217,10 @@
             resources.ApplyResources(this.cbSex, "cbSex");
             this.cbSex.Name = "cbSex";
             // 
-            // lblWWW
+            // lbURL
             // 
-            resources.ApplyResources(this.lblWWW, "lblWWW");
-            this.lblWWW.Name = "lblWWW";
+            resources.ApplyResources(this.lbURL, "lbURL");
+            this.lbURL.Name = "lbURL";
             // 
             // lblIM
             // 
@@ -338,57 +339,72 @@
             // 
             // cbPhoneTag
             // 
+            this.cbPhoneTag.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbPhoneTag.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbPhoneTag.FormattingEnabled = true;
             resources.ApplyResources(this.cbPhoneTag, "cbPhoneTag");
             this.cbPhoneTag.Name = "cbPhoneTag";
+            this.cbPhoneTag.Leave += new System.EventHandler(this.cbPhoneTag_Leave);
             // 
             // btnAddPhone
             // 
             resources.ApplyResources(this.btnAddPhone, "btnAddPhone");
             this.btnAddPhone.Name = "btnAddPhone";
             this.btnAddPhone.UseVisualStyleBackColor = true;
+            this.btnAddPhone.Click += new System.EventHandler(this.btnAddPhone_Click);
             // 
             // btnDelPhone
             // 
             resources.ApplyResources(this.btnDelPhone, "btnDelPhone");
             this.btnDelPhone.Name = "btnDelPhone";
             this.btnDelPhone.UseVisualStyleBackColor = true;
+            this.btnDelPhone.Click += new System.EventHandler(this.btnDelPhone_Click);
             // 
             // btnDelEmail
             // 
             resources.ApplyResources(this.btnDelEmail, "btnDelEmail");
             this.btnDelEmail.Name = "btnDelEmail";
             this.btnDelEmail.UseVisualStyleBackColor = true;
+            this.btnDelEmail.Click += new System.EventHandler(this.btnDelEmail_Click);
             // 
             // btnAddEmail
             // 
             resources.ApplyResources(this.btnAddEmail, "btnAddEmail");
             this.btnAddEmail.Name = "btnAddEmail";
             this.btnAddEmail.UseVisualStyleBackColor = true;
+            this.btnAddEmail.Click += new System.EventHandler(this.btnAddEmail_Click);
             // 
             // cbEmailTag
             // 
+            this.cbEmailTag.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbEmailTag.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbEmailTag.FormattingEnabled = true;
             resources.ApplyResources(this.cbEmailTag, "cbEmailTag");
             this.cbEmailTag.Name = "cbEmailTag";
+            this.cbEmailTag.Leave += new System.EventHandler(this.cbEmailTag_Leave);
             // 
             // btnDelURL
             // 
             resources.ApplyResources(this.btnDelURL, "btnDelURL");
             this.btnDelURL.Name = "btnDelURL";
             this.btnDelURL.UseVisualStyleBackColor = true;
+            this.btnDelURL.Click += new System.EventHandler(this.btnDelURL_Click);
             // 
             // btnAddURL
             // 
             resources.ApplyResources(this.btnAddURL, "btnAddURL");
             this.btnAddURL.Name = "btnAddURL";
             this.btnAddURL.UseVisualStyleBackColor = true;
+            this.btnAddURL.Click += new System.EventHandler(this.btnAddURL_Click);
             // 
-            // cbWWWTag
+            // cbURLTag
             // 
-            this.cbWWWTag.FormattingEnabled = true;
-            resources.ApplyResources(this.cbWWWTag, "cbWWWTag");
-            this.cbWWWTag.Name = "cbWWWTag";
+            this.cbURLTag.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbURLTag.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.cbURLTag.FormattingEnabled = true;
+            resources.ApplyResources(this.cbURLTag, "cbURLTag");
+            this.cbURLTag.Name = "cbURLTag";
+            this.cbURLTag.Leave += new System.EventHandler(this.cbURLTag_Leave);
             // 
             // lblCompany
             // 
@@ -415,18 +431,27 @@
             this.cbPhone.FormattingEnabled = true;
             resources.ApplyResources(this.cbPhone, "cbPhone");
             this.cbPhone.Name = "cbPhone";
+            this.cbPhone.SelectedIndexChanged += new System.EventHandler(this.cbPhone_SelectedIndexChanged);
+            this.cbPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbPhone_KeyDown);
+            this.cbPhone.Leave += new System.EventHandler(this.cbPhone_Leave);
             // 
             // cbEmail
             // 
             this.cbEmail.FormattingEnabled = true;
             resources.ApplyResources(this.cbEmail, "cbEmail");
             this.cbEmail.Name = "cbEmail";
+            this.cbEmail.SelectedIndexChanged += new System.EventHandler(this.cbEmail_SelectedIndexChanged);
+            this.cbEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbEmail_KeyDown);
+            this.cbEmail.Leave += new System.EventHandler(this.cbEmail_Leave);
             // 
-            // cbWWW
+            // cbURL
             // 
-            this.cbWWW.FormattingEnabled = true;
-            resources.ApplyResources(this.cbWWW, "cbWWW");
-            this.cbWWW.Name = "cbWWW";
+            this.cbURL.FormattingEnabled = true;
+            resources.ApplyResources(this.cbURL, "cbURL");
+            this.cbURL.Name = "cbURL";
+            this.cbURL.SelectedIndexChanged += new System.EventHandler(this.cbURL_SelectedIndexChanged);
+            this.cbURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbURL_KeyDown);
+            this.cbURL.Leave += new System.EventHandler(this.cbURL_Leave);
             // 
             // chbActive
             // 
@@ -458,29 +483,43 @@
             this.cbIM.FormattingEnabled = true;
             resources.ApplyResources(this.cbIM, "cbIM");
             this.cbIM.Name = "cbIM";
+            this.cbIM.SelectedIndexChanged += new System.EventHandler(this.cbIM_SelectedIndexChanged);
+            this.cbIM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbIM_KeyDown);
+            this.cbIM.Leave += new System.EventHandler(this.cbIM_Leave);
             // 
             // btnDelIM
             // 
             resources.ApplyResources(this.btnDelIM, "btnDelIM");
             this.btnDelIM.Name = "btnDelIM";
             this.btnDelIM.UseVisualStyleBackColor = true;
+            this.btnDelIM.Click += new System.EventHandler(this.btnDelIM_Click);
             // 
             // btnAddIM
             // 
             resources.ApplyResources(this.btnAddIM, "btnAddIM");
             this.btnAddIM.Name = "btnAddIM";
             this.btnAddIM.UseVisualStyleBackColor = true;
+            this.btnAddIM.Click += new System.EventHandler(this.btnAddIM_Click);
             // 
             // cbIMTag
             // 
+            this.cbIMTag.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbIMTag.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbIMTag.FormattingEnabled = true;
             resources.ApplyResources(this.cbIMTag, "cbIMTag");
             this.cbIMTag.Name = "cbIMTag";
+            this.cbIMTag.Leave += new System.EventHandler(this.cbIMTag_Leave);
+            // 
+            // lblGoogleID
+            // 
+            resources.ApplyResources(this.lblGoogleID, "lblGoogleID");
+            this.lblGoogleID.Name = "lblGoogleID";
             // 
             // frmEditContacts
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblGoogleID);
             this.Controls.Add(this.cbIM);
             this.Controls.Add(this.btnDelIM);
             this.Controls.Add(this.btnAddIM);
@@ -488,7 +527,7 @@
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.chbActive);
-            this.Controls.Add(this.cbWWW);
+            this.Controls.Add(this.cbURL);
             this.Controls.Add(this.cbEmail);
             this.Controls.Add(this.cbPhone);
             this.Controls.Add(this.txtPosition);
@@ -497,7 +536,7 @@
             this.Controls.Add(this.txtCompany);
             this.Controls.Add(this.btnDelURL);
             this.Controls.Add(this.btnAddURL);
-            this.Controls.Add(this.cbWWWTag);
+            this.Controls.Add(this.cbURLTag);
             this.Controls.Add(this.btnDelEmail);
             this.Controls.Add(this.btnAddEmail);
             this.Controls.Add(this.cbEmailTag);
@@ -521,7 +560,7 @@
             this.Controls.Add(this.lblBirth);
             this.Controls.Add(this.dateBirth);
             this.Controls.Add(this.lblIM);
-            this.Controls.Add(this.lblWWW);
+            this.Controls.Add(this.lbURL);
             this.Controls.Add(this.cbSex);
             this.Controls.Add(this.lblSex);
             this.Controls.Add(this.gbAddress);
@@ -571,7 +610,7 @@
         private System.Windows.Forms.TextBox txtStreet;
         private System.Windows.Forms.Label lblSex;
         private System.Windows.Forms.ComboBox cbSex;
-        private System.Windows.Forms.Label lblWWW;
+        private System.Windows.Forms.Label lbURL;
         private System.Windows.Forms.Label lblIM;
         private System.Windows.Forms.DateTimePicker dateBirth;
         private System.Windows.Forms.Label lblBirth;
@@ -597,14 +636,14 @@
         private System.Windows.Forms.ComboBox cbEmailTag;
         private System.Windows.Forms.Button btnDelURL;
         private System.Windows.Forms.Button btnAddURL;
-        private System.Windows.Forms.ComboBox cbWWWTag;
+        private System.Windows.Forms.ComboBox cbURLTag;
         private System.Windows.Forms.Label lblCompany;
         private System.Windows.Forms.TextBox txtCompany;
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.ComboBox cbPhone;
         private System.Windows.Forms.ComboBox cbEmail;
-        private System.Windows.Forms.ComboBox cbWWW;
+        private System.Windows.Forms.ComboBox cbURL;
         private System.Windows.Forms.CheckBox chbActive;
         private System.Windows.Forms.Button btnSaveNew;
         private System.Windows.Forms.Label lblLastUpdate;
@@ -613,5 +652,6 @@
         private System.Windows.Forms.Button btnDelIM;
         private System.Windows.Forms.Button btnAddIM;
         private System.Windows.Forms.ComboBox cbIMTag;
+        private System.Windows.Forms.Label lblGoogleID;
     }
 }

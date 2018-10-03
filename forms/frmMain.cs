@@ -33,6 +33,19 @@ namespace Katalog
 
         #region Contacts
 
+        string GetOnlyValue(string text)
+        {
+            string res = "";
+            string[] items = text.Split(new string[] { ";" }, StringSplitOptions.None);
+            for (int i = 0; i < items.Length; i++)
+            {
+                string[] vals = items[i].Split(new string[] { "," }, StringSplitOptions.None);
+                if (res != "") res += ", ";
+                res += vals[0];
+            }
+            return res;
+        }
+
         /// <summary>
         /// Update Contacts ObjectListView
         /// </summary>
@@ -44,6 +57,7 @@ namespace Katalog
 
             conFastTags.Renderer = new ImageRenderer();
             conFastTags.AspectGetter = delegate (object x) {
+                if (x == null) return "";
                 List<int> ret = new List<int>();
                 FastFlags flag = (FastFlags)((Contacts)x).FastTags;
                 if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
@@ -52,10 +66,11 @@ namespace Katalog
                 if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
                 if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
                 if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
-
+                
                 return ret;
             };
             conFastTagsNum.AspectGetter = delegate (object x) {
+                if (x == null) return "";
                 string res = "";
                 FastFlags flag = (FastFlags)((Contacts)x).FastTags;
                 if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
@@ -67,18 +82,23 @@ namespace Katalog
                 return res;
             };
             conName.AspectGetter = delegate (object x) {
+                if (x == null) return "";
                 return ((Contacts)x).Name;
             };
             conSurname.AspectGetter = delegate (object x) {
+                if (x == null) return "";
                 return ((Contacts)x).Surname;
             };
             conPhone.AspectGetter = delegate (object x) {
-                return ((Contacts)x).Phone;
+                if (x == null) return "";
+                return GetOnlyValue(((Contacts)x).Phone);
             };
             conEmail.AspectGetter = delegate (object x) {
-                return ((Contacts)x).Email;
+                if (x == null) return "";
+                return GetOnlyValue(((Contacts)x).Email);
             };
             conAddress.AspectGetter = delegate (object x) {
+                if (x == null) return "";
                 string address = ((Contacts)x).Street;
                 string city = ((Contacts)x).City;
                 string country = ((Contacts)x).Country;
@@ -2600,25 +2620,20 @@ namespace Katalog
                     return;
                 }
 
-                int x = 0;
+                int added = 0;
+                int updated = 0;
                 foreach (var item in con)
                 {
-                    Contacts contact;
-                    // ----- ID -----
-                    if (item.ID != Guid.Empty)
+                    var contacts = db.Contacts.Where(w => w.GoogleID == item.GoogleID).ToList();
+                    if (contacts.Count > 0)
                     {
-                        contact = db.Contacts.Find(item.ID);
-                        if (contact != null)
-                            FillContact(ref contact, item);
-                        else
-                        {
-                            db.Contacts.Add(item);
-                        }
-
+                        updated++;
+                        Contacts contact = contacts[0];
+                        FillContact(ref contact, item);
                     }
                     else
                     {
-                        x++;
+                        added++;
                         item.ID = Guid.NewGuid();
                         db.Contacts.Add(item);
                         db.SaveChanges();
@@ -2626,7 +2641,7 @@ namespace Katalog
                 }
                 db.SaveChanges();
                 UpdateConOLV();
-                Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+                Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ". (" + Lng.Get("Added") + " " + added.ToString() + ", " + Lng.Get("updated") + " " + updated.ToString() + " " + Lng.Get("contacts") + ")", Lng.Get("Import"));
             }
         }
 

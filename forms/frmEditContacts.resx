@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>52</value>
+    <value>53</value>
   </data>
   <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -165,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>50</value>
+    <value>51</value>
   </data>
   <data name="lblSurname.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -192,7 +192,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSurname.ZOrder" xml:space="preserve">
-    <value>48</value>
+    <value>49</value>
   </data>
   <data name="txtSurname.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 28</value>
@@ -213,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtSurname.ZOrder" xml:space="preserve">
-    <value>49</value>
+    <value>50</value>
   </data>
   <data name="lblNick.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -240,7 +240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblNick.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>47</value>
   </data>
   <data name="txtNick.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 67</value>
@@ -261,7 +261,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtNick.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>48</value>
   </data>
   <data name="lblPhone.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -288,7 +288,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPhone.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>46</value>
   </data>
   <data name="lblEmail.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -315,6 +315,150 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblEmail.ZOrder" xml:space="preserve">
+    <value>45</value>
+  </data>
+  <data name="&gt;&gt;lblPostCode.Name" xml:space="preserve">
+    <value>lblPostCode</value>
+  </data>
+  <data name="&gt;&gt;lblPostCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPostCode.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;lblPostCode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtPostCode.Name" xml:space="preserve">
+    <value>txtPostCode</value>
+  </data>
+  <data name="&gt;&gt;txtPostCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPostCode.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;txtPostCode.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblState.Name" xml:space="preserve">
+    <value>lblState</value>
+  </data>
+  <data name="&gt;&gt;lblState.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblState.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;lblState.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtState.Name" xml:space="preserve">
+    <value>txtState</value>
+  </data>
+  <data name="&gt;&gt;txtState.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtState.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;txtState.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblRegion.Name" xml:space="preserve">
+    <value>lblRegion</value>
+  </data>
+  <data name="&gt;&gt;lblRegion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblRegion.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;lblRegion.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtRegion.Name" xml:space="preserve">
+    <value>txtRegion</value>
+  </data>
+  <data name="&gt;&gt;txtRegion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtRegion.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;txtRegion.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblCity.Name" xml:space="preserve">
+    <value>lblCity</value>
+  </data>
+  <data name="&gt;&gt;lblCity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCity.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;lblCity.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;txtCity.Name" xml:space="preserve">
+    <value>txtCity</value>
+  </data>
+  <data name="&gt;&gt;txtCity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCity.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;txtCity.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;lblStreet.Name" xml:space="preserve">
+    <value>lblStreet</value>
+  </data>
+  <data name="&gt;&gt;lblStreet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblStreet.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;lblStreet.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.Name" xml:space="preserve">
+    <value>txtStreet</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.Parent" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="gbAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>543, 129</value>
+  </data>
+  <data name="gbAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 225</value>
+  </data>
+  <data name="gbAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="gbAddress.Text" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.Name" xml:space="preserve">
+    <value>gbAddress</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbAddress.ZOrder" xml:space="preserve">
     <value>44</value>
   </data>
   <data name="lblPostCode.AutoSize" type="System.Boolean, mscorlib">
@@ -557,30 +701,6 @@
   <data name="&gt;&gt;txtStreet.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="gbAddress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>543, 129</value>
-  </data>
-  <data name="gbAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 225</value>
-  </data>
-  <data name="gbAddress.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="gbAddress.Text" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.Name" xml:space="preserve">
-    <value>gbAddress</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbAddress.ZOrder" xml:space="preserve">
-    <value>43</value>
-  </data>
   <data name="lblSex.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -606,7 +726,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSex.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>43</value>
   </data>
   <data name="cbSex.Location" type="System.Drawing.Point, System.Drawing">
     <value>454, 27</value>
@@ -627,34 +747,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbSex.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>42</value>
   </data>
-  <data name="lblWWW.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lbURL.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblWWW.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lbURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 184</value>
   </data>
-  <data name="lblWWW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
+  <data name="lbURL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
   </data>
-  <data name="lblWWW.TabIndex" type="System.Int32, mscorlib">
+  <data name="lbURL.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
-  <data name="lblWWW.Text" xml:space="preserve">
-    <value>WWW</value>
+  <data name="lbURL.Text" xml:space="preserve">
+    <value>URL</value>
   </data>
-  <data name="&gt;&gt;lblWWW.Name" xml:space="preserve">
-    <value>lblWWW</value>
+  <data name="&gt;&gt;lbURL.Name" xml:space="preserve">
+    <value>lbURL</value>
   </data>
-  <data name="&gt;&gt;lblWWW.Type" xml:space="preserve">
+  <data name="&gt;&gt;lbURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblWWW.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lbURL.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblWWW.ZOrder" xml:space="preserve">
-    <value>40</value>
+  <data name="&gt;&gt;lbURL.ZOrder" xml:space="preserve">
+    <value>41</value>
   </data>
   <data name="lblIM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -681,7 +801,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblIM.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>40</value>
   </data>
   <data name="dateBirth.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 67</value>
@@ -702,7 +822,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dateBirth.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>39</value>
   </data>
   <data name="lblBirth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -729,7 +849,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblBirth.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>38</value>
   </data>
   <data name="lblNote.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -756,7 +876,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblNote.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>36</value>
   </data>
   <data name="txtNote.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 317</value>
@@ -780,7 +900,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtNote.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>37</value>
   </data>
   <data name="lblTag.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -807,7 +927,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblTag.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="txtTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>543, 83</value>
@@ -828,7 +948,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtTag.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="lblCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -855,7 +975,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCode.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="txtCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>552, 373</value>
@@ -876,7 +996,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtCode.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -904,7 +1024,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -931,7 +1051,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="btnTag6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -955,7 +1075,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag6.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>30</value>
   </data>
   <data name="btnTag5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -979,7 +1099,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag5.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>31</value>
   </data>
   <data name="btnTag4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1003,7 +1123,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag4.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>32</value>
   </data>
   <data name="btnTag3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1027,7 +1147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag3.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>33</value>
   </data>
   <data name="btnTag2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1051,7 +1171,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag2.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>34</value>
   </data>
   <data name="btnTag1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1075,7 +1195,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTag1.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>35</value>
   </data>
   <data name="imgAvatar.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -1099,7 +1219,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;imgAvatar.ZOrder" xml:space="preserve">
-    <value>51</value>
+    <value>52</value>
   </data>
   <data name="cbPhoneTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 106</value>
@@ -1120,7 +1240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbPhoneTag.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="btnAddPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 104</value>
@@ -1144,7 +1264,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAddPhone.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
+  </data>
+  <data name="btnDelPhone.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnDelPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>489, 104</value>
@@ -1168,7 +1291,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDelPhone.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
+  </data>
+  <data name="btnDelEmail.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnDelEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>489, 143</value>
@@ -1192,7 +1318,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDelEmail.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="btnAddEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 143</value>
@@ -1216,7 +1342,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAddEmail.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="cbEmailTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 145</value>
@@ -1237,7 +1363,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbEmailTag.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
+  </data>
+  <data name="btnDelURL.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnDelURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>489, 198</value>
@@ -1261,7 +1390,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDelURL.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="btnAddURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 198</value>
@@ -1285,28 +1414,28 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAddURL.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
-  <data name="cbWWWTag.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cbURLTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 200</value>
   </data>
-  <data name="cbWWWTag.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cbURLTag.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 21</value>
   </data>
-  <data name="cbWWWTag.TabIndex" type="System.Int32, mscorlib">
+  <data name="cbURLTag.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="&gt;&gt;cbWWWTag.Name" xml:space="preserve">
-    <value>cbWWWTag</value>
+  <data name="&gt;&gt;cbURLTag.Name" xml:space="preserve">
+    <value>cbURLTag</value>
   </data>
-  <data name="&gt;&gt;cbWWWTag.Type" xml:space="preserve">
+  <data name="&gt;&gt;cbURLTag.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cbWWWTag.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cbURLTag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cbWWWTag.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="&gt;&gt;cbURLTag.ZOrder" xml:space="preserve">
+    <value>17</value>
   </data>
   <data name="lblCompany.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1333,7 +1462,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCompany.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="txtCompany.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 278</value>
@@ -1354,7 +1483,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtCompany.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="lblPosition.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1381,7 +1510,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPosition.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="txtPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>231, 278</value>
@@ -1402,7 +1531,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPosition.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="cbPhone.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 106</value>
@@ -1423,7 +1552,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbPhone.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="cbEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 145</value>
@@ -1444,28 +1573,28 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbEmail.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
-  <data name="cbWWW.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cbURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 200</value>
   </data>
-  <data name="cbWWW.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cbURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 21</value>
   </data>
-  <data name="cbWWW.TabIndex" type="System.Int32, mscorlib">
+  <data name="cbURL.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
-  <data name="&gt;&gt;cbWWW.Name" xml:space="preserve">
-    <value>cbWWW</value>
+  <data name="&gt;&gt;cbURL.Name" xml:space="preserve">
+    <value>cbURL</value>
   </data>
-  <data name="&gt;&gt;cbWWW.Type" xml:space="preserve">
+  <data name="&gt;&gt;cbURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cbWWW.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cbURL.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cbWWW.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;cbURL.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="chbActive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1492,7 +1621,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chbActive.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="btnSaveNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1522,7 +1651,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSaveNew.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblLastUpdate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -1552,7 +1681,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLastUpdate.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -1576,7 +1705,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbIM.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="btnDelIM.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnDelIM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1603,7 +1735,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDelIM.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnAddIM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1630,7 +1762,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAddIM.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cbIMTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 239</value>
@@ -1651,7 +1783,37 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbIMTag.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="lblGoogleID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblGoogleID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblGoogleID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>167, 400</value>
+  </data>
+  <data name="lblGoogleID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="lblGoogleID.TabIndex" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="lblGoogleID.Text" xml:space="preserve">
+    <value>Google ID:</value>
+  </data>
+  <data name="&gt;&gt;lblGoogleID.Name" xml:space="preserve">
+    <value>lblGoogleID</value>
+  </data>
+  <data name="&gt;&gt;lblGoogleID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblGoogleID.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblGoogleID.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

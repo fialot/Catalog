@@ -1063,7 +1063,9 @@ namespace Katalog
                 contact.Updated = DateTime.Now;
                 contact.GoogleID = item.gID;
                 contact.Active = true;
-                //contact.Avatar = Files.LoadBinFile(imgPath);
+                
+                contact.Avatar = Conv.StreamToByteArray(GC.GetAvatar(item.AvatarUri));
+                //contact.Avatar = Conv.StreamToByteArray(item.Avatar);
                 //contact.ID = Conv.ToGuid(item[24]);
                 con.Add(contact);
             }

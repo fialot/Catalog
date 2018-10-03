@@ -379,12 +379,17 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
+            AutoCompleteStringCollection auto = new AutoCompleteStringCollection();
+
             contList = db.Contacts.Where(x => x.Active ?? true).Select(x => new CInfo { ID = x.ID, Name = x.Name.Trim(), Surname = x.Surname.Trim(), PersonalNum = x.PersonCode.Trim() }).ToList();
             for (int i = 0; i < contList.Count; i++)
             {
-                txtPerson.AutoCompleteCustomSource.Add(contList[i].Name + " " + contList[i].Surname + " #" + i.ToString());
-                txtPerson.AutoCompleteCustomSource.Add(contList[i].Surname + " " + contList[i].Name + " #" + i.ToString());
+                auto.Add(contList[i].Name + " " + contList[i].Surname + " #" + i.ToString());
+                auto.Add(contList[i].Surname + " " + contList[i].Name + " #" + i.ToString());
+                //txtPerson.AutoCompleteCustomSource.Add(contList[i].Name + " " + contList[i].Surname + " #" + i.ToString());
+                //txtPerson.AutoCompleteCustomSource.Add(contList[i].Surname + " " + contList[i].Name + " #" + i.ToString());
             }
+            txtPerson.AutoCompleteCustomSource = auto;
         }
         
         /// <summary>

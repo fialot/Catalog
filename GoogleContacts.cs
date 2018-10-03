@@ -13,6 +13,7 @@ using System.IO;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Util.Store;
 
+
 namespace GContacts
 {
     public struct contacts
@@ -32,6 +33,9 @@ namespace GContacts
         public string Group;
 
         public string gID;              // google ID
+
+        public Uri AvatarUri;
+        public Stream Avatar;
     }
 
     public struct cName
@@ -96,6 +100,8 @@ namespace GContacts
 
         ContactsRequest cr;
 
+        int test = 0;
+
         public static string RandomString(int length)
         {
             Random random = new Random();
@@ -106,13 +112,15 @@ namespace GContacts
 
         private ContactsRequest GetContactRequest(string user)
         {
+            
+
             string AppName = "Fialot catalog";
             string clientId = "109433857970-aqsm7jd6fqqkd0l7b413lu12gb1h8nca.apps.googleusercontent.com";
             string clientSecret = "4aU49fgGxIULQahEd1o1nOnI";
 
-            string[] scopes = new string[] { "https://www.google.com/m8/feeds/" };     // view your basic profile info.
+            //string[] scopes = new string[] { "https://www.google.com/m8/feeds/" };     // view your basic profile info.
 
-            //string[] scopes = new string[] { "https://www.googleapis.com/auth/contacts.readonly" };     // view your basic profile info.
+            string[] scopes = new string[] { "https://www.googleapis.com/auth/contacts" };     // view your basic profile info.
 
             //string[] scopes = new string[] { "https://www.google.com/m8/feeds/groups/fialot@gmail.com/full" };     // view your basic profile info.
 
@@ -125,22 +133,26 @@ namespace GContacts
 
             // Translate the Oauth permissions to something the old client libray can read
             OAuth2Parameters parameters = new OAuth2Parameters();
+            parameters.ClientId = clientId;
+            parameters.ClientSecret = "4aU49fgGxIULQahEd1o1nOnI";
+
             parameters.AccessToken = credential.Token.AccessToken;
             parameters.RefreshToken = credential.Token.RefreshToken;
             parameters.TokenType = credential.Token.TokenType;
-            parameters.TokenExpiry = DateTime.Now.AddYears(1);
+            parameters.TokenExpiry = DateTime.Now.AddDays(7);
 
 
 
 
             RequestSettings settings = new RequestSettings(AppName, parameters);
+            settings.AutoPaging = true;
             //settings.Credentials = new GDataCredentials("mfialot@gmail.com", "timoty");
             return new ContactsRequest(settings);
         }
 
         public bool Login(ref string user)
         {
-            if (user == "") user = "user";
+            if (user == "") user = "default";
             cr = GetContactRequest(user);
 
             try
@@ -164,7 +176,7 @@ namespace GContacts
             string MyContactID = "";
 
             Feed<Google.Contacts.Group> fg = cr.GetGroups();
-
+            
             foreach (Google.Contacts.Group group in fg.Entries)
             {
                 cGroups gItem = new cGroups();
@@ -224,10 +236,10 @@ namespace GContacts
                             item.Name.Nick = entry.ContactEntry.Nickname;
 
                         // ----- EMAIL -----
+                        item.Email = new List<cValue>();
                         foreach (EMail email in entry.Emails)
                         {
                             cValue cItem;
-                            item.Email = new List<cValue>();
                             cItem.Value = email.Address;
                             if (email.Rel != null)
                             {
@@ -241,10 +253,10 @@ namespace GContacts
                         }
 
                         // ----- PHONE -----
+                        item.Phone = new List<cValue>();
                         foreach (PhoneNumber phone in entry.Phonenumbers)
                         {
                             cValue cItem;
-                            item.Phone = new List<cValue>();
                             cItem.Value = phone.Value;
                             if (phone.Rel != null)
                             {
@@ -306,10 +318,10 @@ namespace GContacts
                         }
 
                         // ----- WEBSITES -----
+                        item.Web = new List<cValue>();
                         foreach (Website web in entry.ContactEntry.Websites)
                         {
                             cValue wItem;
-                            item.Web = new List<cValue>();
                             wItem.Value = web.Href;
                             wItem.Primary = web.Primary;
                             if (web.Rel != null) wItem.Desc = web.Rel;
@@ -318,10 +330,10 @@ namespace GContacts
                         }
 
                         // ----- IM -----
+                        item.IM = new List<cValue>();
                         foreach (IMAddress IM in entry.IMs)
                         {
                             cValue imItem;
-                            item.IM = new List<cValue>();
                             imItem.Value = IM.Address;
                             imItem.Primary = false;
                             imItem.Desc = IM.Protocol;
@@ -352,6 +364,11 @@ namespace GContacts
                         // ----- google ID -----
                         item.gID = entry.AtomEntry.Id.AbsoluteUri;
 
+                        // ----- Avatar -----
+                        if (entry.PhotoEtag != null)
+                        {
+                            item.AvatarUri = entry.PhotoUri;
+                        }
 
                         // ----- GROUP -----
                         item.Group = "";
@@ -380,6 +397,38 @@ namespace GContacts
                 query.StartIndex += contactsCount;
                 f = cr.Get<Google.Contacts.Contact>(query);
                 contactsCount = f.Entries.Count();
+            }
+
+
+            /*for (int i = 0; i < Contact.Count; i++)
+            {
+
+                var item = Contact[i];
+                if (item.AvatarUri != null)
+                {
+                    try
+                    {
+                        item.Avatar = cr.Service.Query(item.AvatarUri);
+                    }
+                    catch (Exception err)
+                    {
+
+                    }
+                    Contact.RemoveAt(i);
+                    Contact.Insert(i, item);
+                }
+            }*/
+        }
+
+        public Stream GetAvatar(Uri uri)
+        {
+            try
+            {
+                return cr.Service.Query(uri);
+            }
+            catch
+            {
+                return null;
             }
         }
 

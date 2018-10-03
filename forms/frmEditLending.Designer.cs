@@ -112,35 +112,35 @@
             // 
             // mnuGetPerson
             // 
-            resources.ApplyResources(this.mnuGetPerson, "mnuGetPerson");
             this.mnuGetPerson.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuGetPerson.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.jménoToolStripMenuItem});
             this.mnuGetPerson.Name = "mnuGetPerson";
+            resources.ApplyResources(this.mnuGetPerson, "mnuGetPerson");
             // 
             // jménoToolStripMenuItem
             // 
-            resources.ApplyResources(this.jménoToolStripMenuItem, "jménoToolStripMenuItem");
             this.jménoToolStripMenuItem.Name = "jménoToolStripMenuItem";
+            resources.ApplyResources(this.jménoToolStripMenuItem, "jménoToolStripMenuItem");
             // 
             // txtItem
             // 
-            resources.ApplyResources(this.txtItem, "txtItem");
             this.txtItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtItem, "txtItem");
             this.txtItem.Name = "txtItem";
             this.txtItem.TextChanged += new System.EventHandler(this.txtItem_TextChanged);
             this.txtItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtItem_KeyDown);
             // 
             // gbItem
             // 
-            resources.ApplyResources(this.gbItem, "gbItem");
             this.gbItem.Controls.Add(this.btnDelItem);
             this.gbItem.Controls.Add(this.btnAddItem);
             this.gbItem.Controls.Add(this.olvItem);
             this.gbItem.Controls.Add(this.lblInvNum);
             this.gbItem.Controls.Add(this.lblItem);
             this.gbItem.Controls.Add(this.txtItem);
+            resources.ApplyResources(this.gbItem, "gbItem");
             this.gbItem.Name = "gbItem";
             this.gbItem.TabStop = false;
             // 
@@ -160,10 +160,10 @@
             // 
             // olvItem
             // 
-            resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.AllColumns.Add(this.itName);
             this.olvItem.AllColumns.Add(this.itInvNum);
             this.olvItem.AllColumns.Add(this.itType);
+            resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.CellEditUseWholeCell = false;
             this.olvItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.itName,
@@ -173,7 +173,6 @@
             this.olvItem.FullRowSelect = true;
             this.olvItem.GridLines = true;
             this.olvItem.Name = "olvItem";
-            this.olvItem.OverlayText.Text = resources.GetString("resource.Text");
             this.olvItem.ShowGroups = false;
             this.olvItem.TabStop = false;
             this.olvItem.UseCompatibleStateImageBehavior = false;
@@ -201,11 +200,11 @@
             // 
             // gbPerson
             // 
-            resources.ApplyResources(this.gbPerson, "gbPerson");
             this.gbPerson.Controls.Add(this.lblPersonNum);
             this.gbPerson.Controls.Add(this.txtPerson);
             this.gbPerson.Controls.Add(this.btnAddPerson);
             this.gbPerson.Controls.Add(this.lblPerson);
+            resources.ApplyResources(this.gbPerson, "gbPerson");
             this.gbPerson.Name = "gbPerson";
             this.gbPerson.TabStop = false;
             // 
@@ -216,9 +215,9 @@
             // 
             // txtPerson
             // 
-            resources.ApplyResources(this.txtPerson, "txtPerson");
             this.txtPerson.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtPerson.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtPerson, "txtPerson");
             this.txtPerson.Name = "txtPerson";
             this.txtPerson.TextChanged += new System.EventHandler(this.txtPerson_TextChanged);
             this.txtPerson.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPerson_KeyDown);
@@ -237,19 +236,19 @@
             // 
             // gbTerm
             // 
-            resources.ApplyResources(this.gbTerm, "gbTerm");
             this.gbTerm.Controls.Add(this.lblFrom);
             this.gbTerm.Controls.Add(this.dtFrom);
             this.gbTerm.Controls.Add(this.dtTo);
             this.gbTerm.Controls.Add(this.lblTo);
+            resources.ApplyResources(this.gbTerm, "gbTerm");
             this.gbTerm.Name = "gbTerm";
             this.gbTerm.TabStop = false;
             // 
             // cbStatus
             // 
-            resources.ApplyResources(this.cbStatus, "cbStatus");
             this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
+            resources.ApplyResources(this.cbStatus, "cbStatus");
             this.cbStatus.Name = "cbStatus";
             // 
             // TimeOut
@@ -310,9 +309,9 @@
             // 
             // txtNote
             // 
-            resources.ApplyResources(this.txtNote, "txtNote");
             this.txtNote.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtNote.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtNote, "txtNote");
             this.txtNote.Name = "txtNote";
             // 
             // lblNote

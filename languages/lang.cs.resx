@@ -375,4 +375,25 @@
   <data name="DeleteItems" xml:space="preserve">
     <value>Opravdu vymazat vybrané položky?</value>
   </data>
+  <data name="tagHome" xml:space="preserve">
+    <value>Domů</value>
+  </data>
+  <data name="tagMain" xml:space="preserve">
+    <value>Hlavní</value>
+  </data>
+  <data name="tagMobile" xml:space="preserve">
+    <value>Mobil</value>
+  </data>
+  <data name="tagWork" xml:space="preserve">
+    <value>Práce</value>
+  </data>
+  <data name="Added" xml:space="preserve">
+    <value>Přidáno</value>
+  </data>
+  <data name="contacts" xml:space="preserve">
+    <value>kontaktů</value>
+  </data>
+  <data name="updated" xml:space="preserve">
+    <value>aktualizováno</value>
+  </data>
 </root>
