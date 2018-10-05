@@ -472,6 +472,8 @@
     <Content Include="imports\Zoom.Net.dll" />
     <Content Include="imports\Zoom.Net.YazSharp.dll" />
     <Content Include="Resources\Catalog.ico" />
+    <None Include="Resources\if_Stock Index Down_27880.ico" />
+    <None Include="Resources\connect.ico" />
     <None Include="Resources\Refresh16.png" />
     <None Include="Resources\Refresh.png" />
     <None Include="Resources\Circle_Blue.ico" />

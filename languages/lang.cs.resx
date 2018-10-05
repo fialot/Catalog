@@ -396,4 +396,13 @@
   <data name="updated" xml:space="preserve">
     <value>aktualizováno</value>
   </data>
+  <data name="Company" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="ErrorExport" xml:space="preserve">
+    <value>Chyba exportu</value>
+  </data>
+  <data name="Nick" xml:space="preserve">
+    <value>Přezdívka</value>
+  </data>
 </root>

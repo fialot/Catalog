@@ -87,11 +87,13 @@
             // 
             // dtFrom
             // 
+            this.dtFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             resources.ApplyResources(this.dtFrom, "dtFrom");
             this.dtFrom.Name = "dtFrom";
             // 
             // dtTo
             // 
+            this.dtTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             resources.ApplyResources(this.dtTo, "dtTo");
             this.dtTo.Name = "dtTo";
             // 

@@ -242,6 +242,7 @@
             // 
             // dtAcqDate
             // 
+            this.dtAcqDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             resources.ApplyResources(this.dtAcqDate, "dtAcqDate");
             this.dtAcqDate.Name = "dtAcqDate";
             // 

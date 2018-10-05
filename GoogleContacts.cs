@@ -12,13 +12,14 @@ using Google.GData.Extensions;
 using System.IO;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Util.Store;
-
+using System.Globalization;
 
 namespace GContacts
 {
     public struct contacts
     {
         public cName Name;
+        public string Genre;
         public List<cCompany> Company;
         public List<cValue> Phone;
         public List<cValue> Email;
@@ -110,6 +111,11 @@ namespace GContacts
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
+        /// <summary>
+        /// Create Contact request
+        /// </summary>
+        /// <param name="user">User name</param>
+        /// <returns></returns>
         private ContactsRequest GetContactRequest(string user)
         {
             
@@ -118,9 +124,9 @@ namespace GContacts
             string clientId = "109433857970-aqsm7jd6fqqkd0l7b413lu12gb1h8nca.apps.googleusercontent.com";
             string clientSecret = "4aU49fgGxIULQahEd1o1nOnI";
 
-            //string[] scopes = new string[] { "https://www.google.com/m8/feeds/" };     // view your basic profile info.
+            string[] scopes = new string[] { "https://www.google.com/m8/feeds/" };     // view your basic profile info.
 
-            string[] scopes = new string[] { "https://www.googleapis.com/auth/contacts" };     // view your basic profile info.
+            //string[] scopes = new string[] { "https://www.googleapis.com/auth/contacts" };     // view your basic profile info.
 
             //string[] scopes = new string[] { "https://www.google.com/m8/feeds/groups/fialot@gmail.com/full" };     // view your basic profile info.
 
@@ -150,6 +156,11 @@ namespace GContacts
             return new ContactsRequest(settings);
         }
 
+        /// <summary>
+        /// OAUTH2 login
+        /// </summary>
+        /// <param name="user">User name</param>
+        /// <returns></returns>
         public bool Login(ref string user)
         {
             if (user == "") user = "default";
@@ -169,35 +180,212 @@ namespace GContacts
             return true;
         }
 
-        public void ImportGmail()
+        private bool ConvertContact(Google.Contacts.Contact entry, out contacts item)
         {
-            // ----- Get Groups -----
-            Groups = new List<cGroups>();
-            string MyContactID = "";
-
-            Feed<Google.Contacts.Group> fg = cr.GetGroups();
-            
-            foreach (Google.Contacts.Group group in fg.Entries)
+            item = new contacts();
+            if (entry.Name != null)
             {
-                cGroups gItem = new cGroups();
-                gItem.ID = group.Id;
-                gItem.Name = group.Title;
-                gItem.System = false;
-                if (!string.IsNullOrEmpty(group.SystemGroup))
+                // ----- NAME -----
+                Name name = entry.Name;
+                if (!string.IsNullOrEmpty(name.FullName))
+                    item.Name.FullName = name.FullName;
+                if (!string.IsNullOrEmpty(name.NamePrefix))
+                    item.Name.Prefix = name.NamePrefix;
+                if (!string.IsNullOrEmpty(name.GivenName))
+                    item.Name.Firstname = name.GivenName;
+                if (!string.IsNullOrEmpty(name.GivenNamePhonetics))
+                    item.Name.FirstnamePhonetic = name.GivenNamePhonetics;
+                if (!string.IsNullOrEmpty(name.AdditionalName))
+                    item.Name.AdditionalName = name.AdditionalName;
+                if (!string.IsNullOrEmpty(name.AdditionalNamePhonetics))
+                    item.Name.AdditionalNamePhonetic = name.AdditionalNamePhonetics;
+                if (!string.IsNullOrEmpty(name.FamilyName))
+                    item.Name.Surname = name.FamilyName;
+                if (!string.IsNullOrEmpty(name.FamilyNamePhonetics))
+                    item.Name.SurnamePhonetic = name.FamilyNamePhonetics;
+                if (!string.IsNullOrEmpty(name.NameSuffix))
+                    item.Name.Suffix = name.NameSuffix;
+                if (!string.IsNullOrEmpty(entry.ContactEntry.Nickname))
+                    item.Name.Nick = entry.ContactEntry.Nickname;
+
+                // ----- EMAIL -----
+                item.Email = new List<cValue>();
+                foreach (EMail email in entry.Emails)
                 {
-                    gItem.Name = group.SystemGroup;
-                    gItem.System = true;
-                    if (gItem.Name == "Contacts") MyContactID = gItem.ID;
+                    cValue cItem;
+                    cItem.Value = email.Address;
+                    if (email.Rel != null)
+                    {
+                        cItem.Desc = email.Rel.Replace("http://schemas.google.com/g/2005", "");
+                        if (cItem.Desc == "#other")
+                            cItem.Desc = email.Label;
+                    }
+                    else cItem.Desc = email.Label;
+                    cItem.Primary = email.Primary;
+                    item.Email.Add(cItem);
                 }
-                Groups.Add(gItem);
+
+                // ----- PHONE -----
+                item.Phone = new List<cValue>();
+                foreach (PhoneNumber phone in entry.Phonenumbers)
+                {
+                    cValue cItem;
+                    cItem.Value = phone.Value;
+                    if (phone.Rel != null)
+                    {
+                        cItem.Desc = phone.Rel.Replace("http://schemas.google.com/g/2005", "");
+                        if (cItem.Desc == "#other")
+                            cItem.Desc = phone.Label;
+                    }
+                    else cItem.Desc = phone.Label;
+                    cItem.Primary = phone.Primary;
+                    item.Phone.Add(cItem);
+                }
+
+                // ----- Organization -----
+                foreach (Organization organization in entry.Organizations)
+                {
+                    cCompany cItem;
+                    item.Company = new List<cCompany>();
+                    cItem.Name = organization.Name;
+                    cItem.Position = organization.Title;
+                    cItem.Address = new cAddress();
+                    item.Company.Add(cItem);
+                }
+
+                // ----- ADDRESS -----
+                foreach (StructuredPostalAddress address in entry.PostalAddresses)
+                {
+                    cAddress aItem;
+                    item.Address = new List<cAddress>();
+                    aItem.Street = address.Street;
+                    aItem.City = address.City;
+                    aItem.Region = address.Region;
+                    aItem.Country = address.Country;
+                    aItem.ZipCode = address.Postcode;
+                    aItem.Primary = address.Primary;
+                    aItem.Tag = "";
+                    if (address.Rel != null)
+                    {
+                        aItem.Tag = address.Rel.Replace("http://schemas.google.com/g/2005", "");
+                        if (aItem.Tag == "#other")
+                            aItem.Tag = address.Label;
+                    }
+                    item.Address.Add(aItem);
+                }
+
+                // ----- BIRTHDATE -----
+                DateTime date = DateTime.MinValue;
+                if (DateTime.TryParse(entry.ContactEntry.Birthday, out date)) item.BirthDate = date;
+
+                // ----- DATES -----
+                foreach (Event ev in entry.ContactEntry.Events)
+                {
+                    cDates eItem;
+                    item.Date = new List<cDates>();
+                    eItem.Date = ev.When.StartTime;
+                    if (ev.Relation != null) eItem.Tag = ev.Relation;
+                    else eItem.Tag = ev.Label;
+                    eItem.AlLDay = ev.When.AllDay;
+                    item.Date.Add(eItem);
+                }
+
+                // ----- WEBSITES -----
+                item.Web = new List<cValue>();
+                foreach (Website web in entry.ContactEntry.Websites)
+                {
+                    cValue wItem;
+                    wItem.Value = web.Href;
+                    wItem.Primary = web.Primary;
+                    if (web.Rel != null) wItem.Desc = web.Rel;
+                    else wItem.Desc = web.Label;
+                    item.Web.Add(wItem);
+                }
+
+                // ----- IM -----
+                item.IM = new List<cValue>();
+                foreach (IMAddress IM in entry.IMs)
+                {
+                    cValue imItem;
+                    imItem.Value = IM.Address;
+                    imItem.Primary = false;
+                    imItem.Desc = IM.Protocol;
+                    if (IM.Protocol != null)
+                    {
+                        imItem.Desc = IM.Protocol.Replace("http://schemas.google.com/g/2005", "");
+                    }
+                    item.IM.Add(imItem);
+                }
+
+                // ----- RELATIONS -----
+                foreach (Relation rel in entry.ContactEntry.Relations)
+                {
+                    cValue rItem;
+                    item.Relation = new List<cValue>();
+                    rItem.Value = rel.Value;
+                    rItem.Primary = false;
+                    if (rel.Rel != null) rItem.Desc = rel.Rel;
+                    else rItem.Desc = rel.Label;
+                    item.Relation.Add(rItem);
+                }
+
+                // ----- USER DEFINED -----
+                foreach(var user in entry.ContactEntry.UserDefinedFields)
+                {
+                    if (user.Key == "Genre")
+                        if (user.Value == "M" || user.Value == "F")
+                            item.Genre = user.Value;
+                }
+
+
+                // ----- NOTE -----
+                item.Note = entry.Content;
+
+
+                // ----- google ID -----
+                //item.gID = entry.AtomEntry.Id.AbsoluteUri;
+                item.gID = entry.AtomEntry.EditUri.ToString();
+
+                // ----- Avatar -----
+                if (entry.PhotoEtag != null)
+                {
+                    item.AvatarUri = entry.PhotoUri;
+                }
+
+                // ----- GROUP -----
+                item.Group = "";
+                bool haveGroup = false;
+                foreach (GroupMembership groupMembership in entry.GroupMembership)
+                {
+                    if (!IsSystemGroup(groupMembership.HRef))
+                    {
+                        if (item.Group.Length > 0) item.Group += ",";
+                        item.Group += GetGroupName(groupMembership.HRef);
+                    }
+                    haveGroup = true;
+                }
+                if (haveGroup)
+                    return true;
+            }
+            else
+            {
+                // ----- no name -----
             }
 
+            return false;
+        }
 
-
+        /// <summary>
+        /// Import all Google contacts
+        /// </summary>
+        public void ImportGmail()
+        {
+            string MyContactID = GetGroups();
+            
             Contact = new List<contacts>();
 
             ContactsQuery query = new ContactsQuery(ContactsQuery.CreateContactsUri("default"));
-            query.StartIndex = 0;
+            query.StartIndex = 1;
             query.ShowDeleted = false;
             if (MyContactID != "")
                 query.Group = MyContactID;
@@ -208,190 +396,9 @@ namespace GContacts
             {
                 foreach (Google.Contacts.Contact entry in f.Entries)
                 {
-
-                    contacts item = new contacts();
-                    if (entry.Name != null)
-                    {
-                        // ----- NAME -----
-                        Name name = entry.Name;
-                        if (!string.IsNullOrEmpty(name.FullName))
-                            item.Name.FullName = name.FullName;
-                        if (!string.IsNullOrEmpty(name.NamePrefix))
-                            item.Name.Prefix = name.NamePrefix;
-                        if (!string.IsNullOrEmpty(name.GivenName))
-                            item.Name.Firstname = name.GivenName;
-                        if (!string.IsNullOrEmpty(name.GivenNamePhonetics))
-                            item.Name.FirstnamePhonetic = name.GivenNamePhonetics;
-                        if (!string.IsNullOrEmpty(name.AdditionalName))
-                            item.Name.AdditionalName = name.AdditionalName;
-                        if (!string.IsNullOrEmpty(name.AdditionalNamePhonetics))
-                            item.Name.AdditionalNamePhonetic = name.AdditionalNamePhonetics;
-                        if (!string.IsNullOrEmpty(name.FamilyName))
-                            item.Name.Surname = name.FamilyName;
-                        if (!string.IsNullOrEmpty(name.FamilyNamePhonetics))
-                            item.Name.SurnamePhonetic = name.FamilyNamePhonetics;
-                        if (!string.IsNullOrEmpty(name.NameSuffix))
-                            item.Name.Suffix = name.NameSuffix;
-                        if (!string.IsNullOrEmpty(entry.ContactEntry.Nickname))
-                            item.Name.Nick = entry.ContactEntry.Nickname;
-
-                        // ----- EMAIL -----
-                        item.Email = new List<cValue>();
-                        foreach (EMail email in entry.Emails)
-                        {
-                            cValue cItem;
-                            cItem.Value = email.Address;
-                            if (email.Rel != null)
-                            {
-                                cItem.Desc = email.Rel.Replace("http://schemas.google.com/g/2005", "");
-                                if (cItem.Desc == "#other")
-                                    cItem.Desc = email.Label;
-                            }
-                            else cItem.Desc = email.Label;
-                            cItem.Primary = email.Primary;
-                            item.Email.Add(cItem);
-                        }
-
-                        // ----- PHONE -----
-                        item.Phone = new List<cValue>();
-                        foreach (PhoneNumber phone in entry.Phonenumbers)
-                        {
-                            cValue cItem;
-                            cItem.Value = phone.Value;
-                            if (phone.Rel != null)
-                            {
-                                cItem.Desc = phone.Rel.Replace("http://schemas.google.com/g/2005", "");
-                                if (cItem.Desc == "#other")
-                                    cItem.Desc = phone.Label;
-                            }
-                            else cItem.Desc = phone.Label;
-                            cItem.Primary = phone.Primary;
-                            item.Phone.Add(cItem);
-                        }
-
-                        // ----- Organization -----
-                        foreach (Organization organization in entry.Organizations)
-                        {
-                            cCompany cItem;
-                            item.Company = new List<cCompany>();
-                            cItem.Name = organization.Name;
-                            cItem.Position = organization.Title;
-                            cItem.Address = new cAddress();
-                            item.Company.Add(cItem);
-                        }
-
-                        // ----- ADDRESS -----
-                        foreach (StructuredPostalAddress address in entry.PostalAddresses)
-                        {
-                            cAddress aItem;
-                            item.Address = new List<cAddress>();
-                            aItem.Street = address.Street;
-                            aItem.City = address.City;
-                            aItem.Region = address.Region;
-                            aItem.Country = address.Country;
-                            aItem.ZipCode = address.Postcode;
-                            aItem.Primary = address.Primary;
-                            aItem.Tag = "";
-                            if (address.Rel != null)
-                            {
-                                aItem.Tag = address.Rel.Replace("http://schemas.google.com/g/2005", "");
-                                if (aItem.Tag == "#other")
-                                    aItem.Tag = address.Label;
-                            }
-                            item.Address.Add(aItem);
-                        }
-
-                        // ----- BIRTHDATE -----
-                        DateTime date = DateTime.MinValue;
-                        if (DateTime.TryParse(entry.ContactEntry.Birthday, out date)) item.BirthDate = date;
-
-                        // ----- DATES -----
-                        foreach (Event ev in entry.ContactEntry.Events)
-                        {
-                            cDates eItem;
-                            item.Date = new List<cDates>();
-                            eItem.Date = ev.When.StartTime;
-                            if (ev.Relation != null) eItem.Tag = ev.Relation;
-                            else eItem.Tag = ev.Label;
-                            eItem.AlLDay = ev.When.AllDay;
-                            item.Date.Add(eItem);
-                        }
-
-                        // ----- WEBSITES -----
-                        item.Web = new List<cValue>();
-                        foreach (Website web in entry.ContactEntry.Websites)
-                        {
-                            cValue wItem;
-                            wItem.Value = web.Href;
-                            wItem.Primary = web.Primary;
-                            if (web.Rel != null) wItem.Desc = web.Rel;
-                            else wItem.Desc = web.Label;
-                            item.Web.Add(wItem);
-                        }
-
-                        // ----- IM -----
-                        item.IM = new List<cValue>();
-                        foreach (IMAddress IM in entry.IMs)
-                        {
-                            cValue imItem;
-                            imItem.Value = IM.Address;
-                            imItem.Primary = false;
-                            imItem.Desc = IM.Protocol;
-                            if (IM.Protocol != null)
-                            {
-                                imItem.Desc = IM.Protocol.Replace("http://schemas.google.com/g/2005", "");
-                            }
-                            item.IM.Add(imItem);
-                        }
-
-                        // ----- RELATIONS -----
-                        foreach (Relation rel in entry.ContactEntry.Relations)
-                        {
-                            cValue rItem;
-                            item.Relation = new List<cValue>();
-                            rItem.Value = rel.Value;
-                            rItem.Primary = false;
-                            if (rel.Rel != null) rItem.Desc = rel.Rel;
-                            else rItem.Desc = rel.Label;
-                            item.Relation.Add(rItem);
-                        }
-
-
-                        // ----- NOTE -----
-                        item.Note = entry.Content;
-
-
-                        // ----- google ID -----
-                        item.gID = entry.AtomEntry.Id.AbsoluteUri;
-
-                        // ----- Avatar -----
-                        if (entry.PhotoEtag != null)
-                        {
-                            item.AvatarUri = entry.PhotoUri;
-                        }
-
-                        // ----- GROUP -----
-                        item.Group = "";
-                        bool haveGroup = false;
-                        foreach (GroupMembership groupMembership in entry.GroupMembership)
-                        {
-                            if (!IsSystemGroup(groupMembership.HRef))
-                            {
-                                if (item.Group.Length > 0) item.Group += ",";
-                                item.Group += GetGroupName(groupMembership.HRef);
-                            }
-                            haveGroup = true;
-                        }
-                        if (haveGroup)
-                            Contact.Add(item);
-                    }
-                    else
-                    {
-                        int x = 1;
-                        // ----- no name -----
-                    }
-
-
+                    contacts contact;
+                    if (ConvertContact(entry, out contact))
+                        Contact.Add(contact);
                 }
 
                 query.StartIndex += contactsCount;
@@ -419,7 +426,12 @@ namespace GContacts
                 }
             }*/
         }
-
+        
+        /// <summary>
+        /// Get Contact Avatar
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         public Stream GetAvatar(Uri uri)
         {
             try
@@ -430,6 +442,41 @@ namespace GContacts
             {
                 return null;
             }
+        }
+
+        public string GetGroups()
+        {
+            // ----- Get Groups -----
+            Groups = new List<cGroups>();
+            string MyContactID = "";
+
+            Feed<Google.Contacts.Group> fg = cr.GetGroups();
+
+            foreach (Google.Contacts.Group group in fg.Entries)
+            {
+                cGroups gItem = new cGroups();
+                gItem.ID = group.Id;
+                gItem.Name = group.Title;
+                gItem.System = false;
+                if (!string.IsNullOrEmpty(group.SystemGroup))
+                {
+                    gItem.Name = group.SystemGroup;
+                    gItem.System = true;
+                    if (gItem.Name == "Contacts") MyContactID = gItem.ID;
+                }
+                Groups.Add(gItem);
+            }
+            return MyContactID;
+        }
+
+        public contacts GetContact(string URI)
+        {
+            Uri contactURL = new Uri(URI.Replace("http:", "https:"));
+            Google.Contacts.Contact entry = cr.Retrieve<Google.Contacts.Contact>(contactURL);
+
+            contacts item;
+            ConvertContact(entry, out item);
+            return item;
         }
 
         public Google.Contacts.Contact CreateContact(contacts item)
@@ -535,6 +582,8 @@ namespace GContacts
             Uri contactURL = new Uri(item.gID);
             Google.Contacts.Contact newEntry = cr.Retrieve<Google.Contacts.Contact>(contactURL);
 
+            Google.Contacts.Contact updatedContact2 = cr.Update(newEntry);
+
             // ----- NAME -----
             newEntry.Name = new Name()
             {
@@ -544,70 +593,211 @@ namespace GContacts
                 AdditionalName = item.Name.AdditionalName,
                 FamilyName = item.Name.Surname,
                 NameSuffix = item.Name.Suffix,
+                
                 //FamilyNamePhonetics = ,
                 //AdditionalNamePhonetics = ,
                 //FamilyNamePhonetics = ,
             };
 
+            updatedContact2 = cr.Update(newEntry);
+
+            newEntry.ContactEntry.Nickname = item.Name.Nick;
+
+            updatedContact2 = cr.Update(newEntry);
+
             // ----- EMAIL -----
-            foreach (var email in item.Email)
+            newEntry.Emails.Clear();
+            if (item.Email != null)
             {
-                newEntry.Emails.Add(new EMail()
+                foreach (var email in item.Email)
                 {
-                    Primary = email.Primary,
-                    Rel = email.Desc,            // ContactsRelationships.IsHome,
-                    Address = email.Value
-                });
+                    if (email.Desc.IndexOf("#") == 0)
+                        newEntry.Emails.Add(new EMail()
+                        {
+                            Primary = email.Primary,
+                            Rel = "http://schemas.google.com/g/2005" + email.Desc,
+                            Address = email.Value
+                        });
+                    else if (email.Desc == "")
+                        newEntry.Emails.Add(new EMail()
+                        {
+                            Primary = email.Primary,
+                            Rel = "http://schemas.google.com/g/2005#other",
+                            Address = email.Value
+                        });
+                    else
+                        newEntry.Emails.Add(new EMail()
+                        {
+                            Primary = email.Primary,
+                            Label = email.Desc,
+                            Address = email.Value
+                        });
+                }
             }
+
+            updatedContact2 = cr.Update(newEntry);
 
             // ----- PHONE -----
-            foreach (var phone in item.Phone)
+            newEntry.Phonenumbers.Clear();
+            if (item.Phone != null)
             {
-                newEntry.Phonenumbers.Add(new PhoneNumber()
+                foreach (var phone in item.Phone)
                 {
-                    Primary = phone.Primary,
-                    Rel = phone.Desc,            // ContactsRelationships.IsWork,
-                    Value = phone.Value
-                });
+                    if (phone.Desc.IndexOf("#") == 0)
+                        newEntry.Phonenumbers.Add(new PhoneNumber()
+                        {
+                            Primary = phone.Primary,
+                            Rel = "http://schemas.google.com/g/2005" + phone.Desc,
+                            Value = phone.Value
+                        });
+                    else if (phone.Desc == "")
+                        newEntry.Phonenumbers.Add(new PhoneNumber()
+                        {
+                            Primary = phone.Primary,
+                            Rel = "http://schemas.google.com/g/2005#other",
+                            Value = phone.Value
+                        });
+                    else
+                        newEntry.Phonenumbers.Add(new PhoneNumber()
+                        {
+                            Primary = phone.Primary,
+                            Label = phone.Desc,
+                            Value = phone.Value
+                        });
+                }
             }
+
+            updatedContact2 = cr.Update(newEntry);
 
             // ----- Organization -----
-
-            // ----- ADDRESS -----
-            foreach (var address in item.Address)
+            newEntry.Organizations.Clear();
+            if (item.Company != null)
             {
-                newEntry.PostalAddresses.Add(new StructuredPostalAddress()
+                foreach (var comp in item.Company)
                 {
-                    Rel = address.Tag,            // ContactsRelationships.IsWork,
-                    Primary = address.Primary,
-                    Street = address.Street,
-                    City = address.City,
-                    Region = address.Region,
-                    Postcode = address.ZipCode,
-                    Country = address.Country,
-                    FormattedAddress = address.Street + ", " + address.City + ", " + address.Region + ", " + address.Country + ", " + address.ZipCode
-                });
+                    newEntry.Organizations.Add(new Organization()
+                    {
+                        Name = comp.Name,
+                        Title = comp.Position,
+                        Rel = "http://schemas.google.com/g/2005#other"
+                    });
+                }
             }
 
-            // ----- BIRTHDATE -----
+            updatedContact2 = cr.Update(newEntry);
 
+            // ----- ADDRESS -----
+            /*if (item.Address != null)
+            {
+                foreach (var address in item.Address)
+                {
+                    newEntry.PostalAddresses.Add(new StructuredPostalAddress()
+                    {
+                        Rel = address.Tag,            // ContactsRelationships.IsWork,
+                        Primary = address.Primary,
+                        Street = address.Street,
+                        City = address.City,
+                        Region = address.Region,
+                        Postcode = address.ZipCode,
+                        Country = address.Country,
+                        FormattedAddress = address.Street + ", " + address.City + ", " + address.Region + ", " + address.Country + ", " + address.ZipCode
+                    });
+                }
+            }*/
+
+
+            // ----- BIRTHDATE -----
+            if (item.BirthDate != DateTime.MinValue)
+            {
+                //newEntry.AtomEntry.Birthday = item.BirthDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                newEntry.ContactEntry.Birthday = item.BirthDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
+               
+            updatedContact2 = cr.Update(newEntry);
 
             // ----- DATES -----
 
             // ----- WEBSITES -----
+            newEntry.ContactEntry.Websites.Clear();
+            if (item.Web != null)
+            {
+                foreach (var web in item.Web)
+                {
+                    if (web.Desc.IndexOf("#") == 0)
+                        newEntry.ContactEntry.Websites.Add(new Website()
+                        {
+                            Primary = web.Primary,
+                            Rel = "http://schemas.google.com/g/2005" + web.Desc,
+                            Value = web.Value
+                        });
+                    else if (web.Desc == "")
+                        newEntry.ContactEntry.Websites.Add(new Website()
+                        {
+                            Primary = web.Primary,
+                            Rel = "http://schemas.google.com/g/2005#other",
+                            Value = web.Value
+                        });
+                    else
+                        newEntry.ContactEntry.Websites.Add(new Website()
+                        {
+                            Primary = web.Primary,
+                            Label = web.Desc,
+                            Value = web.Value
+                        });
+                }
+            }
+
+            updatedContact2 = cr.Update(newEntry);
 
             // ----- IM -----
-            foreach (var im in item.IM)
+            newEntry.IMs.Clear();
+            if (item.IM != null)
             {
-                newEntry.IMs.Add(new IMAddress()
+                foreach (var im in item.IM)
                 {
-                    Address = im.Value,
-                    Primary = im.Primary,
-                    //Rel = //ContactsRelationships.IsHome,
-                    Protocol = im.Desc, // ContactsProtocols.IsGoogleTalk,
+                    if (im.Desc.IndexOf("#") == 0)
+                        newEntry.IMs.Add(new IMAddress()
+                        {
+                            Primary = im.Primary,
+                            Rel = "http://schemas.google.com/g/2005" + im.Desc,
+                            Address = im.Value
+                        });
+                    else if (im.Desc == "")
+                        newEntry.IMs.Add(new IMAddress()
+                        {
+                            Primary = im.Primary,
+                            Rel = "http://schemas.google.com/g/2005#other",
+                            Address = im.Value
+                        });
+                    else
+                        newEntry.IMs.Add(new IMAddress()
+                        {
+                            Primary = im.Primary,
+                            Protocol = im.Desc,
+                            Address = im.Value
+                        });
+                }
+            }
 
+            updatedContact2 = cr.Update(newEntry);
+
+            // ----- GENRE -----
+            for (int i = 0; i < newEntry.ContactEntry.UserDefinedFields.Count; i++)
+            {
+                if (newEntry.ContactEntry.UserDefinedFields[i].Key == "Genre")
+                {
+                    newEntry.ContactEntry.UserDefinedFields.RemoveAt(i);
+                }
+            }
+            if (item.Genre != "")
+            {
+                newEntry.ContactEntry.UserDefinedFields.Add(new UserDefinedField()
+                {
+                    Key = "Genre",
+                    Value = item.Genre
                 });
             }
+            
 
 
             // ----- RELATIONS -----

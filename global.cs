@@ -526,6 +526,11 @@ namespace Katalog
                     return false;
                 }
             }
+            else
+            {
+                path = "";
+                return false;
+            }
             return true;
         }
 
@@ -559,11 +564,17 @@ namespace Katalog
                 // ----- Images -----
                 string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
                 ExportImage(ref imgFileName, item.Avatar);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
                 
+
                 // ----- Other data -----
-                lines += item.Name.Trim() + ";" + item.Surname.Trim() + ";" + item.Nick.Trim() + ";" + item.Sex.Trim() + ";" + item.Birth.ToString() + ";" + item.Phone.Trim() + ";" + item.Email.Trim() + ";" + item.WWW.Trim() + ";" + item.IM.Trim() + ";";
-                lines += item.Company.Trim() + ";" + item.Position.Trim() + ";" + item.Street.Trim() + ";" + item.City.Trim() + ";" + item.Region.Trim() + ";" + item.Country.Trim() + ";" + item.PostCode.Trim() + ";";
-                lines += item.PersonCode.Trim() + ";" + item.Note.Trim() + ";" + item.Tags.Trim() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.GoogleID.Trim() + ";" + (item.Active ?? true).ToString() + ";";
+                lines += item.Name.Trim().Replace(";", "//") + ";" + item.Surname.Trim().Replace(";", "//") + ";" + item.Nick.Trim().Replace(";", "//") + ";" + item.Sex.Trim().Replace(";", "//") + ";" + item.Birth.ToString() + ";" + item.Phone.Trim().Replace(";", "//") + ";" + item.Email.Trim().Replace(";", "//") + ";" + item.WWW.Trim().Replace(";", "//") + ";" + item.IM.Trim().Replace(";", "//") + ";";
+                lines += item.Company.Trim().Replace(";", "//") + ";" + item.Position.Trim().Replace(";", "//") + ";" + item.Street.Trim().Replace(";", "//") + ";" + item.City.Trim().Replace(";", "//") + ";" + item.Region.Trim().Replace(";", "//") + ";" + item.Country.Trim().Replace(";", "//") + ";" + item.PostCode.Trim().Replace(";", "//") + ";";
+                lines += item.PersonCode.Trim().Replace(";", "//") + ";" + item.Note.Trim().Replace(";", "//") + ";" + item.Tags.Trim().Replace(";", "//") + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + item.GoogleID.Trim() + ";" + (item.Active ?? true).ToString() + ";";
                 lines += imgFileName + ";" +  item.ID + Environment.NewLine;
 
                 imgNum++;
@@ -850,31 +861,31 @@ namespace Katalog
             // ----- Parse data -----
             foreach (var item in file.data)
             {
-                string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_images" + Path.DirectorySeparatorChar + item[23];
+                string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[23];
 
                 Contacts contact = new Contacts();
-                contact.Name = item[0];
-                contact.Surname = item[1];
-                contact.Nick = item[2];
-                contact.Sex = item[3];
+                contact.Name = item[0].Replace("//", ";");
+                contact.Surname = item[1].Replace("//", ";");
+                contact.Nick = item[2].Replace("//", ";");
+                contact.Sex = item[3].Replace("//", ";");
                 contact.Birth = Conv.ToDateTimeNull(item[4]);
-                contact.Phone = item[5];
-                contact.Email = item[6];
-                contact.WWW = item[7];
-                contact.IM = item[8];
-                contact.Company = item[9];
-                contact.Position = item[10];
-                contact.Street = item[11];
-                contact.City = item[12];
-                contact.Region = item[13];
-                contact.Country = item[14];
-                contact.PostCode = item[15];
-                contact.PersonCode = item[16];
-                contact.Note = item[17];
-                contact.Tags = item[18];
+                contact.Phone = item[5].Replace("//", ";");
+                contact.Email = item[6].Replace("//", ";");
+                contact.WWW = item[7].Replace("//", ";");
+                contact.IM = item[8].Replace("//", ";");
+                contact.Company = item[9].Replace("//", ";");
+                contact.Position = item[10].Replace("//", ";");
+                contact.Street = item[11].Replace("//", ";");
+                contact.City = item[12].Replace("//", ";");
+                contact.Region = item[13].Replace("//", ";");
+                contact.Country = item[14].Replace("//", ";");
+                contact.PostCode = item[15].Replace("//", ";");
+                contact.PersonCode = item[16].Replace("//", ";");
+                contact.Note = item[17].Replace("//", ";");
+                contact.Tags = item[18].Replace("//", ";");
                 contact.FastTags = Conv.ToShortDef(item[19], 0);
                 contact.Updated = Conv.ToDateTimeNull(item[20]);
-                contact.GoogleID = item[21];
+                contact.GoogleID = item[21].Replace("//", ";");
                 contact.Active = Conv.ToBoolDef(item[22], true);
                 if (item[23] != "")
                     contact.Avatar = Files.LoadBinFile(imgPath);
@@ -899,6 +910,29 @@ namespace Katalog
             }
 
             return res;
+        }
+
+        private static List<cValue> StringToCValue(string text)
+        {
+            List<cValue> list = new List<cValue>();
+
+            if (text == "") return null;
+
+            string[] items = text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < items.Length; i++)
+            {
+                cValue val = new cValue() { Desc = "", Value = "", Primary = false};
+                string[] split = items[i].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                val.Primary = true;
+                if (split.Length > 0)
+                    val.Value = split[0];
+                if (split.Length > 1)
+                    val.Desc = split[1];
+
+                list.Add(val);
+            }
+
+            return list;
         }
 
         private static string GetCompany(List<cCompany> val)
@@ -1007,11 +1041,95 @@ namespace Katalog
                         return item.ZipCode;
                     }
                 }
-                return val[0].Country;
+                return val[0].ZipCode;
             }
             return "";
         }
 
+        private static Contacts ConvertToContacts(contacts item)
+        {
+            Contacts contact = new Contacts();
+            contact.Name = item.Name.Firstname;
+            if (item.Name.AdditionalName != null && item.Name.AdditionalName != "")
+                contact.Name += " " + item.Name.AdditionalName;
+            contact.Surname = item.Name.Surname;
+            contact.Nick = item.Name.Nick;
+            contact.Sex = item.Genre;
+            if (item.BirthDate != DateTime.MinValue)
+                contact.Birth = item.BirthDate;
+            contact.Phone = CValueToString(item.Phone);
+            contact.Email = CValueToString(item.Email);
+            contact.WWW = CValueToString(item.Web);
+            contact.IM = CValueToString(item.IM);
+            contact.Company = GetCompany(item.Company);
+            contact.Position = GetPosition(item.Company);
+            contact.Street = GetStreet(item.Address);
+            contact.City = GetCity(item.Address);
+            contact.Region = GetRegion(item.Address);
+            contact.Country = GetCountry(item.Address);
+            contact.PostCode = GetPostCode(item.Address);
+            contact.PersonCode = "";
+            contact.Note = item.Note;
+            contact.Tags = item.Group;
+            contact.FastTags = 0;
+            contact.Updated = DateTime.Now;
+            contact.GoogleID = item.gID;
+            contact.Active = true;
+            
+            CheckNullContacts(ref contact);
+            return contact;
+        }
+
+        private static void FillContacts(ref contacts item, Contacts contact)
+        {
+            item.Name.Firstname = "";
+            item.Name.AdditionalName = "";
+            string[] split = contact.Name.Split(new string[] { " ", "\t" }, StringSplitOptions.RemoveEmptyEntries);
+            if (split.Length > 0)
+                item.Name.Firstname = split[0];
+            for (int i = 1; i < split.Length; i++)
+            {
+                if (item.Name.AdditionalName != "") item.Name.AdditionalName += " ";
+                item.Name.AdditionalName += split[i];
+            }
+                
+            item.Name.Surname = contact.Surname;
+            item.Name.Nick = contact.Nick;
+            item.Name.FullName = item.Name.Firstname;
+            if (item.Name.AdditionalName != "") item.Name.FullName += " " + item.Name.AdditionalName;
+            if (item.Name.Surname != "") item.Name.FullName += " " + item.Name.Surname;
+            item.Genre = contact.Sex.Trim();
+
+            if (contact.Birth != null)
+                item.BirthDate = contact.Birth ?? DateTime.MinValue;
+
+            item.Phone = StringToCValue(contact.Phone);
+            item.Email = StringToCValue(contact.Email);
+            item.Web = StringToCValue(contact.WWW);
+            item.IM = StringToCValue(contact.IM);
+
+            item.Company = new List<cCompany>();
+            item.Company.Add(new cCompany()
+            {
+                Name = contact.Company,
+                Position = contact.Position
+            });
+
+            /*
+            contact.Street = GetStreet(item.Address);
+            contact.City = GetCity(item.Address);
+            contact.Region = GetRegion(item.Address);
+            contact.Country = GetCountry(item.Address);
+            contact.PostCode = GetPostCode(item.Address);*/
+            //contact.PersonCode = "";
+            item.Note = contact.Note;
+            item.Group = contact.Tags;
+            //contact.FastTags = 0;
+            //contact.Updated = DateTime.Now;
+            //contact.GoogleID = item.gID;
+            //contact.Active = true;
+
+        }
 
         /// <summary>
         /// Import Contacts from Google
@@ -1037,40 +1155,77 @@ namespace Katalog
             {
                 //string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_images" + Path.DirectorySeparatorChar + item[23];
 
-                Contacts contact = new Contacts();
-                contact.Name = item.Name.Firstname + " " + item.Name.AdditionalName;
-                contact.Surname = item.Name.Surname;
-                if (contact.Surname == null) contact.Surname = "";
-                contact.Nick = item.Name.Nick;
-                //contact.Sex = ;
-                if (item.BirthDate != DateTime.MinValue)
-                    contact.Birth = item.BirthDate;
-                contact.Phone = CValueToString(item.Phone);
-                contact.Email = CValueToString(item.Email);
-                contact.WWW = CValueToString(item.Web);
-                contact.IM = CValueToString(item.IM);
-                contact.Company = GetCompany(item.Company);
-                contact.Position = GetPosition(item.Company);
-                contact.Street = GetStreet(item.Address);
-                contact.City = GetCity(item.Address);
-                contact.Region = GetRegion(item.Address);
-                contact.Country = GetCountry(item.Address);
-                contact.PostCode = GetPostCode(item.Address);
-                contact.PersonCode = "";
-                contact.Note = item.Note;
-                contact.Tags = item.Group;
-                contact.FastTags = 0;
-                contact.Updated = DateTime.Now;
-                contact.GoogleID = item.gID;
-                contact.Active = true;
-                
+                Contacts contact = ConvertToContacts(item);
                 contact.Avatar = Conv.StreamToByteArray(GC.GetAvatar(item.AvatarUri));
-                //contact.Avatar = Conv.StreamToByteArray(item.Avatar);
-                //contact.ID = Conv.ToGuid(item[24]);
                 con.Add(contact);
             }
 
             return con;
+        }
+
+        public static Contacts ImportContactGoogle(string GoogleID)
+        {
+            Contacts con = new Contacts();
+
+            GoogleContacts GC = new GoogleContacts();
+            string user = Properties.Settings.Default.LastGUserCred;
+            if (GC.Login(ref user))
+            {
+                contacts item = GC.GetContact(GoogleID);
+                con = ConvertToContacts(item);
+                con.Avatar = Conv.StreamToByteArray(GC.GetAvatar(item.AvatarUri));
+            }
+            else
+                return null;
+            Properties.Settings.Default.LastGUserCred = user;
+            Properties.Settings.Default.Save();
+            return con;
+        }
+
+        public static bool ExportContactGoogle(Contacts contacts)
+        {
+            
+            GoogleContacts GC = new GoogleContacts();
+            string user = Properties.Settings.Default.LastGUserCred;
+            if (GC.Login(ref user))
+            {
+                contacts item = GC.GetContact(contacts.GoogleID);
+                FillContacts(ref item, contacts);
+
+                GC.UpdateContact(item);
+                //GC.UpdateContactPhoto(item.AvatarUri, con.Avatar)
+                // = Conv.StreamToByteArray(GC.GetAvatar(item.AvatarUri));
+            }
+            else
+                return false;
+            Properties.Settings.Default.LastGUserCred = user;
+            Properties.Settings.Default.Save();
+            return true;
+        }
+
+
+
+        public static void CheckNullContacts(ref Contacts contact)
+        {
+            if (contact.Name == null) contact.Name = "";
+            if (contact.Surname == null) contact.Surname = "";
+            if (contact.Nick == null) contact.Nick = "";
+            if (contact.Sex == null) contact.Sex = "";
+            if (contact.Phone == null) contact.Phone = "";
+            if (contact.Email == null) contact.Email = "";
+            if (contact.WWW == null) contact.WWW = "";
+            if (contact.IM == null) contact.IM = "";
+            if (contact.Company == null) contact.Company = "";
+            if (contact.Position == null) contact.Position = "";
+            if (contact.Street == null) contact.Street = "";
+            if (contact.City == null) contact.City = "";
+            if (contact.Region == null) contact.Region = "";
+            if (contact.Country == null) contact.Country = "";
+            if (contact.PostCode == null) contact.PostCode = "";
+            if (contact.PersonCode == null) contact.PersonCode = "";
+            if (contact.Note == null) contact.Note = "";
+            if (contact.Tags == null) contact.Tags = "";
+            if (contact.GoogleID == null) contact.GoogleID = "";
         }
 
 

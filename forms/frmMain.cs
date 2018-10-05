@@ -53,7 +53,12 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            List<Contacts> con = db.Contacts.ToList();
+            List<Contacts> con;
+
+            if (chbShowUnactivCon.Checked)
+                con = db.Contacts.ToList();
+            else
+                con = db.Contacts.Where(p => (p.Active ?? true) == true).ToList();
 
             conFastTags.Renderer = new ImageRenderer();
             conFastTags.AspectGetter = delegate (object x) {
@@ -89,6 +94,10 @@ namespace Katalog
                 if (x == null) return "";
                 return ((Contacts)x).Surname;
             };
+            conNick.AspectGetter = delegate (object x) {
+                if (x == null) return "";
+                return ((Contacts)x).Nick;
+            };
             conPhone.AspectGetter = delegate (object x) {
                 if (x == null) return "";
                 return GetOnlyValue(((Contacts)x).Phone);
@@ -112,7 +121,10 @@ namespace Katalog
                 address += country;
                 return address;
             };
-
+            conCompany.AspectGetter = delegate (object x) {
+                if (x == null) return "";
+                return ((Contacts)x).Company;
+            };
             olvContacts.SetObjects(con);
         }
 
@@ -125,7 +137,25 @@ namespace Katalog
         {
             EnableEditItems();
         }
-        
+
+
+        private void olvContacts_FormatRow(object sender, FormatRowEventArgs e)
+        {
+            if (e.Model == null) return;
+
+            Contacts itm = (Contacts)e.Model;
+            DateTime now = DateTime.Now;
+            if ((itm.Active ?? true) == false)
+                e.Item.ForeColor = Color.Gray;
+            else
+                e.Item.ForeColor = Color.Black;
+        }
+
+        private void chbUnactivateContacts_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateConOLV();
+        }
+
         #endregion
 
         #region Lending
@@ -1234,17 +1264,27 @@ namespace Katalog
             DeleteItem();
         }
 
-        private void EditPersonalLending()
+        private void EditPersonalLending(bool borrowing = false)
         {
             // ----- Contact -----
             if (tabCatalog.SelectedTab == tabContacts)
             {
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {
-                    frmEditPersonLending form = new frmEditPersonLending();   // Show Edit form
-                    var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
-                    UpdateLendingOLV();
-                    UpdateAllItemsOLV();
+                    if(borrowing)
+                    {
+                        frmEditPersonBorrowing form = new frmEditPersonBorrowing();   // Show Edit form
+                        var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
+                        UpdateBorrowingOLV();
+                    }
+                    else
+                    {
+                        frmEditPersonLending form = new frmEditPersonLending();   // Show Edit form
+                        var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
+                        UpdateLendingOLV();
+                        UpdateAllItemsOLV();
+                    }
+                    
                 }
             }
             // ----- Lending -----
@@ -1293,17 +1333,21 @@ namespace Katalog
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("Name"));
                 cbFilterCol.Items.Add(Lng.Get("Surname"));
+                cbFilterCol.Items.Add(Lng.Get("Nick"));
                 cbFilterCol.Items.Add(Lng.Get("Phone"));
                 cbFilterCol.Items.Add(Lng.Get("Email"));
                 cbFilterCol.Items.Add(Lng.Get("Address"));
+                cbFilterCol.Items.Add(Lng.Get("Company"));
                 cbFilterCol.SelectedIndex = 0;
 
                 cbFastFilterCol.Items.Add(Lng.Get("All"));
                 cbFastFilterCol.Items.Add(Lng.Get("Name"));
                 cbFastFilterCol.Items.Add(Lng.Get("Surname"));
+                cbFastFilterCol.Items.Add(Lng.Get("Nick"));
                 cbFastFilterCol.Items.Add(Lng.Get("Phone"));
                 cbFastFilterCol.Items.Add(Lng.Get("Email"));
                 cbFastFilterCol.Items.Add(Lng.Get("Address"));
+                cbFastFilterCol.Items.Add(Lng.Get("Company"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
             else if (tabCatalog.SelectedTab == tabLending)
@@ -1581,17 +1625,21 @@ namespace Katalog
                     FastFilter = TextMatchFilter.Prefix(olvContacts, filterArray);
                 }
                 if (cbFastFilterCol.SelectedIndex == 0)
-                    FastFilter.Columns = new OLVColumn[] { conName, conSurname, conPhone, conEmail, conAddress };
+                    FastFilter.Columns = new OLVColumn[] { conName, conSurname, conNick, conPhone, conEmail, conAddress, conCompany};
                 else if (cbFastFilterCol.SelectedIndex == 1)
                     FastFilter.Columns = new OLVColumn[] { conName };
                 else if (cbFastFilterCol.SelectedIndex == 2)
                     FastFilter.Columns = new OLVColumn[] { conSurname };
                 else if (cbFastFilterCol.SelectedIndex == 3)
-                    FastFilter.Columns = new OLVColumn[] { conPhone };
+                    FastFilter.Columns = new OLVColumn[] { conNick };
                 else if (cbFastFilterCol.SelectedIndex == 4)
-                    FastFilter.Columns = new OLVColumn[] { conEmail };
+                    FastFilter.Columns = new OLVColumn[] { conPhone };
                 else if (cbFastFilterCol.SelectedIndex == 5)
+                    FastFilter.Columns = new OLVColumn[] { conEmail };
+                else if (cbFastFilterCol.SelectedIndex == 6)
                     FastFilter.Columns = new OLVColumn[] { conAddress };
+                else if (cbFastFilterCol.SelectedIndex == 7)
+                    FastFilter.Columns = new OLVColumn[] { conCompany };
             }
             else if (tabCatalog.SelectedTab == tabLending)
             {
@@ -1788,17 +1836,21 @@ namespace Katalog
                 StandardFilter = TextMatchFilter.Contains(olvContacts, txtFilter.Text);
 
                 if (cbFilterCol.SelectedIndex == 0)
-                    StandardFilter.Columns = new OLVColumn[] { conName, conSurname, conPhone, conEmail, conAddress };
+                    StandardFilter.Columns = new OLVColumn[] { conName, conSurname, conNick, conPhone, conEmail, conAddress, conCompany };
                 else if (cbFilterCol.SelectedIndex == 1)
                     StandardFilter.Columns = new OLVColumn[] { conName };
                 else if (cbFilterCol.SelectedIndex == 2)
                     StandardFilter.Columns = new OLVColumn[] { conSurname };
                 else if (cbFilterCol.SelectedIndex == 3)
-                    StandardFilter.Columns = new OLVColumn[] { conPhone };
+                    StandardFilter.Columns = new OLVColumn[] { conNick };
                 else if (cbFilterCol.SelectedIndex == 4)
-                    StandardFilter.Columns = new OLVColumn[] { conEmail };
+                    StandardFilter.Columns = new OLVColumn[] { conPhone };
                 else if (cbFilterCol.SelectedIndex == 5)
+                    StandardFilter.Columns = new OLVColumn[] { conEmail };
+                else if (cbFilterCol.SelectedIndex == 6)
                     StandardFilter.Columns = new OLVColumn[] { conAddress };
+                else if (cbFilterCol.SelectedIndex == 7)
+                    StandardFilter.Columns = new OLVColumn[] { conCompany };
             } 
             else if (tabCatalog.SelectedTab == tabLending)
             {
@@ -1974,7 +2026,29 @@ namespace Katalog
         #endregion
 
         #region Export
-             
+
+
+        private void ExportGoogleContact()
+        {
+            databaseEntities db = new databaseEntities();
+
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+                {
+                    if (global.ExportContactGoogle((Contacts)olvContacts.SelectedObject))
+                    {
+                        Dialogs.ShowInfo(Lng.Get("SuccesfullyExport", "Export was succesfully done") + ".", "");
+                    }
+                    else
+                    {
+                        Dialogs.ShowErr(Lng.Get("ErrorExport", "Export Error") + "!", "");
+                    }
+                }
+            }
+        }
+
+
         private void mnuExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
@@ -2048,6 +2122,77 @@ namespace Katalog
         #endregion
 
         #region Import
+
+
+        private void ImportGoogleContact()
+        {
+            databaseEntities db = new databaseEntities();
+
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+                {
+                    Contacts item = global.ImportContactGoogle(((Contacts)olvContacts.SelectedObject).GoogleID);
+                    if (item != null)
+                    {
+                        var contacts = db.Contacts.Where(w => w.GoogleID == item.GoogleID).ToList();
+                        if (contacts.Count > 0)
+                        {
+                            Contacts contact = contacts[0];
+                            FillContact(ref contact, item);
+                        }
+                        else
+                        {
+                            item.ID = Guid.NewGuid();
+                            db.Contacts.Add(item);
+                        }
+                        db.SaveChanges();
+                        UpdateConOLV();                         // Update Contact OLV
+                        Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", "");
+
+                    }
+                }
+            }
+        }
+
+        private void ImportGoogleContacts()
+        {
+            databaseEntities db = new databaseEntities();
+
+            if (tabCatalog.SelectedTab == tabContacts)
+            {
+                List<Contacts> con = global.ImportContactsGoogle();
+                if (con == null)
+                {
+                    Dialogs.ShowErr(Lng.Get("GoogleImportError", "Google import Error") + ".", Lng.Get("Error"));
+                    return;
+                }
+
+                int added = 0;
+                int updated = 0;
+                
+                foreach (var item in con)
+                {
+                    var contacts = db.Contacts.Where(w => w.GoogleID == item.GoogleID).ToList();
+                    if (contacts.Count > 0)
+                    {
+                        updated++;
+                        Contacts contact = contacts[0];
+                        FillContact(ref contact, item);
+                    }
+                    else
+                    {
+                        added++;
+                        item.ID = Guid.NewGuid();
+                        db.Contacts.Add(item);
+                        db.SaveChanges();
+                    }
+                }
+                db.SaveChanges();
+                UpdateConOLV();
+                Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ". (" + Lng.Get("Added") + " " + added.ToString() + ", " + Lng.Get("updated") + " " + updated.ToString() + " " + Lng.Get("contacts") + ")", Lng.Get("Import"));
+            }
+        }
              
         private void FillContact(ref Contacts contact, Contacts newItem)
         {
@@ -2609,40 +2754,7 @@ namespace Katalog
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            databaseEntities db = new databaseEntities();
-
-            if (tabCatalog.SelectedTab == tabContacts)
-            {
-                List<Contacts> con = global.ImportContactsGoogle();
-                if (con == null)
-                {
-                    Dialogs.ShowErr(Lng.Get("GoogleImportError", "Google import Error") + ".", Lng.Get("Error"));
-                    return;
-                }
-
-                int added = 0;
-                int updated = 0;
-                foreach (var item in con)
-                {
-                    var contacts = db.Contacts.Where(w => w.GoogleID == item.GoogleID).ToList();
-                    if (contacts.Count > 0)
-                    {
-                        updated++;
-                        Contacts contact = contacts[0];
-                        FillContact(ref contact, item);
-                    }
-                    else
-                    {
-                        added++;
-                        item.ID = Guid.NewGuid();
-                        db.Contacts.Add(item);
-                        db.SaveChanges();
-                    }
-                }
-                db.SaveChanges();
-                UpdateConOLV();
-                Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ". (" + Lng.Get("Added") + " " + added.ToString() + ", " + Lng.Get("updated") + " " + updated.ToString() + " " + Lng.Get("contacts") + ")", Lng.Get("Import"));
-            }
+           
         }
 
         private void tabCatalog_SelectedIndexChanged(object sender, EventArgs e)
@@ -2656,10 +2768,6 @@ namespace Katalog
             form.ShowDialog();
         }
 
-        private void olvContacts_FormatRow(object sender, FormatRowEventArgs e)
-        {
-
-        }
 
         public const int MaximumNumberOfResults = 100;
 
@@ -2862,5 +2970,31 @@ namespace Katalog
             }
         }
 
+        private void mnuCLending_Click(object sender, EventArgs e)
+        {
+            EditPersonalLending();
+        }
+
+        private void mnuCBorrowing_Click(object sender, EventArgs e)
+        {
+            EditPersonalLending(true);
+        }
+
+        private void mnuCImportGoogle_Click(object sender, EventArgs e)
+        {
+            ImportGoogleContact();
+        }
+
+        private void mnuCExportGoogle_Click(object sender, EventArgs e)
+        {
+            ExportGoogleContact();
+        }
+
+        private void mnuImportGoogleContacts_Click(object sender, EventArgs e)
+        {
+            ImportGoogleContacts();
+        }
+
+        
     }
 }

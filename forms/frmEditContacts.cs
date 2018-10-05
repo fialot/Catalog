@@ -165,7 +165,8 @@ namespace Katalog
 
                 // ----- Fill text -----
                 if (text != "") text += ";";
-                text += list[i].name + "," + tag;
+                if (list[i].name != "" || tag != "")
+                    text += list[i].name + "," + tag;
             }
 
             // ----- Return text -----
@@ -200,11 +201,12 @@ namespace Katalog
             cbPhoneTag.Items.Add(Lng.Get("tagMain", "Main"));
 
             // ----- Add Autocomplete tags -----
-            cbPhoneTag.AutoCompleteCustomSource.Clear();
-            cbPhoneTag.AutoCompleteCustomSource.Add(Lng.Get("tagHome", "Home"));
-            cbPhoneTag.AutoCompleteCustomSource.Add(Lng.Get("tagWork", "Work"));
-            cbPhoneTag.AutoCompleteCustomSource.Add(Lng.Get("tagMobile", "Mobile"));
-            cbPhoneTag.AutoCompleteCustomSource.Add(Lng.Get("tagMain", "Main"));
+            AutoCompleteStringCollection auto = new AutoCompleteStringCollection();
+            auto.Add(Lng.Get("tagHome", "Home"));
+            auto.Add(Lng.Get("tagWork", "Work"));
+            auto.Add(Lng.Get("tagMobile", "Mobile"));
+            auto.Add(Lng.Get("tagMain", "Main"));
+            cbPhoneTag.AutoCompleteCustomSource = auto;
 
             // ----- Create Empty phone -----
             CreatePhone();
@@ -222,10 +224,11 @@ namespace Katalog
             cbEmailTag.Items.Add(Lng.Get("tagMain", "Main"));
 
             // ----- Add Autocomplete tags -----
-            cbEmailTag.AutoCompleteCustomSource.Clear();
-            cbEmailTag.AutoCompleteCustomSource.Add(Lng.Get("tagHome", "Home"));
-            cbEmailTag.AutoCompleteCustomSource.Add(Lng.Get("tagWork", "Work"));
-            cbEmailTag.AutoCompleteCustomSource.Add(Lng.Get("tagMain", "Main"));
+            AutoCompleteStringCollection auto = new AutoCompleteStringCollection();
+            auto.Add(Lng.Get("tagHome", "Home"));
+            auto.Add(Lng.Get("tagWork", "Work"));
+            auto.Add(Lng.Get("tagMain", "Main"));
+            cbEmailTag.AutoCompleteCustomSource = auto;
 
             // ----- Create empty email item -----
             CreateEmail();
@@ -242,9 +245,11 @@ namespace Katalog
             cbURLTag.Items.Add(Lng.Get("tagWork", "Work"));
 
             // ----- Add Autocomplete tags -----
-            cbURLTag.AutoCompleteCustomSource.Clear();
-            cbURLTag.AutoCompleteCustomSource.Add(Lng.Get("tagHome", "Home"));
-            cbURLTag.AutoCompleteCustomSource.Add(Lng.Get("tagWork", "Work"));
+            AutoCompleteStringCollection auto = new AutoCompleteStringCollection();
+            auto.Add(Lng.Get("tagHome", "Home"));
+            auto.Add(Lng.Get("tagWork", "Work"));
+            auto.Add(Lng.Get("tagMain", "Main"));
+            cbURLTag.AutoCompleteCustomSource = auto;
 
             // ----- Create empty URL item -----
             CreateURL();
@@ -261,9 +266,10 @@ namespace Katalog
             cbIMTag.Items.Add(Lng.Get("tagFacebook", "Facebook"));
 
             // ----- Add Autocomplete tags -----
-            cbIMTag.AutoCompleteCustomSource.Clear();
-            cbIMTag.AutoCompleteCustomSource.Add(Lng.Get("tagSkype", "Skype"));
-            cbIMTag.AutoCompleteCustomSource.Add(Lng.Get("tagFacebook", "Facebook"));
+            AutoCompleteStringCollection auto = new AutoCompleteStringCollection();
+            auto.Add(Lng.Get("tagSkype", "Skype"));
+            auto.Add(Lng.Get("tagFacebook", "Facebook"));
+            cbIMTag.AutoCompleteCustomSource = auto;
 
             // ----- Create empty IM item -----
             CreateIM();
@@ -474,8 +480,8 @@ namespace Katalog
                 txtName.Text = contact.Name;
                 txtSurname.Text = contact.Surname;
                 txtNick.Text = contact.Nick;
-                if (contact.Sex == "M") cbSex.SelectedIndex = 1;
-                else if (contact.Sex == "F") cbSex.SelectedIndex = 2;
+                if (contact.Sex.Trim() == "M") cbSex.SelectedIndex = 1;
+                else if (contact.Sex.Trim() == "F") cbSex.SelectedIndex = 2;
                 else cbSex.SelectedIndex = 0;
 
                 // ----- Phone -----
@@ -555,7 +561,11 @@ namespace Katalog
                 txtPostCode.Text = contact.PostCode;
 
                 txtNote.Text = contact.Note;
-                dateBirth.Value = contact.Birth ?? DateTime.Now;
+                if (contact.Birth != null)
+                {
+                    chbBirth.Checked = true;
+                }
+                dateBirth.Value = contact.Birth ?? dateBirth.MinDate;
                 txtTag.Text = contact.Tags;
                 //contact.FastTags = 0;
 
@@ -625,7 +635,10 @@ namespace Katalog
             contact.PostCode = txtPostCode.Text;
 
             contact.Note = txtNote.Text;
-            contact.Birth = dateBirth.Value;
+            if (chbBirth.Checked)
+                contact.Birth = dateBirth.Value;
+            else
+                contact.Birth = null;
             contact.Tags = txtTag.Text;
             //contact.FastTags = 0;
 

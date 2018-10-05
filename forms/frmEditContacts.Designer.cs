@@ -95,6 +95,7 @@
             this.btnAddIM = new System.Windows.Forms.Button();
             this.cbIMTag = new System.Windows.Forms.ComboBox();
             this.lblGoogleID = new System.Windows.Forms.Label();
+            this.chbBirth = new System.Windows.Forms.CheckBox();
             this.gbAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).BeginInit();
             this.SuspendLayout();
@@ -229,6 +230,7 @@
             // 
             // dateBirth
             // 
+            this.dateBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             resources.ApplyResources(this.dateBirth, "dateBirth");
             this.dateBirth.Name = "dateBirth";
             // 
@@ -515,10 +517,17 @@
             resources.ApplyResources(this.lblGoogleID, "lblGoogleID");
             this.lblGoogleID.Name = "lblGoogleID";
             // 
+            // chbBirth
+            // 
+            resources.ApplyResources(this.chbBirth, "chbBirth");
+            this.chbBirth.Name = "chbBirth";
+            this.chbBirth.UseVisualStyleBackColor = true;
+            // 
             // frmEditContacts
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chbBirth);
             this.Controls.Add(this.lblGoogleID);
             this.Controls.Add(this.cbIM);
             this.Controls.Add(this.btnDelIM);
@@ -653,5 +662,6 @@
         private System.Windows.Forms.Button btnAddIM;
         private System.Windows.Forms.ComboBox cbIMTag;
         private System.Windows.Forms.Label lblGoogleID;
+        private System.Windows.Forms.CheckBox chbBirth;
     }
 }
