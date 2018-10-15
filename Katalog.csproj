@@ -235,6 +235,9 @@
     <Compile Include="forms\frmEditPersonLending.Designer.cs">
       <DependentUpon>frmEditPersonLending.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmMain.Contacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>

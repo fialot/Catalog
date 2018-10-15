@@ -92,8 +92,11 @@ namespace Katalog
 
             // ----- Find selected Contact -----
             Contacts person = db.Contacts.Find(PersonID);
-            if (person == null) this.DialogResult = DialogResult.Cancel;
-
+            if (person == null)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                return;
+            }
             // ----- Fill Contact -----
             lblPerson.Text = person.Name.Trim() + " " + person.Surname.Trim();
             lblPersonNum.Text = Lng.Get("PersonNum", "Person number") + ": " + person.PersonCode.Trim();

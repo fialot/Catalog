@@ -2995,6 +2995,5 @@ namespace Katalog
             ImportGoogleContacts();
         }
 
-        
     }
 }

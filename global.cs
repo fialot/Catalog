@@ -708,6 +708,11 @@ namespace Katalog
                 // ----- Images -----
                 string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
                 ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
 
                 // ----- Other data -----
                 lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2 + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
@@ -757,6 +762,11 @@ namespace Katalog
                 // ----- Cover -----
                 string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
                 ExportImage(ref imgFileName, item.Cover);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
 
                 // ----- Other data -----
                 lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.ISBN + ";" + item.Illustrator + ";" + item.Translator + ";";
@@ -809,13 +819,17 @@ namespace Katalog
                 // ----- Images -----
                 string imgCover = filePath + Path.DirectorySeparatorChar + "imgC" + imgNum.ToString("D4") + ".jpg";
                 ExportImage(ref imgCover, item.Cover);
+                imgCover = Path.GetFileName(imgCover);
                 string img1 = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "A.jpg";
                 ExportImage(ref img1, item.Img1);
+                img1 = Path.GetFileName(img1);
                 string img2 = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "B.jpg";
                 ExportImage(ref img2, item.Img2);
+                img2 = Path.GetFileName(img2);
                 string img3 = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "C.jpg";
                 ExportImage(ref img3, item.Img3);
-                
+                img3 = Path.GetFileName(img3);
+
                 // ----- Other data -----
                 lines += item.Name + ";" + item.Category + ";" + item.MinPlayers + ";" + item.MaxPlayers + ";" + item.MinAge + ";" + item.GameTime + ";" + item.GameWorld + ";";
                 lines += item.Language + ";" + item.Publisher + ";" + item.Author + ";" + item.Year + ";" + item.Description.Replace(Environment.NewLine, "\n") + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
