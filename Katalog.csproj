@@ -205,37 +205,58 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditBoardGames.cs">
+    <Compile Include="forms\Edit\frmEditBoardGames.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditBoardGames.Designer.cs">
+    <Compile Include="forms\Edit\frmEditBoardGames.Designer.cs">
       <DependentUpon>frmEditBoardGames.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditBorrowing.cs">
+    <Compile Include="forms\Edit\frmEditBorrowing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditBorrowing.designer.cs">
+    <Compile Include="forms\Edit\frmEditBorrowing.designer.cs">
       <DependentUpon>frmEditBorrowing.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditLending.cs">
+    <Compile Include="forms\Edit\frmEditGames.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditLending.Designer.cs">
+    <Compile Include="forms\Edit\frmEditGames.Designer.cs">
+      <DependentUpon>frmEditGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Edit\frmEditLending.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Edit\frmEditLending.Designer.cs">
       <DependentUpon>frmEditLending.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditPersonBorrowing.cs">
+    <Compile Include="forms\Edit\frmEditPersonBorrowing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditPersonBorrowing.Designer.cs">
+    <Compile Include="forms\Edit\frmEditPersonBorrowing.Designer.cs">
       <DependentUpon>frmEditPersonBorrowing.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditPersonLending.cs">
+    <Compile Include="forms\Edit\frmEditPersonLending.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditPersonLending.Designer.cs">
+    <Compile Include="forms\Edit\frmEditPersonLending.Designer.cs">
       <DependentUpon>frmEditPersonLending.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\Edit\frmEditRecipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Edit\frmEditRecipes.Designer.cs">
+      <DependentUpon>frmEditRecipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmMain.Contacts.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMain.Games.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMain.Recipes.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmSettings.cs">
@@ -245,17 +266,20 @@
       <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="functions\Str.cs" />
+    <Compile Include="Games.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="global.cs" />
-    <Compile Include="forms\frmEditBooks.cs">
+    <Compile Include="forms\Edit\frmEditBooks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditBooks.Designer.cs">
+    <Compile Include="forms\Edit\frmEditBooks.Designer.cs">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditItem.cs">
+    <Compile Include="forms\Edit\frmEditItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditItem.Designer.cs">
+    <Compile Include="forms\Edit\frmEditItem.Designer.cs">
       <DependentUpon>frmEditItem.cs</DependentUpon>
     </Compile>
     <Compile Include="functions\Conv.cs" />
@@ -269,10 +293,10 @@
     <Compile Include="forms\frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmEditContacts.cs">
+    <Compile Include="forms\Edit\frmEditContacts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmEditContacts.Designer.cs">
+    <Compile Include="forms\Edit\frmEditContacts.Designer.cs">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmImport.cs">
@@ -303,58 +327,67 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipes.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Video.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="forms\Edit\frmEditRecipes.cs.resx">
+      <DependentUpon>frmEditRecipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Edit\frmEditRecipes.resx">
+      <DependentUpon>frmEditRecipes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditBoardGames.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditBoardGames.cs.resx">
       <DependentUpon>frmEditBoardGames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditBoardGames.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditBoardGames.resx">
       <DependentUpon>frmEditBoardGames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditBooks.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditBooks.cs.resx">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditBooks.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditBooks.resx">
       <DependentUpon>frmEditBooks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditBorrowing.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditBorrowing.cs.resx">
       <DependentUpon>frmEditBorrowing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditBorrowing.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditBorrowing.resx">
       <DependentUpon>frmEditBorrowing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditLending.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditLending.cs.resx">
       <DependentUpon>frmEditLending.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditLending.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditLending.resx">
       <DependentUpon>frmEditLending.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditContacts.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditContacts.cs.resx">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditContacts.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditContacts.resx">
       <DependentUpon>frmEditContacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditItem.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditItem.cs.resx">
       <DependentUpon>frmEditItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditItem.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditItem.resx">
       <DependentUpon>frmEditItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditPersonBorrowing.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditPersonBorrowing.cs.resx">
       <DependentUpon>frmEditPersonBorrowing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditPersonBorrowing.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditPersonBorrowing.resx">
       <DependentUpon>frmEditPersonBorrowing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditPersonLending.cs.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditPersonLending.cs.resx">
       <DependentUpon>frmEditPersonLending.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmEditPersonLending.resx">
+    <EmbeddedResource Include="forms\Edit\frmEditPersonLending.resx">
       <DependentUpon>frmEditPersonLending.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmImport.resx">

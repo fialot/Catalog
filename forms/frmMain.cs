@@ -31,133 +31,6 @@ namespace Katalog
             UpdateBoardOLV();
         }
 
-        #region Contacts
-
-        string GetOnlyValue(string text)
-        {
-            string res = "";
-            string[] items = text.Split(new string[] { ";" }, StringSplitOptions.None);
-            for (int i = 0; i < items.Length; i++)
-            {
-                string[] vals = items[i].Split(new string[] { "," }, StringSplitOptions.None);
-                if (res != "") res += ", ";
-                res += vals[0];
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// Update Contacts ObjectListView
-        /// </summary>
-        void UpdateConOLV()
-        {
-            databaseEntities db = new databaseEntities();
-
-            List<Contacts> con;
-
-            if (chbShowUnactivCon.Checked)
-                con = db.Contacts.ToList();
-            else
-                con = db.Contacts.Where(p => (p.Active ?? true) == true).ToList();
-
-            conFastTags.Renderer = new ImageRenderer();
-            conFastTags.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                List<int> ret = new List<int>();
-                FastFlags flag = (FastFlags)((Contacts)x).FastTags;
-                if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
-                if (flag.HasFlag(FastFlags.FLAG2)) ret.Add(1);
-                if (flag.HasFlag(FastFlags.FLAG3)) ret.Add(2);
-                if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
-                if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
-                if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
-                
-                return ret;
-            };
-            conFastTagsNum.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                string res = "";
-                FastFlags flag = (FastFlags)((Contacts)x).FastTags;
-                if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
-                if (flag.HasFlag(FastFlags.FLAG2)) res += "2";
-                if (flag.HasFlag(FastFlags.FLAG3)) res += "3";
-                if (flag.HasFlag(FastFlags.FLAG4)) res += "4";
-                if (flag.HasFlag(FastFlags.FLAG5)) res += "5";
-                if (flag.HasFlag(FastFlags.FLAG6)) res += "6";
-                return res;
-            };
-            conName.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                return ((Contacts)x).Name;
-            };
-            conSurname.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                return ((Contacts)x).Surname;
-            };
-            conNick.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                return ((Contacts)x).Nick;
-            };
-            conPhone.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                return GetOnlyValue(((Contacts)x).Phone);
-            };
-            conEmail.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                return GetOnlyValue(((Contacts)x).Email);
-            };
-            conAddress.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                string address = ((Contacts)x).Street;
-                string city = ((Contacts)x).City;
-                string country = ((Contacts)x).Country;
-
-                if ((city != null && city != "") && (address != null && address != ""))
-                    address += ", ";
-                address += city;
-
-                if ((country != null && country != "") && (address != null && address != ""))
-                    address += ", ";
-                address += country;
-                return address;
-            };
-            conCompany.AspectGetter = delegate (object x) {
-                if (x == null) return "";
-                return ((Contacts)x).Company;
-            };
-            olvContacts.SetObjects(con);
-        }
-
-        /// <summary>
-        /// OLV Contacts selected index change
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void olvContacts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            EnableEditItems();
-        }
-
-
-        private void olvContacts_FormatRow(object sender, FormatRowEventArgs e)
-        {
-            if (e.Model == null) return;
-
-            Contacts itm = (Contacts)e.Model;
-            DateTime now = DateTime.Now;
-            if ((itm.Active ?? true) == false)
-                e.Item.ForeColor = Color.Gray;
-            else
-                e.Item.ForeColor = Color.Black;
-        }
-
-        private void chbUnactivateContacts_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateConOLV();
-        }
-
-        #endregion
-
         #region Lending
 
         /// <summary>
@@ -864,18 +737,22 @@ namespace Katalog
         {
             int count = 0;
 
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
                 count = olvContacts.SelectedObjects.Count;
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
                 count = olvLending.SelectedObjects.Count;
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
                 count = olvBorrowing.SelectedObjects.Count;
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
                 count = olvItem.SelectedObjects.Count;
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
                 count = olvBooks.SelectedObjects.Count;
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
                 count = olvBoard.SelectedObjects.Count;
+            else if (TabBars.SelectedTab == tabGames)
+                count = olvGames.SelectedObjects.Count;
+            else if (TabBars.SelectedTab == tabRecipes)
+                count = olvRecipes.SelectedObjects.Count;
 
             if (count == 1)
             {
@@ -906,7 +783,7 @@ namespace Katalog
         private void NewItem()
         {
             // ----- Contact -----
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 frmEditContacts form = new frmEditContacts();
                 var res = form.ShowDialog();                    // Show Edit form
@@ -919,7 +796,7 @@ namespace Katalog
                 UpdateConOLV();                                 // Update Contact OLV
             }
             // ----- Lending -----
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 frmEditLending form = new frmEditLending();
                 var res = form.ShowDialog();                    // Show Edit form
@@ -928,13 +805,13 @@ namespace Katalog
                     form.Dispose();
                     form = new frmEditLending();                // New Form
                     res = form.ShowDialog();                    // Show new Edit form
-                } 
+                }
                 UpdateLendingOLV();                             // Update Lending OLV
                 UpdateConOLV();                                 // Update Contact OLV
                 UpdateAllItemsOLV();
             }
             // ----- Borrowing -----
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 frmEditBorrowing form = new frmEditBorrowing();
                 var res = form.ShowDialog();                    // Show Edit form
@@ -948,7 +825,7 @@ namespace Katalog
                 UpdateConOLV();                                 // Update Contact OLV
             }
             // ----- Item -----
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 frmEditItem form = new frmEditItem();
                 var res = form.ShowDialog();                    // Show Edit form
@@ -961,7 +838,7 @@ namespace Katalog
                 UpdateItemsOLV();                               // Update Items OLV
             }
             // ----- Book -----
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 frmEditBooks form = new frmEditBooks();
                 var res = form.ShowDialog();                    // Show Edit form
@@ -974,7 +851,7 @@ namespace Katalog
                 UpdateBooksOLV();                               // Update Books OLV
             }
             // ----- Boardgames -----
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 frmEditBoardGames form = new frmEditBoardGames();
                 var res = form.ShowDialog();                    // Show Edit form
@@ -986,6 +863,13 @@ namespace Katalog
                 }
                 UpdateBoardOLV();                               // Update Items OLV
             }
+            // ----- Games -----
+            else if (TabBars.SelectedTab == tabGames)
+            {
+
+            }
+            // ----- Recipes -----
+            else if (TabBars.SelectedTab == tabRecipes) NewItemRecipes();
         }
 
         /// <summary>
@@ -994,7 +878,7 @@ namespace Katalog
         private void EditItem()
         {
             // ----- Contact -----
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {
@@ -1010,7 +894,7 @@ namespace Katalog
                 }
             }
             // ----- Lending -----
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 if (olvLending.SelectedIndex >= 0)                // If selected Item
                 {
@@ -1030,7 +914,7 @@ namespace Katalog
                 }
             }
             // ----- Borrowing -----
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 if (olvBorrowing.SelectedIndex >= 0)                // If selected Item
                 {
@@ -1049,7 +933,7 @@ namespace Katalog
                 }
             }
             // ----- Item -----
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 if (olvItem.SelectedIndex >= 0)                     // If selected Item
                 {
@@ -1065,7 +949,7 @@ namespace Katalog
                 }
             }
             // ----- Book -----
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 if (olvBooks.SelectedIndex >= 0)                    // If selected Item
                 {
@@ -1081,7 +965,7 @@ namespace Katalog
                 }
             }
             // ----- Boardgames -----
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 if (olvBoard.SelectedIndex >= 0)                     // If selected Item
                 {
@@ -1096,6 +980,13 @@ namespace Katalog
                     UpdateBoardOLV();                               // Update Items OLV
                 }
             }
+            // ----- Gamse -----
+            else if (TabBars.SelectedTab == tabGames)
+            {
+
+            }
+            // ----- Recipes -----
+            else if (TabBars.SelectedTab == tabRecipes) EditItemRecipes();
         }
 
         /// <summary>
@@ -1106,7 +997,7 @@ namespace Katalog
             databaseEntities db = new databaseEntities();
 
             // ----- Contact -----
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {                                                   // Find Object
@@ -1118,7 +1009,8 @@ namespace Katalog
                         db.SaveChanges();                           // Save to DB
                         UpdateConOLV();                             // Update Contacts OLV 
                     }
-                } else if (olvContacts.SelectedObjects != null)                 // If selected Item
+                }
+                else if (olvContacts.SelectedObjects != null)                 // If selected Item
                 {
                     if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items?"), Lng.Get("Delete")) == DialogResult.Yes)
                     {
@@ -1134,7 +1026,7 @@ namespace Katalog
                 }
             }
             // ----- Lending -----
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 if (olvLending.SelectedIndex >= 0)                  // If selected Item
                 {                                                   // Find Object
@@ -1150,7 +1042,7 @@ namespace Katalog
                 }
             }
             // ----- Borrowing -----
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 if (olvBorrowing.SelectedIndex >= 0)                // If selected Item
                 {                                                   // Find Object
@@ -1165,7 +1057,7 @@ namespace Katalog
                 }
             }
             // ----- Item -----
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 if (olvItem.SelectedIndex >= 0)                     // If selected Item
                 {                                                   // Find Object
@@ -1177,7 +1069,7 @@ namespace Katalog
 
                         // ----- Remove copies -----
                         var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.item.ToString()) && (x.ItemID == ((Items)olvItem.SelectedObject).ID)).ToList();
-                        foreach(var copy in copies)
+                        foreach (var copy in copies)
                         {
                             db.Copies.Remove(copy);                 // Remove copy
                         }
@@ -1187,7 +1079,7 @@ namespace Katalog
                 }
             }
             // ----- Book -----
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 if (olvBooks.SelectedIndex >= 0)                    // If selected Item
                 {                                                   // Find Object
@@ -1210,7 +1102,7 @@ namespace Katalog
                 }
             }
             // ----- Boardgames -----
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 if (olvBoard.SelectedIndex >= 0)                     // If selected Item
                 {                                                   // Find Object
@@ -1232,6 +1124,85 @@ namespace Katalog
                     }
                 }
             }
+            // ----- Recipes -----
+            else if (TabBars.SelectedTab == tabRecipes) DeleteItemRecipes();
+        }
+
+        /// <summary>
+        /// Set fast tag to Item
+        /// </summary>
+        private void SetTagItem(short tag)
+        {
+            databaseEntities db = new databaseEntities();
+
+            // ----- Contact -----
+            if (TabBars.SelectedTab == tabContacts)
+            {
+                if (olvContacts.SelectedObjects != null)                 // If selected Item
+                {
+                    foreach (var item in olvContacts.SelectedObjects) // Find Object
+                    {
+                        Contacts contact = db.Contacts.Find(((Contacts)item).ID);
+                        contact.FastTags |= tag;
+                    }
+                    db.SaveChanges();                           // Save to DB
+                    UpdateConOLV();                             // Update Contacts OLV 
+                }
+            }
+            // ----- Lending -----
+            else if (TabBars.SelectedTab == tabLending)
+            {
+
+            }
+            // ----- Borrowing -----
+            else if (TabBars.SelectedTab == tabBorrowing)
+            {
+               
+            }
+            // ----- Item -----
+            else if (TabBars.SelectedTab == tabItems)
+            {
+                if (olvItem.SelectedObjects != null)                 // If selected Item
+                {
+                    foreach (var item in olvItem.SelectedObjects) // Find Object
+                    {
+                        Items itm = db.Items.Find(((Items)item).ID);
+                        itm.FastTags |= tag;
+                    }
+                    db.SaveChanges();                           // Save to DB
+                    UpdateItemsOLV();                             // Update Contacts OLV 
+                }
+            }
+            // ----- Book -----
+            else if (TabBars.SelectedTab == tabBooks)
+            {
+                if (olvBooks.SelectedObjects != null)                 // If selected Item
+                {
+                    foreach (var item in olvBooks.SelectedObjects) // Find Object
+                    {
+                        Books itm = db.Books.Find(((Books)item).ID);
+                        itm.FastTags |= tag;
+                    }
+                    db.SaveChanges();                           // Save to DB
+                    UpdateBooksOLV();                             // Update Contacts OLV 
+                }
+            }
+            // ----- Boardgames -----
+            else if (TabBars.SelectedTab == tabBoardGames)
+            {
+                if (olvBoard.SelectedObjects != null)                 // If selected Item
+                {
+                    foreach (var item in olvBoard.SelectedObjects) // Find Object
+                    {
+                        Boardgames itm = db.Boardgames.Find(((Boardgames)item).ID);
+                        itm.FastTags |= tag;
+                    }
+                    db.SaveChanges();                           // Save to DB
+                    UpdateBoardOLV();                             // Update Contacts OLV 
+
+                }
+            }
+            else if (TabBars.SelectedTab == tabRecipes) SetTagItemRecipes(tag);
         }
 
         /// <summary>
@@ -1267,7 +1238,7 @@ namespace Katalog
         private void EditPersonalLending(bool borrowing = false)
         {
             // ----- Contact -----
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {
@@ -1288,7 +1259,7 @@ namespace Katalog
                 }
             }
             // ----- Lending -----
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 if (olvLending.SelectedIndex >= 0)                 // If selected Item
                 {
@@ -1299,7 +1270,7 @@ namespace Katalog
                 }
             }
             // ----- Borrowing -----
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 if (olvBorrowing.SelectedIndex >= 0)                 // If selected Item
                 {
@@ -1328,7 +1299,7 @@ namespace Katalog
         {
             cbFilterCol.Items.Clear();
             cbFastFilterCol.Items.Clear();
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("Name"));
@@ -1350,7 +1321,7 @@ namespace Katalog
                 cbFastFilterCol.Items.Add(Lng.Get("Company"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("Type"));
@@ -1368,7 +1339,7 @@ namespace Katalog
                 cbFastFilterCol.Items.Add(Lng.Get("Person"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("ItemName"));
@@ -1384,7 +1355,7 @@ namespace Katalog
                 cbFastFilterCol.Items.Add(Lng.Get("Person"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("ItemName", "Name"));
@@ -1407,7 +1378,7 @@ namespace Katalog
                 cbFastFilterCol.Items.Add(Lng.Get("Excluded"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("ItemName", "Name"));
@@ -1432,7 +1403,7 @@ namespace Katalog
                 cbFastFilterCol.Items.Add(Lng.Get("Series"));
                 cbFastFilterCol.SelectedIndex = 0;
             }
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 cbFilterCol.Items.Add(Lng.Get("All"));
                 cbFilterCol.Items.Add(Lng.Get("ItemName", "Name"));
@@ -1578,32 +1549,32 @@ namespace Katalog
             UseFastTagFilter();
             UseStandardFilter();
 
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 olvContacts.UseFiltering = true;
                 olvContacts.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 olvLending.UseFiltering = true;
                 olvLending.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 olvBorrowing.UseFiltering = true;
                 olvBorrowing.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 olvItem.UseFiltering = true;
                 olvItem.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 olvBooks.UseFiltering = true;
                 olvBooks.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
             }
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 olvBoard.UseFiltering = true;
                 olvBoard.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
@@ -1615,7 +1586,7 @@ namespace Katalog
         /// </summary>
         private void UseFastFilter()
         {
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 if (FastFilterList.Count == 0)
                     FastFilter = TextMatchFilter.Contains(olvContacts, "");
@@ -1641,7 +1612,7 @@ namespace Katalog
                 else if (cbFastFilterCol.SelectedIndex == 7)
                     FastFilter.Columns = new OLVColumn[] { conCompany };
             }
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 if (FastFilterList.Count == 0)
                     FastFilter = TextMatchFilter.Contains(olvLending, "");
@@ -1659,7 +1630,7 @@ namespace Katalog
                 else if (cbFastFilterCol.SelectedIndex == 3)
                     FastFilter.Columns = new OLVColumn[] { ldPerson };
             }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 if (FastFilterList.Count == 0)
                     FastFilter = TextMatchFilter.Contains(olvBorrowing, "");
@@ -1675,7 +1646,7 @@ namespace Katalog
                 else if (cbFastFilterCol.SelectedIndex == 2)
                     FastFilter.Columns = new OLVColumn[] { brPerson };
             }
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 if (FastFilterList.Count == 0)
                     FastFilter = TextMatchFilter.Contains(olvItem, "");
@@ -1699,7 +1670,7 @@ namespace Katalog
                 else if (cbFastFilterCol.SelectedIndex == 6)
                     FastFilter.Columns = new OLVColumn[] { itExcluded };
             }
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 if (FastFilterList.Count == 0)
                     FastFilter = TextMatchFilter.Contains(olvBooks, "");
@@ -1725,7 +1696,7 @@ namespace Katalog
                 else if (cbFastFilterCol.SelectedIndex == 7)
                     FastFilter.Columns = new OLVColumn[] { bkSeries };
             }
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 if (FastFilterList.Count == 0)
                     FastFilter = TextMatchFilter.Contains(olvBoard, "");
@@ -1755,7 +1726,7 @@ namespace Katalog
         private void UseFastTagFilter()
         {
             if (FastFilterTags != null) FastFilterTags.Columns = null;
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 if (FastTagFilterList.Count == 0)
                     FastFilterTags = TextMatchFilter.Contains(olvContacts, "");
@@ -1766,7 +1737,7 @@ namespace Katalog
                     FastFilterTags.Columns = new OLVColumn[] { conFastTagsNum };
                 }
             }
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 if (FastTagFilterList.Count == 0)
                     FastFilterTags = TextMatchFilter.Contains(olvLending, "");
@@ -1777,7 +1748,7 @@ namespace Katalog
                     FastFilterTags.Columns = new OLVColumn[] { ldFastTagsNum };
                 }
             }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 if (FastTagFilterList.Count == 0)
                     FastFilterTags = TextMatchFilter.Contains(olvBorrowing, "");
@@ -1788,7 +1759,7 @@ namespace Katalog
                     FastFilterTags.Columns = new OLVColumn[] { brFastTagsNum };
                 }
             }
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 if (FastTagFilterList.Count == 0)
                     FastFilterTags = TextMatchFilter.Contains(olvItem, "");
@@ -1800,7 +1771,7 @@ namespace Katalog
                 }
                 
             }
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 if (FastTagFilterList.Count == 0)
                     FastFilterTags = TextMatchFilter.Contains(olvBooks, "");
@@ -1812,7 +1783,7 @@ namespace Katalog
                 }
                 
             }
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 if (FastTagFilterList.Count == 0)
                     FastFilterTags = TextMatchFilter.Contains(olvBoard, "");
@@ -1831,7 +1802,7 @@ namespace Katalog
         /// </summary>
         private void UseStandardFilter()
         {
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 StandardFilter = TextMatchFilter.Contains(olvContacts, txtFilter.Text);
 
@@ -1852,7 +1823,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 7)
                     StandardFilter.Columns = new OLVColumn[] { conCompany };
             } 
-            else if (tabCatalog.SelectedTab == tabLending)
+            else if (TabBars.SelectedTab == tabLending)
             {
                 StandardFilter = TextMatchFilter.Contains(olvLending, txtFilter.Text);
 
@@ -1873,7 +1844,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 7)
                     StandardFilter.Columns = new OLVColumn[] { ldNote };
             }
-            else if (tabCatalog.SelectedTab == tabBorrowing)
+            else if (TabBars.SelectedTab == tabBorrowing)
             {
                 StandardFilter = TextMatchFilter.Contains(olvBorrowing, txtFilter.Text);
 
@@ -1892,7 +1863,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 6)
                     StandardFilter.Columns = new OLVColumn[] { brNote };
             }
-            else if (tabCatalog.SelectedTab == tabItems)
+            else if (TabBars.SelectedTab == tabItems)
             {
                 StandardFilter = TextMatchFilter.Contains(olvItem, txtFilter.Text);
 
@@ -1917,7 +1888,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 9)
                     StandardFilter.Columns = new OLVColumn[] { itExcluded };
             }
-            else if (tabCatalog.SelectedTab == tabBooks)
+            else if (TabBars.SelectedTab == tabBooks)
             {
                 StandardFilter = TextMatchFilter.Contains(olvBooks, txtFilter.Text);
 
@@ -1944,7 +1915,7 @@ namespace Katalog
                 else if (cbFilterCol.SelectedIndex == 10)
                     StandardFilter.Columns = new OLVColumn[] { bkSeries };
             }
-            else if (tabCatalog.SelectedTab == tabBoardGames)
+            else if (TabBars.SelectedTab == tabBoardGames)
             {
                 StandardFilter = TextMatchFilter.Contains(olvBoard, txtFilter.Text);
 
@@ -2032,7 +2003,7 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {
@@ -2056,7 +2027,7 @@ namespace Katalog
             dialog.FileName = "data.csv";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                if (tabCatalog.SelectedTab == tabContacts)
+                if (TabBars.SelectedTab == tabContacts)
                 {
                     List<Contacts> con = new List<Contacts>();
 
@@ -2066,7 +2037,7 @@ namespace Katalog
                     }
                     global.ExportContactsCSV(dialog.FileName, con);
                 }
-                else if (tabCatalog.SelectedTab == tabLending)
+                else if (TabBars.SelectedTab == tabLending)
                 {
                     List<Lending> itm = new List<Lending>();
 
@@ -2076,7 +2047,7 @@ namespace Katalog
                     }
                     global.ExportLendedCSV(dialog.FileName, itm);
                 }
-                else if (tabCatalog.SelectedTab == tabBorrowing)
+                else if (TabBars.SelectedTab == tabBorrowing)
                 {
                     List<Borrowing> itm = new List<Borrowing>();
 
@@ -2086,7 +2057,7 @@ namespace Katalog
                     }
                     global.ExportBorrowingCSV(dialog.FileName, itm);
                 }
-                else if (tabCatalog.SelectedTab == tabItems)
+                else if (TabBars.SelectedTab == tabItems)
                 {
                     List<Items> itm = new List<Items>();
 
@@ -2096,7 +2067,7 @@ namespace Katalog
                     }
                     global.ExportItemsCSV(dialog.FileName, itm);
                 }
-                else if (tabCatalog.SelectedTab == tabBooks)
+                else if (TabBars.SelectedTab == tabBooks)
                 {
                     List<Books> itm = new List<Books>();
 
@@ -2106,7 +2077,7 @@ namespace Katalog
                     }
                     global.ExportBooksCSV(dialog.FileName, itm);
                 }
-                else if (tabCatalog.SelectedTab == tabBoardGames)
+                else if (TabBars.SelectedTab == tabBoardGames)
                 {
                     List<Boardgames> itm = new List<Boardgames>();
 
@@ -2128,7 +2099,7 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 if (olvContacts.SelectedIndex >= 0)                 // If selected Item
                 {
@@ -2159,7 +2130,7 @@ namespace Katalog
         {
             databaseEntities db = new databaseEntities();
 
-            if (tabCatalog.SelectedTab == tabContacts)
+            if (TabBars.SelectedTab == tabContacts)
             {
                 List<Contacts> con = global.ImportContactsGoogle();
                 if (con == null)
@@ -2394,7 +2365,7 @@ namespace Katalog
             {
                 databaseEntities db = new databaseEntities();
 
-                if (tabCatalog.SelectedTab == tabContacts)
+                if (TabBars.SelectedTab == tabContacts)
                 {
                     List<Contacts> con = global.ImportContactsCSV(dialog.FileName);
                     if (con == null)
@@ -2430,7 +2401,7 @@ namespace Katalog
                     UpdateConOLV();
                     Dialogs.ShowInfo(Lng.Get("SuccesfullyImport","Import was succesfully done") + ".", Lng.Get("Import"));
                 }
-                else if (tabCatalog.SelectedTab == tabLending)
+                else if (TabBars.SelectedTab == tabLending)
                 {
                     List<Lending> con = global.ImportLendedCSV(dialog.FileName);
                     if (con == null)
@@ -2465,7 +2436,7 @@ namespace Katalog
                     UpdateLendingOLV();
                     Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
-                else if (tabCatalog.SelectedTab == tabBorrowing)
+                else if (TabBars.SelectedTab == tabBorrowing)
                 {
                     List<Borrowing> con = global.ImportBorowingCSV(dialog.FileName);
                     if (con == null)
@@ -2499,7 +2470,7 @@ namespace Katalog
                     UpdateBorrowingOLV();
                     Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
-                else if (tabCatalog.SelectedTab == tabItems)
+                else if (TabBars.SelectedTab == tabItems)
                 {
                     List<Items> con = global.ImportItemsCSV(dialog.FileName, out List<Copies> copies);
                     if (con == null)
@@ -2554,7 +2525,7 @@ namespace Katalog
                     UpdateItemsOLV();
                     Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
-                else if (tabCatalog.SelectedTab == tabBooks)
+                else if (TabBars.SelectedTab == tabBooks)
                 {
                     List<Books> con = global.ImportBooksCSV(dialog.FileName, out List<Copies> copies);
                     if (con == null)
@@ -2612,7 +2583,7 @@ namespace Katalog
                     UpdateBooksOLV();
                     Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
                 }
-                else if (tabCatalog.SelectedTab == tabBoardGames)
+                else if (TabBars.SelectedTab == tabBoardGames)
                 {
                     List<Boardgames> con = global.ImportBoardgamesCSV(dialog.FileName, out List<Copies> copies);
                     if (con == null)
@@ -2735,9 +2706,9 @@ namespace Katalog
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            tabCatalog.TabPages.Remove(tabAudio);
-            tabCatalog.TabPages.Remove(tabVideo);
-            tabCatalog.TabPages.Remove(tabFoto);
+            TabBars.TabPages.Remove(tabAudio);
+            TabBars.TabPages.Remove(tabVideo);
+            TabBars.TabPages.Remove(tabFoto);
 
             PrepareForm();
 
@@ -2747,6 +2718,7 @@ namespace Katalog
             UpdateItemsOLV();
             UpdateBooksOLV();
             UpdateBoardOLV();
+            UpdateRecOLV();
             EnableEditItems();
             UpdateFilterComboBox();
             CheckMaxInvNums();
@@ -2910,49 +2882,49 @@ namespace Katalog
             if (((ToolStripMenuItem)sender).Tag == "Contacts")
             {
                 if (((ToolStripMenuItem)sender).Checked == false)
-                    tabCatalog.TabPages.Remove(tabContacts);
+                    TabBars.TabPages.Remove(tabContacts);
                 else
-                    tabCatalog.TabPages.Insert(0, tabContacts);
+                    TabBars.TabPages.Insert(0, tabContacts);
             }
             // ----- Tab Lending -----
             else if (((ToolStripMenuItem)sender).Tag == "Lending")
             {
                 if (((ToolStripMenuItem)sender).Checked == false)
-                    tabCatalog.TabPages.Remove(tabLending);
+                    TabBars.TabPages.Remove(tabLending);
                 else
-                    tabCatalog.TabPages.Insert(FindTabPosition(tabLending), tabLending);
+                    TabBars.TabPages.Insert(FindTabPosition(tabLending), tabLending);
             }
             // ----- Tab Borrowing -----
             else if (((ToolStripMenuItem)sender).Tag == "Borrowing")
             {
                 if (((ToolStripMenuItem)sender).Checked == false)
-                    tabCatalog.TabPages.Remove(tabBorrowing);
+                    TabBars.TabPages.Remove(tabBorrowing);
                 else
-                    tabCatalog.TabPages.Insert(FindTabPosition(tabBorrowing), tabBorrowing);
+                    TabBars.TabPages.Insert(FindTabPosition(tabBorrowing), tabBorrowing);
             }
             // ----- Tab Items -----
             else if (((ToolStripMenuItem)sender).Tag == "Items")
             {
                 if (((ToolStripMenuItem)sender).Checked == false)
-                    tabCatalog.TabPages.Remove(tabItems);
+                    TabBars.TabPages.Remove(tabItems);
                 else
-                    tabCatalog.TabPages.Insert(FindTabPosition(tabItems), tabItems);
+                    TabBars.TabPages.Insert(FindTabPosition(tabItems), tabItems);
             }
             // ----- Tab Books -----
             else if (((ToolStripMenuItem)sender).Tag == "Books")
             {
                 if (((ToolStripMenuItem)sender).Checked == false)
-                    tabCatalog.TabPages.Remove(tabBooks);
+                    TabBars.TabPages.Remove(tabBooks);
                 else
-                    tabCatalog.TabPages.Insert(FindTabPosition(tabBooks), tabBooks);
+                    TabBars.TabPages.Insert(FindTabPosition(tabBooks), tabBooks);
             }
             // ----- Tab Boardgames -----
             else if (((ToolStripMenuItem)sender).Tag == "Boardgames")
             {
                 if (((ToolStripMenuItem)sender).Checked == false)
-                    tabCatalog.TabPages.Remove(tabBoardGames);
+                    TabBars.TabPages.Remove(tabBoardGames);
                 else
-                    tabCatalog.TabPages.Insert(FindTabPosition(tabBoardGames), tabBoardGames);
+                    TabBars.TabPages.Insert(FindTabPosition(tabBoardGames), tabBoardGames);
             }
         }
 
@@ -2995,5 +2967,6 @@ namespace Katalog
             ImportGoogleContacts();
         }
 
+        
     }
 }
