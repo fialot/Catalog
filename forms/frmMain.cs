@@ -56,6 +56,8 @@ namespace Katalog
                 count = olvGames.SelectedObjects.Count;
             else if (TabBars.SelectedTab == tabRecipes)
                 count = olvRecipes.SelectedObjects.Count;
+            else if (TabBars.SelectedTab == tabObject)
+                count = olvObjects.SelectedObjects.Count;
 
             if (count == 1)
             {
@@ -101,6 +103,8 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) NewItemGames();
             // ----- Recipes -----
             else if (TabBars.SelectedTab == tabRecipes) NewItemRecipes();
+            // ----- Objects -----
+            else if (TabBars.SelectedTab == tabObject) NewItemObjects();
         }
 
         /// <summary>
@@ -124,6 +128,8 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) EditItemGames();
             // ----- Recipes -----
             else if (TabBars.SelectedTab == tabRecipes) EditItemRecipes();
+            // ----- Objects -----
+            else if (TabBars.SelectedTab == tabObject) EditItemObjects();
         }
 
         /// <summary>
@@ -149,6 +155,8 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) DeleteItemGames();
             // ----- Recipes -----
             else if (TabBars.SelectedTab == tabRecipes) DeleteItemRecipes();
+            // ----- Objects -----
+            else if (TabBars.SelectedTab == tabObject) DeleteItemObjects();
         }
 
         /// <summary>
@@ -174,6 +182,8 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) SetTagItemGames(tag);
             // ----- Recipes -----
             else if (TabBars.SelectedTab == tabRecipes) SetTagItemRecipes(tag);
+            // ----- Objects -----
+            else if (TabBars.SelectedTab == tabObject) SetTagItemObjects(tag);
         }
 
         /// <summary>
@@ -278,6 +288,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabBoardGames) UpdateCBFilterBoard();
             else if (TabBars.SelectedTab == tabGames) UpdateCBFilterGames();
             else if (TabBars.SelectedTab == tabRecipes) UpdateCBFilterRecipes();
+            else if (TabBars.SelectedTab == tabObject) UpdateCBFilterObjects();
         }
 
         /// <summary>
@@ -411,6 +422,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabBoardGames) UseFiltersBoard();
             else if (TabBars.SelectedTab == tabGames) UseFiltersGames();
             else if (TabBars.SelectedTab == tabRecipes) UseFiltersRecipes();
+            else if (TabBars.SelectedTab == tabObject) UseFiltersObjects();
         }
 
         /// <summary>
@@ -426,6 +438,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabBoardGames) UseFastFilterBoard();
             else if (TabBars.SelectedTab == tabGames) UseFastFilterGames();
             else if (TabBars.SelectedTab == tabRecipes) UseFastFilterRecipes();
+            else if (TabBars.SelectedTab == tabObject) UseFastFilterObjects();
         }
 
         /// <summary>
@@ -442,6 +455,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabBoardGames) UseFastTagFilterBoard();
             else if (TabBars.SelectedTab == tabGames) UseFastTagFilterGames();
             else if (TabBars.SelectedTab == tabRecipes) UseFastTagFilterRecipes();
+            else if (TabBars.SelectedTab == tabObject) UseFastTagFilterObjects();
         }
 
         /// <summary>
@@ -457,6 +471,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabBoardGames) UseStandardFilterBoard();
             else if (TabBars.SelectedTab == tabGames) UseStandardFilterGames();
             else if (TabBars.SelectedTab == tabRecipes) UseStandardFilterRecipes();
+            else if (TabBars.SelectedTab == tabObject) UseStandardFilterObjects();
         }
 
         /// <summary>
@@ -1239,6 +1254,7 @@ namespace Katalog
             UpdateBoardOLV();
             UpdateGameOLV();
             UpdateRecOLV();
+            UpdateObjOLV();
             EnableEditItems();
             UpdateFilterComboBox();
             CheckMaxInvNums();
@@ -1487,6 +1503,5 @@ namespace Katalog
             ImportGoogleContacts();
         }
 
-        
     }
 }

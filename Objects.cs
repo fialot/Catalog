@@ -33,7 +33,7 @@ namespace Katalog
         public string Type { get; set; }
         public string ObjectNum { get; set; }
         public string Language { get; set; }
-        public Nullable<System.Guid> Parrent { get; set; }
+        public Nullable<System.Guid> Parent { get; set; }
         public string Customer { get; set; }
         public string Development { get; set; }
     }

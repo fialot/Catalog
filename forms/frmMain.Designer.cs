@@ -169,6 +169,22 @@
             this.recKeywords = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.recExcluded = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.recTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabObject = new System.Windows.Forms.TabPage();
+            this.chbShowExcludedObjects = new System.Windows.Forms.CheckBox();
+            this.olvObjects = new BrightIdeasSoftware.FastObjectListView();
+            this.objTags = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objCategory = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objNumber = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objParrent = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objKeywords = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objCustomer = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objDevelopment = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objFolder = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objVersion = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objActive = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabAudio = new System.Windows.Forms.TabPage();
             this.tabVideo = new System.Windows.Forms.TabPage();
             this.tabFoto = new System.Windows.Forms.TabPage();
@@ -293,6 +309,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvGames)).BeginInit();
             this.tabRecipes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvRecipes)).BeginInit();
+            this.tabObject.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvObjects)).BeginInit();
             this.toolEditItem.SuspendLayout();
             this.toolFastFilter.SuspendLayout();
             this.toolFilter.SuspendLayout();
@@ -325,6 +343,7 @@
             this.TabBars.Controls.Add(this.tabBoardGames);
             this.TabBars.Controls.Add(this.tabGames);
             this.TabBars.Controls.Add(this.tabRecipes);
+            this.TabBars.Controls.Add(this.tabObject);
             this.TabBars.Controls.Add(this.tabAudio);
             this.TabBars.Controls.Add(this.tabVideo);
             this.TabBars.Controls.Add(this.tabFoto);
@@ -380,8 +399,9 @@
             this.imgBarList.Images.SetKeyName(6, "BoardGame");
             this.imgBarList.Images.SetKeyName(7, "Dice");
             this.imgBarList.Images.SetKeyName(8, "Recipes");
-            this.imgBarList.Images.SetKeyName(9, "Song");
-            this.imgBarList.Images.SetKeyName(10, "Video");
+            this.imgBarList.Images.SetKeyName(9, "Object");
+            this.imgBarList.Images.SetKeyName(10, "Song");
+            this.imgBarList.Images.SetKeyName(11, "Video");
             // 
             // btnTest
             // 
@@ -401,7 +421,6 @@
             this.olvContacts.AllColumns.Add(this.conAddress);
             this.olvContacts.AllColumns.Add(this.conCompany);
             this.olvContacts.AllColumns.Add(this.conFastTagsNum);
-            resources.ApplyResources(this.olvContacts, "olvContacts");
             this.olvContacts.CellEditUseWholeCell = false;
             this.olvContacts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.conFastTags,
@@ -415,6 +434,7 @@
             this.conFastTagsNum});
             this.olvContacts.ContextMenuStrip = this.mnuContacts;
             this.olvContacts.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvContacts, "olvContacts");
             this.olvContacts.FullRowSelect = true;
             this.olvContacts.GridLines = true;
             this.olvContacts.Name = "olvContacts";
@@ -667,7 +687,6 @@
             this.olvLending.AllColumns.Add(this.ldStatus);
             this.olvLending.AllColumns.Add(this.ldNote);
             this.olvLending.AllColumns.Add(this.ldFastTagsNum);
-            resources.ApplyResources(this.olvLending, "olvLending");
             this.olvLending.CellEditUseWholeCell = false;
             this.olvLending.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ldFastTags,
@@ -682,6 +701,7 @@
             this.ldNote,
             this.ldFastTagsNum});
             this.olvLending.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvLending, "olvLending");
             this.olvLending.FullRowSelect = true;
             this.olvLending.GridLines = true;
             this.olvLending.Name = "olvLending";
@@ -817,7 +837,6 @@
             this.olvBorrowing.AllColumns.Add(this.brStatus);
             this.olvBorrowing.AllColumns.Add(this.brNote);
             this.olvBorrowing.AllColumns.Add(this.brFastTagsNum);
-            resources.ApplyResources(this.olvBorrowing, "olvBorrowing");
             this.olvBorrowing.CellEditUseWholeCell = false;
             this.olvBorrowing.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.brFastTags,
@@ -830,6 +849,7 @@
             this.brNote,
             this.brFastTagsNum});
             this.olvBorrowing.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvBorrowing, "olvBorrowing");
             this.olvBorrowing.FullRowSelect = true;
             this.olvBorrowing.GridLines = true;
             this.olvBorrowing.Name = "olvBorrowing";
@@ -909,7 +929,6 @@
             this.olvItem.AllColumns.Add(this.itAvailable);
             this.olvItem.AllColumns.Add(this.itExcluded);
             this.olvItem.AllColumns.Add(this.itFastTagsNum);
-            resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.CellEditUseWholeCell = false;
             this.olvItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.itFastTags,
@@ -924,6 +943,7 @@
             this.itExcluded,
             this.itFastTagsNum});
             this.olvItem.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvItem, "olvItem");
             this.olvItem.FullRowSelect = true;
             this.olvItem.GridLines = true;
             this.olvItem.Name = "olvItem";
@@ -1007,7 +1027,6 @@
             this.olvBooks.AllColumns.Add(this.bkKeywords);
             this.olvBooks.AllColumns.Add(this.bkSeries);
             this.olvBooks.AllColumns.Add(this.bkFastTagsNum);
-            resources.ApplyResources(this.olvBooks, "olvBooks");
             this.olvBooks.CellEditUseWholeCell = false;
             this.olvBooks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.bkFastTags,
@@ -1025,6 +1044,7 @@
             this.bkSeries,
             this.bkFastTagsNum});
             this.olvBooks.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvBooks, "olvBooks");
             this.olvBooks.FullRowSelect = true;
             this.olvBooks.GridLines = true;
             this.olvBooks.Name = "olvBooks";
@@ -1124,7 +1144,6 @@
             this.olvBoard.AllColumns.Add(this.bgAvailable);
             this.olvBoard.AllColumns.Add(this.bgExcluded);
             this.olvBoard.AllColumns.Add(this.bgTagsNum);
-            resources.ApplyResources(this.olvBoard, "olvBoard");
             this.olvBoard.CellEditUseWholeCell = false;
             this.olvBoard.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.bgTags,
@@ -1138,6 +1157,7 @@
             this.bgExcluded,
             this.bgTagsNum});
             this.olvBoard.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvBoard, "olvBoard");
             this.olvBoard.FullRowSelect = true;
             this.olvBoard.GridLines = true;
             this.olvBoard.Name = "olvBoard";
@@ -1222,7 +1242,6 @@
             this.olvGames.AllColumns.Add(this.gmThings);
             this.olvGames.AllColumns.Add(this.gmExcluded);
             this.olvGames.AllColumns.Add(this.gmTagsNum);
-            resources.ApplyResources(this.olvGames, "olvGames");
             this.olvGames.CellEditUseWholeCell = false;
             this.olvGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.gmTags,
@@ -1238,6 +1257,7 @@
             this.gmExcluded,
             this.gmTagsNum});
             this.olvGames.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvGames, "olvGames");
             this.olvGames.FullRowSelect = true;
             this.olvGames.GridLines = true;
             this.olvGames.Name = "olvGames";
@@ -1246,6 +1266,7 @@
             this.olvGames.UseCompatibleStateImageBehavior = false;
             this.olvGames.View = System.Windows.Forms.View.Details;
             this.olvGames.VirtualMode = true;
+            this.olvGames.SelectedIndexChanged += new System.EventHandler(this.olvGames_SelectedIndexChanged);
             this.olvGames.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // gmTags
@@ -1323,7 +1344,6 @@
             this.olvRecipes.AllColumns.Add(this.recKeywords);
             this.olvRecipes.AllColumns.Add(this.recExcluded);
             this.olvRecipes.AllColumns.Add(this.recTagsNum);
-            resources.ApplyResources(this.olvRecipes, "olvRecipes");
             this.olvRecipes.CellEditUseWholeCell = false;
             this.olvRecipes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.recTags,
@@ -1333,6 +1353,7 @@
             this.recExcluded,
             this.recTagsNum});
             this.olvRecipes.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvRecipes, "olvRecipes");
             this.olvRecipes.FullRowSelect = true;
             this.olvRecipes.GridLines = true;
             this.olvRecipes.Name = "olvRecipes";
@@ -1371,6 +1392,121 @@
             // recTagsNum
             // 
             resources.ApplyResources(this.recTagsNum, "recTagsNum");
+            // 
+            // tabObject
+            // 
+            this.tabObject.Controls.Add(this.chbShowExcludedObjects);
+            this.tabObject.Controls.Add(this.olvObjects);
+            resources.ApplyResources(this.tabObject, "tabObject");
+            this.tabObject.Name = "tabObject";
+            this.tabObject.UseVisualStyleBackColor = true;
+            // 
+            // chbShowExcludedObjects
+            // 
+            resources.ApplyResources(this.chbShowExcludedObjects, "chbShowExcludedObjects");
+            this.chbShowExcludedObjects.Name = "chbShowExcludedObjects";
+            this.chbShowExcludedObjects.UseVisualStyleBackColor = true;
+            this.chbShowExcludedObjects.CheckedChanged += new System.EventHandler(this.chbShowExcludedObjects_CheckedChanged);
+            // 
+            // olvObjects
+            // 
+            this.olvObjects.AllColumns.Add(this.objTags);
+            this.olvObjects.AllColumns.Add(this.objName);
+            this.olvObjects.AllColumns.Add(this.objType);
+            this.olvObjects.AllColumns.Add(this.objCategory);
+            this.olvObjects.AllColumns.Add(this.objNumber);
+            this.olvObjects.AllColumns.Add(this.objParrent);
+            this.olvObjects.AllColumns.Add(this.objKeywords);
+            this.olvObjects.AllColumns.Add(this.objCustomer);
+            this.olvObjects.AllColumns.Add(this.objDevelopment);
+            this.olvObjects.AllColumns.Add(this.objFolder);
+            this.olvObjects.AllColumns.Add(this.objVersion);
+            this.olvObjects.AllColumns.Add(this.objActive);
+            this.olvObjects.AllColumns.Add(this.objTagsNum);
+            this.olvObjects.CellEditUseWholeCell = false;
+            this.olvObjects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.objTags,
+            this.objName,
+            this.objType,
+            this.objCategory,
+            this.objNumber,
+            this.objParrent,
+            this.objKeywords,
+            this.objCustomer,
+            this.objDevelopment,
+            this.objFolder,
+            this.objVersion,
+            this.objActive,
+            this.objTagsNum});
+            this.olvObjects.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.olvObjects, "olvObjects");
+            this.olvObjects.FullRowSelect = true;
+            this.olvObjects.GridLines = true;
+            this.olvObjects.Name = "olvObjects";
+            this.olvObjects.ShowGroups = false;
+            this.olvObjects.SmallImageList = this.imgOLV;
+            this.olvObjects.UseCompatibleStateImageBehavior = false;
+            this.olvObjects.View = System.Windows.Forms.View.Details;
+            this.olvObjects.VirtualMode = true;
+            this.olvObjects.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvObjects_FormatRow);
+            this.olvObjects.SelectedIndexChanged += new System.EventHandler(this.olvObjects_SelectedIndexChanged);
+            this.olvObjects.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
+            // 
+            // objTags
+            // 
+            resources.ApplyResources(this.objTags, "objTags");
+            // 
+            // objName
+            // 
+            this.objName.AspectName = "";
+            resources.ApplyResources(this.objName, "objName");
+            // 
+            // objType
+            // 
+            resources.ApplyResources(this.objType, "objType");
+            // 
+            // objCategory
+            // 
+            this.objCategory.AspectName = "";
+            resources.ApplyResources(this.objCategory, "objCategory");
+            // 
+            // objNumber
+            // 
+            resources.ApplyResources(this.objNumber, "objNumber");
+            // 
+            // objParrent
+            // 
+            resources.ApplyResources(this.objParrent, "objParrent");
+            // 
+            // objKeywords
+            // 
+            this.objKeywords.AspectName = "";
+            resources.ApplyResources(this.objKeywords, "objKeywords");
+            // 
+            // objCustomer
+            // 
+            resources.ApplyResources(this.objCustomer, "objCustomer");
+            // 
+            // objDevelopment
+            // 
+            resources.ApplyResources(this.objDevelopment, "objDevelopment");
+            // 
+            // objFolder
+            // 
+            this.objFolder.AspectName = "";
+            resources.ApplyResources(this.objFolder, "objFolder");
+            // 
+            // objVersion
+            // 
+            resources.ApplyResources(this.objVersion, "objVersion");
+            // 
+            // objActive
+            // 
+            resources.ApplyResources(this.objActive, "objActive");
+            // 
+            // objTagsNum
+            // 
+            resources.ApplyResources(this.objTagsNum, "objTagsNum");
             // 
             // tabAudio
             // 
@@ -2239,6 +2375,9 @@
             this.tabRecipes.ResumeLayout(false);
             this.tabRecipes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvRecipes)).EndInit();
+            this.tabObject.ResumeLayout(false);
+            this.tabObject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.olvObjects)).EndInit();
             this.toolEditItem.ResumeLayout(false);
             this.toolEditItem.PerformLayout();
             this.toolFastFilter.ResumeLayout(false);
@@ -2496,6 +2635,22 @@
         private BrightIdeasSoftware.OLVColumn gmPlayerAge;
         private BrightIdeasSoftware.OLVColumn gmDuration;
         private BrightIdeasSoftware.OLVColumn gmThings;
+        private System.Windows.Forms.TabPage tabObject;
+        private System.Windows.Forms.CheckBox chbShowExcludedObjects;
+        private BrightIdeasSoftware.FastObjectListView olvObjects;
+        private BrightIdeasSoftware.OLVColumn objTags;
+        private BrightIdeasSoftware.OLVColumn objName;
+        private BrightIdeasSoftware.OLVColumn objCategory;
+        private BrightIdeasSoftware.OLVColumn objNumber;
+        private BrightIdeasSoftware.OLVColumn objVersion;
+        private BrightIdeasSoftware.OLVColumn objKeywords;
+        private BrightIdeasSoftware.OLVColumn objFolder;
+        private BrightIdeasSoftware.OLVColumn objType;
+        private BrightIdeasSoftware.OLVColumn objActive;
+        private BrightIdeasSoftware.OLVColumn objTagsNum;
+        private BrightIdeasSoftware.OLVColumn objParrent;
+        private BrightIdeasSoftware.OLVColumn objCustomer;
+        private BrightIdeasSoftware.OLVColumn objDevelopment;
     }
 }
 

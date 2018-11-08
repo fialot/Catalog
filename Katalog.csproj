@@ -229,6 +229,12 @@
     <Compile Include="forms\Edit\frmEditLending.Designer.cs">
       <DependentUpon>frmEditLending.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\Edit\frmEditObjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Edit\frmEditObjects.Designer.cs">
+      <DependentUpon>frmEditObjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Edit\frmEditPersonBorrowing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmMain.Lending.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMain.Objects.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -361,6 +371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Edit\frmEditGames.resx">
       <DependentUpon>frmEditGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Edit\frmEditObjects.cs.resx">
+      <DependentUpon>frmEditObjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Edit\frmEditObjects.resx">
+      <DependentUpon>frmEditObjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Edit\frmEditRecipes.cs.resx">
       <DependentUpon>frmEditRecipes.cs</DependentUpon>
