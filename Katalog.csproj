@@ -247,11 +247,31 @@
     <Compile Include="forms\Edit\frmEditRecipes.Designer.cs">
       <DependentUpon>frmEditRecipes.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmMain.BoardGames.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMain.Books.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMain.Borrowing.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmMain.Contacts.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmMain.Games.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMain.Items.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMain.Lending.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -325,6 +345,9 @@
     <Compile Include="Lending.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Objects.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipes.cs">
@@ -333,6 +356,12 @@
     <Compile Include="Video.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="forms\Edit\frmEditGames.cs.resx">
+      <DependentUpon>frmEditGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Edit\frmEditGames.resx">
+      <DependentUpon>frmEditGames.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Edit\frmEditRecipes.cs.resx">
       <DependentUpon>frmEditRecipes.cs</DependentUpon>
     </EmbeddedResource>

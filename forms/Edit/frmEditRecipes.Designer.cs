@@ -92,9 +92,9 @@
             // 
             // txtCategory
             // 
-            resources.ApplyResources(this.txtCategory, "txtCategory");
             this.txtCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtCategory, "txtCategory");
             this.txtCategory.Name = "txtCategory";
             // 
             // lblCategory
@@ -185,8 +185,8 @@
             // 
             // imgImg
             // 
-            resources.ApplyResources(this.imgImg, "imgImg");
             this.imgImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.imgImg, "imgImg");
             this.imgImg.Name = "imgImg";
             this.imgImg.TabStop = false;
             this.imgImg.Click += new System.EventHandler(this.imgImg_Click);

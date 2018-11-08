@@ -139,7 +139,228 @@ namespace Katalog
         }
 
         #endregion
+        
+        #region EditItems
 
+        /// <summary>
+        /// New Item
+        /// </summary>
+        private void NewItemContacts()
+        {
+            frmEditContacts form = new frmEditContacts();
+            var res = form.ShowDialog();                    // Show Edit form
+            while (res == DialogResult.Yes)                 // If New item request
+            {
+                form.Dispose();
+                form = new frmEditContacts();               // New Form
+                res = form.ShowDialog();                    // Show new Edit form
+            }
+            UpdateConOLV();                                 // Update Contact OLV
+        }
+
+        /// <summary>
+        /// Edit Item
+        /// </summary>
+        private void EditItemContacts()
+        {
+            if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+            {
+                frmEditContacts form = new frmEditContacts();   // Show Edit form
+                var res = form.ShowDialog(((Contacts)olvContacts.SelectedObject).ID);
+                while (res == DialogResult.Yes)                 // If New item request
+                {
+                    form.Dispose();
+                    form = new frmEditContacts();               // New Form
+                    res = form.ShowDialog();                    // Show new Edit form
+                }
+                UpdateConOLV();                                 // Update Contact OLV
+            }
+        }
+
+        /// <summary>
+        /// Delete Item
+        /// </summary>
+        private void DeleteItemContacts()
+        {
+            databaseEntities db = new databaseEntities();
+            if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+            {                                                   // Find Object
+                Contacts contact = db.Contacts.Find(((Contacts)olvContacts.SelectedObject).ID);
+
+                if (Dialogs.ShowQuest(Lng.Get("DeleteItem", "Really delete item") + " \"" + contact.Name.Trim() + " " + contact.Surname.Trim() + "\"?", Lng.Get("Delete")) == DialogResult.Yes)
+                {
+                    db.Contacts.Remove(contact);                // Delete Item
+                    db.SaveChanges();                           // Save to DB
+                    UpdateConOLV();                             // Update Contacts OLV 
+                }
+            }
+            else if (olvContacts.SelectedObjects != null)                 // If selected Item
+            {
+                int count = olvContacts.SelectedObjects.Count;
+                if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() +  ")?", Lng.Get("Delete")) == DialogResult.Yes)
+                {
+                    foreach (var item in olvContacts.SelectedObjects) // Find Object
+                    {
+                        Contacts contact = db.Contacts.Find(((Contacts)item).ID);
+                        db.Contacts.Remove(contact);                // Delete Item
+                    }
+                    db.SaveChanges();                           // Save to DB
+                    UpdateConOLV();                             // Update Contacts OLV 
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Set Fast Tags
+        /// </summary>
+        /// <param name="tag">Tags Mask</param>
+        private void SetTagItemContacts(short tag)
+        {
+            if (olvContacts.SelectedObjects != null)                 // If selected Item
+            {
+
+                databaseEntities db = new databaseEntities();
+                foreach (var item in olvContacts.SelectedObjects) // Find Object
+                {
+                    Contacts contact = db.Contacts.Find(((Contacts)item).ID);
+                    contact.FastTags |= tag;
+                }
+                db.SaveChanges();                           // Save to DB
+                UpdateConOLV();                             // Update Contacts OLV 
+            }
+        }
+
+        /// <summary>
+        /// Set active (excluded)
+        /// </summary>
+        /// <param name="active"></param>
+        private void SetActiveContacts(bool active)
+        {
+            if (olvContacts.SelectedObjects != null)                 // If selected Item
+            {
+                databaseEntities db = new databaseEntities();
+
+                foreach (var item in olvContacts.SelectedObjects) // Find Object
+                {
+                    Contacts itm = db.Contacts.Find(((Contacts)item).ID);
+                    itm.Active = active;
+                }
+                db.SaveChanges();                           // Save to DB
+                UpdateConOLV();                             // Update Contacts OLV 
+            }
+        }
+
+        #endregion
+
+        #region Filter
+
+        /// <summary>
+        /// Update Filter ComboBox
+        /// </summary>
+        private void UpdateCBFilterContacts()
+        {
+            cbFilterCol.Items.Add(Lng.Get("All"));
+            cbFilterCol.Items.Add(Lng.Get("Name"));
+            cbFilterCol.Items.Add(Lng.Get("Surname"));
+            cbFilterCol.Items.Add(Lng.Get("Nick"));
+            cbFilterCol.Items.Add(Lng.Get("Phone"));
+            cbFilterCol.Items.Add(Lng.Get("Email"));
+            cbFilterCol.Items.Add(Lng.Get("Address"));
+            cbFilterCol.Items.Add(Lng.Get("Company"));
+            cbFilterCol.SelectedIndex = 0;
+
+            cbFastFilterCol.Items.Add(Lng.Get("All"));
+            cbFastFilterCol.Items.Add(Lng.Get("Name"));
+            cbFastFilterCol.Items.Add(Lng.Get("Surname"));
+            cbFastFilterCol.Items.Add(Lng.Get("Nick"));
+            cbFastFilterCol.Items.Add(Lng.Get("Phone"));
+            cbFastFilterCol.Items.Add(Lng.Get("Email"));
+            cbFastFilterCol.Items.Add(Lng.Get("Address"));
+            cbFastFilterCol.Items.Add(Lng.Get("Company"));
+            cbFastFilterCol.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Use Filters
+        /// </summary>
+        private void UseFiltersContacts()
+        {
+            olvContacts.UseFiltering = true;
+            olvContacts.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
+        }
+
+        /// <summary>
+        /// Use Fast Filter
+        /// </summary>
+        private void UseFastFilterContacts()
+        {
+            if (FastFilterList.Count == 0)
+                FastFilter = TextMatchFilter.Contains(olvContacts, "");
+            else
+            {
+                string[] filterArray = FastFilterList.ToArray();
+                FastFilter = TextMatchFilter.Prefix(olvContacts, filterArray);
+            }
+            if (cbFastFilterCol.SelectedIndex == 0)
+                FastFilter.Columns = new OLVColumn[] { conName, conSurname, conNick, conPhone, conEmail, conAddress, conCompany };
+            else if (cbFastFilterCol.SelectedIndex == 1)
+                FastFilter.Columns = new OLVColumn[] { conName };
+            else if (cbFastFilterCol.SelectedIndex == 2)
+                FastFilter.Columns = new OLVColumn[] { conSurname };
+            else if (cbFastFilterCol.SelectedIndex == 3)
+                FastFilter.Columns = new OLVColumn[] { conNick };
+            else if (cbFastFilterCol.SelectedIndex == 4)
+                FastFilter.Columns = new OLVColumn[] { conPhone };
+            else if (cbFastFilterCol.SelectedIndex == 5)
+                FastFilter.Columns = new OLVColumn[] { conEmail };
+            else if (cbFastFilterCol.SelectedIndex == 6)
+                FastFilter.Columns = new OLVColumn[] { conAddress };
+            else if (cbFastFilterCol.SelectedIndex == 7)
+                FastFilter.Columns = new OLVColumn[] { conCompany };
+        }
+
+        /// <summary>
+        /// Use Fast Tag Filter
+        /// </summary>
+        private void UseFastTagFilterContacts()
+        {
+            if (FastTagFilterList.Count == 0)
+                FastFilterTags = TextMatchFilter.Contains(olvContacts, "");
+            else
+            {
+                string[] filterArray = FastTagFilterList.ToArray();
+                FastFilterTags = TextMatchFilter.Contains(olvContacts, filterArray);
+                FastFilterTags.Columns = new OLVColumn[] { conFastTagsNum };
+            }
+        }
+
+        /// <summary>
+        /// Use Standard Filter
+        /// </summary>
+        private void UseStandardFilterContacts()
+        {
+            StandardFilter = TextMatchFilter.Contains(olvContacts, txtFilter.Text);
+
+            if (cbFilterCol.SelectedIndex == 0)
+                StandardFilter.Columns = new OLVColumn[] { conName, conSurname, conNick, conPhone, conEmail, conAddress, conCompany };
+            else if (cbFilterCol.SelectedIndex == 1)
+                StandardFilter.Columns = new OLVColumn[] { conName };
+            else if (cbFilterCol.SelectedIndex == 2)
+                StandardFilter.Columns = new OLVColumn[] { conSurname };
+            else if (cbFilterCol.SelectedIndex == 3)
+                StandardFilter.Columns = new OLVColumn[] { conNick };
+            else if (cbFilterCol.SelectedIndex == 4)
+                StandardFilter.Columns = new OLVColumn[] { conPhone };
+            else if (cbFilterCol.SelectedIndex == 5)
+                StandardFilter.Columns = new OLVColumn[] { conEmail };
+            else if (cbFilterCol.SelectedIndex == 6)
+                StandardFilter.Columns = new OLVColumn[] { conAddress };
+            else if (cbFilterCol.SelectedIndex == 7)
+                StandardFilter.Columns = new OLVColumn[] { conCompany };
+        }
+
+        #endregion
 
         #region Items
 

@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="databaseModel.Contacts" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="databaseModel.Games" Width="1.5" PointX="3.375" PointY="10.75" />
         <EntityTypeShape EntityType="databaseModel.Recipes" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="databaseModel.Objects" Width="1.5" PointX="11.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
