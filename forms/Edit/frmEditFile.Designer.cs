@@ -204,6 +204,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(350, 350);
             this.Name = "frmEditFile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "File";
             this.Load += new System.EventHandler(this.frmEditFile_Load);
             this.ResumeLayout(false);

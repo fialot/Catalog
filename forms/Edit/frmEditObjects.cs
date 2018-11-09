@@ -183,6 +183,7 @@ namespace Katalog
             itm.Customer = txtCustomer.Text;
             itm.Development = txtDevelopment.Text;
             itm.IsParent = chbIsParent.Checked;
+            itm.UsedObjects = "";
 
             // ----- Rating -----
             itm.Rating = Conv.ToShortNull(txtRating.Text);
@@ -312,7 +313,7 @@ namespace Katalog
         private void btnFiles_Click(object sender, EventArgs e)
         {
             frmEditFiles form = new frmEditFiles();
-            form.ShowDialog(ref Files);
+            form.ShowDialog(ref Files, Properties.Settings.Default.ObjectFolder);
             if (Files != "")
             {
                 btnFiles.ForeColor = Color.Green;

@@ -391,5 +391,14 @@ namespace Katalog
         }
 
         #endregion
+
+        #region Import
+
+        #endregion
+
+        #region Export
+
+        #endregion
+
     }
 }

@@ -42,6 +42,15 @@
             this.txtConStart = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabInvNums = new System.Windows.Forms.TabPage();
+            this.gbBoardgames = new System.Windows.Forms.GroupBox();
+            this.lblBoardMinCharLen = new System.Windows.Forms.Label();
+            this.txtBoardMinCharLen = new System.Windows.Forms.TextBox();
+            this.lblBoardSuffix = new System.Windows.Forms.Label();
+            this.lblBoardPrefix = new System.Windows.Forms.Label();
+            this.txtBoardSuffix = new System.Windows.Forms.TextBox();
+            this.txtBoardPrefix = new System.Windows.Forms.TextBox();
+            this.lblBoardStart = new System.Windows.Forms.Label();
+            this.txtBoardStart = new System.Windows.Forms.TextBox();
             this.gbBooks = new System.Windows.Forms.GroupBox();
             this.chbUseISBN = new System.Windows.Forms.CheckBox();
             this.lblBookMinCharLen = new System.Windows.Forms.Label();
@@ -67,23 +76,31 @@
             this.btnScanRefresh = new System.Windows.Forms.Button();
             this.lblScanCOM = new System.Windows.Forms.Label();
             this.cbScanCOM = new System.Windows.Forms.ComboBox();
-            this.gbBoardgames = new System.Windows.Forms.GroupBox();
-            this.lblBoardMinCharLen = new System.Windows.Forms.Label();
-            this.txtBoardMinCharLen = new System.Windows.Forms.TextBox();
-            this.lblBoardSuffix = new System.Windows.Forms.Label();
-            this.lblBoardPrefix = new System.Windows.Forms.Label();
-            this.txtBoardSuffix = new System.Windows.Forms.TextBox();
-            this.txtBoardPrefix = new System.Windows.Forms.TextBox();
-            this.lblBoardStart = new System.Windows.Forms.Label();
-            this.txtBoardStart = new System.Windows.Forms.TextBox();
+            this.tabRelativePaths = new System.Windows.Forms.TabPage();
+            this.gbPathGames = new System.Windows.Forms.GroupBox();
+            this.lblPathGames = new System.Windows.Forms.Label();
+            this.txtPathGames = new System.Windows.Forms.TextBox();
+            this.gmPathObjects = new System.Windows.Forms.GroupBox();
+            this.lblPathObjects = new System.Windows.Forms.Label();
+            this.txtPathObjects = new System.Windows.Forms.TextBox();
+            this.gbPathBooks = new System.Windows.Forms.GroupBox();
+            this.lblPathBooks = new System.Windows.Forms.Label();
+            this.txtPathBooks = new System.Windows.Forms.TextBox();
+            this.btnPathBooks = new System.Windows.Forms.Button();
+            this.btnPathGames = new System.Windows.Forms.Button();
+            this.btnPathObjects = new System.Windows.Forms.Button();
             this.gbContacts.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabInvNums.SuspendLayout();
+            this.gbBoardgames.SuspendLayout();
             this.gbBooks.SuspendLayout();
             this.gbItems.SuspendLayout();
             this.tabOther.SuspendLayout();
             this.gbScanner.SuspendLayout();
-            this.gbBoardgames.SuspendLayout();
+            this.tabRelativePaths.SuspendLayout();
+            this.gbPathGames.SuspendLayout();
+            this.gmPathObjects.SuspendLayout();
+            this.gbPathBooks.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -195,6 +212,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabInvNums);
             this.tabControl1.Controls.Add(this.tabOther);
+            this.tabControl1.Controls.Add(this.tabRelativePaths);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -215,6 +233,87 @@
             this.tabInvNums.TabIndex = 0;
             this.tabInvNums.Text = "Inventory numbers";
             this.tabInvNums.UseVisualStyleBackColor = true;
+            // 
+            // gbBoardgames
+            // 
+            this.gbBoardgames.Controls.Add(this.lblBoardMinCharLen);
+            this.gbBoardgames.Controls.Add(this.txtBoardMinCharLen);
+            this.gbBoardgames.Controls.Add(this.lblBoardSuffix);
+            this.gbBoardgames.Controls.Add(this.lblBoardPrefix);
+            this.gbBoardgames.Controls.Add(this.txtBoardSuffix);
+            this.gbBoardgames.Controls.Add(this.txtBoardPrefix);
+            this.gbBoardgames.Controls.Add(this.lblBoardStart);
+            this.gbBoardgames.Controls.Add(this.txtBoardStart);
+            this.gbBoardgames.Location = new System.Drawing.Point(6, 273);
+            this.gbBoardgames.Name = "gbBoardgames";
+            this.gbBoardgames.Size = new System.Drawing.Size(548, 76);
+            this.gbBoardgames.TabIndex = 53;
+            this.gbBoardgames.TabStop = false;
+            this.gbBoardgames.Text = "Board games";
+            // 
+            // lblBoardMinCharLen
+            // 
+            this.lblBoardMinCharLen.AutoSize = true;
+            this.lblBoardMinCharLen.Location = new System.Drawing.Point(226, 16);
+            this.lblBoardMinCharLen.Name = "lblBoardMinCharLen";
+            this.lblBoardMinCharLen.Size = new System.Drawing.Size(86, 13);
+            this.lblBoardMinCharLen.TabIndex = 53;
+            this.lblBoardMinCharLen.Text = "Min. char. length";
+            // 
+            // txtBoardMinCharLen
+            // 
+            this.txtBoardMinCharLen.Location = new System.Drawing.Point(229, 32);
+            this.txtBoardMinCharLen.Name = "txtBoardMinCharLen";
+            this.txtBoardMinCharLen.Size = new System.Drawing.Size(73, 20);
+            this.txtBoardMinCharLen.TabIndex = 52;
+            // 
+            // lblBoardSuffix
+            // 
+            this.lblBoardSuffix.AutoSize = true;
+            this.lblBoardSuffix.Location = new System.Drawing.Point(407, 16);
+            this.lblBoardSuffix.Name = "lblBoardSuffix";
+            this.lblBoardSuffix.Size = new System.Drawing.Size(33, 13);
+            this.lblBoardSuffix.TabIndex = 49;
+            this.lblBoardSuffix.Text = "Suffix";
+            // 
+            // lblBoardPrefix
+            // 
+            this.lblBoardPrefix.AutoSize = true;
+            this.lblBoardPrefix.Location = new System.Drawing.Point(328, 16);
+            this.lblBoardPrefix.Name = "lblBoardPrefix";
+            this.lblBoardPrefix.Size = new System.Drawing.Size(33, 13);
+            this.lblBoardPrefix.TabIndex = 47;
+            this.lblBoardPrefix.Text = "Prefix";
+            // 
+            // txtBoardSuffix
+            // 
+            this.txtBoardSuffix.Location = new System.Drawing.Point(410, 32);
+            this.txtBoardSuffix.Name = "txtBoardSuffix";
+            this.txtBoardSuffix.Size = new System.Drawing.Size(73, 20);
+            this.txtBoardSuffix.TabIndex = 48;
+            // 
+            // txtBoardPrefix
+            // 
+            this.txtBoardPrefix.Location = new System.Drawing.Point(331, 32);
+            this.txtBoardPrefix.Name = "txtBoardPrefix";
+            this.txtBoardPrefix.Size = new System.Drawing.Size(73, 20);
+            this.txtBoardPrefix.TabIndex = 47;
+            // 
+            // lblBoardStart
+            // 
+            this.lblBoardStart.AutoSize = true;
+            this.lblBoardStart.Location = new System.Drawing.Point(6, 16);
+            this.lblBoardStart.Name = "lblBoardStart";
+            this.lblBoardStart.Size = new System.Drawing.Size(132, 13);
+            this.lblBoardStart.TabIndex = 46;
+            this.lblBoardStart.Text = "Start inventory numbers by";
+            // 
+            // txtBoardStart
+            // 
+            this.txtBoardStart.Location = new System.Drawing.Point(9, 32);
+            this.txtBoardStart.Name = "txtBoardStart";
+            this.txtBoardStart.Size = new System.Drawing.Size(214, 20);
+            this.txtBoardStart.TabIndex = 45;
             // 
             // gbBooks
             // 
@@ -449,86 +548,131 @@
             this.cbScanCOM.Size = new System.Drawing.Size(61, 21);
             this.cbScanCOM.TabIndex = 0;
             // 
-            // gbBoardgames
+            // tabRelativePaths
             // 
-            this.gbBoardgames.Controls.Add(this.lblBoardMinCharLen);
-            this.gbBoardgames.Controls.Add(this.txtBoardMinCharLen);
-            this.gbBoardgames.Controls.Add(this.lblBoardSuffix);
-            this.gbBoardgames.Controls.Add(this.lblBoardPrefix);
-            this.gbBoardgames.Controls.Add(this.txtBoardSuffix);
-            this.gbBoardgames.Controls.Add(this.txtBoardPrefix);
-            this.gbBoardgames.Controls.Add(this.lblBoardStart);
-            this.gbBoardgames.Controls.Add(this.txtBoardStart);
-            this.gbBoardgames.Location = new System.Drawing.Point(6, 273);
-            this.gbBoardgames.Name = "gbBoardgames";
-            this.gbBoardgames.Size = new System.Drawing.Size(548, 76);
-            this.gbBoardgames.TabIndex = 53;
-            this.gbBoardgames.TabStop = false;
-            this.gbBoardgames.Text = "Board games";
+            this.tabRelativePaths.Controls.Add(this.gbPathBooks);
+            this.tabRelativePaths.Controls.Add(this.gmPathObjects);
+            this.tabRelativePaths.Controls.Add(this.gbPathGames);
+            this.tabRelativePaths.Location = new System.Drawing.Point(4, 22);
+            this.tabRelativePaths.Name = "tabRelativePaths";
+            this.tabRelativePaths.Size = new System.Drawing.Size(560, 382);
+            this.tabRelativePaths.TabIndex = 2;
+            this.tabRelativePaths.Text = "Relative Paths";
+            this.tabRelativePaths.UseVisualStyleBackColor = true;
             // 
-            // lblBoardMinCharLen
+            // gbPathGames
             // 
-            this.lblBoardMinCharLen.AutoSize = true;
-            this.lblBoardMinCharLen.Location = new System.Drawing.Point(226, 16);
-            this.lblBoardMinCharLen.Name = "lblBoardMinCharLen";
-            this.lblBoardMinCharLen.Size = new System.Drawing.Size(86, 13);
-            this.lblBoardMinCharLen.TabIndex = 53;
-            this.lblBoardMinCharLen.Text = "Min. char. length";
+            this.gbPathGames.Controls.Add(this.btnPathGames);
+            this.gbPathGames.Controls.Add(this.lblPathGames);
+            this.gbPathGames.Controls.Add(this.txtPathGames);
+            this.gbPathGames.Location = new System.Drawing.Point(9, 98);
+            this.gbPathGames.Name = "gbPathGames";
+            this.gbPathGames.Size = new System.Drawing.Size(548, 76);
+            this.gbPathGames.TabIndex = 54;
+            this.gbPathGames.TabStop = false;
+            this.gbPathGames.Text = "Games";
             // 
-            // txtBoardMinCharLen
+            // lblPathGames
             // 
-            this.txtBoardMinCharLen.Location = new System.Drawing.Point(229, 32);
-            this.txtBoardMinCharLen.Name = "txtBoardMinCharLen";
-            this.txtBoardMinCharLen.Size = new System.Drawing.Size(73, 20);
-            this.txtBoardMinCharLen.TabIndex = 52;
+            this.lblPathGames.AutoSize = true;
+            this.lblPathGames.Location = new System.Drawing.Point(6, 16);
+            this.lblPathGames.Name = "lblPathGames";
+            this.lblPathGames.Size = new System.Drawing.Size(36, 13);
+            this.lblPathGames.TabIndex = 46;
+            this.lblPathGames.Text = "Folder";
             // 
-            // lblBoardSuffix
+            // txtPathGames
             // 
-            this.lblBoardSuffix.AutoSize = true;
-            this.lblBoardSuffix.Location = new System.Drawing.Point(407, 16);
-            this.lblBoardSuffix.Name = "lblBoardSuffix";
-            this.lblBoardSuffix.Size = new System.Drawing.Size(33, 13);
-            this.lblBoardSuffix.TabIndex = 49;
-            this.lblBoardSuffix.Text = "Suffix";
+            this.txtPathGames.Location = new System.Drawing.Point(9, 32);
+            this.txtPathGames.Name = "txtPathGames";
+            this.txtPathGames.Size = new System.Drawing.Size(476, 20);
+            this.txtPathGames.TabIndex = 45;
             // 
-            // lblBoardPrefix
+            // gmPathObjects
             // 
-            this.lblBoardPrefix.AutoSize = true;
-            this.lblBoardPrefix.Location = new System.Drawing.Point(328, 16);
-            this.lblBoardPrefix.Name = "lblBoardPrefix";
-            this.lblBoardPrefix.Size = new System.Drawing.Size(33, 13);
-            this.lblBoardPrefix.TabIndex = 47;
-            this.lblBoardPrefix.Text = "Prefix";
+            this.gmPathObjects.Controls.Add(this.btnPathObjects);
+            this.gmPathObjects.Controls.Add(this.lblPathObjects);
+            this.gmPathObjects.Controls.Add(this.txtPathObjects);
+            this.gmPathObjects.Location = new System.Drawing.Point(9, 180);
+            this.gmPathObjects.Name = "gmPathObjects";
+            this.gmPathObjects.Size = new System.Drawing.Size(548, 76);
+            this.gmPathObjects.TabIndex = 55;
+            this.gmPathObjects.TabStop = false;
+            this.gmPathObjects.Text = "Objects";
             // 
-            // txtBoardSuffix
+            // lblPathObjects
             // 
-            this.txtBoardSuffix.Location = new System.Drawing.Point(410, 32);
-            this.txtBoardSuffix.Name = "txtBoardSuffix";
-            this.txtBoardSuffix.Size = new System.Drawing.Size(73, 20);
-            this.txtBoardSuffix.TabIndex = 48;
+            this.lblPathObjects.AutoSize = true;
+            this.lblPathObjects.Location = new System.Drawing.Point(6, 16);
+            this.lblPathObjects.Name = "lblPathObjects";
+            this.lblPathObjects.Size = new System.Drawing.Size(36, 13);
+            this.lblPathObjects.TabIndex = 46;
+            this.lblPathObjects.Text = "Folder";
             // 
-            // txtBoardPrefix
+            // txtPathObjects
             // 
-            this.txtBoardPrefix.Location = new System.Drawing.Point(331, 32);
-            this.txtBoardPrefix.Name = "txtBoardPrefix";
-            this.txtBoardPrefix.Size = new System.Drawing.Size(73, 20);
-            this.txtBoardPrefix.TabIndex = 47;
+            this.txtPathObjects.Location = new System.Drawing.Point(9, 32);
+            this.txtPathObjects.Name = "txtPathObjects";
+            this.txtPathObjects.Size = new System.Drawing.Size(476, 20);
+            this.txtPathObjects.TabIndex = 45;
             // 
-            // lblBoardStart
+            // gbPathBooks
             // 
-            this.lblBoardStart.AutoSize = true;
-            this.lblBoardStart.Location = new System.Drawing.Point(6, 16);
-            this.lblBoardStart.Name = "lblBoardStart";
-            this.lblBoardStart.Size = new System.Drawing.Size(132, 13);
-            this.lblBoardStart.TabIndex = 46;
-            this.lblBoardStart.Text = "Start inventory numbers by";
+            this.gbPathBooks.Controls.Add(this.btnPathBooks);
+            this.gbPathBooks.Controls.Add(this.lblPathBooks);
+            this.gbPathBooks.Controls.Add(this.txtPathBooks);
+            this.gbPathBooks.Location = new System.Drawing.Point(9, 16);
+            this.gbPathBooks.Name = "gbPathBooks";
+            this.gbPathBooks.Size = new System.Drawing.Size(548, 76);
+            this.gbPathBooks.TabIndex = 56;
+            this.gbPathBooks.TabStop = false;
+            this.gbPathBooks.Text = "Books";
             // 
-            // txtBoardStart
+            // lblPathBooks
             // 
-            this.txtBoardStart.Location = new System.Drawing.Point(9, 32);
-            this.txtBoardStart.Name = "txtBoardStart";
-            this.txtBoardStart.Size = new System.Drawing.Size(214, 20);
-            this.txtBoardStart.TabIndex = 45;
+            this.lblPathBooks.AutoSize = true;
+            this.lblPathBooks.Location = new System.Drawing.Point(6, 16);
+            this.lblPathBooks.Name = "lblPathBooks";
+            this.lblPathBooks.Size = new System.Drawing.Size(36, 13);
+            this.lblPathBooks.TabIndex = 46;
+            this.lblPathBooks.Text = "Folder";
+            // 
+            // txtPathBooks
+            // 
+            this.txtPathBooks.Location = new System.Drawing.Point(9, 32);
+            this.txtPathBooks.Name = "txtPathBooks";
+            this.txtPathBooks.Size = new System.Drawing.Size(476, 20);
+            this.txtPathBooks.TabIndex = 45;
+            // 
+            // btnPathBooks
+            // 
+            this.btnPathBooks.Location = new System.Drawing.Point(491, 30);
+            this.btnPathBooks.Name = "btnPathBooks";
+            this.btnPathBooks.Size = new System.Drawing.Size(26, 23);
+            this.btnPathBooks.TabIndex = 47;
+            this.btnPathBooks.Text = "...";
+            this.btnPathBooks.UseVisualStyleBackColor = true;
+            this.btnPathBooks.Click += new System.EventHandler(this.btnPathBooks_Click);
+            // 
+            // btnPathGames
+            // 
+            this.btnPathGames.Location = new System.Drawing.Point(491, 30);
+            this.btnPathGames.Name = "btnPathGames";
+            this.btnPathGames.Size = new System.Drawing.Size(26, 23);
+            this.btnPathGames.TabIndex = 48;
+            this.btnPathGames.Text = "...";
+            this.btnPathGames.UseVisualStyleBackColor = true;
+            this.btnPathGames.Click += new System.EventHandler(this.btnPathGames_Click);
+            // 
+            // btnPathObjects
+            // 
+            this.btnPathObjects.Location = new System.Drawing.Point(491, 30);
+            this.btnPathObjects.Name = "btnPathObjects";
+            this.btnPathObjects.Size = new System.Drawing.Size(26, 23);
+            this.btnPathObjects.TabIndex = 48;
+            this.btnPathObjects.Text = "...";
+            this.btnPathObjects.UseVisualStyleBackColor = true;
+            this.btnPathObjects.Click += new System.EventHandler(this.btnPathObjects_Click);
             // 
             // frmSettings
             // 
@@ -550,6 +694,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabInvNums.ResumeLayout(false);
             this.tabInvNums.PerformLayout();
+            this.gbBoardgames.ResumeLayout(false);
+            this.gbBoardgames.PerformLayout();
             this.gbBooks.ResumeLayout(false);
             this.gbBooks.PerformLayout();
             this.gbItems.ResumeLayout(false);
@@ -557,8 +703,13 @@
             this.tabOther.ResumeLayout(false);
             this.gbScanner.ResumeLayout(false);
             this.gbScanner.PerformLayout();
-            this.gbBoardgames.ResumeLayout(false);
-            this.gbBoardgames.PerformLayout();
+            this.tabRelativePaths.ResumeLayout(false);
+            this.gbPathGames.ResumeLayout(false);
+            this.gbPathGames.PerformLayout();
+            this.gmPathObjects.ResumeLayout(false);
+            this.gmPathObjects.PerformLayout();
+            this.gbPathBooks.ResumeLayout(false);
+            this.gbPathBooks.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -612,5 +763,18 @@
         private System.Windows.Forms.TextBox txtBoardPrefix;
         private System.Windows.Forms.Label lblBoardStart;
         private System.Windows.Forms.TextBox txtBoardStart;
+        private System.Windows.Forms.TabPage tabRelativePaths;
+        private System.Windows.Forms.GroupBox gbPathBooks;
+        private System.Windows.Forms.Button btnPathBooks;
+        private System.Windows.Forms.Label lblPathBooks;
+        private System.Windows.Forms.TextBox txtPathBooks;
+        private System.Windows.Forms.GroupBox gmPathObjects;
+        private System.Windows.Forms.Button btnPathObjects;
+        private System.Windows.Forms.Label lblPathObjects;
+        private System.Windows.Forms.TextBox txtPathObjects;
+        private System.Windows.Forms.GroupBox gbPathGames;
+        private System.Windows.Forms.Button btnPathGames;
+        private System.Windows.Forms.Label lblPathGames;
+        private System.Windows.Forms.TextBox txtPathGames;
     }
 }

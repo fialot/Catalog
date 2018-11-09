@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 using myFunctions;
 using Etier.IconHelper;
 using System.Diagnostics;
@@ -18,6 +18,7 @@ namespace Katalog
     {
 
         string FileText = "";
+        string RelativePath = "";
         List<FInfo> FileList = new List<FInfo>();
 
         public frmEditFiles()
@@ -31,9 +32,10 @@ namespace Katalog
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public DialogResult ShowDialog(ref string text)
+        public DialogResult ShowDialog(ref string text, string relativePath)
         {
-            FileText = text;                   // Item ID
+            FileText = text;               
+            RelativePath = relativePath;
             DialogResult res = base.ShowDialog();       // Base ShowDialog
             if (res == DialogResult.OK)
                 text = FileText;
@@ -55,9 +57,15 @@ namespace Katalog
             
             fileName.ImageGetter = delegate (object x)
             {
-                Icon ico = IconReader.GetFileIcon(((FInfo)x).Path, IconReader.IconSize.Small, false);
-                return ico.ToBitmap();
-
+                try
+                {
+                    Icon ico = IconReader.GetFileIcon(((FInfo)x).Path, IconReader.IconSize.Small, false);
+                    return ico.ToBitmap();
+                }
+                catch
+                {
+                    return null;
+                }
             };
             fileName.AspectGetter = delegate (object x) {
                 return ((FInfo)x).Name;
@@ -90,7 +98,7 @@ namespace Katalog
         {
             string text = "";
             frmEditFile form = new frmEditFile();
-            form.ShowDialog(ref text);
+            form.ShowDialog(ref text, RelativePath);
             if (text != "")
             {
                 if (FileText != "") FileText += ";";
@@ -111,7 +119,7 @@ namespace Katalog
                 string text = global.FInfoToText(info);
                 string textOgig = text;
                 frmEditFile form = new frmEditFile();
-                if (form.ShowDialog(ref text) == DialogResult.OK)
+                if (form.ShowDialog(ref text, RelativePath) == DialogResult.OK)
                 {
                     FileText = FileText.Replace(textOgig, text);
                     FileText = FileText.Replace(";;", ";");
@@ -162,10 +170,15 @@ namespace Katalog
             if (olvFiles.SelectedIndex >= 0)                    // If selected Item
             {
                 FInfo info = (FInfo)olvFiles.SelectedObject;
+                
                 try
                 {
-                    Process.Start(info.Path);
-                } catch (Exception Err)
+                    if (File.Exists(info.Path))
+                        Process.Start(info.Path);
+                    else
+                        Process.Start(RelativePath + Path.DirectorySeparatorChar + info.Path);
+                }
+                catch (Exception Err)
                 {
                     Dialogs.ShowErr(Err.Message, Lng.Get("Error"));
                 }

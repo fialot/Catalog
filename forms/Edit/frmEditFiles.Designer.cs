@@ -169,6 +169,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(450, 500);
             this.Name = "frmEditFiles";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Files";
             this.Load += new System.EventHandler(this.frmEditFiles_Load);
             ((System.ComponentModel.ISupportInitialize)(this.olvFiles)).EndInit();

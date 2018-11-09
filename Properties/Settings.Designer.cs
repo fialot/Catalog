@@ -285,5 +285,149 @@ namespace Katalog.Properties {
                 this["LastGUserCred"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BookFolder {
+            get {
+                return ((string)(this["BookFolder"]));
+            }
+            set {
+                this["BookFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GameFolder {
+            get {
+                return ((string)(this["GameFolder"]));
+            }
+            set {
+                this["GameFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ObjectFolder {
+            get {
+                return ((string)(this["ObjectFolder"]));
+            }
+            set {
+                this["ObjectFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowContacts {
+            get {
+                return ((bool)(this["ShowContacts"]));
+            }
+            set {
+                this["ShowContacts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowLendings {
+            get {
+                return ((bool)(this["ShowLendings"]));
+            }
+            set {
+                this["ShowLendings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowBorrowings {
+            get {
+                return ((bool)(this["ShowBorrowings"]));
+            }
+            set {
+                this["ShowBorrowings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowItems {
+            get {
+                return ((bool)(this["ShowItems"]));
+            }
+            set {
+                this["ShowItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowBooks {
+            get {
+                return ((bool)(this["ShowBooks"]));
+            }
+            set {
+                this["ShowBooks"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowBoardGames {
+            get {
+                return ((bool)(this["ShowBoardGames"]));
+            }
+            set {
+                this["ShowBoardGames"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowGames {
+            get {
+                return ((bool)(this["ShowGames"]));
+            }
+            set {
+                this["ShowGames"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowRecipes {
+            get {
+                return ((bool)(this["ShowRecipes"]));
+            }
+            set {
+                this["ShowRecipes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowObjects {
+            get {
+                return ((bool)(this["ShowObjects"]));
+            }
+            set {
+                this["ShowObjects"] = value;
+            }
+        }
     }
 }

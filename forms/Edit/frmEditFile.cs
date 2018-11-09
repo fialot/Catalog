@@ -14,7 +14,7 @@ namespace Katalog
     {
 
         string FileText = "";
-
+        string RelativePath = "";
 
         public frmEditFile()
         {
@@ -27,9 +27,10 @@ namespace Katalog
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public DialogResult ShowDialog(ref string text)
+        public DialogResult ShowDialog(ref string text, string relativePath)
         {
-            FileText = text;                   // Item ID
+            FileText = text;                  
+            RelativePath = relativePath;
             DialogResult res = base.ShowDialog();       // Base ShowDialog
             if (res == DialogResult.OK)
             {
@@ -69,7 +70,14 @@ namespace Katalog
             dialog.Filter = Lng.Get("AllFiles", "All files") + " |*.*";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                txtPath.Text = dialog.FileName;
+                if (RelativePath != "")
+                {
+                    txtPath.Text = dialog.FileName.Replace(RelativePath, "");
+                    if (txtPath.Text.Length > 0 && txtPath.Text[0] == '\\') txtPath.Text = txtPath.Text.Remove(0, 1);
+                } else 
+                    txtPath.Text = dialog.FileName;
+                if (txtName.Text == "")
+                    txtName.Text = System.IO.Path.GetFileName(txtPath.Text);
             }
         }
     }

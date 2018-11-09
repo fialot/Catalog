@@ -297,7 +297,7 @@ namespace Katalog
         private void btnFiles_Click(object sender, EventArgs e)
         {
             frmEditFiles form = new frmEditFiles();
-            form.ShowDialog(ref files);
+            form.ShowDialog(ref files, Properties.Settings.Default.GameFolder);
             if (files != "")
             {
                 btnFiles.ForeColor = Color.Green;

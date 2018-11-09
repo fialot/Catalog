@@ -1200,6 +1200,16 @@ namespace Katalog
             cbObjectShow.Items.Add(Lng.Get("OnlyTop", "Only top"));
             cbObjectShow.Items.Add(Lng.Get("OnlyChild", "Only child"));
             cbObjectShow.SelectedIndex = 0;
+
+            if (!Properties.Settings.Default.ShowContacts) mnuShowContacts.Checked = false;
+            if (!Properties.Settings.Default.ShowLendings) mnuShowLending.Checked = false;
+            if (!Properties.Settings.Default.ShowBorrowings) mnuShowBorrowing.Checked = false;
+            if (!Properties.Settings.Default.ShowItems) mnuShowItems.Checked = false;
+            if (!Properties.Settings.Default.ShowBooks) mnuShowBooks.Checked = false;
+            if (!Properties.Settings.Default.ShowBoardGames) mnuShowBoardGames.Checked = false;
+            if (!Properties.Settings.Default.ShowGames) mnuShowGames.Checked = false;
+            if (!Properties.Settings.Default.ShowRecipes) mnuShowRecipes.Checked = false;
+            if (!Properties.Settings.Default.ShowObjects) mnuShowObjects.Checked = false;
         }
 
 
@@ -1411,7 +1421,13 @@ namespace Katalog
             if (page == tabBooks) return pos;
             if (mnuShowBooks.Checked) pos++;
             if (page == tabBoardGames) return pos;
-           
+
+            if (mnuShowBoardGames.Checked) pos++;
+            if (page == tabGames) return pos;
+            if (mnuShowGames.Checked) pos++;
+            if (page == tabRecipes) return pos;
+            if (mnuShowRecipes.Checked) pos++;
+            if (page == tabObject) return pos;
 
 
             return pos;
@@ -1467,6 +1483,30 @@ namespace Katalog
                 else
                     TabBars.TabPages.Insert(FindTabPosition(tabBoardGames), tabBoardGames);
             }
+            // ----- Tab Games -----
+            else if (((ToolStripMenuItem)sender).Tag == "Games")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    TabBars.TabPages.Remove(tabGames);
+                else
+                    TabBars.TabPages.Insert(FindTabPosition(tabGames), tabGames);
+            }
+            // ----- Tab Recipes -----
+            else if (((ToolStripMenuItem)sender).Tag == "Recipes")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    TabBars.TabPages.Remove(tabRecipes);
+                else
+                    TabBars.TabPages.Insert(FindTabPosition(tabRecipes), tabRecipes);
+            }
+            // ----- Tab Objects -----
+            else if (((ToolStripMenuItem)sender).Tag == "Objects")
+            {
+                if (((ToolStripMenuItem)sender).Checked == false)
+                    TabBars.TabPages.Remove(tabObject);
+                else
+                    TabBars.TabPages.Insert(FindTabPosition(tabObject), tabObject);
+            }
         }
 
         private void mnuShowToolbars_Click(object sender, EventArgs e)
@@ -1508,6 +1548,18 @@ namespace Katalog
             ImportGoogleContacts();
         }
 
-        
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.ShowContacts = mnuShowContacts.Checked;
+            Properties.Settings.Default.ShowLendings = mnuShowLending.Checked;
+            Properties.Settings.Default.ShowBorrowings = mnuShowBorrowing.Checked;
+            Properties.Settings.Default.ShowItems = mnuShowItems.Checked;
+            Properties.Settings.Default.ShowBooks = mnuShowBooks.Checked;
+            Properties.Settings.Default.ShowBoardGames = mnuShowBoardGames.Checked;
+            Properties.Settings.Default.ShowGames = mnuShowGames.Checked;
+            Properties.Settings.Default.ShowRecipes = mnuShowRecipes.Checked;
+            Properties.Settings.Default.ShowObjects = mnuShowObjects.Checked;
+            Properties.Settings.Default.Save();
+        }
     }
 }

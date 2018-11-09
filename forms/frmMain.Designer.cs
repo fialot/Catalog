@@ -274,6 +274,11 @@
             this.mnuShowItems = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowBooks = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowBoardGames = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuShowGames = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuShowRecipes = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuShowObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLists = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBookLists = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAuthorList = new System.Windows.Forms.ToolStripMenuItem();
@@ -2148,7 +2153,12 @@
             this.toolStripMenuItem3,
             this.mnuShowItems,
             this.mnuShowBooks,
-            this.mnuShowBoardGames});
+            this.mnuShowBoardGames,
+            this.toolStripMenuItem9,
+            this.mnuShowGames,
+            this.mnuShowRecipes,
+            this.toolStripMenuItem10,
+            this.mnuShowObjects});
             this.mnuShow.Name = "mnuShow";
             resources.ApplyResources(this.mnuShow, "mnuShow");
             // 
@@ -2193,7 +2203,7 @@
             this.mnuShowContacts.Name = "mnuShowContacts";
             resources.ApplyResources(this.mnuShowContacts, "mnuShowContacts");
             this.mnuShowContacts.Tag = "Contacts";
-            this.mnuShowContacts.Click += new System.EventHandler(this.mnuShowTabs_Click);
+            this.mnuShowContacts.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowLending
             // 
@@ -2203,7 +2213,7 @@
             this.mnuShowLending.Name = "mnuShowLending";
             resources.ApplyResources(this.mnuShowLending, "mnuShowLending");
             this.mnuShowLending.Tag = "Lending";
-            this.mnuShowLending.Click += new System.EventHandler(this.mnuShowTabs_Click);
+            this.mnuShowLending.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowBorrowing
             // 
@@ -2213,7 +2223,7 @@
             this.mnuShowBorrowing.Name = "mnuShowBorrowing";
             resources.ApplyResources(this.mnuShowBorrowing, "mnuShowBorrowing");
             this.mnuShowBorrowing.Tag = "Borrowing";
-            this.mnuShowBorrowing.Click += new System.EventHandler(this.mnuShowTabs_Click);
+            this.mnuShowBorrowing.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -2228,7 +2238,7 @@
             this.mnuShowItems.Name = "mnuShowItems";
             resources.ApplyResources(this.mnuShowItems, "mnuShowItems");
             this.mnuShowItems.Tag = "Items";
-            this.mnuShowItems.Click += new System.EventHandler(this.mnuShowTabs_Click);
+            this.mnuShowItems.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowBooks
             // 
@@ -2238,7 +2248,7 @@
             this.mnuShowBooks.Name = "mnuShowBooks";
             resources.ApplyResources(this.mnuShowBooks, "mnuShowBooks");
             this.mnuShowBooks.Tag = "Books";
-            this.mnuShowBooks.Click += new System.EventHandler(this.mnuShowTabs_Click);
+            this.mnuShowBooks.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuShowBoardGames
             // 
@@ -2248,7 +2258,47 @@
             this.mnuShowBoardGames.Name = "mnuShowBoardGames";
             resources.ApplyResources(this.mnuShowBoardGames, "mnuShowBoardGames");
             this.mnuShowBoardGames.Tag = "Boardgames";
-            this.mnuShowBoardGames.Click += new System.EventHandler(this.mnuShowTabs_Click);
+            this.mnuShowBoardGames.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            resources.ApplyResources(this.toolStripMenuItem9, "toolStripMenuItem9");
+            // 
+            // mnuShowGames
+            // 
+            this.mnuShowGames.Checked = true;
+            this.mnuShowGames.CheckOnClick = true;
+            this.mnuShowGames.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuShowGames.Name = "mnuShowGames";
+            resources.ApplyResources(this.mnuShowGames, "mnuShowGames");
+            this.mnuShowGames.Tag = "Games";
+            this.mnuShowGames.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
+            // 
+            // mnuShowRecipes
+            // 
+            this.mnuShowRecipes.Checked = true;
+            this.mnuShowRecipes.CheckOnClick = true;
+            this.mnuShowRecipes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuShowRecipes.Name = "mnuShowRecipes";
+            resources.ApplyResources(this.mnuShowRecipes, "mnuShowRecipes");
+            this.mnuShowRecipes.Tag = "Recipes";
+            this.mnuShowRecipes.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
+            // 
+            // mnuShowObjects
+            // 
+            this.mnuShowObjects.Checked = true;
+            this.mnuShowObjects.CheckOnClick = true;
+            this.mnuShowObjects.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuShowObjects.Name = "mnuShowObjects";
+            resources.ApplyResources(this.mnuShowObjects, "mnuShowObjects");
+            this.mnuShowObjects.Tag = "Objects";
+            this.mnuShowObjects.CheckedChanged += new System.EventHandler(this.mnuShowTabs_Click);
             // 
             // mnuLists
             // 
@@ -2361,6 +2411,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -2670,6 +2721,11 @@
         private BrightIdeasSoftware.OLVColumn objDevelopment;
         private System.Windows.Forms.ComboBox cbObjectShow;
         private System.Windows.Forms.Label lblObjectShow;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem mnuShowGames;
+        private System.Windows.Forms.ToolStripMenuItem mnuShowRecipes;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
+        private System.Windows.Forms.ToolStripMenuItem mnuShowObjects;
     }
 }
 

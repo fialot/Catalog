@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Microsoft.WindowsAPICodePack.Dialogs;
 using myFunctions;
 
 namespace Katalog
@@ -47,6 +47,10 @@ namespace Katalog
 
             Properties.Settings.Default.scanCOM = cbScanCOM.Text;
 
+            Properties.Settings.Default.BookFolder = txtPathBooks.Text;
+            Properties.Settings.Default.GameFolder = txtPathGames.Text;
+            Properties.Settings.Default.ObjectFolder = txtPathObjects.Text;
+
             Properties.Settings.Default.Save();
 
             if (MaxInvNumbers.Contact < Properties.Settings.Default.ContactStart) MaxInvNumbers.Item = Properties.Settings.Default.ContactStart - 1;
@@ -83,6 +87,10 @@ namespace Katalog
             chbIncSpecimen.Checked = Properties.Settings.Default.IncSpecimenInv;
 
             cbScanCOM.Text = Properties.Settings.Default.scanCOM;
+
+            txtPathBooks.Text = Properties.Settings.Default.BookFolder;
+            txtPathGames.Text = Properties.Settings.Default.GameFolder;
+            txtPathObjects.Text = Properties.Settings.Default.ObjectFolder;
         }
 
         private void btnScanRefresh_Click(object sender, EventArgs e)
@@ -101,6 +109,54 @@ namespace Katalog
             }
 
             cbScanCOM.Text = COM;
+        }
+
+        private void btnPathBooks_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+
+            // ----- Set Init Dir -----
+            if (System.IO.Directory.Exists(txtPathBooks.Text))
+                dialog.InitialDirectory = txtPathBooks.Text;
+
+
+            // ----- Show open dialog -----
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                txtPathBooks.Text = dialog.FileName;
+            dialog.Dispose();
+        }
+
+        private void btnPathGames_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+
+            // ----- Set Init Dir -----
+            if (System.IO.Directory.Exists(txtPathBooks.Text))
+                dialog.InitialDirectory = txtPathGames.Text;
+
+
+            // ----- Show open dialog -----
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                txtPathGames.Text = dialog.FileName;
+            dialog.Dispose();
+        }
+
+        private void btnPathObjects_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+
+            // ----- Set Init Dir -----
+            if (System.IO.Directory.Exists(txtPathBooks.Text))
+                dialog.InitialDirectory = txtPathObjects.Text;
+
+
+            // ----- Show open dialog -----
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                txtPathObjects.Text = dialog.FileName;
+            dialog.Dispose();
         }
     }
 }
