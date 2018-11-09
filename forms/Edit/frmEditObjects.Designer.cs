@@ -76,6 +76,7 @@
             this.lblCustomer = new System.Windows.Forms.Label();
             this.txtLanguage = new System.Windows.Forms.TextBox();
             this.lblLanguage = new System.Windows.Forms.Label();
+            this.chbIsParent = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbRating.SuspendLayout();
             this.SuspendLayout();
@@ -272,6 +273,7 @@
             resources.ApplyResources(this.btnFiles, "btnFiles");
             this.btnFiles.Name = "btnFiles";
             this.btnFiles.UseVisualStyleBackColor = true;
+            this.btnFiles.Click += new System.EventHandler(this.btnFiles_Click);
             // 
             // txtVersion
             // 
@@ -371,10 +373,19 @@
             resources.ApplyResources(this.lblLanguage, "lblLanguage");
             this.lblLanguage.Name = "lblLanguage";
             // 
+            // chbIsParent
+            // 
+            resources.ApplyResources(this.chbIsParent, "chbIsParent");
+            this.chbIsParent.Checked = true;
+            this.chbIsParent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbIsParent.Name = "chbIsParent";
+            this.chbIsParent.UseVisualStyleBackColor = true;
+            // 
             // frmEditObjects
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chbIsParent);
             this.Controls.Add(this.txtDevelopment);
             this.Controls.Add(this.lblDevelopment);
             this.Controls.Add(this.txtCustomer);
@@ -477,5 +488,6 @@
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.TextBox txtLanguage;
         private System.Windows.Forms.Label lblLanguage;
+        private System.Windows.Forms.CheckBox chbIsParent;
     }
 }

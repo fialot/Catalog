@@ -205,6 +205,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="forms\Edit\frmEditFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Edit\frmEditFile.Designer.cs">
+      <DependentUpon>frmEditFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Edit\frmEditBoardGames.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +222,12 @@
     </Compile>
     <Compile Include="forms\Edit\frmEditBorrowing.designer.cs">
       <DependentUpon>frmEditBorrowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Edit\frmEditFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Edit\frmEditFiles.Designer.cs">
+      <DependentUpon>frmEditFiles.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\Edit\frmEditGames.cs">
       <SubType>Form</SubType>
@@ -366,6 +378,12 @@
     <Compile Include="Video.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="forms\Edit\frmEditFile.resx">
+      <DependentUpon>frmEditFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Edit\frmEditFiles.resx">
+      <DependentUpon>frmEditFiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Edit\frmEditGames.cs.resx">
       <DependentUpon>frmEditGames.cs</DependentUpon>
     </EmbeddedResource>

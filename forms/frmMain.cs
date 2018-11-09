@@ -1195,6 +1195,11 @@ namespace Katalog
             cbBorrowingShow.Items.Add(Lng.Get("Borrowed"));
             cbBorrowingShow.Items.Add(Lng.Get("Reserved"));
             cbBorrowingShow.SelectedIndex = 0;
+
+            cbObjectShow.Items.Add(Lng.Get("All"));
+            cbObjectShow.Items.Add(Lng.Get("OnlyTop", "Only top"));
+            cbObjectShow.Items.Add(Lng.Get("OnlyChild", "Only child"));
+            cbObjectShow.SelectedIndex = 0;
         }
 
 
@@ -1503,5 +1508,6 @@ namespace Katalog
             ImportGoogleContacts();
         }
 
+        
     }
 }

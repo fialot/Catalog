@@ -36,5 +36,7 @@ namespace Katalog
         public Nullable<System.Guid> Parent { get; set; }
         public string Customer { get; set; }
         public string Development { get; set; }
+        public Nullable<bool> IsParent { get; set; }
+        public string UsedObjects { get; set; }
     }
 }

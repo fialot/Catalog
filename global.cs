@@ -26,6 +26,12 @@ namespace Katalog
     public enum ItemTypes { item = 0, book = 1, boardgame = 2 }
     public enum LendStatus { Reserved = 0, Lended = 1, Returned = 2, Canceled = 3 }
 
+    public class PInfo
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+    }
+
     public class CInfo
     {
         public Guid ID { get; set; }
@@ -59,6 +65,15 @@ namespace Katalog
         public string Note { get; set; }
         public DateTime LendFrom { get; set; }
         public DateTime LendTo { get; set; }
+    }
+
+    public class FInfo
+    {
+        public string Name { get; set; }
+        public string Group { get; set; }
+        public string Path { get; set; }
+        public string Version { get; set; }
+        public string Description { get; set; }
     }
 
     static class MaxInvNumbers
@@ -137,14 +152,14 @@ namespace Katalog
             list = DeleteDuplicates(list);
 
             string NumList = "";
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 if (NumList != "") NumList += ", ";
                 NumList += item;
             }
             return NumList;
         }
-        
+
         public static string GetLocationList(Guid id)
         {
             databaseEntities db = new databaseEntities();
@@ -159,7 +174,74 @@ namespace Katalog
             return NumList;
         }
 
+        public static List<PInfo> GetParentlist(Guid RemoveGuid)
+        {
+            databaseEntities db = new databaseEntities();
 
+            List<PInfo> list = db.Objects.Where(x => (x.Active ?? true) && (x.IsParent ?? true) && (x.ID != RemoveGuid)).Select(x => new PInfo { ID = x.ID, Name = x.Name.Trim() }).ToList();
+
+            return list;
+        }
+
+        public static FInfo GetFInfo(string text)
+        {
+            string[] info = text.Split(new string[] { ">" }, StringSplitOptions.None);
+            if (info.Length == 5)
+            {
+                FInfo itm = new FInfo();
+                itm.Name = info[0];
+                itm.Path = info[1];
+                itm.Version = info[2];
+                itm.Group = info[3];
+                itm.Description = info[4];
+                return itm;
+            }
+            return null;
+        }
+
+        public static List<FInfo> GetFInfoList(string text)
+        {
+            List<FInfo> list = new List<FInfo>();
+
+            string[] file = text.Split(new string[] { ";" }, StringSplitOptions.None);
+
+            foreach (var item in file)
+            {
+                string[] info = item.Split(new string[] { ">" }, StringSplitOptions.None);
+                if (info.Length == 5)
+                {
+                    FInfo itm = new FInfo();
+                    itm.Name = info[0];
+                    itm.Path = info[1];
+                    itm.Version = info[2];
+                    itm.Group = info[3];
+                    itm.Description = info[4];
+                    list.Add(itm);
+                }
+            }
+
+            return list;
+        }
+
+        public static string FInfoToText(FInfo item)
+        {
+            return item.Name + ">" + item.Path + ">" + item.Version + ">" + item.Group + ">" + item.Description;
+        }
+
+        public static string FInfoToText(List<FInfo> list)
+        {
+            if (list == null) return "";
+            string text = "";
+
+            foreach (var item in list)
+            {
+                string line = FInfoToText(item);
+                if (text != "") text += ";";
+                text += line;
+            }
+
+            return text;
+        }
 
         /// <summary>
         /// Check if item available

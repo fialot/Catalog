@@ -170,6 +170,8 @@
             this.recExcluded = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.recTagsNum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabObject = new System.Windows.Forms.TabPage();
+            this.cbObjectShow = new System.Windows.Forms.ComboBox();
+            this.lblObjectShow = new System.Windows.Forms.Label();
             this.chbShowExcludedObjects = new System.Windows.Forms.CheckBox();
             this.olvObjects = new BrightIdeasSoftware.FastObjectListView();
             this.objTags = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -177,7 +179,7 @@
             this.objType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.objCategory = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.objNumber = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.objParrent = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objParent = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.objKeywords = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.objCustomer = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.objDevelopment = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -1395,11 +1397,26 @@
             // 
             // tabObject
             // 
+            this.tabObject.Controls.Add(this.cbObjectShow);
+            this.tabObject.Controls.Add(this.lblObjectShow);
             this.tabObject.Controls.Add(this.chbShowExcludedObjects);
             this.tabObject.Controls.Add(this.olvObjects);
             resources.ApplyResources(this.tabObject, "tabObject");
             this.tabObject.Name = "tabObject";
             this.tabObject.UseVisualStyleBackColor = true;
+            // 
+            // cbObjectShow
+            // 
+            this.cbObjectShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbObjectShow.FormattingEnabled = true;
+            resources.ApplyResources(this.cbObjectShow, "cbObjectShow");
+            this.cbObjectShow.Name = "cbObjectShow";
+            this.cbObjectShow.SelectedIndexChanged += new System.EventHandler(this.cbObjectShow_SelectedIndexChanged);
+            // 
+            // lblObjectShow
+            // 
+            resources.ApplyResources(this.lblObjectShow, "lblObjectShow");
+            this.lblObjectShow.Name = "lblObjectShow";
             // 
             // chbShowExcludedObjects
             // 
@@ -1415,7 +1432,7 @@
             this.olvObjects.AllColumns.Add(this.objType);
             this.olvObjects.AllColumns.Add(this.objCategory);
             this.olvObjects.AllColumns.Add(this.objNumber);
-            this.olvObjects.AllColumns.Add(this.objParrent);
+            this.olvObjects.AllColumns.Add(this.objParent);
             this.olvObjects.AllColumns.Add(this.objKeywords);
             this.olvObjects.AllColumns.Add(this.objCustomer);
             this.olvObjects.AllColumns.Add(this.objDevelopment);
@@ -1430,7 +1447,7 @@
             this.objType,
             this.objCategory,
             this.objNumber,
-            this.objParrent,
+            this.objParent,
             this.objKeywords,
             this.objCustomer,
             this.objDevelopment,
@@ -1474,9 +1491,9 @@
             // 
             resources.ApplyResources(this.objNumber, "objNumber");
             // 
-            // objParrent
+            // objParent
             // 
-            resources.ApplyResources(this.objParrent, "objParrent");
+            resources.ApplyResources(this.objParent, "objParent");
             // 
             // objKeywords
             // 
@@ -2648,9 +2665,11 @@
         private BrightIdeasSoftware.OLVColumn objType;
         private BrightIdeasSoftware.OLVColumn objActive;
         private BrightIdeasSoftware.OLVColumn objTagsNum;
-        private BrightIdeasSoftware.OLVColumn objParrent;
+        private BrightIdeasSoftware.OLVColumn objParent;
         private BrightIdeasSoftware.OLVColumn objCustomer;
         private BrightIdeasSoftware.OLVColumn objDevelopment;
+        private System.Windows.Forms.ComboBox cbObjectShow;
+        private System.Windows.Forms.Label lblObjectShow;
     }
 }
 

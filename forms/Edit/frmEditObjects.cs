@@ -24,6 +24,7 @@ namespace Katalog
         Guid ID = Guid.Empty;                               // Selected Item GUID (No Guid = new item)
 
         string Files = "";
+        List<PInfo> parentList = new List<PInfo>();
 
         #endregion
 
@@ -58,6 +59,8 @@ namespace Katalog
             var categoryList = db.Objects.Select(x => x.Category.Trim()).ToList();
             var subcategoryList = db.Objects.Select(x => x.Subcategory.Trim()).ToList();
 
+            
+
             // ----- Delete duplicates -----
             categoryList = global.DeleteDuplicates(categoryList);
             subcategoryList = global.DeleteDuplicates(subcategoryList);
@@ -68,6 +71,7 @@ namespace Katalog
             foreach (var item in subcategoryList)
                 txtSubCategory.AutoCompleteCustomSource.Add(item);
 
+            
             // ----- If Edit -> fill form -----
             if (ID != Guid.Empty)
             {
@@ -88,12 +92,22 @@ namespace Katalog
                 txtVersion.Text = itm.Version.Trim();
                 txtFolder.Text = itm.Folder.Trim();
                 Files = itm.Files.Trim();
+                if (Files != "")
+                {
+                    btnFiles.ForeColor = Color.Green;
+                    btnFiles.Font = new Font(btnFiles.Font, FontStyle.Bold);
+                }
                 cbType.Text = itm.Type.Trim();
                 txtNumber.Text = itm.ObjectNum.Trim();
                 txtLanguage.Text = itm.Language.Trim();
-                //cbParrent.Text = 
+                if (itm.Parent != null)
+                {
+                    var parentName = db.Objects.Where(x => x.ID == itm.Parent).Select(x => x.Name).ToList();
+                    if (parentName.Count > 0) cbParent.Text = parentName[0];
+                }
                 txtCustomer.Text = itm.Customer.Trim();
                 txtDevelopment.Text = itm.Development.Trim();
+                chbIsParent.Checked = itm.IsParent ?? false;
 
                 // ----- Rating -----
                 txtRating.Text = itm.Rating.ToString();
@@ -113,10 +127,19 @@ namespace Katalog
 
                 // ----- Update -----
                 lblUpdated.Text = Lng.Get("LastUpdate", "Last update") + ": " + (itm.Updated ?? DateTime.Now).ToShortDateString();
+
+                parentList = global.GetParentlist(itm.ID);
             }
             else
             {
+                parentList = global.GetParentlist(Guid.Empty);
+            }
 
+            // ----- Prepare Parent list -----
+            cbParent.Items.Clear();
+            foreach (var item in parentList)
+            {
+                cbParent.Items.Add(item.Name);
             }
         }
 
@@ -152,10 +175,14 @@ namespace Katalog
             itm.ObjectNum = txtNumber.Text;
             itm.Language = txtLanguage.Text;
 
-            itm.Parent = Guid.Empty;
-
+            if (cbParent.SelectedIndex >= 0)
+                itm.Parent = parentList[cbParent.SelectedIndex].ID;
+            else 
+                itm.Parent = null;
+                
             itm.Customer = txtCustomer.Text;
             itm.Development = txtDevelopment.Text;
+            itm.IsParent = chbIsParent.Checked;
 
             // ----- Rating -----
             itm.Rating = Conv.ToShortNull(txtRating.Text);
@@ -282,5 +309,15 @@ namespace Katalog
 
         #endregion
 
+        private void btnFiles_Click(object sender, EventArgs e)
+        {
+            frmEditFiles form = new frmEditFiles();
+            form.ShowDialog(ref Files);
+            if (Files != "")
+            {
+                btnFiles.ForeColor = Color.Green;
+                btnFiles.Font = new Font(btnFiles.Font, FontStyle.Bold);
+            }
+        }
     }
 }

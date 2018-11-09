@@ -273,6 +273,8 @@
           <Property Name="Parent" Type="uniqueidentifier" />
           <Property Name="Customer" Type="nvarchar" MaxLength="50" />
           <Property Name="Development" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsParent" Type="bit" />
+          <Property Name="UsedObjects" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Recipes">
           <Key>
@@ -678,6 +680,8 @@
           <Property Name="Parent" Type="Guid" />
           <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Development" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsParent" Type="Boolean" />
+          <Property Name="UsedObjects" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -986,6 +990,8 @@
           <EntitySetMapping Name="Objects">
             <EntityTypeMapping TypeName="databaseModel.Objects">
               <MappingFragment StoreEntitySet="Objects">
+                <ScalarProperty Name="UsedObjects" ColumnName="UsedObjects" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
                 <ScalarProperty Name="Development" ColumnName="Development" />
                 <ScalarProperty Name="Customer" ColumnName="Customer" />
                 <ScalarProperty Name="Parent" ColumnName="Parent" />

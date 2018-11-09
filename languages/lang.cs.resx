@@ -405,4 +405,10 @@
   <data name="Nick" xml:space="preserve">
     <value>Přezdívka</value>
   </data>
+  <data name="OnlyChild" xml:space="preserve">
+    <value>Pouze děti</value>
+  </data>
+  <data name="OnlyTop" xml:space="preserve">
+    <value>Pouze vrch</value>
+  </data>
 </root>

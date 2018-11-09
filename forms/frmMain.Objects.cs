@@ -23,10 +23,18 @@ namespace Katalog
             List<Objects> obj;
 
             if (chbShowExcludedObjects.Checked)
-                obj = db.Objects.ToList();
+            {
+                if (cbObjectShow.SelectedIndex == 1) obj = db.Objects.Where(p => p.Parent == null).ToList();
+                else if (cbObjectShow.SelectedIndex == 2) obj = db.Objects.Where(p => !(p.IsParent ?? false)).ToList();
+                else obj = db.Objects.ToList();
+            }
             else
-                obj = db.Objects.Where(p => (p.Active ?? true) == true).ToList();
-
+            { 
+                if (cbObjectShow.SelectedIndex == 1) obj = db.Objects.Where(p => (p.Active ?? true) && (p.Parent == null)).ToList();
+                else if (cbObjectShow.SelectedIndex == 2) obj = db.Objects.Where(p => (p.Active ?? true) && !(p.IsParent ?? false)).ToList();
+                else obj = db.Objects.Where(p => p.Active ?? true).ToList();
+            }
+             
             objTags.Renderer = new ImageRenderer();
             objTags.AspectGetter = delegate (object x) {
                 if (x == null) return "";
@@ -69,10 +77,12 @@ namespace Katalog
                 if (x == null) return "";
                 return ((Objects)x).ObjectNum;
             };
-            /*objParrent.AspectGetter = delegate (object x) {
+            objParent.AspectGetter = delegate (object x) {
                 if (x == null) return "";
-                return ((Objects)x).Category;
-            };*/
+                var parentName = db.Objects.Where(p => p.ID == ((Objects)x).Parent).Select(p => p.Name).ToList();
+                if (parentName.Count > 0) return parentName[0];
+                return "";
+            };
             objKeywords.AspectGetter = delegate (object x) {
                 if (x == null) return "";
                 return ((Objects)x).Keywords;
@@ -135,6 +145,11 @@ namespace Katalog
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void chbShowExcludedObjects_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateObjOLV();
+        }
+
+        private void cbObjectShow_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateObjOLV();
         }
@@ -308,7 +323,7 @@ namespace Katalog
                 FastFilter = TextMatchFilter.Prefix(olvObjects, filterArray);
             }
             if (cbFastFilterCol.SelectedIndex == 0)
-                FastFilter.Columns = new OLVColumn[] { objName, objType, objCategory, objNumber, objParrent, objCustomer, objDevelopment, objActive };
+                FastFilter.Columns = new OLVColumn[] { objName, objType, objCategory, objNumber, objParent, objCustomer, objDevelopment, objActive };
             else if (cbFastFilterCol.SelectedIndex == 1)
                 FastFilter.Columns = new OLVColumn[] { objName };
             else if (cbFastFilterCol.SelectedIndex == 2)
@@ -318,7 +333,7 @@ namespace Katalog
             else if (cbFastFilterCol.SelectedIndex == 4)
                 FastFilter.Columns = new OLVColumn[] { objNumber };
             else if (cbFastFilterCol.SelectedIndex == 5)
-                FastFilter.Columns = new OLVColumn[] { objParrent };
+                FastFilter.Columns = new OLVColumn[] { objParent };
             else if (cbFastFilterCol.SelectedIndex == 6)
                 FastFilter.Columns = new OLVColumn[] { objCustomer };
             else if (cbFastFilterCol.SelectedIndex == 7)
@@ -350,7 +365,7 @@ namespace Katalog
             StandardFilter = TextMatchFilter.Contains(olvObjects, txtFilter.Text);
 
             if (cbFilterCol.SelectedIndex == 0)
-                StandardFilter.Columns = new OLVColumn[] { objName, objType, objCategory, objNumber, objParrent, objKeywords, objCustomer, objDevelopment, objFolder, objVersion, objActive };
+                StandardFilter.Columns = new OLVColumn[] { objName, objType, objCategory, objNumber, objParent, objKeywords, objCustomer, objDevelopment, objFolder, objVersion, objActive };
             else if (cbFilterCol.SelectedIndex == 1)
                 StandardFilter.Columns = new OLVColumn[] { objName };
             else if (cbFilterCol.SelectedIndex == 2)
@@ -360,7 +375,7 @@ namespace Katalog
             else if (cbFilterCol.SelectedIndex == 4)
                 StandardFilter.Columns = new OLVColumn[] { objNumber };
             else if (cbFilterCol.SelectedIndex == 5)
-                StandardFilter.Columns = new OLVColumn[] { objParrent };
+                StandardFilter.Columns = new OLVColumn[] { objParent };
             else if (cbFilterCol.SelectedIndex == 6)
                 StandardFilter.Columns = new OLVColumn[] { objKeywords };
             else if (cbFilterCol.SelectedIndex == 7)
