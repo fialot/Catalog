@@ -307,6 +307,7 @@
     <Compile Include="forms\frmSettings.Designer.cs">
       <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="functions\IconHelper.cs" />
     <Compile Include="functions\Str.cs" />
     <Compile Include="Games.cs">
       <DependentUpon>dbModel.tt</DependentUpon>

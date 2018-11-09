@@ -376,6 +376,7 @@
             resources.ApplyResources(this.btnFiles, "btnFiles");
             this.btnFiles.Name = "btnFiles";
             this.btnFiles.UseVisualStyleBackColor = true;
+            this.btnFiles.Click += new System.EventHandler(this.btnFiles_Click);
             // 
             // lblURL
             // 

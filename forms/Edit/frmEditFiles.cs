@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using myFunctions;
+using Etier.IconHelper;
+using System.Diagnostics;
 
 namespace Katalog
 {
@@ -50,6 +52,13 @@ namespace Katalog
         private void UpdateOLV()
         {
 
+            
+            fileName.ImageGetter = delegate (object x)
+            {
+                Icon ico = IconReader.GetFileIcon(((FInfo)x).Path, IconReader.IconSize.Small, false);
+                return ico.ToBitmap();
+
+            };
             fileName.AspectGetter = delegate (object x) {
                 return ((FInfo)x).Name;
             };
@@ -146,6 +155,23 @@ namespace Katalog
                     UpdateOLV();
                 }
             }
+        }
+
+        private void olvFiles_DoubleClick(object sender, EventArgs e)
+        {
+            if (olvFiles.SelectedIndex >= 0)                    // If selected Item
+            {
+                FInfo info = (FInfo)olvFiles.SelectedObject;
+                try
+                {
+                    Process.Start(info.Path);
+                } catch (Exception Err)
+                {
+                    Dialogs.ShowErr(Err.Message, Lng.Get("Error"));
+                }
+                
+            }
+                
         }
     }
 }

@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditFiles));
             this.olvFiles = new BrightIdeasSoftware.FastObjectListView();
             this.fileName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.filePath = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fileVersion = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fileDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.filePath = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fileGroup = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -65,23 +65,19 @@
             this.olvFiles.Location = new System.Drawing.Point(12, 12);
             this.olvFiles.Name = "olvFiles";
             this.olvFiles.ShowGroups = false;
-            this.olvFiles.Size = new System.Drawing.Size(436, 442);
+            this.olvFiles.Size = new System.Drawing.Size(440, 423);
             this.olvFiles.TabIndex = 1;
             this.olvFiles.TabStop = false;
             this.olvFiles.UseCompatibleStateImageBehavior = false;
             this.olvFiles.View = System.Windows.Forms.View.Details;
             this.olvFiles.VirtualMode = true;
+            this.olvFiles.DoubleClick += new System.EventHandler(this.olvFiles_DoubleClick);
             // 
             // fileName
             // 
             this.fileName.AspectName = "";
             this.fileName.Text = "Name";
             this.fileName.Width = 163;
-            // 
-            // filePath
-            // 
-            this.filePath.Text = "Path";
-            this.filePath.Width = 94;
             // 
             // fileVersion
             // 
@@ -93,6 +89,11 @@
             this.fileDescription.Text = "Description";
             this.fileDescription.Width = 174;
             // 
+            // filePath
+            // 
+            this.filePath.Text = "Path";
+            this.filePath.Width = 94;
+            // 
             // fileGroup
             // 
             this.fileGroup.DisplayIndex = 4;
@@ -102,7 +103,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(12, 460);
+            this.btnAdd.Location = new System.Drawing.Point(12, 441);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 10;
@@ -113,7 +114,7 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEdit.Location = new System.Drawing.Point(93, 460);
+            this.btnEdit.Location = new System.Drawing.Point(93, 441);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 11;
@@ -124,7 +125,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(174, 460);
+            this.btnDelete.Location = new System.Drawing.Point(174, 441);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 12;
@@ -136,7 +137,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(292, 495);
+            this.btnOK.Location = new System.Drawing.Point(296, 476);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 20;
@@ -147,7 +148,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(373, 495);
+            this.btnCancel.Location = new System.Drawing.Point(377, 476);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 21;
@@ -158,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 530);
+            this.ClientSize = new System.Drawing.Size(464, 511);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnDelete);
@@ -166,6 +167,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.olvFiles);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(450, 500);
             this.Name = "frmEditFiles";
             this.Text = "Files";
             this.Load += new System.EventHandler(this.frmEditFiles_Load);

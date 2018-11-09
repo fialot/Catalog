@@ -62,5 +62,15 @@ namespace Katalog
                 txtDescription.Text = info.Description;
             }
         }
+
+        private void btnPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = Lng.Get("AllFiles", "All files") + " |*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtPath.Text = dialog.FileName;
+            }
+        }
     }
 }

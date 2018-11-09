@@ -101,7 +101,11 @@ namespace Katalog
                 txtRules.Text = itm.Rules.Trim();
                 txtURL.Text = itm.URL.Trim();
                 files = itm.Files.Trim();
-                if (files != "") btnFiles.ForeColor = Color.Green;
+                if (files != "")
+                {
+                    btnFiles.ForeColor = Color.Green;
+                    btnFiles.Font = new Font(btnFiles.Font, FontStyle.Bold);
+                }
 
                 // ----- Rating -----
                 txtRating.Text = itm.Rating.ToString();
@@ -290,5 +294,15 @@ namespace Katalog
 
         #endregion
 
+        private void btnFiles_Click(object sender, EventArgs e)
+        {
+            frmEditFiles form = new frmEditFiles();
+            form.ShowDialog(ref files);
+            if (files != "")
+            {
+                btnFiles.ForeColor = Color.Green;
+                btnFiles.Font = new Font(btnFiles.Font, FontStyle.Bold);
+            }
+        }
     }
 }

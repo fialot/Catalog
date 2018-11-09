@@ -267,6 +267,9 @@
   <data name="&gt;&gt;lblUpdated.ZOrder" xml:space="preserve">
     <value>24</value>
   </data>
+  <data name="txtSubCategory.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="txtSubCategory.Location" type="System.Drawing.Point, System.Drawing">
     <value>397, 110</value>
   </data>
@@ -287,6 +290,9 @@
   </data>
   <data name="&gt;&gt;txtSubCategory.ZOrder" xml:space="preserve">
     <value>25</value>
+  </data>
+  <data name="lblSubCategory.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="lblSubCategory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1017,6 +1023,9 @@
   <data name="&gt;&gt;lblVersion.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
+  <data name="lblParent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="lblParent.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1046,6 +1055,9 @@
   </data>
   <data name="&gt;&gt;lblParent.ZOrder" xml:space="preserve">
     <value>15</value>
+  </data>
+  <data name="cbParent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="cbParent.Location" type="System.Drawing.Point, System.Drawing">
     <value>529, 109</value>
@@ -1149,6 +1161,9 @@
   <data name="&gt;&gt;btnFolder.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="cbType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="cbType.Location" type="System.Drawing.Point, System.Drawing">
     <value>529, 70</value>
   </data>
@@ -1169,6 +1184,9 @@
   </data>
   <data name="&gt;&gt;cbType.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="lblType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="lblType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1200,6 +1218,9 @@
   <data name="&gt;&gt;lblType.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="txtNumber.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="txtNumber.Location" type="System.Drawing.Point, System.Drawing">
     <value>397, 71</value>
   </data>
@@ -1220,6 +1241,9 @@
   </data>
   <data name="&gt;&gt;txtNumber.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="lblNumber.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="lblNumber.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

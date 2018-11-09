@@ -113,9 +113,9 @@
             // 
             // txtSubCategory
             // 
+            resources.ApplyResources(this.txtSubCategory, "txtSubCategory");
             this.txtSubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtSubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtSubCategory, "txtSubCategory");
             this.txtSubCategory.Name = "txtSubCategory";
             // 
             // lblSubCategory
@@ -294,8 +294,8 @@
             // 
             // cbParent
             // 
-            this.cbParent.FormattingEnabled = true;
             resources.ApplyResources(this.cbParent, "cbParent");
+            this.cbParent.FormattingEnabled = true;
             this.cbParent.Name = "cbParent";
             // 
             // txtFolder
@@ -316,8 +316,8 @@
             // 
             // cbType
             // 
-            this.cbType.FormattingEnabled = true;
             resources.ApplyResources(this.cbType, "cbType");
+            this.cbType.FormattingEnabled = true;
             this.cbType.Name = "cbType";
             // 
             // lblType
@@ -327,9 +327,9 @@
             // 
             // txtNumber
             // 
+            resources.ApplyResources(this.txtNumber, "txtNumber");
             this.txtNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtNumber, "txtNumber");
             this.txtNumber.Name = "txtNumber";
             // 
             // lblNumber

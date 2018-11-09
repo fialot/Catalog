@@ -48,7 +48,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(258, 275);
+            this.btnCancel.Location = new System.Drawing.Point(247, 276);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 21;
@@ -59,7 +59,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(177, 275);
+            this.btnOK.Location = new System.Drawing.Point(166, 276);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 20;
@@ -74,7 +74,7 @@
             this.txtName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtName.Location = new System.Drawing.Point(15, 25);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(318, 20);
+            this.txtName.Size = new System.Drawing.Size(307, 20);
             this.txtName.TabIndex = 2;
             // 
             // lblName
@@ -95,7 +95,7 @@
             this.txtPath.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtPath.Location = new System.Drawing.Point(15, 64);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(282, 20);
+            this.txtPath.Size = new System.Drawing.Size(271, 20);
             this.txtPath.TabIndex = 4;
             // 
             // lblPath
@@ -136,7 +136,7 @@
             this.txtGroup.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtGroup.Location = new System.Drawing.Point(164, 103);
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(169, 20);
+            this.txtGroup.Size = new System.Drawing.Size(158, 20);
             this.txtGroup.TabIndex = 9;
             // 
             // lblGroup
@@ -159,7 +159,7 @@
             this.txtDescription.Location = new System.Drawing.Point(15, 142);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(318, 127);
+            this.txtDescription.Size = new System.Drawing.Size(307, 128);
             this.txtDescription.TabIndex = 11;
             // 
             // lblDescription
@@ -175,18 +175,19 @@
             // btnPath
             // 
             this.btnPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPath.Location = new System.Drawing.Point(303, 62);
+            this.btnPath.Location = new System.Drawing.Point(292, 62);
             this.btnPath.Name = "btnPath";
             this.btnPath.Size = new System.Drawing.Size(30, 23);
             this.btnPath.TabIndex = 5;
             this.btnPath.Text = "...";
             this.btnPath.UseVisualStyleBackColor = true;
+            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
             // 
             // frmEditFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 310);
+            this.ClientSize = new System.Drawing.Size(334, 311);
             this.Controls.Add(this.btnPath);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.lblDescription);
@@ -201,6 +202,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(350, 350);
             this.Name = "frmEditFile";
             this.Text = "File";
             this.Load += new System.EventHandler(this.frmEditFile_Load);

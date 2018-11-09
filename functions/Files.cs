@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization;
 
+
 namespace myFunctions
 {
     public struct CSVfile
@@ -328,6 +329,7 @@ namespace myFunctions
 
         #endregion
 
+        
 
         // ----- SERIALIZE OBJECT -----
         /// <summary>
