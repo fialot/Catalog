@@ -567,7 +567,8 @@ namespace Katalog
                 else if (TabBars.SelectedTab == tabItems) ExportItems(dialog.FileName);
                 else if (TabBars.SelectedTab == tabBooks) ExportBooks(dialog.FileName);
                 else if (TabBars.SelectedTab == tabBoardGames) ExportBoardGames(dialog.FileName);
-
+                else if (TabBars.SelectedTab == tabGames) ExportGames(dialog.FileName);
+                else if (TabBars.SelectedTab == tabRecipes) ExportRecipes(dialog.FileName);
                 else if (TabBars.SelectedTab == tabObject) ExportObjects(dialog.FileName);
             }
         }
@@ -680,6 +681,8 @@ namespace Katalog
                 else if (TabBars.SelectedTab == tabItems) ImportItems(dialog.FileName);
                 else if (TabBars.SelectedTab == tabBooks) ImportBooks(dialog.FileName);
                 else if (TabBars.SelectedTab == tabBoardGames) ImportBoardGames(dialog.FileName);
+                else if (TabBars.SelectedTab == tabGames) ImportGames(dialog.FileName);
+                else if (TabBars.SelectedTab == tabRecipes) ImportRecipes(dialog.FileName);
                 else if (TabBars.SelectedTab == tabObject) ImportObjects(dialog.FileName);
             }
 

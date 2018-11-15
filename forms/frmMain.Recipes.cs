@@ -174,7 +174,7 @@ namespace Katalog
                 {
                     foreach (var item in olvRecipes.SelectedObjects) // Find Object
                     {
-                        Recipes itm = db.Recipes.Find(((Recipes)olvRecipes.SelectedObject).ID);
+                        Recipes itm = db.Recipes.Find(((Recipes)item).ID);
                         db.Recipes.Remove(itm);                 // Delete Item
                     }
                     db.SaveChanges();                           // Save to DB
@@ -309,6 +309,58 @@ namespace Katalog
                 StandardFilter.Columns = new OLVColumn[] { recKeywords };
             else if (cbFilterCol.SelectedIndex == 4)
                 StandardFilter.Columns = new OLVColumn[] { recExcluded };
+        }
+
+        #endregion
+
+        #region Import / Export
+
+        private void ImportRecipes(string fileName)
+        {
+            List<Recipes> con = global.ImportRecipesCSV(fileName);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+                Recipes itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Recipes.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Recipes.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Recipes.Add(item);
+                }
+            }
+            db.SaveChanges();
+            UpdateRecOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportRecipes(string fileName)
+        {
+            List<Recipes> itm = new List<Recipes>();
+
+            foreach (var item in olvRecipes.FilteredObjects)
+            {
+                itm.Add((Recipes)item);
+            }
+            global.ExportRecipesCSV(fileName, itm);
         }
 
         #endregion

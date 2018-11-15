@@ -394,7 +394,7 @@ namespace Katalog
         #endregion
 
 
-        #region Import
+        #region Import / Export
 
         private void ImportObjects(string fileName)
         {
@@ -443,11 +443,6 @@ namespace Katalog
             }
             global.ExportObjectCSV(fileName, itm);
         }
-
-        #endregion
-
-
-        #region Export
 
         #endregion
 

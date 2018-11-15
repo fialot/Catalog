@@ -798,7 +798,7 @@ namespace Katalog
 
                 // ----- Other data -----
                 lines += item.Name.Trim() + ";" + item.Category.Trim() + ";" + item.Subcategory.Trim() + ";" + item.Subcategory2 + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
-                lines += item.Manufacturer + ";" + item.Note.Trim().Replace(Environment.NewLine, "\n") +";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" ;
+                lines += item.Manufacturer + ";" + item.Note.Trim().Replace(Environment.NewLine, "\\n") + ";" + item.Excluded.ToString() + ";" + item.Count.ToString() + ";" ;
                 lines += item.FastTags.ToString() + ";" + imgFileName + ";" + item.Updated.ToString() + ";" + item.ID + Environment.NewLine;
 
                 imgNum++;
@@ -853,7 +853,7 @@ namespace Katalog
                 // ----- Other data -----
                 lines += item.Title.Trim() + ";" + item.AuthorName.Trim() + ";" + item.AuthorSurname.Trim() + ";" + item.ISBN + ";" + item.Illustrator + ";" + item.Translator + ";";
                 lines += item.Language + ";" + item.Publisher + ";" + item.Edition + ";" + item.Year + ";" + item.Pages + ";" + item.MainCharacter + ";";
-                lines += item.URL + ";" + item.Note.Replace(Environment.NewLine, "\n") + ";" + item.Note1.Replace(Environment.NewLine, "\n") + ";" + item.Note2.Replace(Environment.NewLine, "\n") + ";" + item.Content.Replace(Environment.NewLine, "\n") + ";";
+                lines += item.URL + ";" + item.Note.Replace(Environment.NewLine, "\\n") + ";" + item.Note1.Replace(Environment.NewLine, "\\n") + ";" + item.Note2.Replace(Environment.NewLine, "\\n") + ";" + item.Content.Replace(Environment.NewLine, "\\n") + ";";
                 lines += item.OrigName + ";" + item.OrigLanguage + ";" + item.OrigYear + ";" + item.Genre + ";" + item.SubGenre + ";" + item.Series + ";" + item.SeriesNum + ";";
                 lines += item.Keywords.Replace(";", ",") + ";" + item.Rating + ";" + item.MyRating + ";" + item.Readed + ";" + item.Type + ";" + item.Bookbinding + ";";
                 lines += item.EbookPath + ";" + item.EbookType + ";" + item.Publication + ";" + item.Excluded + ";" + imgFileName + ";" + item.Updated + ";";
@@ -914,8 +914,8 @@ namespace Katalog
 
                 // ----- Other data -----
                 lines += item.Name + ";" + item.Category + ";" + item.MinPlayers + ";" + item.MaxPlayers + ";" + item.MinAge + ";" + item.GameTime + ";" + item.GameWorld + ";";
-                lines += item.Language + ";" + item.Publisher + ";" + item.Author + ";" + item.Year + ";" + item.Description.Replace(Environment.NewLine, "\n") + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
-                lines += item.Note.Replace(Environment.NewLine, "\n") + ";" + item.Family + ";" + item.Extension + ";" + item.ExtensionNumber + ";" + item.Rules.Replace(Environment.NewLine, "\n") + ";";
+                lines += item.Language + ";" + item.Publisher + ";" + item.Author + ";" + item.Year + ";" + item.Description.Replace(Environment.NewLine, "\\n") + ";" + item.Keywords.Trim().Replace(";", ",") + ";";
+                lines += item.Note.Replace(Environment.NewLine, "\\n") + ";" + item.Family + ";" + item.Extension + ";" + item.ExtensionNumber + ";" + item.Rules.Replace(Environment.NewLine, "\\n") + ";";
                 lines += imgCover + ";" + img1 + ";" + img2 + ";" + img3 + ";" + item.MaterialPath + ";" + item.Rating + ";" + item.MyRating + ";" + item.URL + ";";
                 lines += item.Excluded + ";" + item.FastTags + ";" + item.Updated + ";" + item.ID + Environment.NewLine;
 
@@ -925,15 +925,114 @@ namespace Katalog
             // ----- Save to file ------
             Files.SaveFile(path, lines);
         }
+        
+        /// <summary>
+        /// Export Games to CSV file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Contact list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportGamesCSV(string path, List<Games> itm)
+        {
+            // ----- Head -----
+            string lines = "FialotCatalog:Games v1" + Environment.NewLine;
 
+            // ----- Names -----
+            lines += "name;category;subcategory;keywords;note;description;image;playerage;minplayers;maxplayers;duration;durationpreparation;things;url;rules;preparation;enviroment;files;rating;myrating;fasttags;updated;excluded;GUID" + Environment.NewLine;
 
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Data -----
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                // ----- Images -----
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                // ----- Other data -----
+                lines += item.Name.Trim().Replace(";", "//") + ";" + item.Category.Trim().Replace(";", "//") + ";" + item.Subcategory.Trim().Replace(";", "//") + ";" +
+                    item.Keywords.Trim().Replace(";", "//") + ";" + item.Note.Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.Description.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" +
+                    imgFileName + ";" + item.PlayerAge.Trim().Replace(";", "//") + ";" + item.MinPlayers.ToString() + ";" + item.MaxPlayers.ToString() + ";" + item.Duration.ToString() + ";" +
+                    item.DurationPreparation.ToString() + ";" + item.Things.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.URL.Trim().Replace(";", "//") + ";" + item.Rules.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" +
+                    item.Preparation.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.Environment.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.Files.Trim().Replace(";", "//") + ";" +
+                    item.Rating.ToString() + ";" + item.MyRating.ToString() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" +
+                    (item.Excluded ?? false).ToString() + ";" + item.ID + Environment.NewLine;
+
+                imgNum++;
+            }
+
+            return Files.SaveFile(path, lines);
+        }
+        
+        /// <summary>
+        /// Export Recipes to CSV file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Contact list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportRecipesCSV(string path, List<Recipes> itm)
+        {
+            // ----- Head -----
+            string lines = "FialotCatalog:Recipes v1" + Environment.NewLine;
+
+            // ----- Names -----
+            lines += "name;category;subcategory;keywords;note;description;image;procedure;resources;rating;myrating;fasttags;updated;excluded;GUID" + Environment.NewLine;
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Data -----
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                // ----- Images -----
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                // ----- Other data -----
+                lines += item.Name.Trim().Replace(";", "//") + ";" + item.Category.Trim().Replace(";", "//") + ";" + item.Subcategory.Trim().Replace(";", "//") + ";" +
+                    item.Keywords.Trim().Replace(";", "//") + ";" + item.Note.Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.Description.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" +
+                    imgFileName + ";" + item.Procedure.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.Resources.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" +
+                    item.Rating.ToString() + ";" + item.MyRating.ToString() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" +
+                    (item.Excluded ?? false).ToString() + ";" + item.ID + Environment.NewLine;
+
+                imgNum++;
+            }
+
+            return Files.SaveFile(path, lines);
+        }
+        
         /// <summary>
         /// Export Objects to CSV file
         /// </summary>
         /// <param name="path">File path</param>
-        /// <param name="con">Contact list</param>
+        /// <param name="itm">Contact list</param>
         /// <returns>Return True if saved succesfully</returns>
-        public static bool ExportObjectCSV(string path, List<Objects> con)
+        public static bool ExportObjectCSV(string path, List<Objects> itm)
         {
             // ----- Head -----
             string lines = "FialotCatalog:Objects v1" + Environment.NewLine;
@@ -952,7 +1051,7 @@ namespace Katalog
 
             // ----- Data -----
             int imgNum = 0;
-            foreach (var item in con)
+            foreach (var item in itm)
             {
                 // ----- Images -----
                 string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
@@ -965,7 +1064,7 @@ namespace Katalog
 
                 // ----- Other data -----
                 lines += item.Name.Trim().Replace(";", "//") + ";" + item.Category.Trim().Replace(";", "//") + ";" + item.Subcategory.Trim().Replace(";", "//") + ";" + 
-                    item.Keywords.Trim().Replace(";", "//") + ";" + item.Note.ToString() + ";" + item.Description.Trim().Replace(";", "//") + ";" +
+                    item.Keywords.Trim().Replace(";", "//") + ";" + item.Note.Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.Description.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" +
                     imgFileName + ";" + item.Rating.ToString() + ";" + item.MyRating.ToString() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + 
                     (item.Active ?? true).ToString() + ";" + item.Version.Trim().Replace(";", "//") + ";" + item.Files.Trim().Replace(";", "//") + ";" + item.Folder.Trim().Replace(";", "//") + ";" +
                     item.Type.Trim().Replace(";", "//") + ";" + item.ObjectNum.Trim().Replace(";", "//") + ";" + item.Language.Trim().Replace(";", "//") + ";" + item.Parent.ToString() + ";" + 
@@ -1011,28 +1110,28 @@ namespace Katalog
                 string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[23];
 
                 Contacts contact = new Contacts();
-                contact.Name = item[0].Replace("//", ";");
-                contact.Surname = item[1].Replace("//", ";");
-                contact.Nick = item[2].Replace("//", ";");
-                contact.Sex = item[3].Replace("//", ";");
+                contact.Name = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Surname = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Nick = item[2].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Sex = item[3].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 contact.Birth = Conv.ToDateTimeNull(item[4]);
-                contact.Phone = item[5].Replace("//", ";");
-                contact.Email = item[6].Replace("//", ";");
-                contact.WWW = item[7].Replace("//", ";");
-                contact.IM = item[8].Replace("//", ";");
-                contact.Company = item[9].Replace("//", ";");
-                contact.Position = item[10].Replace("//", ";");
-                contact.Street = item[11].Replace("//", ";");
-                contact.City = item[12].Replace("//", ";");
-                contact.Region = item[13].Replace("//", ";");
-                contact.Country = item[14].Replace("//", ";");
-                contact.PostCode = item[15].Replace("//", ";");
-                contact.PersonCode = item[16].Replace("//", ";");
-                contact.Note = item[17].Replace("//", ";");
-                contact.Tags = item[18].Replace("//", ";");
+                contact.Phone = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Email = item[6].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.WWW = item[7].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.IM = item[8].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Company = item[9].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Position = item[10].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Street = item[11].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.City = item[12].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Region = item[13].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Country = item[14].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.PostCode = item[15].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.PersonCode = item[16].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Note = item[17].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                contact.Tags = item[18].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 contact.FastTags = Conv.ToShortDef(item[19], 0);
                 contact.Updated = Conv.ToDateTimeNull(item[20]);
-                contact.GoogleID = item[21].Replace("//", ";");
+                contact.GoogleID = item[21].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 contact.Active = Conv.ToBoolDef(item[22], true);
                 if (item[23] != "")
                     contact.Avatar = Files.LoadBinFile(imgPath);
@@ -1412,7 +1511,7 @@ namespace Katalog
                 itm.From = Conv.ToDateTimeNull(item[6]);
                 itm.To = Conv.ToDateTimeNull(item[7]);
                 itm.Status = Conv.ToShortNull(item[8]);
-                itm.Note = item[9];
+                itm.Note = item[9].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.FastTags = Conv.ToShortNull(item[10]);
                 itm.Updated = Conv.ToDateTimeNull(item[11]);
                 itm.ID = Conv.ToGuid(item[12]);
@@ -1456,7 +1555,7 @@ namespace Katalog
                 itm.From = Conv.ToDateTimeNull(item[4]);
                 itm.To = Conv.ToDateTimeNull(item[5]);
                 itm.Status = Conv.ToShortNull(item[6]);
-                itm.Note = item[7];
+                itm.Note = item[7].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.FastTags = Conv.ToShortNull(item[8]);
                 itm.Updated = Conv.ToDateTimeNull(item[9]);
                 itm.ID = Conv.ToGuid(item[10]);
@@ -1493,13 +1592,13 @@ namespace Katalog
             {
                 Copies itm = new Copies();
                 //itm.ItemName = item[0];
-                itm.ItemType = item[1];
+                itm.ItemType = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.ItemID = Conv.ToGuid(item[2]);
                 itm.ItemNum = Conv.ToShortNull(item[3]);
-                itm.InventoryNumber = item[4];
-                itm.Condition = item[5];
-                itm.Location = item[6];
-                itm.Note = item[7];
+                itm.InventoryNumber = item[4].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Condition = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Location = item[6].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Note = item[7].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.AcquisitionDate = Conv.ToDateTimeNull(item[8]);
                 itm.Price = Conv.ToFloatDef(item[9], 0);
                 itm.Excluded = Conv.ToBoolNull(item[11]);
@@ -1544,13 +1643,13 @@ namespace Katalog
                 string imgPath = filePath + Path.DirectorySeparatorChar + item[10];
 
                 Items itm = new Items();
-                itm.Name = item[0];
-                itm.Category = item[1];
-                itm.Subcategory = item[2];
-                itm.Subcategory2 = item[3];
-                itm.Keywords = item[4];
-                itm.Manufacturer = item[5];
-                itm.Note = item[6].Replace("\n", Environment.NewLine);
+                itm.Name = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Category = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Subcategory = item[2].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Subcategory2 = item[3].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Keywords = item[4].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Manufacturer = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Note = item[6].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.Excluded = Conv.ToBoolNull(item[7]);
                 itm.Count = Conv.ToShortNull(item[8]);
                 itm.FastTags = Conv.ToShortDef(item[9], 0);
@@ -1597,38 +1696,38 @@ namespace Katalog
                 string imgPath = filePath + Path.DirectorySeparatorChar + item[34];
 
                 Books itm = new Books();
-                itm.Title = item[0];
-                itm.AuthorName = item[1];
-                itm.AuthorSurname = item[2];
-                itm.ISBN = item[3];
-                itm.Illustrator = item[4];
-                itm.Translator = item[5];
-                itm.Language = item[6];
-                itm.Publisher = item[7];
-                itm.Edition = item[8];
+                itm.Title = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.AuthorName = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.AuthorSurname = item[2].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.ISBN = item[3].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Illustrator = item[4].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Translator = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Language = item[6].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Publisher = item[7].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Edition = item[8].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.Year = Conv.ToShortNull(item[9]);
                 itm.Pages = Conv.ToShortNull(item[10]);
-                itm.MainCharacter = item[11];
-                itm.URL = item[12];
-                itm.Note = item[13].Replace("\n",Environment.NewLine);
-                itm.Note1 = item[14].Replace("\n", Environment.NewLine);
-                itm.Note2 = item[15].Replace("\n", Environment.NewLine);
-                itm.Content = item[16];
-                itm.OrigName = item[17];
-                itm.OrigLanguage = item[18];
+                itm.MainCharacter = item[11].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.URL = item[12].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Note = item[13].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Note1 = item[14].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Note2 = item[15].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Content = item[16].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.OrigName = item[17].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.OrigLanguage = item[18].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.OrigYear = Conv.ToShortNull(item[19]);
-                itm.Genre = item[20];
-                itm.SubGenre = item[21];
-                itm.Series = item[22];
+                itm.Genre = item[20].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.SubGenre = item[21].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Series = item[22].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.SeriesNum = Conv.ToShortNull(item[23]);
-                itm.Keywords = item[24].Replace(",", ";");
+                itm.Keywords = item[24].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.Rating = Conv.ToShortNull(item[25]);
                 itm.MyRating = Conv.ToShortNull(item[26]);
                 itm.Readed = Conv.ToBoolNull(item[27]);
-                itm.Type = item[28];
-                itm.Bookbinding = item[29];
-                itm.EbookPath = item[30];
-                itm.EbookType = item[31];
+                itm.Type = item[28].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Bookbinding = item[29].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.EbookPath = item[30].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.EbookType = item[31].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.Publication = Conv.ToShortNull(item[32]);
                 itm.Excluded = Conv.ToBoolNull(item[33]);
                 if (item[34] != "")
@@ -1680,24 +1779,24 @@ namespace Katalog
                 string Img3Path = filePath + Path.DirectorySeparatorChar + item[21];
 
                 Boardgames itm = new Boardgames();
-                itm.Name = item[0];
-                itm.Category = item[1];
+                itm.Name = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Category = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.MinPlayers = Conv.ToShortNull(item[2]);
                 itm.MaxPlayers = Conv.ToShortNull(item[3]);
                 itm.MinAge = Conv.ToShortNull(item[4]);
                 itm.GameTime = Conv.ToShortNull(item[5]);
-                itm.GameWorld = item[6];
-                itm.Language = item[7];
-                itm.Publisher = item[8];
-                itm.Author = item[9];
+                itm.GameWorld = item[6].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Language = item[7].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Publisher = item[8].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Author = item[9].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.Year = Conv.ToShortNull(item[10]);
-                itm.Description = item[11];
-                itm.Keywords = item[12];
-                itm.Note = item[13];
-                itm.Family = item[14];
+                itm.Description = item[11].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Keywords = item[12].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Note = item[13].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                itm.Family = item[14].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.Extension = Conv.ToBoolNull(item[15]);
                 itm.ExtensionNumber = Conv.ToShortNull(item[16]);
-                itm.Rules = item[17];
+                itm.Rules = item[17].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 if (item[18] != "")
                     itm.Cover = Files.LoadBinFile(CoverPath);
                 if (item[19] != "")
@@ -1706,7 +1805,7 @@ namespace Katalog
                     itm.Img2 = Files.LoadBinFile(Img2Path);
                 if (item[21] != "")
                     itm.Img3 = Files.LoadBinFile(Img3Path);
-                itm.MaterialPath = item[22];
+                itm.MaterialPath = item[22].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 itm.Rating = Conv.ToShortNull(item[23]);
                 itm.MyRating = Conv.ToShortNull(item[24]);
                 itm.URL = item[25];
@@ -1719,8 +1818,124 @@ namespace Katalog
 
             return con;
         }
+        
+        /// <summary>
+        /// Import Games from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Contact list</returns>
+        public static List<Games> ImportGamesCSV(string path)
+        {
+            List<Games> objList = new List<Games>();
 
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
 
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Games"))
+                return null;
+
+            // ----- Parse CSV File -----
+            CSVfile file = Files.ParseCSV(text);
+
+            // ----- Check table size -----
+            if (file.head.Length != 24)
+                return null;
+
+            // ----- Parse data -----
+            foreach (var item in file.data)
+            {
+                string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[6];
+
+                Games obj = new Games();
+                obj.Name = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Category = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Subcategory = item[2].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Keywords = item[3].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Note = item[4].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Description = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                if (item[6] != "")
+                    obj.Image = Files.LoadBinFile(imgPath);
+
+                obj.PlayerAge = item[7].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.MinPlayers = Conv.ToShortNull(item[8]);
+                obj.MaxPlayers = Conv.ToShortNull(item[9]);
+                obj.Duration = Conv.ToShortNull(item[10]);
+                obj.DurationPreparation = Conv.ToShortNull(item[11]);
+                obj.Things = item[12].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.URL = item[13].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Rules = item[14].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Preparation = item[15].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Environment = item[16].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Files = item[17].Replace("//", ";").Replace("\\n", Environment.NewLine);
+
+                obj.Rating = Conv.ToShortNull(item[18]);
+                obj.MyRating = Conv.ToShortNull(item[19]);
+                obj.FastTags = Conv.ToShortDef(item[20], 0);
+                obj.Updated = Conv.ToDateTimeNull(item[21]);
+                obj.Excluded = Conv.ToBoolDef(item[22], true);
+                
+                obj.ID = Conv.ToGuid(item[23]);
+                objList.Add(obj);
+            }
+
+            return objList;
+        }
+        
+        /// <summary>
+        /// Import Recipes from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Contact list</returns>
+        public static List<Recipes> ImportRecipesCSV(string path)
+        {
+            List<Recipes> objList = new List<Recipes>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Recipes"))
+                return null;
+
+            // ----- Parse CSV File -----
+            CSVfile file = Files.ParseCSV(text);
+
+            // ----- Check table size -----
+            if (file.head.Length != 15)
+                return null;
+
+            // ----- Parse data -----
+            foreach (var item in file.data)
+            {
+                string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[6];
+
+                Recipes obj = new Recipes();
+                obj.Name = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Category = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Subcategory = item[2].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Keywords = item[3].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Note = item[4].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Description = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                if (item[6] != "")
+                    obj.Image = Files.LoadBinFile(imgPath);
+
+                obj.Procedure = item[7].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Resources = item[8].Replace("//", ";").Replace("\\n", Environment.NewLine);
+
+                obj.Rating = Conv.ToShortNull(item[9]);
+                obj.MyRating = Conv.ToShortNull(item[10]);
+                obj.FastTags = Conv.ToShortDef(item[11], 0);
+                obj.Updated = Conv.ToDateTimeNull(item[12]);
+                obj.Excluded = Conv.ToBoolDef(item[13], true);
+
+                obj.ID = Conv.ToGuid(item[14]);
+                objList.Add(obj);
+            }
+
+            return objList;
+        }
+        
         /// <summary>
         /// Import Objects from CSV
         /// </summary>
@@ -1750,12 +1965,12 @@ namespace Katalog
                 string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[6];
 
                 Objects obj = new Objects();
-                obj.Name = item[0].Replace("//", ";");
-                obj.Category = item[1].Replace("//", ";");
-                obj.Subcategory = item[2].Replace("//", ";");
-                obj.Keywords = item[3].Replace("//", ";");
-                obj.Note = item[4].Replace("//", ";").Replace("\n", Environment.NewLine);
-                obj.Description = item[5].Replace("//", ";").Replace("\n", Environment.NewLine);
+                obj.Name = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Category = item[1].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Subcategory = item[2].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Keywords = item[3].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Note = item[4].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Description = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 if (item[6] != "")
                     obj.Image = Files.LoadBinFile(imgPath);
                 obj.Rating = Conv.ToShortNull(item[7]);
@@ -1763,17 +1978,17 @@ namespace Katalog
                 obj.FastTags = Conv.ToShortDef(item[9], 0);
                 obj.Updated = Conv.ToDateTimeNull(item[10]);
                 obj.Active = Conv.ToBoolDef(item[11], true);
-                obj.Version = item[12].Replace("//", ";");
-                obj.Files = item[13].Replace("//", ";");
-                obj.Folder = item[14].Replace("//", ";");
-                obj.Type = item[15].Replace("//", ";");
-                obj.ObjectNum = item[16].Replace("//", ";");
-                obj.Language = item[17].Replace("//", ";");
+                obj.Version = item[12].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Files = item[13].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Folder = item[14].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Type = item[15].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.ObjectNum = item[16].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Language = item[17].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 obj.Parent = Conv.ToGuidNull(item[18]);
-                obj.Customer = item[19].Replace("//", ";");
-                obj.Development = item[20].Replace("//", ";");
+                obj.Customer = item[19].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Development = item[20].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 obj.IsParent = Conv.ToBoolDef(item[21], true);
-                obj.UsedObjects = item[22].Replace("//", ";");
+                obj.UsedObjects = item[22].Replace("//", ";").Replace("\\n", Environment.NewLine);
 
 
                 obj.ID = Conv.ToGuid(item[23]);

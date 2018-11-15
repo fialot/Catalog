@@ -195,7 +195,7 @@ namespace Katalog
                 {
                     foreach (var item in olvGames.SelectedObjects) // Find Object
                     {
-                        Games itm = db.Games.Find(((Games)olvGames.SelectedObject).ID);
+                        Games itm = db.Games.Find(((Games)item).ID);
                         db.Games.Remove(itm);                 // Delete Item
                     }
                     db.SaveChanges();                           // Save to DB
@@ -351,5 +351,59 @@ namespace Katalog
         }
 
         #endregion
+
+
+        #region Import / Export
+
+        private void ImportGames(string fileName)
+        {
+            List<Games> con = global.ImportGamesCSV(fileName);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+                Games itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Games.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Games.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Games.Add(item);
+                }
+            }
+            db.SaveChanges();
+            UpdateGameOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportGames(string fileName)
+        {
+            List<Games> itm = new List<Games>();
+
+            foreach (var item in olvGames.FilteredObjects)
+            {
+                itm.Add((Games)item);
+            }
+            global.ExportGamesCSV(fileName, itm);
+        }
+
+        #endregion
+
     }
 }
