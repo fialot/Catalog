@@ -115,7 +115,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvContacts_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvContacts_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -183,7 +183,8 @@ namespace Katalog
         private void DeleteItemContacts()
         {
             databaseEntities db = new databaseEntities();
-            if (olvContacts.SelectedIndex >= 0)                 // If selected Item
+            int count = olvContacts.SelectedObjects.Count;
+            if (count == 1)                 // If selected Item
             {                                                   // Find Object
                 Contacts contact = db.Contacts.Find(((Contacts)olvContacts.SelectedObject).ID);
 
@@ -194,9 +195,9 @@ namespace Katalog
                     UpdateConOLV();                             // Update Contacts OLV 
                 }
             }
-            else if (olvContacts.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvContacts.SelectedObjects.Count;
+                
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() +  ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvContacts.SelectedObjects) // Find Object
@@ -362,6 +363,60 @@ namespace Katalog
 
         #endregion
 
+        #region Import / Export
+
+        private void ImportContacts(string fileName)
+        {
+            List<Contacts> con = global.ImportContactsCSV(fileName);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+
+
+                Contacts contact;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    contact = db.Contacts.Find(item.ID);
+                    if (contact != null)
+                        Conv.CopyClassPropetries(contact, item);
+                    else
+                    {
+                        db.Contacts.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Contacts.Add(item);
+                }
+            }
+            db.SaveChanges();
+            UpdateConOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportContacts(string fileName)
+        {
+            List<Contacts> con = new List<Contacts>();
+
+            foreach (var item in olvContacts.FilteredObjects)
+            {
+                con.Add((Contacts)item);
+            }
+            global.ExportContactsCSV(fileName, con);
+        }
+
+        #endregion
+
         #region Items
 
 
@@ -384,6 +439,8 @@ namespace Katalog
         }
 
         #endregion
+
+
 
     }
 }

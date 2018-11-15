@@ -15,6 +15,28 @@ namespace myFunctions
     /// </summary>
     static class Conv
     {
+        public static void CopyClassPropetries(this Object dst, object src)
+        {
+            var srcT = src.GetType();
+            var dstT = dst.GetType();
+            foreach (var f in srcT.GetFields())
+            {
+                var dstF = dstT.GetField(f.Name);
+                if (dstF == null)
+                    continue;
+                dstF.SetValue(dst, f.GetValue(src));
+            }
+
+            foreach (var f in srcT.GetProperties())
+            {
+                var dstF = dstT.GetProperty(f.Name);
+                if (dstF == null)
+                    continue;
+
+                dstF.SetValue(dst, f.GetValue(src, null), null);
+            }
+        }
+
         #region Testing number
 
         /// <summary>
@@ -757,6 +779,20 @@ namespace myFunctions
             catch
             {
                 ID = Guid.Empty;
+            }
+            return ID;
+        }
+
+        public static Guid? ToGuidNull(string text)
+        {
+            Guid ID;
+            try
+            {
+                ID = Guid.Parse(text);
+            }
+            catch
+            {
+                return null;
             }
             return ID;
         }

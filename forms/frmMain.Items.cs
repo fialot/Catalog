@@ -92,11 +92,10 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvItem_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvItem_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
-        
         /// <summary>
         /// Color Row
         /// </summary>
@@ -166,7 +165,8 @@ namespace Katalog
         private void DeleteItemItems()
         {
             databaseEntities db = new databaseEntities();
-            if (olvItem.SelectedIndex >= 0)                 // If selected Item
+            int count = olvItem.SelectedObjects.Count;
+            if (count == 1)                 // If selected Item
             {                                                   // Find Object
                 Items itm = db.Items.Find(((Items)olvItem.SelectedObject).ID); // Find Object
 
@@ -184,9 +184,9 @@ namespace Katalog
                     UpdateItemsOLV();                           // Update Items OLV 
                 }
             }
-            else if (olvItem.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvItem.SelectedObjects.Count;
+                
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() + ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvItem.SelectedObjects) // Find Object
@@ -357,6 +357,79 @@ namespace Katalog
                 StandardFilter.Columns = new OLVColumn[] { itAvailable };
             else if (cbFilterCol.SelectedIndex == 9)
                 StandardFilter.Columns = new OLVColumn[] { itExcluded };
+        }
+
+        #endregion
+
+        #region Import
+
+        private void ImportItems(string fileName)
+        {
+            List<Items> con = global.ImportItemsCSV(fileName, out List<Copies> copies);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+                Items itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Items.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Items.Add(item);
+                }
+            }
+
+            foreach (var item in copies)
+            {
+                Copies itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Copies.Find(item.ID);
+                    if (itm != null)
+                        FillCopy(ref itm, item);
+                    else
+                    {
+                        db.Copies.Add(item);
+                    }
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Copies.Add(item);
+                }
+            }
+
+            db.SaveChanges();
+            UpdateItemsOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportItems(string fileName)
+        {
+            List<Items> itm = new List<Items>();
+
+            foreach (var item in olvItem.FilteredObjects)
+            {
+                itm.Add((Items)item);
+            }
+            global.ExportItemsCSV(fileName, itm);
         }
 
         #endregion

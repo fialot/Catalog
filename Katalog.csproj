@@ -394,8 +394,14 @@
     <Compile Include="Video.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="forms\Edit\frmEditFile.cs.resx">
+      <DependentUpon>frmEditFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Edit\frmEditFile.resx">
       <DependentUpon>frmEditFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Edit\frmEditFiles.cs.resx">
+      <DependentUpon>frmEditFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Edit\frmEditFiles.resx">
       <DependentUpon>frmEditFiles.cs</DependentUpon>

@@ -102,7 +102,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvBooks_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvBooks_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -168,7 +168,8 @@ namespace Katalog
         private void DeleteItemBooks()
         {
             databaseEntities db = new databaseEntities();
-            if (olvBooks.SelectedIndex >= 0)                    // If selected Item
+            int count = olvBooks.SelectedObjects.Count;
+            if (count == 1)                    // If selected Item
             {                                                   // Find Object
                 Books book = db.Books.Find(((Books)olvBooks.SelectedObject).ID);
 
@@ -187,9 +188,9 @@ namespace Katalog
                     UpdateBooksOLV();                           // Update Books OLV                   
                 }
             }
-            else if (olvBooks.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvBooks.SelectedObjects.Count;
+                
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() + ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvBooks.SelectedObjects) // Find Object
@@ -366,6 +367,82 @@ namespace Katalog
                 StandardFilter.Columns = new OLVColumn[] { bkKeywords };
             else if (cbFilterCol.SelectedIndex == 10)
                 StandardFilter.Columns = new OLVColumn[] { bkSeries };
+        }
+
+        #endregion
+
+        #region Import
+
+        private void ImportBooks(string fileName)
+        {
+            List<Books> con = global.ImportBooksCSV(fileName, out List<Copies> copies);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+
+
+                Books itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Books.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Books.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Books.Add(item);
+                }
+            }
+
+            foreach (var item in copies)
+            {
+                Copies itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Copies.Find(item.ID);
+                    if (itm != null)
+                        FillCopy(ref itm, item);
+                    else
+                    {
+                        db.Copies.Add(item);
+                    }
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Copies.Add(item);
+                }
+            }
+
+            db.SaveChanges();
+            UpdateBooksOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportBooks(string fileName)
+        {
+            List<Books> itm = new List<Books>();
+
+            foreach (var item in olvBooks.FilteredObjects)
+            {
+                itm.Add((Books)item);
+            }
+            global.ExportBooksCSV(fileName, itm);
         }
 
         #endregion

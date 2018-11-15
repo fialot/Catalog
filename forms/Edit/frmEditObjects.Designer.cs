@@ -218,8 +218,8 @@
             // 
             // imgImg
             // 
-            this.imgImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.imgImg, "imgImg");
+            this.imgImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgImg.Name = "imgImg";
             this.imgImg.TabStop = false;
             this.imgImg.Click += new System.EventHandler(this.imgImg_Click);
@@ -339,9 +339,9 @@
             // 
             // txtDevelopment
             // 
+            resources.ApplyResources(this.txtDevelopment, "txtDevelopment");
             this.txtDevelopment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDevelopment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtDevelopment, "txtDevelopment");
             this.txtDevelopment.Name = "txtDevelopment";
             // 
             // lblDevelopment
@@ -351,9 +351,9 @@
             // 
             // txtCustomer
             // 
+            resources.ApplyResources(this.txtCustomer, "txtCustomer");
             this.txtCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtCustomer, "txtCustomer");
             this.txtCustomer.Name = "txtCustomer";
             // 
             // lblCustomer
@@ -363,9 +363,9 @@
             // 
             // txtLanguage
             // 
+            resources.ApplyResources(this.txtLanguage, "txtLanguage");
             this.txtLanguage.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtLanguage.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtLanguage, "txtLanguage");
             this.txtLanguage.Name = "txtLanguage";
             // 
             // lblLanguage

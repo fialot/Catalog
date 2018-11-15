@@ -100,7 +100,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvGames_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvGames_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -176,7 +176,8 @@ namespace Katalog
         private void DeleteItemGames()
         {
             databaseEntities db = new databaseEntities();
-            if (olvGames.SelectedIndex >= 0)                 // If selected Item
+            int count = olvGames.SelectedObjects.Count;
+            if (count == 1)                 // If selected Item
             {                                                   // Find Object
                 Games itm = db.Games.Find(((Games)olvGames.SelectedObject).ID);
 
@@ -187,9 +188,9 @@ namespace Katalog
                     UpdateGameOLV();                                 // Update Recipes OLV 
                 }
             }
-            else if (olvGames.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvGames.SelectedObjects.Count;
+                
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() + ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvGames.SelectedObjects) // Find Object

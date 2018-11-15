@@ -451,7 +451,7 @@
             this.olvContacts.View = System.Windows.Forms.View.Details;
             this.olvContacts.VirtualMode = true;
             this.olvContacts.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvContacts_FormatRow);
-            this.olvContacts.SelectedIndexChanged += new System.EventHandler(this.olvContacts_SelectedIndexChanged);
+            this.olvContacts.SelectionChanged += new System.EventHandler(this.olvContacts_SelectionChanged);
             this.olvContacts.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // conFastTags
@@ -718,7 +718,7 @@
             this.olvLending.View = System.Windows.Forms.View.Details;
             this.olvLending.VirtualMode = true;
             this.olvLending.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvLending_FormatRow);
-            this.olvLending.SelectedIndexChanged += new System.EventHandler(this.olvLending_SelectedIndexChanged);
+            this.olvLending.SelectionChanged += new System.EventHandler(this.olvLending_SelectionChanged);
             this.olvLending.DoubleClick += new System.EventHandler(this.olvLending_DoubleClick);
             // 
             // ldFastTags
@@ -866,7 +866,7 @@
             this.olvBorrowing.View = System.Windows.Forms.View.Details;
             this.olvBorrowing.VirtualMode = true;
             this.olvBorrowing.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvBorrowing_FormatRow);
-            this.olvBorrowing.SelectedIndexChanged += new System.EventHandler(this.olvBorrowing_SelectedIndexChanged);
+            this.olvBorrowing.SelectionChanged += new System.EventHandler(this.olvBorrowing_SelectionChanged);
             this.olvBorrowing.DoubleClick += new System.EventHandler(this.olvBorrowing_DoubleClick);
             // 
             // brFastTags
@@ -960,7 +960,7 @@
             this.olvItem.View = System.Windows.Forms.View.Details;
             this.olvItem.VirtualMode = true;
             this.olvItem.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvItem_FormatRow);
-            this.olvItem.SelectedIndexChanged += new System.EventHandler(this.olvItem_SelectedIndexChanged);
+            this.olvItem.SelectionChanged += new System.EventHandler(this.olvItem_SelectionChanged);
             this.olvItem.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // itFastTags
@@ -1061,7 +1061,7 @@
             this.olvBooks.View = System.Windows.Forms.View.Details;
             this.olvBooks.VirtualMode = true;
             this.olvBooks.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvBooks_FormatRow);
-            this.olvBooks.SelectedIndexChanged += new System.EventHandler(this.olvBooks_SelectedIndexChanged);
+            this.olvBooks.SelectionChanged += new System.EventHandler(this.olvBooks_SelectionChanged);
             this.olvBooks.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // bkFastTags
@@ -1174,7 +1174,7 @@
             this.olvBoard.View = System.Windows.Forms.View.Details;
             this.olvBoard.VirtualMode = true;
             this.olvBoard.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvBoard_FormatRow);
-            this.olvBoard.SelectedIndexChanged += new System.EventHandler(this.olvBoard_SelectedIndexChanged);
+            this.olvBoard.SelectionChanged += new System.EventHandler(this.olvBoard_SelectionChanged);
             this.olvBoard.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // bgTags
@@ -1273,7 +1273,7 @@
             this.olvGames.UseCompatibleStateImageBehavior = false;
             this.olvGames.View = System.Windows.Forms.View.Details;
             this.olvGames.VirtualMode = true;
-            this.olvGames.SelectedIndexChanged += new System.EventHandler(this.olvGames_SelectedIndexChanged);
+            this.olvGames.SelectionChanged += new System.EventHandler(this.olvGames_SelectionChanged);
             this.olvGames.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // gmTags
@@ -1370,7 +1370,7 @@
             this.olvRecipes.View = System.Windows.Forms.View.Details;
             this.olvRecipes.VirtualMode = true;
             this.olvRecipes.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvRecipes_FormatRow);
-            this.olvRecipes.SelectedIndexChanged += new System.EventHandler(this.olvRecipes_SelectedIndexChanged);
+            this.olvRecipes.SelectionChanged += new System.EventHandler(this.olvRecipes_SelectionChanged);
             this.olvRecipes.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // recTags
@@ -1471,7 +1471,7 @@
             this.olvObjects.View = System.Windows.Forms.View.Details;
             this.olvObjects.VirtualMode = true;
             this.olvObjects.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvObjects_FormatRow);
-            this.olvObjects.SelectedIndexChanged += new System.EventHandler(this.olvObjects_SelectedIndexChanged);
+            this.olvObjects.SelectionChanged += new System.EventHandler(this.olvObjects_SelectionChanged);
             this.olvObjects.DoubleClick += new System.EventHandler(this.btnEditItem_Click);
             // 
             // objTags

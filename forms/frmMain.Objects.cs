@@ -118,7 +118,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvObjects_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvObjects_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -198,8 +198,9 @@ namespace Katalog
         /// </summary>
         private void DeleteItemObjects()
         {
+            int count = olvObjects.SelectedObjects.Count;
             databaseEntities db = new databaseEntities();
-            if (olvObjects.SelectedIndex >= 0)                 // If selected Item
+            if (count == 1)                 // If selected Item
             {                                                   // Find Object
                 Objects itm = db.Objects.Find(((Objects)olvObjects.SelectedObject).ID);
 
@@ -210,14 +211,14 @@ namespace Katalog
                     UpdateObjOLV();                                 // Update Recipes OLV 
                 }
             }
-            else if (olvObjects.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvObjects.SelectedObjects.Count;
+                
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() + ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvObjects.SelectedObjects) // Find Object
                     {
-                        Objects itm = db.Objects.Find(((Objects)olvObjects.SelectedObject).ID);
+                        Objects itm = db.Objects.Find(((Objects)item).ID);
                         db.Objects.Remove(itm);                 // Delete Item
                     }
                     db.SaveChanges();                           // Save to DB
@@ -392,9 +393,59 @@ namespace Katalog
 
         #endregion
 
+
         #region Import
 
+        private void ImportObjects(string fileName)
+        {
+            List<Objects> con = global.ImportObjectsCSV(fileName);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+                Objects itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Objects.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Objects.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Objects.Add(item);
+                }
+            }
+            db.SaveChanges();
+            UpdateObjOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportObjects(string fileName)
+        {
+            List<Objects> itm = new List<Objects>();
+
+            foreach (var item in olvObjects.FilteredObjects)
+            {
+                itm.Add((Objects)item);
+            }
+            global.ExportObjectCSV(fileName, itm);
+        }
+
         #endregion
+
 
         #region Export
 

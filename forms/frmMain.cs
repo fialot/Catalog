@@ -70,7 +70,7 @@ namespace Katalog
                 mnuEditItem.Enabled = false;
             }
 
-            if (count >= 0)
+            if (count > 0)
             {
                 btnDeleteItem.Enabled = true;
                 mnuDelItem.Enabled = true;
@@ -561,66 +561,14 @@ namespace Katalog
             dialog.FileName = "data.csv";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                if (TabBars.SelectedTab == tabContacts)
-                {
-                    List<Contacts> con = new List<Contacts>();
+                if (TabBars.SelectedTab == tabContacts) ExportContacts(dialog.FileName);
+                else if (TabBars.SelectedTab == tabLending) ExportLending(dialog.FileName);
+                else if (TabBars.SelectedTab == tabBorrowing) ExportBorrowing(dialog.FileName);
+                else if (TabBars.SelectedTab == tabItems) ExportItems(dialog.FileName);
+                else if (TabBars.SelectedTab == tabBooks) ExportBooks(dialog.FileName);
+                else if (TabBars.SelectedTab == tabBoardGames) ExportBoardGames(dialog.FileName);
 
-                    foreach (var item in olvContacts.FilteredObjects)
-                    {
-                        con.Add((Contacts)item);
-                    }
-                    global.ExportContactsCSV(dialog.FileName, con);
-                }
-                else if (TabBars.SelectedTab == tabLending)
-                {
-                    List<Lending> itm = new List<Lending>();
-
-                    foreach (var item in olvLending.FilteredObjects)
-                    {
-                        itm.Add((Lending)item);
-                    }
-                    global.ExportLendedCSV(dialog.FileName, itm);
-                }
-                else if (TabBars.SelectedTab == tabBorrowing)
-                {
-                    List<Borrowing> itm = new List<Borrowing>();
-
-                    foreach (var item in olvBorrowing.FilteredObjects)
-                    {
-                        itm.Add((Borrowing)item);
-                    }
-                    global.ExportBorrowingCSV(dialog.FileName, itm);
-                }
-                else if (TabBars.SelectedTab == tabItems)
-                {
-                    List<Items> itm = new List<Items>();
-
-                    foreach (var item in olvItem.FilteredObjects)
-                    {
-                        itm.Add((Items)item);
-                    }
-                    global.ExportItemsCSV(dialog.FileName, itm);
-                }
-                else if (TabBars.SelectedTab == tabBooks)
-                {
-                    List<Books> itm = new List<Books>();
-
-                    foreach (var item in olvBooks.FilteredObjects)
-                    {
-                        itm.Add((Books)item);
-                    }
-                    global.ExportBooksCSV(dialog.FileName, itm);
-                }
-                else if (TabBars.SelectedTab == tabBoardGames)
-                {
-                    List<Boardgames> itm = new List<Boardgames>();
-
-                    foreach (var item in olvBoard.FilteredObjects)
-                    {
-                        itm.Add((Boardgames)item);
-                    }
-                    global.ExportBoardCSV(dialog.FileName, itm);
-                }
+                else if (TabBars.SelectedTab == tabObject) ExportObjects(dialog.FileName);
             }
         }
 
@@ -644,7 +592,7 @@ namespace Katalog
                         if (contacts.Count > 0)
                         {
                             Contacts contact = contacts[0];
-                            FillContact(ref contact, item);
+                            Conv.CopyClassPropetries(contact, item);
                         }
                         else
                         {
@@ -683,7 +631,7 @@ namespace Katalog
                     {
                         updated++;
                         Contacts contact = contacts[0];
-                        FillContact(ref contact, item);
+                        Conv.CopyClassPropetries(contact, item);
                     }
                     else
                     {
@@ -697,83 +645,6 @@ namespace Katalog
                 UpdateConOLV();
                 Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ". (" + Lng.Get("Added") + " " + added.ToString() + ", " + Lng.Get("updated") + " " + updated.ToString() + " " + Lng.Get("contacts") + ")", Lng.Get("Import"));
             }
-        }
-             
-        private void FillContact(ref Contacts contact, Contacts newItem)
-        {
-            // ----- Avatar -----
-            contact.Avatar = newItem.Avatar;
-
-            // ----- Name -----
-            contact.Name = newItem.Name;
-            contact.Surname = newItem.Surname;
-            contact.Nick = newItem.Nick;
-            contact.Sex = newItem.Sex;
-
-            contact.Birth = newItem.Birth;
-
-            // ----- Contacts -----
-            //for (int i = 0; i < )
-            contact.Phone = newItem.Phone;
-
-            contact.Email = newItem.Email;
-            contact.WWW = newItem.WWW;
-            contact.IM = newItem.IM;
-
-            // ----- Company -----
-            contact.Company = newItem.Company;
-            contact.Position = newItem.Position;
-
-            // ----- Address -----
-            contact.Street = newItem.Street;
-            contact.City = newItem.City;
-            contact.Region = newItem.Region;
-            contact.Country = newItem.Country;
-            contact.PostCode = newItem.PostCode;
-
-            contact.Note = newItem.Note;
-            
-            contact.Tags = newItem.Tags;
-            contact.FastTags = newItem.FastTags;
-            
-
-            contact.PersonCode = newItem.PersonCode;
-            contact.Updated = DateTime.Now;
-            contact.Active = newItem.Active;
-            contact.GoogleID = newItem.GoogleID;
-            
-
-
-            // ----- Unused now -----
-            /*contact.Partner = "";
-            contact.Childs = "";
-            contact.Parrents = "";*/
-        }
-        
-        private void FillLending(ref Lending itm, Lending newItem)
-        {
-            itm.CopyType = newItem.CopyType;
-            itm.CopyType = newItem.CopyType;
-            itm.PersonID = newItem.PersonID;
-            itm.From = newItem.From;
-            itm.To = newItem.To;
-            itm.Status = newItem.Status;
-            itm.Note = newItem.Note;
-            itm.FastTags = newItem.FastTags;
-            itm.Updated = newItem.Updated;
-        }
-
-        private void FillBorrowing(ref Borrowing itm, Borrowing newItem)
-        {
-            itm.Item = newItem.Item;
-            itm.ItemInvNum = newItem.ItemInvNum;
-            itm.PersonID = newItem.PersonID;
-            itm.From = newItem.From;
-            itm.To = newItem.To;
-            itm.Status = newItem.Status;
-            itm.Note = newItem.Note;
-            itm.FastTags = newItem.FastTags;
-            itm.Updated = newItem.Updated;
         }
         
         private void FillCopy(ref Copies itm, Copies newItem)
@@ -795,102 +666,6 @@ namespace Katalog
             itm.Status = newItem.Status;
         }
 
-        private void FillItem(ref Items itm, Items newItem)
-        {
-            // ----- Avatar -----
-            itm.Image = newItem.Image;
-
-            itm.Name = newItem.Name;
-            itm.Category = newItem.Category;
-            itm.Subcategory = newItem.Subcategory;
-            itm.Subcategory2 = newItem.Subcategory2;
-
-            itm.Keywords = newItem.Keywords;
-            itm.Note = newItem.Note;
-
-            itm.Manufacturer = newItem.Manufacturer;
-
-            itm.Excluded = newItem.Excluded;
-            itm.FastTags = newItem.FastTags;
-        }
-        
-        private void FillBook(ref Books itm, Books newItem)
-        {
-            itm.Title = itm.Title;
-            itm.AuthorName = itm.AuthorName;
-            itm.AuthorSurname = itm.AuthorSurname;
-            itm.ISBN = itm.ISBN;
-            itm.Illustrator = itm.Illustrator;
-            itm.Translator = itm.Translator;
-            itm.Language = itm.Language;
-            itm.Publisher = itm.Publisher;
-            itm.Edition = itm.Edition;
-            itm.Year = itm.Year;
-            itm.Pages = itm.Pages;
-            itm.MainCharacter = itm.MainCharacter;
-            itm.URL = itm.URL;
-            itm.Note = itm.Note;
-            itm.Note1 = itm.Note1;
-            itm.Note2 = itm.Note2;
-            itm.Content = itm.Content;
-            itm.OrigName = itm.OrigName;
-            itm.OrigLanguage = itm.OrigLanguage;
-            itm.OrigYear = itm.OrigYear;
-            itm.Genre = itm.Genre;
-            itm.SubGenre = itm.SubGenre;
-            itm.Series = itm.Series;
-            itm.SeriesNum = itm.SeriesNum;
-            itm.Keywords = itm.Keywords;
-            itm.Rating = itm.Rating;
-            itm.MyRating = itm.MyRating;
-            itm.Readed = itm.Readed;
-            itm.Type = itm.Type;
-            itm.Bookbinding = itm.Bookbinding;
-            itm.EbookPath = itm.EbookPath;
-            itm.EbookType = itm.EbookType;
-            itm.Publication = itm.Publication;
-            itm.Excluded = itm.Excluded;
-            itm.Cover = itm.Cover;
-            itm.Updated = itm.Updated;
-            itm.FastTags = itm.FastTags;
-
-        }
-
-        private void FillBoard(ref Boardgames itm, Boardgames newItem)
-        {
-            itm.Cover = newItem.Cover;
-            itm.Img1 = newItem.Img1;
-            itm.Img2 = newItem.Img2;
-            itm.Img3 = newItem.Img3;
-            
-            itm.Name = newItem.Name;
-            itm.Category = newItem.Category;
-            itm.MinPlayers = newItem.MinPlayers;
-            itm.MaxPlayers = newItem.MaxPlayers;
-            itm.MinAge = newItem.MinAge;
-            itm.GameTime = newItem.GameTime;
-            itm.GameWorld = newItem.GameWorld;
-            itm.Language = newItem.Language;
-            itm.Publisher = newItem.Publisher;
-            itm.Author = newItem.Author;
-            itm.Year = newItem.Year;
-            itm.Description = newItem.Description;
-            itm.Keywords = newItem.Keywords;
-            itm.Note = newItem.Note;
-            itm.Family = newItem.Family;
-            itm.Extension = newItem.Extension;
-            itm.ExtensionNumber = newItem.ExtensionNumber;
-            itm.Rules = newItem.Rules;
-            itm.MaterialPath = newItem.MaterialPath;
-            itm.Rating = newItem.Rating;
-            itm.MyRating = newItem.MyRating;
-            itm.URL = newItem.URL;
-
-            itm.Excluded = newItem.Excluded;
-            itm.FastTags = newItem.FastTags;
-            itm.Updated = newItem.Updated;
-        }
-        
         private void mnuImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -899,282 +674,13 @@ namespace Katalog
             {
                 databaseEntities db = new databaseEntities();
 
-                if (TabBars.SelectedTab == tabContacts)
-                {
-                    List<Contacts> con = global.ImportContactsCSV(dialog.FileName);
-                    if (con == null)
-                    {
-                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
-                        return;
-                    }
-
-                    foreach (var item in con)
-                    {
-                        
-
-                        Contacts contact;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            contact = db.Contacts.Find(item.ID);
-                            if (contact != null)
-                                FillContact(ref contact, item);
-                            else
-                            {
-                                db.Contacts.Add(item);
-                            }
-                            
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Contacts.Add(item);
-                        }
-                    }
-                    db.SaveChanges();
-                    UpdateConOLV();
-                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport","Import was succesfully done") + ".", Lng.Get("Import"));
-                }
-                else if (TabBars.SelectedTab == tabLending)
-                {
-                    List<Lending> con = global.ImportLendedCSV(dialog.FileName);
-                    if (con == null)
-                    {
-                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
-                        return;
-                    }
-
-                    foreach (var item in con)
-                    {
-                        Lending itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Lending.Find(item.ID);
-                            if (itm != null)
-                                FillLending(ref itm, item);
-                            else
-                            {
-                                db.Lending.Add(item);
-                            }
-
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Lending.Add(item);
-                        }
-                    }
-
-                    db.SaveChanges();
-                    UpdateLendingOLV();
-                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
-                }
-                else if (TabBars.SelectedTab == tabBorrowing)
-                {
-                    List<Borrowing> con = global.ImportBorowingCSV(dialog.FileName);
-                    if (con == null)
-                    {
-                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
-                        return;
-                    }
-
-                    foreach (var item in con)
-                    {
-                        Borrowing itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Borrowing.Find(item.ID);
-                            if (itm != null)
-                                FillBorrowing(ref itm, item);
-                            else
-                            {
-                                db.Borrowing.Add(item);
-                            }
-
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Borrowing.Add(item);
-                        }
-                    }
-                    db.SaveChanges();
-                    UpdateBorrowingOLV();
-                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
-                }
-                else if (TabBars.SelectedTab == tabItems)
-                {
-                    List<Items> con = global.ImportItemsCSV(dialog.FileName, out List<Copies> copies);
-                    if (con == null)
-                    {
-                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
-                        return;
-                    }
-
-                    foreach (var item in con)
-                    {
-                        Items itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Items.Find(item.ID);
-                            if (itm != null)
-                                FillItem(ref itm, item);
-                            else
-                            {
-                                db.Items.Add(item);
-                            }
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Items.Add(item);
-                        }
-                    }
-
-                    foreach (var item in copies)
-                    {
-                        Copies itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Copies.Find(item.ID);
-                            if (itm != null)
-                                FillCopy(ref itm, item);
-                            else
-                            {
-                                db.Copies.Add(item);
-                            }
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Copies.Add(item);
-                        }
-                    }
-
-                    db.SaveChanges();
-                    UpdateItemsOLV();
-                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
-                }
-                else if (TabBars.SelectedTab == tabBooks)
-                {
-                    List<Books> con = global.ImportBooksCSV(dialog.FileName, out List<Copies> copies);
-                    if (con == null)
-                    {
-                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
-                        return;
-                    }
-
-                    foreach (var item in con)
-                    {
-
-
-                        Books itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Books.Find(item.ID);
-                            if (itm != null)
-                                FillBook(ref itm, item);
-                            else
-                            {
-                                db.Books.Add(item);
-                            }
-
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Books.Add(item);
-                        }
-                    }
-
-                    foreach (var item in copies)
-                    {
-                        Copies itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Copies.Find(item.ID);
-                            if (itm != null)
-                                FillCopy(ref itm, item);
-                            else
-                            {
-                                db.Copies.Add(item);
-                            }
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Copies.Add(item);
-                        }
-                    }
-
-                    db.SaveChanges();
-                    UpdateBooksOLV();
-                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
-                }
-                else if (TabBars.SelectedTab == tabBoardGames)
-                {
-                    List<Boardgames> con = global.ImportBoardgamesCSV(dialog.FileName, out List<Copies> copies);
-                    if (con == null)
-                    {
-                        Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
-                        return;
-                    }
-
-                    foreach (var item in con)
-                    {
-
-
-                        Boardgames itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Boardgames.Find(item.ID);
-                            if (itm != null)
-                                FillBoard(ref itm, item);
-                            else
-                            {
-                                db.Boardgames.Add(item);
-                            }
-
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Boardgames.Add(item);
-                        }
-                    }
-
-                    foreach (var item in copies)
-                    {
-                        Copies itm;
-                        // ----- ID -----
-                        if (item.ID != Guid.Empty)
-                        {
-                            itm = db.Copies.Find(item.ID);
-                            if (itm != null)
-                                FillCopy(ref itm, item);
-                            else
-                            {
-                                db.Copies.Add(item);
-                            }
-                        }
-                        else
-                        {
-                            item.ID = Guid.NewGuid();
-                            db.Copies.Add(item);
-                        }
-                    }
-
-                    db.SaveChanges();
-                    UpdateBoardOLV();
-                    Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
-                }
+                if (TabBars.SelectedTab == tabContacts) ImportContacts(dialog.FileName);
+                else if (TabBars.SelectedTab == tabLending) ImportLending(dialog.FileName);
+                else if (TabBars.SelectedTab == tabBorrowing) ImportBorrowing(dialog.FileName);
+                else if (TabBars.SelectedTab == tabItems) ImportItems(dialog.FileName);
+                else if (TabBars.SelectedTab == tabBooks) ImportBooks(dialog.FileName);
+                else if (TabBars.SelectedTab == tabBoardGames) ImportBoardGames(dialog.FileName);
+                else if (TabBars.SelectedTab == tabObject) ImportObjects(dialog.FileName);
             }
 
 
@@ -1561,5 +1067,7 @@ namespace Katalog
             Properties.Settings.Default.ShowObjects = mnuShowObjects.Checked;
             Properties.Settings.Default.Save();
         }
+
+        
     }
 }

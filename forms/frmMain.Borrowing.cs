@@ -142,7 +142,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvBorrowing_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvBorrowing_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -234,7 +234,8 @@ namespace Katalog
         private void DeleteItemBorrowing()
         {
             databaseEntities db = new databaseEntities();
-            if (olvBorrowing.SelectedIndex >= 0)                // If selected Item
+            int count = olvBorrowing.SelectedObjects.Count;
+            if (count == 1)                // If selected Item
             {                                                   // Find Object
                 Borrowing borr = db.Borrowing.Find(((Borrowing)olvBorrowing.SelectedObject).ID);
 
@@ -245,9 +246,9 @@ namespace Katalog
                     UpdateBorrowingOLV();                       // Update Borrowing OLV 
                 }
             }
-            else if (olvBorrowing.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvBorrowing.SelectedObjects.Count;
+                
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() + ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvBorrowing.SelectedObjects) // Find Object
@@ -390,6 +391,58 @@ namespace Katalog
                 StandardFilter.Columns = new OLVColumn[] { brStatus };
             else if (cbFilterCol.SelectedIndex == 6)
                 StandardFilter.Columns = new OLVColumn[] { brNote };
+        }
+
+        #endregion
+
+        #region Import / Export
+
+        private void ImportBorrowing(string fileName)
+        {
+            List<Borrowing> con = global.ImportBorowingCSV(fileName);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+                Borrowing itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Borrowing.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Borrowing.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Borrowing.Add(item);
+                }
+            }
+            db.SaveChanges();
+            UpdateBorrowingOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportBorrowing(string fileName)
+        {
+            List<Borrowing> itm = new List<Borrowing>();
+
+            foreach (var item in olvBorrowing.FilteredObjects)
+            {
+                itm.Add((Borrowing)item);
+            }
+            global.ExportBorrowingCSV(fileName, itm);
         }
 
         #endregion

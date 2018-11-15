@@ -153,7 +153,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvLending_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvLending_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -246,7 +246,8 @@ namespace Katalog
         private void DeleteItemLending()
         {
             databaseEntities db = new databaseEntities();
-            if (olvLending.SelectedIndex >= 0)                  // If selected Item
+            int count = olvLending.SelectedObjects.Count;
+            if (count == 1)                  // If selected Item
             {                                                   // Find Object
                 Lending borr = db.Lending.Find(((Lending)olvLending.SelectedObject).ID);
 
@@ -258,9 +259,9 @@ namespace Katalog
                     UpdateAllItemsOLV();
                 }
             }
-            else if (olvLending.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvLending.SelectedObjects.Count;
+               
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() + ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvLending.SelectedObjects) // Find Object
@@ -413,5 +414,60 @@ namespace Katalog
         }
 
         #endregion
+
+        #region Import / Export
+
+        private void ImportLending(string fileName)
+        {
+            List<Lending> con = global.ImportLendedCSV(fileName);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+                Lending itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Lending.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Lending.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Lending.Add(item);
+                }
+            }
+
+            db.SaveChanges();
+            UpdateLendingOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportLending(string fileName)
+        {
+            List<Lending> itm = new List<Lending>();
+
+            foreach (var item in olvLending.FilteredObjects)
+            {
+                itm.Add((Lending)item);
+            }
+            global.ExportLendedCSV(fileName, itm);
+        }
+
+        #endregion
+
+
     }
 }

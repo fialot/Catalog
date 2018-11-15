@@ -927,6 +927,57 @@ namespace Katalog
         }
 
 
+        /// <summary>
+        /// Export Objects to CSV file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="con">Contact list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportObjectCSV(string path, List<Objects> con)
+        {
+            // ----- Head -----
+            string lines = "FialotCatalog:Objects v1" + Environment.NewLine;
+
+            // ----- Names -----
+            lines += "name;category;subcategory;keywords;note;description;image;rating;myrating;fasttags;updated;active;version;files;folder;type;objectnum;language;parent;customer;development;isparent;usedobject;GUID" + Environment.NewLine;
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Data -----
+            int imgNum = 0;
+            foreach (var item in con)
+            {
+                // ----- Images -----
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                // ----- Other data -----
+                lines += item.Name.Trim().Replace(";", "//") + ";" + item.Category.Trim().Replace(";", "//") + ";" + item.Subcategory.Trim().Replace(";", "//") + ";" + 
+                    item.Keywords.Trim().Replace(";", "//") + ";" + item.Note.ToString() + ";" + item.Description.Trim().Replace(";", "//") + ";" +
+                    imgFileName + ";" + item.Rating.ToString() + ";" + item.MyRating.ToString() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + 
+                    (item.Active ?? true).ToString() + ";" + item.Version.Trim().Replace(";", "//") + ";" + item.Files.Trim().Replace(";", "//") + ";" + item.Folder.Trim().Replace(";", "//") + ";" +
+                    item.Type.Trim().Replace(";", "//") + ";" + item.ObjectNum.Trim().Replace(";", "//") + ";" + item.Language.Trim().Replace(";", "//") + ";" + item.Parent.ToString() + ";" + 
+                    item.Customer.Trim().Replace(";", "//") + ";" + item.Development.Trim().Replace(";", "//") + ";" + (item.IsParent ?? true).ToString() + ";" +
+                    item.UsedObjects.Trim().Replace(";", "//") + ";" + item.ID + Environment.NewLine;
+
+                imgNum++;
+            }
+
+            return Files.SaveFile(path, lines);
+        }
+
         #endregion
 
         #region Import
@@ -1668,6 +1719,70 @@ namespace Katalog
 
             return con;
         }
+
+
+        /// <summary>
+        /// Import Objects from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Contact list</returns>
+        public static List<Objects> ImportObjectsCSV(string path)
+        {
+            List<Objects> objList = new List<Objects>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Check File Head -----
+            if (!Str.GetFirstLine(ref text, true).Contains("FialotCatalog:Objects"))
+                return null;
+
+            // ----- Parse CSV File -----
+            CSVfile file = Files.ParseCSV(text);
+
+            // ----- Check table size -----
+            if (file.head.Length != 24)
+                return null;
+
+            // ----- Parse data -----
+            foreach (var item in file.data)
+            {
+                string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[6];
+
+                Objects obj = new Objects();
+                obj.Name = item[0].Replace("//", ";");
+                obj.Category = item[1].Replace("//", ";");
+                obj.Subcategory = item[2].Replace("//", ";");
+                obj.Keywords = item[3].Replace("//", ";");
+                obj.Note = item[4].Replace("//", ";").Replace("\n", Environment.NewLine);
+                obj.Description = item[5].Replace("//", ";").Replace("\n", Environment.NewLine);
+                if (item[6] != "")
+                    obj.Image = Files.LoadBinFile(imgPath);
+                obj.Rating = Conv.ToShortNull(item[7]);
+                obj.MyRating = Conv.ToShortNull(item[8]);
+                obj.FastTags = Conv.ToShortDef(item[9], 0);
+                obj.Updated = Conv.ToDateTimeNull(item[10]);
+                obj.Active = Conv.ToBoolDef(item[11], true);
+                obj.Version = item[12].Replace("//", ";");
+                obj.Files = item[13].Replace("//", ";");
+                obj.Folder = item[14].Replace("//", ";");
+                obj.Type = item[15].Replace("//", ";");
+                obj.ObjectNum = item[16].Replace("//", ";");
+                obj.Language = item[17].Replace("//", ";");
+                obj.Parent = Conv.ToGuidNull(item[18]);
+                obj.Customer = item[19].Replace("//", ";");
+                obj.Development = item[20].Replace("//", ";");
+                obj.IsParent = Conv.ToBoolDef(item[21], true);
+                obj.UsedObjects = item[22].Replace("//", ";");
+
+
+                obj.ID = Conv.ToGuid(item[23]);
+                objList.Add(obj);
+            }
+
+            return objList;
+        }
+
 
         #endregion
     }

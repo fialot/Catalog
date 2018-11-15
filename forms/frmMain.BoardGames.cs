@@ -90,7 +90,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvBoard_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvBoard_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -165,7 +165,8 @@ namespace Katalog
         private void DeleteItemBoard()
         {
             databaseEntities db = new databaseEntities();
-            if (olvBoard.SelectedIndex >= 0)                     // If selected Item
+            int count = olvBoard.SelectedObjects.Count;
+            if (count == 1)                     // If selected Item
             {                                                   // Find Object
                 Boardgames itm = db.Boardgames.Find(((Boardgames)olvBoard.SelectedObject).ID);
 
@@ -184,9 +185,9 @@ namespace Katalog
                     UpdateBoardOLV();                           // Update Items OLV 
                 }
             }
-            else if (olvBoard.SelectedObjects != null)                 // If selected Item
+            else if (count > 1)                 // If selected Item
             {
-                int count = olvBoard.SelectedObjects.Count;
+                
                 if (Dialogs.ShowQuest(Lng.Get("DeleteItems", "Really delete selected items") + " (" + count.ToString() + ")?", Lng.Get("Delete")) == DialogResult.Yes)
                 {
                     foreach (var item in olvBoard.SelectedObjects) // Find Object
@@ -351,6 +352,82 @@ namespace Katalog
                 StandardFilter.Columns = new OLVColumn[] { bgAvailable };
             else if (cbFilterCol.SelectedIndex == 8)
                 StandardFilter.Columns = new OLVColumn[] { bgExcluded };
+        }
+
+        #endregion
+
+        #region Import
+
+        private void ImportBoardGames(string fileName)
+        {
+            List<Boardgames> con = global.ImportBoardgamesCSV(fileName, out List<Copies> copies);
+            if (con == null)
+            {
+                Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
+                return;
+            }
+
+            databaseEntities db = new databaseEntities();
+
+            foreach (var item in con)
+            {
+
+
+                Boardgames itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Boardgames.Find(item.ID);
+                    if (itm != null)
+                        Conv.CopyClassPropetries(itm, item);
+                    else
+                    {
+                        db.Boardgames.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Boardgames.Add(item);
+                }
+            }
+
+            foreach (var item in copies)
+            {
+                Copies itm;
+                // ----- ID -----
+                if (item.ID != Guid.Empty)
+                {
+                    itm = db.Copies.Find(item.ID);
+                    if (itm != null)
+                        FillCopy(ref itm, item);
+                    else
+                    {
+                        db.Copies.Add(item);
+                    }
+                }
+                else
+                {
+                    item.ID = Guid.NewGuid();
+                    db.Copies.Add(item);
+                }
+            }
+
+            db.SaveChanges();
+            UpdateBoardOLV();
+            Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
+        }
+
+        private void ExportBoardGames(string fileName)
+        {
+            List<Boardgames> itm = new List<Boardgames>();
+
+            foreach (var item in olvBoard.FilteredObjects)
+            {
+                itm.Add((Boardgames)item);
+            }
+            global.ExportBoardCSV(fileName, itm);
         }
 
         #endregion
