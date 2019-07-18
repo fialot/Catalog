@@ -163,4 +163,7 @@
   <data name="if_Stock Index Down_27880" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_Stock Index Down_27880.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="IconObject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_kwrite_1409.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

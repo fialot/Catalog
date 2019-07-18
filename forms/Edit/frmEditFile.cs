@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,16 @@ namespace Katalog
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = Lng.Get("AllFiles", "All files") + " |*.*";
+
+            if (txtPath.Text != "")
+            {
+
+                if (File.Exists(txtPath.Text) || Directory.Exists(txtPath.Text))
+                    dialog.InitialDirectory = Path.GetDirectoryName(txtPath.Text);
+                else if (RelativePath != "")
+                    dialog.InitialDirectory = Path.GetDirectoryName(RelativePath + Path.DirectorySeparatorChar + txtPath.Text);
+            }
+            
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 if (RelativePath != "")

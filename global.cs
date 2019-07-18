@@ -12,6 +12,8 @@ using GContacts;
 
 namespace Katalog
 {
+    #region Enum Defines 
+
     [Flags]
     public enum FastFlags : ushort
     {
@@ -26,10 +28,29 @@ namespace Katalog
     public enum ItemTypes { item = 0, book = 1, boardgame = 2 }
     public enum LendStatus { Reserved = 0, Lended = 1, Returned = 2, Canceled = 3 }
 
+    #endregion
+
+    #region Structure defines
+
     public class PInfo
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
+    }
+
+    public class PInfoComparer : IComparer<PInfo>
+    {
+        public int Compare(PInfo x, PInfo y)
+        {
+            if (x.Name == null || y.Name == null)
+            {
+                return 0;
+            }
+
+            // CompareTo() method 
+            return x.Name.CompareTo(y.Name);
+
+        }
     }
 
     public class CInfo
@@ -83,6 +104,9 @@ namespace Katalog
         public static long Book = Properties.Settings.Default.BookStart - 1;
         public static long Boardgame = Properties.Settings.Default.BoardStart - 1;
     }
+
+    #endregion
+
 
     static class global
     {
@@ -241,6 +265,40 @@ namespace Katalog
             }
 
             return text;
+        }
+
+        public static List<Objects> GetObjectsFromText(string text)
+        {
+            List<Objects> list = new List<Objects>();
+            databaseEntities db = new databaseEntities();       // Database
+
+            string[] strList = text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in strList)
+            {
+                try
+                {
+                    Guid ID = Guid.Parse(item);
+                    Objects obj = db.Objects.Find(ID);
+                    if (obj != null)
+                        list.Add(obj);
+
+                } catch { }
+                
+            }
+            return list;
+        }
+
+        public static string GetTextFromObjects(List<Objects> list)
+        {
+            string res = "";
+
+            foreach (var item in list)
+            {
+                if (res != "") res += ";";
+                res += item.ID.ToString();
+            }
+
+            return res;
         }
 
         /// <summary>
@@ -2000,6 +2058,7 @@ namespace Katalog
 
 
         #endregion
+
     }
 
 

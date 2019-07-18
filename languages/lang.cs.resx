@@ -411,4 +411,16 @@
   <data name="OnlyTop" xml:space="preserve">
     <value>Pouze vrch</value>
   </data>
+  <data name="Objects" xml:space="preserve">
+    <value>Objekty</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Zákazník</value>
+  </data>
+  <data name="Development" xml:space="preserve">
+    <value>Vývoj</value>
+  </data>
+  <data name="Parrent" xml:space="preserve">
+    <value>Rodič</value>
+  </data>
 </root>

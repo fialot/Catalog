@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using myFunctions;
 
 namespace Katalog
@@ -24,6 +25,7 @@ namespace Katalog
         Guid ID = Guid.Empty;                               // Selected Item GUID (No Guid = new item)
 
         string Files = "";
+        string ObjectList = "";
         List<PInfo> parentList = new List<PInfo>();
 
         #endregion
@@ -71,11 +73,38 @@ namespace Katalog
             foreach (var item in subcategoryList)
                 txtSubCategory.AutoCompleteCustomSource.Add(item);
 
-            
+
+            var typeList = db.Objects.Where(x => x.Active == true).Select(s => s.Type).ToList();
+            typeList.Sort();
+            string lastType = "";
+            for (int i = typeList.Count - 1; i >= 0; i--)
+            {
+                if (typeList[i] != "")
+                {
+                    if (typeList[i] == lastType)
+                    {
+                        typeList.RemoveAt(i);
+                    }
+                    lastType = typeList[i];
+                } else typeList.RemoveAt(i);
+            }
+
+            cbType.Items.Clear();
+            foreach (var item in typeList) cbType.Items.Add(item);
+
+
             // ----- If Edit -> fill form -----
             if (ID != Guid.Empty)
             {
                 Objects itm = db.Objects.Find(ID);
+
+                // ----- Prepare Parent list -----
+                parentList = global.GetParentlist(itm.ID);
+                cbParent.Items.Clear();
+                foreach (var item in parentList)
+                {
+                    cbParent.Items.Add(item.Name);
+                }
 
                 // ----- Fill Image -----
                 imgImg.Image = Conv.ByteArrayToImage(itm.Image);
@@ -96,6 +125,12 @@ namespace Katalog
                 {
                     btnFiles.ForeColor = Color.Green;
                     btnFiles.Font = new Font(btnFiles.Font, FontStyle.Bold);
+                }
+                ObjectList = itm.UsedObjects;
+                if (ObjectList != "")
+                {
+                    btnObjects.ForeColor = Color.Green;
+                    btnObjects.Font = new Font(btnObjects.Font, FontStyle.Bold);
                 }
                 cbType.Text = itm.Type.Trim();
                 txtNumber.Text = itm.ObjectNum.Trim();
@@ -128,18 +163,17 @@ namespace Katalog
                 // ----- Update -----
                 lblUpdated.Text = Lng.Get("LastUpdate", "Last update") + ": " + (itm.Updated ?? DateTime.Now).ToShortDateString();
 
-                parentList = global.GetParentlist(itm.ID);
+                
             }
             else
             {
+                // ----- Prepare Parent list -----
                 parentList = global.GetParentlist(Guid.Empty);
-            }
-
-            // ----- Prepare Parent list -----
-            cbParent.Items.Clear();
-            foreach (var item in parentList)
-            {
-                cbParent.Items.Add(item.Name);
+                cbParent.Items.Clear();
+                foreach (var item in parentList)
+                {
+                    cbParent.Items.Add(item.Name);
+                }
             }
         }
 
@@ -183,7 +217,7 @@ namespace Katalog
             itm.Customer = txtCustomer.Text;
             itm.Development = txtDevelopment.Text;
             itm.IsParent = chbIsParent.Checked;
-            itm.UsedObjects = "";
+            itm.UsedObjects = ObjectList;
 
             // ----- Rating -----
             itm.Rating = Conv.ToShortNull(txtRating.Text);
@@ -319,6 +353,59 @@ namespace Katalog
                 btnFiles.ForeColor = Color.Green;
                 btnFiles.Font = new Font(btnFiles.Font, FontStyle.Bold);
             }
+            else
+            {
+                btnFiles.ForeColor = Color.Black;
+                btnFiles.Font = new Font(btnFiles.Font, FontStyle.Regular);
+            }
+        }
+
+
+        private void btnFolder_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            string RelativePath = Properties.Settings.Default.ObjectFolder;
+
+            // ----- Set Init Dir -----
+            if (txtFolder.Text != "")
+            {
+                if (System.IO.Directory.Exists(txtFolder.Text))
+                    dialog.InitialDirectory = txtFolder.Text;
+                else if (RelativePath != "")
+                    dialog.InitialDirectory = RelativePath + System.IO.Path.DirectorySeparatorChar + txtFolder.Text;
+            }
+
+            // ----- Show open dialog -----
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                if (RelativePath != "")
+                {
+                    txtFolder.Text = dialog.FileName.Replace(RelativePath, "");
+                    if (txtFolder.Text.Length > 0 && txtFolder.Text[0] == '\\') txtFolder.Text = txtFolder.Text.Remove(0, 1);
+                }
+                else
+                    txtFolder.Text = dialog.FileName;
+            }
+                
+            dialog.Dispose();
+        }
+
+        private void btnObjects_Click(object sender, EventArgs e)
+        {
+            frmEditFiles form = new frmEditFiles();
+            form.ShowDialog(ref ObjectList, true);
+            if (ObjectList != "")
+            {
+                btnObjects.ForeColor = Color.Green;
+                btnObjects.Font = new Font(btnObjects.Font, FontStyle.Bold);
+            }
+            else
+            {
+                btnObjects.ForeColor = Color.Black;
+                btnObjects.Font = new Font(btnObjects.Font, FontStyle.Regular);
+            }
+
         }
     }
 }

@@ -77,6 +77,7 @@
             this.txtLanguage = new System.Windows.Forms.TextBox();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.chbIsParent = new System.Windows.Forms.CheckBox();
+            this.btnObjects = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbRating.SuspendLayout();
             this.SuspendLayout();
@@ -218,8 +219,8 @@
             // 
             // imgImg
             // 
-            resources.ApplyResources(this.imgImg, "imgImg");
             this.imgImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.imgImg, "imgImg");
             this.imgImg.Name = "imgImg";
             this.imgImg.TabStop = false;
             this.imgImg.Click += new System.EventHandler(this.imgImg_Click);
@@ -313,6 +314,7 @@
             resources.ApplyResources(this.btnFolder, "btnFolder");
             this.btnFolder.Name = "btnFolder";
             this.btnFolder.UseVisualStyleBackColor = true;
+            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
             // 
             // cbType
             // 
@@ -339,9 +341,9 @@
             // 
             // txtDevelopment
             // 
-            resources.ApplyResources(this.txtDevelopment, "txtDevelopment");
             this.txtDevelopment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDevelopment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtDevelopment, "txtDevelopment");
             this.txtDevelopment.Name = "txtDevelopment";
             // 
             // lblDevelopment
@@ -351,9 +353,9 @@
             // 
             // txtCustomer
             // 
-            resources.ApplyResources(this.txtCustomer, "txtCustomer");
             this.txtCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtCustomer, "txtCustomer");
             this.txtCustomer.Name = "txtCustomer";
             // 
             // lblCustomer
@@ -363,9 +365,9 @@
             // 
             // txtLanguage
             // 
-            resources.ApplyResources(this.txtLanguage, "txtLanguage");
             this.txtLanguage.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtLanguage.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            resources.ApplyResources(this.txtLanguage, "txtLanguage");
             this.txtLanguage.Name = "txtLanguage";
             // 
             // lblLanguage
@@ -381,10 +383,18 @@
             this.chbIsParent.Name = "chbIsParent";
             this.chbIsParent.UseVisualStyleBackColor = true;
             // 
+            // btnObjects
+            // 
+            resources.ApplyResources(this.btnObjects, "btnObjects");
+            this.btnObjects.Name = "btnObjects";
+            this.btnObjects.UseVisualStyleBackColor = true;
+            this.btnObjects.Click += new System.EventHandler(this.btnObjects_Click);
+            // 
             // frmEditObjects
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnObjects);
             this.Controls.Add(this.chbIsParent);
             this.Controls.Add(this.txtDevelopment);
             this.Controls.Add(this.lblDevelopment);
@@ -489,5 +499,6 @@
         private System.Windows.Forms.TextBox txtLanguage;
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.CheckBox chbIsParent;
+        private System.Windows.Forms.Button btnObjects;
     }
 }

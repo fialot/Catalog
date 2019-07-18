@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Katalog</RootNamespace>
     <AssemblyName>Katalog</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -220,6 +220,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="forms\Edit\frmAddObject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Edit\frmAddObject.Designer.cs">
+      <DependentUpon>frmAddObject.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Edit\frmEditFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -394,6 +400,12 @@
     <Compile Include="Video.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="forms\Edit\frmAddObject.cs.resx">
+      <DependentUpon>frmAddObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Edit\frmAddObject.resx">
+      <DependentUpon>frmAddObject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Edit\frmEditFile.cs.resx">
       <DependentUpon>frmEditFile.cs</DependentUpon>
     </EmbeddedResource>
@@ -593,6 +605,7 @@
     <Content Include="imports\Zoom.Net.dll" />
     <Content Include="imports\Zoom.Net.YazSharp.dll" />
     <Content Include="Resources\Catalog.ico" />
+    <None Include="Resources\if_kwrite_1409.ico" />
     <None Include="Resources\if_Stock Index Down_27880.ico" />
     <None Include="Resources\connect.ico" />
     <None Include="Resources\Refresh16.png" />

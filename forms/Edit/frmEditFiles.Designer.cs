@@ -45,12 +45,12 @@
             // 
             // olvFiles
             // 
-            resources.ApplyResources(this.olvFiles, "olvFiles");
             this.olvFiles.AllColumns.Add(this.fileName);
             this.olvFiles.AllColumns.Add(this.fileVersion);
             this.olvFiles.AllColumns.Add(this.fileDescription);
             this.olvFiles.AllColumns.Add(this.filePath);
             this.olvFiles.AllColumns.Add(this.fileGroup);
+            resources.ApplyResources(this.olvFiles, "olvFiles");
             this.olvFiles.CellEditUseWholeCell = false;
             this.olvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.fileName,
@@ -61,7 +61,6 @@
             this.olvFiles.FullRowSelect = true;
             this.olvFiles.GridLines = true;
             this.olvFiles.Name = "olvFiles";
-            this.olvFiles.OverlayText.Text = resources.GetString("resource.Text");
             this.olvFiles.ShowGroups = false;
             this.olvFiles.TabStop = false;
             this.olvFiles.UseCompatibleStateImageBehavior = false;
