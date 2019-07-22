@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -398,7 +399,13 @@ namespace Katalog
 
         private void ImportObjects(string fileName)
         {
-            List<Objects> con = global.ImportObjectsCSV(fileName);
+            List<Objects> con;
+
+            if (Path.GetExtension(fileName) == "csv")
+                con = global.ImportObjectsCSV(fileName);
+            else
+                con = global.ImportObjectsXML(fileName);
+
             if (con == null)
             {
                 Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
@@ -441,7 +448,11 @@ namespace Katalog
             {
                 itm.Add((Objects)item);
             }
-            global.ExportObjectCSV(fileName, itm);
+
+            if (Path.GetExtension(fileName) == "csv")
+                global.ExportObjectCSV(fileName, itm);
+            else
+                global.ExportObjectXML(fileName, itm);
         }
 
         #endregion

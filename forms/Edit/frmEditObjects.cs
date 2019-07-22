@@ -115,6 +115,7 @@ namespace Katalog
                 txtSubCategory.Text = itm.Subcategory.Trim();       // SubCategory
                 txtKeywords.Text = itm.Keywords.Trim();             // Keywords
                 txtNote.Text = itm.Note.Trim();                     // Note
+                txtURL.Text = itm.URL.Trim();                       // URL
 
                 // ----- Objects -----
                 txtDescription.Text = itm.Description.Trim();
@@ -198,6 +199,7 @@ namespace Katalog
             itm.Subcategory = txtSubCategory.Text;          // SubCategory
             itm.Keywords = txtKeywords.Text;                // Keywords
             itm.Note = txtNote.Text;                        // Note
+            itm.URL = txtURL.Text;                          // URL
 
             // ----- Objects -----
             itm.Description = txtDescription.Text;
@@ -407,5 +409,6 @@ namespace Katalog
             }
 
         }
+
     }
 }

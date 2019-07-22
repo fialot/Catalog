@@ -78,6 +78,8 @@
             this.lblLanguage = new System.Windows.Forms.Label();
             this.chbIsParent = new System.Windows.Forms.CheckBox();
             this.btnObjects = new System.Windows.Forms.Button();
+            this.lblURL = new System.Windows.Forms.Label();
+            this.txtURL = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbRating.SuspendLayout();
             this.SuspendLayout();
@@ -390,10 +392,22 @@
             this.btnObjects.UseVisualStyleBackColor = true;
             this.btnObjects.Click += new System.EventHandler(this.btnObjects_Click);
             // 
+            // lblURL
+            // 
+            resources.ApplyResources(this.lblURL, "lblURL");
+            this.lblURL.Name = "lblURL";
+            // 
+            // txtURL
+            // 
+            resources.ApplyResources(this.txtURL, "txtURL");
+            this.txtURL.Name = "txtURL";
+            // 
             // frmEditObjects
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblURL);
+            this.Controls.Add(this.txtURL);
             this.Controls.Add(this.btnObjects);
             this.Controls.Add(this.chbIsParent);
             this.Controls.Add(this.txtDevelopment);
@@ -500,5 +514,7 @@
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.CheckBox chbIsParent;
         private System.Windows.Forms.Button btnObjects;
+        private System.Windows.Forms.Label lblURL;
+        private System.Windows.Forms.TextBox txtURL;
     }
 }

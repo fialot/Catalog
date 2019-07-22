@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using GContacts;
+using System.Xml.Linq;
 
 namespace Katalog
 {
@@ -1096,7 +1097,7 @@ namespace Katalog
             string lines = "FialotCatalog:Objects v1" + Environment.NewLine;
 
             // ----- Names -----
-            lines += "name;category;subcategory;keywords;note;description;image;rating;myrating;fasttags;updated;active;version;files;folder;type;objectnum;language;parent;customer;development;isparent;usedobject;GUID" + Environment.NewLine;
+            lines += "name;category;subcategory;keywords;note;description;URL;image;rating;myrating;fasttags;updated;active;version;files;folder;type;objectnum;language;parent;customer;development;isparent;usedobject;GUID" + Environment.NewLine;
 
             // ----- Create files path -----
             string filePath = "";
@@ -1123,6 +1124,7 @@ namespace Katalog
                 // ----- Other data -----
                 lines += item.Name.Trim().Replace(";", "//") + ";" + item.Category.Trim().Replace(";", "//") + ";" + item.Subcategory.Trim().Replace(";", "//") + ";" + 
                     item.Keywords.Trim().Replace(";", "//") + ";" + item.Note.Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" + item.Description.Trim().Replace(";", "//").Replace(Environment.NewLine, "\\n") + ";" +
+                    item.URL.Trim() + ";" +
                     imgFileName + ";" + item.Rating.ToString() + ";" + item.MyRating.ToString() + ";" + item.FastTags.ToString() + ";" + item.Updated.ToString() + ";" + 
                     (item.Active ?? true).ToString() + ";" + item.Version.Trim().Replace(";", "//") + ";" + item.Files.Trim().Replace(";", "//") + ";" + item.Folder.Trim().Replace(";", "//") + ";" +
                     item.Type.Trim().Replace(";", "//") + ";" + item.ObjectNum.Trim().Replace(";", "//") + ";" + item.Language.Trim().Replace(";", "//") + ";" + item.Parent.ToString() + ";" + 
@@ -1133,6 +1135,105 @@ namespace Katalog
             }
 
             return Files.SaveFile(path, lines);
+        }
+
+        /// <summary>
+        /// Export Objects to CSV file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Contact list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportObjectXML(string path, List<Objects> itm)
+        {
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Objects"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                var objItem = new XElement("Object");
+                
+                objItem.Add(new XElement("General",
+                    new XElement("Name", item.Name.Trim()),
+                    new XElement("ObjectNumber", item.ObjectNum.Trim()),
+                    new XElement("Description", item.Description.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")),
+
+                    new XElement("Version", item.Version.Trim()),
+                    new XElement("Files", item.Files.Trim()),
+                    new XElement("Folder", item.Folder.Trim()),
+                    new XElement("URL", item.URL.Trim()),
+
+                    new XElement("Customer", item.Customer.Trim()),
+                    new XElement("Development", item.Development.Trim()),
+
+                    new XElement("Language", item.Language.Trim())
+                    
+                ));
+
+                objItem.Add(new XElement("Classification",
+                    new XElement("Type", item.Type.Trim()),
+                    new XElement("Category", item.Category.Trim()),
+                    new XElement("Subcategory", item.Subcategory.Trim()),
+                    new XElement("Keywords", item.Keywords.Trim()),
+                    new XElement("FastTags", item.FastTags.ToString())
+                ));
+                objItem.Add(new XElement("Rating",
+                    new XElement("Rating", item.Rating.ToString()),
+                    new XElement("MyRating", item.MyRating.ToString())
+                ));
+
+
+                objItem.Add(new XElement("System",
+                    new XElement("ID", item.ID),
+                    new XElement("Updated", item.Updated.ToString()),
+                    new XElement("Active", (item.Active ?? true).ToString()),
+                    new XElement("Parent", item.Parent.ToString()),
+                    new XElement("IsParent", (item.IsParent ?? true).ToString()),
+                    new XElement("UsedObjects", item.UsedObjects.Trim()),
+                    new XElement("Image", imgFileName)
+                ));
+
+                items.Add(objItem);
+                imgNum++;
+            }
+
+
+            data.Add(items);
+            doc.Add(data);
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
         }
 
         #endregion
@@ -2014,13 +2115,13 @@ namespace Katalog
             CSVfile file = Files.ParseCSV(text);
 
             // ----- Check table size -----
-            if (file.head.Length != 24)
+            if (file.head.Length != 25)
                 return null;
 
             // ----- Parse data -----
             foreach (var item in file.data)
             {
-                string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[6];
+                string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + item[7];
 
                 Objects obj = new Objects();
                 obj.Name = item[0].Replace("//", ";").Replace("\\n", Environment.NewLine);
@@ -2029,27 +2130,173 @@ namespace Katalog
                 obj.Keywords = item[3].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 obj.Note = item[4].Replace("//", ";").Replace("\\n", Environment.NewLine);
                 obj.Description = item[5].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                if (item[6] != "")
+                obj.URL = item[6].Replace("//", ";");
+                if (item[7] != "")
                     obj.Image = Files.LoadBinFile(imgPath);
-                obj.Rating = Conv.ToShortNull(item[7]);
-                obj.MyRating = Conv.ToShortNull(item[8]);
-                obj.FastTags = Conv.ToShortDef(item[9], 0);
-                obj.Updated = Conv.ToDateTimeNull(item[10]);
-                obj.Active = Conv.ToBoolDef(item[11], true);
-                obj.Version = item[12].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.Files = item[13].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.Folder = item[14].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.Type = item[15].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.ObjectNum = item[16].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.Language = item[17].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.Parent = Conv.ToGuidNull(item[18]);
-                obj.Customer = item[19].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.Development = item[20].Replace("//", ";").Replace("\\n", Environment.NewLine);
-                obj.IsParent = Conv.ToBoolDef(item[21], true);
-                obj.UsedObjects = item[22].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Rating = Conv.ToShortNull(item[8]);
+                obj.MyRating = Conv.ToShortNull(item[9]);
+                obj.FastTags = Conv.ToShortDef(item[10], 0);
+                obj.Updated = Conv.ToDateTimeNull(item[11]);
+                obj.Active = Conv.ToBoolDef(item[12], true);
+                obj.Version = item[13].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Files = item[14].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Folder = item[15].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Type = item[16].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.ObjectNum = item[17].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Language = item[18].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Parent = Conv.ToGuidNull(item[19]);
+                obj.Customer = item[20].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.Development = item[21].Replace("//", ";").Replace("\\n", Environment.NewLine);
+                obj.IsParent = Conv.ToBoolDef(item[22], true);
+                obj.UsedObjects = item[23].Replace("//", ";").Replace("\\n", Environment.NewLine);
 
 
-                obj.ID = Conv.ToGuid(item[23]);
+                obj.ID = Conv.ToGuid(item[24]);
+                objList.Add(obj);
+            }
+
+            return objList;
+        }
+
+
+        /// <summary>
+        /// Import Objects from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Contact list</returns>
+        public static List<Objects> ImportObjectsXML(string path)
+        {
+            List<Objects> objList = new List<Objects>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Objects")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("Object");
+
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Objects obj = new Objects();
+
+                var xmlGeneral = item.Element("General");
+
+                if (xmlGeneral.Element("Name") != null)
+                    obj.Name = xmlGeneral.Element("Name").Value;
+                else obj.Name = "";
+
+                if (xmlGeneral.Element("ObjectNumber") != null)
+                    obj.ObjectNum = xmlGeneral.Element("ObjectNumber").Value;
+                else obj.ObjectNum = "";
+
+                if (xmlGeneral.Element("Description") != null)
+                    obj.Description = xmlGeneral.Element("Description").Value;
+                else obj.Description = "";
+
+                if (xmlGeneral.Element("Note") != null)
+                    obj.Note = xmlGeneral.Element("Note").Value;
+                else obj.Note = "";
+
+                if (xmlGeneral.Element("Version") != null)
+                    obj.Version = xmlGeneral.Element("Version").Value;
+                else obj.Version = "";
+
+                if (xmlGeneral.Element("Files") != null)
+                    obj.Files = xmlGeneral.Element("Files").Value;
+                else obj.Files = "";
+
+                if (xmlGeneral.Element("Folder") != null)
+                    obj.Folder = xmlGeneral.Element("Folder").Value;
+                else obj.Folder = "";
+
+                if (xmlGeneral.Element("URL") != null)
+                  obj.URL = xmlGeneral.Element("URL").Value;
+                else obj.URL = "";
+
+                if (xmlGeneral.Element("Customer") != null)
+                    obj.Customer = xmlGeneral.Element("Customer").Value;
+                else obj.Customer = "";
+
+                if (xmlGeneral.Element("Development") != null)
+                    obj.Development = xmlGeneral.Element("Development").Value;
+                else obj.Development = "";
+
+                if (xmlGeneral.Element("Language") != null)
+                    obj.Language = xmlGeneral.Element("Language").Value;
+                else obj.Language = "";
+
+
+                var xmlClass = item.Element("Classification");
+
+                if (xmlClass.Element("Type") != null)
+                    obj.Type = xmlClass.Element("Type").Value;
+                else obj.Name = "";
+
+                if (xmlClass.Element("Category") != null)
+                    obj.Category = xmlClass.Element("Category").Value;
+                else obj.Category = "";
+
+                if (xmlClass.Element("Subcategory") != null)
+                    obj.Subcategory = xmlClass.Element("Subcategory").Value;
+                else obj.Subcategory = "";
+
+                if (xmlClass.Element("Keywords") != null)
+                    obj.Keywords = xmlClass.Element("Keywords").Value;
+                else obj.Keywords = "";
+
+                if (xmlClass.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlClass.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+
+                var xmlRating = item.Element("Rating");
+
+                if (xmlRating.Element("Rating") != null)
+                    obj.Rating = Conv.ToShortNull(xmlRating.Element("Rating").Value);
+
+                if (xmlRating.Element("MyRating") != null)
+                    obj.MyRating = Conv.ToShortNull(xmlRating.Element("MyRating").Value);
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("Active") != null)
+                    obj.Active = Conv.ToBoolDef(xmlSystem.Element("Active").Value, true);
+                else obj.Active = true;
+
+                if (xmlSystem.Element("Parent") != null)
+                    obj.Parent = Conv.ToGuidNull(xmlSystem.Element("Parent").Value);
+
+                if (xmlSystem.Element("IsParent") != null)
+                    obj.IsParent = Conv.ToBoolDef(xmlSystem.Element("IsParent").Value, true);
+                else obj.IsParent = true;
+
+                if (xmlSystem.Element("UsedObjects") != null)
+                    obj.UsedObjects = xmlSystem.Element("UsedObjects").Value;
+                else obj.UsedObjects = "";
+
+                if (xmlSystem.Element("Image") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Image").Value;
+
+                    obj.Image = Files.LoadBinFile(imgPath);
+                }
+                    
+
                 objList.Add(obj);
             }
 

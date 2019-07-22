@@ -423,4 +423,13 @@
   <data name="Parrent" xml:space="preserve">
     <value>Rodič</value>
   </data>
+  <data name="CsvFile" xml:space="preserve">
+    <value>Soubor CSV</value>
+  </data>
+  <data name="XmlFile" xml:space="preserve">
+    <value>Soubor XML</value>
+  </data>
+  <data name="ImportFiles" xml:space="preserve">
+    <value>Soubory k importu</value>
+  </data>
 </root>

@@ -557,8 +557,8 @@ namespace Katalog
         private void mnuExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "CSV file|*.csv";
-            dialog.FileName = "data.csv";
+            dialog.Filter = Lng.Get("XmlFile", "XML File") + "|*.xml|" + Lng.Get("CsvFile", "CSV File") + "|*.csv";
+            dialog.FileName = "data.xml";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 if (TabBars.SelectedTab == tabContacts) ExportContacts(dialog.FileName);
@@ -670,7 +670,7 @@ namespace Katalog
         private void mnuImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "CSV file|*.csv";
+            dialog.Filter = Lng.Get("ImportFiles", "Import Files") + "|*.csv;*.xml|" + Lng.Get("XmlFile", "XML File") + "|*.xml|" + Lng.Get("CsvFile", "CSV File") + "|*.csv";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 databaseEntities db = new databaseEntities();

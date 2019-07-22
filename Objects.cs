@@ -38,5 +38,6 @@ namespace Katalog
         public string Development { get; set; }
         public Nullable<bool> IsParent { get; set; }
         public string UsedObjects { get; set; }
+        public string URL { get; set; }
     }
 }

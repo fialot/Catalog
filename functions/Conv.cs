@@ -8,6 +8,11 @@ using System.Drawing;
 
 namespace myFunctions
 {
+	public class Utf8StringWriter : StringWriter
+    {
+        public override Encoding Encoding { get { return Encoding.UTF8; } }
+    }
+	
     /// <summary>
     /// Conversion
     /// Version:    1.2
