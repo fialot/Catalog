@@ -160,18 +160,19 @@ namespace myFunctions
 
         #endregion
 
-        #region To Number with Default number
-        
+        #region String To Number with Default (Null) number
+
+        #region To Bool
+
         /// <summary>
         /// Convert String to Bool with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
         /// <param name="def">Default value</param>
-        /// <returns>Short number</returns>
+        /// <returns>Bool variable</returns>
         public static bool ToBoolDef(string text, bool def)
         {
-            bool value;
-            if (bool.TryParse(text, out value))
+            if (bool.TryParse(text, out bool value))
                 return value;
             else
             {
@@ -191,11 +192,10 @@ namespace myFunctions
         /// Convert String to Bool with null
         /// </summary>
         /// <param name="text">Number string</param>
-        /// <returns>Short number</returns>
+        /// <returns>Bool variable</returns>
         public static bool? ToBoolNull(string text)
         {
-            bool value;
-            if (bool.TryParse(text, out value))
+            if (bool.TryParse(text, out bool value))
                 return value;
             else
             {
@@ -211,6 +211,10 @@ namespace myFunctions
             }
         }
 
+        #endregion
+
+        #region To Short (Int16)
+
         /// <summary>
         /// Convert String to Short with default value on convert Error
         /// </summary>
@@ -219,37 +223,7 @@ namespace myFunctions
         /// <returns>Short number</returns>
         public static short ToShortDef(string text, short def)
         {
-            short value;
-            if (short.TryParse(text, out value))
-                return value;
-            else
-                return def;
-        }
-
-        /// <summary>
-        /// Convert String to Short with default value on convert Error
-        /// </summary>
-        /// <param name="text">Number string</param>
-        /// <returns>Short number</returns>
-        public static short? ToShortNull(string text)
-        {
-            short value;
-            if (short.TryParse(text, out value))
-                return value;
-            else
-                return null;
-        }
-
-        /// <summary>
-        /// Convert String to Unsigned Short with default value on convert Error
-        /// </summary>
-        /// <param name="text">Number string</param>
-        /// <param name="def">Default value</param>
-        /// <returns>Short number</returns>
-        public static ushort ToUShortDef(string text, ushort def)
-        {
-            ushort value;
-            if (ushort.TryParse(text, out value))
+            if (short.TryParse(text, out short value))
                 return value;
             else
                 return def;
@@ -259,16 +233,46 @@ namespace myFunctions
         /// Convert String to Unsigned Short with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
+        /// <param name="def">Default value</param>
         /// <returns>Short number</returns>
-        public static ushort? ToUShortNull(string text)
+        public static ushort ToUShortDef(string text, ushort def)
         {
-            ushort value;
-            if (ushort.TryParse(text, out value))
+            if (ushort.TryParse(text, out ushort value))
+                return value;
+            else
+                return def;
+        }
+
+
+        /// <summary>
+        /// Convert String to Short with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Short number</returns>
+        public static short? ToShortNull(string text)
+        {
+            if (short.TryParse(text, out short value))
                 return value;
             else
                 return null;
         }
 
+        /// <summary>
+        /// Convert String to Unsigned Short with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Short number</returns>
+        public static ushort? ToUShortNull(string text)
+        {
+            if (ushort.TryParse(text, out ushort value))
+                return value;
+            else
+                return null;
+        }
+
+        #endregion
+
+        #region To Int (Int32)
 
         /// <summary>
         /// Convert String to Integer with default value on convert Error
@@ -278,25 +282,10 @@ namespace myFunctions
         /// <returns>Integer number</returns>
         public static int ToIntDef(string text, int def)
         {
-            int value;
-            if (int.TryParse(text, out value))
+            if (int.TryParse(text, out int value))
                 return value;
             else
                 return def;
-        }
-
-        /// <summary>
-        /// Convert String to Integer with default value on convert Error
-        /// </summary>
-        /// <param name="text">Number string</param>
-        /// <returns>Integer number</returns>
-        public static int? ToIntNull(string text)
-        {
-            int value;
-            if (int.TryParse(text, out value))
-                return value;
-            else
-                return null;
         }
 
         /// <summary>
@@ -307,25 +296,10 @@ namespace myFunctions
         /// <returns>Integer number</returns>
         public static uint ToUIntDef(string text, uint def)
         {
-            uint value;
-            if (uint.TryParse(text, out value))
+            if (uint.TryParse(text, out uint value))
                 return value;
             else
                 return def;
-        }
-        
-        /// <summary>
-        /// Convert String to Unsigned Integer with default value on convert Error
-        /// </summary>
-        /// <param name="text">Number string</param>
-        /// <returns>Integer number</returns>
-        public static uint? ToUIntNull(string text)
-        {
-            uint value;
-            if (uint.TryParse(text, out value))
-                return value;
-            else
-                return null;
         }
         
         /// <summary>
@@ -340,19 +314,128 @@ namespace myFunctions
         }
 
         /// <summary>
+        /// Convert String to Unsigned Integer with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <param name="def">Default value</param>
+        /// <returns>Integer number</returns>
+        public static uint ToUInt32Def(string text, uint def)
+        {
+            return ToUIntDef(text, def);
+        }
+        
+
+        /// <summary>
+        /// Convert String to Integer with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Integer number</returns>
+        public static int? ToIntNull(string text)
+        {
+            if (int.TryParse(text, out int value))
+                return value;
+            else
+                return null;
+        }
+        
+        /// <summary>
+        /// Convert String to Unsigned Integer with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Integer number</returns>
+        public static uint? ToUIntNull(string text)
+        {
+            if (uint.TryParse(text, out uint value))
+                return value;
+            else
+                return null;
+        }
+
+        #endregion
+
+        #region To Long (Int64)
+
+        /// <summary>
         /// Convert String to Int64 with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
         /// <param name="def">Default value</param>
         /// <returns>Long number</returns>
-        public static long ToLongDef(string text, int def)
+        public static long ToLongDef(string text, long def)
         {
-            long value;
-            if (long.TryParse(text, out value))
+            if (long.TryParse(text, out long value))
                 return value;
             else
                 return def;
         }
+
+        /// <summary>
+        /// Convert String to Unsigned Int64 with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <param name="def">Default value</param>
+        /// <returns>Long number</returns>
+        public static ulong ToULongDef(string text, ulong def)
+        {
+            if (ulong.TryParse(text, out ulong value))
+                return value;
+            else
+                return def;
+        }
+
+        /// <summary>
+        /// Convert String to Int64 with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <param name="def">Default value</param>
+        /// <returns>Long number</returns>
+        public static long ToInt64Def(string text, long def)
+        {
+            return ToLongDef(text, def);
+        }
+
+        /// <summary>
+        /// Convert String to Unsigned Int64 with default value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <param name="def">Default value</param>
+        /// <returns>Long number</returns>
+        public static ulong ToUInt64Def(string text, ulong def)
+        {
+            return ToULongDef(text, def);
+        }
+
+
+        /// <summary>
+        /// Convert String to Int64 with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Long number</returns>
+        public static long? ToLongNull(string text)
+        {
+            if (long.TryParse(text, out long value))
+                return value;
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// Convert String to Unsigned Int64 with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <param name="def">Default value</param>
+        /// <returns>Long number</returns>
+        public static ulong? ToULongNull(string text)
+        {
+            if (ulong.TryParse(text, out ulong value))
+                return value;
+            else
+                return null;
+        }
+
+        #endregion
+
+        #region To Float
 
         /// <summary>
         /// Convert String to Float with default value on convert Error
@@ -362,15 +445,14 @@ namespace myFunctions
         /// <returns>Float number</returns>
         public static float ToFloatDef(string text, float def)
         {
-            float value;
-            if (float.TryParse(text, out value))
+            if (float.TryParse(text, out float value))
                 return value;
             else
                 return def;
         }
 
         /// <summary>
-        /// Convert String to Float with default value on convert Error
+        /// Convert String to Float (Invariant number format - '.') with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
         /// <param name="def">Default value</param>
@@ -387,6 +469,41 @@ namespace myFunctions
             }
         }
 
+
+        /// <summary>
+        /// Convert String to Float with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Float number</returns>
+        public static float? ToFloatNull(string text)
+        {
+            if (float.TryParse(text, out float value))
+                return value;
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// Convert String to Float (Invariant number format - '.') with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Float number</returns>
+        public static float? ToFloatNullI(string text)
+        {
+            try
+            {
+                return Convert.ToSingle(text, NumberFormatInfo.InvariantInfo);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region To Double
+
         /// <summary>
         /// Convert String to Double with default value on convert Error
         /// </summary>
@@ -395,25 +512,10 @@ namespace myFunctions
         /// <returns>Double number</returns>
         public static double ToDoubleDef(string text, double def)
         {
-            double value;
-            if (double.TryParse(text, out value))
+            if (double.TryParse(text, out double value))
                 return value;
             else
                 return def;
-        }
-
-        /// <summary>
-        /// Convert String to Double with default value on convert Error
-        /// </summary>
-        /// <param name="text">Number string</param>
-        /// <returns>Double number</returns>
-        public static double? ToDoubleNull(string text)
-        {
-            double value;
-            if (double.TryParse(text, out value))
-                return value;
-            else
-                return null;
         }
 
         /// <summary>
@@ -430,7 +532,7 @@ namespace myFunctions
         }
 
         /// <summary>
-        /// Convert String (Invariant number format - '.')  to Double with default value on convert Error
+        /// Convert String to Double (Invariant number format - '.') with default value on convert Error
         /// </summary>
         /// <param name="text">Number string</param>
         /// <param name="def">Default value</param>
@@ -442,8 +544,33 @@ namespace myFunctions
             else return def;
         }
 
-        #endregion
+        /// <summary>
+        /// Convert String to Double with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Double number</returns>
+        public static double? ToDoubleNull(string text)
+        {
+            if (double.TryParse(text, out double value))
+                return value;
+            else
+                return null;
+        }
 
+        /// <summary>
+        /// Convert String to Double (Invariant) with null value on convert Error
+        /// </summary>
+        /// <param name="text">Number string</param>
+        /// <returns>Double number</returns>
+        public static double? ToDoubleNullI(string text)
+        {
+            if (IsNumeric(text))
+                return Convert.ToDouble(text, NumberFormatInfo.InvariantInfo);
+            else return null;
+        }
+
+        #endregion
+        
         /// <summary>
         /// Convert to number without 
         /// </summary>
@@ -459,6 +586,71 @@ namespace myFunctions
             }
             return (long)ToLongDef(clean, 0);
         }
+        
+        #endregion
+
+        #region String To Other types
+
+        /// <summary>
+        /// String to DateTime with null value on convert Error
+        /// </summary>
+        /// <param name="text">Text</param>
+        /// <returns>DateTime value</returns>
+        public static DateTime? ToDateTimeNull(string text)
+        {
+            DateTime? date;
+            try
+            {
+                date = DateTime.Parse(text);
+            }
+            catch
+            {
+                date = null;
+            }
+            return date;
+        }
+
+        /// <summary>
+        /// String to Guid with Empty value on convert Error
+        /// </summary>
+        /// <param name="text">Text</param>
+        /// <returns>Guid value</returns>
+        public static Guid ToGuid(string text)
+        {
+            Guid ID;
+            try
+            {
+                ID = Guid.Parse(text);
+            }
+            catch
+            {
+                ID = Guid.Empty;
+            }
+            return ID;
+        }
+
+        /// <summary>
+        /// String to Guid with Null value on convert Error
+        /// </summary>
+        /// <param name="text">Text</param>
+        /// <returns>Guid value</returns>
+        public static Guid? ToGuidNull(string text)
+        {
+            Guid ID;
+            try
+            {
+                ID = Guid.Parse(text);
+            }
+            catch
+            {
+                return null;
+            }
+            return ID;
+        }
+
+        #endregion
+
+        #region To String
 
         /// <summary>
         /// Return bool value like "0" or "1"
@@ -505,6 +697,9 @@ namespace myFunctions
 
             return res;
         }
+
+        #endregion
+
         #region Array
 
         /// <summary>
@@ -726,14 +921,12 @@ namespace myFunctions
             return res;
         }
 
-        #endregion
-
         /// <summary>
         /// Convert byte array to ushort array
         /// </summary>
         /// <param name="byteArr">Byte array</param>
         /// <returns>UShort array</returns>
-        public static ushort[] ToUShort(byte[] byteArr)
+        public static ushort[] ToUShortArr(byte[] byteArr)
         {
             try
             {
@@ -760,49 +953,36 @@ namespace myFunctions
             }
 
         }
-
-        public static DateTime? ToDateTimeNull(string text)
+        
+        /// <summary>
+        /// Stream to byte array
+        /// </summary>
+        /// <param name="input">Stream</param>
+        /// <returns></returns>
+        public static byte[] StreamToByteArray(Stream input)
         {
-            DateTime? date;
-            try
+            if (input == null) return null;
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
             {
-                date = DateTime.Parse(text);
-            } catch
-            {
-                date = null;
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
             }
-            return date;
         }
 
-        public static Guid ToGuid(string text)
-        {
-            Guid ID;
-            try
-            {
-                ID = Guid.Parse(text);
-            }
-            catch
-            {
-                ID = Guid.Empty;
-            }
-            return ID;
-        }
+        #endregion
 
-        public static Guid? ToGuidNull(string text)
-        {
-            Guid ID;
-            try
-            {
-                ID = Guid.Parse(text);
-            }
-            catch
-            {
-                return null;
-            }
-            return ID;
-        }
+        #region Image convert
 
-
+        /// <summary>
+        /// Convert Image to bytes
+        /// </summary>
+        /// <param name="imageIn">Image</param>
+        /// <returns>Bytes</returns>
         public static byte[] ImageToByteArray(Image imageIn)
         {
             try
@@ -823,6 +1003,11 @@ namespace myFunctions
             }
         }
 
+        /// <summary>
+        /// Convert bytes to Image
+        /// </summary>
+        /// <param name="arr">Bytes</param>
+        /// <returns>Image</returns>
         public static Image ByteArrayToImage(byte[] arr)
         {
             try
@@ -842,22 +1027,8 @@ namespace myFunctions
             }
         }
 
-        public static byte[] StreamToByteArray(Stream input)
-        {
-            if (input == null) return null;
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
-        }
-
-
+        #endregion
+        
         #region Swap
 
         /// <summary>

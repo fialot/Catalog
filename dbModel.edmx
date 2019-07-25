@@ -296,6 +296,7 @@
           <Property Name="FastTags" Type="smallint" />
           <Property Name="Updated" Type="datetime" />
           <Property Name="Excluded" Type="bit" />
+          <Property Name="URL" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Video">
           <Key>
@@ -365,8 +366,8 @@
           <EntitySet Name="Video" EntityType="databaseModel.Video" />
           <EntitySet Name="Contacts" EntityType="databaseModel.Contacts" />
           <EntitySet Name="Games" EntityType="databaseModel.Games" />
-          <EntitySet Name="Recipes" EntityType="databaseModel.Recipes" />
           <EntitySet Name="Objects" EntityType="databaseModel.Objects" />
+          <EntitySet Name="Recipes" EntityType="databaseModel.Recipes" />
         </EntityContainer>
         <EntityType Name="Boardgames">
           <Key>
@@ -635,26 +636,6 @@
           <Property Name="Updated" Type="DateTime" Precision="3" />
           <Property Name="Excluded" Type="Boolean" />
         </EntityType>
-        <EntityType Name="Recipes">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Subcategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Keywords" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Procedure" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Resources" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="Int16" />
-          <Property Name="MyRating" Type="Int16" />
-          <Property Name="FastTags" Type="Int16" />
-          <Property Name="Updated" Type="DateTime" Precision="3" />
-          <Property Name="Excluded" Type="Boolean" />
-        </EntityType>
         <EntityType Name="Objects">
           <Key>
             <PropertyRef Name="ID" />
@@ -683,6 +664,27 @@
           <Property Name="Development" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsParent" Type="Boolean" />
           <Property Name="UsedObjects" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subcategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Procedure" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Resources" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int16" />
+          <Property Name="MyRating" Type="Int16" />
+          <Property Name="FastTags" Type="Int16" />
+          <Property Name="Updated" Type="DateTime" Precision="3" />
+          <Property Name="Excluded" Type="Boolean" />
           <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
@@ -968,27 +970,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Recipes">
-            <EntityTypeMapping TypeName="databaseModel.Recipes">
-              <MappingFragment StoreEntitySet="Recipes">
-                <ScalarProperty Name="Excluded" ColumnName="Excluded" />
-                <ScalarProperty Name="Updated" ColumnName="Updated" />
-                <ScalarProperty Name="FastTags" ColumnName="FastTags" />
-                <ScalarProperty Name="MyRating" ColumnName="MyRating" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Resources" ColumnName="Resources" />
-                <ScalarProperty Name="Procedure" ColumnName="Procedure" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
-                <ScalarProperty Name="Subcategory" ColumnName="Subcategory" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Objects">
             <EntityTypeMapping TypeName="databaseModel.Objects">
               <MappingFragment StoreEntitySet="Objects">
@@ -1009,6 +990,28 @@
                 <ScalarProperty Name="FastTags" ColumnName="FastTags" />
                 <ScalarProperty Name="MyRating" ColumnName="MyRating" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Subcategory" ColumnName="Subcategory" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="databaseModel.Recipes">
+              <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Excluded" ColumnName="Excluded" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="FastTags" ColumnName="FastTags" />
+                <ScalarProperty Name="MyRating" ColumnName="MyRating" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Resources" ColumnName="Resources" />
+                <ScalarProperty Name="Procedure" ColumnName="Procedure" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Note" ColumnName="Note" />

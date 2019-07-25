@@ -152,27 +152,29 @@ namespace Katalog
             {
                 var copy = db.Copies.Find(itm.CopyID);
 
-                var borr = db.Copies.Where(p => (p.ItemID == copy.ItemID) && p.ItemType.Contains(copy.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
+                if (copy != null)
+                {
+                    var borr = db.Copies.Where(p => (p.ItemID == copy.ItemID) && p.ItemType.Contains(copy.ItemType.ToString()) && ((p.Status ?? 1) == (short)LendStatus.Reserved || (p.Status ?? 1) == (short)LendStatus.Lended)).Select(c => c.ID).ToList();
 
-                if (global.GetItemType(copy.ItemType) == ItemTypes.item)
-                {
-                    Items item = db.Items.Find(copy.ItemID);
-                    if (item != null)
-                        item.Available = (short)((item.Count ?? 1) - borr.Count);
-                }
-                else if (global.GetItemType(copy.ItemType) == ItemTypes.book)
-                {
-                    Books book = db.Books.Find(copy.ItemID);
-                    if (book != null)
-                        book.Available = (short)((book.Count ?? 1) - borr.Count);
-                }
-                else if (global.GetItemType(copy.ItemType) == ItemTypes.boardgame)
-                {
-                    Boardgames board = db.Boardgames.Find(copy.ItemID);
-                    if (board != null)
-                        board.Available = (short)((board.Count ?? 1) - borr.Count);
-                }
-            }
+                    if (global.GetItemType(copy.ItemType) == ItemTypes.item)
+                    {
+                        Items item = db.Items.Find(copy.ItemID);
+                        if (item != null)
+                            item.Available = (short)((item.Count ?? 1) - borr.Count);
+                    }
+                    else if (global.GetItemType(copy.ItemType) == ItemTypes.book)
+                    {
+                        Books book = db.Books.Find(copy.ItemID);
+                        if (book != null)
+                            book.Available = (short)((book.Count ?? 1) - borr.Count);
+                    }
+                    else if (global.GetItemType(copy.ItemType) == ItemTypes.boardgame)
+                    {
+                        Boardgames board = db.Boardgames.Find(copy.ItemID);
+                        if (board != null)
+                            board.Available = (short)((board.Count ?? 1) - borr.Count);
+                    }
+                }            }
             db.SaveChanges();
         }
 
@@ -217,6 +219,7 @@ namespace Katalog
             // ----- Column Name -----
             itName.AspectGetter = delegate (object x) {
                 var copy = db.Copies.Find(((Lending)x).CopyID);
+                if (copy == null) return "";
                 return global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty);
             };
             // ----- Column Type -----
@@ -234,7 +237,9 @@ namespace Katalog
             };
             // ----- Column Inventory number -----
             itInvNumber.AspectGetter = delegate (object x) {
-                return db.Copies.Find(((Lending)x).CopyID).InventoryNumber;
+                var copy = db.Copies.Find(((Lending)x).CopyID);
+                if (copy == null) return "";
+                return copy.InventoryNumber;
             };
             // ----- Column From -----
             itFrom.AspectGetter = delegate (object x) {

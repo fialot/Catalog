@@ -17,62 +17,101 @@ namespace Katalog
         /// <summary>
         /// Update Contacts ObjectListView
         /// </summary>
-        void UpdateRecOLV()
+        void UpdateCopOLV()
         {
             databaseEntities db = new databaseEntities();
 
-            List<Recipes> rec;
+            List<Copies> rec;
 
-            if (chbShowExcludedRecipes.Checked)
-                rec = db.Recipes.ToList();
+            if (chbShowExcludedCopies.Checked)
+                rec = db.Copies.ToList();
             else
-                rec = db.Recipes.Where(p => (p.Excluded ?? false) == false).ToList();
+                rec = db.Copies.Where(p => (p.Excluded ?? false) == false).ToList();
 
-            recTags.Renderer = new ImageRenderer();
-            recTags.AspectGetter = delegate (object x) {
+            cpName.AspectGetter = delegate (object x) {
                 if (x == null) return "";
-                List<int> ret = new List<int>();
-                FastFlags flag = (FastFlags)((Recipes)x).FastTags;
-                if (flag.HasFlag(FastFlags.FLAG1)) ret.Add(0);
-                if (flag.HasFlag(FastFlags.FLAG2)) ret.Add(1);
-                if (flag.HasFlag(FastFlags.FLAG3)) ret.Add(2);
-                if (flag.HasFlag(FastFlags.FLAG4)) ret.Add(3);
-                if (flag.HasFlag(FastFlags.FLAG5)) ret.Add(4);
-                if (flag.HasFlag(FastFlags.FLAG6)) ret.Add(5);
+                return global.GetLendingItemName(((Copies)x).ItemType, ((Copies)x).ItemID ?? Guid.Empty);
+            };
+            cpType.ImageGetter = delegate (object x) {
+                switch (((Copies)x).ItemType.Trim())
+                {
+                    case "item":
+                        return 11;
+                    case "book":
+                        return 12;
+                    case "boardgame":
+                        return 13;
+                }
+                return 14;
+            };
+            cpType.AspectGetter = delegate (object x) {
+                switch (((Copies)x).ItemType.Trim())
+                {
+                    case "item":
+                        return Lng.Get("Item");
+                    case "book":
+                        return Lng.Get("Book");
+                    case "boardgame":
+                        return Lng.Get("Boardgame", "Board game");
+                }
+                return Lng.Get("Unknown");
+            };
+            cpNum.AspectGetter = delegate (object x) {
+                if (x == null) return "";
+                return ((Copies)x).ItemNum.ToString();
+            };
+            cpInvNum.AspectGetter = delegate (object x) {
+                if (x == null) return "";
+                return ((Copies)x).InventoryNumber;
+            };
 
-                return ret;
-            };
-            recTagsNum.AspectGetter = delegate (object x) {
+            cpBarcode.AspectGetter = delegate (object x) {
                 if (x == null) return "";
-                string res = "";
-                FastFlags flag = (FastFlags)((Recipes)x).FastTags;
-                if (flag.HasFlag(FastFlags.FLAG1)) res += "1";
-                if (flag.HasFlag(FastFlags.FLAG2)) res += "2";
-                if (flag.HasFlag(FastFlags.FLAG3)) res += "3";
-                if (flag.HasFlag(FastFlags.FLAG4)) res += "4";
-                if (flag.HasFlag(FastFlags.FLAG5)) res += "5";
-                if (flag.HasFlag(FastFlags.FLAG6)) res += "6";
-                return res;
+                return ((Copies)x).Barcode.ToString();
             };
-            recName.AspectGetter = delegate (object x) {
+            cpCondition.AspectGetter = delegate (object x) {
                 if (x == null) return "";
-                return ((Recipes)x).Name;
+                return ((Copies)x).Condition;
             };
-            recCategory.AspectGetter = delegate (object x) {
+            cpLocation.AspectGetter = delegate (object x) {
                 if (x == null) return "";
-                return ((Recipes)x).Category;
+                return ((Copies)x).Location;
             };
-            recKeywords.AspectGetter = delegate (object x) {
+            cpPrice.AspectGetter = delegate (object x) {
                 if (x == null) return "";
-                return ((Recipes)x).Keywords;
+                return ((Copies)x).Price.ToString();
             };
-            recExcluded.Renderer = new ImageRenderer();
-            recExcluded.AspectGetter = delegate (object x) {
-                if (((Recipes)x).Excluded ?? false)
+            cpAcqDate.AspectGetter = delegate (object x) {
+                if (x == null) return "";
+                return ((Copies)x).AcquisitionDate.ToString();
+            };
+            cpStatus.ImageGetter = delegate (object x) {
+                int status = ((Copies)x).Status ?? 1;
+                if (status == 2)        // Returned
+                    return 6;
+                else if (status == 0)   // Reserved
+                    return 9;
+                else if (status == 3)   // Canceled
+                    return 7;
+                else return 10;         // Borrowed
+            };
+            cpStatus.AspectGetter = delegate (object x) {
+                int status = ((Copies)x).Status ?? 1;
+                if (status == 2)        // Returned
+                    return Lng.Get("Returned");
+                else if (status == 0)   // Reserved
+                    return Lng.Get("Reserved");
+                else if (status == 3)   // Canceled
+                    return Lng.Get("Canceled");
+                else return Lng.Get("Borrowed"); // Borrowed
+            };
+            cpExcluded.Renderer = new ImageRenderer();
+            cpExcluded.AspectGetter = delegate (object x) {
+                if (((Copies)x).Excluded ?? false)
                     return 7;
                 else return 6;
             };
-            olvRecipes.SetObjects(rec);
+            olvCopies.SetObjects(rec);
         }
 
         /// <summary>
@@ -80,7 +119,7 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvRecipes_SelectionChanged(object sender, EventArgs e)
+        private void olvCopies_SelectionChanged(object sender, EventArgs e)
         {
             EnableEditItems();
         }
@@ -90,11 +129,11 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void olvRecipes_FormatRow(object sender, FormatRowEventArgs e)
+        private void olvCopies_FormatRow(object sender, FormatRowEventArgs e)
         {
             if (e.Model == null) return;
 
-            Recipes itm = (Recipes)e.Model;
+            Copies itm = (Copies)e.Model;
             if ((itm.Excluded ?? false) == true)
                 e.Item.ForeColor = Color.Gray;
             else
@@ -106,9 +145,9 @@ namespace Katalog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void chbShowExcludedRecipes_CheckedChanged(object sender, EventArgs e)
+        private void chbShowExcludedCopies_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateRecOLV();
+            UpdateCopOLV();
         }
 
         #endregion
@@ -118,7 +157,7 @@ namespace Katalog
         /// <summary>
         /// New Item
         /// </summary>
-        private void NewItemRecipes()
+        private void NewItemCopies()
         {
             frmEditRecipes form = new frmEditRecipes();
             var res = form.ShowDialog();                    // Show Edit form
@@ -134,7 +173,7 @@ namespace Katalog
         /// <summary>
         /// Edit Item
         /// </summary>
-        private void EditItemRecipes()
+        private void EditItemCopies()
         {
             if (olvRecipes.SelectedIndex >= 0)                     // If selected Item
             {
@@ -153,7 +192,7 @@ namespace Katalog
         /// <summary>
         /// Delete Item
         /// </summary>
-        private void DeleteItemRecipes()
+        private void DeleteItemCopies()
         {
             databaseEntities db = new databaseEntities();
             int count = olvRecipes.SelectedObjects.Count;
@@ -188,7 +227,7 @@ namespace Katalog
         /// Set Fast Tags
         /// </summary>
         /// <param name="tag">Tags Mask</param>
-        private void SetTagItemRecipes(short tag)
+        private void SetTagItemCopies(short tag)
         {
             if (olvRecipes.SelectedObjects != null)                 // If selected Item
             {
@@ -208,7 +247,7 @@ namespace Katalog
         /// Set active (excluded)
         /// </summary>
         /// <param name="active"></param>
-        private void SetActiveRecipes(bool active)
+        private void SetActiveCopies(bool active)
         {
             if (olvRecipes.SelectedObjects != null)                 // If selected Item
             {
@@ -231,92 +270,106 @@ namespace Katalog
         /// <summary>
         /// Update Filter ComboBox
         /// </summary>
-        private void UpdateCBFilterRecipes()
+        private void UpdateCBFilterCopies()
         {
             cbFilterCol.Items.Add(Lng.Get("All"));
             cbFilterCol.Items.Add(Lng.Get("ItemName", "Name"));
-            cbFilterCol.Items.Add(Lng.Get("Category"));
-            cbFilterCol.Items.Add(Lng.Get("Keywords"));
+            cbFilterCol.Items.Add(Lng.Get("Type"));
+            cbFilterCol.Items.Add(Lng.Get("InventoryNumber", "Inventory Number"));
+            cbFilterCol.Items.Add(Lng.Get("Barcode"));
+            cbFilterCol.Items.Add(Lng.Get("Condition"));
+            cbFilterCol.Items.Add(Lng.Get("Location"));
             cbFilterCol.Items.Add(Lng.Get("Excluded"));
+            cbFilterCol.Items.Add(Lng.Get("Status"));
             cbFilterCol.SelectedIndex = 0;
 
             cbFastFilterCol.Items.Add(Lng.Get("All"));
             cbFastFilterCol.Items.Add(Lng.Get("ItemName", "Name"));
-            cbFastFilterCol.Items.Add(Lng.Get("Category"));
+            cbFastFilterCol.Items.Add(Lng.Get("Type"));
+            cbFastFilterCol.Items.Add(Lng.Get("InventoryNumber", "Inventory Number"));
+            cbFastFilterCol.Items.Add(Lng.Get("Barcode"));
+            cbFastFilterCol.Items.Add(Lng.Get("Condition"));
+            cbFastFilterCol.Items.Add(Lng.Get("Location"));
             cbFastFilterCol.Items.Add(Lng.Get("Excluded"));
+            cbFastFilterCol.Items.Add(Lng.Get("Status"));
             cbFastFilterCol.SelectedIndex = 0;
         }
 
         /// <summary>
         /// Use Filters
         /// </summary>
-        private void UseFiltersRecipes()
+        private void UseFiltersCopies()
         {
-            olvRecipes.UseFiltering = true;
-            olvRecipes.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, FastFilterTags, StandardFilter });
+            olvCopies.UseFiltering = true;
+            olvCopies.ModelFilter = new CompositeAllFilter(new List<IModelFilter> { FastFilter, StandardFilter });
         }
 
         /// <summary>
         /// Use Fast Filter
         /// </summary>
-        private void UseFastFilterRecipes()
+        private void UseFastFilterCopies()
         {
             if (FastFilterList.Count == 0)
-                FastFilter = TextMatchFilter.Contains(olvRecipes, "");
+                FastFilter = TextMatchFilter.Contains(olvCopies, "");
             else
             {
                 string[] filterArray = FastFilterList.ToArray();
-                FastFilter = TextMatchFilter.Prefix(olvRecipes, filterArray);
+                FastFilter = TextMatchFilter.Prefix(olvCopies, filterArray);
             }
             if (cbFastFilterCol.SelectedIndex == 0)
-                FastFilter.Columns = new OLVColumn[] { recName, recCategory, recExcluded };
+                FastFilter.Columns = new OLVColumn[] { cpName, cpType, cpInvNum, cpBarcode, cpCondition, cpLocation, cpExcluded, cpStatus };
             else if (cbFastFilterCol.SelectedIndex == 1)
-                FastFilter.Columns = new OLVColumn[] { recName };
+                FastFilter.Columns = new OLVColumn[] { cpName };
             else if (cbFastFilterCol.SelectedIndex == 2)
-                FastFilter.Columns = new OLVColumn[] { recCategory };
+                FastFilter.Columns = new OLVColumn[] { cpType };
             else if (cbFastFilterCol.SelectedIndex == 3)
-                FastFilter.Columns = new OLVColumn[] { recExcluded };
+                FastFilter.Columns = new OLVColumn[] { cpInvNum };
+            else if (cbFastFilterCol.SelectedIndex == 4)
+                FastFilter.Columns = new OLVColumn[] { cpBarcode };
+            else if (cbFastFilterCol.SelectedIndex == 5)
+                FastFilter.Columns = new OLVColumn[] { cpCondition };
+            else if (cbFastFilterCol.SelectedIndex == 6)
+                FastFilter.Columns = new OLVColumn[] { cpLocation };
+            else if (cbFastFilterCol.SelectedIndex == 7)
+                FastFilter.Columns = new OLVColumn[] { cpExcluded };
+            else if (cbFastFilterCol.SelectedIndex == 8)
+                FastFilter.Columns = new OLVColumn[] { cpStatus };
+
         }
 
-        /// <summary>
-        /// Use Fast Tag Filter
-        /// </summary>
-        private void UseFastTagFilterRecipes()
-        {
-            if (FastTagFilterList.Count == 0)
-                FastFilterTags = TextMatchFilter.Contains(olvRecipes, "");
-            else
-            {
-                string[] filterArray = FastTagFilterList.ToArray();
-                FastFilterTags = TextMatchFilter.Contains(olvRecipes, filterArray);
-                FastFilterTags.Columns = new OLVColumn[] { recTagsNum };
-            }
-        }
 
         /// <summary>
         /// Use Standard Filter
         /// </summary>
-        private void UseStandardFilterRecipes()
+        private void UseStandardFilterCopies()
         {
-            StandardFilter = TextMatchFilter.Contains(olvRecipes, txtFilter.Text);
+            StandardFilter = TextMatchFilter.Contains(olvCopies, txtFilter.Text);
 
             if (cbFilterCol.SelectedIndex == 0)
-                StandardFilter.Columns = new OLVColumn[] { recName, recCategory, recKeywords, recExcluded };
+                StandardFilter.Columns = new OLVColumn[] { cpName, cpType, cpInvNum, cpBarcode, cpCondition, cpLocation, cpExcluded, cpStatus };
             else if (cbFilterCol.SelectedIndex == 1)
-                StandardFilter.Columns = new OLVColumn[] { recName };
+                StandardFilter.Columns = new OLVColumn[] { cpName };
             else if (cbFilterCol.SelectedIndex == 2)
-                StandardFilter.Columns = new OLVColumn[] { recCategory };
+                StandardFilter.Columns = new OLVColumn[] { cpType };
             else if (cbFilterCol.SelectedIndex == 3)
-                StandardFilter.Columns = new OLVColumn[] { recKeywords };
+                StandardFilter.Columns = new OLVColumn[] { cpInvNum };
             else if (cbFilterCol.SelectedIndex == 4)
-                StandardFilter.Columns = new OLVColumn[] { recExcluded };
+                StandardFilter.Columns = new OLVColumn[] { cpBarcode };
+            else if (cbFilterCol.SelectedIndex == 5)
+                StandardFilter.Columns = new OLVColumn[] { cpCondition };
+            else if (cbFilterCol.SelectedIndex == 6)
+                StandardFilter.Columns = new OLVColumn[] { cpLocation };
+            else if (cbFilterCol.SelectedIndex == 7)
+                StandardFilter.Columns = new OLVColumn[] { cpExcluded };
+            else if (cbFilterCol.SelectedIndex == 8)
+                StandardFilter.Columns = new OLVColumn[] { cpStatus };
         }
 
         #endregion
 
         #region Import / Export
 
-        private void ImportRecipes(string fileName)
+        private void ImportCopies(string fileName)
         {
             List<Recipes> con;
 
@@ -358,7 +411,7 @@ namespace Katalog
             Dialogs.ShowInfo(Lng.Get("SuccesfullyImport", "Import was succesfully done") + ".", Lng.Get("Import"));
         }
 
-        private void ExportRecipes(string fileName)
+        private void ExportCopies(string fileName)
         {
             List<Recipes> itm = new List<Recipes>();
 

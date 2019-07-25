@@ -62,6 +62,8 @@
             this.lblRating = new System.Windows.Forms.Label();
             this.txtRating = new System.Windows.Forms.TextBox();
             this.chbExcluded = new System.Windows.Forms.CheckBox();
+            this.lblURL = new System.Windows.Forms.Label();
+            this.txtURL = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbRating.SuspendLayout();
             this.SuspendLayout();
@@ -271,10 +273,22 @@
             this.chbExcluded.Name = "chbExcluded";
             this.chbExcluded.UseVisualStyleBackColor = true;
             // 
+            // lblURL
+            // 
+            resources.ApplyResources(this.lblURL, "lblURL");
+            this.lblURL.Name = "lblURL";
+            // 
+            // txtURL
+            // 
+            resources.ApplyResources(this.txtURL, "txtURL");
+            this.txtURL.Name = "txtURL";
+            // 
             // frmEditRecipes
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblURL);
+            this.Controls.Add(this.txtURL);
             this.Controls.Add(this.chbExcluded);
             this.Controls.Add(this.gbRating);
             this.Controls.Add(this.lblProcedure);
@@ -349,5 +363,7 @@
         private System.Windows.Forms.Label lblRating;
         private System.Windows.Forms.TextBox txtRating;
         private System.Windows.Forms.CheckBox chbExcluded;
+        private System.Windows.Forms.Label lblURL;
+        private System.Windows.Forms.TextBox txtURL;
     }
 }

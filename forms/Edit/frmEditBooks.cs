@@ -279,6 +279,9 @@ namespace Katalog
             book.Note1 = "";
             book.Note2 = "";
 
+            book.EbookPath = "";
+            book.EbookType = "";
+
 
             // ----- Original book -----
             book.OrigName = txtOrigName.Text;

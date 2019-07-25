@@ -85,6 +85,7 @@ namespace Katalog
                 txtDescription.Text = itm.Description.Trim();
                 txtResources.Text = itm.Resources.Trim();
                 txtProcedure.Text = itm.Procedure.Trim();
+                txtURL.Text = itm.URL.Trim();
 
                 // ----- Rating -----
                 txtRating.Text = itm.Rating.ToString();
@@ -137,6 +138,7 @@ namespace Katalog
             itm.Description = txtDescription.Text;
             itm.Resources = txtResources.Text;
             itm.Procedure = txtProcedure.Text;
+            itm.URL = txtURL.Text;
 
             // ----- Rating -----
             itm.Rating = Conv.ToShortNull(txtRating.Text);

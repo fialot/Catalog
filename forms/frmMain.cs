@@ -29,6 +29,7 @@ namespace Katalog
             UpdateItemsOLV();
             UpdateBooksOLV();
             UpdateBoardOLV();
+            UpdateCopOLV();
         }
 
         
@@ -289,6 +290,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) UpdateCBFilterGames();
             else if (TabBars.SelectedTab == tabRecipes) UpdateCBFilterRecipes();
             else if (TabBars.SelectedTab == tabObject) UpdateCBFilterObjects();
+            else if (TabBars.SelectedTab == tabCopies) UpdateCBFilterCopies();
         }
 
         /// <summary>
@@ -423,6 +425,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) UseFiltersGames();
             else if (TabBars.SelectedTab == tabRecipes) UseFiltersRecipes();
             else if (TabBars.SelectedTab == tabObject) UseFiltersObjects();
+            else if (TabBars.SelectedTab == tabCopies) UseFiltersCopies();
         }
 
         /// <summary>
@@ -439,6 +442,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) UseFastFilterGames();
             else if (TabBars.SelectedTab == tabRecipes) UseFastFilterRecipes();
             else if (TabBars.SelectedTab == tabObject) UseFastFilterObjects();
+            else if (TabBars.SelectedTab == tabCopies) UseFastFilterCopies();
         }
 
         /// <summary>
@@ -472,6 +476,7 @@ namespace Katalog
             else if (TabBars.SelectedTab == tabGames) UseStandardFilterGames();
             else if (TabBars.SelectedTab == tabRecipes) UseStandardFilterRecipes();
             else if (TabBars.SelectedTab == tabObject) UseStandardFilterObjects();
+            else if (TabBars.SelectedTab == tabCopies) UseStandardFilterCopies();
         }
 
         /// <summary>
@@ -779,6 +784,8 @@ namespace Katalog
             if (Properties.Settings.Default.ShowGames) UpdateGameOLV();
             if (Properties.Settings.Default.ShowRecipes) UpdateRecOLV();
             if (Properties.Settings.Default.ShowObjects) UpdateObjOLV();
+
+            UpdateCopOLV();
 
             EnableEditItems();
             UpdateFilterComboBox();
@@ -1107,6 +1114,9 @@ namespace Katalog
             Properties.Settings.Default.Save();
         }
 
-        
+        private void mnuSavaAsDB_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

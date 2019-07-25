@@ -322,6 +322,10 @@
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+	<Compile Include="forms\frmMain.Copies.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>

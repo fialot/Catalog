@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -141,6 +142,7 @@ namespace Katalog
                 res = form.ShowDialog();                    // Show new Edit form
             }
             UpdateBooksOLV();                               // Update Books OLV
+            UpdateCopOLV();                                 // Update Copies OLV
         }
 
         /// <summary>
@@ -159,6 +161,7 @@ namespace Katalog
                     res = form.ShowDialog();                    // Show new Edit form
                 }
                 UpdateBooksOLV();                               // Update Books OLV
+                UpdateCopOLV();                                 // Update Copies OLV
             }
         }
 
@@ -185,7 +188,8 @@ namespace Katalog
                     }
 
                     db.SaveChanges();                           // Save to DB
-                    UpdateBooksOLV();                           // Update Books OLV                   
+                    UpdateBooksOLV();                           // Update Books OLV   
+                    UpdateCopOLV();                                 // Update Copies OLV
                 }
             }
             else if (count > 1)                 // If selected Item
@@ -207,6 +211,7 @@ namespace Katalog
                     }
                     db.SaveChanges();                           // Save to DB
                     UpdateBooksOLV();                           // Update Items OLV 
+                    UpdateCopOLV();                                 // Update Copies OLV
                 }
             }
         }
@@ -375,7 +380,12 @@ namespace Katalog
 
         private void ImportBooks(string fileName)
         {
-            List<Books> con = global.ImportBooksCSV(fileName, out List<Copies> copies);
+            List<Books> con;
+            List<Copies> copies;
+            if (Path.GetExtension(fileName) == "csv")
+                con = global.ImportBooksCSV(fileName, out copies);
+            else
+                con = global.ImportBooksXML(fileName, out copies);
             if (con == null)
             {
                 Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
@@ -442,7 +452,10 @@ namespace Katalog
             {
                 itm.Add((Books)item);
             }
-            global.ExportBooksCSV(fileName, itm);
+            if (Path.GetExtension(fileName) == "csv")
+                global.ExportBooksCSV(fileName, itm);
+            else
+                global.ExportBooksXML(fileName, itm);
         }
 
         #endregion

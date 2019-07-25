@@ -463,7 +463,8 @@ namespace Katalog
             foreach (var itm in list)
             {
                 var copy = db.Copies.Find(itm.CopyID);
-                copy.Status = itm.Status;
+                if (copy != null)
+                    copy.Status = itm.Status;
             }
             db.SaveChanges();
         }
@@ -812,12 +813,49 @@ namespace Katalog
             // ----- Save to file ------
             Files.SaveFile(path, lines);
         }
+        
+        /// <summary>
+        /// Export XML Copies
+        /// </summary>
+        /// <param name="copies">Copies list</param>
+        /// <returns>Copies elements</returns>
+        public static XElement ExportCopiesXML(List<Copies> copies)
+        {
+            var xmlCopies = new XElement("Copies");
+
+            foreach (var copy in copies)
+            {
+                var xmlCopy = new XElement("Copy");
+
+                xmlCopy.Add(
+                    new XElement("ItemName", global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty)),
+                    new XElement("ItemType", copy.ItemType.Trim()),
+                    new XElement("ItemID", copy.ItemID.ToString()),
+                    new XElement("ItemNum", copy.ItemNum.ToString()),
+                    new XElement("InventoryNumber", copy.InventoryNumber.Trim()),
+                    new XElement("Barcode", copy.Barcode.ToString()),
+                    new XElement("Condition", copy.Condition.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Location", copy.Location.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Note", copy.Note.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("AcquisitionDate", copy.AcquisitionDate.ToString()),
+                    new XElement("Price", copy.Price.ToString()),
+                    new XElement("Excluded", copy.Excluded.ToString()),
+                    new XElement("Status", copy.Status.ToString()),
+                    new XElement("ID", copy.ID.ToString())
+                );
+
+                xmlCopies.Add(xmlCopy);
+            }
+
+            return xmlCopies;
+        }
+
 
         /// <summary>
-            /// Export Items to CSV file
-            /// </summary>
-            /// <param name="path">File path</param>
-            /// <param name="itm">Item list</param>
+        /// Export Items to CSV file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Item list</param>
         public static void ExportItemsCSV(string path, List<Items> itm)
         {
             databaseEntities db = new databaseEntities();
@@ -924,6 +962,135 @@ namespace Katalog
             Files.SaveFile(path, lines);
         }
 
+
+        /// <summary>
+        /// Export Books to XML file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Books list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportBooksXML(string path, List<Books> itm)
+        {
+
+            databaseEntities db = new databaseEntities();
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Books"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Cover);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                var objItem = new XElement("Book");
+
+                var xmlGeneral = new XElement("General");
+
+                if (item.Title != "") xmlGeneral.Add(new XElement("Title", item.Title.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.AuthorName != "") xmlGeneral.Add(new XElement("AuthorName", item.AuthorName.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.AuthorSurname != "") xmlGeneral.Add(new XElement("AuthorSurname", item.AuthorSurname.ToString()));
+                if (item.Note != "") xmlGeneral.Add(new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Note1 != "") xmlGeneral.Add(new XElement("Note1", item.Note1.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Note2 != "") xmlGeneral.Add(new XElement("Note2", item.Note2.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.ISBN != "") xmlGeneral.Add(new XElement("ISBN", item.ISBN.ToString()));
+                if (item.Illustrator != "") xmlGeneral.Add(new XElement("Illustrator", item.Illustrator.ToString().Replace(Environment.NewLine, "\\n")));
+                if (item.Translator != "") xmlGeneral.Add(new XElement("Translator", item.Translator.ToString().Replace(Environment.NewLine, "\\n")));
+                if (item.Language != "") xmlGeneral.Add(new XElement("Language", item.Language.Replace(Environment.NewLine, "\\n")));
+                if (item.Publisher != "") xmlGeneral.Add(new XElement("Publisher", item.Publisher.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Edition != "") xmlGeneral.Add(new XElement("Edition", item.Edition.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Year != null) xmlGeneral.Add(new XElement("Year", item.Year.ToString()));
+                if (item.Pages != null) xmlGeneral.Add(new XElement("Pages", item.Pages.ToString()));
+                if (item.URL != "") xmlGeneral.Add(new XElement("URL", item.URL.ToString()));
+                if (item.MainCharacter != "") xmlGeneral.Add(new XElement("MainCharacter", item.MainCharacter.ToString().Replace(Environment.NewLine, "\\n")));
+                if (item.Content != "") xmlGeneral.Add(new XElement("Content", item.Content.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.OrigName != "") xmlGeneral.Add(new XElement("OrigName", item.OrigName.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.OrigLanguage != "") xmlGeneral.Add(new XElement("OrigLanguage", item.OrigLanguage.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.OrigYear != null) xmlGeneral.Add(new XElement("OrigYear", item.OrigYear.ToString()));
+                if (item.Series != "") xmlGeneral.Add(new XElement("Series", item.Series.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.SeriesNum != null) xmlGeneral.Add(new XElement("SeriesNum", item.SeriesNum.ToString()));
+                if (item.Type != "") xmlGeneral.Add(new XElement("Type", item.Type.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Bookbinding != "") xmlGeneral.Add(new XElement("Bookbinding", item.Bookbinding.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.EbookType != "") xmlGeneral.Add(new XElement("EbookType", item.EbookType.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Publication != null) xmlGeneral.Add(new XElement("Publication", item.Publication.ToString()));
+
+                objItem.Add(xmlGeneral);
+
+                var xmlClassification = new XElement("Classification");
+
+                if (item.Genre != "") xmlClassification.Add(new XElement("Genre", item.Genre.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.SubGenre != "") xmlClassification.Add(new XElement("SubGenre", item.SubGenre.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Keywords != "") xmlClassification.Add(new XElement("Keywords", item.Keywords.Trim()));
+                if (item.FastTags != null) xmlClassification.Add(new XElement("FastTags", item.FastTags.ToString()));
+                                
+                objItem.Add(xmlClassification);
+
+
+                var xmlRating = new XElement("Rating");
+
+                if (item.Rating != null) xmlRating.Add(new XElement("Rating", item.Rating.ToString()));
+                if (item.MyRating != null) xmlRating.Add(new XElement("MyRating", item.MyRating.ToString()));
+
+                objItem.Add(xmlRating);
+
+
+                var xmlSystem = new XElement("System");
+
+                if (item.ID != Guid.Empty) xmlSystem.Add(new XElement("ID", item.ID));
+                if (item.Updated != null) xmlSystem.Add(new XElement("Updated", item.Updated.ToString()));
+                if (item.Excluded != null) xmlSystem.Add(new XElement("Excluded", Conv.ToString(item.Excluded ?? false)));
+                if (imgFileName != "") xmlSystem.Add(new XElement("Cover", imgFileName));
+                if (item.Readed != null) xmlSystem.Add(new XElement("Readed", Conv.ToString(item.Readed ?? false)));
+
+                objItem.Add(xmlSystem);
+                
+                items.Add(objItem);
+                imgNum++;
+            }
+
+            // ----- Copies -----
+            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.book.ToString())).ToList();
+
+            var xmlCopies = ExportCopiesXML(copies);
+
+
+            data.Add(items);
+            data.Add(xmlCopies);
+            doc.Add(data);
+
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
+        }
+
+
         /// <summary>
         /// Export Boardgames to CSV file
         /// </summary>
@@ -984,7 +1151,142 @@ namespace Katalog
             // ----- Save to file ------
             Files.SaveFile(path, lines);
         }
-        
+
+
+        /// <summary>
+        /// Export Board games to XML file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Recipes list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportBoardXML(string path, List<Boardgames> itm)
+        {
+
+            databaseEntities db = new databaseEntities();
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Boardgames"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                string imgFileNameA = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "A.jpg";
+                string imgFileNameB = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "B.jpg";
+                string imgFileNameC = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + "C.jpg";
+                ExportImage(ref imgFileName, item.Cover);
+                ExportImage(ref imgFileNameA, item.Img1);
+                ExportImage(ref imgFileNameB, item.Img2);
+                ExportImage(ref imgFileNameC, item.Img3);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+                try
+                {
+                    imgFileNameA = Path.GetFileName(imgFileNameA);
+                }
+                catch { }
+                try
+                {
+                    imgFileNameB = Path.GetFileName(imgFileNameB);
+                }
+                catch { }
+                try
+                {
+                    imgFileNameC = Path.GetFileName(imgFileNameC);
+                }
+                catch { }
+
+                var objItem = new XElement("BoardGame");
+
+                objItem.Add(new XElement("General",
+                    new XElement("Name", item.Name.Trim()),
+                    new XElement("Description", item.Description.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")),
+
+                    new XElement("MinAge", item.MinAge.ToString()),
+                    new XElement("MinPlayers", item.MinPlayers.ToString()),
+                    new XElement("MaxPlayers", item.MaxPlayers.ToString()),
+                    new XElement("GameTime", item.GameTime.ToString()),
+                    new XElement("GameWorld", item.GameWorld.Replace(Environment.NewLine, "\\n")),
+                    new XElement("Language", item.Language.Trim()),
+                    new XElement("Publisher", item.Publisher.Trim()),
+                    new XElement("Author", item.Author.Trim()),
+                    new XElement("Year", item.Year.ToString()),
+                    new XElement("Extension", item.Extension.ToString()),
+                    new XElement("ExtensionNumber", item.ExtensionNumber.ToString()),
+                    new XElement("Rules", item.Rules.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("MaterialPath", item.MaterialPath.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Family", item.Family.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("URL", item.URL.Trim())
+
+                ));
+
+                objItem.Add(new XElement("Classification",
+                    new XElement("Category", item.Category.Trim()),
+                    //new XElement("Subcategory", item.Subcategory.Trim()),
+                    new XElement("Keywords", item.Keywords.Trim()),
+                    new XElement("FastTags", item.FastTags.ToString())
+                ));
+                objItem.Add(new XElement("Rating",
+                    new XElement("Rating", item.Rating.ToString()),
+                    new XElement("MyRating", item.MyRating.ToString())
+                ));
+
+
+                objItem.Add(new XElement("System",
+                    new XElement("ID", item.ID),
+                    new XElement("Updated", item.Updated.ToString()),
+                    new XElement("Excluded", (item.Excluded ?? false).ToString()),
+                    new XElement("Cover", imgFileName),
+                    new XElement("Img1", imgFileNameA),
+                    new XElement("Img2", imgFileNameB),
+                    new XElement("Img3", imgFileNameC)
+                ));
+
+                items.Add(objItem);
+                imgNum++;
+            }
+
+            // ----- Copies -----
+            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.boardgame.ToString())).ToList();
+
+            var xmlCopies = ExportCopiesXML(copies);
+
+
+            data.Add(items);
+            data.Add(xmlCopies);
+            doc.Add(data);
+            
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
+        }
+
         /// <summary>
         /// Export Games to CSV file
         /// </summary>
@@ -1035,7 +1337,106 @@ namespace Katalog
 
             return Files.SaveFile(path, lines);
         }
-        
+
+
+        /// <summary>
+        /// Export Games to XML file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Recipes list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportGamesXML(string path, List<Games> itm)
+        {
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Games"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                var objItem = new XElement("Game");
+
+                objItem.Add(new XElement("General",
+                    new XElement("Name", item.Name.Trim()),
+                    new XElement("Description", item.Description.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")),
+
+                    new XElement("PlayerAge", item.PlayerAge.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("MinPlayers", item.MinPlayers.ToString()),
+                    new XElement("MaxPlayers", item.MaxPlayers.ToString()),
+                    new XElement("Duration", item.Duration.ToString()),
+                    new XElement("DurationPreparation", item.DurationPreparation.ToString()),
+                    new XElement("Things", item.Things.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Rules", item.Rules.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Preparation", item.Preparation.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Environment", item.Environment.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Files", item.Files.Trim()),
+                    new XElement("URL", item.URL.Trim())
+
+                ));
+
+                objItem.Add(new XElement("Classification",
+                    new XElement("Category", item.Category.Trim()),
+                    new XElement("Subcategory", item.Subcategory.Trim()),
+                    new XElement("Keywords", item.Keywords.Trim()),
+                    new XElement("FastTags", item.FastTags.ToString())
+                ));
+                objItem.Add(new XElement("Rating",
+                    new XElement("Rating", item.Rating.ToString()),
+                    new XElement("MyRating", item.MyRating.ToString())
+                ));
+
+
+                objItem.Add(new XElement("System",
+                    new XElement("ID", item.ID),
+                    new XElement("Updated", item.Updated.ToString()),
+                    new XElement("Excluded", (item.Excluded ?? false).ToString()),
+                    new XElement("Image", imgFileName)
+                ));
+
+                items.Add(objItem);
+                imgNum++;
+            }
+
+
+            data.Add(items);
+            doc.Add(data);
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
+        }
+
+
         /// <summary>
         /// Export Recipes to CSV file
         /// </summary>
@@ -1084,7 +1485,98 @@ namespace Katalog
 
             return Files.SaveFile(path, lines);
         }
-        
+
+
+        /// <summary>
+        /// Export Recipes to XML file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Recipes list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportRecipesXML(string path, List<Recipes> itm)
+        {
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Recipes"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                var objItem = new XElement("Recipe");
+
+                objItem.Add(new XElement("General",
+                    new XElement("Name", item.Name.Trim()),
+                    new XElement("Description", item.Description.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")),
+
+                    new XElement("Procedure", item.Procedure.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("Resources", item.Resources.Trim().Replace(Environment.NewLine, "\\n")),
+                    new XElement("URL", item.URL.Trim())
+
+                ));
+
+                objItem.Add(new XElement("Classification",
+                    new XElement("Category", item.Category.Trim()),
+                    new XElement("Subcategory", item.Subcategory.Trim()),
+                    new XElement("Keywords", item.Keywords.Trim()),
+                    new XElement("FastTags", item.FastTags.ToString())
+                ));
+                objItem.Add(new XElement("Rating",
+                    new XElement("Rating", item.Rating.ToString()),
+                    new XElement("MyRating", item.MyRating.ToString())
+                ));
+
+
+                objItem.Add(new XElement("System",
+                    new XElement("ID", item.ID),
+                    new XElement("Updated", item.Updated.ToString()),
+                    new XElement("Excluded", (item.Excluded ?? false).ToString()),
+                    new XElement("Image", imgFileName)
+                ));
+
+                items.Add(objItem);
+                imgNum++;
+            }
+
+
+            data.Add(items);
+            doc.Add(data);
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
+        }
+
+
         /// <summary>
         /// Export Objects to CSV file
         /// </summary>
@@ -1770,6 +2262,77 @@ namespace Katalog
         }
 
         /// <summary>
+        /// Import Copies from CSV
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Item list</returns>
+        public static List<Copies> ImportCopiesXML(IEnumerable<XElement> xmlCopies)
+        {
+
+            List<Copies> copies = new List<Copies>();
+            
+            foreach (var item in xmlCopies)
+            {
+                Copies obj = new Copies();
+
+                /*if (item.Element("ItemName") != null)
+                    obj.ItemName = item.Element("ItemName").Value;
+                else obj.ItemName = "";*/
+
+                if (item.Element("ItemType") != null)
+                    obj.ItemType = item.Element("ItemType").Value.Replace("\\n", Environment.NewLine);
+                else obj.ItemType = "";
+
+                if (item.Element("ItemID") != null)
+                    obj.ItemID = Conv.ToGuidNull(item.Element("ItemID").Value);
+
+                if (item.Element("ItemNum") != null)
+                    obj.ItemNum = Conv.ToShortNull(item.Element("ItemNum").Value);
+
+                if (item.Element("InventoryNumber") != null)
+                    obj.InventoryNumber = item.Element("InventoryNumber").Value.Replace("\\n", Environment.NewLine);
+                else obj.InventoryNumber = "";
+
+                if (item.Element("Barcode") != null)
+                    obj.Barcode = Conv.ToLongNull(item.Element("Barcode").Value);
+
+                if (item.Element("Condition") != null)
+                    obj.Condition = item.Element("Condition").Value.Replace("\\n", Environment.NewLine);
+                else obj.Condition = "";
+
+                if (item.Element("Location") != null)
+                    obj.Location = item.Element("Location").Value.Replace("\\n", Environment.NewLine);
+                else obj.Location = "";
+
+                if (item.Element("Note") != null)
+                    obj.Note = item.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+                if (item.Element("AcquisitionDate") != null)
+                    obj.AcquisitionDate = Conv.ToDateTimeNull(item.Element("AcquisitionDate").Value);
+
+                if (item.Element("Price") != null)
+                    obj.Price = Conv.ToDoubleNull(item.Element("Price").Value);
+
+                if (item.Element("Excluded") != null)
+                    obj.Excluded = Conv.ToBoolDef(item.Element("Excluded").Value, false);
+                else obj.Excluded = false;
+
+                if (item.Element("Status") != null)
+                    obj.Status = Conv.ToShortNull(item.Element("Status").Value);
+
+                if (item.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(item.Element("ID").Value);
+
+
+                copies.Add(obj);
+            }
+
+            return copies;
+        }
+
+
+        /// <summary>
         /// Import Items from CSV
         /// </summary>
         /// <param name="path">File path</param>
@@ -1899,7 +2462,209 @@ namespace Katalog
 
             return con;
         }
-        
+
+
+        /// <summary>
+        /// Import Books from XML
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Recipes list</returns>
+        public static List<Books> ImportBooksXML(string path, out List<Copies> copies)
+        {
+            List<Books> objList = new List<Books>();
+            copies = null;
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Books")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("Book");
+
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Books obj = new Books();
+
+                var xmlGeneral = item.Element("General");
+
+                if (xmlGeneral.Element("Title") != null)
+                    obj.Title = xmlGeneral.Element("Title").Value.Replace("\\n", Environment.NewLine);
+                else obj.Title = "";
+
+                if (xmlGeneral.Element("AuthorName") != null)
+                    obj.AuthorName = xmlGeneral.Element("AuthorName").Value.Replace("\\n", Environment.NewLine);
+                else obj.AuthorName = "";
+
+                if (xmlGeneral.Element("AuthorSurname") != null)
+                    obj.AuthorSurname = xmlGeneral.Element("AuthorSurname").Value.Replace("\\n", Environment.NewLine);
+                else obj.AuthorSurname = "";
+
+                if (xmlGeneral.Element("Note") != null)
+                    obj.Note = xmlGeneral.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+                if (xmlGeneral.Element("Note1") != null)
+                    obj.Note1 = xmlGeneral.Element("Note1").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note1 = "";
+
+                if (xmlGeneral.Element("Note2") != null)
+                    obj.Note2 = xmlGeneral.Element("Note2").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note2 = "";
+
+                if (xmlGeneral.Element("ISBN") != null)
+                    obj.ISBN = xmlGeneral.Element("ISBN").Value.Replace("\\n", Environment.NewLine);
+                else obj.ISBN = "";
+
+                if (xmlGeneral.Element("Illustrator") != null)
+                    obj.Illustrator = xmlGeneral.Element("Illustrator").Value.Replace("\\n", Environment.NewLine);
+                else obj.Illustrator = "";
+
+                if (xmlGeneral.Element("Translator") != null)
+                    obj.Translator = xmlGeneral.Element("Translator").Value.Replace("\\n", Environment.NewLine);
+                else obj.Translator = "";
+
+                if (xmlGeneral.Element("Language") != null)
+                    obj.Language = xmlGeneral.Element("Language").Value.Replace("\\n", Environment.NewLine);
+                else obj.Language = "";
+
+                if (xmlGeneral.Element("Publisher") != null)
+                    obj.Publisher = xmlGeneral.Element("Publisher").Value.Replace("\\n", Environment.NewLine);
+                else obj.Publisher = "";
+
+                if (xmlGeneral.Element("Edition") != null)
+                    obj.Edition = xmlGeneral.Element("Edition").Value.Replace("\\n", Environment.NewLine);
+                else obj.Edition = "";
+
+                if (xmlGeneral.Element("Year") != null)
+                    obj.Year = Conv.ToShortNull(xmlGeneral.Element("Year").Value);
+
+                if (xmlGeneral.Element("Pages") != null)
+                    obj.Pages = Conv.ToShortNull(xmlGeneral.Element("Pages").Value);
+
+                if (xmlGeneral.Element("URL") != null)
+                    obj.URL = xmlGeneral.Element("URL").Value.Replace("\\n", Environment.NewLine);
+                else obj.URL = "";
+
+                if (xmlGeneral.Element("MainCharacter") != null)
+                    obj.MainCharacter = xmlGeneral.Element("MainCharacter").Value.Replace("\\n", Environment.NewLine);
+                else obj.MainCharacter = "";
+
+                if (xmlGeneral.Element("Content") != null)
+                    obj.Content = xmlGeneral.Element("Content").Value.Replace("\\n", Environment.NewLine);
+                else obj.Content = "";
+
+                if (xmlGeneral.Element("OrigName") != null)
+                    obj.OrigName = xmlGeneral.Element("OrigName").Value.Replace("\\n", Environment.NewLine);
+                else obj.OrigName = "";
+
+                if (xmlGeneral.Element("OrigLanguage") != null)
+                    obj.OrigLanguage = xmlGeneral.Element("OrigLanguage").Value.Replace("\\n", Environment.NewLine);
+                else obj.OrigLanguage = "";
+
+                if (xmlGeneral.Element("OrigYear") != null)
+                    obj.OrigYear = Conv.ToShortNull(xmlGeneral.Element("OrigYear").Value);
+
+                if (xmlGeneral.Element("Series") != null)
+                    obj.Series = xmlGeneral.Element("Series").Value.Replace("\\n", Environment.NewLine);
+                else obj.Series = "";
+
+                if (xmlGeneral.Element("SeriesNum") != null)
+                    obj.SeriesNum = Conv.ToLongNull(xmlGeneral.Element("SeriesNum").Value);
+
+                if (xmlGeneral.Element("Type") != null)
+                    obj.Type = xmlGeneral.Element("Type").Value.Replace("\\n", Environment.NewLine);
+                else obj.Type = "";
+
+                if (xmlGeneral.Element("Bookbinding") != null)
+                    obj.Bookbinding = xmlGeneral.Element("Bookbinding").Value.Replace("\\n", Environment.NewLine);
+                else obj.Bookbinding = "";
+
+                if (xmlGeneral.Element("EbookPath") != null)
+                    obj.EbookPath = xmlGeneral.Element("EbookPath").Value.Replace("\\n", Environment.NewLine);
+                else obj.EbookPath = "";
+
+                if (xmlGeneral.Element("EbookType") != null)
+                    obj.EbookType = xmlGeneral.Element("EbookType").Value.Replace("\\n", Environment.NewLine);
+                else obj.EbookType = "";
+
+                if (xmlGeneral.Element("Publication") != null)
+                    obj.Publication = Conv.ToShortNull(xmlGeneral.Element("Publication").Value);
+
+
+
+                var xmlClass = item.Element("Classification");
+
+                if (xmlClass.Element("Genre") != null)
+                    obj.Genre = xmlClass.Element("Genre").Value;
+                else obj.Genre = "";
+
+                if (xmlClass.Element("SubGenre") != null)
+                    obj.SubGenre = xmlClass.Element("SubGenre").Value;
+                else obj.SubGenre = "";
+
+                if (xmlClass.Element("Keywords") != null)
+                    obj.Keywords = xmlClass.Element("Keywords").Value;
+                else obj.Keywords = "";
+
+                if (xmlClass.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlClass.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+
+                var xmlRating = item.Element("Rating");
+
+                if (xmlRating.Element("Rating") != null)
+                    obj.Rating = Conv.ToShortNull(xmlRating.Element("Rating").Value);
+
+                if (xmlRating.Element("MyRating") != null)
+                    obj.MyRating = Conv.ToShortNull(xmlRating.Element("MyRating").Value);
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("Excluded") != null)
+                    obj.Excluded = Conv.ToBoolDef(xmlSystem.Element("Excluded").Value, false);
+                else obj.Excluded = false;
+
+                if (xmlSystem.Element("Readed") != null)
+                    obj.Readed = Conv.ToBoolDef(xmlSystem.Element("Readed").Value, false);
+                else obj.Readed = false;
+
+                if (xmlSystem.Element("Cover") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Cover").Value;
+
+                    obj.Cover = Files.LoadBinFile(imgPath);
+                }
+
+               
+
+                objList.Add(obj);
+            }
+
+            // ----- Parse copies -----
+            IEnumerable<XElement> xmlCopies = xml.Elements().Elements("Copies").Elements("Copy");
+
+            copies = ImportCopiesXML(xmlCopies);
+
+            return objList;
+        }
+
+
         /// <summary>
         /// Import Boardgames from CSV
         /// </summary>
@@ -1977,7 +2742,188 @@ namespace Katalog
 
             return con;
         }
-        
+
+
+        /// <summary>
+        /// Import Board games from XML
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Recipes list</returns>
+        public static List<Boardgames> ImportBoardgamesXML(string path, out List<Copies> copies)
+        {
+            List<Boardgames> objList = new List<Boardgames>();
+            copies = null;
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Boardgames")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("BoardGame");
+
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Boardgames obj = new Boardgames();
+
+                var xmlGeneral = item.Element("General");
+
+                if (xmlGeneral.Element("Name") != null)
+                    obj.Name = xmlGeneral.Element("Name").Value;
+                else obj.Name = "";
+
+                if (xmlGeneral.Element("Description") != null)
+                    obj.Description = xmlGeneral.Element("Description").Value.Replace("\\n", Environment.NewLine);
+                else obj.Description = "";
+
+                if (xmlGeneral.Element("Note") != null)
+                    obj.Note = xmlGeneral.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+                if (xmlGeneral.Element("MinAge") != null)
+                    obj.MinAge = Conv.ToShortNull(xmlGeneral.Element("MinAge").Value);
+
+                if (xmlGeneral.Element("MinPlayers") != null)
+                    obj.MinPlayers = Conv.ToShortNull(xmlGeneral.Element("MinPlayers").Value);
+
+                if (xmlGeneral.Element("MaxPlayers") != null)
+                    obj.MaxPlayers = Conv.ToShortNull(xmlGeneral.Element("MaxPlayers").Value);
+
+                if (xmlGeneral.Element("GameTime") != null)
+                    obj.GameTime = Conv.ToShortNull(xmlGeneral.Element("GameTime").Value);
+
+                if (xmlGeneral.Element("GameWorld") != null)
+                    obj.GameWorld = xmlGeneral.Element("GameWorld").Value.Replace("\\n", Environment.NewLine);
+                else obj.GameWorld = "";
+
+                if (xmlGeneral.Element("Language") != null)
+                    obj.Language = xmlGeneral.Element("Language").Value.Replace("\\n", Environment.NewLine);
+                else obj.Language = "";
+
+                if (xmlGeneral.Element("Publisher") != null)
+                    obj.Publisher = xmlGeneral.Element("Publisher").Value.Replace("\\n", Environment.NewLine);
+                else obj.Publisher = "";
+
+                if (xmlGeneral.Element("Author") != null)
+                    obj.Author = xmlGeneral.Element("Author").Value.Replace("\\n", Environment.NewLine);
+                else obj.Author = "";
+
+                if (xmlGeneral.Element("Year") != null)
+                    obj.Year = Conv.ToShortNull(xmlGeneral.Element("Year").Value);
+
+                if (xmlGeneral.Element("Extension") != null)
+                    obj.Extension = Conv.ToBoolNull(xmlGeneral.Element("Extension").Value);
+
+                if (xmlGeneral.Element("ExtensionNumber") != null)
+                    obj.ExtensionNumber = Conv.ToShortNull(xmlGeneral.Element("ExtensionNumber").Value);
+
+                if (xmlGeneral.Element("Rules") != null)
+                    obj.Rules = xmlGeneral.Element("Rules").Value.Replace("\\n", Environment.NewLine);
+                else obj.Rules = "";
+
+                if (xmlGeneral.Element("MaterialPath") != null)
+                    obj.MaterialPath = xmlGeneral.Element("MaterialPath").Value.Replace("\\n", Environment.NewLine);
+                else obj.MaterialPath = "";
+
+                if (xmlGeneral.Element("Family") != null)
+                    obj.Family = xmlGeneral.Element("Family").Value.Replace("\\n", Environment.NewLine);
+                else obj.Family = "";
+
+                if (xmlGeneral.Element("URL") != null)
+                    obj.URL = xmlGeneral.Element("URL").Value;
+                else obj.URL = "";
+
+
+
+                var xmlClass = item.Element("Classification");
+
+                if (xmlClass.Element("Category") != null)
+                    obj.Category = xmlClass.Element("Category").Value;
+                else obj.Category = "";
+
+                /*if (xmlClass.Element("Subcategory") != null)
+                    obj.Subcategory = xmlClass.Element("Subcategory").Value;
+                else obj.Subcategory = "";*/
+
+                if (xmlClass.Element("Keywords") != null)
+                    obj.Keywords = xmlClass.Element("Keywords").Value;
+                else obj.Keywords = "";
+
+                if (xmlClass.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlClass.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+
+                var xmlRating = item.Element("Rating");
+
+                if (xmlRating.Element("Rating") != null)
+                    obj.Rating = Conv.ToShortNull(xmlRating.Element("Rating").Value);
+
+                if (xmlRating.Element("MyRating") != null)
+                    obj.MyRating = Conv.ToShortNull(xmlRating.Element("MyRating").Value);
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("Excluded") != null)
+                    obj.Excluded = Conv.ToBoolDef(xmlSystem.Element("Excluded").Value, false);
+                else obj.Excluded = false;
+
+
+                if (xmlSystem.Element("Cover") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Cover").Value;
+
+                    obj.Cover = Files.LoadBinFile(imgPath);
+                }
+
+                if (xmlSystem.Element("Img1") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Img1").Value;
+
+                    obj.Img1 = Files.LoadBinFile(imgPath);
+                }
+
+                if (xmlSystem.Element("Img2") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Img2").Value;
+
+                    obj.Img2 = Files.LoadBinFile(imgPath);
+                }
+
+                if (xmlSystem.Element("Img3") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Img3").Value;
+
+                    obj.Img3 = Files.LoadBinFile(imgPath);
+                }
+
+
+                objList.Add(obj);
+            }
+
+            // ----- Parse copies -----
+            IEnumerable<XElement> xmlCopies = xml.Elements().Elements("Copies").Elements("Copy");
+
+            copies = ImportCopiesXML(xmlCopies);
+
+            return objList;
+        }
+
+
         /// <summary>
         /// Import Games from CSV
         /// </summary>
@@ -2040,7 +2986,149 @@ namespace Katalog
 
             return objList;
         }
-        
+
+
+
+        /// <summary>
+        /// Import Games from XML
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Recipes list</returns>
+        public static List<Games> ImportGamesXML(string path)
+        {
+            List<Games> objList = new List<Games>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Games")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("Game");
+
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Games obj = new Games();
+
+                var xmlGeneral = item.Element("General");
+
+                if (xmlGeneral.Element("Name") != null)
+                    obj.Name = xmlGeneral.Element("Name").Value;
+                else obj.Name = "";
+
+                if (xmlGeneral.Element("Description") != null)
+                    obj.Description = xmlGeneral.Element("Description").Value.Replace("\\n", Environment.NewLine);
+                else obj.Description = "";
+
+                if (xmlGeneral.Element("Note") != null)
+                    obj.Note = xmlGeneral.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+                if (xmlGeneral.Element("PlayerAge") != null)
+                    obj.PlayerAge = xmlGeneral.Element("PlayerAge").Value.Replace("\\n", Environment.NewLine);
+                else obj.PlayerAge = "";
+
+                if (xmlGeneral.Element("MinPlayers") != null)
+                    obj.MinPlayers = Conv.ToShortNull(xmlGeneral.Element("MinPlayers").Value);
+
+                if (xmlGeneral.Element("MaxPlayers") != null)
+                    obj.MaxPlayers = Conv.ToShortNull(xmlGeneral.Element("MaxPlayers").Value);
+
+                if (xmlGeneral.Element("Duration") != null)
+                    obj.Duration = Conv.ToShortNull(xmlGeneral.Element("Duration").Value);
+
+                if (xmlGeneral.Element("DurationPreparation") != null)
+                    obj.DurationPreparation = Conv.ToShortNull(xmlGeneral.Element("DurationPreparation").Value);
+
+                if (xmlGeneral.Element("Things") != null)
+                    obj.Things = xmlGeneral.Element("Things").Value.Replace("\\n", Environment.NewLine);
+                else obj.Things = "";
+
+                if (xmlGeneral.Element("Rules") != null)
+                    obj.Rules = xmlGeneral.Element("Rules").Value.Replace("\\n", Environment.NewLine);
+                else obj.Rules = "";
+
+                if (xmlGeneral.Element("Preparation") != null)
+                    obj.Preparation = xmlGeneral.Element("Preparation").Value.Replace("\\n", Environment.NewLine);
+                else obj.Preparation = "";
+
+                if (xmlGeneral.Element("Environment") != null)
+                    obj.Environment = xmlGeneral.Element("Environment").Value.Replace("\\n", Environment.NewLine);
+                else obj.Environment = "";
+
+                if (xmlGeneral.Element("Files") != null)
+                    obj.Files = xmlGeneral.Element("Files").Value.Replace("\\n", Environment.NewLine);
+                else obj.Files = "";
+                
+                if (xmlGeneral.Element("URL") != null)
+                    obj.URL = xmlGeneral.Element("URL").Value;
+                else obj.URL = "";
+
+
+
+                var xmlClass = item.Element("Classification");
+
+                if (xmlClass.Element("Category") != null)
+                    obj.Category = xmlClass.Element("Category").Value;
+                else obj.Category = "";
+
+                if (xmlClass.Element("Subcategory") != null)
+                    obj.Subcategory = xmlClass.Element("Subcategory").Value;
+                else obj.Subcategory = "";
+
+                if (xmlClass.Element("Keywords") != null)
+                    obj.Keywords = xmlClass.Element("Keywords").Value;
+                else obj.Keywords = "";
+
+                if (xmlClass.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlClass.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+
+                var xmlRating = item.Element("Rating");
+
+                if (xmlRating.Element("Rating") != null)
+                    obj.Rating = Conv.ToShortNull(xmlRating.Element("Rating").Value);
+
+                if (xmlRating.Element("MyRating") != null)
+                    obj.MyRating = Conv.ToShortNull(xmlRating.Element("MyRating").Value);
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("Excluded") != null)
+                    obj.Excluded = Conv.ToBoolDef(xmlSystem.Element("Excluded").Value, false);
+                else obj.Excluded = false;
+
+
+                if (xmlSystem.Element("Image") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Image").Value;
+
+                    obj.Image = Files.LoadBinFile(imgPath);
+                }
+
+
+                objList.Add(obj);
+            }
+
+            return objList;
+        }
+
+
         /// <summary>
         /// Import Recipes from CSV
         /// </summary>
@@ -2094,7 +3182,122 @@ namespace Katalog
 
             return objList;
         }
-        
+
+
+        /// <summary>
+        /// Import Recipes from XML
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Recipes list</returns>
+        public static List<Recipes> ImportRecipesXML(string path)
+        {
+            List<Recipes> objList = new List<Recipes>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Recipes")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("Recipe");
+
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Recipes obj = new Recipes();
+
+                var xmlGeneral = item.Element("General");
+
+                if (xmlGeneral.Element("Name") != null)
+                    obj.Name = xmlGeneral.Element("Name").Value;
+                else obj.Name = "";
+                
+                if (xmlGeneral.Element("Description") != null)
+                    obj.Description = xmlGeneral.Element("Description").Value.Replace("\\n", Environment.NewLine);
+                else obj.Description = "";
+
+                if (xmlGeneral.Element("Note") != null)
+                    obj.Note = xmlGeneral.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+                if (xmlGeneral.Element("Procedure") != null)
+                    obj.Procedure = xmlGeneral.Element("Procedure").Value.Replace("\\n", Environment.NewLine);
+                else obj.Procedure = "";
+
+                if (xmlGeneral.Element("Resources") != null)
+                    obj.Resources = xmlGeneral.Element("Resources").Value.Replace("\\n", Environment.NewLine);
+                else obj.Resources = "";
+
+
+                if (xmlGeneral.Element("URL") != null)
+                    obj.URL = xmlGeneral.Element("URL").Value;
+                else obj.URL = "";
+
+
+
+                var xmlClass = item.Element("Classification");
+                
+                if (xmlClass.Element("Category") != null)
+                    obj.Category = xmlClass.Element("Category").Value;
+                else obj.Category = "";
+
+                if (xmlClass.Element("Subcategory") != null)
+                    obj.Subcategory = xmlClass.Element("Subcategory").Value;
+                else obj.Subcategory = "";
+
+                if (xmlClass.Element("Keywords") != null)
+                    obj.Keywords = xmlClass.Element("Keywords").Value;
+                else obj.Keywords = "";
+
+                if (xmlClass.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlClass.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+
+                var xmlRating = item.Element("Rating");
+
+                if (xmlRating.Element("Rating") != null)
+                    obj.Rating = Conv.ToShortNull(xmlRating.Element("Rating").Value);
+
+                if (xmlRating.Element("MyRating") != null)
+                    obj.MyRating = Conv.ToShortNull(xmlRating.Element("MyRating").Value);
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("Excluded") != null)
+                    obj.Excluded = Conv.ToBoolDef(xmlSystem.Element("Excluded").Value, false);
+                else obj.Excluded = false;
+
+
+                if (xmlSystem.Element("Image") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Image").Value;
+
+                    obj.Image = Files.LoadBinFile(imgPath);
+                }
+
+
+                objList.Add(obj);
+            }
+
+            return objList;
+        }
+
+
+       
         /// <summary>
         /// Import Objects from CSV
         /// </summary>
@@ -2160,7 +3363,7 @@ namespace Katalog
 
 
         /// <summary>
-        /// Import Objects from CSV
+        /// Import Objects from XML
         /// </summary>
         /// <param name="path">File path</param>
         /// <returns>Contact list</returns>
@@ -2198,11 +3401,11 @@ namespace Katalog
                 else obj.ObjectNum = "";
 
                 if (xmlGeneral.Element("Description") != null)
-                    obj.Description = xmlGeneral.Element("Description").Value;
+                    obj.Description = xmlGeneral.Element("Description").Value.Replace("\\n", Environment.NewLine);
                 else obj.Description = "";
 
                 if (xmlGeneral.Element("Note") != null)
-                    obj.Note = xmlGeneral.Element("Note").Value;
+                    obj.Note = xmlGeneral.Element("Note").Value.Replace("\\n", Environment.NewLine);
                 else obj.Note = "";
 
                 if (xmlGeneral.Element("Version") != null)
@@ -2238,7 +3441,7 @@ namespace Katalog
 
                 if (xmlClass.Element("Type") != null)
                     obj.Type = xmlClass.Element("Type").Value;
-                else obj.Name = "";
+                else obj.Type = "";
 
                 if (xmlClass.Element("Category") != null)
                     obj.Category = xmlClass.Element("Category").Value;

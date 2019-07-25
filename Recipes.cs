@@ -29,5 +29,6 @@ namespace Katalog
         public Nullable<short> FastTags { get; set; }
         public Nullable<System.DateTime> Updated { get; set; }
         public Nullable<bool> Excluded { get; set; }
+        public string URL { get; set; }
     }
 }

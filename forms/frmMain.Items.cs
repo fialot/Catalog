@@ -138,6 +138,7 @@ namespace Katalog
                 res = form.ShowDialog();                    // Show new Edit form
             }
             UpdateItemsOLV();                               // Update Items OLV
+            UpdateCopOLV();                                 // Update Copies OLV
         }
 
         /// <summary>
@@ -156,6 +157,7 @@ namespace Katalog
                     res = form.ShowDialog();                    // Show new Edit form
                 }
                 UpdateItemsOLV();                               // Update Items OLV
+                UpdateCopOLV();                                 // Update Copies OLV
             }
         }
 
@@ -182,6 +184,7 @@ namespace Katalog
                     }
                     db.SaveChanges();                           // Save to DB
                     UpdateItemsOLV();                           // Update Items OLV 
+                    UpdateCopOLV();                                 // Update Copies OLV
                 }
             }
             else if (count > 1)                 // If selected Item
@@ -203,6 +206,7 @@ namespace Katalog
                     }
                     db.SaveChanges();                           // Save to DB
                     UpdateItemsOLV();                           // Update Items OLV 
+                    UpdateCopOLV();                                 // Update Copies OLV
                 }
             }
         }

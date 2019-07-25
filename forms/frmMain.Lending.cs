@@ -101,6 +101,7 @@ namespace Katalog
             };
             ldItemName.AspectGetter = delegate (object x) {
                 var copy = db.Copies.Find(((Lending)x).CopyID);
+                if (copy == null) return "";
                 return global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty);
             };
             ldItemNum.AspectGetter = delegate (object x) {
@@ -108,7 +109,13 @@ namespace Katalog
             };
             ldItemInvNum.AspectGetter = delegate (object x) {
                 if (((Lending)x).CopyID != null)
-                    return db.Copies.Find(((Lending)x).CopyID).InventoryNumber;
+                {
+                    var copy = db.Copies.Find(((Lending)x).CopyID);
+                    if (copy == null) return "";
+                    return copy.InventoryNumber;
+                }
+
+                    
                 return "";
             };
             ldFrom.AspectGetter = delegate (object x) {
