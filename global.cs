@@ -756,7 +756,102 @@ namespace Katalog
             // ----- Save to file ------
             return Files.SaveFile(path, lines);
         }
-        
+
+
+        /// <summary>
+        /// Export Books to XML file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Books list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportLendedXML(string path, List<Lending> itm)
+        {
+
+            databaseEntities db = new databaseEntities();
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Lending"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+               
+                var objItem = new XElement("Lend");
+
+                var xmlItem = new XElement("Item");
+
+                if (item.CopyID != null)
+                {
+                    var copy = db.Copies.Find(item.CopyID);                 // Get copy
+                    if (copy != null)
+                    {
+                        xmlItem.Add(new XElement("Name", global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty).Replace(Environment.NewLine, "\\n")));
+                        if (copy.InventoryNumber != "" && copy.InventoryNumber != null) xmlItem.Add(new XElement("InventoryNumber", copy.InventoryNumber.Trim().Replace(Environment.NewLine, "\\n")));
+                    }
+                    if (item.CopyType != "" && item.CopyType != null) xmlItem.Add(new XElement("Type", item.CopyType.Trim().Replace(Environment.NewLine, "\\n")));
+                    xmlItem.Add(new XElement("ID", item.CopyID.ToString()));
+                }
+                
+
+                objItem.Add(xmlItem);
+
+                var xmlPerson = new XElement("Person");
+
+                if (item.PersonID != null)
+                {
+                    var person = db.Contacts.Find(item.PersonID);           // Get person
+                    if (person != null)
+                        xmlPerson.Add(new XElement("Person", person.Name.Trim() + " " + person.Surname.Trim()));
+                    xmlPerson.Add(new XElement("PersonID", item.PersonID.ToString()));
+                }
+
+                objItem.Add(xmlPerson);
+
+
+                var xmlBorrowing = new XElement("Lend");
+
+                if (item.From != null) xmlBorrowing.Add(new XElement("From", item.From.ToString()));
+                if (item.To != null) xmlBorrowing.Add(new XElement("To", item.To.ToString()));
+                if (item.Note != "" && item.Note != null) xmlBorrowing.Add(new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Status != null) xmlBorrowing.Add(new XElement("Status", item.Status.ToString()));
+
+                objItem.Add(xmlBorrowing);
+
+
+                var xmlSystem = new XElement("System");
+
+                if (item.FastTags != null) xmlSystem.Add(new XElement("FastTags", item.FastTags.ToString()));
+                if (item.ID != Guid.Empty) xmlSystem.Add(new XElement("ID", item.ID));
+                if (item.Updated != null) xmlSystem.Add(new XElement("Updated", item.Updated.ToString()));
+
+                objItem.Add(xmlSystem);
+
+                items.Add(objItem);
+                imgNum++;
+            }
+
+            data.Add(items);
+            doc.Add(data);
+
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
+        }
+
+
         /// <summary>
         /// Export Borrowing to CSV file
         /// </summary>
@@ -786,6 +881,91 @@ namespace Katalog
             // ----- Save to file ------
             return Files.SaveFile(path, lines);
         }
+
+
+        /// <summary>
+        /// Export Books to XML file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Books list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportBorrowingXML(string path, List<Borrowing> itm)
+        {
+
+            databaseEntities db = new databaseEntities();
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Borrowing"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+
+                var objItem = new XElement("Borrowing");
+
+                var xmlItem = new XElement("Item");
+
+                if (item.Item != "") xmlItem.Add(new XElement("Name", item.Item.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.ItemInvNum != "" && item.ItemInvNum != null) xmlItem.Add(new XElement("InventoryNumber", item.ItemInvNum.Trim().Replace(Environment.NewLine, "\\n")));
+
+                objItem.Add(xmlItem);
+
+                var xmlPerson = new XElement("Person");
+
+                if (item.PersonID != null)
+                {
+                    var person = db.Contacts.Find(item.PersonID);           // Get person
+                    if (person != null)
+                        xmlPerson.Add(new XElement("Person", person.Name.Trim() + " " + person.Surname.Trim()));
+                    xmlPerson.Add(new XElement("PersonID", item.PersonID.ToString()));
+                }
+                
+                objItem.Add(xmlPerson);
+
+
+                var xmlBorrowing = new XElement("Borrowing");
+
+                if (item.From != null) xmlBorrowing.Add(new XElement("From", item.From.ToString()));
+                if (item.To != null) xmlBorrowing.Add(new XElement("To", item.To.ToString()));
+                if (item.Note != "" && item.Note != null) xmlBorrowing.Add(new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Status != null) xmlBorrowing.Add(new XElement("Status", item.Status.ToString()));
+
+                objItem.Add(xmlBorrowing);
+
+
+                var xmlSystem = new XElement("System");
+
+                if (item.FastTags != null) xmlSystem.Add(new XElement("FastTags", item.FastTags.ToString()));
+                if (item.ID != Guid.Empty) xmlSystem.Add(new XElement("ID", item.ID));
+                if (item.Updated != null) xmlSystem.Add(new XElement("Updated", item.Updated.ToString()));
+
+                objItem.Add(xmlSystem);
+
+                items.Add(objItem);
+                imgNum++;
+            }
+
+            data.Add(items);
+            doc.Add(data);
+
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
+        }
+
 
         /// <summary>
         /// Export Copies to CSV file
@@ -827,23 +1007,21 @@ namespace Katalog
             {
                 var xmlCopy = new XElement("Copy");
 
-                xmlCopy.Add(
-                    new XElement("ItemName", global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty)),
-                    new XElement("ItemType", copy.ItemType.Trim()),
-                    new XElement("ItemID", copy.ItemID.ToString()),
-                    new XElement("ItemNum", copy.ItemNum.ToString()),
-                    new XElement("InventoryNumber", copy.InventoryNumber.Trim()),
-                    new XElement("Barcode", copy.Barcode.ToString()),
-                    new XElement("Condition", copy.Condition.Trim().Replace(Environment.NewLine, "\\n")),
-                    new XElement("Location", copy.Location.Trim().Replace(Environment.NewLine, "\\n")),
-                    new XElement("Note", copy.Note.Trim().Replace(Environment.NewLine, "\\n")),
-                    new XElement("AcquisitionDate", copy.AcquisitionDate.ToString()),
-                    new XElement("Price", copy.Price.ToString()),
-                    new XElement("Excluded", copy.Excluded.ToString()),
-                    new XElement("Status", copy.Status.ToString()),
-                    new XElement("ID", copy.ID.ToString())
-                );
-
+                xmlCopy.Add(new XElement("ItemName", global.GetLendingItemName(copy.ItemType, copy.ItemID ?? Guid.Empty)));
+                if (copy.ItemID != null) xmlCopy.Add(new XElement("ItemID", copy.ItemID.ToString()));
+                if (copy.ItemType != "") xmlCopy.Add(new XElement("ItemType", copy.ItemType.Trim()));
+                if (copy.ItemNum != null) xmlCopy.Add(new XElement("ItemNum", copy.ItemNum.ToString()));
+                if (copy.InventoryNumber != "") xmlCopy.Add(new XElement("InventoryNumber", copy.InventoryNumber.Trim()));
+                if (copy.Barcode != null) xmlCopy.Add(new XElement("Barcode", copy.Barcode.ToString()));
+                if (copy.Condition != "") xmlCopy.Add(new XElement("Condition", copy.Condition.Trim().Replace(Environment.NewLine, "\\n")));
+                if (copy.Location != "") xmlCopy.Add(new XElement("Location", copy.Location.Trim().Replace(Environment.NewLine, "\\n")));
+                if (copy.Note != "") xmlCopy.Add(new XElement("Note", copy.Note.Trim().Replace(Environment.NewLine, "\\n")));
+                if (copy.AcquisitionDate != null) xmlCopy.Add(new XElement("AcquisitionDate", copy.AcquisitionDate.ToString()));
+                if (copy.Price != null) xmlCopy.Add(new XElement("Price", copy.Price.ToString()));
+                if (copy.Excluded != null) xmlCopy.Add(new XElement("Excluded", copy.Excluded.ToString()));
+                //if (copy.Status != null) xmlCopy.Add(new XElement("Status", copy.Status.ToString()));
+                xmlCopy.Add(new XElement("ID", copy.ID.ToString()));
+                
                 xmlCopies.Add(xmlCopy);
             }
 
@@ -904,6 +1082,112 @@ namespace Katalog
             // ----- Save to file ------
             Files.SaveFile(path, lines);
         }
+
+
+        /// <summary>
+        /// Export Books to XML file
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="itm">Books list</param>
+        /// <returns>Return True if saved succesfully</returns>
+        public static bool ExportItemsXML(string path, List<Items> itm)
+        {
+
+            databaseEntities db = new databaseEntities();
+
+            // ----- Create files path -----
+            string filePath = "";
+            try
+            {
+                filePath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files";
+                Directory.CreateDirectory(filePath);
+            }
+            catch { }
+
+            // ----- Create XML document -----
+            XDocument doc = new XDocument(
+              new XDeclaration("1.0", "utf-8", null)
+            );
+
+            var data = new XElement("Data",
+              new XElement("Info",
+                new XElement("Type", "FialotCatalog:Items"),
+                new XElement("Version", "1")
+              )
+            );
+
+            var items = new XElement("Items");
+
+
+            int imgNum = 0;
+            foreach (var item in itm)
+            {
+                string imgFileName = filePath + Path.DirectorySeparatorChar + "img" + imgNum.ToString("D4") + ".jpg";
+                ExportImage(ref imgFileName, item.Image);
+                try
+                {
+                    imgFileName = Path.GetFileName(imgFileName);
+                }
+                catch { }
+
+                var objItem = new XElement("Item");
+
+                var xmlGeneral = new XElement("General");
+
+                if (item.Name != "") xmlGeneral.Add(new XElement("Name", item.Name.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Manufacturer != "") xmlGeneral.Add(new XElement("Manufacturer", item.Manufacturer.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Note != "") xmlGeneral.Add(new XElement("Note", item.Note.Trim().Replace(Environment.NewLine, "\\n")));
+
+                objItem.Add(xmlGeneral);
+
+                var xmlClassification = new XElement("Classification");
+
+                if (item.Category != "") xmlClassification.Add(new XElement("Category", item.Category.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Subcategory != "") xmlClassification.Add(new XElement("Subcategory", item.Subcategory.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Subcategory2 != "") xmlClassification.Add(new XElement("Subcategory2", item.Subcategory2.Trim().Replace(Environment.NewLine, "\\n")));
+                if (item.Keywords != "") xmlClassification.Add(new XElement("Keywords", item.Keywords.Trim()));
+                if (item.FastTags != null) xmlClassification.Add(new XElement("FastTags", item.FastTags.ToString()));
+
+                objItem.Add(xmlClassification);
+
+
+                /*var xmlRating = new XElement("Rating");
+
+                if (item.Rating != null) xmlRating.Add(new XElement("Rating", item.Rating.ToString()));
+                if (item.MyRating != null) xmlRating.Add(new XElement("MyRating", item.MyRating.ToString()));
+
+                objItem.Add(xmlRating);*/
+
+
+                var xmlSystem = new XElement("System");
+
+                if (item.ID != Guid.Empty) xmlSystem.Add(new XElement("ID", item.ID));
+                if (item.Updated != null) xmlSystem.Add(new XElement("Updated", item.Updated.ToString()));
+                if (item.Excluded != null) xmlSystem.Add(new XElement("Excluded", Conv.ToString(item.Excluded ?? false)));
+                if (imgFileName != "") xmlSystem.Add(new XElement("Image", imgFileName));
+
+                objItem.Add(xmlSystem);
+
+                items.Add(objItem);
+                imgNum++;
+            }
+
+            // ----- Copies -----
+            var copies = db.Copies.Where(x => (x.ItemType.Trim() == ItemTypes.item.ToString())).ToList();
+
+            var xmlCopies = ExportCopiesXML(copies);
+
+
+            data.Add(items);
+            data.Add(xmlCopies);
+            doc.Add(data);
+
+
+            var wr = new Utf8StringWriter();
+            doc.Save(wr);
+            return Files.SaveFile(path, wr.ToString());
+        }
+
 
         /// <summary>
         /// Export Books to CSV file
@@ -2172,6 +2456,100 @@ namespace Katalog
             return con;
         }
 
+
+        /// <summary>
+        /// Import Lending from XML
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Recipes list</returns>
+        public static List<Lending> ImportLendedXML(string path)
+        {
+            List<Lending> objList = new List<Lending>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Lending")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("Lend");
+
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Lending obj = new Lending();
+
+                var xmlItem = item.Element("Item");
+
+                if (xmlItem.Element("ID") != null)
+                    obj.CopyID = Conv.ToGuidNull(xmlItem.Element("ID").Value);
+
+                if (xmlItem.Element("Type") != null)
+                    obj.CopyType = xmlItem.Element("Type").Value;
+                else obj.CopyType = "";
+
+                /*if (xmlItem.Element("Name") != null)
+                    obj.Item = xmlItem.Element("Name").Value.Replace("\\n", Environment.NewLine);
+                else obj.Item = "";*/
+
+                /*if (xmlItem.Element("InventoryNumber") != null)
+                    obj.ItemInvNum = xmlItem.Element("InventoryNumber").Value.Replace("\\n", Environment.NewLine);
+                else obj.ItemInvNum = "";*/
+
+
+                var xmlPerson = item.Element("Person");
+
+                if (xmlPerson.Element("PersonID") != null)
+                    obj.PersonID = Conv.ToGuidNull(xmlPerson.Element("PersonID").Value);
+                else obj.PersonID = null;
+
+                /*if (xmlPerson.Element("Person") != null)
+                    obj.Person = xmlPerson.Element("Person").Value;
+                else obj.Person = "";*/
+
+
+                var xmlLending = item.Element("Lend");
+
+                if (xmlLending.Element("From") != null)
+                    obj.From = Conv.ToDateTimeNull(xmlLending.Element("From").Value);
+
+                if (xmlLending.Element("To") != null)
+                    obj.To = Conv.ToDateTimeNull(xmlLending.Element("To").Value);
+
+                if (xmlLending.Element("Note") != null)
+                    obj.Note = xmlLending.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+                if (xmlLending.Element("Status") != null)
+                    obj.Status = Conv.ToShortNull(xmlLending.Element("Status").Value);
+                else obj.Status = 2;
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlSystem.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+                objList.Add(obj);
+            }
+
+            return objList;
+        }
+
+
         /// <summary>
         /// Import Borrowing from CSV
         /// </summary>
@@ -2214,6 +2592,92 @@ namespace Katalog
             }
 
             return con;
+        }
+
+
+        /// <summary>
+        /// Import Items from XML
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Recipes list</returns>
+        public static List<Borrowing> ImportBorrowingXML(string path)
+        {
+            List<Borrowing> objList = new List<Borrowing>();
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Borrowing")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("Borrowing");
+
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Borrowing obj = new Borrowing();
+
+                var xmlItem = item.Element("Item");
+
+                if (xmlItem.Element("Name") != null)
+                    obj.Item = xmlItem.Element("Name").Value.Replace("\\n", Environment.NewLine);
+                else obj.Item = "";
+
+                if (xmlItem.Element("InventoryNumber") != null)
+                    obj.ItemInvNum = xmlItem.Element("InventoryNumber").Value.Replace("\\n", Environment.NewLine);
+                else obj.ItemInvNum = "";
+                
+
+                var xmlPerson = item.Element("Person");
+
+                if (xmlPerson.Element("PersonID") != null)
+                    obj.PersonID = Conv.ToGuidNull(xmlPerson.Element("PersonID").Value);
+                else obj.PersonID = null;
+
+                /*if (xmlPerson.Element("Person") != null)
+                    obj.Person = xmlPerson.Element("Person").Value;
+                else obj.Person = "";*/
+
+
+                var xmlBorrowing = item.Element("Borrowing");
+
+                if (xmlBorrowing.Element("From") != null)
+                    obj.From = Conv.ToDateTimeNull(xmlBorrowing.Element("From").Value);
+
+                if (xmlBorrowing.Element("To") != null)
+                    obj.To = Conv.ToDateTimeNull(xmlBorrowing.Element("To").Value);
+
+                if (xmlBorrowing.Element("Note") != null)
+                    obj.Note = xmlBorrowing.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+                if (xmlBorrowing.Element("Status") != null)
+                    obj.Status = Conv.ToShortNull(xmlBorrowing.Element("Status").Value);
+                else obj.Status = 2;
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlSystem.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+                objList.Add(obj);
+            }
+
+            return objList;
         }
 
         /// <summary>
@@ -2320,6 +2784,7 @@ namespace Katalog
 
                 if (item.Element("Status") != null)
                     obj.Status = Conv.ToShortNull(item.Element("Status").Value);
+                else obj.Status = 2;
 
                 if (item.Element("ID") != null)
                     obj.ID = Conv.ToGuid(item.Element("ID").Value);
@@ -2384,6 +2849,118 @@ namespace Katalog
 
             return con;
         }
+
+
+        /// <summary>
+        /// Import Items from XML
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <returns>Recipes list</returns>
+        public static List<Items> ImportItemsXML(string path, out List<Copies> copies)
+        {
+            List<Items> objList = new List<Items>();
+            copies = null;
+
+            // ----- Load file -----
+            string text = Files.LoadFile(path);
+
+            // ----- Parse XML to Structure -----
+            var xml = XDocument.Parse(text);
+            var xmlType = xml.Elements().Elements("Info").Elements("Type");
+
+            // ----- Check File Head -----
+            if (xmlType.First().Value != "FialotCatalog:Items")
+                return null;
+
+            var xmlItems = xml.Elements().Elements("Items").Elements("Item");
+
+
+            var objItem = new XElement("Item");
+
+            // ----- Parse data -----
+            foreach (var item in xmlItems)
+            {
+                Items obj = new Items();
+
+                var xmlGeneral = item.Element("General");
+
+                if (xmlGeneral.Element("Name") != null)
+                    obj.Name = xmlGeneral.Element("Name").Value.Replace("\\n", Environment.NewLine);
+                else obj.Name = "";
+
+                if (xmlGeneral.Element("Manufacturer") != null)
+                    obj.Manufacturer = xmlGeneral.Element("Manufacturer").Value.Replace("\\n", Environment.NewLine);
+                else obj.Manufacturer = "";
+
+                if (xmlGeneral.Element("Note") != null)
+                    obj.Note = xmlGeneral.Element("Note").Value.Replace("\\n", Environment.NewLine);
+                else obj.Note = "";
+
+
+                var xmlClass = item.Element("Classification");
+
+                if (xmlClass.Element("Category") != null)
+                    obj.Category = xmlClass.Element("Category").Value;
+                else obj.Category = "";
+
+                if (xmlClass.Element("Subcategory") != null)
+                    obj.Subcategory = xmlClass.Element("Subcategory").Value;
+                else obj.Subcategory = "";
+
+                if (xmlClass.Element("Subcategory2") != null)
+                    obj.Subcategory2 = xmlClass.Element("Subcategory2").Value;
+                else obj.Subcategory2 = "";
+
+                if (xmlClass.Element("Keywords") != null)
+                    obj.Keywords = xmlClass.Element("Keywords").Value;
+                else obj.Keywords = "";
+
+                if (xmlClass.Element("FastTags") != null)
+                    obj.FastTags = Conv.ToShortDef(xmlClass.Element("FastTags").Value, 0);
+                else obj.FastTags = 0;
+
+
+                /*var xmlRating = item.Element("Rating");
+
+                if (xmlRating.Element("Rating") != null)
+                    obj.Rating = Conv.ToShortNull(xmlRating.Element("Rating").Value);
+
+                if (xmlRating.Element("MyRating") != null)
+                    obj.MyRating = Conv.ToShortNull(xmlRating.Element("MyRating").Value);*/
+
+
+                var xmlSystem = item.Element("System");
+
+                if (xmlSystem.Element("ID") != null)
+                    obj.ID = Conv.ToGuid(xmlSystem.Element("ID").Value);
+
+                if (xmlSystem.Element("Updated") != null)
+                    obj.Updated = Conv.ToDateTimeNull(xmlSystem.Element("Updated").Value);
+
+                if (xmlSystem.Element("Excluded") != null)
+                    obj.Excluded = Conv.ToBoolDef(xmlSystem.Element("Excluded").Value, false);
+                else obj.Excluded = false;
+
+                if (xmlSystem.Element("Image") != null)
+                {
+                    string imgPath = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + "_files" + Path.DirectorySeparatorChar + xmlSystem.Element("Image").Value;
+
+                    obj.Image = Files.LoadBinFile(imgPath);
+                }
+
+
+
+                objList.Add(obj);
+            }
+
+            // ----- Parse copies -----
+            IEnumerable<XElement> xmlCopies = xml.Elements().Elements("Copies").Elements("Copy");
+
+            copies = ImportCopiesXML(xmlCopies);
+
+            return objList;
+        }
+
 
         /// <summary>
         /// Import Books from CSV

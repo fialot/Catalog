@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -410,5 +412,20 @@ namespace Katalog
 
         }
 
+        private void btnShowFolder_Click(object sender, EventArgs e)
+        {
+            string RelativePath = Properties.Settings.Default.ObjectFolder;
+            try
+            {
+                if (File.Exists(txtFolder.Text) || Directory.Exists(txtFolder.Text))
+                    Process.Start(txtFolder.Text);
+                else
+                    Process.Start(RelativePath + Path.DirectorySeparatorChar + txtFolder.Text);
+            }
+            catch (Exception Err)
+            {
+                Dialogs.ShowErr(Err.Message, Lng.Get("Error"));
+            }
+        }
     }
 }

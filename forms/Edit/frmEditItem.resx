@@ -118,922 +118,487 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
   </data>
-  <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>462, 368</value>
-  </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
-    <value>btnCancel</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>381, 368</value>
-  </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="btnOk.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
-    <value>btnOk</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="imgImg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="imgImg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="imgImg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 165</value>
-  </data>
-  <data name="imgImg.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="imgImg.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="&gt;&gt;imgImg.Name" xml:space="preserve">
-    <value>imgImg</value>
-  </data>
-  <data name="&gt;&gt;imgImg.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;imgImg.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;imgImg.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 65</value>
-  </data>
-  <data name="lblName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="lblName.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;lblName.Name" xml:space="preserve">
-    <value>lblName</value>
-  </data>
-  <data name="&gt;&gt;lblName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="txtName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 81</value>
-  </data>
-  <data name="txtName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 20</value>
-  </data>
-  <data name="txtName.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtName.Name" xml:space="preserve">
-    <value>txtName</value>
-  </data>
-  <data name="&gt;&gt;txtName.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtManufacturer.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="btnTag6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnTag6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnTag6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>502, 2</value>
-  </data>
-  <data name="btnTag6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="btnTag6.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.Name" xml:space="preserve">
-    <value>btnTag6</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnTag6.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="btnTag5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnTag5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnTag5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 2</value>
-  </data>
-  <data name="btnTag5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="btnTag5.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.Name" xml:space="preserve">
-    <value>btnTag5</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnTag5.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="btnTag4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnTag4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnTag4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 2</value>
-  </data>
-  <data name="btnTag4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="btnTag4.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.Name" xml:space="preserve">
-    <value>btnTag4</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnTag4.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="btnTag3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnTag3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnTag3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>379, 2</value>
-  </data>
-  <data name="btnTag3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="btnTag3.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
   </data>
   <data name="&gt;&gt;btnTag3.Name" xml:space="preserve">
     <value>btnTag3</value>
   </data>
-  <data name="&gt;&gt;btnTag3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnTag3.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
   </data>
-  <data name="&gt;&gt;btnTag3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnTag3.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="btnTag2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnTag3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="btnTag2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;txtInvNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnTag2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>337, 2</value>
-  </data>
-  <data name="btnTag2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="btnTag2.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.Name" xml:space="preserve">
-    <value>btnTag2</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnTag2.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="btnTag1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnTag1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="btnTag1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnTag1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>295, 2</value>
-  </data>
-  <data name="btnTag1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 35</value>
-  </data>
-  <data name="btnTag1.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;btnTag1.Name" xml:space="preserve">
-    <value>btnTag1</value>
-  </data>
-  <data name="&gt;&gt;btnTag1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTag1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="lblAcqDate.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
   <data name="&gt;&gt;btnTag1.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="txtKeywords.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 157</value>
-  </data>
-  <data name="txtKeywords.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 20</value>
-  </data>
-  <data name="txtKeywords.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;txtKeywords.Name" xml:space="preserve">
-    <value>txtKeywords</value>
-  </data>
-  <data name="&gt;&gt;txtKeywords.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;txtKeywords.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtKeywords.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;cbCopy.Parent" xml:space="preserve">
+    <value>gbCopies</value>
   </data>
-  <data name="lblKeywords.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblAcqDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
   </data>
-  <data name="lblKeywords.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblKeywords.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 141</value>
-  </data>
-  <data name="lblKeywords.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 13</value>
-  </data>
-  <data name="lblKeywords.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="lblKeywords.Text" xml:space="preserve">
-    <value>Keywords</value>
-  </data>
-  <data name="&gt;&gt;lblKeywords.Name" xml:space="preserve">
-    <value>lblKeywords</value>
-  </data>
-  <data name="&gt;&gt;lblKeywords.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblLocation.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblKeywords.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblKeywords.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="lblNote.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblNote.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 180</value>
-  </data>
-  <data name="lblNote.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
-  </data>
-  <data name="lblNote.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="lblNote.Text" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="&gt;&gt;lblNote.Name" xml:space="preserve">
-    <value>lblNote</value>
-  </data>
-  <data name="&gt;&gt;lblNote.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblCopy.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblNote.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;lblNote.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="imgImg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="txtNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 196</value>
+  <data name="txtInvNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 20</value>
   </data>
-  <data name="txtNote.Multiline" type="System.Boolean, mscorlib">
+  <data name="&gt;&gt;txtSubCategory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtCondition.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="txtCondition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 20</value>
+  </data>
+  <data name="chbExcluded.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;btnTag6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCategory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtInvNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 30</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnTag2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="chbExcluded.Location" type="System.Drawing.Point, System.Drawing">
+    <value>431, 109</value>
+  </data>
+  <data name="&gt;&gt;chbExcluded.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblSubCategory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="txtNote.Size" type="System.Drawing.Size, System.Drawing">
     <value>515, 18</value>
   </data>
-  <data name="txtNote.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;txtNote.Name" xml:space="preserve">
-    <value>txtNote</value>
-  </data>
-  <data name="&gt;&gt;txtNote.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtNote.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtNote.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="txtCategory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 118</value>
-  </data>
-  <data name="txtCategory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 20</value>
-  </data>
-  <data name="txtCategory.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;txtCategory.Name" xml:space="preserve">
-    <value>txtCategory</value>
-  </data>
-  <data name="&gt;&gt;txtCategory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCategory.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtCategory.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lblCategory.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCategory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCategory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 102</value>
-  </data>
-  <data name="lblCategory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 13</value>
-  </data>
-  <data name="lblCategory.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="lblCategory.Text" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="&gt;&gt;lblCategory.Name" xml:space="preserve">
-    <value>lblCategory</value>
-  </data>
-  <data name="&gt;&gt;lblCategory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCategory.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblCategory.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lblCondition.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCondition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCondition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 93</value>
-  </data>
-  <data name="lblCondition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
-  </data>
-  <data name="lblCondition.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="lblCondition.Text" xml:space="preserve">
-    <value>Condition</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.Name" xml:space="preserve">
-    <value>lblCondition</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;lblCondition.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtCondition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 109</value>
-  </data>
-  <data name="txtCondition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 20</value>
-  </data>
-  <data name="txtCondition.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.Name" xml:space="preserve">
-    <value>txtCondition</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;txtCondition.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="chbExcluded.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chbExcluded.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chbExcluded.Location" type="System.Drawing.Point, System.Drawing">
-    <value>431, 109</value>
-  </data>
-  <data name="chbExcluded.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 17</value>
-  </data>
-  <data name="chbExcluded.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="chbExcluded.Text" xml:space="preserve">
-    <value>Excluded</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.Name" xml:space="preserve">
-    <value>chbExcluded</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;chbExcluded.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblPrice.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblPrice.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblPrice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 93</value>
-  </data>
-  <data name="lblPrice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
-  </data>
-  <data name="lblPrice.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="lblPrice.Text" xml:space="preserve">
-    <value>Price</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.Name" xml:space="preserve">
-    <value>lblPrice</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;lblPrice.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="txtPrice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 109</value>
-  </data>
-  <data name="txtPrice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 20</value>
-  </data>
-  <data name="txtPrice.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.Name" xml:space="preserve">
-    <value>txtPrice</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;txtPrice.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="dtAcqDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 109</value>
-  </data>
-  <data name="dtAcqDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 20</value>
-  </data>
-  <data name="dtAcqDate.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.Name" xml:space="preserve">
-    <value>dtAcqDate</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;dtAcqDate.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lblAcqDate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblAcqDate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblAcqDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 93</value>
-  </data>
-  <data name="lblAcqDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 13</value>
-  </data>
-  <data name="lblAcqDate.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="lblAcqDate.Text" xml:space="preserve">
-    <value>Acquisition date</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.Name" xml:space="preserve">
-    <value>lblAcqDate</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;lblAcqDate.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lblCount.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 33</value>
-  </data>
-  <data name="lblCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>21, 13</value>
-  </data>
-  <data name="lblCount.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="lblCount.Text" xml:space="preserve">
-    <value>/ 1</value>
-  </data>
-  <data name="&gt;&gt;lblCount.Name" xml:space="preserve">
-    <value>lblCount</value>
-  </data>
-  <data name="&gt;&gt;lblCount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCount.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;lblCount.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="btnLocation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>484, 66</value>
-  </data>
-  <data name="btnLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 23</value>
-  </data>
-  <data name="btnLocation.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="btnLocation.Text" xml:space="preserve">
-    <value>...</value>
-  </data>
-  <data name="&gt;&gt;btnLocation.Name" xml:space="preserve">
-    <value>btnLocation</value>
-  </data>
-  <data name="&gt;&gt;btnLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLocation.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;btnLocation.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="btnDelCopy.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="btnDelCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnSaveNew.Text" xml:space="preserve">
+    <value>Save &amp;&amp; New</value>
   </data>
-  <data name="btnDelCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 28</value>
+  <data name="btnTag5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
-  <data name="btnDelCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 23</value>
+  <data name="lblName.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="btnDelCopy.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="btnDelCopy.Text" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="&gt;&gt;btnDelCopy.Name" xml:space="preserve">
-    <value>btnDelCopy</value>
-  </data>
-  <data name="&gt;&gt;btnDelCopy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDelCopy.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblCopy.Parent" xml:space="preserve">
     <value>gbCopies</value>
   </data>
   <data name="&gt;&gt;btnDelCopy.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="btnAddCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="&gt;&gt;lblNote.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblPrice.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnAddCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 28</value>
+  <data name="lblSubCategory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="btnAddCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 23</value>
+  <data name="&gt;&gt;txtName.Name" xml:space="preserve">
+    <value>txtName</value>
   </data>
-  <data name="btnAddCopy.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+  <data name="&gt;&gt;lblAcqDate.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="btnAddCopy.Text" xml:space="preserve">
-    <value>+</value>
+  <data name="lblCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 13</value>
   </data>
-  <data name="&gt;&gt;btnAddCopy.Name" xml:space="preserve">
-    <value>btnAddCopy</value>
+  <data name="btnTag4.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
   </data>
-  <data name="&gt;&gt;btnAddCopy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnAddCopy.Parent" xml:space="preserve">
-    <value>gbCopies</value>
+  <data name="txtKeywords.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 20</value>
   </data>
-  <data name="&gt;&gt;btnAddCopy.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="btnTag4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
-  <data name="cbCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 30</value>
+  <data name="btnTag3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 35</value>
   </data>
-  <data name="cbCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 21</value>
-  </data>
-  <data name="cbCopy.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;cbCopy.Name" xml:space="preserve">
-    <value>cbCopy</value>
-  </data>
-  <data name="&gt;&gt;cbCopy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbCopy.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;cbCopy.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="lblCopy.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblPrice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;dtAcqDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSubCategory.Name" xml:space="preserve">
+    <value>txtSubCategory</value>
+  </data>
+  <data name="btnSaveNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 14</value>
+  <data name="txtName.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="lblCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
+  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
+    <value>btnOk</value>
   </data>
-  <data name="lblCopy.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="&gt;&gt;lblManufacturer.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="lblCopy.Text" xml:space="preserve">
-    <value>Copy</value>
-  </data>
-  <data name="lblCopy.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;lblCopy.Name" xml:space="preserve">
-    <value>lblCopy</value>
-  </data>
-  <data name="&gt;&gt;lblCopy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCopy.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;lblCopy.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="lblLocation.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblLocation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 54</value>
-  </data>
-  <data name="lblLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="lblLocation.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="lblLocation.Text" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="&gt;&gt;lblLocation.Name" xml:space="preserve">
-    <value>lblLocation</value>
-  </data>
-  <data name="&gt;&gt;lblLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLocation.Parent" xml:space="preserve">
-    <value>gbCopies</value>
+  <data name="&gt;&gt;lblKeywords.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLocation.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="txtInvNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 30</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Item</value>
   </data>
-  <data name="txtInvNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 20</value>
+  <data name="txtName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 20</value>
   </data>
-  <data name="txtInvNum.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.Name" xml:space="preserve">
-    <value>txtInvNum</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;txtInvNum.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="txtLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 70</value>
-  </data>
-  <data name="txtLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>469, 20</value>
-  </data>
-  <data name="txtLocation.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.Name" xml:space="preserve">
-    <value>txtLocation</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.Parent" xml:space="preserve">
-    <value>gbCopies</value>
-  </data>
-  <data name="&gt;&gt;txtLocation.ZOrder" xml:space="preserve">
-    <value>15</value>
+  <data name="lblKeywords.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="lblInvNum.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="btnOk.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;btnTag5.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;imgImg.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="imgImg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="btnTag3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSubCategory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="&gt;&gt;btnTag1.Name" xml:space="preserve">
+    <value>btnTag1</value>
+  </data>
+  <data name="btnTag1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;txtCategory.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btnDelCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="lblCategory.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="chbExcluded.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="txtKeywords.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lblNote.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 180</value>
+  </data>
+  <data name="btnTag3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>379, 2</value>
+  </data>
+  <data name="btnTag5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 35</value>
+  </data>
+  <data name="btnTag2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="lblUpdated.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;btnTag2.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;txtNote.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblPrice.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="&gt;&gt;lblKeywords.Name" xml:space="preserve">
+    <value>lblKeywords</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.Name" xml:space="preserve">
+    <value>lblUpdated</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblPrice.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;cbCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="lblCount.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblUpdated.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 13</value>
+  </data>
+  <data name="btnTag6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
   <data name="lblInvNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblInvNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 14</value>
+  <data name="&gt;&gt;lblCount.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
-  <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 13</value>
+  <data name="&gt;&gt;lblInvNum.Parent" xml:space="preserve">
+    <value>gbCopies</value>
   </data>
-  <data name="lblInvNum.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+  <data name="btnDelCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 23</value>
   </data>
-  <data name="lblInvNum.Text" xml:space="preserve">
-    <value>Inventory number</value>
+  <data name="&gt;&gt;txtInvNum.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="&gt;&gt;lblName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnTag1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Name" xml:space="preserve">
+    <value>txtPrice</value>
+  </data>
+  <data name="lblPrice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 93</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTag6.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;txtNote.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtManufacturer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>335, 157</value>
+  </data>
+  <data name="&gt;&gt;lblAcqDate.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="&gt;&gt;lblNote.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="chbExcluded.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;txtSubCategory.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLocation.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="lblSubCategory.Text" xml:space="preserve">
+    <value>Subcategory</value>
+  </data>
+  <data name="&gt;&gt;chbExcluded.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtCategory.Name" xml:space="preserve">
+    <value>txtCategory</value>
+  </data>
+  <data name="&gt;&gt;lblCopy.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btnTag5.Name" xml:space="preserve">
+    <value>btnTag5</value>
+  </data>
+  <data name="&gt;&gt;gbCopies.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
+  </data>
+  <data name="gbCopies.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 220</value>
+  </data>
+  <data name="txtNote.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.Name" xml:space="preserve">
+    <value>lblPrice</value>
+  </data>
+  <data name="lblLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;lblSubCategory.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txtLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="lblCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="btnTag2.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="btnTag1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 2</value>
+  </data>
+  <data name="&gt;&gt;btnDelCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnTag6.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="&gt;&gt;lblSubCategory.Name" xml:space="preserve">
+    <value>lblSubCategory</value>
+  </data>
+  <data name="&gt;&gt;btnTag2.Name" xml:space="preserve">
+    <value>btnTag2</value>
+  </data>
+  <data name="chbExcluded.Text" xml:space="preserve">
+    <value>Excluded</value>
+  </data>
+  <data name="btnTag2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 35</value>
+  </data>
+  <data name="lblNote.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnDelCopy.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="&gt;&gt;btnAddCopy.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="lblManufacturer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnTag5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="&gt;&gt;gbCopies.Name" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="txtCondition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>264, 109</value>
+  </data>
+  <data name="btnTag4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 35</value>
+  </data>
+  <data name="btnTag6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;btnAddCopy.Name" xml:space="preserve">
+    <value>btnAddCopy</value>
+  </data>
+  <data name="&gt;&gt;btnTag2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnLocation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;txtCategory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtLocation.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="btnTag5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>461, 2</value>
+  </data>
+  <data name="lblNote.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtPrice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 109</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
+    <value>TimeOut</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 23</value>
+  </data>
+  <data name="&gt;&gt;txtNote.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lblLocation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtNote.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 196</value>
   </data>
   <data name="&gt;&gt;lblInvNum.Name" xml:space="preserve">
     <value>lblInvNum</value>
@@ -1041,158 +606,119 @@
   <data name="&gt;&gt;lblInvNum.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblInvNum.Parent" xml:space="preserve">
-    <value>gbCopies</value>
+  <data name="&gt;&gt;cbCopy.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
-  <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="lblKeywords.Text" xml:space="preserve">
+    <value>Keywords</value>
   </data>
-  <data name="gbCopies.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 220</value>
+  <data name="&gt;&gt;txtCondition.Name" xml:space="preserve">
+    <value>txtCondition</value>
+  </data>
+  <data name="lblManufacturer.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblLocation.Name" xml:space="preserve">
+    <value>lblLocation</value>
+  </data>
+  <data name="lblCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
   </data>
   <data name="gbCopies.Size" type="System.Drawing.Size, System.Drawing">
     <value>522, 142</value>
   </data>
-  <data name="gbCopies.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="dtAcqDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 20</value>
   </data>
-  <data name="gbCopies.Text" xml:space="preserve">
-    <value>Copies</value>
+  <data name="&gt;&gt;btnTag4.Name" xml:space="preserve">
+    <value>btnTag4</value>
   </data>
-  <data name="&gt;&gt;gbCopies.Name" xml:space="preserve">
+  <data name="lblCopy.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblCategory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtLocation.Parent" xml:space="preserve">
     <value>gbCopies</value>
   </data>
-  <data name="&gt;&gt;gbCopies.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cbCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 30</value>
   </data>
-  <data name="&gt;&gt;gbCopies.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbCopies.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="txtSubCategory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>335, 118</value>
-  </data>
-  <data name="txtSubCategory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 20</value>
-  </data>
-  <data name="txtSubCategory.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;txtSubCategory.Name" xml:space="preserve">
-    <value>txtSubCategory</value>
-  </data>
-  <data name="&gt;&gt;txtSubCategory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSubCategory.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtSubCategory.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblSubCategory.AutoSize" type="System.Boolean, mscorlib">
+  <data name="chbExcluded.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblSubCategory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblSubCategory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 102</value>
-  </data>
-  <data name="lblSubCategory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
-  </data>
-  <data name="lblSubCategory.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="lblSubCategory.Text" xml:space="preserve">
-    <value>Subcategory</value>
-  </data>
-  <data name="&gt;&gt;lblSubCategory.Name" xml:space="preserve">
-    <value>lblSubCategory</value>
-  </data>
-  <data name="&gt;&gt;lblSubCategory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSubCategory.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblSubCategory.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblUpdated.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="lblUpdated.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblUpdated.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblUpdated.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 368</value>
-  </data>
-  <data name="lblUpdated.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
-  </data>
-  <data name="lblUpdated.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
-  </data>
-  <data name="&gt;&gt;lblUpdated.Name" xml:space="preserve">
-    <value>lblUpdated</value>
-  </data>
-  <data name="&gt;&gt;lblUpdated.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblUpdated.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblUpdated.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnSaveNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnSaveNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnSaveNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 368</value>
-  </data>
-  <data name="btnSaveNew.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 23</value>
-  </data>
-  <data name="btnSaveNew.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="btnSaveNew.Text" xml:space="preserve">
-    <value>Save &amp;&amp; New</value>
-  </data>
-  <data name="&gt;&gt;btnSaveNew.Name" xml:space="preserve">
-    <value>btnSaveNew</value>
+  <data name="&gt;&gt;btnTag6.Name" xml:space="preserve">
+    <value>btnTag6</value>
   </data>
   <data name="&gt;&gt;btnSaveNew.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnSaveNew.Parent" xml:space="preserve">
+  <data name="gbCopies.Text" xml:space="preserve">
+    <value>Copies</value>
+  </data>
+  <data name="lblCount.Text" xml:space="preserve">
+    <value>/ 1</value>
+  </data>
+  <data name="&gt;&gt;lblCount.Name" xml:space="preserve">
+    <value>lblCount</value>
+  </data>
+  <data name="lblCondition.Text" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="&gt;&gt;btnTag4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblAcqDate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;txtSubCategory.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnSaveNew.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;dtAcqDate.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="txtInvNum.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>549, 403</value>
+  <data name="&gt;&gt;chbExcluded.Name" xml:space="preserve">
+    <value>chbExcluded</value>
+  </data>
+  <data name="btnLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>484, 66</value>
+  </data>
+  <data name="lblManufacturer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="&gt;&gt;txtCategory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAddCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblPrice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="txtPrice.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblKeywords.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 65</value>
+  </data>
+  <data name="btnAddCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2416,22 +1942,547 @@
         //////////////////////////////////////////////////////////////////8=
 </value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="&gt;&gt;btnTag3.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Item</value>
+  <data name="lblLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
   </data>
-  <data name="&gt;&gt;TimeOut.Name" xml:space="preserve">
-    <value>TimeOut</value>
+  <data name="btnSaveNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 23</value>
   </data>
-  <data name="&gt;&gt;TimeOut.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 33</value>
+  </data>
+  <data name="&gt;&gt;btnLocation.Name" xml:space="preserve">
+    <value>btnLocation</value>
+  </data>
+  <data name="btnSaveNew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>260, 368</value>
+  </data>
+  <data name="&gt;&gt;txtKeywords.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;btnDelCopy.Name" xml:space="preserve">
+    <value>btnDelCopy</value>
+  </data>
+  <data name="btnTag4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="lblCopy.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;chbExcluded.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="&gt;&gt;txtKeywords.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDelCopy.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="lblCondition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="lblCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 81</value>
+  </data>
+  <data name="&gt;&gt;txtCondition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lblSubCategory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblAcqDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblInvNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 13</value>
+  </data>
+  <data name="&gt;&gt;txtKeywords.Name" xml:space="preserve">
+    <value>txtKeywords</value>
+  </data>
+  <data name="&gt;&gt;lblName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnTag1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCondition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 93</value>
+  </data>
+  <data name="&gt;&gt;btnTag1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblKeywords.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="lblInvNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 14</value>
+  </data>
+  <data name="cbCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="btnTag6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>502, 2</value>
+  </data>
+  <data name="btnTag5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;gbCopies.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblKeywords.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtManufacturer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnLocation.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="&gt;&gt;lblName.Name" xml:space="preserve">
+    <value>lblName</value>
+  </data>
+  <data name="lblCopy.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="lblInvNum.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;imgImg.Name" xml:space="preserve">
+    <value>imgImg</value>
+  </data>
+  <data name="lblAcqDate.Text" xml:space="preserve">
+    <value>Acquisition date</value>
+  </data>
+  <data name="lblKeywords.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 141</value>
+  </data>
+  <data name="lblUpdated.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnTag1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 35</value>
+  </data>
+  <data name="lblCondition.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="lblCondition.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCondition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 21</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmEditItem</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblSubCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 102</value>
   </data>
+  <data name="btnTag1.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="btnTag4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 2</value>
+  </data>
+  <data name="&gt;&gt;lblNote.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtManufacturer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnTag3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 102</value>
+  </data>
+  <data name="lblLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 54</value>
+  </data>
+  <data name="&gt;&gt;btnSaveNew.Name" xml:space="preserve">
+    <value>btnSaveNew</value>
+  </data>
+  <data name="&gt;&gt;cbCopy.Name" xml:space="preserve">
+    <value>cbCopy</value>
+  </data>
+  <data name="&gt;&gt;lblCount.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="btnTag6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 35</value>
+  </data>
+  <data name="lblManufacturer.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnTag6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="lblCategory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtManufacturer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 20</value>
+  </data>
+  <data name="dtAcqDate.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;btnSaveNew.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnTag4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblKeywords.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
+  </data>
+  <data name="&gt;&gt;txtManufacturer.Name" xml:space="preserve">
+    <value>txtManufacturer</value>
+  </data>
+  <data name="txtSubCategory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 20</value>
+  </data>
+  <data name="lblCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>381, 368</value>
+  </data>
+  <data name="btnAddCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 28</value>
+  </data>
+  <data name="lblCategory.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblInvNum.Text" xml:space="preserve">
+    <value>Inventory number</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 70</value>
+  </data>
+  <data name="lblAcqDate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="imgImg.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="&gt;&gt;lblManufacturer.Name" xml:space="preserve">
+    <value>lblManufacturer</value>
+  </data>
+  <data name="&gt;&gt;btnTag5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnTag1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;dtAcqDate.Name" xml:space="preserve">
+    <value>dtAcqDate</value>
+  </data>
+  <data name="btnDelCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 28</value>
+  </data>
+  <data name="&gt;&gt;lblManufacturer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnTag3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="lblUpdated.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="txtManufacturer.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;lblAcqDate.Name" xml:space="preserve">
+    <value>lblAcqDate</value>
+  </data>
+  <data name="btnAddCopy.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="&gt;&gt;txtInvNum.Name" xml:space="preserve">
+    <value>txtInvNum</value>
+  </data>
+  <data name="btnAddCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 23</value>
+  </data>
+  <data name="txtKeywords.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 157</value>
+  </data>
+  <data name="&gt;&gt;btnTag4.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;lblNote.Name" xml:space="preserve">
+    <value>lblNote</value>
+  </data>
+  <data name="btnAddCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;btnLocation.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="lblLocation.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblCategory.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="imgImg.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="&gt;&gt;txtLocation.Name" xml:space="preserve">
+    <value>txtLocation</value>
+  </data>
+  <data name="dtAcqDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 109</value>
+  </data>
+  <data name="&gt;&gt;lblCategory.Name" xml:space="preserve">
+    <value>lblCategory</value>
+  </data>
+  <data name="gbCopies.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>462, 368</value>
+  </data>
+  <data name="lblCount.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="btnDelCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="txtSubCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>335, 118</value>
+  </data>
+  <data name="btnTag2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>337, 2</value>
+  </data>
+  <data name="&gt;&gt;txtInvNum.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;lblManufacturer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblManufacturer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 141</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.Name" xml:space="preserve">
+    <value>lblCondition</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnTag2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="lblKeywords.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblSubCategory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnSaveNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;txtCondition.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="txtLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>469, 20</value>
+  </data>
+  <data name="txtCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 118</value>
+  </data>
+  <data name="lblAcqDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 93</value>
+  </data>
+  <data name="&gt;&gt;txtCondition.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblUpdated.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtNote.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>549, 403</value>
+  </data>
+  <data name="&gt;&gt;lblPrice.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="lblManufacturer.Text" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="lblLocation.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="&gt;&gt;btnAddCopy.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lblUpdated.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 368</value>
+  </data>
+  <data name="&gt;&gt;txtName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;btnTag5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCopy.Name" xml:space="preserve">
+    <value>lblCopy</value>
+  </data>
+  <data name="&gt;&gt;dtAcqDate.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="lblUpdated.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;lblCount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTag6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblLocation.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="&gt;&gt;imgImg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbCopies.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btnSaveNew.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnTag4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="imgImg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 165</value>
+  </data>
+  <data name="lblCategory.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;TimeOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnSaveNew.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;imgImg.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;btnTag3.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="lblNote.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 13</value>
+  </data>
+  <data name="lblCategory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="&gt;&gt;lblCondition.Parent" xml:space="preserve">
+    <value>gbCopies</value>
+  </data>
+  <data name="lblSubCategory.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtNote.Name" xml:space="preserve">
+    <value>txtNote</value>
+  </data>
+  <data name="txtSubCategory.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblInvNum.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;btnTag2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblNote.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtPrice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="txtCategory.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="txtCategory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 20</value>
+  </data>
+  <data name="&gt;&gt;txtLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="btnTag5.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <metadata name="TimeOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

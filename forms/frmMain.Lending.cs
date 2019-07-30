@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -426,7 +427,11 @@ namespace Katalog
 
         private void ImportLending(string fileName)
         {
-            List<Lending> con = global.ImportLendedCSV(fileName);
+            List<Lending> con;
+            if (Path.GetExtension(fileName) == "csv")
+                con = global.ImportLendedCSV(fileName);
+            else
+                con = global.ImportLendedXML(fileName);
             if (con == null)
             {
                 Dialogs.ShowErr(Lng.Get("ParseFileError", "Parse file error") + ".", Lng.Get("Error"));
@@ -470,7 +475,10 @@ namespace Katalog
             {
                 itm.Add((Lending)item);
             }
-            global.ExportLendedCSV(fileName, itm);
+            if (Path.GetExtension(fileName) == "csv")
+                global.ExportLendedCSV(fileName, itm);
+            else
+                global.ExportLendedXML(fileName, itm);
         }
 
         #endregion

@@ -124,6 +124,7 @@ namespace Katalog
                 txtSubCategory.Text = itm.Subcategory.Trim();       // SubCategory
                 txtKeywords.Text = itm.Keywords.Trim();             // Keywords
                 txtNote.Text = itm.Note.Trim();                     // Note
+                txtManufacturer.Text = itm.Manufacturer.Trim();     // Manufacturer
 
 
                 // ----- Fill Specimen -----
@@ -193,9 +194,10 @@ namespace Katalog
             itm.Name = txtName.Text;                        // Name
             itm.Category = txtCategory.Text;                // Category
             itm.Subcategory = txtSubCategory.Text;          // SubCategory
-            //itm.Subcategory2 = "";                        // SubCategory2
+            itm.Subcategory2 = "";                          // SubCategory2
             itm.Keywords = txtKeywords.Text;                // Keywords
             itm.Note = txtNote.Text;                        // Note
+            itm.Manufacturer = txtManufacturer.Text;        // Manufacturer
 
             // ----- Status -----
             itm.Count = global.GetCopiesCount(CopiesList);          // Get counts

@@ -80,6 +80,7 @@
             this.btnObjects = new System.Windows.Forms.Button();
             this.lblURL = new System.Windows.Forms.Label();
             this.txtURL = new System.Windows.Forms.TextBox();
+            this.btnShowFolder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbRating.SuspendLayout();
             this.SuspendLayout();
@@ -402,10 +403,18 @@
             resources.ApplyResources(this.txtURL, "txtURL");
             this.txtURL.Name = "txtURL";
             // 
+            // btnShowFolder
+            // 
+            resources.ApplyResources(this.btnShowFolder, "btnShowFolder");
+            this.btnShowFolder.Name = "btnShowFolder";
+            this.btnShowFolder.UseVisualStyleBackColor = true;
+            this.btnShowFolder.Click += new System.EventHandler(this.btnShowFolder_Click);
+            // 
             // frmEditObjects
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnShowFolder);
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.txtURL);
             this.Controls.Add(this.btnObjects);
@@ -516,5 +525,6 @@
         private System.Windows.Forms.Button btnObjects;
         private System.Windows.Forms.Label lblURL;
         private System.Windows.Forms.TextBox txtURL;
+        private System.Windows.Forms.Button btnShowFolder;
     }
 }

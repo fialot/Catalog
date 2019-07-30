@@ -70,6 +70,8 @@
             this.lblUpdated = new System.Windows.Forms.Label();
             this.btnSaveNew = new System.Windows.Forms.Button();
             this.TimeOut = new System.Windows.Forms.Timer(this.components);
+            this.txtManufacturer = new System.Windows.Forms.TextBox();
+            this.lblManufacturer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgImg)).BeginInit();
             this.gbCopies.SuspendLayout();
             this.SuspendLayout();
@@ -90,8 +92,8 @@
             // 
             // imgImg
             // 
-            this.imgImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.imgImg, "imgImg");
+            this.imgImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgImg.Name = "imgImg";
             this.imgImg.TabStop = false;
             this.imgImg.Click += new System.EventHandler(this.imgImg_Click);
@@ -179,9 +181,9 @@
             // 
             // txtCategory
             // 
+            resources.ApplyResources(this.txtCategory, "txtCategory");
             this.txtCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtCategory, "txtCategory");
             this.txtCategory.Name = "txtCategory";
             // 
             // lblCategory
@@ -191,6 +193,7 @@
             // 
             // gbCopies
             // 
+            resources.ApplyResources(this.gbCopies, "gbCopies");
             this.gbCopies.Controls.Add(this.lblCondition);
             this.gbCopies.Controls.Add(this.txtCondition);
             this.gbCopies.Controls.Add(this.chbExcluded);
@@ -208,7 +211,6 @@
             this.gbCopies.Controls.Add(this.txtInvNum);
             this.gbCopies.Controls.Add(this.txtLocation);
             this.gbCopies.Controls.Add(this.lblInvNum);
-            resources.ApplyResources(this.gbCopies, "gbCopies");
             this.gbCopies.Name = "gbCopies";
             this.gbCopies.TabStop = false;
             // 
@@ -219,9 +221,9 @@
             // 
             // txtCondition
             // 
+            resources.ApplyResources(this.txtCondition, "txtCondition");
             this.txtCondition.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtCondition.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtCondition, "txtCondition");
             this.txtCondition.Name = "txtCondition";
             // 
             // chbExcluded
@@ -242,8 +244,8 @@
             // 
             // dtAcqDate
             // 
-            this.dtAcqDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             resources.ApplyResources(this.dtAcqDate, "dtAcqDate");
+            this.dtAcqDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtAcqDate.Name = "dtAcqDate";
             // 
             // lblAcqDate
@@ -279,9 +281,9 @@
             // 
             // cbCopy
             // 
+            resources.ApplyResources(this.cbCopy, "cbCopy");
             this.cbCopy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCopy.FormattingEnabled = true;
-            resources.ApplyResources(this.cbCopy, "cbCopy");
             this.cbCopy.Name = "cbCopy";
             this.cbCopy.SelectedIndexChanged += new System.EventHandler(this.cbCopy_SelectedIndexChanged);
             // 
@@ -302,9 +304,9 @@
             // 
             // txtLocation
             // 
+            resources.ApplyResources(this.txtLocation, "txtLocation");
             this.txtLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtLocation, "txtLocation");
             this.txtLocation.Name = "txtLocation";
             // 
             // lblInvNum
@@ -314,9 +316,9 @@
             // 
             // txtSubCategory
             // 
+            resources.ApplyResources(this.txtSubCategory, "txtSubCategory");
             this.txtSubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtSubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            resources.ApplyResources(this.txtSubCategory, "txtSubCategory");
             this.txtSubCategory.Name = "txtSubCategory";
             // 
             // lblSubCategory
@@ -341,10 +343,24 @@
             this.TimeOut.Interval = 200;
             this.TimeOut.Tick += new System.EventHandler(this.TimeOut_Tick);
             // 
+            // txtManufacturer
+            // 
+            resources.ApplyResources(this.txtManufacturer, "txtManufacturer");
+            this.txtManufacturer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtManufacturer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtManufacturer.Name = "txtManufacturer";
+            // 
+            // lblManufacturer
+            // 
+            resources.ApplyResources(this.lblManufacturer, "lblManufacturer");
+            this.lblManufacturer.Name = "lblManufacturer";
+            // 
             // frmEditItem
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtManufacturer);
+            this.Controls.Add(this.lblManufacturer);
             this.Controls.Add(this.btnSaveNew);
             this.Controls.Add(this.lblUpdated);
             this.Controls.Add(this.txtSubCategory);
@@ -422,5 +438,7 @@
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.DateTimePicker dtAcqDate;
         private System.Windows.Forms.Label lblAcqDate;
+        private System.Windows.Forms.TextBox txtManufacturer;
+        private System.Windows.Forms.Label lblManufacturer;
     }
 }
